@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperKoikoukesse.Admin", "SuperKoikoukesse.Admin\SuperKoikoukesse.Admin.csproj", "{713FE3DC-8186-42CD-BBA5-B594DF213BD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperKoikoukesse.Common.Web", "..\common\SuperKoikoukesse.Common.Web\SuperKoikoukesse.Common.Web.csproj", "{D397D0A9-E7E3-4BC8-94C9-283DCE28F3F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperKoikoukesse.Common", "..\common\SuperKoikoukesse.Common\SuperKoikoukesse.Common.csproj", "{D397D0A9-E7E3-4BC8-94C9-283DCE28F3F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
