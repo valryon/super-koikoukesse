@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SuperKoikoukesse.Webservice.MvcApplication" Language="C#" %>
+<%@ Application Codebehind="Global.asax.cs" Inherits="SuperKoikoukesse.Webservice.MvcApplication" Language="C#" %>

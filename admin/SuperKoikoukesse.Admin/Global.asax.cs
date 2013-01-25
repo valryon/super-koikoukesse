@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SuperKoikoukesse.Common.Log;
 
 namespace SuperKoikoukesse.Admin
 {
@@ -28,6 +29,10 @@ namespace SuperKoikoukesse.Admin
 
         protected void Application_Start()
         {
+            // Initialize log
+            Logger.Initialize("SuperKoikoukesse.Admin.Log");
+            Logger.Log(LogLevel.Info, "Starting website SuperKoikoukesse.Admin...");
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

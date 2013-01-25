@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Web;
+using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SuperKoikoukesse.Common.Log;
 
 namespace SuperKoikoukesse.Webservice
 {
@@ -33,10 +29,11 @@ namespace SuperKoikoukesse.Webservice
 
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            // Initialize log
+            Logger.Initialize("SuperKoikoukesse.Webservice.Log");
+            Logger.Log(LogLevel.Info, "Starting website SuperKoikoukesse.Webservice...");
 
-            // Utiliser LocalDB pour Entity Framework par défaut
-            Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
+            AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
