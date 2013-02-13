@@ -48,14 +48,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gfxs\sprites\player.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>player</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="fonts\font.spritefont">
       <Name>font</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -63,12 +55,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gfxs\sprites\player2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>player2</Name>
+    <Compile Include="gfxs\backgrounds\quizz_background.png">
+      <Name>quizz_background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="gfxs\sprites\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--
