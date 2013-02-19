@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SuperKoikoukesse.Core.Main;
+using SuperKoikoukesse.Core.Engine.Content;
 
 namespace SuperKoikoukesse.Core.Engine.Graphics
 {
@@ -14,10 +16,12 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
     {
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;
+        private ContentLoader m_contentLoader;
 
-        public Camera(GraphicsDeviceManager graphics)
+        public Camera(GraphicsDeviceManager graphics, ContentLoader contentLoader)
         {
             m_graphics = graphics;
+            m_contentLoader = contentLoader;
             m_spriteBatch = new SpriteBatch(m_graphics.GraphicsDevice);
         }
 
@@ -49,8 +53,7 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
 
             // Clear the virtual resolution
             Begin();
-            //DrawRectangle(new Rectangle(0, 0, _spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height),
-            //                        color);
+            DrawRectangle(new Rectangle(0, 0, m_graphics.GraphicsDevice.Viewport.Width, m_graphics.GraphicsDevice.Viewport.Height), viewportColor);
             End();
         }
 
@@ -59,14 +62,25 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         /// </summary>
         public void Begin()
         {
-
+            m_spriteBatch.Begin();
         }
 
         /// <summary>
         /// Add something to be draw on "End" call
         /// </summary>
-        public void Draw()
+        public void Draw(Texture2D texture, Rectangle dst, Color color, Rectangle? src = null, float rotation = 0f, Vector2 origin = new Vector2(), SpriteEffects flip = SpriteEffects.None)
         {
+            m_spriteBatch.Draw(texture, dst, src, color, rotation, origin, flip, 1.0f);
+        }
+
+        /// <summary>
+        /// Draw a rectangle on the screen
+        /// </summary>
+        /// <param name="dst"></param>
+        /// <param name="color"></param>
+        public void DrawRectangle(Rectangle dst, Color color)
+        {
+            m_spriteBatch.Draw(m_contentLoader.BlankTexture, dst, color);
         }
 
         /// <summary>
@@ -74,6 +88,7 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         /// </summary>
         public void End()
         {
+            m_spriteBatch.End();
         }
 
         /// <summary>

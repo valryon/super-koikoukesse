@@ -18,25 +18,18 @@ namespace SuperKoikoukesse.Core.Main
     /// </summary>
     public class SuperKoikoukesseGame : Game
     {
-        /// <summary>
-        /// Game is a singleton
-        /// </summary>
-        private static SuperKoikoukesseGame m_instance;
-
-        // Engines instances
-
-        private ContentLoader m_contentLoader;
-        private Camera m_camera;
+        private GameContext m_context;
+        private bool m_changeResolution;
 
         public SuperKoikoukesseGame()
             : base()
         {
-            m_instance = this;
-
             Content.RootDirectory = "Content";
-            m_contentLoader = new ContentLoader(Content);
-            m_camera = new Camera(new GraphicsDeviceManager(this));
-            
+            m_context = new GameContext(this);
+
+            m_changeResolution = true;
+            m_context.WindowSize = new Vector2(1280, 1024);
+            m_context.ViewportSize = new Vector2(1024, 720);
         }
 
         protected override void Initialize()
@@ -46,43 +39,28 @@ namespace SuperKoikoukesse.Core.Main
 
         protected override void LoadContent()
         {
-
+            
         }
 
         protected override void UnloadContent()
         {
         }
 
+        
         protected override void Update(GameTime gameTime)
         {
+            if (m_changeResolution)
+            {
+                m_changeResolution = false;
+                m_context.Camera.Initialize(m_context.WindowSize, m_context.ViewportSize);
+            }
+
             base.Update(gameTime);
         }
 
         protected override void Draw (GameTime gameTime)
 		{
-            m_camera.ClearScreen();
-        }
-
-        /// <summary>
-        /// Current game camera
-        /// </summary>
-        public static Camera Camera
-        {
-            get
-            {
-                return m_instance.m_camera;
-            }
-        }
-
-        /// <summary>
-        /// Game content loader
-        /// </summary>
-        public static ContentLoader ContentLoader
-        {
-            get
-            {
-                return m_instance.m_contentLoader;
-            }
+            m_context.Camera.ClearScreen();
         }
     }
 }

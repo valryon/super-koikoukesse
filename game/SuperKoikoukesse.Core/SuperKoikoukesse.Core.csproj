@@ -112,8 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\Graphics\Camera.cs" />
-    <Compile Include="Engine\ContentLoader.cs" />
+    <Compile Include="Engine\Content\ContentLoader.cs" />
     <Compile Include="Engine\Graphics\ResolutionHelper.cs" />
+    <Compile Include="Engine\GameContext.cs" />
     <Compile Include="Main\SuperKoikoukesseGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using SuperKoikoukesse.Core.Main;
 
-namespace SuperKoikoukesse.Core.Engine
+namespace SuperKoikoukesse.Core.Engine.Content
 {
     /// <summary>
     /// Assets management
@@ -16,19 +16,27 @@ namespace SuperKoikoukesse.Core.Engine
     {
         private ContentManager m_contentManager;
 
-        /// <summary>
-        /// Useful empty texture to draw non-sprite colored things
-        /// </summary>
         private Texture2D m_blankTexture;
 
-        public ContentLoader(ContentManager content)
+        public ContentLoader(ContentManager content, GraphicsDevice device)
         {
             m_contentManager = content;
 
             // Create the empty texture
-            m_blankTexture = new Texture2D(SuperKoikoukesseGame.Camera.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            m_blankTexture = new Texture2D(device, 1, 1, false, SurfaceFormat.Color);
             Color[] color = new Color[1] { Color.White};
             m_blankTexture.SetData(color);
+        }
+
+        /// <summary>
+        /// Useful empty texture to draw non-sprite colored things
+        /// </summary>
+        public Texture2D BlankTexture
+        {
+            get
+            {
+                return m_blankTexture;
+            }
         }
     }
 }
