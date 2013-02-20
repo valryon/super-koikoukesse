@@ -25,18 +25,22 @@ namespace SuperKoikoukesse.Core.Engine
 
             m_contentLoader = new ContentLoader(game.Content, deviceManager.GraphicsDevice);
             m_camera = new Camera(deviceManager, m_contentLoader);
-            
         }
 
         /// <summary>
         /// Window
         /// </summary>
-        public Vector2 WindowSize { get; set; }
+        public Rectangle WindowSize { get; set; }
 
         /// <summary>
         /// Virtual game window
         /// </summary>
-        public Vector2 ViewportSize { get; set; }
+        public Rectangle ViewportSize { get; set; }
+
+        /// <summary>
+        /// Display or hide debug infos
+        /// </summary>
+        public bool IsDebugMode { get; set; }
 
         /// <summary>
         /// Current game camera

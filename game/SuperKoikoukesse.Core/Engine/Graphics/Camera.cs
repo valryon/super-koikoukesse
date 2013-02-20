@@ -84,6 +84,18 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         }
 
         /// <summary>
+        /// Draw text on the screen
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="p_2"></param>
+        /// <param name="location"></param>
+        /// <param name="color"></param>
+        public void DrawString(SpriteFont font, string text, Vector2 location, Color color)
+        {
+            m_spriteBatch.DrawString(font, text, location, color);
+        }
+
+        /// <summary>
         /// End drawing on screen
         /// </summary>
         public void End()
@@ -101,5 +113,7 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
                 return m_graphics.GraphicsDevice;
             }
         }
+
+
     }
 }
