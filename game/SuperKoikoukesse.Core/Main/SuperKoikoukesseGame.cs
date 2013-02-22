@@ -42,9 +42,9 @@ namespace SuperKoikoukesse.Core.Main
             Content.RootDirectory = "Content";
 
             GameResolutionWidth = 1024;
-            GameResolutionHeight = 768;
+            GameResolutionHeight = 720;
 
-            DeviceResolutionWidth = 1280;
+            DeviceResolutionWidth = 1024;
             DeviceResolutionHeight = 720;
 
             // Force the first resolution set

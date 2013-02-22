@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using SuperKoikoukesse.Core.Engine.Content;
+using SuperKoikoukesse.Core.Engine.Exceptions;
 
 namespace SuperKoikoukesse.Core.Engine.Graphics
 {
@@ -130,6 +131,8 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         {
             Texture2D texture = m_contentLoader.GetTexture(textureName);
 
+            if (texture == null) throw new GameException("Unknow texture: " + textureName);
+
             Draw(texture, dst, color,src, rotation, origin, flip);
         }
 
@@ -152,10 +155,21 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         }
 
         /// <summary>
+        /// Draw text on the screen using default font
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="location"></param>
+        /// <param name="color"></param>
+        public void DrawString(string text, Vector2 location, Color color)
+        {
+            m_spriteBatch.DrawString(m_contentLoader.Font, text, location, color);
+        }
+
+        /// <summary>
         /// Draw text on the screen
         /// </summary>
-        /// <param name="p"></param>
-        /// <param name="p_2"></param>
+        /// <param name="font"></param>
+        /// <param name="text"></param>
         /// <param name="location"></param>
         /// <param name="color"></param>
         public void DrawString(SpriteFont font, string text, Vector2 location, Color color)

@@ -39,13 +39,38 @@ namespace SuperKoikoukesse.Core.Engine.Content
         }
 
         /// <summary>
-        /// Load new textures
+        /// Load texture
         /// </summary>
-        /// <param name="backgroundImageAsset"></param>
-        public void LoadTexture(string backgroundImageAsset)
+        /// <param name="imageAssetName"></param>
+        public void LoadTexture(string imageAssetName)
         {
-            Texture2D texture = m_contentManager.Load<Texture2D>(backgroundImageAsset);
-            m_textures.Add(backgroundImageAsset, texture);
+            try
+            {
+                Texture2D texture = m_contentManager.Load<Texture2D>(imageAssetName);
+                m_textures.Add(imageAssetName, texture);
+            }
+            catch (Exception e)
+            {
+                throw new ContentLoadException(imageAssetName + " wasn't loaded.", e);
+            }
+        }
+
+        /// <summary>
+        /// Load texture from file
+        /// </summary>
+        /// <param name="imageAssetName"></param>
+        public void LoadTexture(string imageAssetName, string imageFilePath)
+        {
+            // TODO From file
+            try
+            {
+                Texture2D texture = m_contentManager.Load<Texture2D>(imageFilePath);
+                m_textures.Add(imageAssetName, texture);
+            }
+            catch (Exception e)
+            {
+                throw new ContentLoadException(imageAssetName + " (" + imageFilePath + ") wasn't loaded.", e);
+            }
         }
 
         /// <summary>
@@ -53,7 +78,12 @@ namespace SuperKoikoukesse.Core.Engine.Content
         /// </summary>
         public Texture2D GetTexture(string name)
         {
-            return m_textures[name];
+            if (m_textures.ContainsKey(name))
+            {
+                return m_textures[name];
+            }
+
+            return null;
         }
 
         /// <summary>

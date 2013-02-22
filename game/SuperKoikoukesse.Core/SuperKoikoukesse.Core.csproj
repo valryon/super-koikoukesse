@@ -111,6 +111,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Answer.cs" />
+    <Compile Include="Data\ImageQuestion.cs" />
+    <Compile Include="Data\Question.cs" />
+    <Compile Include="Engine\Exceptions\ContentLoadException.cs" />
+    <Compile Include="Engine\Exceptions\GameException.cs" />
     <Compile Include="Engine\Graphics\GameSpriteBatch.cs" />
     <Compile Include="Engine\Tools\FpsCounter.cs" />
     <Compile Include="Engine\GameStates\GameState.cs" />
