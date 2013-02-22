@@ -9,9 +9,9 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using SuperKoikoukesse.Core.Engine;
 using SuperKoikoukesse.Core.Engine.Graphics;
-using SuperKoikoukesse.Core.Engine.Bench;
 using SuperKoikoukesse.Core.Engine.GameStates;
 using SuperKoikoukesse.Core.Engine.States;
+using SuperKoikoukesse.Core.Engine.Tools;
 #endregion
 
 namespace SuperKoikoukesse.Core.Main
@@ -21,26 +21,43 @@ namespace SuperKoikoukesse.Core.Main
     /// </summary>
     public class SuperKoikoukesseGame : Game
     {
+        private GraphicsDeviceManager m_deviceManager;
         private GameContext m_context;
-        private bool m_changeResolution;
+        private bool m_initializeResolution;
         private FpsCounter counter;
+
+        // Resolution
+        // -- Device
+        private int GameResolutionWidth, GameResolutionHeight;
+        // -- Virtual
+        private int DeviceResolutionWidth, DeviceResolutionHeight;
 
         private GameState m_currentGameState;
 
         public SuperKoikoukesseGame()
             : base()
         {
+            // Basic program parameters
             Window.Title = "SuperKoiKouKesse v0.001";
-
             Content.RootDirectory = "Content";
+
+            GameResolutionWidth = 1024;
+            GameResolutionHeight = 768;
+
+            DeviceResolutionWidth = 1280;
+            DeviceResolutionHeight = 720;
+
+            // Force the first resolution set
+            m_initializeResolution = true;
+
+            // Graphics manager must be created in constructor
+            m_deviceManager = new GraphicsDeviceManager(this);
+
+            // Create game engines and objects
             m_context = new GameContext(this);
-
-            m_changeResolution = true;
-            m_context.WindowSize = new Rectangle(0,0,1024, 768);
-            m_context.ViewportSize = new Rectangle(0, 0, 960, 640);
-
             m_context.IsDebugMode = true;
 
+            // FPS counter
             counter = new FpsCounter(m_context);
 
             // Define quizz as main state for debug
@@ -50,7 +67,7 @@ namespace SuperKoikoukesse.Core.Main
         protected override void LoadContent()
         {
             // Load fonts, common assets, etc
-            m_context.ContentLoader.LoadInitialContent();
+            m_context.Content.LoadInitialContent();
 
             // Load gamestate specific assets
             m_currentGameState.LoadContent();
@@ -68,10 +85,16 @@ namespace SuperKoikoukesse.Core.Main
         protected override void Update(GameTime gameTime)
         {
             // Resolution must be changed in Update to work (MonoGame issue)
-            if (m_changeResolution)
+            if (m_initializeResolution)
             {
-                m_changeResolution = false;
-                m_context.Camera.Initialize(new Vector2(m_context.WindowSize.Width, m_context.WindowSize.Height), new Vector2(m_context.ViewportSize.Width, m_context.ViewportSize.Height));
+                m_initializeResolution = false;
+                m_context.InitializeResolution(this, new Vector2(DeviceResolutionWidth, DeviceResolutionHeight), new Vector2(GameResolutionWidth, GameResolutionHeight), false);
+
+                // Reset camera for a good location
+                if (m_currentGameState != null)
+                {
+                    m_currentGameState.Camera.Reset();
+                }
             }
 
             // Update game state
@@ -90,23 +113,27 @@ namespace SuperKoikoukesse.Core.Main
         protected override void Draw (GameTime gameTime)
 		{
             // Clean the screen
-            m_context.Camera.ClearScreen();
-
-            // Display batching
-            m_context.Camera.Begin();
+            m_context.SpriteBatch.ClearDevice(Color.Black);
+            m_context.SpriteBatch.ClearViewport(Color.CornflowerBlue);
 
             // -- The current state
             m_currentGameState.Draw();
-
-            m_context.Camera.End();
 
             // Debug mode
             if (m_context.IsDebugMode)
             {
                 // Display FPS count
-                m_context.Camera.Begin();
+                m_context.SpriteBatch.BeginNoCamera();
                 counter.Draw(Vector2.One);
-                m_context.Camera.End();
+                m_context.SpriteBatch.End();
+            }
+        }
+
+        public GraphicsDeviceManager GraphicsDeviceManager
+        {
+            get
+            {
+                return m_deviceManager;
             }
         }
     }

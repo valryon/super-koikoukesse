@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using SuperKoikoukesse.Core.Engine.Graphics;
 
 namespace SuperKoikoukesse.Core.Engine.GameStates
 {
@@ -23,6 +24,7 @@ namespace SuperKoikoukesse.Core.Engine.GameStates
         public GameState(GameContext context)
         {
             this.context = context;
+            this.Camera = new Camera2D();
         }
 
         /// <summary>
@@ -42,11 +44,25 @@ namespace SuperKoikoukesse.Core.Engine.GameStates
         /// Update the state
         /// </summary>
         /// <param name="gameTime"></param>
-        public abstract void Update(GameTime gameTime);
+        public virtual void Update(GameTime gameTime)
+        {
+            Camera.Update(gameTime);
+        }
 
         /// <summary>
         /// Draw things on the screen because after all we're in a fucking video game
         /// </summary>
-        public abstract void Draw();
+        public virtual void Draw()
+        {
+        }
+
+        /// <summary>
+        /// The scene camera
+        /// </summary>
+        public Camera2D Camera
+        {
+            get;
+            private set;
+        }
     }
 }

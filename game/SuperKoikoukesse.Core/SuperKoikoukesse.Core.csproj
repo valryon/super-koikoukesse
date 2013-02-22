@@ -111,12 +111,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Bench\FpsCounter.cs" />
+    <Compile Include="Engine\Graphics\GameSpriteBatch.cs" />
+    <Compile Include="Engine\Tools\FpsCounter.cs" />
     <Compile Include="Engine\GameStates\GameState.cs" />
-    <Compile Include="Engine\Graphics\Camera.cs" />
+    <Compile Include="Engine\Graphics\Camera2D.cs" />
     <Compile Include="Engine\Content\ContentLoader.cs" />
     <Compile Include="Engine\Graphics\ResolutionHelper.cs" />
     <Compile Include="Engine\GameContext.cs" />
+    <Compile Include="Engine\Tools\InterpolatorsAndTimers.cs" />
+    <Compile Include="Engine\Tools\RandomHelper.cs" />
     <Compile Include="Main\SuperKoikoukesseGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\Quizz.cs" />

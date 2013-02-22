@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace SuperKoikoukesse.Core.Engine.Bench
+namespace SuperKoikoukesse.Core.Engine.Tools
 {
     public class FpsCounter
     {
@@ -58,7 +58,7 @@ namespace SuperKoikoukesse.Core.Engine.Bench
 
             if (_fps < 25) color = Color.Red;
 
-            m_context.Camera.DrawString(m_context.ContentLoader.Font, string.Format("{0}", _fps), location, color);
+            m_context.SpriteBatch.DrawString(m_context.Content.Font, string.Format("{0}", _fps), location, color);
         }
     }
 }

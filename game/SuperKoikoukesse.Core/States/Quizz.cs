@@ -17,23 +17,30 @@ namespace SuperKoikoukesse.Core.Engine.States
         public Quizz(GameContext context)
             : base(context)
         {
-
+            
         }
 
         public override void LoadContent()
         {
             // Load background
-            context.ContentLoader.LoadTexture(backgroundImageAsset);
+            context.Content.LoadTexture(backgroundImageAsset);
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
+
         }
 
         public override void Draw()
         {
+            context.SpriteBatch.Begin(Camera);
+
             // Draw the background
-            context.Camera.Draw(context.ContentLoader.GetTexture(backgroundImageAsset), context.ViewportSize, Color.White);
+            context.SpriteBatch.Draw(backgroundImageAsset, context.ViewportSize, Color.White);
+
+            context.SpriteBatch.End();
         }
     }
 }
