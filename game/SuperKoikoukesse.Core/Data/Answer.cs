@@ -37,6 +37,17 @@ namespace SuperKoikoukesse.Core.Data
         }
 
         /// <summary>
+        /// Load content for this answer
+        /// </summary>
+        public void LoadContent()
+        {
+            if (context.Content.GetTexture(Constants.QuizzButtonAsset) == null)
+            {
+                context.Content.LoadTexture(Constants.QuizzButtonAsset);
+            }
+        }
+
+        /// <summary>
         /// Update the answer
         /// </summary>
         /// <param name="gameTime"></param>
@@ -51,7 +62,18 @@ namespace SuperKoikoukesse.Core.Data
         /// <param name="destination">Where to draw</param>
         public virtual void Draw(Vector2 location)
         {
-            context.SpriteBatch.DrawString(Text, location, Color.White);
+            Color color = Color.White;
+
+            if (context.IsDebugMode)
+            {
+                color = (IsSolution ? Color.Green : Color.Red);
+            }
+
+            // Draw the frame
+            context.SpriteBatch.Draw(Constants.QuizzButtonAsset, new Rectangle((int)location.X, (int)location.Y, Constants.QuizzButtonWidth, Constants.QuizzButtonHeight), color);
+
+            // Write the text
+            context.SpriteBatch.DrawString(Text, location + new Vector2(15,10), Color.White);
         }
     }
 }

@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Answer.cs" />
+    <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\ImageQuestion.cs" />
     <Compile Include="Data\Question.cs" />
     <Compile Include="Engine\Exceptions\ContentLoadException.cs" />

@@ -12,6 +12,7 @@ using SuperKoikoukesse.Core.Engine.Graphics;
 using SuperKoikoukesse.Core.Engine.GameStates;
 using SuperKoikoukesse.Core.Engine.States;
 using SuperKoikoukesse.Core.Engine.Tools;
+using SuperKoikoukesse.Core.Data;
 #endregion
 
 namespace SuperKoikoukesse.Core.Main
@@ -26,11 +27,7 @@ namespace SuperKoikoukesse.Core.Main
         private bool m_initializeResolution;
         private FpsCounter counter;
 
-        // Resolution
-        // -- Device
-        private int GameResolutionWidth, GameResolutionHeight;
-        // -- Virtual
-        private int DeviceResolutionWidth, DeviceResolutionHeight;
+
 
         private GameState m_currentGameState;
 
@@ -40,12 +37,6 @@ namespace SuperKoikoukesse.Core.Main
             // Basic program parameters
             Window.Title = "SuperKoiKouKesse v0.001";
             Content.RootDirectory = "Content";
-
-            GameResolutionWidth = 1024;
-            GameResolutionHeight = 720;
-
-            DeviceResolutionWidth = 1024;
-            DeviceResolutionHeight = 720;
 
             // Force the first resolution set
             m_initializeResolution = true;
@@ -81,14 +72,14 @@ namespace SuperKoikoukesse.Core.Main
                 m_currentGameState.UnloadContent();
             }
         }
-        
+
         protected override void Update(GameTime gameTime)
         {
             // Resolution must be changed in Update to work (MonoGame issue)
             if (m_initializeResolution)
             {
                 m_initializeResolution = false;
-                m_context.InitializeResolution(this, new Vector2(DeviceResolutionWidth, DeviceResolutionHeight), new Vector2(GameResolutionWidth, GameResolutionHeight), false);
+                m_context.InitializeResolution(this, new Vector2(Constants.DeviceResolutionWidth, Constants.DeviceResolutionHeight), new Vector2(Constants.GameResolutionWidth, Constants.GameResolutionHeight), false);
 
                 // Reset camera for a good location
                 if (m_currentGameState != null)
@@ -106,12 +97,12 @@ namespace SuperKoikoukesse.Core.Main
                 // Update FPS count
                 counter.Update(gameTime);
             }
-            
+
             base.Update(gameTime);
         }
 
-        protected override void Draw (GameTime gameTime)
-		{
+        protected override void Draw(GameTime gameTime)
+        {
             // Clean the screen
             m_context.SpriteBatch.ClearDevice(Color.Black);
             m_context.SpriteBatch.ClearViewport(Color.CornflowerBlue);

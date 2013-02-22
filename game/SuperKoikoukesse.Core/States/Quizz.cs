@@ -13,11 +13,6 @@ namespace SuperKoikoukesse.Core.Engine.States
     /// </summary>
     public class Quizz : GameState
     {
-        private string backgroundImageAsset = "gfxs/backgrounds/quizz_background";
-
-        // Image location
-        private Rectangle imageDestination;
-
         // Questions data
         private List<Question> m_questions;
         private int m_currentQuestionIndex;
@@ -25,8 +20,6 @@ namespace SuperKoikoukesse.Core.Engine.States
         public Quizz(GameContext context)
             : base(context)
         {
-            imageDestination = new Rectangle(35, 140, 500, 500);
-
             m_questions = new List<Question>();
             // Hardcoded questions for now
 
@@ -62,12 +55,17 @@ namespace SuperKoikoukesse.Core.Engine.States
         public override void LoadContent()
         {
             // Load background
-            context.Content.LoadTexture(backgroundImageAsset);
+            context.Content.LoadTexture(Constants.QuizzBackgroundImageAsset);
 
             // Load question content
             foreach (Question q in m_questions)
             {
                 q.LoadContent();
+
+                foreach (Answer a in q.Answers)
+                {
+                    a.LoadContent();
+                }
             }
         }
 
@@ -106,18 +104,21 @@ namespace SuperKoikoukesse.Core.Engine.States
             context.SpriteBatch.Begin(Camera);
 
             // Draw the background
-            context.SpriteBatch.Draw(backgroundImageAsset, context.ViewportSize, Color.White);
+            context.SpriteBatch.Draw(Constants.QuizzBackgroundImageAsset, context.ViewportSize, Color.White);
+
+            // Draw the joker button
+            context.SpriteBatch.Draw(Constants.QuizzButtonAsset, new Rectangle((int)Constants.QuizzJokerButtonLocation.X, (int)Constants.QuizzJokerButtonLocation.Y - Constants.QuizzButtonHeight, Constants.QuizzButtonWidth, Constants.QuizzButtonHeight), Color.Pink);
 
             // Draw the question
             Question m_currentQuestion = m_questions[m_currentQuestionIndex];
-            m_currentQuestion.Draw(imageDestination);
+            m_currentQuestion.Draw(Constants.QuizzImageFrame);
 
             // Draw the answers
-            Vector2 location = new Vector2(630, 190);
+            Vector2 location = Constants.QuizzJokerButtonLocation;
             foreach (Answer answer in m_currentQuestion.Answers)
             {
-                location.Y += 110;
                 answer.Draw(location);
+                location.Y += Constants.QuizzButtonHeight;
             }
 
             context.SpriteBatch.End();
