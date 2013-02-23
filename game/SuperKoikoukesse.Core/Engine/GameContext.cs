@@ -18,7 +18,7 @@ namespace SuperKoikoukesse.Core.Engine
             // Create every piece of the engine
             // -- Graphics
             ContentLoader contentLoader = new ContentLoader(game.Content, game.GraphicsDeviceManager.GraphicsDevice);
-            SpriteBatch = new GameSpriteBatch(game.GraphicsDeviceManager, game.SpriteBatch, contentLoader);
+            SpriteBatch = new GameSpriteBatch( game.SpriteBatch, contentLoader);
 
             // -- Tools
             Random = new RandomHelper(DateTime.Now.Millisecond);

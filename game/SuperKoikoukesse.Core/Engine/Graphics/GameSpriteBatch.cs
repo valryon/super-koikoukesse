@@ -22,11 +22,6 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         private ContentLoader m_contentLoader;
 
         /// <summary>
-        /// XNA Graphics manager
-        /// </summary>
-        private GraphicsDeviceManager m_graphics;
-
-        /// <summary>
         /// Camera infos
         /// </summary>
         private Camera2D m_currentCamera;
@@ -36,9 +31,8 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="context"></param>
-		public GameSpriteBatch(GraphicsDeviceManager graphics, SpriteBatch spriteBatch, ContentLoader contentLoader)
+		public GameSpriteBatch(SpriteBatch spriteBatch, ContentLoader contentLoader)
         {
-            m_graphics = graphics;
             m_contentLoader = contentLoader;
 			m_spriteBatch = spriteBatch;
         }
