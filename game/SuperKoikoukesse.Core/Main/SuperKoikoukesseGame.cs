@@ -23,40 +23,50 @@ namespace SuperKoikoukesse.Core.Main
     public class SuperKoikoukesseGame : Game
     {
         private GraphicsDeviceManager m_deviceManager;
-        private GameContext m_context;
+		private SpriteBatch m_spriteBatch;
+		private GameContext m_context;
         private bool m_initializeResolution;
         private FpsCounter counter;
-
-
 
         private GameState m_currentGameState;
 
         public SuperKoikoukesseGame()
             : base()
         {
+			// Graphics manager & sprite batch must be created directly in constructor
+			m_deviceManager = new GraphicsDeviceManager(this);
+
             // Basic program parameters
             Window.Title = "SuperKoiKouKesse v0.001";
+			IsMouseVisible = true;
             Content.RootDirectory = "Content";
 
             // Force the first resolution set
             m_initializeResolution = true;
-
-            // Graphics manager must be created in constructor
-            m_deviceManager = new GraphicsDeviceManager(this);
-
-            // Create game engines and objects
-            m_context = new GameContext(this);
-            m_context.IsDebugMode = true;
-
-            // FPS counter
-            counter = new FpsCounter(m_context);
-
-            // Define quizz as main state for debug
-            m_currentGameState = new Quizz(m_context);
         }
 
         protected override void LoadContent()
         {
+			// Create a spritebatch only here
+			// Otherwise GraphicDevice isn't initialized
+			m_spriteBatch = new SpriteBatch(m_deviceManager.GraphicsDevice);
+
+			// Create game engines and objects
+			// !!!! Content loader user graphics device wich is initialized only here!
+			m_context = new GameContext(this);
+
+			// Ok on MAC OS X we have to set the resolution here... but not on Windows!
+#if OSX
+			m_context.InitializeResolution(this, new Vector2(Constants.DeviceResolutionWidth, Constants.DeviceResolutionHeight), new Vector2(Constants.GameResolutionWidth, Constants.GameResolutionHeight), false);
+#endif
+			m_context.IsDebugMode = true;
+			
+			// FPS counter
+			counter = new FpsCounter(m_context);
+			
+			// Define quizz as main state for debug
+			m_currentGameState = new Quizz(m_context);
+
             // Load fonts, common assets, etc
             m_context.Content.LoadInitialContent();
 
@@ -127,5 +137,11 @@ namespace SuperKoikoukesse.Core.Main
                 return m_deviceManager;
             }
         }
+
+		public SpriteBatch SpriteBatch {
+			get {
+				return m_spriteBatch;
+			}
+		}
     }
 }

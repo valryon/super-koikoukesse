@@ -131,15 +131,20 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="MonoMac" />
+    <Reference Include="MonoMac">
+      <HintPath>..\..\..\monogame-simple-references\MonoGame 3.0\Mac\MonoMac.dll</HintPath>
+    </Reference>
     <Reference Include="Tao.Sdl">
-      <HintPath>..\..\..\..\monogame-simple-references\MonoGame 3.0\Mac\Tao.Sdl.dll</HintPath>
+      <HintPath>..\..\..\monogame-simple-references\MonoGame 3.0\Mac\Tao.Sdl.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\..\..\monogame-simple-references\MonoGame 3.0\Mac\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\..\monogame-simple-references\MonoGame 3.0\Mac\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\..\..\..\monogame-simple-references\MonoGame 3.0\Mac\Lidgren.Network.dll</HintPath>
+      <HintPath>..\..\..\monogame-simple-references\MonoGame 3.0\Mac\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\..\monogame-simple-references\MonoGame 3.0\Mac\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -158,5 +163,15 @@
       <Project>{3D0E0C9E-D340-4ADE-853A-046026741975}</Project>
       <Name>SuperKoikoukesse.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\font.xnb" />
+    <Content Include="Content\gfxs\gui\image_frame.xnb" />
+    <Content Include="Content\gfxs\gui\quizz_button.xnb" />
+    <Content Include="Content\gfxs\backgrounds\quizz_background.xnb" />
+    <Content Include="Content\gfxs\sprites\games\Abuse.xnb" />
+    <Content Include="Content\gfxs\sprites\games\Airwolf.xnb" />
+    <Content Include="Content\gfxs\sprites\games\Alex Kidd In Miracle World.xnb" />
+    <Content Include="Content\gfxs\sprites\games\Another World.xnb" />
   </ItemGroup>
 </Project>

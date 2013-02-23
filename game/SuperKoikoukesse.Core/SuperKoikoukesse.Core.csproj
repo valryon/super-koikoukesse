@@ -121,7 +121,6 @@
     <Compile Include="Engine\Tools\FpsCounter.cs" />
     <Compile Include="Engine\GameStates\GameState.cs" />
     <Compile Include="Engine\Graphics\Camera2D.cs" />
-    <Compile Include="Engine\Content\ContentLoader.cs" />
     <Compile Include="Engine\Graphics\ResolutionHelper.cs" />
     <Compile Include="Engine\GameContext.cs" />
     <Compile Include="Engine\Tools\InterpolatorsAndTimers.cs" />
@@ -129,6 +128,7 @@
     <Compile Include="Main\SuperKoikoukesseGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\Quizz.cs" />
+    <Compile Include="Engine\Content\ContentLoader.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

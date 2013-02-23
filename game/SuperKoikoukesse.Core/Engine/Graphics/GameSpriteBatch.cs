@@ -36,11 +36,11 @@ namespace SuperKoikoukesse.Core.Engine.Graphics
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="context"></param>
-        public GameSpriteBatch(GraphicsDeviceManager graphics, ContentLoader contentLoader)
+		public GameSpriteBatch(GraphicsDeviceManager graphics, SpriteBatch spriteBatch, ContentLoader contentLoader)
         {
             m_graphics = graphics;
             m_contentLoader = contentLoader;
-            m_spriteBatch = new SpriteBatch(m_graphics.GraphicsDevice);
+			m_spriteBatch = spriteBatch;
         }
 
         #region Start drawing
