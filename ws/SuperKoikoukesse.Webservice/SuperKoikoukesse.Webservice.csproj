@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,10 +93,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\GameDatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameDatabaseModel.cs" />
+    <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,16 +124,23 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="Views\Home\LogOn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\SuperKoikoukesse.Common\SuperKoikoukesse.Common.csproj">
+    <ProjectReference Include="..\Pixelnest.Common\Pixelnest.Common.csproj">
       <Project>{d397d0a9-e7e3-4bc8-94c9-283dce28f3f6}</Project>
-      <Name>SuperKoikoukesse.Common</Name>
+      <Name>Pixelnest.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SuperKoikoukesse.Webservice.Core\SuperKoikoukesse.Webservice.Core.csproj">
+      <Project>{07882c86-5c2b-4b96-a0b3-30f45fb2f62c}</Project>
+      <Name>SuperKoikoukesse.Webservice.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\GameDatabase\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

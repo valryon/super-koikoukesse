@@ -1,0 +1,67 @@
+﻿@model SuperKoikoukesse.Webservice.Models.GameDatabaseModel
+@{
+    ViewBag.Title = "Game list";
+}
+
+<h2>Database</h2>
+
+<h3>Actions</h3>
+
+<div class="row-fluid">
+
+    <form class="form-vertical" action="@Url.Action("ImportCSV","GameDatabase")" method="post" enctype="multipart/form-data">
+
+        <label for="file">Importer fichier CSV</label>
+        <input type="file" name="file" id="file" />
+
+        <input class="btn btn-info" type="submit" value="Importer" />
+    </form>
+
+    <span class="btn">Export CSV</span>
+</div>
+
+<h3>Données</h3>
+<div class="row-fluid">
+
+    <div class="pagination">
+
+        <ul>
+            <li class="@(Model.Page > 1 ? "" : "disabled")"><a href="@Url.Action("Index", "GameDatabase", new { page = Model.Page - 1 })"><span>&larr;</span></a></li>
+
+            @for (int i = 1; i < Model.MaxPage; i++)
+            {
+                <li class="@(i == Model.Page ? "active" : "")"><a href="@Url.Action("Index", "GameDatabase", new { page = i })"><span>@i</span></a></li>
+            }
+
+            <li class="@(Model.Page < Model.MaxPage ? "" : "disabled")"><a href="@Url.Action("Index", "GameDatabase", new { page = Model.Page + 1 })"><span>&rarr;</span></a></li>
+        </ul>
+
+    </div>
+
+    <table class="table table-striped table-hover table-bordered table-condensed">
+        <tr>
+            <th>Game Id</th>
+            <th>Title (PAL)</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (SuperKoikoukesse.Webservice.Core.Games.GameInfo game in Model.Games)
+        {
+            <tr>
+                <td>
+                    @game.GameId
+                </td>
+                <td>
+                    @game.TitlePAL
+                </td>
+                <td>
+                    @game.ImagePath
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
