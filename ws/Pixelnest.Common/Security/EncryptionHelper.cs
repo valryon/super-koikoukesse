@@ -10,9 +10,19 @@ namespace Pixelnest.Common
     public static class EncryptionHelper
     {
         /// <summary>
-        /// Clé partagée avec l'application mobile
+        /// Default key
         /// </summary>
         private static string cryptoKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
+
+        public static void Initialize(string encryptionKey)
+        {
+            if (encryptionKey.Length > 16)
+            {
+                throw new ArgumentException("Encryption key must be 16 chars max!");
+            }
+
+            cryptoKey = encryptionKey;
+        }
 
         /// <summary>
         /// 
