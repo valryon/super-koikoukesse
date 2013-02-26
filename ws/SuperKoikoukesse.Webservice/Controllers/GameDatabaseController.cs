@@ -108,7 +108,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                                 string titleUs = linePart[3];
                                 string platform = linePart[4].ToLower();
                                 string genre = linePart[5].ToLower();
-                                string publisher = linePart[6].ToLower();
+                                string publisher = linePart[6];
                                 int year = Convert.ToInt32(linePart[7]);
 
                                 bool isRemoved = false;
