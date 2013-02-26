@@ -13,7 +13,7 @@
         <ul>
             <li class="@(Model.Page > 1 ? "" : "disabled")"><a href="@Url.Action("Index", "GameDatabase", new { page = Model.Page - 1 })"><span>&larr;</span></a></li>
 
-            @for (int i = 1; i < Model.MaxPage; i++)
+            @for (int i = 1; i <= Model.MaxPage; i++)
             {
                 <li class="@(i == Model.Page ? "active" : "")"><a href="@Url.Action("Index", "GameDatabase", new { page = i })"><span>@i</span></a></li>
             }

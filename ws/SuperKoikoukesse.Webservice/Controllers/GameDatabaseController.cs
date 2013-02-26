@@ -33,7 +33,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
             }
         }
 
-        private static int pageSize = 100;
+        private static int pageSize = 50;
 
         public ActionResult Index(int page = 1)
         {
@@ -42,7 +42,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
             GameDatabaseModel model = new GameDatabaseModel();
             model.Page = page;
-            model.MaxPage = gameDb.Count / pageSize;
+            model.MaxPage = (int)Math.Ceiling((float)gameDb.Count / pageSize);
 
             if (page > model.MaxPage) page = model.MaxPage;
 
