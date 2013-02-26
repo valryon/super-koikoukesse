@@ -1,5 +1,8 @@
 ﻿using Pixelnest.Common;
 using Pixelnest.Common.Json;
+using SuperKoikoukesse.Webservice.Core.Dao;
+using SuperKoikoukesse.Webservice.Core.Exceptions;
+using SuperKoikoukesse.Webservice.Core.Games;
 using SuperKoikoukesse.Webservice.Models;
 using SuperKoikoukesse.Webservice.Service;
 using System;
@@ -17,11 +20,21 @@ namespace SuperKoikoukesse.Webservice.Controllers
     public class ServiceController : Controller
     {
         private bool m_useEncryption;
+        private string dbPath; 
+
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            m_useEncryption = Convert.ToBoolean(ConfigurationManager.AppSettings["USE_ENCYRPTION"]);
+            dbPath = Server.MapPath(ConfigurationManager.AppSettings["GAME_DB_PATH"].ToString());
+        }
 
         /// <summary>
         /// State of the WS
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public ActionResult Index()
         {
             ServiceStateModel model = new ServiceStateModel();
@@ -29,16 +42,61 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// Get a bunch of games corresponding to the given criteria
+        /// Get the whole database list
         /// </summary>
         /// <returns></returns>
         public ActionResult Games()
         {
-            m_useEncryption = Convert.ToBoolean(ConfigurationManager.AppSettings["USE_ENCYRPTION"]);
-
             ServiceResponse response = new ServiceResponse();
             response.Code = ErrorCodeEnum.Ok;
-            response.Message = "Everything is OK!";
+
+            try
+            {
+                GameInfoDb db = new GameInfoDb(dbPath);
+                List<GameInfo> games = db.ReadAll();
+
+                response.ResponseData = games;
+            }
+            catch (DatabaseNotFoundException dbe)
+            {
+                response.Code = ErrorCodeEnum.DatabaseNotFound;
+                response.Message = dbe.ToString();
+            }
+            catch (Exception e)
+            {
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Get the excluded games
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Exclusions()
+        {
+            ServiceResponse response = new ServiceResponse();
+            response.Code = ErrorCodeEnum.Ok;
+
+            try
+            {
+                GameInfoDb db = new GameInfoDb(dbPath);
+                List<GameInfo> games = db.ReadAll();
+
+                response.ResponseData = games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
+            }
+            catch (DatabaseNotFoundException dbe)
+            {
+                response.Code = ErrorCodeEnum.DatabaseNotFound;
+                response.Message = dbe.ToString();
+            }
+            catch (Exception e)
+            {
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
 
             return PrepareResponse(response);
         }

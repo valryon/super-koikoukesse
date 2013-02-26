@@ -33,12 +33,11 @@
             <th>Genre</th>
             <th>Editeur</th>
             <th>Année</th>
-            <th>Actions</th>
         </tr>
 
         @foreach (SuperKoikoukesse.Webservice.Core.Games.GameInfo game in Model.Games)
         {
-            <tr>
+            <tr class="@(game.IsRemoved ? "error" : "")">
                 <td>
                     @game.GameId
                 </td>
@@ -62,9 +61,6 @@
                 </td>
                 <td>
                     @game.Year
-                </td>
-                <td>
-
                 </td>
             </tr>
         }

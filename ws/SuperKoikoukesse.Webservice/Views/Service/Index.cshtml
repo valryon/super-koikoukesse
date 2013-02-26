@@ -1,3 +1,23 @@
 ﻿@model SuperKoikoukesse.Webservice.Models.ServiceStateModel
-
 <h2>Etat du webservice</h2>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>URL
+        </th>
+        <th>Description
+        </th>
+    </tr>
+    <tr>
+        <td><a href="@Url.Action("Games", "Service")">@Url.Action("Games", "Service")</a></td>
+        <td>Récupération de la base entière
+        </td>
+    </tr>
+    <tr>
+        <td><a href="@Url.Action("Exclusions", "Service")">@Url.Action("Exclusions", "Service")</a></td>
+        <td>Récupération des jeux exclus post-livraison
+        </td>
+    </tr>
+</table>
+<p>
+</p>

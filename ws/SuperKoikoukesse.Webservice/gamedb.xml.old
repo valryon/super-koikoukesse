@@ -9,7 +9,7 @@
     <Genre>gestion</Genre>
     <Publisher>ocean</Publisher>
     <Year>1992</Year>
-    <IsRemoved>false</IsRemoved>
+    <IsRemoved>true</IsRemoved>
   </game>
   <game>
     <GameId>2</GameId>

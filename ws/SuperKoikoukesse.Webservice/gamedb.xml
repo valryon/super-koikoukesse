@@ -9,7 +9,7 @@
     <Genre>gestion</Genre>
     <Publisher>ocean</Publisher>
     <Year>1992</Year>
-    <IsRemoved>false</IsRemoved>
+    <IsRemoved>true</IsRemoved>
   </game>
   <game>
     <GameId>2</GameId>
@@ -185,7 +185,7 @@
     <Genre>reflexion</Genre>
     <Publisher>electronic arts</Publisher>
     <Year>1988</Year>
-    <IsRemoved>false</IsRemoved>
+    <IsRemoved>true</IsRemoved>
   </game>
   <game>
     <GameId>18</GameId>
@@ -295,7 +295,7 @@
     <Genre>sport</Genre>
     <Publisher>millenium</Publisher>
     <Year>1994</Year>
-    <IsRemoved>false</IsRemoved>
+    <IsRemoved>true</IsRemoved>
   </game>
   <game>
     <GameId>28</GameId>
@@ -427,7 +427,7 @@
     <Genre>action</Genre>
     <Publisher>anco</Publisher>
     <Year>1990</Year>
-    <IsRemoved>false</IsRemoved>
+    <IsRemoved>true</IsRemoved>
   </game>
   <game>
     <GameId>40</GameId>

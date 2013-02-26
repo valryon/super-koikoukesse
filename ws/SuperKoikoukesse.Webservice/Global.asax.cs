@@ -30,6 +30,12 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "WSExclusionService",
+               "ws/exclusions",
+               new { controller = "Service", action = "Exclusions" }
+           );
+
+            routes.MapRoute(
                "WSState",
                "ws/{action}",
                new { controller = "Service", action = "Index" }

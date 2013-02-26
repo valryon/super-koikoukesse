@@ -17,7 +17,7 @@ namespace SuperKoikoukesse.Webservice.Core.Dao
         private string m_databaseLocation;
         private XDocument m_document;
 
-        public GameInfoDb(string databaseLocation)
+        public GameInfoDb(string databaseLocation, bool exceptionIfNotExist = true)
         {
             m_databaseLocation = databaseLocation;
 
@@ -30,10 +30,17 @@ namespace SuperKoikoukesse.Webservice.Core.Dao
             }
             else
             {
-                IsNew = true;
-                Logger.Log(LogLevel.Info, "Creating database " + databaseLocation);
+                if (exceptionIfNotExist)
+                {
+                    throw new ApplicationException("The database couldn't be found at the following location: " + databaseLocation);
+                }
+                else
+                {
+                    IsNew = true;
+                    Logger.Log(LogLevel.Info, "Creating database " + databaseLocation);
 
-                Initialize();
+                    Initialize();
+                }
             }
         }
 
@@ -112,7 +119,7 @@ namespace SuperKoikoukesse.Webservice.Core.Dao
         /// </summary>
         public void Backup()
         {
-            m_document.Save(m_databaseLocation+".old");
+            m_document.Save(m_databaseLocation + ".old");
         }
 
         /// <summary>

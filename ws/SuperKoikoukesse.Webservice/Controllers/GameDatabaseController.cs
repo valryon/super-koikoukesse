@@ -25,7 +25,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
             {
                 string dbPath = Server.MapPath(ConfigurationManager.AppSettings["GAME_DB_PATH"].ToString());
 
-                m_gamesDb = new GameInfoDb(dbPath);
+                m_gamesDb = new GameInfoDb(dbPath, false);
                 if (m_gamesDb.IsNew)
                 {
                     m_gamesDb.Save();
@@ -35,6 +35,11 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
         private static int pageSize = 50;
 
+        /// <summary>
+        /// List all games
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(int page = 1)
         {
             if (page < 1) page = 1;
@@ -106,6 +111,9 @@ namespace SuperKoikoukesse.Webservice.Controllers
                                 string publisher = linePart[6].ToLower();
                                 int year = Convert.ToInt32(linePart[7]);
 
+                                bool isRemoved = false;
+                                bool.TryParse(linePart[8], out isRemoved);
+
                                 GameInfo game = new GameInfo()
                                 {
                                     GameId = gameId,
@@ -116,6 +124,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                                     Genre = genre,
                                     Publisher = publisher,
                                     Year = year,
+                                    IsRemoved = isRemoved
                                 };
 
                                 m_gamesDb.Add(game);
