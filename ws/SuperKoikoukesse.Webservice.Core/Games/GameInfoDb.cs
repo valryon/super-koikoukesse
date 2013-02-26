@@ -12,12 +12,12 @@ namespace SuperKoikoukesse.Webservice.Core.Dao
     /// <summary>
     /// Access to the game database
     /// </summary>
-    public class GameInfoDao
+    public class GameInfoDb
     {
         private string m_databaseLocation;
         private XDocument m_document;
 
-        public GameInfoDao(string databaseLocation)
+        public GameInfoDb(string databaseLocation)
         {
             m_databaseLocation = databaseLocation;
 
@@ -106,6 +106,29 @@ namespace SuperKoikoukesse.Webservice.Core.Dao
             IsNew = false;
             return true;
         }
+
+        /// <summary>
+        /// Make a save copy of the current database
+        /// </summary>
+        public void Backup()
+        {
+            m_document.Save(m_databaseLocation+".old");
+        }
+
+        /// <summary>
+        /// Restore the previous version of the database
+        /// </summary>
+        public bool Restorebackup()
+        {
+            if (File.Exists(m_databaseLocation + ".old"))
+            {
+                m_document = XDocument.Load(m_databaseLocation + ".old");
+                return true;
+            }
+
+            return false;
+        }
+
 
         public bool IsNew { get; private set; }
     }

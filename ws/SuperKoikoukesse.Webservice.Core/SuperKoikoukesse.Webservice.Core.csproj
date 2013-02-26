@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Games\GameInfoDao.cs" />
+    <Compile Include="Games\GameInfoDb.cs" />
     <Compile Include="Games\GameInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -137,3 +137,86 @@ INFO|SuperKoikoukesse.Webservice.Log|2013-02-25 17:41:24,071|Creating database G
 INFO|SuperKoikoukesse.Webservice.Log|2013-02-25 17:41:54,920|Creating database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\GameDatabase\gamedb.xml
 INFO|SuperKoikoukesse.Webservice.Log|2013-02-25 17:43:00,229|Starting website SuperKoikoukesse.Webservice...
 INFO|SuperKoikoukesse.Webservice.Log|2013-02-25 17:43:00,281|Creating database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:16:46,673|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:16:49,061|Creating database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:16:56,762|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:18:52,556|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:18:52,615|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:18:56,421|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:19:04,820|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:19:04,828|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 98
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:19:43,376|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:19:43,430|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:19:43,436|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 98
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:20:23,027|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:20:23,086|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:20:23,093|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 104
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:20:36,240|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:21:15,296|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 104
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:09,354|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:09,408|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:09,417|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 105
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:50,202|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:52,767|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:52,772|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 98
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:56,582|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:23:56,585|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 98
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:22,596|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:24,840|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+ERROR|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:31,802|Exception ! Source : ImportCSV. System.FormatException: Le format de la chaîne d'entrée est incorrect.
+   à System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   à System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   à System.Convert.ToInt32(String value)
+   à SuperKoikoukesse.Webservice.Controllers.GameDatabaseController.ImportCSV(HttpPostedFileBase file) dans g:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\Controllers\GameDatabaseController.cs:ligne 98
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:48,693|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:48,748|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:24:51,300|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:25:11,762|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:25:11,819|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:25:15,829|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:25:17,002|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:08,536|Starting website SuperKoikoukesse.Webservice...
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:10,669|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:22,156|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:44,844|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:45,949|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:46,420|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:46,845|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:47,037|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:47,198|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:47,902|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:48,398|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:48,668|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:48,836|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:48,996|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:49,308|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:49,884|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
+INFO|SuperKoikoukesse.Webservice.Log|2013-02-26 11:27:50,581|Loading database G:\Dev\GitHub\super-koikoukesse\ws\SuperKoikoukesse.Webservice\gamedb.xml
