@@ -57,6 +57,12 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "BOExportDB",
+               "admin/db/export",
+               new { controller = "GameDatabase", action = "ExportCSV" }
+           );
+
+            routes.MapRoute(
                "BOListDB",
                "admin/db/{page}",
                new { controller = "GameDatabase", action = "Index", page = 1 }

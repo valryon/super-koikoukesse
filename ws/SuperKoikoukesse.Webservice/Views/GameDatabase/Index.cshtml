@@ -75,7 +75,10 @@
     @Html.Partial("ImportCSVForm")
 
     <h3>Exporter en fichier CSV</h3>
-    <span class="btn">Export CSV</span>
+
+    <p>
+    <a class="btn" href="@Url.Action("ExportCSV","GameDatabase")">Export CSV</a>
+    </p>
 </div>
 
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -169,6 +170,35 @@ namespace SuperKoikoukesse.Webservice.Controllers
             }
 
             return View(model);
+        }
+
+
+        public ActionResult ExportCSV()
+        {
+            StringBuilder fileContent = new StringBuilder();
+            List<GameInfo> games = m_gamesDb.ReadAll();
+
+            foreach (GameInfo gameInfo in games)
+            {
+                string line = string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};",
+                        gameInfo.GameId,
+                        gameInfo.ImagePath,
+                        gameInfo.TitlePAL,
+                        gameInfo.TitleUS,
+                        gameInfo.Platform,
+                        gameInfo.Genre,
+                        gameInfo.Publisher,
+                        gameInfo.Year,
+                        gameInfo.IsRemoved
+                    );
+
+                fileContent.AppendLine(line);
+            }
+
+            var byteArray = Encoding.ASCII.GetBytes(fileContent.ToString());
+            var stream = new MemoryStream(byteArray);
+
+            return File(stream, "text/plain");
         }
     }
 }
