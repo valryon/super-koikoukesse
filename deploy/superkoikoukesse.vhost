@@ -1,0 +1,29 @@
+# Super Koikoukesse
+## Webservice
+<VirtualHost *:80>
+        ServerName skkk.dmayance.com 
+        ServerAlias www.superkoikoukesse.com 
+        DocumentRoot /srv/www/superkoikoukesse/ws/
+
+        ErrorLog /srv/www/superkoikoukesse/ws/log/error.log
+        CustomLog /srv/www/superkoikoukesse/ws/log/access.log combined
+
+        MonoDocumentRootDir "/srv/www/superkoikoukesse/ws/"
+        MonoServerPath skkk "/opt/mono-2.10/bin/mod-mono-server4"
+        AddMonoApplications skkk "/:/srv/www/superkoikoukesse/ws/"
+        MonoDebug skkk true
+        MonoSetEnv skkk MONO_IOMAP=all
+
+        <Directory /srv/www/superkoikoukesse/ws/>
+                MonoSetServerAlias skkk
+                SetHandler mono
+                AddHandler mod_mono .aspx .ascx .asax .ashx .config .cs .asmx
+                allow from all
+                Order allow,deny
+                SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip dont-vary
+        </Directory>
+        <IfModule mod_deflate.c>
+                AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript
+        </IfModule>
+</VirtualHost>
+
