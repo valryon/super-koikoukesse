@@ -24,7 +24,7 @@ namespace Superkoikoukesse.Common.Networking
 		{
 			WebRequest request = WebRequest.Create (url);
 
-			Logger.Log (LogLevel.Info, "RequestJsonAsync " + url);
+			Logger.Log (LogLevel.Info, "-> " + url);
 
 			request.BeginGetResponse ((result) => {
 
@@ -39,15 +39,23 @@ namespace Superkoikoukesse.Common.Networking
 					using(StreamReader reader = new StreamReader(responseStream)) {
 						json = reader.ReadToEnd();
 					}
+
 					// Decrypt if necessary
+					if(decrypt) {
+						json = EncryptionHelper.Decrypt(json);
+					}
+
+					Logger.Log (LogLevel.Info, "<- OK " + url);
 
 					//Returns Json
-
+					if(callbackSuccess != null) {
+						callbackSuccess(json);
+					}
 
 				} catch (Exception e) {
 
 					// Log and callback
-					Logger.Log (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
+					Logger.LogException (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
 						
 					if (callbackFailure != null) {
 						callbackFailure (e);

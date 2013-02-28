@@ -4,6 +4,7 @@ using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -16,6 +17,7 @@ namespace SuperKoikoukesse.iOS
 		public GameViewController ()
 			: base (UserInterfaceIdiomIsPhone ? "GameViewController_iPhone" : "GameViewController_iPad", null)
 		{
+			Logger.Log (LogLevel.Info, "GameView on "+ (UserInterfaceIdiomIsPhone ? "iPhone" : "iPad"));
 		}
 		
 		public override void DidReceiveMemoryWarning ()

@@ -4,6 +4,8 @@ using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Superkoikoukesse.Common;
+using Superkoikoukesse.Common.Utils;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -26,6 +28,10 @@ namespace SuperKoikoukesse.iOS
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			Logger.Log (LogLevel.Info, "Launching app...");
+
+			EncryptionHelper.SetKey (Constants.EncryptionKey);
+
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			viewController = new GameViewController ();

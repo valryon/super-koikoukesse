@@ -17,12 +17,12 @@ namespace Superkoikoukesse.Common
 	{
 		public static void Log (LogLevel level, string message)
 		{
-			Console.WriteLine (DateTime.Now + " "+ level.ToString ().ToUpper () + ": " + message);
+			Console.WriteLine (level.ToString ().ToUpper () + ": " + message);
 		}
 
 		public static void LogException (LogLevel level, string source, Exception e)
 		{
-			Console.WriteLine (DateTime.Now + " "+ level.ToString ().ToUpper () + ": Exception from " + source+" - "+e.ToString());
+			Console.WriteLine (level.ToString ().ToUpper () + ": Exception from " + source+" - "+e.ToString());
 		}
 	}
 }

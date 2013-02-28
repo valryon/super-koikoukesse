@@ -13,6 +13,19 @@ namespace Superkoikoukesse.Common.Utils
         /// </summary>
         private static string cryptoKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
 
+		public static void SetKey(string key) {
+
+			if (string.IsNullOrEmpty (key)) {
+				throw new ApplicationException("Encryption key cannot be empty!");
+			}
+			if (key.Length > 16) {
+				throw new ApplicationException("Encryption key must be 16 chars max!");
+			}
+
+			Logger.Log (LogLevel.Info, "Setting encryption key.");
+			cryptoKey = key;
+		}
+
         /// <summary>
         /// 
         /// </summary>

@@ -6,7 +6,7 @@ namespace Superkoikoukesse.Common
 	{
 		public static string WebserviceUrl = "http://skkk.dmayance.com";
 
-		public static string encryptionKey = "";
+		public static string EncryptionKey = "p_o6u-e/t*+!";
 	}
 }
 
