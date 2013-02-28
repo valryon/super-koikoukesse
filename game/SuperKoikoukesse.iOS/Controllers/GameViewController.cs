@@ -5,6 +5,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
+using System.IO;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -34,7 +35,11 @@ namespace SuperKoikoukesse.iOS
 			
 			// Initialize game database id first launch
 			if(DatabaseService.Instance.Exists == false) {
-				DatabaseService.Instance.InitializeFromXml("<xml TODO>");
+
+				// Load gamedb.xml
+				String xmlDatabase = File.ReadAllText(@"database/gamedb.xml");
+
+				DatabaseService.Instance.InitializeFromXml(xmlDatabase);
 			}
 		}
 	}

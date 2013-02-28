@@ -72,7 +72,10 @@ namespace Superkoikoukesse.Common
 			//					<IsRemoved>true</IsRemoved>
 			//				</game>
 			//			</games>
-			
+
+			//TODO XML parser
+
+
 			Logger.Log (LogLevel.Info, "Initialization completed!");
 		}
 
