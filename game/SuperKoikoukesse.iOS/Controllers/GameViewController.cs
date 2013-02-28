@@ -32,7 +32,12 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 			
-			// Perform any additional setup after loading the view, typically from a nib.
+			// Initialize game database is first launch
+			AppDelegate ad = (AppDelegate)UIApplication.SharedApplication.Delegate;
+
+			if(ad.Database.Exists == false) {
+				ad.Database.Initialize("<xml TODO>");
+			}
 		}
 	}
 }

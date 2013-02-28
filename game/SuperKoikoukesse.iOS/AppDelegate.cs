@@ -15,6 +15,7 @@ namespace SuperKoikoukesse.iOS
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+
 		// class-level declarations
 		UIWindow window;
 		GameViewController viewController;
@@ -30,8 +31,13 @@ namespace SuperKoikoukesse.iOS
 		{
 			Logger.Log (LogLevel.Info, "Launching app...");
 
+			// Global parameters
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
 
+			// Try to open the database
+			Database = new DBHelper ("TODO.sqlite");
+
+			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			viewController = new GameViewController ();
@@ -40,6 +46,12 @@ namespace SuperKoikoukesse.iOS
 
 			return true;
 		}
+
+		/// <summary>
+		/// Access to the database
+		/// </summary>
+		/// <value>The database.</value>
+		public DBHelper Database { get; private set; }
 	}
 }
 

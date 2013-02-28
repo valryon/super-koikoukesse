@@ -85,6 +85,8 @@
     <Folder Include="Resources\" />
     <Folder Include="Views\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Resources\database\" />
+    <Folder Include="Resources\database\images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -107,5 +109,28 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\GameViewController_iPad.xib" />
     <InterfaceDefinition Include="Views\GameViewController_iPhone.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\database\gamedb.xml" />
+    <BundleResource Include="Resources\database\images\00001.jpg" />
+    <BundleResource Include="Resources\database\images\00002.jpg" />
+    <BundleResource Include="Resources\database\images\00003.jpg" />
+    <BundleResource Include="Resources\database\images\00004.jpg" />
+    <BundleResource Include="Resources\database\images\00005.jpg" />
+    <BundleResource Include="Resources\database\images\00006.jpg" />
+    <BundleResource Include="Resources\database\images\00007.jpg" />
+    <BundleResource Include="Resources\database\images\00008.jpg" />
+    <BundleResource Include="Resources\database\images\00009.jpg" />
+    <BundleResource Include="Resources\database\images\00010.jpg" />
+    <BundleResource Include="Resources\database\images\00011.jpg" />
+    <BundleResource Include="Resources\database\images\00012.jpg" />
+    <BundleResource Include="Resources\database\images\00013.jpg" />
+    <BundleResource Include="Resources\database\images\00014.jpg" />
+    <BundleResource Include="Resources\database\images\00015.jpg" />
+    <BundleResource Include="Resources\database\images\00016.jpg" />
+    <BundleResource Include="Resources\database\images\00017.jpg" />
+    <BundleResource Include="Resources\database\images\00018.jpg" />
+    <BundleResource Include="Resources\database\images\00019.jpg" />
+    <BundleResource Include="Resources\database\images\00020.jpg" />
   </ItemGroup>
 </Project>

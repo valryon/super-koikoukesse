@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<games>
+  <game>
+    <GameId>1</GameId>
+    <ImagePath>00001.jpg</ImagePath>
+    <TitlePAL>A-Train</TitlePAL>
+    <TitleUS>A-Train</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>2</GameId>
+    <ImagePath>00002.jpg</ImagePath>
+    <TitlePAL>Abuse</TitlePAL>
+    <TitleUS>Abuse</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>alive mediasoft</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>3</GameId>
+    <ImagePath>00003.jpg</ImagePath>
+    <TitlePAL>Addictaball</TitlePAL>
+    <TitleUS>Addictaball</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>alligata software</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>4</GameId>
+    <ImagePath>00004.jpg</ImagePath>
+    <TitlePAL>Agony</TitlePAL>
+    <TitleUS>Agony</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>5</GameId>
+    <ImagePath>00005.jpg</ImagePath>
+    <TitlePAL>Air Supply</TitlePAL>
+    <TitleUS>Air Supply</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>magic bytes</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>6</GameId>
+    <ImagePath>00006.jpg</ImagePath>
+    <TitlePAL>Akira</TitlePAL>
+    <TitleUS>Akira</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ice</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>7</GameId>
+    <ImagePath>00007.jpg</ImagePath>
+    <TitlePAL>Alien Breed</TitlePAL>
+    <TitleUS>Alien Breed</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>8</GameId>
+    <ImagePath>00008.jpg</ImagePath>
+    <TitlePAL>Alien Syndrome</TitlePAL>
+    <TitleUS>Alien Syndrome</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ace</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>9</GameId>
+    <ImagePath>00009.jpg</ImagePath>
+    <TitlePAL>Another World</TitlePAL>
+    <TitleUS>Out of This World</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>dephine software</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>10</GameId>
+    <ImagePath>00010.jpg</ImagePath>
+    <TitlePAL>Apidya</TitlePAL>
+    <TitleUS>Apidya</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>11</GameId>
+    <ImagePath>00011.jpg</ImagePath>
+    <TitlePAL>Arabian Nights</TitlePAL>
+    <TitleUS>Arabian Nights</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>krisalis</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>12</GameId>
+    <ImagePath>00012.jpg</ImagePath>
+    <TitlePAL>Assassin</TitlePAL>
+    <TitleUS>Assassin</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>13</GameId>
+    <ImagePath>00013.jpg</ImagePath>
+    <TitlePAL>Awesome</TitlePAL>
+    <TitleUS>Awesome</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>14</GameId>
+    <ImagePath>00014.jpg</ImagePath>
+    <TitlePAL>Badlands</TitlePAL>
+    <TitleUS>Badlands</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>atari</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>15</GameId>
+    <ImagePath>00015.jpg</ImagePath>
+    <TitlePAL>Ballistix</TitlePAL>
+    <TitleUS>Ballistix</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psyclapse</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>16</GameId>
+    <ImagePath>00016.jpg</ImagePath>
+    <TitlePAL>Bat 2</TitlePAL>
+    <TitleUS>Bat 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>ubi soft</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>17</GameId>
+    <ImagePath>00017.jpg</ImagePath>
+    <TitlePAL>Battle Chess</TitlePAL>
+    <TitleUS>Battle Chess</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>electronic arts</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>18</GameId>
+    <ImagePath>00018.jpg</ImagePath>
+    <TitlePAL>Battle Isle</TitlePAL>
+    <TitleUS>Battle Isle</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>ubi soft</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>19</GameId>
+    <ImagePath>00019.jpg</ImagePath>
+    <TitlePAL>Beach Volley</TitlePAL>
+    <TitleUS>Beach Volley</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>20</GameId>
+    <ImagePath>00020.jpg</ImagePath>
+    <TitlePAL>Beneath A Steel Sky</TitlePAL>
+    <TitleUS>Beneath A Steel Sky</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>virgin interactive</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+ </games>
