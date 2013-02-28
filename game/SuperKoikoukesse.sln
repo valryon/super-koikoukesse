@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperKoikoukesse.iOS", "SuperKoikoukesse.iOS\SuperKoikoukesse.iOS.csproj", "{29E03D06-77A3-4B44-9EA9-17317764A795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superkoikoukesse.Common.iOS", "Superkoikoukesse.Common\Superkoikoukesse.Common.iOS.csproj", "{2498ADDD-E9BB-415E-A650-036D2952F2F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Release|iPhone.Build.0 = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{2498ADDD-E9BB-415E-A650-036D2952F2F8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Debug|iPhone.Build.0 = Debug|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Release|iPhone.ActiveCfg = Release|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Release|iPhone.Build.0 = Release|iPhone
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{29E03D06-77A3-4B44-9EA9-17317764A795}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SuperKoikoukesse.iOS\SuperKoikoukesse.iOS.csproj
+	EndGlobalSection
+EndGlobal
