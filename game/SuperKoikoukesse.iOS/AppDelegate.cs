@@ -35,7 +35,7 @@ namespace SuperKoikoukesse.iOS
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
 
 			// Try to open the database
-			Database = new DBHelper ("TODO.sqlite");
+			DatabaseService.Instance.Load("TODO.sqlite");
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -46,12 +46,6 @@ namespace SuperKoikoukesse.iOS
 
 			return true;
 		}
-
-		/// <summary>
-		/// Access to the database
-		/// </summary>
-		/// <value>The database.</value>
-		public DBHelper Database { get; private set; }
 	}
 }
 

@@ -32,11 +32,9 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 			
-			// Initialize game database is first launch
-			AppDelegate ad = (AppDelegate)UIApplication.SharedApplication.Delegate;
-
-			if(ad.Database.Exists == false) {
-				ad.Database.Initialize("<xml TODO>");
+			// Initialize game database id first launch
+			if(DatabaseService.Instance.Exists == false) {
+				DatabaseService.Instance.InitializeFromXml("<xml TODO>");
 			}
 		}
 	}

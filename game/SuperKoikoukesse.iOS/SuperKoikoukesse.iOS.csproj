@@ -87,6 +87,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Resources\database\" />
     <Folder Include="Resources\database\images\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

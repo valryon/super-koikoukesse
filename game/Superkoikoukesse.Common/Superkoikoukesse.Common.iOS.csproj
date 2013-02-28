@@ -51,6 +51,6 @@
     <Compile Include="Util\EncryptionHelper.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Database\DBHelper.cs" />
+    <Compile Include="Database\DatabaseService.cs" />
   </ItemGroup>
 </Project>
