@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using Superkoikoukesse.Common.Utils;
+using System.IO;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -35,7 +36,7 @@ namespace SuperKoikoukesse.iOS
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
 
 			// Try to open the database
-			DatabaseService.Instance.Load("TODO.sqlite");
+			DatabaseService.Instance.Load(Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);

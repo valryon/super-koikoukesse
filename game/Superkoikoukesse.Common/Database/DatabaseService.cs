@@ -1,4 +1,8 @@
 using System;
+using System.Linq;
+using System.Xml.Linq;
+using System.Collections.Generic;
+using SQLite;
 
 namespace Superkoikoukesse.Common
 {
@@ -32,6 +36,7 @@ namespace Superkoikoukesse.Common
 		#endregion
 
 		private string m_location;
+		private SQLiteConnection m_db;
 
 		/// <summary>
 		/// Load the database
@@ -40,9 +45,17 @@ namespace Superkoikoukesse.Common
 		public void Load(string location) {
 			m_location = location;
 
+			// Initialize db connection
 			Logger.Log(LogLevel.Info,"Loading database... "+m_location);
-			Exists = false;
-			
+			m_db = new SQLiteConnection(location);
+
+
+			// Try to figure if we're in a first launch
+			int gamesCount = CountGames ();
+			Exists = gamesCount > 0;
+
+			Logger.Log (LogLevel.Debug, gamesCount + " games in database.");
+
 			if (Exists) {
 				Logger.Log (LogLevel.Info, "Database loaded.");
 			} else {
@@ -51,10 +64,23 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
+		/// Initialize table structure
+		/// </summary>
+		private void createTables() {
+
+			Logger.Log (LogLevel.Info, "Creating database schema");
+
+			m_db.CreateTable<GameInfo> ();
+		}
+
+		/// <summary>
 		/// Initialize the database using the specifiec XML
 		/// </summary>
 		/// <param name="xml">Xml.</param>
 		public void InitializeFromXml(string xml) {
+
+			createTables ();
+
 			Logger.Log (LogLevel.Info, "Initializing database from xml...");
 			
 			// Parse the xml
@@ -72,11 +98,71 @@ namespace Superkoikoukesse.Common
 			//					<IsRemoved>true</IsRemoved>
 			//				</game>
 			//			</games>
+			int addCount = 0;
+			XElement element = XElement.Parse (xml);
 
-			//TODO XML parser
+			foreach(XElement gameXml in element.Elements("game")) {
 
+				GameInfo game = new GameInfo();
 
-			Logger.Log (LogLevel.Info, "Initialization completed!");
+				game.GameId = Convert.ToInt32(gameXml.Element("GameId").Value);
+				game.ImagePath = gameXml.Element("ImagePath").Value;
+				game.TitlePAL = gameXml.Element("TitlePAL").Value;
+				game.TitleUS = gameXml.Element("TitleUS").Value;
+				game.Platform = gameXml.Element("Platform").Value;
+				game.Genre = gameXml.Element("Genre").Value;
+				game.Publisher = gameXml.Element("Publisher").Value;
+				game.Year = Convert.ToInt32(gameXml.Element("Year").Value);
+				bool isRemoved = Convert.ToBoolean(gameXml.Element("IsRemoved").Value);
+
+				if(isRemoved == false) {
+					addCount++;
+
+					AddGame (game);
+				}
+			}
+
+			Logger.Log (LogLevel.Info, "Initialization completed, "+addCount+" games added!");
+		}
+
+		/// <summary>
+		/// Add a new game entry
+		/// </summary>
+		/// <param name="gameInfo">Game info.</param>
+		public void AddGame(GameInfo gameInfo) {
+			m_db.Insert (gameInfo);
+		}
+
+		/// <summary>
+		/// Remove a game entry
+		/// </summary>
+		/// <param name="gameId">Game identifier.</param>
+		public void RemoveGame(GameInfo gameInfo) {
+			m_db.Delete (gameInfo);
+		}
+
+		/// <summary>
+		/// Read games database
+		/// </summary>
+		public List<GameInfo> ReadGames(Func<GameInfo,bool> predicat) {
+
+			return m_db.Table<GameInfo>().Where (g => predicat (g)).ToList ();
+		}
+
+		/// <summary>
+		/// Returns the current number of games in database
+		/// </summary>
+		/// <returns>The games.</returns>
+		public int CountGames() {
+
+			var gameTable = m_db.Table<GameInfo> ();
+
+			try {
+				return gameTable.Count();
+			}
+			catch(Exception) {
+				return -1;
+			}
 		}
 
 		/// <summary>

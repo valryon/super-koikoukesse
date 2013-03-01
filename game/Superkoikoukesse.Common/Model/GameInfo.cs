@@ -1,4 +1,5 @@
 using System;
+using SQLite;
 
 namespace Superkoikoukesse.Common
 {
@@ -11,6 +12,7 @@ namespace Superkoikoukesse.Common
 		/// Id in the server database
 		/// </summary>
 		/// <value>The game identifier.</value>
+		[PrimaryKey]
 		public int GameId { get; set; }
 
 		/// <summary>
@@ -23,6 +25,52 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public string TitleUS { get; set; }
 
+		/// <summary>
+		/// Path to the image
+		/// </summary>
+		/// <value>The image path.</value>
+		public string ImagePath {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Game platform
+		/// </summary>
+		/// <value>The platform.</value>
+		[Indexed]
+		public string Platform {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Game genre
+		/// </summary>
+		/// <value>The genre.</value>
+		[Indexed]
+		public string Genre {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Game publisher
+		/// </summary>
+		/// <value>The publisher.</value>
+		public string Publisher {
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Game year of publishing
+		/// </summary>
+		/// <value>The year.</value>
+		public int Year {
+			get;
+			set;
+		}
 
 
 		public GameInfo ()
