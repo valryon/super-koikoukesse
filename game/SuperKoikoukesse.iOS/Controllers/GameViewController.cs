@@ -49,7 +49,15 @@ namespace SuperKoikoukesse.iOS
 			m_quizz.Initialize ();
 
 			// Display the image
-			string imgPath = ImageService.Instance.Getimage (m_quizz.CurrentQuestion.CorrectAnswer);
+			setViewQuestion (m_quizz.CurrentQuestion);
+		}
+
+		/// <summary>
+		/// Setup all the view elements for a given question
+		/// </summary>
+		/// <param name="q">Q.</param>
+		private void setViewQuestion(Question q) {
+			string imgPath = ImageService.Instance.Getimage (q.CorrectAnswer);
 			UIImage img = UIImage.FromFile(imgPath);
 			gameImage.Image = img;
 		}
