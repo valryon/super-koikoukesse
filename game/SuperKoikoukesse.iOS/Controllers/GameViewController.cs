@@ -30,11 +30,21 @@ namespace SuperKoikoukesse.iOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
+
+		public override void LoadView ()
+		{
+			base.LoadView ();
+
+			// Load background
+			// TODO Bonne taille
+			UIImage bgImage = UIImage.FromFile ("gui/ingame_background.png");
+			View.BackgroundColor = UIColor.FromPatternImage(bgImage);
+		}
 		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Initialize game database id first launch
 			if(DatabaseService.Instance.Exists == false) {
 
@@ -57,9 +67,19 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <param name="q">Q.</param>
 		private void setViewQuestion(Question q) {
+
+			Logger.Log (LogLevel.Info, "Setting up view for current question "+q);
+
+			// Image
 			string imgPath = ImageService.Instance.Getimage (q.CorrectAnswer);
 			UIImage img = UIImage.FromFile(imgPath);
 			gameImage.Image = img;
+
+			// Answers
+			game1Button.SetTitle (q.GetGameTitle(0), UIControlState.Normal);
+			game2Button.SetTitle (q.GetGameTitle(1), UIControlState.Normal);
+			game3Button.SetTitle (q.GetGameTitle(2), UIControlState.Normal);
+			game4Button.SetTitle (q.GetGameTitle(3), UIControlState.Normal);
 		}
 	}
 }

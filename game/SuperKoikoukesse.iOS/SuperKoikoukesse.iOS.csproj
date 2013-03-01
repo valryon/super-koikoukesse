@@ -88,6 +88,7 @@
     <Folder Include="Resources\database\" />
     <Folder Include="Resources\database\images\" />
     <Folder Include="Service\" />
+    <Folder Include="Resources\gui\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -133,5 +134,6 @@
     <BundleResource Include="Resources\database\images\00018.jpg" />
     <BundleResource Include="Resources\database\images\00019.jpg" />
     <BundleResource Include="Resources\database\images\00020.jpg" />
+    <BundleResource Include="Resources\gui\ingame_background.png" />
   </ItemGroup>
 </Project>

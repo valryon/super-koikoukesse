@@ -11,6 +11,12 @@ namespace Superkoikoukesse.Common
 		public static string DatabaseLocation = "superkoikoukesse.sqlite";
 
 		public static string ImagesRootLocation = "database/images/";
+
+#if DEBUG
+		public static bool DebugMode = true;
+#else 
+		public static bool DebugMode = false;
+#endif
 	}
 }
 

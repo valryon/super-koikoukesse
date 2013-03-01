@@ -79,7 +79,7 @@ namespace Superkoikoukesse.Common
 
 		public override string ToString ()
 		{
-			return GameId + " " + TitlePAL;
+			return "[" + GameId + "] " + TitlePAL;
 		}
 	}
 }

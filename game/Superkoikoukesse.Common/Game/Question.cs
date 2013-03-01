@@ -20,6 +20,28 @@ namespace Superkoikoukesse.Common
 		{
 			Answers = new List<GameInfo> ();
 		}
+
+		/// <summary>
+		/// Get the game title for a specified position
+		/// </summary>
+		/// <returns>The game title.</returns>
+		/// <param name="i">The index.</param>
+		public string GetGameTitle (int i)
+		{
+			// TODO Handle PAL & US
+			GameInfo game = Answers [i];
+
+			if (game == CorrectAnswer) {
+				return Answers[i].TitlePAL+"*";
+			}
+
+			return Answers [i].TitlePAL;
+		}
+
+		public override string ToString ()
+		{
+			return CorrectAnswer.ToString();
+		}
 	}
 }
 
