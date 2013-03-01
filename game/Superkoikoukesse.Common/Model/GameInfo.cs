@@ -76,6 +76,11 @@ namespace Superkoikoukesse.Common
 		public GameInfo ()
 		{
 		}
+
+		public override string ToString ()
+		{
+			return GameId + " " + TitlePAL;
+		}
 	}
 }
 

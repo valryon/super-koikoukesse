@@ -34,6 +34,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
+			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
 
 			// Try to open the database
 			DatabaseService.Instance.Load(Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));

@@ -43,6 +43,7 @@
     <Folder Include="Database\" />
     <Folder Include="Model\" />
     <Folder Include="Util\" />
+    <Folder Include="Game\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,5 +57,8 @@
     <Compile Include="Database\SQLite.cs" />
     <Compile Include="Database\SQLite.MonoTouchAdmin.cs" />
     <Compile Include="Database\SQLiteAsync.cs" />
+    <Compile Include="Database\ImageService.cs" />
+    <Compile Include="Game\Quizz.cs" />
+    <Compile Include="Game\Question.cs" />
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@ namespace Superkoikoukesse.Common
 
 		private DatabaseService ()
 		{
+			m_random = new Random (DateTime.Now.Millisecond);
 		}
 
 		/// <summary>
@@ -37,6 +38,9 @@ namespace Superkoikoukesse.Common
 
 		private string m_location;
 		private SQLiteConnection m_db;
+		private Random m_random;
+
+		#region Initialization
 
 		/// <summary>
 		/// Load the database
@@ -125,6 +129,10 @@ namespace Superkoikoukesse.Common
 			Logger.Log (LogLevel.Info, "Initialization completed, "+addCount+" games added!");
 		}
 
+		#endregion
+
+		#region GameInfo storage
+
 		/// <summary>
 		/// Add a new game entry
 		/// </summary>
@@ -150,6 +158,17 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
+		/// Get a random game
+		/// </summary>
+		/// <returns>The game.</returns>
+		public GameInfo RandomGame() {
+
+			int randomIndex = m_random.Next (0, CountGames ());
+
+			return m_db.Table<GameInfo> ().ElementAt (randomIndex);
+		}
+
+		/// <summary>
 		/// Returns the current number of games in database
 		/// </summary>
 		/// <returns>The games.</returns>
@@ -161,9 +180,11 @@ namespace Superkoikoukesse.Common
 				return gameTable.Count();
 			}
 			catch(Exception) {
-				return -1;
+				return 0;
 			}
 		}
+
+		#endregion
 
 		/// <summary>
 		/// Gets a value indicating whether the game database exists.

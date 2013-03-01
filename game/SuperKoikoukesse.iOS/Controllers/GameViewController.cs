@@ -11,6 +11,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class GameViewController : UIViewController
 	{
+		private Quizz m_quizz;
+
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
@@ -41,6 +43,10 @@ namespace SuperKoikoukesse.iOS
 
 				DatabaseService.Instance.InitializeFromXml(xmlDatabase);
 			}
+
+			// Prepare a quizz
+			m_quizz = new Quizz ();
+			m_quizz.Initialize ();
 		}
 	}
 }
