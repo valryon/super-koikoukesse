@@ -30,15 +30,6 @@ namespace SuperKoikoukesse.iOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-
-		public override void LoadView ()
-		{
-			base.LoadView ();
-
-			// Load background
-			UIImage bgImageFile = UIImage.FromFile ("gui/ingame_background.png");
-			bgImage.Image = bgImageFile;
-		}
 		
 		public override void ViewDidLoad ()
 		{

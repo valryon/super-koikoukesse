@@ -13,12 +13,20 @@ namespace SuperKoikoukesse.iOS
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton scoreAttackButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (bgImage != null) {
 				bgImage.Dispose ();
 				bgImage = null;
+			}
+
+			if (scoreAttackButton != null) {
+				scoreAttackButton.Dispose ();
+				scoreAttackButton = null;
 			}
 		}
 	}

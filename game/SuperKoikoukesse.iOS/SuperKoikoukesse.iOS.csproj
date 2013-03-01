@@ -88,10 +88,10 @@
     <Folder Include="Resources\database\" />
     <Folder Include="Resources\database\images\" />
     <Folder Include="Service\" />
-    <Folder Include="Resources\gui\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="Resources\SG10.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -140,9 +140,28 @@
     <BundleResource Include="Resources\database\images\00018.jpg" />
     <BundleResource Include="Resources\database\images\00019.jpg" />
     <BundleResource Include="Resources\database\images\00020.jpg" />
+    <BundleResource Include="Resources\ingame_background.png">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </BundleResource>
+    <BundleResource Include="Resources\menu_background.jpg" />
+    <BundleResource Include="Resources\bt_blue_0.png">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </BundleResource>
+    <BundleResource Include="Resources\bt_blue_2.png" />
+    <BundleResource Include="Resources\bt_green_1.png" />
+    <BundleResource Include="Resources\bt_orange_0.png" />
+    <BundleResource Include="Resources\bt_orange_1.png" />
+    <BundleResource Include="Resources\bt_orange_2.png" />
+    <BundleResource Include="Resources\bt_pause_1.png" />
+    <BundleResource Include="Resources\bt_pause_2.png" />
+    <BundleResource Include="Resources\bt_red_1.png" />
+    <BundleResource Include="Resources\empty_screen.png" />
+    <BundleResource Include="Resources\jauge_joker_0.png" />
+    <BundleResource Include="Resources\jauge_joker_1.png" />
+    <BundleResource Include="Resources\jauge_joker_2.png" />
+    <BundleResource Include="Resources\jauge_joker_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\gui\ingame_background.png" />
-    <EmbeddedResource Include="Resources\gui\menu_background.jpg" />
+    <EmbeddedResource Include="Resources\bt_blue_1.png" />
   </ItemGroup>
 </Project>
