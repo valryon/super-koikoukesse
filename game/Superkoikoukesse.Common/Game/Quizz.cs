@@ -13,6 +13,18 @@ namespace Superkoikoukesse.Common
 		public List<Question> Questions { get; private set; }
 
 		/// <summary>
+		/// Current question. 
+		/// </summary>
+		/// <value>The current question.</value>
+		public Question CurrentQuestion{ get; private set; }
+
+		/// <summary>
+		/// Gets a value indicating whether this quizz is over.
+		/// </summary>
+		/// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
+		public bool IsOver { get; private set; }
+
+		/// <summary>
 		/// Time left for this game (seconds)
 		/// </summary>
 		/// <value>The time left.</value>
@@ -58,6 +70,9 @@ namespace Superkoikoukesse.Common
 
 			// Randomize questions
 			Questions = Questions.OrderBy (q => Guid.NewGuid()).ToList ();
+
+			// Get the first
+			CurrentQuestion = Questions.First ();
 
 			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
 		}

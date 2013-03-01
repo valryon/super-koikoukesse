@@ -47,6 +47,11 @@ namespace SuperKoikoukesse.iOS
 			// Prepare a quizz
 			m_quizz = new Quizz ();
 			m_quizz.Initialize ();
+
+			// Display the image
+			string imgPath = ImageService.Instance.Getimage (m_quizz.CurrentQuestion.CorrectAnswer);
+			UIImage img = UIImage.FromFile(imgPath);
+			gameImage.Image = img;
 		}
 	}
 }
