@@ -19,7 +19,9 @@ namespace SuperKoikoukesse.iOS
 
 		// class-level declarations
 		UIWindow window;
-		GameViewController viewController;
+		//GameViewController viewController;
+
+		MenuViewController viewController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -41,8 +43,9 @@ namespace SuperKoikoukesse.iOS
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
-			viewController = new GameViewController ();
+
+			//viewController = new GameViewController ();
+			viewController = new MenuViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
 

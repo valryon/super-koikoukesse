@@ -100,6 +100,10 @@
     <Compile Include="Controllers\GameViewController.designer.cs">
       <DependentUpon>GameViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\MenuViewController.cs" />
+    <Compile Include="Controllers\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -111,6 +115,8 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\GameViewController_iPad.xib" />
     <InterfaceDefinition Include="Views\GameViewController_iPhone.xib" />
+    <InterfaceDefinition Include="Views\MenuViewController_iPhone.xib" />
+    <InterfaceDefinition Include="Views\MenuViewController_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\database\gamedb.xml" />
@@ -134,6 +140,9 @@
     <BundleResource Include="Resources\database\images\00018.jpg" />
     <BundleResource Include="Resources\database\images\00019.jpg" />
     <BundleResource Include="Resources\database\images\00020.jpg" />
-    <BundleResource Include="Resources\gui\ingame_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\gui\ingame_background.png" />
+    <EmbeddedResource Include="Resources\gui\menu_background.jpg" />
   </ItemGroup>
 </Project>
