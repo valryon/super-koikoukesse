@@ -32,6 +32,16 @@ namespace SuperKoikoukesse.iOS
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
+
+		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
+
+			// Launch game
+			// TODO Choose difficulty
+
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchView(GameState.Game);
+		}
 	}
 }
 

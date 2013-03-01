@@ -16,6 +16,9 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton scoreAttackButton { get; set; }
+
+		[Action ("scoreAttackButtonPressed:")]
+		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

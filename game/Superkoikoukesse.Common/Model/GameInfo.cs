@@ -81,6 +81,16 @@ namespace Superkoikoukesse.Common
 		{
 			return "[" + GameId + "] " + TitlePAL;
 		}
+
+		public override bool Equals (object obj)
+		{
+			if (obj is GameInfo) {
+				GameInfo g2 = obj as GameInfo;
+
+				return (GameId == g2.GameId);
+			}
+			return base.Equals (obj);
+		}
 	}
 }
 

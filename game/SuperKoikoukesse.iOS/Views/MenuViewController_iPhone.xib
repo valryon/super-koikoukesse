@@ -72,7 +72,7 @@
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="113937628">
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="42556405">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -80,7 +80,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="887791513">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="903317533">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bt_blue_2.png</string>
 						</object>
@@ -112,10 +112,10 @@
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<reference key="NSCustomColorSpace" ref="113937628"/>
+							<reference key="NSCustomColorSpace" ref="42556405"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="418749174"/>
-						<reference key="IBUINormalBackgroundImage" ref="887791513"/>
+						<reference key="IBUINormalBackgroundImage" ref="903317533"/>
 						<reference key="IBUIFontDescription" ref="957144146"/>
 						<reference key="IBUIFont" ref="809623978"/>
 					</object>
@@ -137,10 +137,10 @@
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<reference key="NSCustomColorSpace" ref="113937628"/>
+							<reference key="NSCustomColorSpace" ref="42556405"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="418749174"/>
-						<reference key="IBUINormalBackgroundImage" ref="887791513"/>
+						<reference key="IBUINormalBackgroundImage" ref="903317533"/>
 						<reference key="IBUIFontDescription" ref="957144146"/>
 						<reference key="IBUIFont" ref="809623978"/>
 					</object>
@@ -161,10 +161,10 @@
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<reference key="NSCustomColorSpace" ref="113937628"/>
+							<reference key="NSCustomColorSpace" ref="42556405"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="418749174"/>
-						<reference key="IBUINormalBackgroundImage" ref="887791513"/>
+						<reference key="IBUINormalBackgroundImage" ref="903317533"/>
 						<reference key="IBUIFontDescription" ref="957144146"/>
 						<reference key="IBUIFont" ref="809623978"/>
 					</object>
@@ -176,7 +176,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="113937628"/>
+					<reference key="NSCustomColorSpace" ref="42556405"/>
 				</object>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">3</int>
@@ -210,6 +210,15 @@
 						<reference key="destination" ref="836240811"/>
 					</object>
 					<int key="connectionID">11</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">scoreAttackButtonPressed:</string>
+						<reference key="source" ref="836240811"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">12</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -286,7 +295,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">12</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

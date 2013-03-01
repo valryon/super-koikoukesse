@@ -12,6 +12,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class GameViewController : UIViewController
 	{
 		private Quizz m_quizz;
+		private bool m_isViewLoaded;
 
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
@@ -30,7 +31,14 @@ namespace SuperKoikoukesse.iOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		public override void LoadView ()
+		{
+			m_isViewLoaded = false;
+
+			base.LoadView ();
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -44,12 +52,22 @@ namespace SuperKoikoukesse.iOS
 				DatabaseService.Instance.InitializeFromXml(xmlDatabase);
 			}
 
+			// Display the first image here because we need the UIImageView to be created
+			setViewQuestion (m_quizz.CurrentQuestion);
+			m_isViewLoaded = true;
+		}
+
+		/// <summary>
+		/// Initialize a new quizz game
+		/// </summary>
+		public void InitializeQuizz() {
 			// Prepare a quizz
 			m_quizz = new Quizz ();
 			m_quizz.Initialize ();
-
-			// Display the image
-			setViewQuestion (m_quizz.CurrentQuestion);
+		
+			if (m_isViewLoaded) {
+				setViewQuestion (m_quizz.CurrentQuestion);
+			}
 		}
 
 		/// <summary>
@@ -91,8 +109,12 @@ namespace SuperKoikoukesse.iOS
 
 			m_quizz.NextQuestion ();
 
-			if(m_quizz.IsOver == false) {
-				setViewQuestion(m_quizz.CurrentQuestion);
+			if (m_quizz.IsOver == false) {
+				setViewQuestion (m_quizz.CurrentQuestion);
+			} else {
+				// Back to the menu
+				var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+				appDelegate.SwitchView(GameState.Menu);
 			}
 		}
 	}

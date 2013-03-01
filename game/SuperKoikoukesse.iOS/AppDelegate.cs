@@ -10,6 +10,12 @@ using System.IO;
 
 namespace SuperKoikoukesse.iOS
 {
+	public enum GameState
+	{
+		Menu,
+		Game,
+	}
+
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
@@ -19,9 +25,8 @@ namespace SuperKoikoukesse.iOS
 
 		// class-level declarations
 		UIWindow window;
-		//GameViewController viewController;
-
-		MenuViewController viewController;
+		private GameViewController gameViewController;
+		private MenuViewController menuViewController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -39,17 +44,60 @@ namespace SuperKoikoukesse.iOS
 			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
 
 			// Try to open the database
-			DatabaseService.Instance.Load(Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
+			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			//viewController = new GameViewController ();
-			viewController = new MenuViewController ();
-			window.RootViewController = viewController;
+			menuViewController = new MenuViewController ();
+			window.RootViewController = menuViewController;
 			window.MakeKeyAndVisible ();
 
 			return true;
+		}
+
+		public void SwitchView (GameState state)
+		{
+
+			UIViewController newViewController = null;
+
+			switch (state) {
+			case GameState.Game:
+				if (gameViewController == null) {
+					gameViewController = new GameViewController ();
+				}
+				gameViewController.InitializeQuizz();
+				newViewController = gameViewController;
+				break;
+
+			case GameState.Menu:
+				if (menuViewController == null) {
+					menuViewController = new MenuViewController ();
+				}
+				
+				newViewController = menuViewController;
+				break;
+			}
+
+			if (menuViewController != null) {
+
+				window.RootViewController.RemoveFromParentViewController ();
+				window.RootViewController = newViewController;
+				window.MakeKeyAndVisible ();
+			}
+		}
+
+		protected override void Dispose (bool disposing)
+		{
+			if (gameViewController != null) {
+				gameViewController.Dispose ();
+			}
+			if (menuViewController != null) {
+				menuViewController.Dispose ();
+			}
+
+			base.Dispose (disposing);
 		}
 	}
 }
