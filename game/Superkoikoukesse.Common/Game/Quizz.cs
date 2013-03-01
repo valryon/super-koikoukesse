@@ -30,6 +30,8 @@ namespace Superkoikoukesse.Common
 		/// <value>The time left.</value>
 		public float TimeLeft { get; private set; }
 
+		private int m_questionIndex;
+
 		public Quizz ()
 		{
 		}
@@ -72,9 +74,45 @@ namespace Superkoikoukesse.Common
 			Questions = Questions.OrderBy (q => Guid.NewGuid()).ToList ();
 
 			// Get the first
-			CurrentQuestion = Questions.First ();
+			m_questionIndex = 0;
+			CurrentQuestion = Questions[m_questionIndex];
+
+			IsOver = false;
 
 			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
+		}
+
+		/// <summary>
+		/// Player has selected its answer.
+		/// </summary>
+		/// <param name="index">Answer index</param>
+		public void SelectQuestion (int index)
+		{
+			bool result = CurrentQuestion.IsValidAnswer (index);
+
+			if (result) {
+				Logger.Log (LogLevel.Info, "Good answer!");
+			}
+			else {
+				Logger.Log (LogLevel.Info, "Bad answer...");
+			}
+		}
+
+		/// <summary>
+		/// Move to the next question. Mark as over if no more.
+		/// </summary>
+		public void NextQuestion ()
+		{
+			Logger.Log (LogLevel.Info, "Next question requested");
+			
+			m_questionIndex++;
+			
+			if (m_questionIndex < Questions.Count) {
+				CurrentQuestion = Questions [m_questionIndex];
+			} else {
+				Logger.Log (LogLevel.Info, "Quizz is over!");
+				IsOver = true;
+			}
 		}
 	}
 }

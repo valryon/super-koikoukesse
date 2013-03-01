@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIImageView bgImage { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView gameImage { get; set; }
 
 		[Outlet]
@@ -28,9 +31,29 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton game4Button { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton jokerButtonPressed { get; set; }
+
+		[Action ("game1ButtonPressed:")]
+		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("game2ButtonPressed:")]
+		partial void game2ButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("game3ButtonPressed:")]
+		partial void game3ButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("game4ButtonPressed:")]
+		partial void game4ButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (bgImage != null) {
+				bgImage.Dispose ();
+				bgImage = null;
+			}
+
 			if (gameImage != null) {
 				gameImage.Dispose ();
 				gameImage = null;
@@ -59,6 +82,11 @@ namespace SuperKoikoukesse.iOS
 			if (game4Button != null) {
 				game4Button.Dispose ();
 				game4Button = null;
+			}
+
+			if (jokerButtonPressed != null) {
+				jokerButtonPressed.Dispose ();
+				jokerButtonPressed = null;
 			}
 		}
 	}

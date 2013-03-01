@@ -36,9 +36,8 @@ namespace SuperKoikoukesse.iOS
 			base.LoadView ();
 
 			// Load background
-			// TODO Bonne taille
-			UIImage bgImage = UIImage.FromFile ("gui/ingame_background.png");
-			View.BackgroundColor = UIColor.FromPatternImage(bgImage);
+			UIImage bgImageFile = UIImage.FromFile ("gui/ingame_background.png");
+			bgImage.Image = bgImageFile;
 		}
 		
 		public override void ViewDidLoad ()
@@ -80,6 +79,30 @@ namespace SuperKoikoukesse.iOS
 			game2Button.SetTitle (q.GetGameTitle(1), UIControlState.Normal);
 			game3Button.SetTitle (q.GetGameTitle(2), UIControlState.Normal);
 			game4Button.SetTitle (q.GetGameTitle(3), UIControlState.Normal);
+		}
+
+		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			gameButtonPressed(0);
+		}
+		partial void game2ButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			gameButtonPressed(1);
+		}
+		partial void game3ButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			gameButtonPressed(2);
+		}
+		partial void game4ButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			gameButtonPressed(3);
+		}
+
+		private void gameButtonPressed(int index) {
+
+			m_quizz.SelectQuestion(index);
+
+			m_quizz.NextQuestion ();
+
+			if(m_quizz.IsOver == false) {
+				setViewQuestion(m_quizz.CurrentQuestion);
+			}
 		}
 	}
 }

@@ -38,6 +38,14 @@ namespace Superkoikoukesse.Common
 			return Answers [i].TitlePAL;
 		}
 
+		/// <summary>
+		/// Test if the answer index is the good one
+		/// </summary>
+		public bool IsValidAnswer (int index)
+		{
+			return (Answers [index] == CorrectAnswer);
+		}
+
 		public override string ToString ()
 		{
 			return CorrectAnswer.ToString();
