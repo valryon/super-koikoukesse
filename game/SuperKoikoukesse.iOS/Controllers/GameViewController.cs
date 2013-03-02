@@ -15,6 +15,7 @@ namespace SuperKoikoukesse.iOS
 		private Quizz m_quizz;
 		private bool m_isViewLoaded;
 		private NSTimer m_timer;
+		private UIImage m_currentImage, m_pauseImage;
 
 		#region UIView stuff
 
@@ -63,6 +64,10 @@ namespace SuperKoikoukesse.iOS
 			gameButtonPressed (3);
 		}
 
+		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			pauseAction();
+		}
+
 		#endregion
 		
 		#region Game 
@@ -79,6 +84,11 @@ namespace SuperKoikoukesse.iOS
 
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
+
+			// Load the pause/inactive screen image
+			string imgPath = "empty_screen.png";
+			m_pauseImage = UIImage.FromFile (imgPath);
+			gameImage.Image = m_pauseImage;
 
 			// Display things the first time here because we need the UIImageView and other components to be created
 			if (m_isViewLoaded == false) {
@@ -169,14 +179,39 @@ namespace SuperKoikoukesse.iOS
 
 			// Image
 			string imgPath = ImageService.Instance.Getimage (q.CorrectAnswer);
-			UIImage img = UIImage.FromFile (imgPath);
-			gameImage.Image = img;
+			m_currentImage = UIImage.FromFile (imgPath);
+			gameImage.Image = m_currentImage;
 
 			// Answers
-			game1Button.SetTitle (q.GetGameTitle (0), UIControlState.Normal);
-			game2Button.SetTitle (q.GetGameTitle (1), UIControlState.Normal);
-			game3Button.SetTitle (q.GetGameTitle (2), UIControlState.Normal);
-			game4Button.SetTitle (q.GetGameTitle (3), UIControlState.Normal);
+			setGameButtonTitles (q);
+		}
+
+		private void setGameButtonTitles(Question q) {
+
+			// Disable buttons
+			if (q == null) {
+
+				game1Button.Enabled = false;
+				game2Button.Enabled = false;
+				game3Button.Enabled = false;
+				game4Button.Enabled = false;
+				game1Button.SetTitle ("", UIControlState.Normal);
+				game2Button.SetTitle ("", UIControlState.Normal);
+				game3Button.SetTitle ("", UIControlState.Normal);
+				game4Button.SetTitle ("", UIControlState.Normal);
+			} 
+			// Buttons for current question
+			else {
+
+				game1Button.Enabled = true;
+				game2Button.Enabled = true;
+				game3Button.Enabled = true;
+				game4Button.Enabled = true;
+				game1Button.SetTitle (q.GetGameTitle (0), UIControlState.Normal);
+				game2Button.SetTitle (q.GetGameTitle (1), UIControlState.Normal);
+				game3Button.SetTitle (q.GetGameTitle (2), UIControlState.Normal);
+				game4Button.SetTitle (q.GetGameTitle (3), UIControlState.Normal);
+			}
 		}
 
 		/// <summary>
@@ -202,6 +237,31 @@ namespace SuperKoikoukesse.iOS
 
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchView (GameState.Menu);
+		}
+
+		private void pauseAction() {
+
+			m_quizz.IsPaused = !m_quizz.IsPaused;
+
+			if (m_quizz.IsPaused) {
+
+				// Mask game elements
+				gameImage.Image = m_pauseImage;
+
+				setGameButtonTitles(null);
+
+				// Pause game
+				stopGameTimer();
+
+			} else {
+
+				gameImage.Image = m_currentImage;
+
+				setGameButtonTitles(m_quizz.CurrentQuestion);
+
+				// Resume game
+				setGameTimer();
+			}
 		}
 
 		#endregion

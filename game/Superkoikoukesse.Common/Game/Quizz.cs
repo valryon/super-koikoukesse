@@ -30,6 +30,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The time left.</value>
 		public float TimeLeft { get; set; }
 
+		/// <summary>
+		/// Game is paused?
+		/// </summary>
+		/// <value><c>true</c> if this instance is paused; otherwise, <c>false</c>.</value>
+		public bool IsPaused { get; set; }
+
 		private int m_questionIndex;
 
 		public Quizz ()
