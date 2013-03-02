@@ -54,6 +54,7 @@ namespace SuperKoikoukesse.iOS
 			scoreTitleLabel.Font = appDelegate.CustomFont;
 			scoreLabel.Font = appDelegate.CustomFont;
 			jokerButton.Font = appDelegate.CustomFont;
+			comboLabel.Font = appDelegate.CustomFont;
 		}
 
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -196,6 +197,13 @@ namespace SuperKoikoukesse.iOS
 
 			// Answers
 			setGameButtonTitles (q);
+
+			// Score & combo
+			scoreLabel.Text = m_quizz.Score.ToString("000000");
+			comboLabel.Text = "x"+m_quizz.Combo;
+
+			//TODO DEBUG
+			jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
 		}
 
 		private void setGameButtonTitles(Question q) {

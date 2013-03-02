@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel comboLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
 
 		[Outlet]
@@ -67,6 +70,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (comboLabel != null) {
+				comboLabel.Dispose ();
+				comboLabel = null;
+			}
+
 			if (scoreLabel != null) {
 				scoreLabel.Dispose ();
 				scoreLabel = null;

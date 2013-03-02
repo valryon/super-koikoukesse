@@ -36,10 +36,41 @@ namespace Superkoikoukesse.Common
 		/// <value><c>true</c> if this instance is paused; otherwise, <c>false</c>.</value>
 		public bool IsPaused { get; set; }
 
+		/// <summary>
+		/// Current score
+		/// </summary>
+		/// <value>The score.</value>
+		public int Score { get; set; }
+
+		/// <summary>
+		/// Current score
+		/// </summary>
+		/// <value>The score.</value>
+		public int Combo { get; set; }
+
+		/// <summary>
+		/// Lives count
+		/// </summary>
+		/// <value>The lives.</value>
+		public int Lives { get; set; }
+
+		/// <summary>
+		/// Count the joker part filled
+		/// </summary>
+		/// <value>The joker part count.</value>
+		public int JokerPartCount{ get; set; }
+
+		/// <summary>
+		/// Register answers results
+		/// </summary>
+		/// <value>The good answers count.</value>
+		public Dictionary<Question, bool> Results { get; private set; }
+
 		private int m_questionIndex;
 
 		public Quizz ()
 		{
+			Results = new Dictionary<Question, bool> ();
 		}
 
 		public void Initialize ()
@@ -49,8 +80,8 @@ namespace Superkoikoukesse.Common
 			Questions = new List<Question> ();
 			List<int> correctAnswerIds = new List<int> ();
 
-			int questionCount = 4;
-			int answerCount = 4;
+			int questionCount = 4; // TODO Externaliser
+			int answerCount = 4;// TODO Externaliser
 
 			// Fill questions
 			for (int i=0; i<questionCount; i++) {
@@ -82,9 +113,20 @@ namespace Superkoikoukesse.Common
 
 			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
 
+			
+			// Initialize score, lives, combo
+			TimeLeft = -1;
+			Lives = 3; //TODO externaliser
+			Score = 0;
+			Combo = 1;
+			JokerPartCount = 0;
+			Results.Clear ();
+
 			// Get the first
 			m_questionIndex = -1;
 			NextQuestion ();
+
+			IsPaused = false;
 		}
 
 		/// <summary>
@@ -95,12 +137,29 @@ namespace Superkoikoukesse.Common
 		{
 			bool result = CurrentQuestion.IsValidAnswer (index);
 
+			int score = 100;// TODO Externaliser
+			int comboToApply = Combo;
+
 			if (result) {
 				Logger.Log (LogLevel.Info, "Good answer!");
+				Combo++;
+				JokerPartCount++;
+
+				if(JokerPartCount > 3) JokerPartCount = 3; // TODO Externaliser
 			}
 			else {
 				Logger.Log (LogLevel.Info, "Bad answer...");
+				Combo = 1;
+				comboToApply = 1;
+				Lives--;
+				JokerPartCount = 0;
 			}
+
+			// Apply score
+			Score += score * comboToApply; 
+
+			Question q = Questions [m_questionIndex];
+			Results.Add (q, result);
 		}
 
 		/// <summary>
@@ -116,7 +175,7 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = Questions [m_questionIndex];
 
 				// Reset timer
-				TimeLeft = 3f;
+				TimeLeft = 10f; // TODO Externaliser
 
 				IsOver = false;
 			} else {
