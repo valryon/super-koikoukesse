@@ -12,6 +12,15 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel scoreTitleLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel timeTitleLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
 
 		[Outlet]
@@ -58,6 +67,21 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (scoreLabel != null) {
+				scoreLabel.Dispose ();
+				scoreLabel = null;
+			}
+
+			if (scoreTitleLabel != null) {
+				scoreTitleLabel.Dispose ();
+				scoreTitleLabel = null;
+			}
+
+			if (timeTitleLabel != null) {
+				timeTitleLabel.Dispose ();
+				timeTitleLabel = null;
+			}
+
 			if (timeLeftLabel != null) {
 				timeLeftLabel.Dispose ();
 				timeLeftLabel = null;

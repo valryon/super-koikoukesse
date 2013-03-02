@@ -42,6 +42,18 @@ namespace SuperKoikoukesse.iOS
 			m_isViewLoaded = false;
 
 			base.LoadView ();
+
+			// Set fonts manually because Interface Builder is a dick.
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			game1Button.TitleLabel.Font = appDelegate.CustomFont;
+			game2Button.TitleLabel.Font = appDelegate.CustomFont;
+			game3Button.TitleLabel.Font = appDelegate.CustomFont;
+			game4Button.TitleLabel.Font = appDelegate.CustomFont;
+			timeTitleLabel.Font =appDelegate.CustomFont; 
+			timeLeftLabel.Font = appDelegate.CustomFont;
+			scoreTitleLabel.Font = appDelegate.CustomFont;
+			scoreLabel.Font = appDelegate.CustomFont;
+			jokerButton.Font = appDelegate.CustomFont;
 		}
 
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender)

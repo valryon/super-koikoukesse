@@ -39,6 +39,9 @@ namespace SuperKoikoukesse.iOS
 		{
 			Logger.Log (LogLevel.Info, "Launching app...");
 
+			// Load the font once
+			CustomFont = UIFont.FromName ("SG10", 14);
+
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
 			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
@@ -57,6 +60,10 @@ namespace SuperKoikoukesse.iOS
 			return true;
 		}
 
+		/// <summary>
+		/// Chance current view
+		/// </summary>
+		/// <param name="state">State.</param>
 		public void SwitchView (GameState state)
 		{
 
@@ -87,6 +94,12 @@ namespace SuperKoikoukesse.iOS
 				window.MakeKeyAndVisible ();
 			}
 		}
+
+		/// <summary>
+		/// Font to use everywhere
+		/// </summary>
+		/// <value>The custom font.</value>
+		public UIFont CustomFont {get;set;}
 
 		protected override void Dispose (bool disposing)
 		{

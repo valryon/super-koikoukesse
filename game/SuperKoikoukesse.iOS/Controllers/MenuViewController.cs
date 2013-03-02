@@ -30,7 +30,9 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 			
-			// Perform any additional setup after loading the view, typically from a nib.
+			// Set fonts manually because Interface Builder is a dick.
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 		}
 
 
