@@ -191,6 +191,8 @@ namespace SuperKoikoukesse.iOS
 			// Disable buttons
 			if (q == null) {
 
+				jokerButton.Enabled = false;
+
 				game1Button.Enabled = false;
 				game2Button.Enabled = false;
 				game3Button.Enabled = false;
@@ -202,6 +204,8 @@ namespace SuperKoikoukesse.iOS
 			} 
 			// Buttons for current question
 			else {
+
+				jokerButton.Enabled = true;
 
 				game1Button.Enabled = true;
 				game2Button.Enabled = true;

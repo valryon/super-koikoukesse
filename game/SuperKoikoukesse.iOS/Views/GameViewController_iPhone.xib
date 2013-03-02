@@ -85,20 +85,33 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
+						<object class="NSColor" key="IBUIDisabledTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 							<object class="NSColorSpace" key="NSCustomColorSpace" id="102587999">
 								<int key="NSID">2</int>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<reference key="NSCustomColorSpace" ref="102587999"/>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="53893029">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bt_orange_2.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUIDisabledBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bt_orange_0.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bt_orange_1.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1039043185">
 							<int key="type">2</int>
@@ -131,9 +144,17 @@
 							<reference key="NSCustomColorSpace" ref="102587999"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="53893029"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="217985050">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="515935348">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bt_blue_2.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUIDisabledBackgroundImage" id="143968592">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bt_blue_0.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="825075432">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bt_blue_1.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="1039043185"/>
 						<reference key="IBUIFont" ref="634970277"/>
@@ -141,7 +162,7 @@
 					<object class="IBUIButton" id="740607961">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{282, 161}, {178, 44}}</string>
+						<string key="NSFrame">{{282, 160}, {178, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="953042983"/>
@@ -159,7 +180,9 @@
 							<reference key="NSCustomColorSpace" ref="102587999"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="53893029"/>
-						<reference key="IBUINormalBackgroundImage" ref="217985050"/>
+						<reference key="IBUIHighlightedBackgroundImage" ref="515935348"/>
+						<reference key="IBUIDisabledBackgroundImage" ref="143968592"/>
+						<reference key="IBUINormalBackgroundImage" ref="825075432"/>
 						<reference key="IBUIFontDescription" ref="1039043185"/>
 						<reference key="IBUIFont" ref="634970277"/>
 					</object>
@@ -184,7 +207,9 @@
 							<reference key="NSCustomColorSpace" ref="102587999"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="53893029"/>
-						<reference key="IBUINormalBackgroundImage" ref="217985050"/>
+						<reference key="IBUIHighlightedBackgroundImage" ref="515935348"/>
+						<reference key="IBUIDisabledBackgroundImage" ref="143968592"/>
+						<reference key="IBUINormalBackgroundImage" ref="825075432"/>
 						<reference key="IBUIFontDescription" ref="1039043185"/>
 						<reference key="IBUIFont" ref="634970277"/>
 					</object>
@@ -203,13 +228,20 @@
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">GAME 4</string>
 						<reference key="IBUIHighlightedTitleColor" ref="185696749"/>
+						<object class="NSColor" key="IBUIDisabledTitleColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<reference key="NSCustomColorSpace" ref="102587999"/>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 							<reference key="NSCustomColorSpace" ref="102587999"/>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="53893029"/>
-						<reference key="IBUINormalBackgroundImage" ref="217985050"/>
+						<reference key="IBUIHighlightedBackgroundImage" ref="515935348"/>
+						<reference key="IBUIDisabledBackgroundImage" ref="143968592"/>
+						<reference key="IBUINormalBackgroundImage" ref="825075432"/>
 						<reference key="IBUIFontDescription" ref="1039043185"/>
 						<reference key="IBUIFont" ref="634970277"/>
 					</object>
@@ -466,12 +498,12 @@
 							<reference ref="366117446"/>
 							<reference ref="661329869"/>
 							<reference ref="842848475"/>
-							<reference ref="740607961"/>
 							<reference ref="953042983"/>
 							<reference ref="156492527"/>
 							<reference ref="473041851"/>
 							<reference ref="315659680"/>
 							<reference ref="207487788"/>
+							<reference ref="740607961"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -545,15 +577,20 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -661,8 +698,12 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="bt_blue_0.png">{378, 92}</string>
+			<string key="bt_blue_1.png">{378, 92}</string>
 			<string key="bt_blue_2.png">{378, 92}</string>
 			<string key="bt_orange_0.png">{378, 92}</string>
+			<string key="bt_orange_1.png">{378, 92}</string>
+			<string key="bt_orange_2.png">{378, 92}</string>
 			<string key="bt_pause_1.png">{64, 48}</string>
 			<string key="empty_screen.png">{505, 505}</string>
 			<string key="ingame_background.png">{960, 640}</string>

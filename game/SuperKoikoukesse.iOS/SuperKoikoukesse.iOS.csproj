@@ -162,8 +162,6 @@
     <BundleResource Include="Resources\jauge_joker_1.png" />
     <BundleResource Include="Resources\jauge_joker_2.png" />
     <BundleResource Include="Resources\jauge_joker_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\bt_blue_1.png" />
+    <BundleResource Include="Resources\bt_blue_1.png" />
   </ItemGroup>
 </Project>
