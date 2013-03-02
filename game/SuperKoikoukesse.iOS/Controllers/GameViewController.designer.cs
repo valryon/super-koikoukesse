@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
@@ -55,6 +58,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (timeLeftLabel != null) {
+				timeLeftLabel.Dispose ();
+				timeLeftLabel = null;
+			}
+
 			if (bgImage != null) {
 				bgImage.Dispose ();
 				bgImage = null;

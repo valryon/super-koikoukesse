@@ -28,7 +28,7 @@ namespace Superkoikoukesse.Common
 		/// Time left for this game (seconds)
 		/// </summary>
 		/// <value>The time left.</value>
-		public float TimeLeft { get; private set; }
+		public float TimeLeft { get; set; }
 
 		private int m_questionIndex;
 
@@ -42,8 +42,6 @@ namespace Superkoikoukesse.Common
 
 			Questions = new List<Question> ();
 			List<int> correctAnswerIds = new List<int> ();
-
-			TimeLeft = 120f;
 
 			int questionCount = 4;
 			int answerCount = 4;
@@ -77,10 +75,8 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Get the first
-			m_questionIndex = 0;
-			CurrentQuestion = Questions[m_questionIndex];
-
-			IsOver = false;
+			m_questionIndex = -1;
+			NextQuestion ();
 
 			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
 		}
@@ -112,10 +108,23 @@ namespace Superkoikoukesse.Common
 			
 			if (m_questionIndex < Questions.Count) {
 				CurrentQuestion = Questions [m_questionIndex];
+
+				// Reset timer
+				TimeLeft = 10f;
+
+				IsOver = false;
 			} else {
 				Logger.Log (LogLevel.Info, "Quizz is over!");
 				IsOver = true;
 			}
+		}
+
+		/// <summary>
+		/// Make something when the time is over
+		/// </summary>
+		public void TimeIsOver ()
+		{
+			NextQuestion ();
 		}
 	}
 }
