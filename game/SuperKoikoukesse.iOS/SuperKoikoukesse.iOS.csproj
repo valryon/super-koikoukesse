@@ -93,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="..\..\database\gamedb.xml">
+      <Link>Resources\database\gamedb.xml</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -120,27 +123,6 @@
     <InterfaceDefinition Include="Views\MenuViewController_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\database\gamedb.xml" />
-    <BundleResource Include="Resources\database\images\00001.jpg" />
-    <BundleResource Include="Resources\database\images\00002.jpg" />
-    <BundleResource Include="Resources\database\images\00003.jpg" />
-    <BundleResource Include="Resources\database\images\00004.jpg" />
-    <BundleResource Include="Resources\database\images\00005.jpg" />
-    <BundleResource Include="Resources\database\images\00006.jpg" />
-    <BundleResource Include="Resources\database\images\00007.jpg" />
-    <BundleResource Include="Resources\database\images\00008.jpg" />
-    <BundleResource Include="Resources\database\images\00009.jpg" />
-    <BundleResource Include="Resources\database\images\00010.jpg" />
-    <BundleResource Include="Resources\database\images\00011.jpg" />
-    <BundleResource Include="Resources\database\images\00012.jpg" />
-    <BundleResource Include="Resources\database\images\00013.jpg" />
-    <BundleResource Include="Resources\database\images\00014.jpg" />
-    <BundleResource Include="Resources\database\images\00015.jpg" />
-    <BundleResource Include="Resources\database\images\00016.jpg" />
-    <BundleResource Include="Resources\database\images\00017.jpg" />
-    <BundleResource Include="Resources\database\images\00018.jpg" />
-    <BundleResource Include="Resources\database\images\00019.jpg" />
-    <BundleResource Include="Resources\database\images\00020.jpg" />
     <BundleResource Include="Resources\ingame_background.png">
       <DeployService-Deploy>True</DeployService-Deploy>
     </BundleResource>
@@ -163,5 +145,620 @@
     <BundleResource Include="Resources\jauge_joker_3.png" />
     <BundleResource Include="Resources\bt_blue_1.png" />
     <BundleResource Include="Assets\Fonts\SG10.ttf" />
+    <BundleResource Include="..\..\database\images\00001.jpg">
+      <Link>Resources\database\images\00001.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00002.jpg">
+      <Link>Resources\database\images\00002.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00003.jpg">
+      <Link>Resources\database\images\00003.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00004.jpg">
+      <Link>Resources\database\images\00004.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00005.jpg">
+      <Link>Resources\database\images\00005.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00006.jpg">
+      <Link>Resources\database\images\00006.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00007.jpg">
+      <Link>Resources\database\images\00007.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00008.jpg">
+      <Link>Resources\database\images\00008.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00009.jpg">
+      <Link>Resources\database\images\00009.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00010.jpg">
+      <Link>Resources\database\images\00010.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00011.jpg">
+      <Link>Resources\database\images\00011.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00012.jpg">
+      <Link>Resources\database\images\00012.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00013.jpg">
+      <Link>Resources\database\images\00013.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00014.jpg">
+      <Link>Resources\database\images\00014.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00015.jpg">
+      <Link>Resources\database\images\00015.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00016.jpg">
+      <Link>Resources\database\images\00016.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00017.jpg">
+      <Link>Resources\database\images\00017.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00018.jpg">
+      <Link>Resources\database\images\00018.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00019.jpg">
+      <Link>Resources\database\images\00019.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00020.jpg">
+      <Link>Resources\database\images\00020.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00021.jpg">
+      <Link>Resources\database\images\00021.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00022.jpg">
+      <Link>Resources\database\images\00022.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00023.jpg">
+      <Link>Resources\database\images\00023.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00024.jpg">
+      <Link>Resources\database\images\00024.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00025.jpg">
+      <Link>Resources\database\images\00025.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00026.jpg">
+      <Link>Resources\database\images\00026.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00027.jpg">
+      <Link>Resources\database\images\00027.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00028.jpg">
+      <Link>Resources\database\images\00028.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00029.jpg">
+      <Link>Resources\database\images\00029.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00030.jpg">
+      <Link>Resources\database\images\00030.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00031.jpg">
+      <Link>Resources\database\images\00031.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00032.jpg">
+      <Link>Resources\database\images\00032.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00033.jpg">
+      <Link>Resources\database\images\00033.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00034.jpg">
+      <Link>Resources\database\images\00034.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00035.jpg">
+      <Link>Resources\database\images\00035.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00036.jpg">
+      <Link>Resources\database\images\00036.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00037.jpg">
+      <Link>Resources\database\images\00037.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00038.jpg">
+      <Link>Resources\database\images\00038.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00039.jpg">
+      <Link>Resources\database\images\00039.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00040.jpg">
+      <Link>Resources\database\images\00040.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00041.jpg">
+      <Link>Resources\database\images\00041.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00042.jpg">
+      <Link>Resources\database\images\00042.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00043.jpg">
+      <Link>Resources\database\images\00043.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00044.jpg">
+      <Link>Resources\database\images\00044.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00045.jpg">
+      <Link>Resources\database\images\00045.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00046.jpg">
+      <Link>Resources\database\images\00046.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00047.jpg">
+      <Link>Resources\database\images\00047.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00048.jpg">
+      <Link>Resources\database\images\00048.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00049.jpg">
+      <Link>Resources\database\images\00049.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00050.jpg">
+      <Link>Resources\database\images\00050.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00051.jpg">
+      <Link>Resources\database\images\00051.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00052.jpg">
+      <Link>Resources\database\images\00052.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00053.jpg">
+      <Link>Resources\database\images\00053.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00054.jpg">
+      <Link>Resources\database\images\00054.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00055.jpg">
+      <Link>Resources\database\images\00055.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00056.jpg">
+      <Link>Resources\database\images\00056.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00057.jpg">
+      <Link>Resources\database\images\00057.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00058.jpg">
+      <Link>Resources\database\images\00058.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00059.jpg">
+      <Link>Resources\database\images\00059.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00060.jpg">
+      <Link>Resources\database\images\00060.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00061.jpg">
+      <Link>Resources\database\images\00061.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00062.jpg">
+      <Link>Resources\database\images\00062.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00063.jpg">
+      <Link>Resources\database\images\00063.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00064.jpg">
+      <Link>Resources\database\images\00064.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00065.jpg">
+      <Link>Resources\database\images\00065.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00066.jpg">
+      <Link>Resources\database\images\00066.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00067.jpg">
+      <Link>Resources\database\images\00067.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00068.jpg">
+      <Link>Resources\database\images\00068.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00069.jpg">
+      <Link>Resources\database\images\00069.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00070.jpg">
+      <Link>Resources\database\images\00070.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00071.jpg">
+      <Link>Resources\database\images\00071.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00072.jpg">
+      <Link>Resources\database\images\00072.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00073.jpg">
+      <Link>Resources\database\images\00073.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00074.jpg">
+      <Link>Resources\database\images\00074.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00075.jpg">
+      <Link>Resources\database\images\00075.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00076.jpg">
+      <Link>Resources\database\images\00076.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00077.jpg">
+      <Link>Resources\database\images\00077.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00078.jpg">
+      <Link>Resources\database\images\00078.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00079.jpg">
+      <Link>Resources\database\images\00079.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00080.jpg">
+      <Link>Resources\database\images\00080.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00081.jpg">
+      <Link>Resources\database\images\00081.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00082.jpg">
+      <Link>Resources\database\images\00082.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00083.jpg">
+      <Link>Resources\database\images\00083.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00084.jpg">
+      <Link>Resources\database\images\00084.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00085.jpg">
+      <Link>Resources\database\images\00085.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00086.jpg">
+      <Link>Resources\database\images\00086.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00087.jpg">
+      <Link>Resources\database\images\00087.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00088.jpg">
+      <Link>Resources\database\images\00088.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00089.jpg">
+      <Link>Resources\database\images\00089.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00090.jpg">
+      <Link>Resources\database\images\00090.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00091.jpg">
+      <Link>Resources\database\images\00091.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00092.jpg">
+      <Link>Resources\database\images\00092.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00093.jpg">
+      <Link>Resources\database\images\00093.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00094.jpg">
+      <Link>Resources\database\images\00094.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00095.jpg">
+      <Link>Resources\database\images\00095.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00096.jpg">
+      <Link>Resources\database\images\00096.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00097.jpg">
+      <Link>Resources\database\images\00097.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00098.jpg">
+      <Link>Resources\database\images\00098.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00099.jpg">
+      <Link>Resources\database\images\00099.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00100.jpg">
+      <Link>Resources\database\images\00100.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00101.jpg">
+      <Link>Resources\database\images\00101.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00102.jpg">
+      <Link>Resources\database\images\00102.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00103.jpg">
+      <Link>Resources\database\images\00103.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00104.jpg">
+      <Link>Resources\database\images\00104.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00105.jpg">
+      <Link>Resources\database\images\00105.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00106.jpg">
+      <Link>Resources\database\images\00106.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00107.jpg">
+      <Link>Resources\database\images\00107.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00108.jpg">
+      <Link>Resources\database\images\00108.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00109.jpg">
+      <Link>Resources\database\images\00109.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00110.jpg">
+      <Link>Resources\database\images\00110.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00111.jpg">
+      <Link>Resources\database\images\00111.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00112.jpg">
+      <Link>Resources\database\images\00112.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00113.jpg">
+      <Link>Resources\database\images\00113.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00114.jpg">
+      <Link>Resources\database\images\00114.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00115.jpg">
+      <Link>Resources\database\images\00115.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00116.jpg">
+      <Link>Resources\database\images\00116.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00117.jpg">
+      <Link>Resources\database\images\00117.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00118.jpg">
+      <Link>Resources\database\images\00118.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00119.jpg">
+      <Link>Resources\database\images\00119.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00120.jpg">
+      <Link>Resources\database\images\00120.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00121.jpg">
+      <Link>Resources\database\images\00121.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00122.jpg">
+      <Link>Resources\database\images\00122.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00123.jpg">
+      <Link>Resources\database\images\00123.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00124.jpg">
+      <Link>Resources\database\images\00124.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00125.jpg">
+      <Link>Resources\database\images\00125.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00126.jpg">
+      <Link>Resources\database\images\00126.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00127.jpg">
+      <Link>Resources\database\images\00127.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00128.jpg">
+      <Link>Resources\database\images\00128.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00129.jpg">
+      <Link>Resources\database\images\00129.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00130.jpg">
+      <Link>Resources\database\images\00130.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00131.jpg">
+      <Link>Resources\database\images\00131.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00132.jpg">
+      <Link>Resources\database\images\00132.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00133.jpg">
+      <Link>Resources\database\images\00133.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00134.jpg">
+      <Link>Resources\database\images\00134.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00135.jpg">
+      <Link>Resources\database\images\00135.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00136.jpg">
+      <Link>Resources\database\images\00136.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00137.jpg">
+      <Link>Resources\database\images\00137.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00138.jpg">
+      <Link>Resources\database\images\00138.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00139.jpg">
+      <Link>Resources\database\images\00139.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00140.jpg">
+      <Link>Resources\database\images\00140.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00141.jpg">
+      <Link>Resources\database\images\00141.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00142.jpg">
+      <Link>Resources\database\images\00142.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00143.jpg">
+      <Link>Resources\database\images\00143.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00144.jpg">
+      <Link>Resources\database\images\00144.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00145.jpg">
+      <Link>Resources\database\images\00145.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00146.jpg">
+      <Link>Resources\database\images\00146.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00147.jpg">
+      <Link>Resources\database\images\00147.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00148.jpg">
+      <Link>Resources\database\images\00148.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00149.jpg">
+      <Link>Resources\database\images\00149.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00150.jpg">
+      <Link>Resources\database\images\00150.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00151.jpg">
+      <Link>Resources\database\images\00151.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00152.jpg">
+      <Link>Resources\database\images\00152.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00153.jpg">
+      <Link>Resources\database\images\00153.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00154.jpg">
+      <Link>Resources\database\images\00154.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00155.jpg">
+      <Link>Resources\database\images\00155.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00156.jpg">
+      <Link>Resources\database\images\00156.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00157.jpg">
+      <Link>Resources\database\images\00157.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00158.jpg">
+      <Link>Resources\database\images\00158.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00159.jpg">
+      <Link>Resources\database\images\00159.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00160.jpg">
+      <Link>Resources\database\images\00160.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00161.jpg">
+      <Link>Resources\database\images\00161.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00162.jpg">
+      <Link>Resources\database\images\00162.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00163.jpg">
+      <Link>Resources\database\images\00163.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00164.jpg">
+      <Link>Resources\database\images\00164.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00165.jpg">
+      <Link>Resources\database\images\00165.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00166.jpg">
+      <Link>Resources\database\images\00166.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00167.jpg">
+      <Link>Resources\database\images\00167.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00168.jpg">
+      <Link>Resources\database\images\00168.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00169.jpg">
+      <Link>Resources\database\images\00169.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00170.jpg">
+      <Link>Resources\database\images\00170.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00171.jpg">
+      <Link>Resources\database\images\00171.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00172.jpg">
+      <Link>Resources\database\images\00172.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00173.jpg">
+      <Link>Resources\database\images\00173.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00174.jpg">
+      <Link>Resources\database\images\00174.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00175.jpg">
+      <Link>Resources\database\images\00175.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00176.jpg">
+      <Link>Resources\database\images\00176.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00177.jpg">
+      <Link>Resources\database\images\00177.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00178.jpg">
+      <Link>Resources\database\images\00178.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00179.jpg">
+      <Link>Resources\database\images\00179.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00180.jpg">
+      <Link>Resources\database\images\00180.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00181.jpg">
+      <Link>Resources\database\images\00181.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00182.jpg">
+      <Link>Resources\database\images\00182.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00183.jpg">
+      <Link>Resources\database\images\00183.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00184.jpg">
+      <Link>Resources\database\images\00184.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00185.jpg">
+      <Link>Resources\database\images\00185.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00186.jpg">
+      <Link>Resources\database\images\00186.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00187.jpg">
+      <Link>Resources\database\images\00187.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00188.jpg">
+      <Link>Resources\database\images\00188.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00189.jpg">
+      <Link>Resources\database\images\00189.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00190.jpg">
+      <Link>Resources\database\images\00190.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00191.jpg">
+      <Link>Resources\database\images\00191.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00192.jpg">
+      <Link>Resources\database\images\00192.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00193.jpg">
+      <Link>Resources\database\images\00193.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00194.jpg">
+      <Link>Resources\database\images\00194.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00195.jpg">
+      <Link>Resources\database\images\00195.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00196.jpg">
+      <Link>Resources\database\images\00196.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00197.jpg">
+      <Link>Resources\database\images\00197.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00198.jpg">
+      <Link>Resources\database\images\00198.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00199.jpg">
+      <Link>Resources\database\images\00199.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00200.jpg">
+      <Link>Resources\database\images\00200.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00201.jpg">
+      <Link>Resources\database\images\00201.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00202.jpg">
+      <Link>Resources\database\images\00202.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00203.jpg">
+      <Link>Resources\database\images\00203.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00204.jpg">
+      <Link>Resources\database\images\00204.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\images\00205.jpg">
+      <Link>Resources\database\images\00205.jpg</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>

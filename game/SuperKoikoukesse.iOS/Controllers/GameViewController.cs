@@ -95,15 +95,6 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-			// Initialize game database id first launch
-			if (DatabaseService.Instance.Exists == false) {
-
-				// Load gamedb.xml
-				String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
-
-				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
-			}
-
 			// Load the pause/inactive screen image
 			string imgPath = "empty_screen.png";
 			m_pauseImage = UIImage.FromFile (imgPath);
