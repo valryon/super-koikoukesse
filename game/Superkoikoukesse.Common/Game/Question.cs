@@ -44,6 +44,10 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public bool IsValidAnswer (int index)
 		{
+			// Index can be -1 if no answer selected
+			if (index < 0 || index >= Answers.Count)
+				return false;
+
 			return (Answers [index] == CorrectAnswer);
 		}
 

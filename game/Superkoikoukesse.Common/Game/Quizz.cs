@@ -74,11 +74,11 @@ namespace Superkoikoukesse.Common
 				Questions.Add (q);
 			}
 
+			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
+
 			// Get the first
 			m_questionIndex = -1;
 			NextQuestion ();
-
-			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
 		}
 
 		/// <summary>
@@ -110,7 +110,7 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = Questions [m_questionIndex];
 
 				// Reset timer
-				TimeLeft = 10f;
+				TimeLeft = 3f;
 
 				IsOver = false;
 			} else {
@@ -124,7 +124,8 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void TimeIsOver ()
 		{
-			NextQuestion ();
+			//TODO Fonction du mode
+
 		}
 	}
 }

@@ -138,8 +138,6 @@ namespace SuperKoikoukesse.iOS
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
 						});
 					}
-
-						
 				});
 
 				NSRunLoop.Current.Run ();
@@ -187,11 +185,9 @@ namespace SuperKoikoukesse.iOS
 		/// <param name="index">Answer pressed, -1 if no response</param>
 		private void gameButtonPressed (int index)
 		{
-			if (index >= 0) {
-				m_quizz.SelectQuestion (index);
+			m_quizz.SelectQuestion (index);
 
-				m_quizz.NextQuestion ();
-			}
+			m_quizz.NextQuestion ();
 
 			if (m_quizz.IsOver == false) {
 				setViewQuestion (m_quizz.CurrentQuestion);
