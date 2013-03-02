@@ -494,14 +494,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">jokerButtonPressed</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="842848475"/>
-					</object>
-					<int key="connectionID">23</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">pauseButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="156492527"/>
@@ -547,6 +539,15 @@
 						<reference key="destination" ref="889334002"/>
 					</object>
 					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">jokerButtonPressed:</string>
+						<reference key="source" ref="842848475"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">38</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -729,7 +730,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">38</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -741,6 +742,7 @@
 						<string key="game2ButtonPressed:">id</string>
 						<string key="game3ButtonPressed:">id</string>
 						<string key="game4ButtonPressed:">id</string>
+						<string key="jokerButtonPressed:">id</string>
 						<string key="pauseButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -760,6 +762,10 @@
 							<string key="name">game4ButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="jokerButtonPressed:">
+							<string key="name">jokerButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="pauseButtonPressed:">
 							<string key="name">pauseButtonPressed:</string>
 							<string key="candidateClassName">id</string>
@@ -767,13 +773,13 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImage">UIImageView</string>
+						<string key="comboLabel">UILabel</string>
 						<string key="game1Button">UIButton</string>
 						<string key="game2Button">UIButton</string>
 						<string key="game3Button">UIButton</string>
 						<string key="game4Button">UIButton</string>
 						<string key="gameImage">UIImageView</string>
 						<string key="jokerButton">UIButton</string>
-						<string key="jokerButtonPressed">UIButton</string>
 						<string key="pauseButton">UIButton</string>
 						<string key="scoreLabel">UILabel</string>
 						<string key="scoreTitleLabel">UILabel</string>
@@ -784,6 +790,10 @@
 						<object class="IBToOneOutletInfo" key="bgImage">
 							<string key="name">bgImage</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="comboLabel">
+							<string key="name">comboLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="game1Button">
 							<string key="name">game1Button</string>
@@ -807,10 +817,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="jokerButton">
 							<string key="name">jokerButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="jokerButtonPressed">
-							<string key="name">jokerButtonPressed</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pauseButton">

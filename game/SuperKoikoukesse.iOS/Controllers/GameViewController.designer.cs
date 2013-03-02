@@ -48,10 +48,10 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton game4Button { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton jokerButtonPressed { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIButton pauseButton { get; set; }
+
+		[Action ("jokerButtonPressed:")]
+		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("game1ButtonPressed:")]
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -128,11 +128,6 @@ namespace SuperKoikoukesse.iOS
 			if (game4Button != null) {
 				game4Button.Dispose ();
 				game4Button = null;
-			}
-
-			if (jokerButtonPressed != null) {
-				jokerButtonPressed.Dispose ();
-				jokerButtonPressed = null;
 			}
 
 			if (pauseButton != null) {

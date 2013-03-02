@@ -81,6 +81,12 @@ namespace SuperKoikoukesse.iOS
 			pauseAction();
 		}
 
+		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			m_quizz.UseJoker();
+
+			gameButtonPressed(-1, true);
+		}
+
 		#endregion
 		
 		#region Game 
@@ -105,8 +111,8 @@ namespace SuperKoikoukesse.iOS
 
 			// Display things the first time here because we need the UIImageView and other components to be created
 			if (m_isViewLoaded == false) {
-				setViewQuizz (m_quizz);
-				setViewQuestion (m_quizz.CurrentQuestion);
+				updateViewToQuizz (m_quizz);
+				updateViewToQuestion (m_quizz.CurrentQuestion);
 				m_isViewLoaded = true;
 			}
 		}
@@ -122,15 +128,15 @@ namespace SuperKoikoukesse.iOS
 		
 			// Display game
 			if (m_isViewLoaded) {
-				setViewQuizz (m_quizz);
-				setViewQuestion (m_quizz.CurrentQuestion);
+				updateViewToQuizz (m_quizz);
+				updateViewToQuestion (m_quizz.CurrentQuestion);
 			}
 		}
 
 		/// <summary>
 		/// Initialize the view for a new quizz
 		/// </summary>
-		private void setViewQuizz (Quizz q)
+		private void updateViewToQuizz (Quizz q)
 		{
 			// Set timer in a thread
 			var thread = new Thread (setGameTimer as ThreadStart);
@@ -183,7 +189,7 @@ namespace SuperKoikoukesse.iOS
 		/// Setup all the view elements for a given question
 		/// </summary>
 		/// <param name="q">Q.</param>
-		private void setViewQuestion (Question q)
+		private void updateViewToQuestion (Question q)
 		{
 			Logger.Log (LogLevel.Info, "Setting up view for current question " + q);
 
@@ -201,6 +207,9 @@ namespace SuperKoikoukesse.iOS
 			// Score & combo
 			scoreLabel.Text = m_quizz.Score.ToString("000000");
 			comboLabel.Text = "x"+m_quizz.Combo;
+
+			// Joker
+			jokerButton.Enabled= m_quizz.IsJokerAvailable;
 
 			//TODO DEBUG
 			jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
@@ -242,14 +251,14 @@ namespace SuperKoikoukesse.iOS
 		/// 
 		/// </summary>
 		/// <param name="index">Answer pressed, -1 if no response</param>
-		private void gameButtonPressed (int index)
+		private void gameButtonPressed (int index, bool isJoker = false)
 		{
-			m_quizz.SelectQuestion (index);
+			m_quizz.SelectAnswer (index, isJoker);
 
 			m_quizz.NextQuestion ();
 
 			if (m_quizz.IsOver == false) {
-				setViewQuestion (m_quizz.CurrentQuestion);
+				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {
 				// Back to the menu
 				getBackToMenu();

@@ -58,7 +58,16 @@ namespace Superkoikoukesse.Common
 		/// Count the joker part filled
 		/// </summary>
 		/// <value>The joker part count.</value>
-		public int JokerPartCount{ get; set; }
+		public int JokerPartCount { get; set; }
+
+		/// <summary>
+		/// Determines if the joker can be use
+		/// </summary>
+		public bool IsJokerAvailable {
+			get {
+				return (JokerPartCount>=1); // TODO Externaliser
+			}
+		}
 
 		/// <summary>
 		/// Register answers results
@@ -130,22 +139,31 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
-		/// Player has selected its answer.
+		/// Player has selected an answer.
 		/// </summary>
 		/// <param name="index">Answer index</param>
-		public void SelectQuestion (int index)
+		public void SelectAnswer (int index, bool isJoker = false)
 		{
 			bool result = CurrentQuestion.IsValidAnswer (index);
 
-			int score = 100;// TODO Externaliser
+			if (isJoker) {
+				result = true;
+			}
+
+			int score = 100; // TODO Externaliser
 			int comboToApply = Combo;
 
 			if (result) {
-				Logger.Log (LogLevel.Info, "Good answer!");
+				Logger.Log (LogLevel.Info, "Good answer! " + (isJoker ? "(JOKER)" : ""));
 				Combo++;
-				JokerPartCount++;
 
-				if(JokerPartCount > 3) JokerPartCount = 3; // TODO Externaliser
+				if (isJoker == false) {
+					JokerPartCount++;
+
+					if(JokerPartCount >= 3) {
+						JokerPartCount = 3; 
+					}
+				}
 			}
 			else {
 				Logger.Log (LogLevel.Info, "Bad answer...");
@@ -191,6 +209,13 @@ namespace Superkoikoukesse.Common
 		{
 			//TODO Fonction du mode
 
+		}
+
+		public void UseJoker() {
+
+			if (IsJokerAvailable) {
+				JokerPartCount = 0;
+			}
 		}
 	}
 }
