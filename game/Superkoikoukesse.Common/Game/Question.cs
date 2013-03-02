@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Superkoikoukesse.Common
@@ -44,6 +45,13 @@ namespace Superkoikoukesse.Common
 		public bool IsValidAnswer (int index)
 		{
 			return (Answers [index] == CorrectAnswer);
+		}
+
+		/// <summary>
+		/// Randomizer answers order
+		/// </summary>
+		public void ShuffleAnswers() {
+			Answers = Answers.OrderBy (q => Guid.NewGuid()).ToList ();
 		}
 
 		public override string ToString ()

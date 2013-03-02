@@ -41,6 +41,8 @@ namespace Superkoikoukesse.Common
 			Logger.Log (LogLevel.Info, "Initializing quizz...");
 
 			Questions = new List<Question> ();
+			List<int> correctAnswerIds = new List<int> ();
+
 			TimeLeft = 120f;
 
 			int questionCount = 4;
@@ -56,22 +58,23 @@ namespace Superkoikoukesse.Common
 				
 					GameInfo game = DatabaseService.Instance.RandomGame ();
 
-					if(q.Answers.Contains(game) == false) {
+					if(q.Answers.Contains(game) == false && correctAnswerIds.Contains(game.GameId) == false) {
 						q.Answers.Add(game);
 						count++;
-					}
-
-					// Decide that the first will be the correct answer
-					if(q.CorrectAnswer == null) {
-						q.CorrectAnswer = game;
+					
+						// Decide that the first will be the correct answer
+						if(q.CorrectAnswer == null) {
+							q.CorrectAnswer = game;
+							correctAnswerIds.Add(game.GameId);
+						}
 					}
 				}
 
+				// Randomize answers
+				q.ShuffleAnswers();
+
 				Questions.Add (q);
 			}
-
-			// Randomize questions
-			Questions = Questions.OrderBy (q => Guid.NewGuid()).ToList ();
 
 			// Get the first
 			m_questionIndex = 0;
