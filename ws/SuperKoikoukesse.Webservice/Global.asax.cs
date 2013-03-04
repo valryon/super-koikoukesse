@@ -95,7 +95,7 @@ namespace SuperKoikoukesse.Webservice
             EncryptionHelper.Initialize(ConfigurationManager.AppSettings["ENCRYPTION_KEY"].ToString());
 
             // Initialize database
-            ServiceDb.Instance.Initialize(Server.MapPath(ConfigurationManager.AppSettings["DB_PATH"].ToString()));
+            ServiceDb.Instance.Initialize(ConfigurationManager.ConnectionStrings["DB_KOIKOUKESSE"].ToString());
 
             AreaRegistration.RegisterAllAreas();
 

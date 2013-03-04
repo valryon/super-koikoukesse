@@ -1,4 +1,5 @@
-﻿using Pixelnest.Common.Log;
+﻿using MongoDB.Driver;
+using Pixelnest.Common.Log;
 using SuperKoikoukesse.Webservice.Core.Games;
 using System;
 using System.Collections.Generic;
@@ -39,32 +40,37 @@ namespace SuperKoikoukesse.Webservice.Core.DB
 
         #endregion
 
-        private string m_databaseLocation;
-        //private DBreezeEngine m_db;
+        private MongoClient m_mongoClient;
+        private MongoServer m_mongoServer;
+        private MongoDatabase m_mongoDb;
 
         /// <summary>
-        /// Initialize and load the database
+        /// Connect to the database
         /// </summary>
-        /// <param name="location"></param>
-        public void Initialize(string location)
+        public void Initialize(string connectionString)
         {
-            m_databaseLocation = location;
-
-             // Initialize db connection
-            Logger.Log(LogLevel.Info, "Loading database... " + location);
-
-            bool exists = true; // TODO Tester existence ?
-            if (exists)
+            // Initialize db connection
+            Logger.Log(LogLevel.Info, "Connecting to database... ");
+            Logger.Log(LogLevel.Debug, "ConnectionString=" + connectionString);
+            try
             {
-                Logger.Log(LogLevel.Info, "Database loaded.");
+                var connectionStringMongo = new MongoConnectionStringBuilder(connectionString);
+                m_mongoClient = new MongoClient(connectionString);
+                m_mongoServer = m_mongoClient.GetServer();
+
+                m_mongoDb = m_mongoServer.GetDatabase(connectionStringMongo.DatabaseName);
+                Logger.Log(LogLevel.Info, "Using database " + connectionStringMongo.DatabaseName);
+
+                // Dumb command to test connection
+                m_mongoDb.FindAllUsers();    
             }
-            else
+            catch (Exception e)
             {
-                Logger.Log(LogLevel.Warning, "Database not found.");
-
-                // First time: initialize
-
+                Logger.LogException(LogLevel.Error, "ServiceDb.Initialize", e);
+                throw new ApplicationException("Database connection failed!");
             }
+            //var collection = db.GetCollection<Post>("post");
+
         }
 
     }

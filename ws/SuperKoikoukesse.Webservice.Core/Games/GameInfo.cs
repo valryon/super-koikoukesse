@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace SuperKoikoukesse.Webservice.Core.Games
 {
     public class GameInfo
     {
+        [BsonId]
         public int GameId { get; set; }
 
         public string ImagePath { get; set; }

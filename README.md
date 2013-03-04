@@ -8,7 +8,7 @@ http://koikoukesse.fr.st
 
 ## Arborescence
 
-* common  : bibliothèque commune à tous les projets
+* deploy : fichiers utile pour déploiement
 * ws  : interface back-end pour gérer la base de données à distance et webservice de communication entre le jeu et le serveur
 * game : le jeu dans ses différentes versions (ios, android, etc)
 
@@ -16,6 +16,15 @@ http://koikoukesse.fr.st
 
 ### Sur Mac OS X
 
+Projet jeu
+
 * Xcode
 * Xamarin Studio
 * MonoTouch
+
+### Sur Windows
+
+Projet Webservice
+
+* Visual Studio 2012 Express Web Edition
+* CSharpDriver - MongoDB
