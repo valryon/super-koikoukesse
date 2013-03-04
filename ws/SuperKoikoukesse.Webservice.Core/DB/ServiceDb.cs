@@ -62,9 +62,9 @@ namespace SuperKoikoukesse.Webservice.Core.DB
                 Logger.Log(LogLevel.Info, "Using database " + connectionStringMongo.DatabaseName);
 
                 // Dumb command to test connection
-                m_mongoDb.FindAllUsers();    
+                m_mongoDb.GetStats();    
             }
-            catch (Exception e)
+            catch (MongoConnectionException e)
             {
                 Logger.LogException(LogLevel.Error, "ServiceDb.Initialize", e);
                 throw new ApplicationException("Database connection failed!");
