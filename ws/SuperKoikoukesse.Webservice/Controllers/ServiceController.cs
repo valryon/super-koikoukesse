@@ -1,6 +1,6 @@
 ﻿using Pixelnest.Common;
 using Pixelnest.Common.Json;
-using SuperKoikoukesse.Webservice.Core.Dao;
+using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Exceptions;
 using SuperKoikoukesse.Webservice.Core.Games;
 using SuperKoikoukesse.Webservice.Models;

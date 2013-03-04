@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\ServiceDb.cs" />
     <Compile Include="Exceptions\DatabaseNotFoundException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
-    <Compile Include="Games\GameInfoDb.cs" />
+    <Compile Include="DB\GameInfoDb.cs" />
     <Compile Include="Games\GameInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

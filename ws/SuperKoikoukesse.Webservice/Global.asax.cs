@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Pixelnest.Common.Log;
 using System.Configuration;
 using Pixelnest.Common;
+using SuperKoikoukesse.Webservice.Core.DB;
 
 namespace SuperKoikoukesse.Webservice
 {
@@ -92,6 +93,9 @@ namespace SuperKoikoukesse.Webservice
 
             // Initialize cryptography
             EncryptionHelper.Initialize(ConfigurationManager.AppSettings["ENCRYPTION_KEY"].ToString());
+
+            // Initialize database
+            ServiceDb.Instance.Initialize(Server.MapPath(ConfigurationManager.AppSettings["DB_PATH"].ToString()));
 
             AreaRegistration.RegisterAllAreas();
 

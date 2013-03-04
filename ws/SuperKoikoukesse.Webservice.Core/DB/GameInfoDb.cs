@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace SuperKoikoukesse.Webservice.Core.Dao
+namespace SuperKoikoukesse.Webservice.Core.DB
 {
     /// <summary>
     /// Access to the game database
