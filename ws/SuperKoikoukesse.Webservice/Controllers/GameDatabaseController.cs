@@ -1,5 +1,5 @@
 ﻿using Pixelnest.Common.Log;
-using SuperKoikoukesse.Webservice.Core.Dao;
+using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Games;
 using SuperKoikoukesse.Webservice.Models;
 using System;
