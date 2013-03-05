@@ -33,6 +33,12 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "WSPlayerService",
+               "ws/player",
+               new { controller = "Service", action = "GetPlayerInfo" }
+           );
+
+            routes.MapRoute(
                "WSState",
                "ws/{action}",
                new { controller = "Service", action = "Index" }

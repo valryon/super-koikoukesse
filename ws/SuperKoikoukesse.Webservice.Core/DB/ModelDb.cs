@@ -74,7 +74,6 @@ namespace SuperKoikoukesse.Webservice.Core.DB
             db.InsertBatch(elements);
         }
 
-
         /// <summary>
         /// Update element
         /// </summary>

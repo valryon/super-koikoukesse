@@ -15,11 +15,16 @@ namespace SuperKoikoukesse.Webservice.Core.Model
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
 
-        public string DeviceId { get; set; }
+        public string GameCenterId { get; set; }
 
         public string NickName { get; set; }
 
         public DateTime CreationDate { get; set; }
 
+        public int Credits { get; set; }
+
+        public long Coins { get; set; }
+
+        public int SubscriptionType { get; set; }
     }
 }

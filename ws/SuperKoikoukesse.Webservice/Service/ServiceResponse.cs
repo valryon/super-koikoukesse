@@ -29,5 +29,10 @@ namespace SuperKoikoukesse.Webservice.Service
         /// </summary>
         [DataMember(Name = "r", EmitDefaultValue = false)]
         public object ResponseData { get; set; }
+
+        public ServiceResponse()
+        {
+            Code = ErrorCodeEnum.Ok;
+        }
     }
 }

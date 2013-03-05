@@ -46,7 +46,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
         public ActionResult Exclusions()
         {
             ServiceResponse response = new ServiceResponse();
-            response.Code = ErrorCodeEnum.Ok;
 
             try
             {
@@ -55,10 +54,34 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
                 response.ResponseData = games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
             }
-            catch (DatabaseNotFoundException dbe)
+            catch (Exception e)
             {
-                response.Code = ErrorCodeEnum.DatabaseNotFound;
-                response.Message = dbe.ToString();
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Retrieve player informations. Create if new
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetPlayerInfo(string gameCenterId)
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try
+            {
+                PlayersDb playersDb = new PlayersDb();
+                Player p = playersDb.GetPlayer(gameCenterId);
+
+                if (p == null)
+                {
+                    p = playersDb.CreatePlayer(gameCenterId);
+                }
+
+                response.ResponseData = p;
             }
             catch (Exception e)
             {
