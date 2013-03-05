@@ -61,7 +61,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         public ActionResult Authorize(int gameId)
         {
-            m_gamesDb.SetRemoved(gameId, true);
+            m_gamesDb.SetRemoved(gameId, false);
 
             return RedirectToAction("Index");
         }
@@ -73,7 +73,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         public ActionResult Exclude(int gameId)
         {
-            m_gamesDb.SetRemoved(gameId, false);
+            m_gamesDb.SetRemoved(gameId, true);
 
             return RedirectToAction("Index");
         }
