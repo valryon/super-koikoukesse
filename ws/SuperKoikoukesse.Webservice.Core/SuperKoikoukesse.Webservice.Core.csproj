@@ -46,11 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\ModelDb.cs" />
     <Compile Include="DB\MongoDbService.cs" />
+    <Compile Include="DB\PlayersDb.cs" />
+    <Compile Include="DB\StatsDb.cs" />
     <Compile Include="Exceptions\DatabaseNotFoundException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
-    <Compile Include="DB\GameInfoDb.cs" />
-    <Compile Include="Model\GameInfo.cs" />
+    <Compile Include="DB\GamesDb.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\GameStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -55,6 +55,30 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
+        /// Mark a game as authorized
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <returns></returns>
+        public ActionResult Authorize(int gameId)
+        {
+            m_gamesDb.SetRemoved(gameId, true);
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Mark a game as excluded
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <returns></returns>
+        public ActionResult Exclude(int gameId)
+        {
+            m_gamesDb.SetRemoved(gameId, false);
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
         /// Import CSV database
         /// </summary>
         /// <param name="file"></param>

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using Pixelnest.Common.Log;
 using SuperKoikoukesse.Webservice.Core.Model;
 using System;
@@ -7,15 +8,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using MongoDB.Driver.Linq;
 
 namespace SuperKoikoukesse.Webservice.Core.DB
 {
     /// <summary>
     /// Access to the game database
     /// </summary>
-    public class GamesDb
+    public class GamesDb : ModelDb<Game>
     {
         public GamesDb()
+            : base("Games")
         {
         }
 
@@ -38,14 +41,25 @@ namespace SuperKoikoukesse.Webservice.Core.DB
             return doc;
         }
 
-        private MongoCollection<Game> m_gameDb;
-        private MongoCollection<Game> getGameDb()
+        /// <summary>
+        /// Change state of an entry
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <param name="isRemoved"></param>
+        public void SetRemoved(int gameId, bool isRemoved)
         {
-            if (m_gameDb == null)
+            var db = GetDb();
+
+            Game game = (from e in db.AsQueryable<Game>()
+            where e.GameId == gameId
+            select e).FirstOrDefault();
+
+            if (game != null)
             {
-                m_gameDb = MongoDbService.Instance.Get<Game>("GameInfo"); ;
+                game.IsRemoved = isRemoved;
+
+                Update(game);
             }
-            return m_gameDb;
         }
 
         /// <summary>
@@ -54,44 +68,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// <returns></returns>
         public List<Game> ReadAll()
         {
-            var gamesDb = getGameDb();
-
-            return gamesDb.FindAll().OrderBy(g => g.GameId).ToList();
-        }
-
-        /// <summary>
-        /// Add a new game
-        /// </summary>
-        /// <param name="game"></param>
-        /// <returns></returns>
-        public void Add(Game game)
-        {
-            var gamesDb = getGameDb();
-
-            gamesDb.Insert(game);
-        }
-
-        /// <summary>
-        /// Insert games collection
-        /// </summary>
-        /// <param name="games"></param>
-        public void AddAll(List<Game> games)
-        {
-            var gamesDb = getGameDb();
-
-            gamesDb.InsertBatch(games);
-        }
-
-        /// <summary>
-        /// Delete all entries
-        /// </summary>
-        /// <param name="game"></param>
-        /// <returns></returns>
-        public void DeleteAll()
-        {
-            var gamesDb = getGameDb();
-
-            gamesDb.RemoveAll();
+            return base.ReadAll().OrderBy(g => g.GameId).ToList();
         }
 
         private List<Game> m_backUp;
@@ -105,7 +82,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         {
             if (m_backUp != null && m_backUp.Count > 0)
             {
-                var gamesDb = getGameDb();
+                var gamesDb = GetDb();
 
                 gamesDb.RemoveAll();
 

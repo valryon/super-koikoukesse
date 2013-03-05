@@ -7,19 +7,22 @@ using System.Text;
 
 namespace SuperKoikoukesse.Webservice.Core.Model
 {
-    /// <summary>
-    /// Information on the player
-    /// </summary>
-    public class Player
+    public class GameStats
     {
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
 
-        public string DeviceId { get; set; }
+        public string Difficulty { get; set; }
 
-        public string NickName { get; set; }
+        public string Mode { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime Date { get; set; }
 
+        public Dictionary<int, bool> AnswersStats { get; set; }
+
+        public GameStats()
+        {
+            AnswersStats = new Dictionary<int, bool>();
+        }
     }
 }

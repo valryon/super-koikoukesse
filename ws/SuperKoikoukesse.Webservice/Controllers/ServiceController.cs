@@ -20,7 +20,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
     public class ServiceController : Controller
     {
         private bool m_useEncryption;
-        private string dbPath; 
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {

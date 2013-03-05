@@ -33,11 +33,12 @@
             <th>Genre</th>
             <th>Editeur</th>
             <th>Année</th>
+            <th></th>
         </tr>
 
-        @foreach (SuperKoikoukesse.Webservice.Core.Games.GameInfo game in Model.Games)
+        @foreach (SuperKoikoukesse.Webservice.Core.Model.Game game in Model.Games)
         {
-            <tr class="@(game.IsRemoved ? "error" : "")">
+            <tr class="@(game.IsRemoved ? "error" : "")" id="game_@(game.GameId)">
                 <td>
                     @game.GameId
                 </td>
@@ -61,6 +62,17 @@
                 </td>
                 <td>
                     @game.Year
+                </td>
+                <td>
+                    @if (game.IsRemoved)
+                    {
+                        <a href="@Url.Action("Authorize", new {gameId = game.GameId})">Autoriser</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Exclude", new {gameId = game.GameId})">Exclure</a>
+                    }
+
                 </td>
             </tr>
         }

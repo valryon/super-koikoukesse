@@ -43,40 +43,7 @@ namespace SuperKoikoukesse.Webservice
                "ws/{action}",
                new { controller = "Service" }
            );
-
-            // Admin routes
-            //------------------------------------------------------------------------------
-
-            routes.MapRoute(
-               "BOImportDB",
-               "admin/db/import",
-               new { controller = "GameDatabase", action = "ImportCSV" }
-           );
-
-            routes.MapRoute(
-               "BOExportDB",
-               "admin/db/exportcsv",
-               new { controller = "GameDatabase", action = "ExportCSV" }
-           );
-
-            routes.MapRoute(
-               "BOExportDBXml",
-               "admin/db/exportxml",
-               new { controller = "GameDatabase", action = "ExportXml" }
-           );
-
-            routes.MapRoute(
-               "BOListDB",
-               "admin/db/{page}",
-               new { controller = "GameDatabase", action = "Index", page = 1 }
-           );
-
-            routes.MapRoute(
-              "BODefautDB",
-              "admin/db/{action}",
-              new { controller = "GameDatabase" }
-          );
-
+            
             //------------------------------------------------------------------------------
 
             routes.MapRoute(
