@@ -1,6 +1,6 @@
 ﻿using Pixelnest.Common.Log;
 using SuperKoikoukesse.Webservice.Core.DB;
-using SuperKoikoukesse.Webservice.Core.Games;
+using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
     [Authorize]
     public class GameDatabaseController : Controller
     {
-        private GameInfoDb m_gamesDb;
+        private GamesDb m_gamesDb;
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
@@ -26,7 +26,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
             if (m_gamesDb == null)
             {
-                m_gamesDb = new GameInfoDb();
+                m_gamesDb = new GamesDb();
             }
         }
 
@@ -40,7 +40,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         public ActionResult Index(int page = 1)
         {
             if (page < 1) page = 1;
-            List<GameInfo> gameDb = m_gamesDb.ReadAll();
+            List<Game> gameDb = m_gamesDb.ReadAll();
 
             GameDatabaseModel model = new GameDatabaseModel();
             model.Page = page;
@@ -87,7 +87,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                     m_gamesDb.Backup();
                     m_gamesDb.DeleteAll();
 
-                    List<GameInfo> newGames = new List<GameInfo>();
+                    List<Game> newGames = new List<Game>();
 
                     // CSV
                     // Format : GameId, image, pal, us, support, genre, editor, year, removed
@@ -113,7 +113,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                                 bool isRemoved = false;
                                 bool.TryParse(linePart[8], out isRemoved);
 
-                                GameInfo game = new GameInfo()
+                                Game game = new Game()
                                 {
                                     GameId = gameId,
                                     ImagePath = imagePath,
@@ -188,9 +188,9 @@ namespace SuperKoikoukesse.Webservice.Controllers
         public ActionResult ExportCSV()
         {
             StringBuilder fileContent = new StringBuilder();
-            List<GameInfo> games = m_gamesDb.ReadAll();
+            List<Game> games = m_gamesDb.ReadAll();
 
-            foreach (GameInfo gameInfo in games)
+            foreach (Game gameInfo in games)
             {
                 string line = string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};",
                         gameInfo.GameId,
