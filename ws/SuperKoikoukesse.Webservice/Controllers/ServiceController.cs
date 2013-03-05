@@ -2,7 +2,7 @@
 using Pixelnest.Common.Json;
 using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Exceptions;
-using SuperKoikoukesse.Webservice.Core.Games;
+using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
 using SuperKoikoukesse.Webservice.Service;
 using System;
@@ -51,8 +51,8 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
             try
             {
-                GameInfoDb db = new GameInfoDb();
-                List<GameInfo> games = db.ReadAll();
+                GamesDb db = new GamesDb();
+                List<Game> games = db.ReadAll();
 
                 response.ResponseData = games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
             }

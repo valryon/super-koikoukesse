@@ -1,4 +1,4 @@
-﻿using SuperKoikoukesse.Webservice.Core.Games;
+﻿using SuperKoikoukesse.Webservice.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace SuperKoikoukesse.Webservice.Models
 {
     public class GameDatabaseModel
     {
-        public List<GameInfo> Games { get; set; }
+        public List<Game> Games { get; set; }
 
         public int Page { get; set; }
 
@@ -16,7 +16,7 @@ namespace SuperKoikoukesse.Webservice.Models
 
         public GameDatabaseModel()
         {
-            Games = new List<GameInfo>();
+            Games = new List<Game>();
         }
     }
 }

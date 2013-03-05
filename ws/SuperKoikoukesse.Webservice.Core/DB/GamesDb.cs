@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using Pixelnest.Common.Log;
-using SuperKoikoukesse.Webservice.Core.Games;
+using SuperKoikoukesse.Webservice.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +13,9 @@ namespace SuperKoikoukesse.Webservice.Core.DB
     /// <summary>
     /// Access to the game database
     /// </summary>
-    public class GameInfoDb
+    public class GamesDb
     {
-        public GameInfoDb()
+        public GamesDb()
         {
         }
 
@@ -28,7 +28,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
             XDocument doc = new XDocument();
             XElement root = new XElement("games");
 
-            foreach (GameInfo game in ReadAll())
+            foreach (Game game in ReadAll())
             {
                 root.Add(game.ToXml());
             }
@@ -38,12 +38,12 @@ namespace SuperKoikoukesse.Webservice.Core.DB
             return doc;
         }
 
-        private MongoCollection<GameInfo> m_gameDb;
-        private MongoCollection<GameInfo> getGameDb()
+        private MongoCollection<Game> m_gameDb;
+        private MongoCollection<Game> getGameDb()
         {
             if (m_gameDb == null)
             {
-                m_gameDb = MongoDbService.Instance.Get<GameInfo>("GameInfo"); ;
+                m_gameDb = MongoDbService.Instance.Get<Game>("GameInfo"); ;
             }
             return m_gameDb;
         }
@@ -52,7 +52,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// Get all available games
         /// </summary>
         /// <returns></returns>
-        public List<GameInfo> ReadAll()
+        public List<Game> ReadAll()
         {
             var gamesDb = getGameDb();
 
@@ -64,7 +64,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>
-        public void Add(GameInfo game)
+        public void Add(Game game)
         {
             var gamesDb = getGameDb();
 
@@ -75,7 +75,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// Insert games collection
         /// </summary>
         /// <param name="games"></param>
-        public void AddAll(List<GameInfo> games)
+        public void AddAll(List<Game> games)
         {
             var gamesDb = getGameDb();
 
@@ -94,7 +94,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
             gamesDb.RemoveAll();
         }
 
-        private List<GameInfo> m_backUp;
+        private List<Game> m_backUp;
 
         public void Backup()
         {

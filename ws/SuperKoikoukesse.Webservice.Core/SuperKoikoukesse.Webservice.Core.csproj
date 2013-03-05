@@ -50,7 +50,7 @@
     <Compile Include="Exceptions\DatabaseNotFoundException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
     <Compile Include="DB\GameInfoDb.cs" />
-    <Compile Include="Games\GameInfo.cs" />
+    <Compile Include="Model\GameInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

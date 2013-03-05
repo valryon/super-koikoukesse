@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using Pixelnest.Common.Log;
-using SuperKoikoukesse.Webservice.Core.Games;
+using SuperKoikoukesse.Webservice.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

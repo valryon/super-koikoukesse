@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace SuperKoikoukesse.Webservice.Core.Games
+namespace SuperKoikoukesse.Webservice.Core.Model
 {
-    public class GameInfo
+    public class Game
     {
         [BsonId]
         public int GameId { get; set; }
