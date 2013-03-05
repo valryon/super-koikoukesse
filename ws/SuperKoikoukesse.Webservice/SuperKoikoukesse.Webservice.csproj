@@ -165,8 +165,7 @@
     <Content Include="Views\Service\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\Dragon.pubxml" />
-    <None Include="Properties\PublishProfiles\Local DMA.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
