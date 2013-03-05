@@ -39,6 +39,12 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "WSGameHistoryService",
+               "ws/games/add",
+               new { controller = "Service", action = "AddGameHistory" }
+           );
+
+            routes.MapRoute(
                "WSState",
                "ws/{action}",
                new { controller = "Service", action = "Index" }

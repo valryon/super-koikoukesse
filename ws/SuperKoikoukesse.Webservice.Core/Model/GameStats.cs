@@ -12,9 +12,13 @@ namespace SuperKoikoukesse.Webservice.Core.Model
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
 
-        public string Difficulty { get; set; }
+        public Guid PlayerId { get; set; }
 
-        public string Mode { get; set; }
+        public int Score { get; set; }
+
+        public int Difficulty { get; set; }
+
+        public int Mode { get; set; }
 
         public DateTime Date { get; set; }
 

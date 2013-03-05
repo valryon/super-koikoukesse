@@ -93,6 +93,30 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
+        /// Add an entry of a played game
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddGameHistory()
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try {
+
+                var db = new StatsDb();
+
+                
+            }
+            catch (Exception e)
+            {
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
         /// Format and encrypt response
         /// </summary>
         /// <param name="response"></param>
