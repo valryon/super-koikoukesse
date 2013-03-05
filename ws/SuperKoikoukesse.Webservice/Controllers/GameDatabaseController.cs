@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace SuperKoikoukesse.Webservice.Controllers
 {
@@ -24,13 +26,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
             if (m_gamesDb == null)
             {
-                string dbPath = Server.MapPath(ConfigurationManager.AppSettings["GAME_DB_PATH"].ToString());
-
-                m_gamesDb = new GameInfoDb(dbPath, false);
-                if (m_gamesDb.IsNew)
-                {
-                    m_gamesDb.Save();
-                }
+                m_gamesDb = new GameInfoDb();
             }
         }
 
@@ -91,6 +87,8 @@ namespace SuperKoikoukesse.Webservice.Controllers
                     m_gamesDb.Backup();
                     m_gamesDb.DeleteAll();
 
+                    List<GameInfo> newGames = new List<GameInfo>();
+
                     // CSV
                     // Format : GameId, image, pal, us, support, genre, editor, year, removed
                     int lineNumber = 0;
@@ -128,7 +126,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                                     IsRemoved = isRemoved
                                 };
 
-                                m_gamesDb.Add(game);
+                                newGames.Add(game);
                                 gameCount++;
                             }
                             catch (Exception e)
@@ -145,6 +143,11 @@ namespace SuperKoikoukesse.Webservice.Controllers
                             }
                         }
                     }
+
+                    if (exception == null)
+                    {
+                        m_gamesDb.AddAll(newGames);
+                    }
                 }
 
                 if (exception != null)
@@ -157,8 +160,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
                 }
                 else
                 {
-                    m_gamesDb.Save();
-
                     model.Message = "Successfully imported " + gameCount + " games.";
                     model.IsSuccess = true;
                 }
@@ -172,6 +173,17 @@ namespace SuperKoikoukesse.Webservice.Controllers
             return View(model);
         }
 
+        public ActionResult ExportXml()
+        {
+            XDocument doc = m_gamesDb.ExportXml();
+
+            return new ContentResult()
+            {
+                ContentType = "text/xml",
+                Content = doc.ToString(),
+                ContentEncoding = System.Text.Encoding.UTF8,
+            };
+        }
 
         public ActionResult ExportCSV()
         {

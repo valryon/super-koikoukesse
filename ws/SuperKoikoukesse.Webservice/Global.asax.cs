@@ -24,11 +24,7 @@ namespace SuperKoikoukesse.Webservice
 
             // Webservices routes
             //------------------------------------------------------------------------------
-            routes.MapRoute(
-               "WSGameService",
-               "ws/games",
-               new { controller = "Service", action = "Games" }
-           );
+
 
             routes.MapRoute(
                "WSExclusionService",
@@ -59,8 +55,14 @@ namespace SuperKoikoukesse.Webservice
 
             routes.MapRoute(
                "BOExportDB",
-               "admin/db/export",
+               "admin/db/exportcsv",
                new { controller = "GameDatabase", action = "ExportCSV" }
+           );
+
+            routes.MapRoute(
+               "BOExportDBXml",
+               "admin/db/exportxml",
+               new { controller = "GameDatabase", action = "ExportXml" }
            );
 
             routes.MapRoute(
@@ -95,7 +97,7 @@ namespace SuperKoikoukesse.Webservice
             EncryptionHelper.Initialize(ConfigurationManager.AppSettings["ENCRYPTION_KEY"].ToString());
 
             // Initialize database
-            ServiceDb.Instance.Initialize(ConfigurationManager.ConnectionStrings["DB_KOIKOUKESSE"].ToString());
+            MongoDbService.Instance.Initialize(ConfigurationManager.ConnectionStrings["DB_KOIKOUKESSE"].ToString());
 
             AreaRegistration.RegisterAllAreas();
 

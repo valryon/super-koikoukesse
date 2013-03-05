@@ -1,4 +1,5 @@
-﻿using Pixelnest.Common.Log;
+﻿using MongoDB.Driver;
+using Pixelnest.Common.Log;
 using SuperKoikoukesse.Webservice.Core.Games;
 using System;
 using System.Collections.Generic;
@@ -14,43 +15,37 @@ namespace SuperKoikoukesse.Webservice.Core.DB
     /// </summary>
     public class GameInfoDb
     {
-        private string m_databaseLocation;
-        private XDocument m_document;
-
-        public GameInfoDb(string databaseLocation, bool exceptionIfNotExist = true)
+        public GameInfoDb()
         {
-            m_databaseLocation = databaseLocation;
-
-            // Read the database
-            if (File.Exists(databaseLocation))
-            {
-                IsNew = false;
-                Logger.Log(LogLevel.Info, "Loading database " + databaseLocation);
-                m_document = XDocument.Load(databaseLocation);
-            }
-            else
-            {
-                if (exceptionIfNotExist)
-                {
-                    throw new ApplicationException("The database couldn't be found at the following location: " + databaseLocation);
-                }
-                else
-                {
-                    IsNew = true;
-                    Logger.Log(LogLevel.Info, "Creating database " + databaseLocation);
-
-                    Initialize();
-                }
-            }
         }
 
         /// <summary>
-        /// Called when the database is created the first time
+        /// Export database as XML (ready to use in mobile solutions!)
         /// </summary>
-        public void Initialize()
+        /// <returns></returns>
+        public XDocument ExportXml()
         {
-            m_document = new XDocument();
-            m_document.Add(new XElement("games"));
+            XDocument doc = new XDocument();
+            XElement root = new XElement("games");
+
+            foreach (GameInfo game in ReadAll())
+            {
+                root.Add(game.ToXml());
+            }
+
+            doc.Add(root);
+
+            return doc;
+        }
+
+        private MongoCollection<GameInfo> m_gameDb;
+        private MongoCollection<GameInfo> getGameDb()
+        {
+            if (m_gameDb == null)
+            {
+                m_gameDb = MongoDbService.Instance.Get<GameInfo>("GameInfo"); ;
+            }
+            return m_gameDb;
         }
 
         /// <summary>
@@ -59,25 +54,9 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// <returns></returns>
         public List<GameInfo> ReadAll()
         {
-            List<GameInfo> results = new List<GameInfo>();
+            var gamesDb = getGameDb();
 
-            // Create objects from XML
-            foreach (XElement gameElement in m_document.Root.Elements())
-            {
-                try
-                {
-                    GameInfo game = new GameInfo();
-                    game.FromXml(gameElement);
-
-                    results.Add(game);
-                }
-                catch (Exception e)
-                {
-                    Logger.LogException(LogLevel.Warning, "GameInfoDao.ReadAll", e);
-                }
-            }
-
-            return results;
+            return gamesDb.FindAll().OrderBy(g => g.GameId).ToList();
         }
 
         /// <summary>
@@ -87,56 +66,51 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// <returns></returns>
         public void Add(GameInfo game)
         {
-            m_document.Root.Add(game.ToXml());
+            var gamesDb = getGameDb();
+
+            gamesDb.Insert(game);
         }
 
         /// <summary>
-        /// Add a new game
+        /// Insert games collection
+        /// </summary>
+        /// <param name="games"></param>
+        public void AddAll(List<GameInfo> games)
+        {
+            var gamesDb = getGameDb();
+
+            gamesDb.InsertBatch(games);
+        }
+
+        /// <summary>
+        /// Delete all entries
         /// </summary>
         /// <param name="game"></param>
         /// <returns></returns>
         public void DeleteAll()
         {
-            m_document.Root.RemoveNodes();
+            var gamesDb = getGameDb();
+
+            gamesDb.RemoveAll();
         }
 
+        private List<GameInfo> m_backUp;
 
-        /// <summary>
-        /// Save the game database
-        /// </summary>
-        /// <param name="game"></param>
-        /// <returns></returns>
-        public bool Save()
-        {
-            m_document.Save(m_databaseLocation);
-
-            IsNew = false;
-            return true;
-        }
-
-        /// <summary>
-        /// Make a save copy of the current database
-        /// </summary>
         public void Backup()
         {
-            m_document.Save(m_databaseLocation + ".old");
+            m_backUp = ReadAll();
         }
 
-        /// <summary>
-        /// Restore the previous version of the database
-        /// </summary>
-        public bool Restorebackup()
+        public void Restorebackup()
         {
-            if (File.Exists(m_databaseLocation + ".old"))
+            if (m_backUp != null && m_backUp.Count > 0)
             {
-                m_document = XDocument.Load(m_databaseLocation + ".old");
-                return true;
+                var gamesDb = getGameDb();
+
+                gamesDb.RemoveAll();
+
+                gamesDb.InsertBatch(m_backUp);
             }
-
-            return false;
         }
-
-
-        public bool IsNew { get; private set; }
     }
 }

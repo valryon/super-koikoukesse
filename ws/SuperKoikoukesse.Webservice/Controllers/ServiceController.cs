@@ -27,7 +27,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
             base.Initialize(requestContext);
 
             m_useEncryption = Convert.ToBoolean(ConfigurationManager.AppSettings["USE_ENCYRPTION"]);
-            dbPath = Server.MapPath(ConfigurationManager.AppSettings["GAME_DB_PATH"].ToString());
         }
 
         /// <summary>
@@ -42,36 +41,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// Get the whole database list
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Games()
-        {
-            ServiceResponse response = new ServiceResponse();
-            response.Code = ErrorCodeEnum.Ok;
-
-            try
-            {
-                GameInfoDb db = new GameInfoDb(dbPath);
-                List<GameInfo> games = db.ReadAll();
-
-                response.ResponseData = games;
-            }
-            catch (DatabaseNotFoundException dbe)
-            {
-                response.Code = ErrorCodeEnum.DatabaseNotFound;
-                response.Message = dbe.ToString();
-            }
-            catch (Exception e)
-            {
-                response.Code = ErrorCodeEnum.ServiceError;
-                response.Message = e.ToString();
-            }
-
-            return PrepareResponse(response);
-        }
-
-        /// <summary>
         /// Get the excluded games
         /// </summary>
         /// <returns></returns>
@@ -82,7 +51,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
             try
             {
-                GameInfoDb db = new GameInfoDb(dbPath);
+                GameInfoDb db = new GameInfoDb();
                 List<GameInfo> games = db.ReadAll();
 
                 response.ResponseData = games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
