@@ -33,5 +33,11 @@ namespace SuperKoikoukesse.Webservice.Core.DB
 
             return config;
         }
+
+        public override void Update(GameConfiguration element)
+        {
+            element.LastUpdate = DateTime.Now;
+            base.Update(element);
+        }
     }
 }

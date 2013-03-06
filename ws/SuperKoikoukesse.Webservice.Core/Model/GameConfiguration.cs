@@ -14,7 +14,7 @@ namespace SuperKoikoukesse.Webservice.Core.Model
     {
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
-
+        public DateTime LastUpdate { get; set; }
         public List<ModeConfiguration> ModesConfiguration { get; set; }
         public List<ConfigurationItem> Properties { get; set; }
 
