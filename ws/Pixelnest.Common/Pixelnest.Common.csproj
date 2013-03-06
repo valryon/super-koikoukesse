@@ -57,7 +57,6 @@
     <Compile Include="Data\CacheData.cs" />
     <Compile Include="Data\CacheManager.cs" />
     <Compile Include="Data\GenericDao.cs" />
-    <Compile Include="Data\SqlRequestExecuter.cs" />
     <Compile Include="Exceptions\CommonException.cs" />
     <Compile Include="Exceptions\CacheException.cs" />
     <Compile Include="Exceptions\ExceptionManager.cs" />

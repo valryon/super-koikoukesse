@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Mail;
-using Pixelnest.Common.Log;
+using System.Text;
 
 namespace Pixelnest.Common.Exceptions
 {

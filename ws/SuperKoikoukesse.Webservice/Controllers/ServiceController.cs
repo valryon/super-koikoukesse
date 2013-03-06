@@ -42,7 +42,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// Get the excluded games
         /// </summary>
         /// <returns></returns>
-        public ActionResult Exclusions()
+        public ActionResult GamesExclusions()
         {
             ServiceResponse response = new ServiceResponse();
 
@@ -66,50 +66,21 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// Retrieve player informations. Create if new
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPlayerInfo(string gameCenterId)
+        public ActionResult PlayerInfo(string playerId)
         {
             ServiceResponse response = new ServiceResponse();
 
             try
             {
                 PlayersDb playersDb = new PlayersDb();
-                Player p = playersDb.GetPlayer(gameCenterId);
+                Player p = playersDb.GetPlayer(playerId);
 
                 if (p == null)
                 {
-                    p = playersDb.CreatePlayer(gameCenterId);
+                    p = playersDb.CreatePlayer(playerId);
                 }
 
                 response.ResponseData = p;
-            }
-            catch (Exception e)
-            {
-                response.Code = ErrorCodeEnum.ServiceError;
-                response.Message = e.ToString();
-            }
-
-            return PrepareResponse(response);
-        }
-
-        /// <summary>
-        /// Add an entry of a played game
-        /// </summary>
-        /// <param name="jsonRequest">See documentation for expected json format</param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult AddGameHistory(string jsonRequest)
-        {
-            ServiceResponse response = new ServiceResponse();
-
-            try {
-                // DEBUG
-                string encryptManually = EncryptionHelper.Encrypt(jsonRequest);
-
-                AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(encryptManually);
-
-                StatsDb db = new StatsDb();
-                db.Add(newStat.ToDbModel());
-
             }
             catch (Exception e)
             {
@@ -125,10 +96,36 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// </summary>
         /// <param name="playerId"></param>
         /// <returns></returns>
-         [HttpPost]
-        public ActionResult ConsumeCredits(string playerId)
+        [HttpPost]
+        public ActionResult PlayerConsumeCredits(string playerId, string r)
         {
             ServiceResponse response = new ServiceResponse();
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Add an entry of a played game
+        /// </summary>
+        /// <param name="jsonRequest">See documentation for expected json format</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult StatsAddGame(string r)
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try {
+                AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(r);
+
+                StatsDb db = new StatsDb();
+                db.Add(newStat.ToDbModel());
+
+            }
+            catch (Exception e)
+            {
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
+
             return PrepareResponse(response);
         }
 

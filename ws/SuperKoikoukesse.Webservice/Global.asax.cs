@@ -28,21 +28,27 @@ namespace SuperKoikoukesse.Webservice
 
 
             routes.MapRoute(
-               "WSExclusionService",
-               "ws/exclusions",
-               new { controller = "Service", action = "Exclusions" }
+               "WSGamesExclusionservice",
+               "ws/games/exclusions",
+               new { controller = "Service", action = "GamesExclusions" }
            );
 
             routes.MapRoute(
                "WSPlayerService",
-               "ws/player",
-               new { controller = "Service", action = "GetPlayerInfo" }
+               "ws/player/{playerId}",
+               new { controller = "Service", action = "PlayerInfo" }
+           );
+
+            routes.MapRoute(
+               "WSUseCreditService",
+               "ws/player/{playerId}/usecredit",
+               new { controller = "Service", action = "PlayerConsumeCredits" }
            );
 
             routes.MapRoute(
                "WSGameHistoryService",
-               "ws/games/add",
-               new { controller = "Service", action = "AddGameHistory" }
+               "ws/stats/add",
+               new { controller = "Service", action = "StatsAddGame" }
            );
 
             routes.MapRoute(

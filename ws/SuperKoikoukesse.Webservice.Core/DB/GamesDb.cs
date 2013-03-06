@@ -1,15 +1,9 @@
-﻿using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using Pixelnest.Common.Log;
-using SuperKoikoukesse.Webservice.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using MongoDB.Driver.Linq;
+﻿using MongoDB.Driver.Linq;
 using Pixelnest.Common.Mongo;
+using SuperKoikoukesse.Webservice.Core.Model;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace SuperKoikoukesse.Webservice.Core.DB
 {

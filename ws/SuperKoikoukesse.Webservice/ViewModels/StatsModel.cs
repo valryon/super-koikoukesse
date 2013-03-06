@@ -1,9 +1,5 @@
-﻿using SuperKoikoukesse.Webservice.Core.DB;
-using SuperKoikoukesse.Webservice.Core.Model;
-using System;
+﻿using SuperKoikoukesse.Webservice.Core.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SuperKoikoukesse.Webservice.ViewModels
 {

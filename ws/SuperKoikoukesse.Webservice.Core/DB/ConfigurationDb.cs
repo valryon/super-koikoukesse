@@ -3,11 +3,12 @@ using SuperKoikoukesse.Webservice.Core.Model;
 
 namespace SuperKoikoukesse.Webservice.Core.DB
 {
-    public class StatsDb : ModelDb<GameStats>
+    public class ConfigurationDb: ModelDb<Configuration>
     {
-        public StatsDb()
-            : base("stats")
+        public ConfigurationDb()
+            : base("Config")
         {
         }
+    
     }
 }
