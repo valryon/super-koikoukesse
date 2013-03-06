@@ -52,6 +52,12 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "WSConfigService",
+               "ws/config/{target}",
+               new { controller = "Service", action = "Config", target = 0 }
+           );
+
+            routes.MapRoute(
                "WSState",
                "ws/{action}",
                new { controller = "Service", action = "Index" }
@@ -62,7 +68,7 @@ namespace SuperKoikoukesse.Webservice
                "ws/{action}",
                new { controller = "Service" }
            );
-            
+
             //------------------------------------------------------------------------------
 
             routes.MapRoute(

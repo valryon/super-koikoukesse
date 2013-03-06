@@ -113,12 +113,38 @@ namespace SuperKoikoukesse.Webservice.Controllers
         {
             ServiceResponse response = new ServiceResponse();
 
-            try {
+            try
+            {
                 AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(r);
 
                 StatsDb db = new StatsDb();
                 db.Add(newStat.ToDbModel());
 
+            }
+            catch (Exception e)
+            {
+                response.Code = ErrorCodeEnum.ServiceError;
+                response.Message = e.ToString();
+            }
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Get configuration for a specified target (0 = all)
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public ActionResult Config(int target = 0)
+        {
+            ServiceResponse response = new ServiceResponse();
+
+            try
+            {
+                ConfigurationDb db = new ConfigurationDb();
+                GameConfiguration config = db.GetConfiguration(target);
+
+                response.ResponseData = config;
             }
             catch (Exception e)
             {
@@ -136,14 +162,16 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         internal T DecryptJsonRequest<T>(string encryptedJson)
         {
-            try {
+            try
+            {
                 string clearJson = EncryptionHelper.Decrypt(encryptedJson);
 
                 T item = JsonHelper.Deserialize<T>(clearJson);
 
                 return item;
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 throw new ParseRequestException("Error during the parsing of the json body of the request.", e);
             }
         }
@@ -155,7 +183,13 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         internal ActionResult PrepareResponse(ServiceResponse response)
         {
-            string json = JsonHelper.Serialize(response);
+            bool format = false;
+
+#if DEBUG
+            format = true;
+#endif
+
+            string json = JsonHelper.Serialize(response, format);
 
             // Encryption
             if (m_useEncryption)

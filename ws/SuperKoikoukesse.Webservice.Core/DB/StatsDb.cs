@@ -6,7 +6,7 @@ namespace SuperKoikoukesse.Webservice.Core.DB
     public class StatsDb : ModelDb<GameStats>
     {
         public StatsDb()
-            : base("stats")
+            : base("Stats")
         {
         }
     }

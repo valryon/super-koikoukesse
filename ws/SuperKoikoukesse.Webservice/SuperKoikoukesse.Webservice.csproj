@@ -106,6 +106,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ConfigurationModel.cs" />
     <Compile Include="ViewModels\GameDatabaseModel.cs" />
     <Compile Include="ViewModels\ImportResultModel.cs" />
     <Compile Include="ViewModels\LogOnModel.cs" />
@@ -171,6 +172,7 @@
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Players\Index.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
