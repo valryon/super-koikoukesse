@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Pixelnest")]
 [assembly: AssemblyProduct("Pixelnest.Common")]
-[assembly: AssemblyCopyright("Copyright © Pixelnest 2013")]
+[assembly: AssemblyCopyright("Copyright © Pixelnest")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

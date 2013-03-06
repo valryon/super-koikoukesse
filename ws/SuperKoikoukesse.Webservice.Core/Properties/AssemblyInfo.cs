@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SuperKoikoukesse.Webservice.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Pixelnest")]
 [assembly: AssemblyProduct("SuperKoikoukesse.Webservice.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © Pixelnest")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
