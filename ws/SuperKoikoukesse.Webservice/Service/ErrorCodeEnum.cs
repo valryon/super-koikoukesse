@@ -11,7 +11,7 @@ namespace SuperKoikoukesse.Webservice.Service
     public enum ErrorCodeEnum : int
     {
         Ok  = 0,
-        DatabaseNotFound = 100,
+        InvalidRequest = 100,
         ServiceError = 500,
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using MongoDB.Driver.Linq;
+using Pixelnest.Common.Mongo;
 
 namespace SuperKoikoukesse.Webservice.Core.DB
 {

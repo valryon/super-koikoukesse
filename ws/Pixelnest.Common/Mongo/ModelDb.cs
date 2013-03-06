@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SuperKoikoukesse.Webservice.Core.DB
+namespace Pixelnest.Common.Mongo
 {
     /// <summary>
     /// Generic DAO

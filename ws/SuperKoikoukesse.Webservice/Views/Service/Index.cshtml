@@ -9,22 +9,27 @@
         </th>
         <th>Description
         </th>
+        <th>
+            Appel
+        </th>
     </tr>
 
     <tr>
-        <td><a href="@Url.Action("Exclusions", "Service")">@Url.Action("Exclusions", "Service")</a></td>
+        <td>@Url.Action("Exclusions", "Service")</td>
         <td>GET
         </td>
         <td>Récupération des jeux exclus post-livraison
         </td>
+        <td><a class="btn btn-info" href="@Url.Action("Exclusions", "Service")">Tester</a></td>
     </tr>
 
     <tr>
-        <td><a href="@Url.Action("GetPlayerInfo", "Service", new { gameCenterId = "Valryon" })">@Url.Action("GetPlayerInfo", "Service")</a></td>
+        <td>@Url.Action("GetPlayerInfo", "Service")</td>
         <td>GET
         </td>
         <td>Récupération des info d'un joueur
         </td>
+        <td><a class="btn btn-info" href="@Url.Action("GetPlayerInfo", "Service", new { gameCenterId = "Valryon" })">Tester</a></td>
     </tr>
 
     <tr>
@@ -33,6 +38,25 @@
         <td>POST
         </td>
         <td>Ajouter une ligne dans l'historique des parties
+        </td>
+        <td>
+            <form method="post" action="@Url.Action("AddGameHistory", "Service")">
+                <textarea name="jsonRequest">
+                    {
+                       "player":"Varyon",
+                       "score":10000,
+                       "difficulty":0,
+                       "mode":0,
+                       "date":"2012-03-07 23:15:00",
+                          "answers": [
+		                    {"id" : 002, "result" : false},
+                            {"id" : 003, "result" : true},
+                            ]
+                    }
+                </textarea>
+                <input type="submit" value="Tester" class="btn btn-primary" />
+            </form>
+
         </td>
     </tr>
 </table>

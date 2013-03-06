@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using Pixelnest.Common.Log;
-using SuperKoikoukesse.Webservice.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,7 @@ using System.Text;
 
 
 
-namespace SuperKoikoukesse.Webservice.Core.DB
+namespace Pixelnest.Common.Mongo
 {
     /// <summary>
     /// Database wrapper

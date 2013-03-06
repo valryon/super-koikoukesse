@@ -107,6 +107,7 @@
     <Compile Include="Models\ImportResultModel.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\PlayersModel.cs" />
+    <Compile Include="Models\ServiceInput\AddGameHistoryInput.cs" />
     <Compile Include="Models\ServiceStateModel.cs" />
     <Compile Include="Models\StatsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

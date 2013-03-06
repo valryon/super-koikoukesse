@@ -4,6 +4,7 @@ using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Exceptions;
 using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
+using SuperKoikoukesse.Webservice.Models.ServiceInput;
 using SuperKoikoukesse.Webservice.Service;
 using System;
 using System.Collections.Generic;
@@ -95,9 +96,10 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <summary>
         /// Add an entry of a played game
         /// </summary>
+        /// <param name="jsonRequest">See documentation for expected json format</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddGameHistory()
+        public ActionResult AddGameHistory(string jsonRequest)
         {
             ServiceResponse response = new ServiceResponse();
 
@@ -105,7 +107,13 @@ namespace SuperKoikoukesse.Webservice.Controllers
 
                 var db = new StatsDb();
 
-                
+                // DEBUG
+                string encryptManually = EncryptionHelper.Encrypt(jsonRequest);
+
+                AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(encryptManually);
+
+
+
             }
             catch (Exception e)
             {
@@ -114,6 +122,25 @@ namespace SuperKoikoukesse.Webservice.Controllers
             }
 
             return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Decrypt and parse a Json request
+        /// </summary>
+        /// <param name="encryptedJson"></param>
+        /// <returns></returns>
+        internal T DecryptJsonRequest<T>(string encryptedJson)
+        {
+            try {
+                string clearJson = EncryptionHelper.Decrypt(encryptedJson);
+
+                T item = JsonHelper.Deserialize<T>(clearJson);
+
+                return item;
+            }
+            catch(Exception e) {
+                throw new ParseRequestException("Error during the parsing of the json body of the request.", e);
+            }
         }
 
         /// <summary>

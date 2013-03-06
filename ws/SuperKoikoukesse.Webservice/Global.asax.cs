@@ -5,6 +5,7 @@ using Pixelnest.Common.Log;
 using System.Configuration;
 using Pixelnest.Common;
 using SuperKoikoukesse.Webservice.Core.DB;
+using Pixelnest.Common.Mongo;
 
 namespace SuperKoikoukesse.Webservice
 {
