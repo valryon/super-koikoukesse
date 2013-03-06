@@ -1,4 +1,5 @@
 using SuperKoikoukesse.Webservice.Models;
+using SuperKoikoukesse.Webservice.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

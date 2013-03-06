@@ -4,7 +4,6 @@ using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Exceptions;
 using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
-using SuperKoikoukesse.Webservice.Models.ServiceInput;
 using SuperKoikoukesse.Webservice.Service;
 using System;
 using System.Collections.Generic;
@@ -36,8 +35,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ServiceStateModel model = new ServiceStateModel();
-            return View(model);
+            return View();
         }
 
         /// <summary>
@@ -104,15 +102,13 @@ namespace SuperKoikoukesse.Webservice.Controllers
             ServiceResponse response = new ServiceResponse();
 
             try {
-
-                var db = new StatsDb();
-
                 // DEBUG
                 string encryptManually = EncryptionHelper.Encrypt(jsonRequest);
 
                 AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(encryptManually);
 
-
+                StatsDb db = new StatsDb();
+                db.Add(newStat.ToDbModel());
 
             }
             catch (Exception e)
@@ -121,6 +117,18 @@ namespace SuperKoikoukesse.Webservice.Controllers
                 response.Message = e.ToString();
             }
 
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Consume a credit from the player
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <returns></returns>
+         [HttpPost]
+        public ActionResult ConsumeCredits(string playerId)
+        {
+            ServiceResponse response = new ServiceResponse();
             return PrepareResponse(response);
         }
 

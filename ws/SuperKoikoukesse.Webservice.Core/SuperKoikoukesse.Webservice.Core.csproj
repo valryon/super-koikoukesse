@@ -51,7 +51,9 @@
     <Compile Include="Exceptions\ParseRequestException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
     <Compile Include="DB\GamesDb.cs" />
+    <Compile Include="Model\DifficultiesEnum.cs" />
     <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\ModesEnum.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\GameStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

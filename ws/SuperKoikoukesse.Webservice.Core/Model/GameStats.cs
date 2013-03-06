@@ -16,9 +16,9 @@ namespace SuperKoikoukesse.Webservice.Core.Model
 
         public int Score { get; set; }
 
-        public int Difficulty { get; set; }
+        public DifficultiesEnum Difficulty { get; set; }
 
-        public int Mode { get; set; }
+        public ModesEnum Mode { get; set; }
 
         public DateTime Date { get; set; }
 

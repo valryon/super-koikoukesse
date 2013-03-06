@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SuperKoikoukesse.Webservice.Models
+namespace SuperKoikoukesse.Webservice.ViewModels
 {
     public class LogOnModel
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SuperKoikoukesse.Webservice.Models
+namespace SuperKoikoukesse.Webservice.ViewModels
 {
     public class ImportResultModel
     {

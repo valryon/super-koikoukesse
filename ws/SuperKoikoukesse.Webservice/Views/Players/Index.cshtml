@@ -1,0 +1,43 @@
+﻿@model SuperKoikoukesse.Webservice.ViewModels.PlayersModel
+<h2>Liste des joueurs</h2>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Id
+        </th>
+        <th>Pseudo
+        </th>
+        <th>Date de création
+        </th>
+        <th>Type d'abonnement
+        </th>
+        <th>Crédits
+        </th>
+        <th>Coins
+        </th>
+    </tr>
+
+    @foreach (var player in Model.Players)
+    {
+        <tr>
+            <td>
+                @player.Id
+            </td>
+            <td>
+                @player.NickName
+            </td>
+            <td>
+                @player.CreationDate
+            </td>
+            <td>
+                @player.SubscriptionType
+            </td>
+            <td>
+                @player.Credits
+            </td>
+            <td>
+                @player.Coins
+            </td>
+        </tr>
+    }
+</table>

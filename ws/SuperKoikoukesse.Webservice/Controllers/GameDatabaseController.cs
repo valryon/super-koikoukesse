@@ -2,6 +2,7 @@
 using SuperKoikoukesse.Webservice.Core.DB;
 using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
+using SuperKoikoukesse.Webservice.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace SuperKoikoukesse.Webservice.Models.ServiceInput
+namespace SuperKoikoukesse.Webservice.Models
 {
     [DataContract]
     public class AddGameHistoryInput
@@ -38,8 +38,8 @@ namespace SuperKoikoukesse.Webservice.Models.ServiceInput
             {
                 PlayerId = new Guid(), // TODO Player id
                 Date = this.Date,
-                Difficulty = this.Difficulty,
-                Mode = this.Mode,
+                Difficulty = DifficultiesEnumEx.FromInt(this.Difficulty),
+                Mode = ModesEnumEx.FromInt(this.Mode),
                 Score = this.Score,
                 AnswersStats = new Dictionary<int,bool>() // TODO
             };

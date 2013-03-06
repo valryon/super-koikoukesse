@@ -99,17 +99,18 @@
   <ItemGroup>
     <Compile Include="Controllers\GameDatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameDatabaseModel.cs" />
-    <Compile Include="Models\ImportResultModel.cs" />
-    <Compile Include="Models\LogOnModel.cs" />
-    <Compile Include="Models\PlayersModel.cs" />
-    <Compile Include="Models\ServiceInput\AddGameHistoryInput.cs" />
-    <Compile Include="Models\ServiceStateModel.cs" />
-    <Compile Include="Models\StatsModel.cs" />
+    <Compile Include="ViewModels\GameDatabaseModel.cs" />
+    <Compile Include="ViewModels\ImportResultModel.cs" />
+    <Compile Include="ViewModels\LogOnModel.cs" />
+    <Compile Include="ViewModels\PlayersModel.cs" />
+    <Compile Include="Models\AddGameHistoryInput.cs" />
+    <Compile Include="ViewModels\StatsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ErrorCodeEnum.cs" />
     <Compile Include="Service\ServiceResponse.cs" />
@@ -167,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Players\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
