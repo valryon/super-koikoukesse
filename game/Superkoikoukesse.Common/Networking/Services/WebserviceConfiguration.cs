@@ -5,9 +5,9 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Webservice de configuration
 	/// </summary>
-	public class ServiceConfiguration : GenericService<GameConfiguration>
+	public class WebserviceConfiguration : GenericWeberviceCaller<GameConfiguration>
 	{
-		public ServiceConfiguration ()
+		public WebserviceConfiguration ()
 		{
 		}
 

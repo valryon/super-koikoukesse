@@ -36,29 +36,38 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="System.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Networking\" />
     <Folder Include="Database\" />
-    <Folder Include="Model\" />
     <Folder Include="Util\" />
     <Folder Include="Game\" />
+    <Folder Include="Networking\Services\" />
+    <Folder Include="Game\Enums\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Networking\WebserviceCaller.cs" />
-    <Compile Include="Model\GameInfo.cs" />
     <Compile Include="Util\NetworkAvailability.cs" />
     <Compile Include="Util\EncryptionHelper.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Database\SQLite.cs" />
-    <Compile Include="Database\SQLite.MonoTouchAdmin.cs" />
     <Compile Include="Database\SQLiteAsync.cs" />
     <Compile Include="Database\ImageService.cs" />
     <Compile Include="Game\Quizz.cs" />
+    <Compile Include="Networking\IServiceOutput.cs" />
+    <Compile Include="Game\GameInfo.cs" />
     <Compile Include="Game\Question.cs" />
+    <Compile Include="Game\GameConfiguration.cs" />
+    <Compile Include="Game\Enums\GameModes.cs" />
+    <Compile Include="Game\Enums\GameDifficulty.cs" />
+    <Compile Include="Game\Enums\GameTargets.cs" />
+    <Compile Include="Networking\BaseWebserviceCaller.cs" />
+    <Compile Include="Networking\GenericWeberviceCaller.cs" />
+    <Compile Include="Networking\Services\WebserviceConfiguration.cs" />
   </ItemGroup>
 </Project>

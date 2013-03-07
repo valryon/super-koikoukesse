@@ -8,12 +8,12 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Generic webservice caller
 	/// </summary>
-	public abstract class GenericService<T> : WebserviceCaller
+	public abstract class GenericWeberviceCaller<T> : BaseWebserviceCaller
 		where T:IServiceOutput,new()
 	{
 		protected bool UseEncryption;
 
-		public GenericService ()
+		public GenericWeberviceCaller ()
 			: base()
 		{
 			UseEncryption = true;
