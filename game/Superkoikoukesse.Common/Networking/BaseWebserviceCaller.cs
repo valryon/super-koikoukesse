@@ -32,13 +32,6 @@ namespace Superkoikoukesse.Common.Networking
 		}
 
 		/// <summary>
-		/// Simplified request call
-		/// </summary>
-		/// <param name="callback">Callback.</param>
-		/// <param name="callbackFailure">Callback failure.</param>
-		public abstract void Request (Action<T> callback, Action<Exception> callbackFailure) ;
-
-		/// <summary>
 		/// Make an asynchronous request to the webservice
 		/// </summary>
 		/// <param name="url">URL.</param>

@@ -1,6 +1,7 @@
 using System;
 using System.Json;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Superkoikoukesse.Common
 {
@@ -10,32 +11,129 @@ namespace Superkoikoukesse.Common
 
 		public GameDifficulty Difficulty { get; set; }
 
-		public int Score{ get; set; }
+		public int? Score{ get; set; }
 
-		public float Time { get; set; }
+		public int? Time { get; set; }
+
+		public int? QuestionCount { get; set; }
 	}
 
 	public class GameConfiguration : IServiceOutput
 	{
-		public List<ModeConfigurationItem> ModesConfiguration { get; set; }
-		public List<KeyValuePair<string,string>> Properties { get; set; }
+		public DateTime LastUpdate { get; set; }
+
+		private List<ModeConfigurationItem> m_modesConfiguration { get; set; }
+
+		private List<KeyValuePair<string,string>> m_properties { get; set; }
 
 		public GameConfiguration ()
 		{
-			ModesConfiguration = new List<ModeConfigurationItem> ();
-			Properties = new List<KeyValuePair<string, string>> ();
+			m_modesConfiguration = new List<ModeConfigurationItem> ();
+			m_properties = new List<KeyValuePair<string, string>> ();
 		}
 
+		/// <summary>
+		/// Gets the mode configuration.
+		/// </summary>
+		/// <returns>The mode configuration.</returns>
+		/// <param name="mode">Mode.</param>
+		/// <param name="difficulty">Difficulty.</param>
+		public ModeConfigurationItem GetModeConfiguration(GameModes mode, GameDifficulty difficulty) {
+			foreach (var config in m_modesConfiguration) {
+				if(config.Mode == mode && config.Difficulty == difficulty) {
+					return config;
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Gets the property value.
+		/// </summary>
+		/// <returns>The property value.</returns>
+		/// <param name="key">Key.</param>
+		public string GetPropertyValue(string key) {
+			foreach(var prop in m_properties) {
+				if(prop.Key.ToLower() == key.ToLower()) {
+					return prop.Value;
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Parse Json config
+		/// </summary>
+		/// <param name="json">Json.</param>
 		public void BuildFromJsonObject (JsonValue json)
 		{
 			// Example
 			//{{"Id": "f355f650-d2d1-4981-810d-a17a02145187", "ModesConfiguration": [{"Mode": 0, "Difficulty": 0, "Time": 20, "Score": 100, "QuestionsCount": 4}, {"Mode": 0, "Difficulty": 1, "Time": 10, "Score": 200, "QuestionsCount": 5}, {"Mode": 0, "Difficulty": 2, "Time": 10, "Score": 200, "QuestionsCount": 8}, {"Mode": 0, "Difficulty": 3, "Time": 4, "Score": 4200, "QuestionsCount": 42}, {"Mode": 2, "Difficulty": 0, "Time": 60, "Score": 100}], "Properties": [{"Key": "Other prop", "Value": "10", "Help": "Juste un test 1", "Target": 0}, {"Key": "Other prop", "Value": "10", "Help": "Juste un test 2", "Target": 0}]}}
 
 			// Get last update time
+			DateTime lastUpdateTime = DateTime.MinValue;
+
+			if (json.ContainsKey ("LastUpdate")) {
+				lastUpdateTime = Convert.ToDateTime (json ["LastUpdate"].ToString (), CultureInfo.GetCultureInfo ("fr-FR"));
+			}
+
+			this.LastUpdate = lastUpdateTime;
 
 			// Parse "ModesConfiguration"
+			if (json .ContainsKey ("ModesConfiguration")) {
+				JsonValue modesConfig = json ["ModesConfiguration"];
+
+				if (modesConfig is JsonArray) {
+					foreach (JsonValue c in modesConfig) {
+
+						// Parsing each game mode configuration
+						GameModes mode = GameModes.ScoreAttack;
+						GameDifficulty difficulty = GameDifficulty.Easy;
+						int? time = null;
+						int? score = null;
+						int? questionCount = null;
+
+						mode = (GameModes)Enum.Parse (typeof(GameModes), c ["Mode"].ToString ());
+						difficulty = (GameDifficulty)Enum.Parse (typeof(GameDifficulty), c ["Difficulty"].ToString ());
+
+						if (c.ContainsKey ("Time")) {
+							time = Convert.ToInt32 (c ["Time"].ToString ());
+						}
+						if (c.ContainsKey ("Score")) {
+							score = Convert.ToInt32 (c ["Score"].ToString ());
+						}
+						if (c.ContainsKey ("QuestionsCount")) {
+							questionCount = Convert.ToInt32 (c ["QuestionsCount"].ToString ());
+						}
+
+						ModeConfigurationItem modeConfig = new ModeConfigurationItem () {
+						Mode = mode,
+						Difficulty = difficulty,
+						Time = time,
+						Score = score,
+						QuestionCount = questionCount
+					};
+
+						m_modesConfiguration.Add (modeConfig);
+					}
+				}
+			}
 
 			// Parse other "Properties"
+			if (json .ContainsKey ("Properties")) {
+				JsonValue properties = json ["Properties"];
+
+				if (properties is JsonArray) {
+					foreach (JsonValue p in properties) {
+						string key = p["Key"].ToString();
+						string value = p["Value"].ToString();
+
+						m_properties.Add(new KeyValuePair<string, string>(key,value));
+					}
+				}
+			}
 		}
 	}
 }

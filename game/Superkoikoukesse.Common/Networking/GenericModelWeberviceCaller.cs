@@ -22,7 +22,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Request the webservice
 		/// </summary>
-		public override void Request (Action<T> callback, Action<Exception> callbackFailure)
+		public void Request (Action<T> callback, Action<Exception> callbackFailure)
 		{
 			// Get the URL
 			Uri uri = GetServiceUrl ();

@@ -5,7 +5,7 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Webservice de configuration
 	/// </summary>
-	public class WebserviceConfiguration : GenericModelWeberviceCaller
+	public class WebserviceConfiguration : GenericModelWeberviceCaller<GameConfiguration>
 	{
 		public WebserviceConfiguration ()
 		{
@@ -23,7 +23,9 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri(Constants.WebserviceUrl + "ws/config");
+			// TODO Android
+
+			return new Uri(Constants.WebserviceUrl + "ws/config/"+ (int)GameTargets.iOS);
 		}
 
 	}
