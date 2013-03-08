@@ -8,12 +8,12 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Generic webservice caller
 	/// </summary>
-	public abstract class GenericWeberviceCaller<T> : BaseWebserviceCaller
+	public abstract class GenericModelWeberviceCaller<T> : BaseWebserviceCaller
 		where T:IServiceOutput,new()
 	{
 		protected bool UseEncryption;
 
-		public GenericWeberviceCaller ()
+		public GenericModelWeberviceCaller ()
 			: base()
 		{
 			UseEncryption = true;
@@ -22,7 +22,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Request the webservice
 		/// </summary>
-		public virtual void Request (Action<T> callback, Action<Exception> callbackFailure)
+		public override void Request (Action<T> callback, Action<Exception> callbackFailure)
 		{
 			// Get the URL
 			Uri uri = GetServiceUrl ();
@@ -40,6 +40,8 @@ namespace Superkoikoukesse.Common
 					T serviceOutput = new T ();
 					serviceOutput.BuildFromJsonObject (jsonObject);
 
+					PostRequest(serviceOutput);
+
 					if(callback != null) {
 						callback(serviceOutput);
 					}
@@ -55,7 +57,10 @@ namespace Superkoikoukesse.Common
 			}),
 				callbackFailure
 			);
+		}
 
+		protected virtual T PostRequest (T parsedObject) {
+			return parsedObject;
 		}
 
 		/// <summary>

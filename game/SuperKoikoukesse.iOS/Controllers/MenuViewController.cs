@@ -41,6 +41,13 @@ namespace SuperKoikoukesse.iOS
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
 
+			// Get the distant configuration
+			WebserviceConfiguration configWs = new WebserviceConfiguration ();
+			configWs.Request((config) => {
+
+			},
+			null);
+
 			// Set fonts manually because Interface Builder is a dick.
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
