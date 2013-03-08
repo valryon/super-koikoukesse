@@ -12,6 +12,8 @@ namespace Superkoikoukesse.Common
 
 		public static string ImagesRootLocation = "database/images/";
 
+		public static string ConfigFileLocation = "gameconfig.xml";
+
 #if DEBUG
 		public static bool DebugMode = true;
 #else 

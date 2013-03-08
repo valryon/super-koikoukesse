@@ -5,6 +5,22 @@ using System.Globalization;
 
 namespace Superkoikoukesse.Common
 {
+	[Serializable]
+	public class PropertyConfigurationItem
+	{
+		public PropertyConfigurationItem(string k, string v) {
+			Key = k;
+			Value = v;
+		}
+
+		public PropertyConfigurationItem() {
+		}
+
+		public string Key { get; set; }
+		public string Value { get; set; }
+	}
+
+	[Serializable]
 	public class ModeConfigurationItem
 	{
 		public GameModes Mode { get; set; }
@@ -18,18 +34,19 @@ namespace Superkoikoukesse.Common
 		public int? QuestionCount { get; set; }
 	}
 
+	[Serializable]
 	public class GameConfiguration : IServiceOutput
 	{
 		public DateTime LastUpdate { get; set; }
 
-		private List<ModeConfigurationItem> m_modesConfiguration { get; set; }
+		public List<ModeConfigurationItem> ModesConfiguration { get; set; }
 
-		private List<KeyValuePair<string,string>> m_properties { get; set; }
+		public List<PropertyConfigurationItem> Properties { get; set; }
 
 		public GameConfiguration ()
 		{
-			m_modesConfiguration = new List<ModeConfigurationItem> ();
-			m_properties = new List<KeyValuePair<string, string>> ();
+			ModesConfiguration = new List<ModeConfigurationItem> ();
+			Properties = new List<PropertyConfigurationItem> ();
 		}
 
 		/// <summary>
@@ -39,7 +56,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
 		public ModeConfigurationItem GetModeConfiguration(GameModes mode, GameDifficulty difficulty) {
-			foreach (var config in m_modesConfiguration) {
+			foreach (var config in ModesConfiguration) {
 				if(config.Mode == mode && config.Difficulty == difficulty) {
 					return config;
 				}
@@ -54,7 +71,7 @@ namespace Superkoikoukesse.Common
 		/// <returns>The property value.</returns>
 		/// <param name="key">Key.</param>
 		public string GetPropertyValue(string key) {
-			foreach(var prop in m_properties) {
+			foreach(var prop in Properties) {
 				if(prop.Key.ToLower() == key.ToLower()) {
 					return prop.Value;
 				}
@@ -82,7 +99,7 @@ namespace Superkoikoukesse.Common
 			this.LastUpdate = lastUpdateTime;
 
 			// Parse "ModesConfiguration"
-			if (json .ContainsKey ("ModesConfiguration")) {
+			if (json.ContainsKey ("ModesConfiguration")) {
 				JsonValue modesConfig = json ["ModesConfiguration"];
 
 				if (modesConfig is JsonArray) {
@@ -116,13 +133,13 @@ namespace Superkoikoukesse.Common
 						QuestionCount = questionCount
 					};
 
-						m_modesConfiguration.Add (modeConfig);
+						ModesConfiguration.Add (modeConfig);
 					}
 				}
 			}
 
 			// Parse other "Properties"
-			if (json .ContainsKey ("Properties")) {
+			if (json.ContainsKey ("Properties")) {
 				JsonValue properties = json ["Properties"];
 
 				if (properties is JsonArray) {
@@ -130,7 +147,7 @@ namespace Superkoikoukesse.Common
 						string key = p["Key"].ToString();
 						string value = p["Value"].ToString();
 
-						m_properties.Add(new KeyValuePair<string, string>(key,value));
+						Properties.Add(new PropertyConfigurationItem(key,value));
 					}
 				}
 			}

@@ -41,13 +41,6 @@ namespace SuperKoikoukesse.iOS
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
 
-			// Get the distant configuration
-			WebserviceConfiguration configWs = new WebserviceConfiguration ();
-			configWs.Request((config) => {
-
-			},
-			null);
-
 			// Set fonts manually because Interface Builder is a dick.
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
@@ -61,6 +54,15 @@ namespace SuperKoikoukesse.iOS
 
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchView(GameState.Game);
+		}
+
+		/// <summary>
+		/// Force config reload (DEBUG)
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			appDelegate.UpdateConfiguration();
 		}
 	}
 }

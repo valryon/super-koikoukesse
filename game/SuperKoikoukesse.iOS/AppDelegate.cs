@@ -40,7 +40,7 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log (LogLevel.Info, "Launching app...");
 
 			// Load the font once
-			CustomFont = UIFont.FromName ("SG10", 14);
+			CustomFont = UIFont.FromName ("SG10", 16);
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
@@ -48,6 +48,9 @@ namespace SuperKoikoukesse.iOS
 
 			// Try to open the database
 			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
+
+			// Load configuration
+			UpdateConfiguration ();
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -61,12 +64,26 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		/// <summary>
+		/// Download webservice configuration
+		/// </summary>
+		public void UpdateConfiguration ()
+		{
+			// Get the distant configuration
+			WebserviceConfiguration configWs = new WebserviceConfiguration ();
+				configWs.Request ((config) => {
+					this.Configuration = config;
+
+					Logger.Log(LogLevel.Info, "Configuration loaded and updated.");
+				},
+				null);
+		}
+
+		/// <summary>
 		/// Chance current view
 		/// </summary>
 		/// <param name="state">State.</param>
 		public void SwitchView (GameState state)
 		{
-
 			UIViewController newViewController = null;
 
 			switch (state) {
@@ -74,7 +91,7 @@ namespace SuperKoikoukesse.iOS
 				if (gameViewController == null) {
 					gameViewController = new GameViewController ();
 				}
-				gameViewController.InitializeQuizz();
+				gameViewController.InitializeQuizz ();
 				newViewController = gameViewController;
 				break;
 
@@ -99,7 +116,13 @@ namespace SuperKoikoukesse.iOS
 		/// Font to use everywhere
 		/// </summary>
 		/// <value>The custom font.</value>
-		public UIFont CustomFont {get;set;}
+		public UIFont CustomFont { get; set; }
+
+		/// <summary>
+		/// Global configuration
+		/// </summary>
+		/// <value>The configuration.</value>
+		public GameConfiguration Configuration { get; set; }
 
 		protected override void Dispose (bool disposing)
 		{

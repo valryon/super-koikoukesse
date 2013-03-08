@@ -19,6 +19,9 @@ namespace SuperKoikoukesse.iOS
 
 		[Action ("scoreAttackButtonPressed:")]
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("configButtonPressed:")]
+		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
