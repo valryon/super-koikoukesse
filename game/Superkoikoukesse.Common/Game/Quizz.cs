@@ -77,7 +77,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public bool IsJokerAvailable {
 			get {
-				return (JokerPartCount >= 1); // TODO Externaliser
+				return (JokerPartCount >= m_jokerMinPart); 
 			}
 		}
 
@@ -93,6 +93,14 @@ namespace Superkoikoukesse.Common
 		/// <value>The start time.</value>
 		public DateTime StartTime{ get; private set; }
 
+		// Game parameters
+		private int m_questionCount;
+		private int m_answerCount;
+		private float m_baseTimeleft;
+		private int m_baseScore;
+		private int m_jokerMinPart;
+
+		// Current question index
 		private int m_questionIndex;
 
 		public Quizz ()
@@ -100,26 +108,34 @@ namespace Superkoikoukesse.Common
 			Results = new Dictionary<Question, bool> ();
 		}
 
-		public void Initialize (GameModes mode, GameDifficulty difficulty)
+		public void Initialize (GameModes mode, GameDifficulty difficulty, GameConfiguration config)
 		{
 			Mode = mode;
 			Difficulty = difficulty;
 
 			Logger.Log (LogLevel.Info, "Initializing quizz...");
 
+			// Initialize score, lives, combo
+			TimeLeft = -1;
+			Score = 0;
+			Combo = 1;
+			JokerPartCount = 0;
+			Results.Clear ();
+			StartTime = DateTime.Now;
+			
+			initializeQuizzFromConfiguration (config);
+
+			// Get questions
 			Questions = new List<Question> ();
 			List<int> correctAnswerIds = new List<int> ();
 
-			int questionCount = 4; // TODO Externaliser
-			int answerCount = 4;// TODO Externaliser
-
-			// Fill questions
-			for (int i=0; i<questionCount; i++) {
+			// Randomly
+			for (int i=0; i< m_questionCount; i++) {
 				int count = 0;
 
 				Question q = new Question ();
 
-				while (count<answerCount) {
+				while (count < m_answerCount) {
 				
 					GameInfo game = DatabaseService.Instance.RandomGame ();
 
@@ -143,21 +159,35 @@ namespace Superkoikoukesse.Common
 
 			Logger.Log (LogLevel.Info, "Quizz ready: " + Questions.Count + " questions!");
 
-			
-			// Initialize score, lives, combo
-			TimeLeft = -1;
-			Lives = 3; //TODO externaliser
-			Score = 0;
-			Combo = 1;
-			JokerPartCount = 0;
-			Results.Clear ();
-			StartTime = DateTime.Now;
-
 			// Get the first
 			m_questionIndex = -1;
 			NextQuestion ();
 
 			IsPaused = false;
+		}
+
+		private void initializeQuizzFromConfiguration (GameConfiguration config)
+		{
+			// Get config
+			var modeConfig = config.GetModeConfiguration (Mode, Difficulty);
+
+			// Get values
+			Lives = 3; // TODO ?
+
+			if (modeConfig.QuestionCount.HasValue) {
+				m_questionCount = modeConfig.QuestionCount.Value; 
+			}
+			if (modeConfig.Score.HasValue) {
+				m_baseScore = modeConfig.Score.Value;
+			}
+			if (modeConfig.Time.HasValue) {
+				m_baseTimeleft = modeConfig.Time.Value;
+			}
+			// Static vars
+			m_answerCount = 4;
+			m_jokerMinPart = 3;
+
+			TimeLeft = m_baseTimeleft;
 		}
 
 		/// <summary>
@@ -172,7 +202,7 @@ namespace Superkoikoukesse.Common
 				result = true;
 			}
 
-			int score = 100; // TODO Externaliser
+			int score = m_baseScore; 
 			int comboToApply = Combo;
 
 			if (result) {
@@ -214,8 +244,9 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = Questions [m_questionIndex];
 
 				// Reset timer
-				TimeLeft = 10f; // TODO Externaliser
-
+				if (Mode != GameModes.TimeAttack) {
+					TimeLeft = m_baseTimeleft;
+				}
 				IsOver = false;
 			} else {
 				Logger.Log (LogLevel.Info, "Quizz is over!");

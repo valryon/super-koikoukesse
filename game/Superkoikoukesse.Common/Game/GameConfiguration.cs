@@ -8,15 +8,18 @@ namespace Superkoikoukesse.Common
 	[Serializable]
 	public class PropertyConfigurationItem
 	{
-		public PropertyConfigurationItem(string k, string v) {
+		public PropertyConfigurationItem (string k, string v)
+		{
 			Key = k;
 			Value = v;
 		}
 
-		public PropertyConfigurationItem() {
+		public PropertyConfigurationItem ()
+		{
 		}
 
 		public string Key { get; set; }
+
 		public string Value { get; set; }
 	}
 
@@ -55,9 +58,10 @@ namespace Superkoikoukesse.Common
 		/// <returns>The mode configuration.</returns>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public ModeConfigurationItem GetModeConfiguration(GameModes mode, GameDifficulty difficulty) {
+		public ModeConfigurationItem GetModeConfiguration (GameModes mode, GameDifficulty difficulty)
+		{
 			foreach (var config in ModesConfiguration) {
-				if(config.Mode == mode && config.Difficulty == difficulty) {
+				if (config.Mode == mode && config.Difficulty == difficulty) {
 					return config;
 				}
 			}
@@ -70,9 +74,10 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <returns>The property value.</returns>
 		/// <param name="key">Key.</param>
-		public string GetPropertyValue(string key) {
-			foreach(var prop in Properties) {
-				if(prop.Key.ToLower() == key.ToLower()) {
+		public string GetPropertyValue (string key)
+		{
+			foreach (var prop in Properties) {
+				if (prop.Key.ToLower () == key.ToLower ()) {
 					return prop.Value;
 				}
 			}
@@ -92,8 +97,13 @@ namespace Superkoikoukesse.Common
 			// Get last update time
 			DateTime lastUpdateTime = DateTime.MinValue;
 
-			if (json.ContainsKey ("LastUpdate")) {
-				lastUpdateTime = Convert.ToDateTime (json ["LastUpdate"].ToString (), CultureInfo.GetCultureInfo ("fr-FR"));
+			try {
+				if (json.ContainsKey ("LastUpdate")) {
+					lastUpdateTime = Convert.ToDateTime (json ["LastUpdate"].ToString ());
+				}
+			} catch (FormatException) {
+				//TODO
+				Logger.Log(LogLevel.Error, "Quenelle niveau 10 dans le parsing de la date de la config");
 			}
 
 			this.LastUpdate = lastUpdateTime;
@@ -144,10 +154,10 @@ namespace Superkoikoukesse.Common
 
 				if (properties is JsonArray) {
 					foreach (JsonValue p in properties) {
-						string key = p["Key"].ToString();
-						string value = p["Value"].ToString();
+						string key = p ["Key"].ToString ();
+						string value = p ["Value"].ToString ();
 
-						Properties.Add(new PropertyConfigurationItem(key,value));
+						Properties.Add (new PropertyConfigurationItem (key, value));
 					}
 				}
 			}

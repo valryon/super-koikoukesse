@@ -62,6 +62,7 @@ namespace Superkoikoukesse.Common.Networking
 				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
 			}
 
+			// TODO Améliorer ce hack...
 			body = "r=" + System.Web.HttpUtility.UrlEncode(body);
 
 			using (var streamWrite = new StreamWriter(request.GetRequestStream())) {

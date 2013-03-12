@@ -113,9 +113,11 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void InitializeQuizz (GameModes mode, GameDifficulty diff)
 		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+
 			// Prepare a quizz
 			m_quizz = new Quizz ();
-			m_quizz.Initialize (mode, diff);
+			m_quizz.Initialize (mode, diff, appDelegate.Configuration);
 		
 			// Display game
 			if (m_isViewLoaded) {
