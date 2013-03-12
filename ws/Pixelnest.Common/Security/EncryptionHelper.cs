@@ -78,7 +78,7 @@ namespace Pixelnest.Common
         /// <returns></returns>
         public static String Encrypt(String plainText)
         {
-            string finalKey = cryptoKey.PadRight(16, '\0');
+            string finalKey = cryptoKey.PadRight(16, '_');
 
             RijndaelManaged crypto = null;
             MemoryStream mStream = null;

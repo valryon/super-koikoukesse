@@ -38,6 +38,21 @@ namespace SuperKoikoukesse.Webservice.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult Test(string r, string url, string encrypt)
+        {
+            string rep = "";
+            if (string.IsNullOrEmpty(encrypt) == false)
+            {
+                rep = EncryptionHelper.Encrypt(r);
+            }
+
+            Response.Write(rep);
+
+            return View("Index");
+        }
+
         /// <summary>
         /// Get the excluded games
         /// </summary>
