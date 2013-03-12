@@ -38,6 +38,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="System.Json" />
+    <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

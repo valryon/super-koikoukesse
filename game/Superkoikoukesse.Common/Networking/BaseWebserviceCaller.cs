@@ -49,7 +49,8 @@ namespace Superkoikoukesse.Common.Networking
 			
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (url);
 			request.Method = "POST";
-			request.ContentType = "application/json";
+			request.ContentType = "application/x-www-form-urlencoded";
+			//request.ContentType = "application/json";
 
 			string body = requestBodyJson;
 
@@ -57,9 +58,11 @@ namespace Superkoikoukesse.Common.Networking
 
 			if (Constants.UseEncryption) {
 				body = EncryptionHelper.Encrypt(body);
+				
+				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
 			}
 
-			Logger.Log (LogLevel.Debug, "Request body: " + body);
+			body = "r=" + System.Web.HttpUtility.UrlEncode(body);
 
 			using (var streamWrite = new StreamWriter(request.GetRequestStream())) {
 				streamWrite.Write (body);
