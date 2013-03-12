@@ -13,10 +13,12 @@ namespace Pixelnest.Common
         /// Default key
         /// </summary>
         private static string cryptoKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
+        private const char FillCharacter = '_';
+        private const int KeyLength = 16;
 
         public static void Initialize(string encryptionKey)
         {
-            if (encryptionKey.Length > 16)
+            if (encryptionKey.Length > KeyLength)
             {
                 throw new ArgumentException("Encryption key must be 16 chars max!");
             }
@@ -31,7 +33,7 @@ namespace Pixelnest.Common
         /// <returns></returns>
         public static String Decrypt(String cipheredText)
         {
-            string finalKey = cryptoKey.PadRight(16, '\0');
+            string finalKey = cryptoKey.PadRight(KeyLength, FillCharacter);
 
             RijndaelManaged crypto = null;
             MemoryStream mStream = null;
@@ -78,7 +80,7 @@ namespace Pixelnest.Common
         /// <returns></returns>
         public static String Encrypt(String plainText)
         {
-            string finalKey = cryptoKey.PadRight(16, '_');
+            string finalKey = cryptoKey.PadRight(KeyLength, FillCharacter);
 
             RijndaelManaged crypto = null;
             MemoryStream mStream = null;

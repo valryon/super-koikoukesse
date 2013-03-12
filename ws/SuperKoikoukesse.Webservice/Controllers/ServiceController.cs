@@ -43,12 +43,17 @@ namespace SuperKoikoukesse.Webservice.Controllers
         public ActionResult Test(string r, string url, string encrypt)
         {
             string rep = "";
+            string a = "";
             if (string.IsNullOrEmpty(encrypt) == false)
             {
                 rep = EncryptionHelper.Encrypt(r);
+
+                a = EncryptionHelper.Decrypt(rep);
             }
 
             Response.Write(rep);
+            Response.Write("\r\n");
+            Response.Write(a);
 
             return View("Index");
         }

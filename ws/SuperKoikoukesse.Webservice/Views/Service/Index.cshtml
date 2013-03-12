@@ -65,10 +65,8 @@
     @using (Html.BeginForm("Test", "Service", FormMethod.Post))
     {
         <input type="text" name="url" value="http://localhost:53976/ws/stats/add" />
-        <input type="checkbox" name="encrypt" />
-        <textarea name="r">
-            {"player": "Valryon", "score": 100, "mode": 0, "difficulty": 0, "date": "2013-03-12 02:11:00", "answers": [{"id": 192, "result": false}, {"id": 43, "result": false}, {"id": 133, "result": true}, {"id": 187, "result": false}]}
-        </textarea>
+        <input type="checkbox" name="encrypt" checked="checked" />
+        <textarea name="r">{"player": "Valryon", "score": 100, "mode": 0, "difficulty": 0, "date": "2013-03-12 02:11:00", "answers": [{"id": 192, "result": false}, {"id": 43, "result": false}, {"id": 133, "result": true}, {"id": 187, "result": false}]}</textarea>
         <input class="btn" type="submit" value="Go" />
     }
 </p>
