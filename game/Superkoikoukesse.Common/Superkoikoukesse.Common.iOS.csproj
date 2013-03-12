@@ -69,5 +69,6 @@
     <Compile Include="Networking\BaseWebserviceCaller.cs" />
     <Compile Include="Networking\Services\WebserviceConfiguration.cs" />
     <Compile Include="Networking\GenericModelWeberviceCaller.cs" />
+    <Compile Include="Networking\Services\WebserviceStats.cs" />
   </ItemGroup>
 </Project>

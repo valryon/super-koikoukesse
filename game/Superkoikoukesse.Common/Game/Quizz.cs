@@ -77,7 +77,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public bool IsJokerAvailable {
 			get {
-				return (JokerPartCount>=1); // TODO Externaliser
+				return (JokerPartCount >= 1); // TODO Externaliser
 			}
 		}
 
@@ -111,31 +111,31 @@ namespace Superkoikoukesse.Common
 			for (int i=0; i<questionCount; i++) {
 				int count = 0;
 
-				Question q = new Question();
+				Question q = new Question ();
 
 				while (count<answerCount) {
 				
 					GameInfo game = DatabaseService.Instance.RandomGame ();
 
-					if(q.Answers.Contains(game) == false && correctAnswerIds.Contains(game.GameId) == false) {
-						q.Answers.Add(game);
+					if (q.Answers.Contains (game) == false && correctAnswerIds.Contains (game.GameId) == false) {
+						q.Answers.Add (game);
 						count++;
 					
 						// Decide that the first will be the correct answer
-						if(q.CorrectAnswer == null) {
+						if (q.CorrectAnswer == null) {
 							q.CorrectAnswer = game;
-							correctAnswerIds.Add(game.GameId);
+							correctAnswerIds.Add (game.GameId);
 						}
 					}
 				}
 
 				// Randomize answers
-				q.ShuffleAnswers();
+				q.ShuffleAnswers ();
 
 				Questions.Add (q);
 			}
 
-			Logger.Log (LogLevel.Info, "Quizz ready: "+Questions.Count+" questions!");
+			Logger.Log (LogLevel.Info, "Quizz ready: " + Questions.Count + " questions!");
 
 			
 			// Initialize score, lives, combo
@@ -175,12 +175,11 @@ namespace Superkoikoukesse.Common
 				if (isJoker == false) {
 					JokerPartCount++;
 
-					if(JokerPartCount >= 3) {
+					if (JokerPartCount >= 3) {
 						JokerPartCount = 3; 
 					}
 				}
-			}
-			else {
+			} else {
 				Logger.Log (LogLevel.Info, "Bad answer...");
 				Combo = 1;
 				comboToApply = 0;
@@ -225,20 +224,36 @@ namespace Superkoikoukesse.Common
 			if (Mode == GameModes.TimeAttack) {
 				IsOver = true;
 			} else {
-				SelectAnswer(-1);
+				SelectAnswer (-1);
 			}
 		}
 
 		/// <summary>
 		/// Uses the joker.
 		/// </summary>
-		public void UseJoker() {
+		public void UseJoker ()
+		{
 
 			if (IsJokerAvailable) {
 				JokerPartCount = 0;
 
-				SelectAnswer(-1, true);
+				SelectAnswer (-1, true);
 			}
+		}
+
+		/// <summary>
+		/// Send quizz data to the webservice
+		/// </summary>
+		public void SendQuizzData (Action<Exception> failureCallback)
+		{
+			WebserviceStats stats = new WebserviceStats ();
+
+			// TODO données de la partie !
+			List<KeyValuePair<int, bool>> answers = new List<KeyValuePair<int, bool>> ();
+
+			answers.Add (new KeyValuePair<int, bool> (42, true));
+			answers.Add (new KeyValuePair<int, bool> (21, false));
+			stats.SendStats ("Valryon", 1000, Mode, Difficulty, DateTime.Now, answers, failureCallback);
 		}
 	}
 }

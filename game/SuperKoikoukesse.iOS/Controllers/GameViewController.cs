@@ -256,6 +256,11 @@ namespace SuperKoikoukesse.iOS
 			if (m_quizz.IsOver == false) {
 				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {
+				// Stats time
+				m_quizz.SendQuizzData((ex) => {
+
+				});
+
 				// Back to the menu
 				getBackToMenu();
 			}

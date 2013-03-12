@@ -11,12 +11,9 @@ namespace Superkoikoukesse.Common
 	public abstract class GenericModelWeberviceCaller<T> : BaseWebserviceCaller
 		where T:IServiceOutput,new()
 	{
-		protected bool UseEncryption;
-
 		public GenericModelWeberviceCaller ()
 			: base()
 		{
-			UseEncryption = true;
 		}
 
 		/// <summary>
@@ -24,13 +21,8 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void Request (Action<T> callback, Action<Exception> callbackFailure)
 		{
-			// Get the URL
-			Uri uri = GetServiceUrl ();
-
 			// Make the call
 			this.RequestJsonAsync (
-				uri,
-				UseEncryption,
 				(response => {
 
 				try {
@@ -62,12 +54,6 @@ namespace Superkoikoukesse.Common
 		protected virtual T PostRequest (T parsedObject) {
 			return parsedObject;
 		}
-
-		/// <summary>
-		/// Get the service url to call
-		/// </summary>
-		/// <returns>The service URL.</returns>
-		public abstract Uri GetServiceUrl ();
 	}
 }
 
