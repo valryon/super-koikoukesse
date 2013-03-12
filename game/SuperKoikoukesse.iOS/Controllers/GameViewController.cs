@@ -84,7 +84,7 @@ namespace SuperKoikoukesse.iOS
 		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender) {
 			m_quizz.UseJoker();
 
-			gameButtonPressed(-1, true);
+			nextQuestion();
 		}
 
 		#endregion
@@ -111,11 +111,11 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Initialize a new quizz game
 		/// </summary>
-		public void InitializeQuizz ()
+		public void InitializeQuizz (GameModes mode, GameDifficulty diff)
 		{
 			// Prepare a quizz
 			m_quizz = new Quizz ();
-			m_quizz.Initialize ();
+			m_quizz.Initialize (mode, diff);
 		
 			// Display game
 			if (m_isViewLoaded) {
@@ -145,11 +145,12 @@ namespace SuperKoikoukesse.iOS
 					m_quizz.TimeLeft -= 1f;
 
 					if (m_quizz.TimeLeft < 0) {
+
 						m_quizz.TimeIsOver ();
 
 						// No answer selected
 						this.InvokeOnMainThread (() => {
-							gameButtonPressed (-1);
+							nextQuestion();
 						});
 					}
 					else {
@@ -246,8 +247,12 @@ namespace SuperKoikoukesse.iOS
 		{
 			m_quizz.SelectAnswer (index, isJoker);
 
-			m_quizz.NextQuestion ();
+			nextQuestion ();
+		}
 
+		private void nextQuestion() {
+			m_quizz.NextQuestion ();
+			
 			if (m_quizz.IsOver == false) {
 				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {

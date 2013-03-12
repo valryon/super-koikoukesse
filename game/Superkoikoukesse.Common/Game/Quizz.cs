@@ -7,6 +7,18 @@ namespace Superkoikoukesse.Common
 	public class Quizz
 	{
 		/// <summary>
+		/// Game mode
+		/// </summary>
+		/// <value>The mode.</value>
+		public GameModes Mode { get; set; }
+
+		/// <summary>
+		/// Game Difficulty
+		/// </summary>
+		/// <value>The difficulty.</value>
+		public GameDifficulty Difficulty { get; set; }
+
+		/// <summary>
 		/// List of questions
 		/// </summary>
 		/// <value>The questions.</value>
@@ -82,8 +94,11 @@ namespace Superkoikoukesse.Common
 			Results = new Dictionary<Question, bool> ();
 		}
 
-		public void Initialize ()
+		public void Initialize (GameModes mode, GameDifficulty difficulty)
 		{
+			Mode = mode;
+			Difficulty = difficulty;
+
 			Logger.Log (LogLevel.Info, "Initializing quizz...");
 
 			Questions = new List<Question> ();
@@ -168,7 +183,7 @@ namespace Superkoikoukesse.Common
 			else {
 				Logger.Log (LogLevel.Info, "Bad answer...");
 				Combo = 1;
-				comboToApply = 1;
+				comboToApply = 0;
 				Lives--;
 				JokerPartCount = 0;
 			}
@@ -207,14 +222,22 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void TimeIsOver ()
 		{
-			//TODO Fonction du mode
-
+			if (Mode == GameModes.TimeAttack) {
+				IsOver = true;
+			} else {
+				SelectAnswer(-1);
+			}
 		}
 
+		/// <summary>
+		/// Uses the joker.
+		/// </summary>
 		public void UseJoker() {
 
 			if (IsJokerAvailable) {
 				JokerPartCount = 0;
+
+				SelectAnswer(-1, true);
 			}
 		}
 	}

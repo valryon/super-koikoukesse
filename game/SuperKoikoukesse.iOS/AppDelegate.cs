@@ -91,7 +91,7 @@ namespace SuperKoikoukesse.iOS
 				if (gameViewController == null) {
 					gameViewController = new GameViewController ();
 				}
-				gameViewController.InitializeQuizz ();
+				gameViewController.InitializeQuizz (GameModes.ScoreAttack, GameDifficulty.Easy); // TODO Difficulté
 				newViewController = gameViewController;
 				break;
 
