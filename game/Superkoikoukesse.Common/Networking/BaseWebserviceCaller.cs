@@ -53,6 +53,8 @@ namespace Superkoikoukesse.Common.Networking
 
 			string body = requestBodyJson;
 
+			Logger.Log (LogLevel.Debug, "Request body: " + body);
+
 			if (Constants.UseEncryption) {
 				body = EncryptionHelper.Encrypt(body);
 			}
