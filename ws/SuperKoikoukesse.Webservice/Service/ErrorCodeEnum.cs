@@ -7,7 +7,8 @@ namespace SuperKoikoukesse.Webservice.Service
     public enum ErrorCodeEnum : int
     {
         Ok  = 0,
-        InvalidRequest = 100,
+        EmptyRequest = 100,
+        InvalidRequest = 101,
         ServiceError = 500,
     }
 }

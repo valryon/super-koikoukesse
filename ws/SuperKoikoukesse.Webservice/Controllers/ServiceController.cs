@@ -29,7 +29,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// State of the WS
+        /// Webservice UI
         /// </summary>
         /// <returns></returns>
         [Authorize]
@@ -39,25 +39,50 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// Get the excluded games
+        /// Generic webservice method
         /// </summary>
+        /// <param name="callingDelegate"></param>
         /// <returns></returns>
-        public ActionResult GamesExclusions()
+        internal ServiceResponse CallService(Func<object> callingDelegate)
         {
             ServiceResponse response = new ServiceResponse();
 
             try
             {
-                GamesDb db = new GamesDb();
-                List<Game> games = db.ReadAll();
-
-                response.ResponseData = games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
+                response.ResponseData = callingDelegate();
+            }
+            catch (EmptyInputException e)
+            {
+                response.Code = ErrorCodeEnum.EmptyRequest;
+                response.Message = e.ToString();
+            }
+            catch (ParseRequestException e)
+            {
+                response.Code = ErrorCodeEnum.InvalidRequest; ;
+                response.Message = e.ToString();
             }
             catch (Exception e)
             {
                 response.Code = ErrorCodeEnum.ServiceError;
                 response.Message = e.ToString();
             }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Get the excluded games
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GamesExclusions()
+        {
+            var response = CallService(() =>
+            {
+                GamesDb db = new GamesDb();
+                List<Game> games = db.ReadAll();
+
+                return games.Where(g => g.IsRemoved).Select(s => s.GameId).ToList();
+            });
 
             return PrepareResponse(response);
         }
@@ -68,9 +93,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         public ActionResult PlayerInfo(string playerId)
         {
-            ServiceResponse response = new ServiceResponse();
-
-            try
+            var response = CallService(() =>
             {
                 PlayersDb playersDb = new PlayersDb();
                 Player p = playersDb.GetPlayer(playerId);
@@ -80,13 +103,8 @@ namespace SuperKoikoukesse.Webservice.Controllers
                     p = playersDb.CreatePlayer(playerId);
                 }
 
-                response.ResponseData = p;
-            }
-            catch (Exception e)
-            {
-                response.Code = ErrorCodeEnum.ServiceError;
-                response.Message = e.ToString();
-            }
+                return p;
+            });
 
             return PrepareResponse(response);
         }
@@ -94,38 +112,36 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <summary>
         /// Consume a credit from the player
         /// </summary>
-        /// <param name="playerId"></param>
+        /// <param name="r">See documentation for expected json format</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult PlayerConsumeCredits(string playerId, string r)
+        public ActionResult PlayerConsumeCredits(string r)
         {
-            ServiceResponse response = new ServiceResponse();
+            var response = CallService(() =>
+            {
+                return null;
+            });
+
             return PrepareResponse(response);
         }
 
         /// <summary>
         /// Add an entry of a played game
         /// </summary>
-        /// <param name="jsonRequest">See documentation for expected json format</param>
+        /// <param name="r">See documentation for expected json format</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult StatsAddGame(string r)
         {
-            ServiceResponse response = new ServiceResponse();
-
-            try
+            var response = CallService(() =>
             {
                 AddGameHistoryInput newStat = DecryptJsonRequest<AddGameHistoryInput>(r);
 
                 StatsDb db = new StatsDb();
                 db.Add(newStat.ToDbModel());
 
-            }
-            catch (Exception e)
-            {
-                response.Code = ErrorCodeEnum.ServiceError;
-                response.Message = e.ToString();
-            }
+                return null;
+            });
 
             return PrepareResponse(response);
         }
@@ -137,20 +153,13 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         public ActionResult Config(int target = 0)
         {
-            ServiceResponse response = new ServiceResponse();
+            var response = CallService(() =>
+             {
+                 ConfigurationDb db = new ConfigurationDb();
+                 GameConfiguration config = db.GetConfiguration(target);
 
-            try
-            {
-                ConfigurationDb db = new ConfigurationDb();
-                GameConfiguration config = db.GetConfiguration(target);
-
-                response.ResponseData = config;
-            }
-            catch (Exception e)
-            {
-                response.Code = ErrorCodeEnum.ServiceError;
-                response.Message = e.ToString();
-            }
+                 return config;
+             });
 
             return PrepareResponse(response);
         }
@@ -164,7 +173,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
         {
             if (string.IsNullOrEmpty(encryptedJson))
             {
-                throw new InvalidInputException("Input was empty!");
+                throw new EmptyInputException("Input was empty!");
             }
 
             try
@@ -177,7 +186,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
             }
             catch (Exception e)
             {
-                throw new ParseRequestException("Error during the parsing of the json body of the request. Input : "+encryptedJson, e);
+                throw new ParseRequestException("Error during the parsing of the json body of the request. Input : " + encryptedJson, e);
             }
         }
 
