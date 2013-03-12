@@ -87,6 +87,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The good answers count.</value>
 		public Dictionary<Question, bool> Results { get; private set; }
 
+		/// <summary>
+		/// Date of the quizz start
+		/// </summary>
+		/// <value>The start time.</value>
+		public DateTime StartTime{ get; private set; }
+
 		private int m_questionIndex;
 
 		public Quizz ()
@@ -145,6 +151,7 @@ namespace Superkoikoukesse.Common
 			Combo = 1;
 			JokerPartCount = 0;
 			Results.Clear ();
+			StartTime = DateTime.Now;
 
 			// Get the first
 			m_questionIndex = -1;
@@ -248,12 +255,7 @@ namespace Superkoikoukesse.Common
 		{
 			WebserviceStats stats = new WebserviceStats ();
 
-			// TODO données de la partie !
-			List<KeyValuePair<int, bool>> answers = new List<KeyValuePair<int, bool>> ();
-
-			answers.Add (new KeyValuePair<int, bool> (42, true));
-			answers.Add (new KeyValuePair<int, bool> (21, false));
-			stats.SendStats ("Valryon", 1000, Mode, Difficulty, DateTime.Now, answers, failureCallback);
+			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, failureCallback);
 		}
 	}
 }
