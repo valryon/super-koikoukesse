@@ -94,7 +94,6 @@ namespace Pixelnest.Common
                 crypto = new RijndaelManaged();
                 crypto.KeySize = 128;
                 crypto.Padding = PaddingMode.PKCS7;
-
                 encryptor = crypto.CreateEncryptor(Encoding.UTF8.GetBytes(finalKey), Encoding.UTF8.GetBytes(finalKey));
 
                 mStream = new MemoryStream();

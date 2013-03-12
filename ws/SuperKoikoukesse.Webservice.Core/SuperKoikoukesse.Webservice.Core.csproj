@@ -49,6 +49,7 @@
     <Compile Include="DB\ConfigurationDb.cs" />
     <Compile Include="DB\PlayersDb.cs" />
     <Compile Include="DB\StatsDb.cs" />
+    <Compile Include="Exceptions\InvalidInputException.cs" />
     <Compile Include="Exceptions\ParseRequestException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
     <Compile Include="DB\GamesDb.cs" />

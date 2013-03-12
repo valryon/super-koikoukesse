@@ -38,26 +38,6 @@ namespace SuperKoikoukesse.Webservice.Controllers
             return View();
         }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult Test(string r, string url, string encrypt)
-        {
-            string rep = "";
-            string a = "";
-            if (string.IsNullOrEmpty(encrypt) == false)
-            {
-                rep = EncryptionHelper.Encrypt(r);
-
-                a = EncryptionHelper.Decrypt(rep);
-            }
-
-            Response.Write(rep);
-            Response.Write("\r\n");
-            Response.Write(a);
-
-            return View("Index");
-        }
-
         /// <summary>
         /// Get the excluded games
         /// </summary>
@@ -182,6 +162,11 @@ namespace SuperKoikoukesse.Webservice.Controllers
         /// <returns></returns>
         internal T DecryptJsonRequest<T>(string encryptedJson)
         {
+            if (string.IsNullOrEmpty(encryptedJson))
+            {
+                throw new InvalidInputException("Input was empty!");
+            }
+
             try
             {
                 string clearJson = EncryptionHelper.Decrypt(encryptedJson);
@@ -192,7 +177,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
             }
             catch (Exception e)
             {
-                throw new ParseRequestException("Error during the parsing of the json body of the request.", e);
+                throw new ParseRequestException("Error during the parsing of the json body of the request. Input : "+encryptedJson, e);
             }
         }
 
