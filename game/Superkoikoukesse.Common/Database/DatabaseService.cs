@@ -53,7 +53,6 @@ namespace Superkoikoukesse.Common
 			Logger.Log(LogLevel.Info,"Loading database... "+m_location);
 			m_db = new SQLiteConnection(location);
 
-
 			// Try to figure if we're in a first launch
 			int gamesCount = CountGames ();
 			Exists = gamesCount > 0;

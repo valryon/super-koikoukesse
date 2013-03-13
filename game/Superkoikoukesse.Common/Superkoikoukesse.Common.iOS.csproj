@@ -57,7 +57,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Database\SQLite.cs" />
-    <Compile Include="Database\SQLiteAsync.cs" />
     <Compile Include="Database\ImageService.cs" />
     <Compile Include="Game\Quizz.cs" />
     <Compile Include="Networking\IServiceOutput.cs" />

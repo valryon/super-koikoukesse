@@ -241,9 +241,8 @@ namespace Superkoikoukesse.Common
 					// Decide that the first will be the correct answer
 					if (q.CorrectAnswer == null) {
 						q.CorrectAnswer = game;
+						m_correctAnswerIds.Add (q.CorrectAnswer.GameId);
 					}
-
-					m_correctAnswerIds.Add (game.GameId);
 				}
 			}
 			// Randomize answers
@@ -312,7 +311,7 @@ namespace Superkoikoukesse.Common
 						// Losing live for each mistakes
 						Lives--;
 
-						Logger.Log (LogLevel.Debug, "Remaining lives: "+Lives);
+						Logger.Log (LogLevel.Debug, "Remaining lives: " + Lives);
 					}
 				}
 			}
@@ -320,7 +319,11 @@ namespace Superkoikoukesse.Common
 			// Apply score
 			Score += score * comboToApply; 
 
-			Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
+			if (Results.ContainsKey (CurrentQuestion.CorrectAnswer.GameId) == false) {
+				Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
+			} else {
+				Logger.Log(LogLevel.Error,"Duplicated question registered! Are you testing something stupid?"); 
+			}
 		}
 
 		/// <summary>
@@ -336,8 +339,11 @@ namespace Superkoikoukesse.Common
 
 					int questionCachedCount = 5;
 
+					Logger.Log (LogLevel.Info, "Caching questions...");
+
 					// Pool some
 					for (int i=0; i<questionCachedCount; i++) {
+						Logger.Log (LogLevel.Info, "Caching questions..." + i);
 						m_questionsPool.Enqueue (getRandomQuestion ());
 					}
 
