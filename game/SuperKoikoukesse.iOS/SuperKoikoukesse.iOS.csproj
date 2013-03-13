@@ -93,9 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="..\..\database\gamedb.xml">
-      <Link>Resources\database\gamedb.xml</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -759,6 +756,9 @@
     </BundleResource>
     <BundleResource Include="..\..\database\images\00205.jpg">
       <Link>Resources\database\images\00205.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\database\gamedb.xml">
+      <Link>Resources\database\gamedb.xml</Link>
     </BundleResource>
   </ItemGroup>
 </Project>
