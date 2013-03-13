@@ -160,12 +160,13 @@ namespace Superkoikoukesse.Common
 			// Get config
 			var modeConfig = config.GetModeConfiguration (Mode, Difficulty);
 
+			Lives = 3; // TODO ?
+
 			// Get values
 			if (modeConfig == null) {
 
 				Logger.Log (LogLevel.Error, "No configuration for game mode " + Mode + "!");
 
-				Lives = 3; // TODO ?
 				m_initialQuestionCount = 5;
 				m_baseTimeleft = 60;
 				m_baseScore = 1;
@@ -310,6 +311,8 @@ namespace Superkoikoukesse.Common
 
 						// Losing live for each mistakes
 						Lives--;
+
+						Logger.Log (LogLevel.Debug, "Remaining lives: "+Lives);
 					}
 				}
 			}
@@ -348,13 +351,17 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = m_questionsPool.Dequeue();
 
 				// Reset timer
-				if (Mode != GameModes.TimeAttack) {
-					TimeLeft = m_baseTimeleft;
-					IsOver = false;
-				}
-				else {
+				if (Mode == GameModes.TimeAttack) {
 					if(TimeLeft < 0) {
 						IsOver = true;
+					}
+				}
+				else {
+					TimeLeft = m_baseTimeleft;
+					IsOver = false;
+
+					if(Mode == GameModes.Survival) {
+						IsOver = (Lives < 0);
 					}
 				}
 			} else {

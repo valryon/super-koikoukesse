@@ -173,14 +173,15 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Button</string>
+						<string key="IBUITitleShadowOffset">{2, 2}</string>
+						<string key="IBUINormalTitle">Survival</string>
 						<reference key="IBUIHighlightedTitleColor" ref="14634563"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 							<reference key="NSCustomColorSpace" ref="42556405"/>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="418749174"/>
+						<reference key="IBUINormalTitleShadowColor" ref="448432620"/>
 						<reference key="IBUIHighlightedBackgroundImage" ref="277063117"/>
 						<reference key="IBUIDisabledBackgroundImage" ref="15498685"/>
 						<reference key="IBUINormalBackgroundImage" ref="71457949"/>
@@ -266,6 +267,14 @@
 					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">survivalButon</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="63194969"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">scoreAttackButtonPressed:</string>
 						<reference key="source" ref="836240811"/>
@@ -282,6 +291,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">survivalButtonPressed:</string>
+						<reference key="source" ref="63194969"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -373,13 +391,13 @@
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="3" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">16</int>
+			<int key="maxID">18</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -389,6 +407,8 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="configButtonPressed:">id</string>
 						<string key="scoreAttackButtonPressed:">id</string>
+						<string key="survivalButtonPressed:">id</string>
+						<string key="timeAttackButtonPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="configButtonPressed:">
@@ -399,10 +419,19 @@
 							<string key="name">scoreAttackButtonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="survivalButtonPressed:">
+							<string key="name">survivalButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="timeAttackButtonPressed:">
+							<string key="name">timeAttackButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImage">UIImageView</string>
 						<string key="scoreAttackButton">UIButton</string>
+						<string key="survivalButon">UIButton</string>
 						<string key="timeAttackButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -412,6 +441,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="scoreAttackButton">
 							<string key="name">scoreAttackButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="survivalButon">
+							<string key="name">survivalButon</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="timeAttackButton">

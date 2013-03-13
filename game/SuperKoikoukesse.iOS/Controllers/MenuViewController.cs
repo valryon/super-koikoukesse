@@ -45,6 +45,7 @@ namespace SuperKoikoukesse.iOS
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
+			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
 		}
 
 
@@ -64,6 +65,15 @@ namespace SuperKoikoukesse.iOS
 			
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToGameView(GameModes.TimeAttack, GameDifficulties.Easy);
+		}
+
+		partial void survivalButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			
+			// Launch game
+			// TODO Choose difficulty
+			
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToGameView(GameModes.Survival, GameDifficulties.Easy);
 		}
 
 		/// <summary>
