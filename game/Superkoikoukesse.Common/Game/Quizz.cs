@@ -19,12 +19,6 @@ namespace Superkoikoukesse.Common
 		public GameDifficulties Difficulty { get; set; }
 
 		/// <summary>
-		/// List of questions
-		/// </summary>
-		/// <value>The questions.</value>
-		public List<Question> Questions { get; private set; }
-
-		/// <summary>
 		/// Current question. 
 		/// </summary>
 		/// <value>The current question.</value>
@@ -98,7 +92,7 @@ namespace Superkoikoukesse.Common
 		/// Register answers results
 		/// </summary>
 		/// <value>The good answers count.</value>
-		public Dictionary<Question, bool> Results { get; private set; }
+		public Dictionary<int, bool> Results { get; private set; }
 
 		/// <summary>
 		/// Date of the quizz start
@@ -107,23 +101,21 @@ namespace Superkoikoukesse.Common
 		public DateTime StartTime{ get; private set; }
 
 		// Game parameters
-		private int m_questionCount;
+		private Queue<Question> m_questionsPool;
+		private int m_initialQuestionCount;
+		private bool m_infiniteQuestions;
 		private int m_answerCount;
 		private float m_baseTimeleft;
 		private int m_baseScore;
 		private int m_jokerMinPart;
-
-		// Current question index
-		private int m_questionIndex;
 		private int m_mistakesCount;
 		private object m_timeLeftLock = new object ();
 		private List<int> m_correctAnswerIds;
-		private List<GameInfo> m_databasePool; // Avaiable games on the theme
 		private Random m_random;
 
 		public Quizz ()
 		{
-			Results = new Dictionary<Question, bool> ();
+			Results = new Dictionary<int, bool> ();
 			m_random = new Random (DateTime.Now.Millisecond);
 		}
 
@@ -147,23 +139,17 @@ namespace Superkoikoukesse.Common
 
 			// Get questions
 			m_correctAnswerIds = new List<int> ();
-			Questions = new List<Question> ();
+			m_questionsPool = new Queue<Question> ();
 
-			// Apply filter and store in memory (cause SQLite can crash)
-			m_databasePool = new List<GameInfo> ();
-			m_databasePool.AddRange(DatabaseService.Instance.ReadGames ());
-
-			for (int i=0; i< m_questionCount; i++) {
+			for (int i=0; i< m_initialQuestionCount; i++) {
 
 				var q = getRandomQuestion ();
-
-				Questions.Add (q);
+				m_questionsPool.Enqueue (q);
 			}
 
-			Logger.Log (LogLevel.Info, "Quizz ready: " + Questions.Count + " questions!");
+			Logger.Log (LogLevel.Info, "Quizz ready: " + m_questionsPool.Count + " questions in cache!");
 
 			// Get the first
-			m_questionIndex = -1;
 			NextQuestion ();
 
 			IsPaused = false;
@@ -175,21 +161,20 @@ namespace Superkoikoukesse.Common
 			var modeConfig = config.GetModeConfiguration (Mode, Difficulty);
 
 			// Get values
-			Lives = 3; // TODO ?
-
 			if (modeConfig == null) {
 
 				Logger.Log (LogLevel.Error, "No configuration for game mode " + Mode + "!");
 
-				m_questionCount = 1;
+				Lives = 3; // TODO ?
+				m_initialQuestionCount = 5;
 				m_baseTimeleft = 60;
 				m_baseScore = 1;
 
 			} else {
 				if (modeConfig.QuestionCount.HasValue) {
-					m_questionCount = modeConfig.QuestionCount.Value; 
+					m_initialQuestionCount = modeConfig.QuestionCount.Value; 
 				} else {
-					m_questionCount = 1;
+					m_initialQuestionCount = 1;
 				}
 				if (modeConfig.Score.HasValue) {
 					m_baseScore = modeConfig.Score.Value;
@@ -197,6 +182,14 @@ namespace Superkoikoukesse.Common
 				if (modeConfig.Time.HasValue) {
 					m_baseTimeleft = modeConfig.Time.Value;
 				}
+			}
+
+			if (Mode == GameModes.TimeAttack) {
+				m_infiniteQuestions = true;
+			} else if (Mode == GameModes.Survival) {
+				m_infiniteQuestions = true;
+			} else {
+				m_infiniteQuestions = false;
 			}
 
 			// Transformations
@@ -237,9 +230,7 @@ namespace Superkoikoukesse.Common
 
 			while (currentAnswersCount < m_answerCount) {
 
-				int randomIndex = m_random.Next (m_databasePool.Count);
-
-				GameInfo game = m_databasePool [randomIndex];
+				GameInfo game = DatabaseService.Instance.RandomGame ();
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 
@@ -255,7 +246,9 @@ namespace Superkoikoukesse.Common
 				}
 			}
 			// Randomize answers
-			q.ShuffleAnswers ();
+			if (Constants.DebugMode == false) {
+				q.ShuffleAnswers ();
+			}
 
 			return q;
 		}
@@ -324,8 +317,7 @@ namespace Superkoikoukesse.Common
 			// Apply score
 			Score += score * comboToApply; 
 
-			Question q = Questions [m_questionIndex];
-			Results.Add (q, result);
+			Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
 		}
 
 		/// <summary>
@@ -336,16 +328,24 @@ namespace Superkoikoukesse.Common
 			Logger.Log (LogLevel.Info, "Next question requested");
 
 			// Infinite list of question
-			if (Mode == GameModes.TimeAttack) {
-				if (m_questionIndex + 1 < Questions.Count) {
-					Questions.Add (getRandomQuestion ());
+			if (m_infiniteQuestions) {
+				if (m_questionsPool.Count <= 2) {
+
+					int questionCachedCount = 5;
+
+					// Pool some
+					for (int i=0; i<questionCachedCount; i++) {
+						m_questionsPool.Enqueue (getRandomQuestion ());
+					}
+
+					Logger.Log (LogLevel.Info, "Cached "+questionCachedCount+" new questions.");
+
 				}
 			}
 
-			m_questionIndex++;
-			
-			if (m_questionIndex < Questions.Count) {
-				CurrentQuestion = Questions [m_questionIndex];
+			if (m_questionsPool.Count > 0) {
+
+				CurrentQuestion = m_questionsPool.Dequeue();
 
 				// Reset timer
 				if (Mode != GameModes.TimeAttack) {

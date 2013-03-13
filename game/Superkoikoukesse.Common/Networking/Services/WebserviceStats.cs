@@ -11,14 +11,14 @@ namespace Superkoikoukesse.Common
 		{
 		}
 
-		public void SendStats (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<Question, bool> answers, Action<Exception> callbackFailure)
+		public void SendStats (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers, Action<Exception> callbackFailure)
 		{
 			var jsonBody = buildJson (playerId, score, mode, difficulty, date, answers);
 		
 			RequestPostJsonAsync (jsonBody, null, callbackFailure);
 		}
 
-		private string buildJson (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<Question, bool> answers)
+		private string buildJson (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers)
 		{
 //			{
 //			“player”:”Varyon”,
@@ -41,11 +41,11 @@ namespace Superkoikoukesse.Common
 			json.Add ("date", new JsonPrimitive (date.ToString ("yyyy-MM-dd hh:mm:ss")));
 
 			List<JsonValue> answersItemsJson = new List<JsonValue> ();
-			foreach (var question in answers.Keys) {
+			foreach (var gameId in answers.Keys) {
 
 				JsonObject o = new JsonObject();
-				o.Add("id", new JsonPrimitive(question.CorrectAnswer.GameId));
-				o.Add("result", new JsonPrimitive(answers[question]));
+				o.Add("id", new JsonPrimitive(gameId));
+				o.Add("result", new JsonPrimitive(answers[gameId]));
 
 				answersItemsJson.Add (o);
 			}
