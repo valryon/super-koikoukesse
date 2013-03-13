@@ -29,20 +29,43 @@ namespace Superkoikoukesse.Common
 		/// <param name="i">The index.</param>
 		/// <param name="zone"></param>
 		/// <param name="transformation"> </param>
-		public string GetGameTitle (int i, GameZones zone, TextTransformations transformation)
+		public string GetGameTitle (int answerIndex, GameZones zone, TextTransformations transformation)
 		{
-			GameInfo game = Answers [i];
+			GameInfo game = Answers [answerIndex];
+			string title = "";
 
-			if (game == CorrectAnswer) {
-
-				if (zone == GameZones.PAL) {
-					return Answers [i].TitlePAL + "*";
-				} else if (zone == GameZones.NTSC) {
-					return Answers [i].TitleUS + "*";
-				}
+			if (zone == GameZones.PAL) {
+				title = Answers [answerIndex].TitlePAL;
+			} else if (zone == GameZones.NTSC) {
+				title = Answers [answerIndex].TitleUS;
 			}
 
-			return Answers [i].TitlePAL;
+			if (transformation != TextTransformations.None) {
+
+				string[] words = title.Split (' ');
+				string maskedTitle = "";
+
+				foreach (string w in words) {
+
+					for (int i=0; i<w.Length; i++) {
+						if (i == 0 && transformation == TextTransformations.FirstLetterOnly) {
+							maskedTitle += w [i];
+						} else {
+							maskedTitle += "_";
+						}
+					}
+
+					maskedTitle += " ";
+				}
+
+				title = maskedTitle.Substring(0, maskedTitle.Length-1);
+			} 
+
+			if (game == CorrectAnswer) {
+				title += "*";
+			}
+
+			return title;
 		}
 
 		/// <summary>

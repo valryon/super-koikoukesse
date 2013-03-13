@@ -246,9 +246,7 @@ namespace Superkoikoukesse.Common
 				}
 			}
 			// Randomize answers
-			if (Constants.DebugMode == false) {
-				q.ShuffleAnswers ();
-			}
+			q.ShuffleAnswers ();
 
 			return q;
 		}
