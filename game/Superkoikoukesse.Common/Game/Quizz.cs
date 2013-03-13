@@ -352,6 +352,11 @@ namespace Superkoikoukesse.Common
 					TimeLeft = m_baseTimeleft;
 					IsOver = false;
 				}
+				else {
+					if(TimeLeft < 0) {
+						IsOver = true;
+					}
+				}
 			} else {
 
 				if (Mode != GameModes.TimeAttack) {
