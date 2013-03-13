@@ -144,7 +144,7 @@ namespace SuperKoikoukesse.iOS
 			using (var pool = new NSAutoreleasePool()) {
 				// Every 1 sec we update game timer
 				m_timer = NSTimer.CreateRepeatingScheduledTimer (1f, delegate { 
-					m_quizz.TimeLeft -= 1f;
+					m_quizz.SubstractTime(1f);
 
 					if (m_quizz.TimeLeft < 0) {
 
@@ -274,7 +274,7 @@ namespace SuperKoikoukesse.iOS
 			stopGameTimer ();
 
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchView (GameState.Menu);
+			appDelegate.SwitchToMenuView ();
 		}
 
 		private void pauseAction() {

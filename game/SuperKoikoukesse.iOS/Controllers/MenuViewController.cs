@@ -44,16 +44,26 @@ namespace SuperKoikoukesse.iOS
 			// Set fonts manually because Interface Builder is a dick.
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
+			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 		}
 
 
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
-
+			
 			// Launch game
 			// TODO Choose difficulty
-
+			
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchView(GameState.Game);
+			appDelegate.SwitchToGameView(GameModes.ScoreAttack, GameDifficulties.Easy);
+		}
+
+		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			
+			// Launch game
+			// TODO Choose difficulty
+			
+			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToGameView(GameModes.TimeAttack, GameDifficulties.Easy);
 		}
 
 		/// <summary>

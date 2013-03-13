@@ -40,7 +40,7 @@ namespace Superkoikoukesse.Common
 		/// Time left for this game (seconds)
 		/// </summary>
 		/// <value>The time left.</value>
-		public float TimeLeft { get; set; }
+		public float TimeLeft { get; private set; }
 
 		/// <summary>
 		/// Game is paused?
@@ -116,6 +116,7 @@ namespace Superkoikoukesse.Common
 		// Current question index
 		private int m_questionIndex;
 		private int m_mistakesCount;
+		private object m_timeLeftLock = new object();
 		private List<int> m_correctAnswerIds;
 
 		public Quizz ()
@@ -128,7 +129,7 @@ namespace Superkoikoukesse.Common
 			Mode = mode;
 			Difficulty = difficulty;
 
-			Logger.Log (LogLevel.Info, "Initializing quizz...");
+			Logger.Log (LogLevel.Info, "Initializing quizz " + Mode + " " + Difficulty + "...");
 
 			// Initialize score, lives, combo
 			TimeLeft = -1;
@@ -170,14 +171,27 @@ namespace Superkoikoukesse.Common
 			// Get values
 			Lives = 3; // TODO ?
 
-			if (modeConfig.QuestionCount.HasValue) {
-				m_questionCount = modeConfig.QuestionCount.Value; 
-			}
-			if (modeConfig.Score.HasValue) {
-				m_baseScore = modeConfig.Score.Value;
-			}
-			if (modeConfig.Time.HasValue) {
-				m_baseTimeleft = modeConfig.Time.Value;
+			if (modeConfig == null) {
+
+				Logger.Log(LogLevel.Error, "No configuration for game mode "+Mode+"!");
+
+				m_questionCount = 1;
+				m_baseTimeleft = 60;
+				m_baseScore = 1;
+
+			} else {
+				if (modeConfig.QuestionCount.HasValue) {
+					m_questionCount = modeConfig.QuestionCount.Value; 
+				}
+				else {
+					m_questionCount = 1;
+				}
+				if (modeConfig.Score.HasValue) {
+					m_baseScore = modeConfig.Score.Value;
+				}
+				if (modeConfig.Time.HasValue) {
+					m_baseTimeleft = modeConfig.Time.Value;
+				}
 			}
 
 			// Transformations
@@ -290,7 +304,7 @@ namespace Superkoikoukesse.Common
 					if (Mode == GameModes.TimeAttack) {
 
 						// Losing time for each mistakes
-						TimeLeft -= m_mistakesCount; // 1 sec per accumulated mistakes
+						SubstractTime(m_mistakesCount); // 1 sec per accumulated mistakes
 
 					} else if (Mode == GameModes.Survival) {
 
@@ -313,7 +327,14 @@ namespace Superkoikoukesse.Common
 		public void NextQuestion ()
 		{
 			Logger.Log (LogLevel.Info, "Next question requested");
-			
+
+			// Infinite list of question
+			if (Mode == GameModes.TimeAttack) {
+				if (m_questionIndex + 1 < Questions.Count) {
+					Questions.Add (getRandomQuestion ());
+				}
+			}
+
 			m_questionIndex++;
 			
 			if (m_questionIndex < Questions.Count) {
@@ -322,11 +343,15 @@ namespace Superkoikoukesse.Common
 				// Reset timer
 				if (Mode != GameModes.TimeAttack) {
 					TimeLeft = m_baseTimeleft;
+					IsOver = false;
 				}
-				IsOver = false;
 			} else {
-				Logger.Log (LogLevel.Info, "Quizz is over!");
-				IsOver = true;
+
+				if (Mode != GameModes.TimeAttack) {
+
+					Logger.Log (LogLevel.Info, "Quizz is over!");
+					IsOver = true;
+				} 
 			}
 		}
 
@@ -351,6 +376,16 @@ namespace Superkoikoukesse.Common
 				JokerPartCount = 0;
 
 				SelectAnswer (-1, true);
+			}
+		}
+
+		/// <summary>
+		/// Operation on the time
+		/// </summary>
+		/// <param name="timeLost">Time lost.</param>
+		public void SubstractTime(float timeLost) {
+			lock (m_timeLeftLock) {
+				TimeLeft -= timeLost;
 			}
 		}
 

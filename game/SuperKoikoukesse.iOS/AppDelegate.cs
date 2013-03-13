@@ -10,12 +10,6 @@ using System.IO;
 
 namespace SuperKoikoukesse.iOS
 {
-	public enum GameState
-	{
-		Menu,
-		Game,
-	}
-
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
@@ -70,46 +64,43 @@ namespace SuperKoikoukesse.iOS
 		{
 			// Get the distant configuration
 			WebserviceConfiguration configWs = new WebserviceConfiguration ();
-				configWs.Request ((config) => {
-					this.Configuration = config;
+			configWs.Request ((config) => {
+				this.Configuration = config;
 
-					Logger.Log(LogLevel.Info, "Configuration loaded and updated.");
-				},
+				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
+			},
 				null);
 		}
 
-		/// <summary>
-		/// Chance current view
-		/// </summary>
-		/// <param name="state">State.</param>
-		public void SwitchView (GameState state)
+		public void SwitchToMenuView ()
 		{
-			UIViewController newViewController = null;
-
-			switch (state) {
-			case GameState.Game:
-				if (gameViewController == null) {
-					gameViewController = new GameViewController ();
-				}
-				gameViewController.InitializeQuizz (GameModes.ScoreAttack, GameDifficulties.Easy); // TODO Difficulté
-				newViewController = gameViewController;
-				break;
-
-			case GameState.Menu:
-				if (menuViewController == null) {
-					menuViewController = new MenuViewController ();
-				}
-				
-				newViewController = menuViewController;
-				break;
+			if (menuViewController == null) {
+				menuViewController = new MenuViewController ();
 			}
 
-			if (menuViewController != null) {
+			window.RootViewController.RemoveFromParentViewController ();
+			window.RootViewController = menuViewController;
+			window.MakeKeyAndVisible ();
 
-				window.RootViewController.RemoveFromParentViewController ();
-				window.RootViewController = newViewController;
-				window.MakeKeyAndVisible ();
+		}
+
+		/// <summary>
+		/// Change to ingame view
+		/// </summary>
+		/// <param name="mode">Mode.</param>
+		/// <param name="difficulty">Difficulty.</param>
+		public void SwitchToGameView (GameModes mode, GameDifficulties difficulty)
+		{
+			if (gameViewController == null) {
+				gameViewController = new GameViewController ();
 			}
+
+			gameViewController.InitializeQuizz (mode, difficulty); // TODO Difficulté
+
+			window.RootViewController.RemoveFromParentViewController ();
+			window.RootViewController = gameViewController;
+			window.MakeKeyAndVisible ();
+
 		}
 
 		/// <summary>

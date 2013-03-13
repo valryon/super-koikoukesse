@@ -17,11 +17,17 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton scoreAttackButton { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIButton timeAttackButton { get; set; }
+
 		[Action ("scoreAttackButtonPressed:")]
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("configButtonPressed:")]
 		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("timeAttackButtonPressed:")]
+		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -33,6 +39,11 @@ namespace SuperKoikoukesse.iOS
 			if (scoreAttackButton != null) {
 				scoreAttackButton.Dispose ();
 				scoreAttackButton = null;
+			}
+
+			if (timeAttackButton != null) {
+				timeAttackButton.Dispose ();
+				timeAttackButton = null;
 			}
 		}
 	}
