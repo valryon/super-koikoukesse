@@ -111,7 +111,7 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Initialize a new quizz game
 		/// </summary>
-		public void InitializeQuizz (GameModes mode, GameDifficulty diff)
+		public void InitializeQuizz (GameModes mode, GameDifficulties diff)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 
@@ -234,10 +234,12 @@ namespace SuperKoikoukesse.iOS
 				game2Button.Enabled = true;
 				game3Button.Enabled = true;
 				game4Button.Enabled = true;
-				game1Button.SetTitle (q.GetGameTitle (0), UIControlState.Normal);
-				game2Button.SetTitle (q.GetGameTitle (1), UIControlState.Normal);
-				game3Button.SetTitle (q.GetGameTitle (2), UIControlState.Normal);
-				game4Button.SetTitle (q.GetGameTitle (3), UIControlState.Normal);
+
+				// TODO PAL
+				game1Button.SetTitle (q.GetGameTitle (0, GameZones.PAL, m_quizz.TextTransformation), UIControlState.Normal);
+				game2Button.SetTitle (q.GetGameTitle (1, GameZones.PAL, m_quizz.TextTransformation), UIControlState.Normal);
+				game3Button.SetTitle (q.GetGameTitle (2, GameZones.PAL, m_quizz.TextTransformation), UIControlState.Normal);
+				game4Button.SetTitle (q.GetGameTitle (3, GameZones.PAL, m_quizz.TextTransformation), UIControlState.Normal);
 			}
 		}
 

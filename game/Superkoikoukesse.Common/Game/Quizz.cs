@@ -16,7 +16,7 @@ namespace Superkoikoukesse.Common
 		/// Game Difficulty
 		/// </summary>
 		/// <value>The difficulty.</value>
-		public GameDifficulty Difficulty { get; set; }
+		public GameDifficulties Difficulty { get; set; }
 
 		/// <summary>
 		/// List of questions
@@ -73,6 +73,19 @@ namespace Superkoikoukesse.Common
 		public int JokerPartCount { get; set; }
 
 		/// <summary>
+		/// Transformation to apply to the current image
+		/// </summary>
+		/// <value>The image transformation.</value>
+		public ImageTransformations ImageTransformation { get; private set; }
+
+
+		/// <summary>
+		/// Transformation to apply to the text
+		/// </summary>
+		/// <value>The image transformation.</value>
+		public TextTransformations TextTransformation { get; private set; }
+
+		/// <summary>
 		/// Determines if the joker can be use
 		/// </summary>
 		public bool IsJokerAvailable {
@@ -102,13 +115,15 @@ namespace Superkoikoukesse.Common
 
 		// Current question index
 		private int m_questionIndex;
+		private int m_mistakesCount;
+		private List<int> m_correctAnswerIds;
 
 		public Quizz ()
 		{
 			Results = new Dictionary<Question, bool> ();
 		}
 
-		public void Initialize (GameModes mode, GameDifficulty difficulty, GameConfiguration config)
+		public void Initialize (GameModes mode, GameDifficulties difficulty, GameConfiguration config)
 		{
 			Mode = mode;
 			Difficulty = difficulty;
@@ -122,37 +137,18 @@ namespace Superkoikoukesse.Common
 			JokerPartCount = 0;
 			Results.Clear ();
 			StartTime = DateTime.Now;
-			
+			m_mistakesCount = 0;
+
 			initializeQuizzFromConfiguration (config);
 
 			// Get questions
+			m_correctAnswerIds = new List<int> ();
 			Questions = new List<Question> ();
-			List<int> correctAnswerIds = new List<int> ();
 
 			// Randomly
 			for (int i=0; i< m_questionCount; i++) {
-				int count = 0;
 
-				Question q = new Question ();
-
-				while (count < m_answerCount) {
-				
-					GameInfo game = DatabaseService.Instance.RandomGame ();
-
-					if (q.Answers.Contains (game) == false && correctAnswerIds.Contains (game.GameId) == false) {
-						q.Answers.Add (game);
-						count++;
-					
-						// Decide that the first will be the correct answer
-						if (q.CorrectAnswer == null) {
-							q.CorrectAnswer = game;
-							correctAnswerIds.Add (game.GameId);
-						}
-					}
-				}
-
-				// Randomize answers
-				q.ShuffleAnswers ();
+				var q = getRandomQuestion ();
 
 				Questions.Add (q);
 			}
@@ -183,6 +179,26 @@ namespace Superkoikoukesse.Common
 			if (modeConfig.Time.HasValue) {
 				m_baseTimeleft = modeConfig.Time.Value;
 			}
+
+			// Transformations
+			ImageTransformation = ImageTransformations.None;
+			TextTransformation = TextTransformations.None;
+
+			if (Difficulty == GameDifficulties.Hard) {
+
+				ImageTransformation = getImageTransformation ();
+
+			} else if (Difficulty == GameDifficulties.Expert) {
+
+				ImageTransformation = getImageTransformation ();
+				TextTransformation = TextTransformations.FirstLetterOnly;
+
+			} else if (Difficulty == GameDifficulties.Nolife) {
+
+				ImageTransformation = getImageTransformation ();
+				TextTransformation = TextTransformations.UnderscoresOnly;
+			}
+
 			// Static vars
 			m_answerCount = 4;
 			m_jokerMinPart = 3;
@@ -191,37 +207,97 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
+		/// Get a rabdom question
+		/// </summary>
+		/// <returns>The random question.</returns>
+		internal Question getRandomQuestion ()
+		{
+			int currentAnswersCount = 0;
+
+			Question q = new Question ();
+
+			while (currentAnswersCount < m_answerCount) {
+
+				GameInfo game = DatabaseService.Instance.RandomGame ();
+
+				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
+
+					q.Answers.Add (game);
+					currentAnswersCount++;
+
+					// Decide that the first will be the correct answer
+					if (q.CorrectAnswer == null) {
+						q.CorrectAnswer = game;
+					}
+
+					m_correctAnswerIds.Add (game.GameId);
+				}
+			}
+			// Randomize answers
+			q.ShuffleAnswers ();
+
+			return q;
+		}
+
+		/// <summary>
+		/// Get a random image transformation
+		/// </summary>
+		/// <returns>The image transformation.</returns>
+		private ImageTransformations getImageTransformation ()
+		{
+			return ImageTransformations.Pixelization; // TODO Images transformation
+		}
+
+		/// <summary>
 		/// Player has selected an answer.
 		/// </summary>
 		/// <param name="index">Answer index</param>
 		public void SelectAnswer (int index, bool isJoker = false)
 		{
-			bool result = CurrentQuestion.IsValidAnswer (index);
-
-			if (isJoker) {
-				result = true;
-			}
-
 			int score = m_baseScore; 
 			int comboToApply = Combo;
 
-			if (result) {
-				Logger.Log (LogLevel.Info, "Good answer! " + (isJoker ? "(JOKER)" : ""));
-				Combo++;
+			bool result = false;
 
-				if (isJoker == false) {
+			if (isJoker) {
+				Logger.Log (LogLevel.Info, "Joker answer");
+
+				comboToApply = 0;
+
+				result = true;
+
+			} else {
+
+				result = CurrentQuestion.IsValidAnswer (index);
+
+				if (result) {
+					Logger.Log (LogLevel.Info, "Good answer! " + (isJoker ? "(JOKER)" : ""));
+					Combo++;
+
 					JokerPartCount++;
 
 					if (JokerPartCount >= 3) {
 						JokerPartCount = 3; 
 					}
+				} else {
+					Logger.Log (LogLevel.Info, "Bad answer...");
+					Combo = 1;
+					comboToApply = 0;
+					JokerPartCount = 0;
+
+					m_mistakesCount++;
+
+					if (Mode == GameModes.TimeAttack) {
+
+						// Losing time for each mistakes
+						TimeLeft -= m_mistakesCount; // 1 sec per accumulated mistakes
+
+					} else if (Mode == GameModes.Survival) {
+
+						// Losing live for each mistakes
+						Lives--;
+					}
 				}
-			} else {
-				Logger.Log (LogLevel.Info, "Bad answer...");
-				Combo = 1;
-				comboToApply = 0;
-				Lives--;
-				JokerPartCount = 0;
 			}
 
 			// Apply score
@@ -271,13 +347,14 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void UseJoker ()
 		{
-
 			if (IsJokerAvailable) {
 				JokerPartCount = 0;
 
 				SelectAnswer (-1, true);
 			}
 		}
+
+		#region Stats
 
 		/// <summary>
 		/// Send quizz data to the webservice
@@ -288,6 +365,8 @@ namespace Superkoikoukesse.Common
 
 			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, failureCallback);
 		}
+
+		#endregion
 	}
 }
 

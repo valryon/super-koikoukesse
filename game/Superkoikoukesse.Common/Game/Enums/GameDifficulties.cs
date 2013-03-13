@@ -2,7 +2,7 @@ using System;
 
 namespace Superkoikoukesse.Common
 {
-	public enum GameDifficulty : int
+	public enum GameDifficulties : int
 	{
 		Easy = 0,
 		Hard = 1,

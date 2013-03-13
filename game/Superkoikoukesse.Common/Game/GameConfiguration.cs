@@ -28,7 +28,7 @@ namespace Superkoikoukesse.Common
 	{
 		public GameModes Mode { get; set; }
 
-		public GameDifficulty Difficulty { get; set; }
+		public GameDifficulties Difficulty { get; set; }
 
 		public int? Score{ get; set; }
 
@@ -58,7 +58,7 @@ namespace Superkoikoukesse.Common
 		/// <returns>The mode configuration.</returns>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public ModeConfigurationItem GetModeConfiguration (GameModes mode, GameDifficulty difficulty)
+		public ModeConfigurationItem GetModeConfiguration (GameModes mode, GameDifficulties difficulty)
 		{
 			foreach (var config in ModesConfiguration) {
 				if (config.Mode == mode && config.Difficulty == difficulty) {
@@ -117,13 +117,13 @@ namespace Superkoikoukesse.Common
 
 						// Parsing each game mode configuration
 						GameModes mode = GameModes.ScoreAttack;
-						GameDifficulty difficulty = GameDifficulty.Easy;
+						GameDifficulties difficulty = GameDifficulties.Easy;
 						int? time = null;
 						int? score = null;
 						int? questionCount = null;
 
 						mode = (GameModes)Enum.Parse (typeof(GameModes), c ["Mode"].ToString ());
-						difficulty = (GameDifficulty)Enum.Parse (typeof(GameDifficulty), c ["Difficulty"].ToString ());
+						difficulty = (GameDifficulties)Enum.Parse (typeof(GameDifficulties), c ["Difficulty"].ToString ());
 
 						if (c.ContainsKey ("Time")) {
 							time = Convert.ToInt32 (c ["Time"].ToString ());

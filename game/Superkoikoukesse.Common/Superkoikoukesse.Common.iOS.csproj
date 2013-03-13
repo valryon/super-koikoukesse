@@ -65,11 +65,14 @@
     <Compile Include="Game\Question.cs" />
     <Compile Include="Game\GameConfiguration.cs" />
     <Compile Include="Game\Enums\GameModes.cs" />
-    <Compile Include="Game\Enums\GameDifficulty.cs" />
     <Compile Include="Game\Enums\GameTargets.cs" />
     <Compile Include="Networking\BaseWebserviceCaller.cs" />
     <Compile Include="Networking\Services\WebserviceConfiguration.cs" />
     <Compile Include="Networking\GenericModelWeberviceCaller.cs" />
     <Compile Include="Networking\Services\WebserviceStats.cs" />
+    <Compile Include="Game\Enums\ImageTransformations.cs" />
+    <Compile Include="Game\Enums\TextTransformations.cs" />
+    <Compile Include="Game\Enums\GameDifficulties.cs" />
+    <Compile Include="Game\Enums\GameZones.cs" />
   </ItemGroup>
 </Project>

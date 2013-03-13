@@ -27,13 +27,19 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <returns>The game title.</returns>
 		/// <param name="i">The index.</param>
-		public string GetGameTitle (int i)
+		/// <param name="zone"></param>
+		/// <param name="transformation"> </param>
+		public string GetGameTitle (int i, GameZones zone, TextTransformations transformation)
 		{
-			// TODO Handle PAL & US
 			GameInfo game = Answers [i];
 
 			if (game == CorrectAnswer) {
-				return Answers[i].TitlePAL+"*";
+
+				if (zone == GameZones.PAL) {
+					return Answers [i].TitlePAL + "*";
+				} else if (zone == GameZones.NTSC) {
+					return Answers [i].TitleUS + "*";
+				}
 			}
 
 			return Answers [i].TitlePAL;
@@ -54,13 +60,14 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Randomizer answers order
 		/// </summary>
-		public void ShuffleAnswers() {
-			Answers = Answers.OrderBy (q => Guid.NewGuid()).ToList ();
+		public void ShuffleAnswers ()
+		{
+			Answers = Answers.OrderBy (q => Guid.NewGuid ()).ToList ();
 		}
 
 		public override string ToString ()
 		{
-			return CorrectAnswer.ToString();
+			return CorrectAnswer.ToString ();
 		}
 	}
 }
