@@ -152,9 +152,9 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Read games database
 		/// </summary>
-		public List<GameInfo> ReadGames(Func<GameInfo,bool> predicat) {
+		public List<GameInfo> ReadGames() {
 
-			return m_db.Table<GameInfo>().Where (g => predicat (g)).ToList ();
+			return m_db.Table<GameInfo>().ToList ();
 		}
 
 		/// <summary>

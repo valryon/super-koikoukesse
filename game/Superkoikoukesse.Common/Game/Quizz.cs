@@ -116,12 +116,15 @@ namespace Superkoikoukesse.Common
 		// Current question index
 		private int m_questionIndex;
 		private int m_mistakesCount;
-		private object m_timeLeftLock = new object();
+		private object m_timeLeftLock = new object ();
 		private List<int> m_correctAnswerIds;
+		private List<GameInfo> m_databasePool; // Avaiable games on the theme
+		private Random m_random;
 
 		public Quizz ()
 		{
 			Results = new Dictionary<Question, bool> ();
+			m_random = new Random (DateTime.Now.Millisecond);
 		}
 
 		public void Initialize (GameModes mode, GameDifficulties difficulty, GameConfiguration config)
@@ -146,7 +149,10 @@ namespace Superkoikoukesse.Common
 			m_correctAnswerIds = new List<int> ();
 			Questions = new List<Question> ();
 
-			// Randomly
+			// Apply filter and store in memory (cause SQLite can crash)
+			m_databasePool = new List<GameInfo> ();
+			m_databasePool.AddRange(DatabaseService.Instance.ReadGames ());
+
 			for (int i=0; i< m_questionCount; i++) {
 
 				var q = getRandomQuestion ();
@@ -173,7 +179,7 @@ namespace Superkoikoukesse.Common
 
 			if (modeConfig == null) {
 
-				Logger.Log(LogLevel.Error, "No configuration for game mode "+Mode+"!");
+				Logger.Log (LogLevel.Error, "No configuration for game mode " + Mode + "!");
 
 				m_questionCount = 1;
 				m_baseTimeleft = 60;
@@ -182,8 +188,7 @@ namespace Superkoikoukesse.Common
 			} else {
 				if (modeConfig.QuestionCount.HasValue) {
 					m_questionCount = modeConfig.QuestionCount.Value; 
-				}
-				else {
+				} else {
 					m_questionCount = 1;
 				}
 				if (modeConfig.Score.HasValue) {
@@ -232,7 +237,9 @@ namespace Superkoikoukesse.Common
 
 			while (currentAnswersCount < m_answerCount) {
 
-				GameInfo game = DatabaseService.Instance.RandomGame ();
+				int randomIndex = m_random.Next (m_databasePool.Count);
+
+				GameInfo game = m_databasePool [randomIndex];
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 
@@ -304,7 +311,7 @@ namespace Superkoikoukesse.Common
 					if (Mode == GameModes.TimeAttack) {
 
 						// Losing time for each mistakes
-						SubstractTime(m_mistakesCount); // 1 sec per accumulated mistakes
+						SubstractTime (m_mistakesCount); // 1 sec per accumulated mistakes
 
 					} else if (Mode == GameModes.Survival) {
 
@@ -383,7 +390,8 @@ namespace Superkoikoukesse.Common
 		/// Operation on the time
 		/// </summary>
 		/// <param name="timeLost">Time lost.</param>
-		public void SubstractTime(float timeLost) {
+		public void SubstractTime (float timeLost)
+		{
 			lock (m_timeLeftLock) {
 				TimeLeft -= timeLost;
 			}
