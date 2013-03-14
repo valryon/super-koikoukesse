@@ -257,7 +257,7 @@ namespace Superkoikoukesse.Common
 		/// <returns>The image transformation.</returns>
 		private ImageTransformations getImageTransformation ()
 		{
-			return ImageTransformations.Dezoom; // TODO Images transformation
+			return ImageTransformations.Pixelization; // TODO Images transformation
 		}
 
 		/// <summary>

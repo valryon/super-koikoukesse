@@ -8,7 +8,7 @@ namespace Superkoikoukesse.Common
 	public enum ImageTransformations : int
 	{
 		None = 0,
-		Dezoom = 1,
+		Unzoom = 1,
 		Pixelization = 2
 	}
 }

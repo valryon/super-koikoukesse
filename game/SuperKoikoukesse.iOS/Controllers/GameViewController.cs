@@ -7,6 +7,7 @@ using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using System.IO;
 using System.Threading;
+using MonoTouch.CoreGraphics;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -14,8 +15,9 @@ namespace SuperKoikoukesse.iOS
 	{
 		private Quizz m_quizz;
 		private bool m_isViewLoaded;
-		private NSTimer m_timer;
+		private NSTimer m_timer, m_animationTimer;
 		private UIImage m_currentImage, m_pauseImage;
+		private float m_currentPixelateFactor;
 
 		#region UIView stuff
 
@@ -217,14 +219,18 @@ namespace SuperKoikoukesse.iOS
 
 		private void setImageAnimation ()
 		{
-
 			// image size
 			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
 			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
 
 			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
 
-			if (m_quizz.ImageTransformation == ImageTransformations.Dezoom) {
+			if (m_animationTimer != null) {
+				m_animationTimer.Dispose();
+				m_animationTimer = null;
+			}
+
+			if (m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
 
 				// Images are 500*500
 				// Scroll view is 250*250
@@ -238,14 +244,56 @@ namespace SuperKoikoukesse.iOS
 
 				gameImage.Frame = new RectangleF (x, y, width, height);
 
-				UIView.BeginAnimations ("unzoom");
-				UIView.SetAnimationDuration (Constants.DezoomDuration);
+				UIView.Animate (
+					Constants.DezoomDuration,
+	                () => {
+					gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+				}
+				);
 
-				gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 
-				UIView.CommitAnimations ();
+				m_currentPixelateFactor = 1f;
+				pixelateGameImage(m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
 
+				// Thread animation
+				var thread = new Thread (() => {
+
+					using (var pool = new NSAutoreleasePool()) {
+						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (0.1f, delegate { 
+							// TODO Améliorer, optimiser, tout ça...
+							m_currentPixelateFactor += 2;
+
+							// Stop animation at 85% before it became a pixel's mess
+							if (m_currentPixelateFactor > (imageBaseSizeWidth * 0.5f)) {
+								m_currentPixelateFactor = imageBaseSizeWidth;
+
+								if(m_animationTimer != null) {
+									m_animationTimer.Dispose();
+								}
+							}
+							pixelateGameImage(m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
+						});
+					
+						NSRunLoop.Current.Run ();
+					}
+				});
+				thread.Start ();
 			}
+		}
+
+		/// <summary>
+		/// Downsample and upsample the game image to create a pixelate effect
+		/// </summary>
+		/// <param name="pixelateFactor">Pixelate factor.</param>
+		private void pixelateGameImage(float pixelateFactor, float maxWidth, float maxHeight) {
+						
+			var a = m_currentImage.Scale (new SizeF (pixelateFactor, pixelateFactor));
+			a.Scale (new SizeF (maxWidth, maxHeight));
+			
+			this.BeginInvokeOnMainThread (() => {
+				gameImage.Image = a;
+			});
 		}
 
 		private void setGameButtonTitles (Question q)
