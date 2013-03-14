@@ -80,7 +80,7 @@ namespace SuperKoikoukesse.iOS
 			// TODO Choose difficulty
 			
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView(GameModes.Survival, GameDifficulties.Easy);
+			appDelegate.SwitchToGameView(GameModes.Survival, GameDifficulties.Hard);
 		}
 
 		/// <summary>

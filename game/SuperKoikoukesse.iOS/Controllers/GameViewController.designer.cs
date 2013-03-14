@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel comboLabel { get; set; }
 
 		[Outlet]
@@ -50,9 +53,6 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton pauseButton { get; set; }
 
-		[Action ("jokerButtonPressed:")]
-		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("game1ButtonPressed:")]
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -67,9 +67,17 @@ namespace SuperKoikoukesse.iOS
 
 		[Action ("pauseButtonPressed:")]
 		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("jokerButtonPressed:")]
+		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (gameImageScroll != null) {
+				gameImageScroll.Dispose ();
+				gameImageScroll = null;
+			}
+
 			if (comboLabel != null) {
 				comboLabel.Dispose ();
 				comboLabel = null;

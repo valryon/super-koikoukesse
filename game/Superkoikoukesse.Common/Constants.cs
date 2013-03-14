@@ -21,6 +21,14 @@ namespace Superkoikoukesse.Common
 #else 
 		public static bool DebugMode = false;
 #endif
+
+		#region Animations
+
+		public static float DezoomFactor = 3f;
+
+		public static float DezoomDuration = 8f; //seconds
+
+		#endregion
 	}
 }
 

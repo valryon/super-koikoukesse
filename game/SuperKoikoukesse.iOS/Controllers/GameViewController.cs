@@ -44,12 +44,12 @@ namespace SuperKoikoukesse.iOS
 			base.LoadView ();
 
 			// Set fonts manually because Interface Builder is a dick.
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			game1Button.TitleLabel.Font = appDelegate.CustomFont;
 			game2Button.TitleLabel.Font = appDelegate.CustomFont;
 			game3Button.TitleLabel.Font = appDelegate.CustomFont;
 			game4Button.TitleLabel.Font = appDelegate.CustomFont;
-			timeTitleLabel.Font =appDelegate.CustomFont; 
+			timeTitleLabel.Font = appDelegate.CustomFont; 
 			timeLeftLabel.Font = appDelegate.CustomFont;
 			scoreTitleLabel.Font = appDelegate.CustomFont;
 			scoreLabel.Font = appDelegate.CustomFont;
@@ -77,14 +77,16 @@ namespace SuperKoikoukesse.iOS
 			gameButtonPressed (3);
 		}
 
-		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			pauseAction();
+		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			pauseAction ();
 		}
 
-		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			m_quizz.UseJoker();
+		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			m_quizz.UseJoker ();
 
-			nextQuestion();
+			nextQuestion ();
 		}
 
 		#endregion
@@ -144,7 +146,7 @@ namespace SuperKoikoukesse.iOS
 			using (var pool = new NSAutoreleasePool()) {
 				// Every 1 sec we update game timer
 				m_timer = NSTimer.CreateRepeatingScheduledTimer (1f, delegate { 
-					m_quizz.SubstractTime(1f);
+					m_quizz.SubstractTime (1f);
 
 					if (m_quizz.TimeLeft < 0) {
 
@@ -152,10 +154,9 @@ namespace SuperKoikoukesse.iOS
 
 						// No answer selected
 						this.InvokeOnMainThread (() => {
-							nextQuestion();
+							nextQuestion ();
 						});
-					}
-					else {
+					} else {
 						// Update label (UI Thread!)
 						this.InvokeOnMainThread (() => {
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
@@ -195,15 +196,17 @@ namespace SuperKoikoukesse.iOS
 			m_currentImage = UIImage.FromFile (imgPath);
 			gameImage.Image = m_currentImage;
 
+			setImageAnimation ();
+
 			// Answers
 			setGameButtonTitles (q);
 
 			// Score & combo
-			scoreLabel.Text = m_quizz.Score.ToString("000000");
-			comboLabel.Text = "x"+m_quizz.Combo;
+			scoreLabel.Text = m_quizz.Score.ToString ("000000");
+			comboLabel.Text = "x" + m_quizz.Combo;
 
 			// Joker
-			jokerButton.Enabled= m_quizz.IsJokerAvailable;
+			jokerButton.Enabled = m_quizz.IsJokerAvailable;
 
 			if (Constants.DebugMode) {
 				jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
@@ -212,7 +215,41 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		private void setGameButtonTitles(Question q) {
+		private void setImageAnimation ()
+		{
+
+			// image size
+			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
+			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
+
+			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+
+			if (m_quizz.ImageTransformation == ImageTransformations.Dezoom) {
+
+				// Images are 500*500
+				// Scroll view is 250*250
+				// Dezoom consists of center the image on a dimension and dezoom to its original size
+				float startZoomFactor = Constants.DezoomFactor;
+				float width = gameImage.Frame.Width * startZoomFactor;
+				float height = gameImage.Frame.Height * startZoomFactor;
+
+				float x = imageBaseSizeWidth - (width / 2);
+				float y = imageBaseSizeHeight - (height / 2);
+
+				gameImage.Frame = new RectangleF (x, y, width, height);
+
+				UIView.BeginAnimations ("dezoom");
+				UIView.SetAnimationDuration (Constants.DezoomDuration);
+
+				gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+
+				UIView.CommitAnimations ();
+
+			}
+		}
+
+		private void setGameButtonTitles (Question q)
+		{
 
 			// Disable buttons
 			if (q == null) {
@@ -257,30 +294,33 @@ namespace SuperKoikoukesse.iOS
 			nextQuestion ();
 		}
 
-		private void nextQuestion() {
+		private void nextQuestion ()
+		{
 			m_quizz.NextQuestion ();
 			
 			if (m_quizz.IsOver == false) {
 				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {
 				// Stats time
-				m_quizz.SendQuizzData((ex) => {
+				m_quizz.SendQuizzData ((ex) => {
 
 				});
 
 				// Back to the menu
-				getBackToMenu();
+				getBackToMenu ();
 			}
 		}
 
-		private void getBackToMenu() {
+		private void getBackToMenu ()
+		{
 			stopGameTimer ();
 
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToMenuView ();
 		}
 
-		private void pauseAction() {
+		private void pauseAction ()
+		{
 
 			m_quizz.IsPaused = !m_quizz.IsPaused;
 
@@ -289,19 +329,19 @@ namespace SuperKoikoukesse.iOS
 				// Mask game elements
 				gameImage.Image = m_pauseImage;
 
-				setGameButtonTitles(null);
+				setGameButtonTitles (null);
 
 				// Pause game
-				stopGameTimer();
+				stopGameTimer ();
 
 			} else {
 
 				gameImage.Image = m_currentImage;
 
-				setGameButtonTitles(m_quizz.CurrentQuestion);
+				setGameButtonTitles (m_quizz.CurrentQuestion);
 
 				// Resume game
-				setGameTimer();
+				setGameTimer ();
 			}
 		}
 
