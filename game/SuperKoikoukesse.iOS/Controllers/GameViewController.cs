@@ -238,7 +238,7 @@ namespace SuperKoikoukesse.iOS
 
 				gameImage.Frame = new RectangleF (x, y, width, height);
 
-				UIView.BeginAnimations ("dezoom");
+				UIView.BeginAnimations ("unzoom");
 				UIView.SetAnimationDuration (Constants.DezoomDuration);
 
 				gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
