@@ -65,7 +65,7 @@ namespace Superkoikoukesse.Common
 				title += "*";
 			}
 
-			return title;
+			return title.ToUpper ();
 		}
 
 		/// <summary>

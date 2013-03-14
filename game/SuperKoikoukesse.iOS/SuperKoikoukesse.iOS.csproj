@@ -90,6 +90,7 @@
     <Folder Include="Resources\database\" />
     <Folder Include="Resources\database\images\" />
     <Folder Include="Service\" />
+    <Folder Include="en.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -760,5 +761,8 @@
     <BundleResource Include="..\..\database\gamedb.xml">
       <Link>Resources\database\gamedb.xml</Link>
     </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="en.lproj\Localizable.strings" />
   </ItemGroup>
 </Project>

@@ -24,9 +24,9 @@ namespace Superkoikoukesse.Common
 
 		#region Animations
 
-		public static float DezoomFactor = 3f;
+		public static float DezoomFactor = 10f;
 
-		public static float DezoomDuration = 8f; //seconds
+		public static float DezoomDuration = 5f; //seconds
 
 		#endregion
 	}
