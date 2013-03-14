@@ -205,8 +205,11 @@ namespace SuperKoikoukesse.iOS
 			// Joker
 			jokerButton.Enabled= m_quizz.IsJokerAvailable;
 
-			//TODO DEBUG
-			jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
+			if (Constants.DebugMode) {
+				jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
+			} else {
+				jokerButton.SetTitle ("JOKER", UIControlState.Normal);
+			}
 		}
 
 		private void setGameButtonTitles(Question q) {

@@ -61,7 +61,7 @@ namespace Superkoikoukesse.Common
 				title = maskedTitle.Substring(0, maskedTitle.Length-1);
 			} 
 
-			if (game == CorrectAnswer) {
+			if (game == CorrectAnswer && Constants.DebugMode) {
 				title += "*";
 			}
 

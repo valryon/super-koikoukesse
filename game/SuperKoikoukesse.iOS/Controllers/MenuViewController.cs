@@ -48,6 +48,13 @@ namespace SuperKoikoukesse.iOS
 			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
 		}
 
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+
+			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
+		}
+
 
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
 			
@@ -83,6 +90,12 @@ namespace SuperKoikoukesse.iOS
 		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender) {
 			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 			appDelegate.UpdateConfiguration();
+		}
+
+		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			Constants.DebugMode = !Constants.DebugMode;
+			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
+			Logger.Log(LogLevel.Info,"Debug mode? " + Constants.DebugMode);
 		}
 	}
 }
