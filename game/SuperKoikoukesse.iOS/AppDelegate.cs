@@ -45,10 +45,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Try to open the database
 			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
-
-			// Load configuration
-			UpdateConfiguration ();
-
+		
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
@@ -56,6 +53,13 @@ namespace SuperKoikoukesse.iOS
 			menuViewController = new MenuViewController ();
 			window.RootViewController = menuViewController;
 			window.MakeKeyAndVisible ();
+
+			// Load configuration
+			UpdateConfiguration ();
+
+			// Register on Game Center
+			PlayerService = new GameCenterService (window.RootViewController);
+			PlayerService.Authenticate ();
 
 			return true;
 		}
@@ -90,10 +94,15 @@ namespace SuperKoikoukesse.iOS
 
 				SetLoading(false);
 			});
+		
 		}
 
 		#region Loading
 
+		/// <summary>
+		/// Add or hide a loading view
+		/// </summary>
+		/// <param name="value">If set to <c>true</c> value.</param>
 		public void SetLoading(bool value) {
 
 			if (IsLoading != value) {
@@ -210,6 +219,12 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <value>The configuration.</value>
 		public GameConfiguration Configuration { get; set; }
+
+		/// <summary>
+		/// Service to get player info, leaderboards, etc
+		/// </summary>
+		/// <value>The player service.</value>
+		public PlayerService PlayerService { get; set; }
 
 		/// <summary>
 		/// Is loading something

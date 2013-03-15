@@ -97,6 +97,7 @@
     <Folder Include="Views\iPhone\" />
     <Folder Include="Views\iPad\" />
     <Folder Include="Resources\fr.lproj\" />
+    <Folder Include="GameCenter\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\HelpGameDifficultiesViewController.designer.cs">
       <DependentUpon>HelpGameDifficultiesViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameCenter\GameCenterService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
