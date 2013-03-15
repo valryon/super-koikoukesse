@@ -14,7 +14,7 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		public HelpGeneralViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "HelpGeneralViewController_iPhone" : "HelpGeneralViewController_iPad", null)
+			: base (UserInterfaceIdiomIsPhone ? "HelpGeneralView_iPhone" : "HelpGeneralView_iPad", null)
 		{
 		}
 		
@@ -31,6 +31,10 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			this.View.RemoveFromSuperview();
 		}
 	}
 }

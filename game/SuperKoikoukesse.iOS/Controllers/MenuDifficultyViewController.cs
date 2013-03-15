@@ -9,6 +9,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuDifficultyViewController : UIViewController
 	{
+		private HelpGameDifficultiesViewController helpViewController;
+
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
@@ -30,7 +32,15 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 			
-			// Perform any additional setup after loading the view, typically from a nib.
+			helpViewController = new HelpGameDifficultiesViewController ();
+		}
+
+		//partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender) {
+		//	showHelp();
+		//}
+		
+		private void showHelp() {
+			View.AddSubview (helpViewController.View);
 		}
 	}
 }

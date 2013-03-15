@@ -32,6 +32,10 @@ namespace SuperKoikoukesse.iOS
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
+		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			this.View.RemoveFromSuperview();
+		}
 	}
 }
 

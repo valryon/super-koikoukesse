@@ -26,6 +26,9 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton debugButton { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIButton helpButton { get; set; }
+
 		[Action ("scoreAttackButtonPressed:")]
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -40,6 +43,9 @@ namespace SuperKoikoukesse.iOS
 
 		[Action ("debugButtonPressed:")]
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("helpButtonPressed:")]
+		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -66,6 +72,11 @@ namespace SuperKoikoukesse.iOS
 			if (debugButton != null) {
 				debugButton.Dispose ();
 				debugButton = null;
+			}
+
+			if (helpButton != null) {
+				helpButton.Dispose ();
+				helpButton = null;
 			}
 		}
 	}

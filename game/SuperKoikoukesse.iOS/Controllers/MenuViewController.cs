@@ -103,6 +103,10 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log(LogLevel.Info,"Debug mode? " + Constants.DebugMode);
 		}
 
+		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			showHelp();
+		}
+
 		private void showHelp() {
 
 			View.AddSubview (helpViewController.View);
