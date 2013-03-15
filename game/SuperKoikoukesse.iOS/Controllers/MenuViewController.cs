@@ -11,6 +11,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuViewController : UIViewController
 	{
+		private HelpGeneralViewController helpViewController;
+
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
@@ -46,6 +48,9 @@ namespace SuperKoikoukesse.iOS
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
+
+			// Load help once
+			helpViewController = new HelpGeneralViewController ();
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -96,6 +101,11 @@ namespace SuperKoikoukesse.iOS
 			Constants.DebugMode = !Constants.DebugMode;
 			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
 			Logger.Log(LogLevel.Info,"Debug mode? " + Constants.DebugMode);
+		}
+
+		private void showHelp() {
+
+			View.AddSubview (helpViewController.View);
 		}
 	}
 }
