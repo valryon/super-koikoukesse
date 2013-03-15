@@ -44,7 +44,7 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Set fonts manually because Interface Builder is a dick.
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
@@ -60,54 +60,48 @@ namespace SuperKoikoukesse.iOS
 			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
 		}
 
-
-		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			
-			// Launch game
-			// TODO Choose difficulty
-			
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView(GameModes.ScoreAttack, GameDifficulties.Easy);
+		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToDifficultiesView (GameModes.ScoreAttack);
 		}
 
-		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			
-			// Launch game
-			// TODO Choose difficulty
-			
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView(GameModes.TimeAttack, GameDifficulties.Easy);
+		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToDifficultiesView (GameModes.TimeAttack);
 		}
 
-		partial void survivalButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			
-			// Launch game
-			// TODO Choose difficulty
-			
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView(GameModes.Survival, GameDifficulties.Expert);
+		partial void survivalButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToDifficultiesView (GameModes.Survival);
 		}
 
 		/// <summary>
 		/// Force config reload (DEBUG)
 		/// </summary>
 		/// <param name="sender">Sender.</param>
-		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-			appDelegate.UpdateConfiguration();
+		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.UpdateConfiguration ();
 		}
 
-		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender) {
+		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
 			Constants.DebugMode = !Constants.DebugMode;
 			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
-			Logger.Log(LogLevel.Info,"Debug mode? " + Constants.DebugMode);
+			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
 		}
 
-		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			showHelp();
+		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			showHelp ();
 		}
 
-		private void showHelp() {
+		private void showHelp ()
+		{
 
 			View.AddSubview (helpViewController.View);
 		}

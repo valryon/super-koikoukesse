@@ -22,6 +22,7 @@ namespace SuperKoikoukesse.iOS
 
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
+		private MenuDifficultyViewController menuDifficultyViewController;
 		private LoadingViewController loadingViewController;
 
 		//
@@ -91,6 +92,8 @@ namespace SuperKoikoukesse.iOS
 			});
 		}
 
+		#region Loading
+
 		public void SetLoading(bool value) {
 
 			if (IsLoading != value) {
@@ -140,6 +143,10 @@ namespace SuperKoikoukesse.iOS
 			//loadingViewController.
 		}
 
+		#endregion
+
+		#region Views
+
 		public void SwitchToMenuView ()
 		{
 			if (menuViewController == null) {
@@ -157,19 +164,40 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
+		public void SwitchToDifficultiesView (GameModes mode)
+		{
+			if (menuDifficultyViewController == null) {
+				menuDifficultyViewController = new MenuDifficultyViewController ();
+			}
+			
+			menuDifficultyViewController.SetGameMode (mode);
+			
+			window.RootViewController.RemoveFromParentViewController ();
+			window.RootViewController = menuDifficultyViewController;
+			window.MakeKeyAndVisible ();
+			
+		}
+
+		/// <summary>
+		/// Change to ingame view
+		/// </summary>
+		/// <param name="mode">Mode.</param>
+		/// <param name="difficulty">Difficulty.</param>
 		public void SwitchToGameView (GameModes mode, GameDifficulties difficulty)
 		{
 			if (gameViewController == null) {
 				gameViewController = new GameViewController ();
 			}
 
-			gameViewController.InitializeQuizz (mode, difficulty); // TODO Difficulté
+			gameViewController.InitializeQuizz (mode, difficulty);
 
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = gameViewController;
 			window.MakeKeyAndVisible ();
 
 		}
+
+		#endregion
 
 		/// <summary>
 		/// Font to use everywhere
