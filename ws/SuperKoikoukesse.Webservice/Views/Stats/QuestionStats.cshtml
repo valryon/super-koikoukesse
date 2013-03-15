@@ -1,0 +1,33 @@
+﻿@model SuperKoikoukesse.Webservice.ViewModels.StatsModel
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Game
+        </th>
+        <th>Success
+        </th>
+        <th>Failure
+        </th>
+        <th>Success ratio
+        </th>
+    </tr>
+
+    @foreach (var stat in Model.AnswersStat)
+    {
+        <tr>
+            <td>
+                @stat.Game.TitlePAL
+            </td>
+            <td>
+                @stat.SuccessCount
+            </td>
+            <td>
+                @stat.FailureCount
+            </td>
+            <td>
+                @(stat.SuccessCount / stat.Total)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,5 +1,6 @@
 ﻿using SuperKoikoukesse.Webservice.Core.Model;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -8,7 +9,7 @@ namespace SuperKoikoukesse.Webservice.Models
     [DataContract]
     public class AddGameHistoryInput
     {
-        [DataMember(Name="player", IsRequired=true)]
+        [DataMember(Name = "player", IsRequired = true)]
         public string PlayerId { get; set; }
 
         [DataMember(Name = "score", IsRequired = true)]
@@ -32,6 +33,13 @@ namespace SuperKoikoukesse.Webservice.Models
         /// <returns></returns>
         public GameStats ToDbModel()
         {
+            Dictionary<int, bool> answers = new Dictionary<int, bool>();
+
+            foreach (var stat in this.AnswersStats)
+            {
+                answers.Add(stat.QuestionId, stat.Result);
+            }
+
             GameStats s = new GameStats()
             {
                 PlayerId = new Guid(), // TODO Player id
@@ -39,7 +47,7 @@ namespace SuperKoikoukesse.Webservice.Models
                 Difficulty = DifficultiesEnumEx.FromInt(this.Difficulty),
                 Mode = ModesEnumEx.FromInt(this.Mode),
                 Score = this.Score,
-                AnswersStats = new Dictionary<int,bool>() // TODO
+                AnswersStats = answers
             };
 
             return s;

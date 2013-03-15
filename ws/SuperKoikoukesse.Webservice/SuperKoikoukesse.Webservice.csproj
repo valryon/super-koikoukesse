@@ -173,6 +173,7 @@
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Players\Index.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\Stats\QuestionStats.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,65 +26,44 @@ namespace SuperKoikoukesse.Webservice.Core.Model
 
         public void InitializeDefaultValues()
         {
-            ModesConfiguration.Add(new ModeConfiguration()
-            {
-                Mode = ModesEnum.ScoreAttack,
-                Difficulty = DifficultiesEnum.Easy,
-                QuestionsCount = 4,
-                Score = 100,
-                Time = 20,
-            });
+            ModesConfiguration.Clear();
+            Properties.Clear();
 
-            ModesConfiguration.Add(new ModeConfiguration()
+            foreach (ModesEnum modes in Enum.GetValues(typeof(ModesEnum)))
             {
-                Mode = ModesEnum.ScoreAttack,
-                Difficulty = DifficultiesEnum.Hard,
-                QuestionsCount = 5,
-                Score = 200,
-                Time = 10,
-            });
+                foreach (DifficultiesEnum diff in Enum.GetValues(typeof(DifficultiesEnum)))
+                {
+                    ModeConfiguration c = new ModeConfiguration();
 
-            ModesConfiguration.Add(new ModeConfiguration()
-            {
-                Mode = ModesEnum.ScoreAttack,
-                Difficulty = DifficultiesEnum.Expert,
-                QuestionsCount = 8,
-                Score = 200,
-                Time = 10,
-            });
+                    c.Mode = modes;
+                    c.Difficulty = diff;
 
-            ModesConfiguration.Add(new ModeConfiguration()
-            {
-                Mode = ModesEnum.ScoreAttack,
-                Difficulty = DifficultiesEnum.Nolife,
-                QuestionsCount = 42,
-                Score = 4200,
-                Time = 4,
-            });
+                    c.Score = 100 * (((int)diff) + 1);
 
-            ModesConfiguration.Add(new ModeConfiguration()
-            {
-                Mode = ModesEnum.Survival,
-                Difficulty = DifficultiesEnum.Easy,
-                Score = 100,
-                Time = 60,
-            });
+                    if (modes == ModesEnum.Survival)
+                    {
+                        c.Lives = 3;
+                        c.Time = 10;
+                    }
+                    else if (modes == ModesEnum.TimeAttack)
+                    {
+                        c.Time = 60;
+                    }
+                    else if (modes == ModesEnum.ScoreAttack)
+                    {
+                        c.QuestionsCount = 20;
+                        c.Time = 10;
+                    }
+                    else if (modes == ModesEnum.Versus)
+                    {
+                        c.QuestionsCount = 5;
+                        c.Time = 10;
+                    }
 
-            Properties.Add(new ConfigurationItem()
-            {
-                Key = "Other prop",
-                Value = "10",
-                Target = ConfigurationTargetEnum.All,
-                Help = "Juste un test 1"
-            });
+                    ModesConfiguration.Add(c);
+                }
+            }
 
-            Properties.Add(new ConfigurationItem()
-            {
-                Key = "Other prop",
-                Value = "10",
-                Target = ConfigurationTargetEnum.All,
-                Help = "Juste un test 2"
-            });
         }
     }
 
@@ -117,5 +96,6 @@ namespace SuperKoikoukesse.Webservice.Core.Model
         public int? Time { get; set; }
         public int? Score { get; set; }
         public int? QuestionsCount { get; set; }
+        public int? Lives { get; set; }
     }
 }
