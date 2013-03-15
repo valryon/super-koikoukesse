@@ -32,7 +32,7 @@ namespace Superkoikoukesse.Common
 					T serviceOutput = new T ();
 					serviceOutput.BuildFromJsonObject (jsonObject);
 
-					PostRequest(serviceOutput);
+					PostRequest(serviceOutput, true);
 
 					if(callback != null) {
 						callback(serviceOutput);
@@ -41,7 +41,9 @@ namespace Superkoikoukesse.Common
 				catch(Exception e) {
 					// Log and callback
 					Logger.LogException (LogLevel.Error, "GenericService.Request ", e);
-					
+
+					PostRequest(default(T), false);
+
 					if (callbackFailure != null) {
 						callbackFailure (e);
 					}
@@ -51,7 +53,7 @@ namespace Superkoikoukesse.Common
 			);
 		}
 
-		protected virtual T PostRequest (T parsedObject) {
+		protected virtual T PostRequest (T parsedObject, bool success) {
 			return parsedObject;
 		}
 	}

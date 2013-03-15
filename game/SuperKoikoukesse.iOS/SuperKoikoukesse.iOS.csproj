@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -106,6 +107,10 @@
     <Compile Include="Controllers\MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\LoadingViewController.cs" />
+    <Compile Include="Controllers\LoadingViewController.designer.cs">
+      <DependentUpon>LoadingViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -119,6 +124,8 @@
     <InterfaceDefinition Include="Views\GameViewController_iPhone.xib" />
     <InterfaceDefinition Include="Views\MenuViewController_iPhone.xib" />
     <InterfaceDefinition Include="Views\MenuViewController_iPad.xib" />
+    <InterfaceDefinition Include="Views\LoadingViewController_iPhone.xib" />
+    <InterfaceDefinition Include="Views\LoadingViewController_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">

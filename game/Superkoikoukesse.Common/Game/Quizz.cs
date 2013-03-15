@@ -423,6 +423,8 @@ namespace Superkoikoukesse.Common
 			WebserviceStats stats = new WebserviceStats ();
 
 			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, failureCallback);
+
+			//TODO Store in case of failure ?
 		}
 
 		#endregion

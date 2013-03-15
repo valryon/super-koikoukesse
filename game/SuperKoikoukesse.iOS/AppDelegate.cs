@@ -19,8 +19,10 @@ namespace SuperKoikoukesse.iOS
 
 		// class-level declarations
 		UIWindow window;
+
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
+		private LoadingViewController loadingViewController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -62,14 +64,80 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void UpdateConfiguration ()
 		{
+			SetLoading(true);
+
 			// Get the distant configuration
 			WebserviceConfiguration configWs = new WebserviceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
+				SetLoading(false);
+
 				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
 			},
-				null);
+			(e) => {
+				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. " + e);
+
+				this.Configuration = configWs.LastValidConfig;
+
+				if(this.Configuration == null) {
+
+					Logger.Log (LogLevel.Warning, "Using default (and bad) values!. " + e);
+
+					this.Configuration = new GameConfiguration();
+				}
+
+				SetLoading(false);
+			});
+		}
+
+		public void SetLoading(bool value) {
+
+			if (IsLoading != value) {
+				IsLoading = value;
+			}
+
+			if (loadingViewController == null) {
+				loadingViewController = new LoadingViewController();
+			}
+
+			BeginInvokeOnMainThread (() => {
+
+				if(IsLoading) {
+					DisplayLoading();
+				}
+				else {
+					HideLoading();
+				}
+			});
+		}
+
+		/// <summary>
+		/// Display the loading screen
+		/// </summary>
+		private void DisplayLoading() {
+
+			// Center
+//			loadingViewController.View.Frame = new System.Drawing.RectangleF (
+//
+//				(window.RootViewController.View.Bounds.Width/2) - (loadingViewController.View.Frame.Width/2),
+//				(window.RootViewController.View.Bounds.Height/2)- (loadingViewController.View.Frame.Height/2),
+//				loadingViewController.View.Frame.Width,
+//				loadingViewController.View.Frame.Height
+//			);
+
+			// Fill
+			loadingViewController.View.Frame = (window.RootViewController.View.Bounds);
+
+			window.RootViewController.View.AddSubview (loadingViewController.View);
+		}
+
+		/// <summary>
+		/// Hide the loading screen
+		/// </summary>
+		private void HideLoading() {
+			loadingViewController.View.RemoveFromSuperview ();
+			//loadingViewController.
 		}
 
 		public void SwitchToMenuView ()
@@ -114,6 +182,11 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <value>The configuration.</value>
 		public GameConfiguration Configuration { get; set; }
+
+		/// <summary>
+		/// Is loading something
+		/// </summary>
+		public bool IsLoading { get; private set; }
 
 		protected override void Dispose (bool disposing)
 		{

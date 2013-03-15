@@ -13,27 +13,36 @@ namespace Superkoikoukesse.Common
 		{
 		}
 
-		protected override GameConfiguration PostRequest (GameConfiguration newConfig)
+		public GameConfiguration LastValidConfig { get; set; }
+
+		protected override GameConfiguration PostRequest (GameConfiguration newConfig, bool success)
 		{
 			// Compare downloaded config with local
 			GameConfiguration localConfig = loadConfigurationFromDevice ();
 
-			bool saveNewConfig = true;
+			LastValidConfig = localConfig;
 
-			if (localConfig != null) {
+			if (success) {
+				bool saveNewConfig = true;
 
-				// Update local if necessary
-				if (localConfig.LastUpdate >= newConfig.LastUpdate) {
-					saveNewConfig = false;
+				if (localConfig != null) {
+
+					// Update local if necessary
+					if (localConfig.LastUpdate >= newConfig.LastUpdate) {
+						saveNewConfig = false;
+					}
+				} 
+
+				if (saveNewConfig) {
+					saveConfigurationOnDevice (newConfig);
 				}
-			} 
 
-			if (saveNewConfig) {
-				saveConfigurationOnDevice (newConfig);
+				// Return the config to use
+				return newConfig;
+			} else {
+				// Any error: use local file
+				return localConfig;
 			}
-
-			// Return the config to use
-			return newConfig;
 		}
 
 		private void saveConfigurationOnDevice (GameConfiguration config)

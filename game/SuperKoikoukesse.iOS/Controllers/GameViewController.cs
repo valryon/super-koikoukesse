@@ -350,9 +350,7 @@ namespace SuperKoikoukesse.iOS
 				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {
 				// Stats time
-				m_quizz.SendQuizzData ((ex) => {
-
-				});
+				m_quizz.SendQuizzData (null);
 
 				// Back to the menu
 				getBackToMenu ();
