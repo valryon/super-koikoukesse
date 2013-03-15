@@ -26,7 +26,7 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		public GameViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "GameViewController_iPhone" : "GameViewController_iPad", null)
+			: base (UserInterfaceIdiomIsPhone ? "GameView_iPhone" : "GameView_iPad", null)
 		{
 			Logger.Log (LogLevel.Info, "GameView on " + (UserInterfaceIdiomIsPhone ? "iPhone" : "iPad"));
 		}

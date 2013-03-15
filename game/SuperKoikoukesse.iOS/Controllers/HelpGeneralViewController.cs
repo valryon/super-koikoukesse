@@ -7,14 +7,14 @@ using MonoTouch.UIKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class LoadingViewController : UIViewController
+	public partial class HelpGeneralViewController : UIViewController
 	{
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
-		public LoadingViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "LoadingView_iPhone" : "LoadingView_iPad", null)
+		public HelpGeneralViewController ()
+			: base (UserInterfaceIdiomIsPhone ? "HelpGeneralViewController_iPhone" : "HelpGeneralViewController_iPad", null)
 		{
 		}
 		

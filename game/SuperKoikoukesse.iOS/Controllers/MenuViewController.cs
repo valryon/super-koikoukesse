@@ -16,7 +16,7 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		public MenuViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "MenuViewController_iPhone" : "MenuViewController_iPad", null)
+			: base (UserInterfaceIdiomIsPhone ? "MenuView_iPhone" : "MenuView_iPad", null)
 		{
 		}
 		

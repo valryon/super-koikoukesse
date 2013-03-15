@@ -92,6 +92,8 @@
     <Folder Include="Resources\database\images\" />
     <Folder Include="Service\" />
     <Folder Include="en.lproj\" />
+    <Folder Include="Views\iPhone\" />
+    <Folder Include="Views\iPad\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -111,6 +113,22 @@
     <Compile Include="Controllers\LoadingViewController.designer.cs">
       <DependentUpon>LoadingViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\MenuDifficultyViewController.cs" />
+    <Compile Include="Controllers\MenuDifficultyViewController.designer.cs">
+      <DependentUpon>MenuDifficultyViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreditsViewController.cs" />
+    <Compile Include="Controllers\CreditsViewController.designer.cs">
+      <DependentUpon>CreditsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HelpGeneralViewController.cs" />
+    <Compile Include="Controllers\HelpGeneralViewController.designer.cs">
+      <DependentUpon>HelpGeneralViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HelpGameDifficultiesViewController.cs" />
+    <Compile Include="Controllers\HelpGameDifficultiesViewController.designer.cs">
+      <DependentUpon>HelpGameDifficultiesViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -120,12 +138,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\GameViewController_iPad.xib" />
-    <InterfaceDefinition Include="Views\GameViewController_iPhone.xib" />
-    <InterfaceDefinition Include="Views\MenuViewController_iPhone.xib" />
-    <InterfaceDefinition Include="Views\MenuViewController_iPad.xib" />
-    <InterfaceDefinition Include="Views\LoadingViewController_iPhone.xib" />
-    <InterfaceDefinition Include="Views\LoadingViewController_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\HelpGameDifficulties_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPhone\HelpGameDifficulties_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\GameView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\LoadingView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuDifficultyView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\HelpGeneralView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPhone\HelpGeneralView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\LoadingView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">
