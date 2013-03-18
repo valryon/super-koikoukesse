@@ -134,6 +134,10 @@
       <DependentUpon>HelpGameDifficultiesViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="GameCenter\GameCenterService.cs" />
+    <Compile Include="Controllers\SplashscreenViewController.cs" />
+    <Compile Include="Controllers\SplashscreenView.designer.cs">
+      <DependentUpon>SplashscreenViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -157,6 +161,7 @@
     <InterfaceDefinition Include="Views\iPad\HelpGeneralView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPhone\HelpGameDifficultiesView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPad\HelpGameDifficultiesView_iPad.xib" />
+    <InterfaceDefinition Include="Views\SplashscreenView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">

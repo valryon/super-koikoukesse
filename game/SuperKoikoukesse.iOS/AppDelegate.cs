@@ -20,6 +20,7 @@ namespace SuperKoikoukesse.iOS
 		// class-level declarations
 		UIWindow window;
 
+		private SplashscreenViewController splashScreenViewController;
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
 		private MenuDifficultyViewController menuDifficultyViewController;
@@ -51,8 +52,8 @@ namespace SuperKoikoukesse.iOS
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			//viewController = new GameViewController ();
-			menuViewController = new MenuViewController ();
-			window.RootViewController = menuViewController;
+			splashScreenViewController = new SplashscreenViewController ();
+			window.RootViewController = splashScreenViewController;
 			window.MakeKeyAndVisible ();
 
 			// Load configuration
