@@ -197,14 +197,16 @@ namespace SuperKoikoukesse.iOS
 			if (gameViewController == null) {
 				gameViewController = new GameViewController ();
 			}
-
+			
 			gameViewController.InitializeQuizz (mode, difficulty);
-
+			
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = gameViewController;
 			window.MakeKeyAndVisible ();
-
+			
 		}
+
+
 
 		#endregion
 
