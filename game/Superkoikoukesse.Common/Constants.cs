@@ -24,6 +24,8 @@ namespace Superkoikoukesse.Common
 
 		#region Animations
 
+		public static float SplashScreenFadeDuration = 0.5f;
+
 		public static float DezoomFactor = 10f;
 
 		public static float DezoomDuration = 5f; //seconds

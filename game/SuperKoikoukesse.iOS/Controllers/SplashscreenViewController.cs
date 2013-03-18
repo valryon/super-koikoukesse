@@ -5,6 +5,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Threading;
+using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -30,12 +31,12 @@ namespace SuperKoikoukesse.iOS
 
 			// Fade in & out animation
 			UIView.Animate (
-				1f,
+				Constants.SplashScreenFadeDuration,
 				() => {
 					View.Alpha = 1f;
 				}, () => {
 					UIView.Animate (
-							1f,
+						Constants.SplashScreenFadeDuration,
 							() => {
 						View.Alpha = 0f;
 
