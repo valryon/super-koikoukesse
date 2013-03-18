@@ -322,7 +322,7 @@ namespace Superkoikoukesse.Common
 					m_mistakesCount++;
 
 					// Apply bonus/malus per mode
-					if (Mode == GameModes.TimeAttack) {
+					if (Mode == GameModes.ScoreAttack) {
 						malus = 25;
 					}
 					else if (Mode == GameModes.TimeAttack) {
