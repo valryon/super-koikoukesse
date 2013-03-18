@@ -54,6 +54,8 @@ namespace SuperKoikoukesse.iOS
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToMenuView ();
+			appDelegate.FirstInitialization();
+
 		}
 	}
 }

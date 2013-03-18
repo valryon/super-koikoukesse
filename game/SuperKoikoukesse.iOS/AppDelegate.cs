@@ -56,14 +56,19 @@ namespace SuperKoikoukesse.iOS
 			window.RootViewController = splashScreenViewController;
 			window.MakeKeyAndVisible ();
 
-			// Load configuration
+			return true;
+		}
+
+		public void FirstInitialization() {
+
+			SetLoading (true);
+
 			UpdateConfiguration ();
 
 			// Register on Game Center
 			PlayerService = new GameCenterService (window.RootViewController);
 			PlayerService.Authenticate ();
 
-			return true;
 		}
 
 		/// <summary>

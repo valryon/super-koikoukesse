@@ -59,7 +59,6 @@ namespace Superkoikoukesse.Common
 			
 				serializer.Serialize (writer, config); 
 			}
-
 		}
 
 		private GameConfiguration loadConfigurationFromDevice ()
