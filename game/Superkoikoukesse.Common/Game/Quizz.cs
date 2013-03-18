@@ -282,6 +282,8 @@ namespace Superkoikoukesse.Common
 		{
 			int score = m_baseScore; 
 			int comboToApply = Combo;
+			int malus = 0;
+			int bonus = 0;
 
 			bool result = false;
 
@@ -305,6 +307,12 @@ namespace Superkoikoukesse.Common
 					if (JokerPartCount >= 3) {
 						JokerPartCount = 3; 
 					}
+
+					// Apply bonus/malus per mode
+					if(Mode == GameModes.ScoreAttack) {
+						malus = (int)TimeLeft;
+					}
+
 				} else {
 					Logger.Log (LogLevel.Info, "Bad answer...");
 					Combo = 1;
@@ -313,7 +321,13 @@ namespace Superkoikoukesse.Common
 
 					m_mistakesCount++;
 
+					// Apply bonus/malus per mode
 					if (Mode == GameModes.TimeAttack) {
+						malus = 25;
+					}
+					else if (Mode == GameModes.TimeAttack) {
+
+						malus = 25;
 
 						// Losing time for each mistakes
 						SubstractTime (m_mistakesCount); // 1 sec per accumulated mistakes
@@ -329,7 +343,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Apply score
-			Score += score * comboToApply; 
+			Score += (score + bonus - malus) * comboToApply; 
 
 			if (Results.ContainsKey (CurrentQuestion.CorrectAnswer.GameId) == false) {
 				Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
@@ -416,6 +430,9 @@ namespace Superkoikoukesse.Common
 		{
 			if (IsJokerAvailable) {
 				JokerPartCount = 0;
+
+				// Add a question
+				m_questionsPool.Enqueue (getRandomQuestion ());
 
 				SelectAnswer (-1, true);
 			}
