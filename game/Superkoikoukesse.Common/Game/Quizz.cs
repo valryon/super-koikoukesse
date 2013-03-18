@@ -112,6 +112,7 @@ namespace Superkoikoukesse.Common
 		private object m_timeLeftLock = new object ();
 		private List<int> m_correctAnswerIds;
 		private Random m_random;
+		private List<ImageTransformations> m_availableTransformations;
 
 		public Quizz ()
 		{
@@ -257,7 +258,20 @@ namespace Superkoikoukesse.Common
 		/// <returns>The image transformation.</returns>
 		private ImageTransformations getImageTransformation ()
 		{
-			return ImageTransformations.Pixelization; // TODO Images transformation
+			if (m_availableTransformations == null) {
+				m_availableTransformations = new List<ImageTransformations> ();
+
+				foreach (ImageTransformations it in Enum.GetValues (typeof(ImageTransformations))) {
+
+					if(it != ImageTransformations.None) {
+						m_availableTransformations.Add (it);
+					}
+				}
+			}
+
+			int randomIndex = m_random.Next (m_availableTransformations.Count);
+
+			return m_availableTransformations [randomIndex];
 		}
 
 		/// <summary>
@@ -320,7 +334,7 @@ namespace Superkoikoukesse.Common
 			if (Results.ContainsKey (CurrentQuestion.CorrectAnswer.GameId) == false) {
 				Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
 			} else {
-				Logger.Log(LogLevel.Error,"Duplicated question registered! Are you testing something stupid?"); 
+				Logger.Log (LogLevel.Error, "Duplicated question registered! Are you testing something stupid?"); 
 			}
 		}
 
@@ -345,26 +359,26 @@ namespace Superkoikoukesse.Common
 						m_questionsPool.Enqueue (getRandomQuestion ());
 					}
 
-					Logger.Log (LogLevel.Info, "Cached "+questionCachedCount+" new questions.");
+					Logger.Log (LogLevel.Info, "Cached " + questionCachedCount + " new questions.");
 
 				}
 			}
 
+			// Take next question
 			if (m_questionsPool.Count > 0) {
 
-				CurrentQuestion = m_questionsPool.Dequeue();
+				CurrentQuestion = m_questionsPool.Dequeue ();
 
 				// Reset timer
 				if (Mode == GameModes.TimeAttack) {
-					if(TimeLeft < 0) {
+					if (TimeLeft < 0) {
 						IsOver = true;
 					}
-				}
-				else {
+				} else {
 					TimeLeft = m_baseTimeleft;
 					IsOver = false;
 
-					if(Mode == GameModes.Survival) {
+					if (Mode == GameModes.Survival) {
 						IsOver = (Lives < 0);
 					}
 				}
@@ -375,6 +389,11 @@ namespace Superkoikoukesse.Common
 					Logger.Log (LogLevel.Info, "Quizz is over!");
 					IsOver = true;
 				} 
+			}
+
+			// Change image transformation
+			if (Difficulty != GameDifficulties.Easy) {
+				ImageTransformation =  getImageTransformation();
 			}
 		}
 
