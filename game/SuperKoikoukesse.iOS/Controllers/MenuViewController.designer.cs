@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton creditsButton { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
@@ -28,6 +31,9 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton helpButton { get; set; }
+
+		[Action ("creditsButtonPressed:")]
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("scoreAttackButtonPressed:")]
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -49,6 +55,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (creditsButton != null) {
+				creditsButton.Dispose ();
+				creditsButton = null;
+			}
+
 			if (bgImage != null) {
 				bgImage.Dispose ();
 				bgImage = null;

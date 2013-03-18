@@ -95,6 +95,11 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
 		}
 
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToCreditsView ();
+		}
+
 		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			showHelp ();
@@ -102,7 +107,6 @@ namespace SuperKoikoukesse.iOS
 
 		private void showHelp ()
 		{
-
 			View.AddSubview (helpViewController.View);
 		}
 	}

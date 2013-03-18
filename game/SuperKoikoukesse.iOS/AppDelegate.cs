@@ -24,6 +24,7 @@ namespace SuperKoikoukesse.iOS
 		private MenuViewController menuViewController;
 		private MenuDifficultyViewController menuDifficultyViewController;
 		private LoadingViewController loadingViewController;
+		private CreditsViewController creditsViewController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -202,6 +203,21 @@ namespace SuperKoikoukesse.iOS
 			
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = gameViewController;
+			window.MakeKeyAndVisible ();
+			
+		}
+
+		/// <summary>
+		/// Change to credits view
+		/// </summary>
+		public void SwitchToCreditsView ()
+		{
+			if (creditsViewController == null) {
+				creditsViewController = new CreditsViewController ();
+			}
+			
+			window.RootViewController.RemoveFromParentViewController ();
+			window.RootViewController = creditsViewController;
 			window.MakeKeyAndVisible ();
 			
 		}

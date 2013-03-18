@@ -26,8 +26,8 @@ namespace Superkoikoukesse.Common
 		/// <value>The instance.</value>
 		public static DatabaseService Instance {
 			get {
-				if(m_instance == null) {
-					m_instance = new DatabaseService();
+				if (m_instance == null) {
+					m_instance = new DatabaseService ();
 				}
 
 				return m_instance;
@@ -46,12 +46,13 @@ namespace Superkoikoukesse.Common
 		/// Load the database
 		/// </summary>
 		/// <param name="location">Location.</param>
-		public void Load(string location) {
+		public void Load (string location)
+		{
 			m_location = location;
 
 			// Initialize db connection
-			Logger.Log(LogLevel.Info,"Loading database... "+m_location);
-			m_db = new SQLiteConnection(location);
+			Logger.Log (LogLevel.Info, "Loading database... " + m_location);
+			m_db = new SQLiteConnection (location);
 
 			// Try to figure if we're in a first launch
 			int gamesCount = CountGames ();
@@ -69,7 +70,8 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Initialize table structure
 		/// </summary>
-		private void createTables() {
+		private void createTables ()
+		{
 
 			Logger.Log (LogLevel.Info, "Creating database schema");
 
@@ -80,7 +82,8 @@ namespace Superkoikoukesse.Common
 		/// Initialize the database using the specifiec XML
 		/// </summary>
 		/// <param name="xml">Xml.</param>
-		public void InitializeFromXml(string xml) {
+		public void InitializeFromXml (string xml)
+		{
 
 			createTables ();
 
@@ -104,28 +107,28 @@ namespace Superkoikoukesse.Common
 			int addCount = 0;
 			XElement element = XElement.Parse (xml);
 
-			foreach(XElement gameXml in element.Elements("game")) {
+			foreach (XElement gameXml in element.Elements("game")) {
 
-				GameInfo game = new GameInfo();
+				GameInfo game = new GameInfo ();
 
-				game.GameId = Convert.ToInt32(gameXml.Element("GameId").Value);
-				game.ImagePath = gameXml.Element("ImagePath").Value;
-				game.TitlePAL = gameXml.Element("TitlePAL").Value;
-				game.TitleUS = gameXml.Element("TitleUS").Value;
-				game.Platform = gameXml.Element("Platform").Value;
-				game.Genre = gameXml.Element("Genre").Value;
-				game.Publisher = gameXml.Element("Publisher").Value;
-				game.Year = Convert.ToInt32(gameXml.Element("Year").Value);
-				bool isRemoved = Convert.ToBoolean(gameXml.Element("IsRemoved").Value);
+				game.GameId = Convert.ToInt32 (gameXml.Element ("GameId").Value);
+				game.ImagePath = gameXml.Element ("ImagePath").Value;
+				game.TitlePAL = gameXml.Element ("TitlePAL").Value;
+				game.TitleUS = gameXml.Element ("TitleUS").Value;
+				game.Platform = gameXml.Element ("Platform").Value;
+				game.Genre = gameXml.Element ("Genre").Value;
+				game.Publisher = gameXml.Element ("Publisher").Value;
+				game.Year = Convert.ToInt32 (gameXml.Element ("Year").Value);
+				bool isRemoved = Convert.ToBoolean (gameXml.Element ("IsRemoved").Value);
 
-				if(isRemoved == false) {
+				if (isRemoved == false) {
 					addCount++;
 
 					AddGame (game);
 				}
 			}
 
-			Logger.Log (LogLevel.Info, "Initialization completed, "+addCount+" games added!");
+			Logger.Log (LogLevel.Info, "Initialization completed, " + addCount + " games added!");
 		}
 
 		#endregion
@@ -136,7 +139,8 @@ namespace Superkoikoukesse.Common
 		/// Add a new game entry
 		/// </summary>
 		/// <param name="gameInfo">Game info.</param>
-		public void AddGame(GameInfo gameInfo) {
+		public void AddGame (GameInfo gameInfo)
+		{
 			m_db.Insert (gameInfo);
 		}
 
@@ -144,23 +148,26 @@ namespace Superkoikoukesse.Common
 		/// Remove a game entry
 		/// </summary>
 		/// <param name="gameId">Game identifier.</param>
-		public void RemoveGame(GameInfo gameInfo) {
+		public void RemoveGame (GameInfo gameInfo)
+		{
 			m_db.Delete (gameInfo);
 		}
 
 		/// <summary>
 		/// Read games database
 		/// </summary>
-		public List<GameInfo> ReadGames() {
+		public List<GameInfo> ReadGames ()
+		{
 
-			return m_db.Table<GameInfo>().ToList ();
+			return m_db.Table<GameInfo> ().ToList ();
 		}
 
 		/// <summary>
 		/// Get a random game
 		/// </summary>
 		/// <returns>The game.</returns>
-		public GameInfo RandomGame() {
+		public GameInfo RandomGame ()
+		{
 
 			int randomIndex = m_random.Next (0, CountGames ());
 
@@ -171,14 +178,13 @@ namespace Superkoikoukesse.Common
 		/// Returns the current number of games in database
 		/// </summary>
 		/// <returns>The games.</returns>
-		public int CountGames() {
-
+		public int CountGames ()
+		{
 			var gameTable = m_db.Table<GameInfo> ();
 
 			try {
-				return gameTable.Count();
-			}
-			catch(Exception) {
+				return gameTable.Count ();
+			} catch (Exception) {
 				return 0;
 			}
 		}

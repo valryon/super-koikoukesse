@@ -1,9 +1,12 @@
 
 using System;
+using System.Linq;
 using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Superkoikoukesse.Common;
+using System.Text;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -30,7 +33,22 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 			
-			// Perform any additional setup after loading the view, typically from a nib.
+			// Load all publishers name and display them
+			StringBuilder credits = new StringBuilder();
+
+			var games =DatabaseService.Instance.ReadGames ();
+			var publishers = games.Select (g => g.Publisher).Distinct ().ToList ();
+
+			foreach (var publisher in publishers) {
+				credits.Append(publisher+ " ");
+			}
+
+			creditsLabel.Text = credits.ToString();
+		}
+
+		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToMenuView ();
 		}
 	}
 }
