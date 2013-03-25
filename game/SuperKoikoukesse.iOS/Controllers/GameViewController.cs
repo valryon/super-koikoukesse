@@ -350,6 +350,9 @@ namespace SuperKoikoukesse.iOS
 			if (m_quizz.IsOver == false) {
 				updateViewToQuestion (m_quizz.CurrentQuestion);
 			} else {
+				// Stop timer
+				stopGameTimer ();
+
 				// Stats time
 				m_quizz.SendQuizzData (null);
 
@@ -374,8 +377,6 @@ namespace SuperKoikoukesse.iOS
 
 		private void getBackToMenu ()
 		{
-			stopGameTimer ();
-
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToMenuView ();
 		}

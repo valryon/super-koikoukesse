@@ -24,7 +24,7 @@ namespace SuperKoikoukesse.iOS
 		public override void Authenticate ()
 		{
 			m_isAuthenticated = false;
-			Logger.Log(LogLevel.Info, "Game Center Authentication requested...");
+			Logger.Log (LogLevel.Info, "Game Center Authentication requested...");
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (6, 0)) {
 				//
@@ -42,20 +42,18 @@ namespace SuperKoikoukesse.iOS
 						var authenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 					}
 
-					if(error != null) {
-						Logger.Log(LogLevel.Error, "Game Center Authentication failed! "+error);
-					}
-					else {
+					if (error != null) {
+						Logger.Log (LogLevel.Error, "Game Center Authentication failed! " + error);
+					} else {
 						m_isAuthenticated = true;
 					}
 				};
 			} else {
 				// Versions prior to iOS 6.0
 				GKLocalPlayer.LocalPlayer.Authenticate ((error) => {
-					if(error != null) {
-						Logger.Log(LogLevel.Error, "Game Center Authentication failed! "+error);
-					}
-					else {
+					if (error != null) {
+						Logger.Log (LogLevel.Error, "Game Center Authentication failed! " + error);
+					} else {
 						m_isAuthenticated = true;
 					}
 				});
@@ -76,12 +74,16 @@ namespace SuperKoikoukesse.iOS
 //				
 //			 }];
 
-			GKScore gkScore = new GKScore(GetLeaderboardId(mode,difficulty));
+			string leaderboardId = GetLeaderboardId (mode, difficulty);
+
+			Logger.Log (LogLevel.Info, "Game Center  - Adding score to " + leaderboardId + "...");
+
+			GKScore gkScore = new GKScore (leaderboardId);
 			gkScore.Value = score;
 
-			gkScore.ReportScore( (error) => {
-				if(error != null) {
-					Logger.Log(LogLevel.Error,"Game Center - Score not submited! " + error);
+			gkScore.ReportScore ((error) => {
+				if (error != null) {
+					Logger.Log (LogLevel.Error, "Game Center - Score not submited! " + error);
 				}
 			});
 		}

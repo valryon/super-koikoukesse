@@ -248,16 +248,16 @@ namespace SuperKoikoukesse.iOS
 				m_gkLeaderboardview.Category = id; 
 
 				if (m_gkLeaderboardview != null) {
-					m_gkLeaderboardview.Finished += delegate(object sender, EventArgs e) {
+					m_gkLeaderboardview.DidFinish += delegate(object sender, EventArgs e) {
 						m_gkLeaderboardview.DismissViewController (true, null);
-
+						
 						if(callback != null)
 						{
 							callback();
 						}
 					};
 
-					window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
+					window.RootViewController.PresentModalViewController (m_gkLeaderboardview, true);
 				}
 			} else {
 				PlayerService.Authenticate ();
