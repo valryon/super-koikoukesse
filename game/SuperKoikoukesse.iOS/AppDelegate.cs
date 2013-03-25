@@ -7,6 +7,7 @@ using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using Superkoikoukesse.Common.Utils;
 using System.IO;
+using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -19,7 +20,6 @@ namespace SuperKoikoukesse.iOS
 
 		// class-level declarations
 		UIWindow window;
-
 		private SplashscreenViewController splashScreenViewController;
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
@@ -59,7 +59,8 @@ namespace SuperKoikoukesse.iOS
 			return true;
 		}
 
-		public void FirstInitialization() {
+		public void FirstInitialization ()
+		{
 
 			SetLoading (true);
 
@@ -76,14 +77,14 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void UpdateConfiguration ()
 		{
-			SetLoading(true);
+			SetLoading (true);
 
 			// Get the distant configuration
 			WebserviceConfiguration configWs = new WebserviceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
-				SetLoading(false);
+				SetLoading (false);
 
 				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
 			},
@@ -92,14 +93,14 @@ namespace SuperKoikoukesse.iOS
 
 				this.Configuration = configWs.LastValidConfig;
 
-				if(this.Configuration == null) {
+				if (this.Configuration == null) {
 
 					Logger.Log (LogLevel.Warning, "Using default (and bad) values!. " + e);
 
-					this.Configuration = new GameConfiguration();
+					this.Configuration = new GameConfiguration ();
 				}
 
-				SetLoading(false);
+				SetLoading (false);
 			});
 		
 		}
@@ -110,23 +111,23 @@ namespace SuperKoikoukesse.iOS
 		/// Add or hide a loading view
 		/// </summary>
 		/// <param name="value">If set to <c>true</c> value.</param>
-		public void SetLoading(bool value) {
+		public void SetLoading (bool value)
+		{
 
 			if (IsLoading != value) {
 				IsLoading = value;
 			}
 
 			if (loadingViewController == null) {
-				loadingViewController = new LoadingViewController();
+				loadingViewController = new LoadingViewController ();
 			}
 
 			BeginInvokeOnMainThread (() => {
 
-				if(IsLoading) {
-					DisplayLoading();
-				}
-				else {
-					HideLoading();
+				if (IsLoading) {
+					DisplayLoading ();
+				} else {
+					HideLoading ();
 				}
 			});
 		}
@@ -134,7 +135,8 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Display the loading screen
 		/// </summary>
-		private void DisplayLoading() {
+		private void DisplayLoading ()
+		{
 
 			// Center
 //			loadingViewController.View.Frame = new System.Drawing.RectangleF (
@@ -154,7 +156,8 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Hide the loading screen
 		/// </summary>
-		private void HideLoading() {
+		private void HideLoading ()
+		{
 			loadingViewController.View.RemoveFromSuperview ();
 			//loadingViewController.
 		}
@@ -227,8 +230,39 @@ namespace SuperKoikoukesse.iOS
 			window.MakeKeyAndVisible ();
 			
 		}
+	
+		#endregion
 
+		#region Game center
 
+		private GKLeaderboardViewController m_gkLeaderboardview;
+//		private GKAchievementViewController m_gkAchievementview;
+
+		public void ShowLeaderboards (string id, Action callback)
+		{
+			if (PlayerService.IsAuthenticated) {
+				if (m_gkLeaderboardview == null) {
+					m_gkLeaderboardview = new GKLeaderboardViewController ();
+				}
+
+				m_gkLeaderboardview.Category = id; 
+
+				if (m_gkLeaderboardview != null) {
+					m_gkLeaderboardview.Finished += delegate(object sender, EventArgs e) {
+						m_gkLeaderboardview.DismissViewController (true, null);
+
+						if(callback != null)
+						{
+							callback();
+						}
+					};
+
+					window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
+				}
+			} else {
+				PlayerService.Authenticate ();
+			}
+		}
 
 		#endregion
 

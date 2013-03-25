@@ -11,6 +11,7 @@ namespace SuperKoikoukesse.iOS
 	public class GameCenterService : PlayerService
 	{
 		private UIViewController m_viewController;
+		private bool m_isAuthenticated;
 
 		public GameCenterService (UIViewController viewController)
 		{
@@ -20,8 +21,11 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public override bool Authenticate ()
+		public override void Authenticate ()
 		{
+			m_isAuthenticated = false;
+			Logger.Log(LogLevel.Info, "Game Center Authentication requested...");
+
 			if (UIDevice.CurrentDevice.CheckSystemVersion (6, 0)) {
 				//
 				// iOS 6.0 and newer
@@ -37,21 +41,61 @@ namespace SuperKoikoukesse.iOS
 						// Check if you are authenticated:
 						var authenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 					}
-					Console.WriteLine ("Authentication result: {0}", error);
+
+					if(error != null) {
+						Logger.Log(LogLevel.Error, "Game Center Authentication failed! "+error);
+					}
+					else {
+						m_isAuthenticated = true;
+					}
 				};
 			} else {
 				// Versions prior to iOS 6.0
 				GKLocalPlayer.LocalPlayer.Authenticate ((error) => {
-					Console.WriteLine ("Authentication result: {0}", error);
+					if(error != null) {
+						Logger.Log(LogLevel.Error, "Game Center Authentication failed! "+error);
+					}
+					else {
+						m_isAuthenticated = true;
+					}
 				});
 			}
+		}
 
-			return false;
+		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
+		{
+//			GKScore *myScoreValue = [[[GKScore alloc] initWithCategory:@"testleaderboard"] autorelease];
+//			myScoreValue.value = score;
+//			
+//			[myScoreValue reportScoreWithCompletionHandler:^(NSError *error){
+//				if(error != nil){
+//					NSLog(@"Score Submission Failed");
+//				} else {
+//					NSLog(@"Score Submitted");
+//				}
+//				
+//			 }];
+
+			GKScore gkScore = new GKScore(GetLeaderboardId(mode,difficulty));
+			gkScore.Value = score;
+
+			gkScore.ReportScore( (error) => {
+				if(error != null) {
+					Logger.Log(LogLevel.Error,"Game Center - Score not submited! " + error);
+				}
+			});
 		}
 
 		public override string PlayerId {
-			get;
-			set;
+			get {
+				return GKLocalPlayer.LocalPlayer.DisplayName;
+			}
+		}
+
+		public override bool IsAuthenticated {
+			get {
+				return m_isAuthenticated;
+			}
 		}
 	}
 }

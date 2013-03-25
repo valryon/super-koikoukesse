@@ -8,15 +8,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>SuperKoikoukesse</string>
+	<string>Super Koikoukesse</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.pixelnest.superkoikoukesse</string>
+	<string>io.pixelnest.superkoikoukesse</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

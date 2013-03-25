@@ -226,7 +226,7 @@ namespace SuperKoikoukesse.iOS
 			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
 
 			if (m_animationTimer != null) {
-				m_animationTimer.Dispose();
+				m_animationTimer.Dispose ();
 				m_animationTimer = null;
 			}
 
@@ -254,7 +254,7 @@ namespace SuperKoikoukesse.iOS
 			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 
 				m_currentPixelateFactor = 1f;
-				pixelateGameImage(m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
+				pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
 
 				// Thread animation
 				var thread = new Thread (() => {
@@ -268,11 +268,11 @@ namespace SuperKoikoukesse.iOS
 							if (m_currentPixelateFactor > (imageBaseSizeWidth * 0.5f)) {
 								m_currentPixelateFactor = imageBaseSizeWidth;
 
-								if(m_animationTimer != null) {
-									m_animationTimer.Dispose();
+								if (m_animationTimer != null) {
+									m_animationTimer.Dispose ();
 								}
 							}
-							pixelateGameImage(m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
+							pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
 						});
 					
 						NSRunLoop.Current.Run ();
@@ -286,7 +286,8 @@ namespace SuperKoikoukesse.iOS
 		/// Downsample and upsample the game image to create a pixelate effect
 		/// </summary>
 		/// <param name="pixelateFactor">Pixelate factor.</param>
-		private void pixelateGameImage(float pixelateFactor, float maxWidth, float maxHeight) {
+		private void pixelateGameImage (float pixelateFactor, float maxWidth, float maxHeight)
+		{
 						
 			var a = m_currentImage.Scale (new SizeF (pixelateFactor, pixelateFactor));
 			a.Scale (new SizeF (maxWidth, maxHeight));
@@ -352,8 +353,22 @@ namespace SuperKoikoukesse.iOS
 				// Stats time
 				m_quizz.SendQuizzData (null);
 
-				// Back to the menu
-				getBackToMenu ();
+				// Game center
+				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+				appDelegate.PlayerService.AddScore (m_quizz.Mode, m_quizz.Difficulty, m_quizz.Score);
+
+				// Show leaderboard
+				appDelegate.ShowLeaderboards (
+					appDelegate.PlayerService.GetLeaderboardId (m_quizz.Mode, m_quizz.Difficulty),
+					 () => {
+						this.InvokeOnMainThread( () => {
+							// Back to the menu
+							getBackToMenu ();
+					});
+					}
+				);
+
+
 			}
 		}
 
