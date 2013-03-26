@@ -21,7 +21,7 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public override void Authenticate ()
+		public override void Authenticate (Action callback)
 		{
 			m_isAuthenticated = false;
 			Logger.Log (LogLevel.Info, "Game Center Authentication requested...");
@@ -48,6 +48,10 @@ namespace SuperKoikoukesse.iOS
 
 						Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
 						m_isAuthenticated = true;
+					}
+
+					if(callback != null) {
+						callback();
 					}
 				};
 			} else {

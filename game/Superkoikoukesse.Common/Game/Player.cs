@@ -52,6 +52,15 @@ namespace Superkoikoukesse.Common
 
 		public Player ()
 		{
+			Credits = Constants.BaseCredits;
+			Coins = Constants.BaseCoins;
+		}
+
+		public Player (AuthenticatedPlayer aplayer)
+			: this()
+		{
+			DisplayName = aplayer.DisplayName;
+			Id = aplayer.PlayerId;
 		}
 
 		public void BuildFromJsonObject (JsonValue json)

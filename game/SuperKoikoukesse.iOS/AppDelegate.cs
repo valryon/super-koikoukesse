@@ -61,13 +61,16 @@ namespace SuperKoikoukesse.iOS
 
 		public void FirstInitialization ()
 		{
-
 			SetLoading (true);
 
 			UpdateConfiguration ();
 
 			// Register on Game Center
-			ProfileService.Instance.Initialize(new GameCenterService (window.RootViewController));
+			GameCenterService gameCenter = new GameCenterService (window.RootViewController);
+
+			gameCenter.Authenticate(() => {
+				ProfileService.Instance.Initialize(gameCenter);
+			});
 		}
 
 		/// <summary>

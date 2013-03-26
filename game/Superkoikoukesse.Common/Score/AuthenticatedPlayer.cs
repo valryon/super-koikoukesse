@@ -18,7 +18,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public abstract void Authenticate();
+		public abstract void Authenticate(Action callback);
 
 		/// <summary>
 		/// Send a score to a leaderboard

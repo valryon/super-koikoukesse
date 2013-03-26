@@ -52,21 +52,27 @@ namespace Superkoikoukesse.Common
 		public void Initialize (AuthenticatedPlayer aplayer)
 		{
 			AuthenticatedPlayer = aplayer;
+			bool createNewProfile = false;
 
-			// Get or register the player on the webservice
-			WebserviceGetPlayer ws = new WebserviceGetPlayer (AuthenticatedPlayer.PlayerId);
-			
-			ws.Request ((player) => {
-				if (player != null) {
-					// Just save the new profile
-					DatabaseService.Instance.SavePlayer (player);
+			// try to get from database
+			if (Player == null) {
+
+				// Nothing found: create something
+				createNewProfile = true;
+			} else {
+				// Game center id is not the same as stored id?
+				if (Player.Id != aplayer.PlayerId) {
+					createNewProfile = true;
 				}
-			},
-			(exception) => {
-				// Well, we crashed. See the log?
-			});
+			}
 
-			// Update data
+			// Locally create the player
+			if (createNewProfile) {
+				Player freshlyCreatedPlayer = new Player (aplayer);
+				
+				DatabaseService.Instance.SavePlayer (freshlyCreatedPlayer);
+			}
+
 			UpdatePlayer ();
 		}
 
@@ -75,6 +81,31 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void UpdatePlayer ()
 		{
+			// Get the player on the webservice and merge data
+			WebserviceGetPlayer ws = new WebserviceGetPlayer (Player.Id);
+			
+			ws.Request ((player) => {
+				if (player != null) {
+					// Merge inormations
+					Player localPlayer = Player;
+					
+					localPlayer.Credits = player.Credits;
+					localPlayer.Coins = player.Coins;
+					localPlayer.DisplayName = player.DisplayName;
+				} else {
+					Logger.Log (LogLevel.Info, "Unknow player to server");
+					
+					// Create player
+					WebserviceCreatePlayer wsCreate = new WebserviceCreatePlayer (Player);
+
+					wsCreate.CreatePlayer();
+				}
+			},
+			(exception) => {
+				// Well, we crashed. See the log?
+				Logger.Log (LogLevel.Error, "Calling service failed!");
+			});
+
 			// Do we have some disconnected data that we want to upload now?
 			updateDisconnectedData ();
 
@@ -94,14 +125,13 @@ namespace Superkoikoukesse.Common
 			bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
 
 			if (addCredits) {
+				int currentCredits = localPlayer.Credits;
 				localPlayer.Credits = 5;
+
+				AddCredit (localPlayer.Credits - currentCredits);
 			}
 
 			DatabaseService.Instance.SavePlayer (localPlayer);
-
-			// Notify server
-			if (addCredits) {
-			}
 		}
 
 		/// <summary>
@@ -112,24 +142,30 @@ namespace Superkoikoukesse.Common
 			Player localPlayer = Player;
 
 			if (localPlayer.DisconnectedCoinsEarned > 0) {
-				UseCredit (localPlayer.DisconnectedCoinsEarned);
+				AddCredit (localPlayer.DisconnectedCoinsEarned);
 				localPlayer.DisconnectedCoinsEarned = 0;
 			}
 
 			if (localPlayer.DisconnectedCreditsUsed > 0) {
-				UseCoins (localPlayer.DisconnectedCoinsEarned);
+				AddCoins (localPlayer.DisconnectedCoinsEarned);
 				localPlayer.DisconnectedCreditsUsed = 0;
 			}
 		}
 
-		public void UseCredit (int creditsUsed)
+		public void AddCredit (int creditsUsed)
 		{
-			// TODO
+			if (creditsUsed != 0) {
+				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (Player);
+				wsCredits.AddCredits (creditsUsed);
+			}
 		}
 
-		public void UseCoins (int coinsUsed)
+		public void AddCoins (int coinsUsed)
 		{
-			// TODO
+			if (coinsUsed != 0) {
+				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (Player);
+				wsCoins.AddCoins (coinsUsed);
+			}
 		}
 	}
 }

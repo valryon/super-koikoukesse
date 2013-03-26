@@ -24,6 +24,10 @@ namespace Superkoikoukesse.Common
 
 		public static int ProfileCacheDuration = 0;
 
+		public static int BaseCredits = 2500;
+
+		public static int BaseCoins = 3;
+
 		#region Animations
 
 		public static float SplashScreenFadeDuration = 0.5f;

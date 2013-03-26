@@ -82,7 +82,7 @@ namespace Superkoikoukesse.Common
 		/// 
 		/// </summary>
 		/// <param name="credits"></param>
-		public void UseCredits (int credits)
+		public void AddCredits (int credits)
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("player", new JsonPrimitive (player.Id));
@@ -121,7 +121,7 @@ namespace Superkoikoukesse.Common
 		/// 
 		/// </summary>
 		/// <param name="credits"></param>
-		public void UseCoins (int coins)
+		public void AddCoins (int coins)
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("player", new JsonPrimitive (player.Id));
