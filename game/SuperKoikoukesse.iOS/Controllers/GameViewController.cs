@@ -358,12 +358,12 @@ namespace SuperKoikoukesse.iOS
 				m_quizz.SendQuizzData (null);
 
 				// Game center
-				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-				appDelegate.PlayerService.AddScore (m_quizz.Mode, m_quizz.Difficulty, m_quizz.Score);
+				ProfileService.Instance.AuthenticatedPlayer.AddScore (m_quizz.Mode, m_quizz.Difficulty, m_quizz.Score);
 
 				// Show leaderboard
+				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 				appDelegate.ShowLeaderboards (
-					appDelegate.PlayerService.GetLeaderboardId (m_quizz.Mode, m_quizz.Difficulty),
+					ProfileService.Instance.AuthenticatedPlayer.GetLeaderboardId (m_quizz.Mode, m_quizz.Difficulty),
 					 () => {
 						this.InvokeOnMainThread( () => {
 							// Back to the menu

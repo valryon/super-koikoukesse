@@ -67,9 +67,7 @@ namespace SuperKoikoukesse.iOS
 			UpdateConfiguration ();
 
 			// Register on Game Center
-			PlayerService = new GameCenterService (window.RootViewController);
-			PlayerService.Authenticate ();
-
+			ProfileService.Instance.Initialize(new GameCenterService (window.RootViewController));
 		}
 
 		/// <summary>
@@ -240,7 +238,7 @@ namespace SuperKoikoukesse.iOS
 
 		public void ShowLeaderboards (string id, Action callback)
 		{
-			if (PlayerService.IsAuthenticated) {
+			if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
 				if (m_gkLeaderboardview == null) {
 					m_gkLeaderboardview = new GKLeaderboardViewController ();
 				}
@@ -259,9 +257,7 @@ namespace SuperKoikoukesse.iOS
 
 					window.RootViewController.PresentModalViewController (m_gkLeaderboardview, true);
 				}
-			} else {
-				PlayerService.Authenticate ();
-			}
+			} 
 		}
 
 		#endregion
@@ -277,12 +273,6 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <value>The configuration.</value>
 		public GameConfiguration Configuration { get; set; }
-
-		/// <summary>
-		/// Service to get player info, leaderboards, etc
-		/// </summary>
-		/// <value>The player service.</value>
-		public PlayerService PlayerService { get; set; }
 
 		/// <summary>
 		/// Is loading something

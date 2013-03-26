@@ -74,6 +74,9 @@
     <Compile Include="Game\Enums\TextTransformations.cs" />
     <Compile Include="Game\Enums\GameDifficulties.cs" />
     <Compile Include="Game\Enums\GameZones.cs" />
-    <Compile Include="Score\PlayerService.cs" />
+    <Compile Include="Game\Player.cs" />
+    <Compile Include="Networking\Services\WebservicePlayer.cs" />
+    <Compile Include="Database\ProfileService.cs" />
+    <Compile Include="Score\AuthenticatedPlayer.cs" />
   </ItemGroup>
 </Project>

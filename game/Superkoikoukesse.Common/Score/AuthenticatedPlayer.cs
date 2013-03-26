@@ -5,11 +5,14 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Generic player service for score, multiplayer, etc
 	/// </summary>
-	public abstract class PlayerService
+	public abstract class AuthenticatedPlayer
 	{
-		public PlayerService ()
+		private string playerId, displayName;
+	
+		public AuthenticatedPlayer ()
 		{
-
+			playerId = Guid.NewGuid().ToString();
+			displayName = "Local";
 		}
 
 		/// <summary>
@@ -39,16 +42,30 @@ namespace Superkoikoukesse.Common
 		/// Get the player nickname
 		/// </summary>
 		/// <value>The player identifier.</value>
-		public abstract string PlayerId {
-			get;
+		public virtual string PlayerId {
+			get {
+				return playerId;
+			}
+		}
+
+		/// <summary>
+		/// Get the player nickname
+		/// </summary>
+		/// <value>The player identifier.</value>
+		public virtual string DisplayName {
+			get {
+				return displayName;
+			}
 		}
 
 		/// <summary>
 		/// Is the player authenticated to the service
 		/// </summary>
 		/// <value><c>true</c> if this instance is authenticated; otherwise, <c>false</c>.</value>
-		public abstract bool IsAuthenticated {
-			get;
+		public virtual bool IsAuthenticated {
+			get {
+				return false;
+			}
 		}
 	}
 }

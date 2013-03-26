@@ -8,7 +8,7 @@ namespace SuperKoikoukesse.iOS
 	/// <summary>
 	/// Game center integration
 	/// </summary>
-	public class GameCenterService : PlayerService
+	public class GameCenterService : AuthenticatedPlayer
 	{
 		private UIViewController m_viewController;
 		private bool m_isAuthenticated;
@@ -45,6 +45,8 @@ namespace SuperKoikoukesse.iOS
 					if (error != null) {
 						Logger.Log (LogLevel.Error, "Game Center Authentication failed! " + error);
 					} else {
+
+						Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
 						m_isAuthenticated = true;
 					}
 				};
@@ -88,9 +90,23 @@ namespace SuperKoikoukesse.iOS
 			});
 		}
 
+		public override string DisplayName {
+			get {
+				if (IsAuthenticated) {
+					return GKLocalPlayer.LocalPlayer.Alias;
+				} else {
+					return base.PlayerId;
+				}
+			}
+		}
+
 		public override string PlayerId {
 			get {
-				return GKLocalPlayer.LocalPlayer.DisplayName;
+				if (IsAuthenticated) {
+					return GKLocalPlayer.LocalPlayer.PlayerID;
+				} else {
+					return base.PlayerId;
+				}
 			}
 		}
 

@@ -76,6 +76,7 @@ namespace Superkoikoukesse.Common
 			Logger.Log (LogLevel.Info, "Creating database schema");
 
 			m_db.CreateTable<GameInfo> ();
+			m_db.CreateTable<Player> ();
 		}
 
 		/// <summary>
@@ -187,6 +188,38 @@ namespace Superkoikoukesse.Common
 			} catch (Exception) {
 				return 0;
 			}
+		}
+
+		#endregion
+
+		#region Player
+
+		/// <summary>
+		/// Get the stored player information
+		/// </summary>
+		/// <returns>The player.</returns>
+		public Player ReadPlayer ()
+		{
+			// Find the first player stored instance
+			var playerTable = m_db.Table<Player> ();
+
+			return playerTable.FirstOrDefault ();
+		}
+
+		/// <summary>
+		/// Saves the player information
+		/// </summary>
+		/// <param name="player">Player.</param>
+		public void SavePlayer (Player player)
+		{
+			var playerTable = m_db.Table<Player> ();
+
+			// Clean to have only one element
+			if (playerTable.Count() > 0) {
+				m_db.DeleteAll<Player> ();
+			}
+
+			m_db.Insert (player);
 		}
 
 		#endregion
