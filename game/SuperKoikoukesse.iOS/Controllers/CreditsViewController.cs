@@ -13,7 +13,8 @@ namespace SuperKoikoukesse.iOS
 	public partial class CreditsViewController : UIViewController
 	{
 		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+			get { return true; }
 		}
 
 		public CreditsViewController ()

@@ -14,7 +14,8 @@ namespace SuperKoikoukesse.iOS
 		private HelpGeneralViewController helpViewController;
 
 		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+			get { return true; }
 		}
 
 		public MenuViewController ()

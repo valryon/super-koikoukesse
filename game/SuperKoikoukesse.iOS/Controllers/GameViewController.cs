@@ -22,7 +22,8 @@ namespace SuperKoikoukesse.iOS
 		#region UIView stuff
 
 		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+			get { return true; }
 		}
 
 		public GameViewController ()
