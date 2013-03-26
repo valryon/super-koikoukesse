@@ -9,13 +9,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class LoadingViewController : UIViewController
 	{
-		static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-			get { return true; }
-		}
-
 		public LoadingViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "LoadingView_iPhone" : "LoadingView_iPad", null)
+			: base ( "LoadingView", null)
 		{
 		}
 		

@@ -9,13 +9,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class HelpGameDifficultiesViewController : UIViewController
 	{
-		static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-			get { return true; }
-		}
-
 		public HelpGameDifficultiesViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "HelpGameDifficultiesView_iPhone" : "HelpGameDifficultiesView_iPad", null)
+			: base ("HelpGameDifficultiesView", null)
 		{
 		}
 		

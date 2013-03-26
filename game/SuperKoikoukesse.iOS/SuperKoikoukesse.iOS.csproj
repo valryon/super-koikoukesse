@@ -94,8 +94,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="Resources\database\" />
     <Folder Include="Resources\database\images\" />
-    <Folder Include="Views\iPhone\" />
-    <Folder Include="Views\iPad\" />
     <Folder Include="Resources\fr.lproj\" />
     <Folder Include="GameCenter\" />
   </ItemGroup>
@@ -147,21 +145,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\GameView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\LoadingView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\MenuDifficultyView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\MenuView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\HelpGeneralView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\LoadingView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPad\HelpGeneralView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPhone\HelpGameDifficultiesView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPad\HelpGameDifficultiesView_iPad.xib" />
     <InterfaceDefinition Include="Views\SplashscreenView.xib" />
+    <InterfaceDefinition Include="Views\CreditsView.xib" />
+    <InterfaceDefinition Include="Views\GameView.xib" />
+    <InterfaceDefinition Include="Views\HelpGameDifficultiesView.xib" />
+    <InterfaceDefinition Include="Views\HelpGeneralView.xib" />
+    <InterfaceDefinition Include="Views\LoadingView.xib" />
+    <InterfaceDefinition Include="Views\MenuDifficultyView.xib" />
+    <InterfaceDefinition Include="Views\MenuView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">

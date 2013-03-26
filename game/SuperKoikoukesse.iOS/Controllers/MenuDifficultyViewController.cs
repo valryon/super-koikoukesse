@@ -14,13 +14,8 @@ namespace SuperKoikoukesse.iOS
 
 		private GameModes m_mode;
 
-		static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-			get { return true; }
-		}
-
 		public MenuDifficultyViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "MenuDifficultyView_iPhone" : "MenuDifficultyView_iPad", null)
+			: base ("MenuDifficultyView", null)
 		{
 		}
 		

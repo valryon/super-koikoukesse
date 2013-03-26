@@ -12,13 +12,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class CreditsViewController : UIViewController
 	{
-		static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-			get { return true; }
-		}
-
 		public CreditsViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "CreditsView_iPhone" : "CreditsView_iPad", null)
+			: base ("CreditsView", null)
 		{
 		}
 		
