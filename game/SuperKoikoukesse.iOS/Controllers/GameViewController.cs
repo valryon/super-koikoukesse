@@ -24,7 +24,6 @@ namespace SuperKoikoukesse.iOS
 		public GameViewController ()
 			: base ("GameView", null)
 		{
-			Logger.Log (LogLevel.Info, "GameView on " + (UserInterfaceIdiomIsPhone ? "iPhone" : "iPad"));
 		}
 		
 		public override void DidReceiveMemoryWarning ()
