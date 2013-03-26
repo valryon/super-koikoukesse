@@ -5,7 +5,7 @@ using System.IO;
 namespace Superkoikoukesse.Common
 {
 	/// <summary>
-	/// Webservice de configuration
+	/// Webservice for configuration
 	/// </summary>
 	public class WebserviceConfiguration : GenericModelWeberviceCaller<GameConfiguration>
 	{

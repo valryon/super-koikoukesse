@@ -39,7 +39,7 @@ namespace SuperKoikoukesse.iOS
 						m_viewController.PresentModalViewController (ui, true);
 					} else {
 						// Check if you are authenticated:
-						var authenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+						m_isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 					}
 
 					if (error != null) {

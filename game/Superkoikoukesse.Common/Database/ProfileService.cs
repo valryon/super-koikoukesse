@@ -28,7 +28,22 @@ namespace Superkoikoukesse.Common
 		
 		#endregion
 
-		public AuthenticatedPlayer AuthenticatedPlayer {get; private set;}
+		public AuthenticatedPlayer AuthenticatedPlayer { get; private set; }
+
+		private DateTime lastProfileCacheTime;
+		private Player cachedLocalPlayer;
+
+		public Player Player {
+			get {
+				if (lastProfileCacheTime.AddMinutes (Constants.ProfileCacheDuration) <= DateTime.Now) {
+					lastProfileCacheTime = DateTime.Now;
+
+					cachedLocalPlayer = DatabaseService.Instance.ReadPlayer ();
+				}
+
+				return cachedLocalPlayer;
+			}
+		}
 
 		/// <summary>
 		/// Initialize profile service
@@ -39,7 +54,7 @@ namespace Superkoikoukesse.Common
 			AuthenticatedPlayer = aplayer;
 
 			// Get or register the player on the webservice
-			WebservicePlayer ws = new WebservicePlayer (AuthenticatedPlayer.PlayerId);
+			WebserviceGetPlayer ws = new WebserviceGetPlayer (AuthenticatedPlayer.PlayerId);
 			
 			ws.Request ((player) => {
 				if (player != null) {
@@ -52,7 +67,7 @@ namespace Superkoikoukesse.Common
 			});
 
 			// Update data
-			UpdatePlayer();
+			UpdatePlayer ();
 		}
 
 		/// <summary>
@@ -73,7 +88,7 @@ namespace Superkoikoukesse.Common
 		private void earnSomeCredits ()
 		{
 			// Get local player
-			Player localPlayer = DatabaseService.Instance.ReadPlayer ();
+			Player localPlayer = Player;
 
 			// Time to get credits?
 			bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
@@ -94,15 +109,15 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		private void updateDisconnectedData ()
 		{
-			Player localPlayer = DatabaseService.Instance.ReadPlayer ();
+			Player localPlayer = Player;
 
 			if (localPlayer.DisconnectedCoinsEarned > 0) {
-				UseCredit(localPlayer.DisconnectedCoinsEarned);
+				UseCredit (localPlayer.DisconnectedCoinsEarned);
 				localPlayer.DisconnectedCoinsEarned = 0;
 			}
 
 			if (localPlayer.DisconnectedCreditsUsed > 0) {
-				UseCoins(localPlayer.DisconnectedCoinsEarned);
+				UseCoins (localPlayer.DisconnectedCoinsEarned);
 				localPlayer.DisconnectedCreditsUsed = 0;
 			}
 		}

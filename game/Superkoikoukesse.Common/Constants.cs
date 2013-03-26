@@ -22,6 +22,8 @@ namespace Superkoikoukesse.Common
 		public static bool DebugMode = false;
 #endif
 
+		public static int ProfileCacheDuration = 0;
+
 		#region Animations
 
 		public static float SplashScreenFadeDuration = 0.5f;
