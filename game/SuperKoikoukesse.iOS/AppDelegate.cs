@@ -24,6 +24,7 @@ namespace SuperKoikoukesse.iOS
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
 		private MenuDifficultyViewController menuDifficultyViewController;
+		private ScoreViewController scoreViewController;
 		private LoadingViewController loadingViewController;
 		private CreditsViewController creditsViewController;
 
@@ -213,6 +214,19 @@ namespace SuperKoikoukesse.iOS
 			
 		}
 
+		public void SwitchToScoreView (Quizz quizz)
+		{
+			if (scoreViewController == null) {
+				scoreViewController = new ScoreViewController ();
+			}
+			scoreViewController.SetQuizzData(quizz);
+			
+			window.RootViewController.RemoveFromParentViewController ();
+			window.RootViewController = scoreViewController;
+			window.MakeKeyAndVisible ();
+			
+		}
+
 		/// <summary>
 		/// Change to credits view
 		/// </summary>
@@ -247,7 +261,9 @@ namespace SuperKoikoukesse.iOS
 				if (m_gkLeaderboardview != null) {
 					m_gkLeaderboardview.DidFinish += delegate(object sender, EventArgs e) {
 						m_gkLeaderboardview.DismissViewController (true, null);
-						
+
+						m_gkLeaderboardview = null;
+
 						if(callback != null)
 						{
 							callback();

@@ -128,6 +128,10 @@
     <Compile Include="Controllers\SplashscreenView.designer.cs">
       <DependentUpon>SplashscreenViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ScoreViewController.cs" />
+    <Compile Include="Controllers\ScoreViewController.designer.cs">
+      <DependentUpon>ScoreViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -143,6 +147,7 @@
     <InterfaceDefinition Include="Views\LoadingView.xib" />
     <InterfaceDefinition Include="Views\MenuDifficultyView.xib" />
     <InterfaceDefinition Include="Views\MenuView.xib" />
+    <InterfaceDefinition Include="Views\ScoreView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">
