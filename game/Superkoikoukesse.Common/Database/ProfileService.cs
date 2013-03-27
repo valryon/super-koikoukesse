@@ -165,7 +165,7 @@ namespace Superkoikoukesse.Common
 		{
 			if (creditsUsed != 0) {
 
-				Logger.Log (LogLevel.Info, "Using credits: " + creditsUsed);
+				Logger.Log (LogLevel.Info, "Modifying credits: " + creditsUsed);
 
 				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (Player);
 				wsCredits.AddCredits (creditsUsed, 
@@ -175,7 +175,7 @@ namespace Superkoikoukesse.Common
 					
 					// Store coins in disconnected data
 					Player localPlayer = Player;
-					localPlayer.DisconnectedCoinsEarned += creditsUsed;
+					localPlayer.DisconnectedCreditsUsed += creditsUsed;
 					
 					DatabaseService.Instance.SavePlayer (localPlayer);
 					

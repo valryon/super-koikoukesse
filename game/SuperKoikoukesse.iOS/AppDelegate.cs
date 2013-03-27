@@ -70,6 +70,8 @@ namespace SuperKoikoukesse.iOS
 
 			gameCenter.Authenticate(() => {
 				ProfileService.Instance.Initialize(gameCenter);
+
+				SetLoading (false);
 			});
 		}
 
@@ -78,30 +80,24 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void UpdateConfiguration ()
 		{
-			SetLoading (true);
-
 			// Get the distant configuration
 			WebserviceConfiguration configWs = new WebserviceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
-				SetLoading (false);
-
 				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
 			},
 			(code, e) => {
-				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. " + e);
+				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. ");
 
 				this.Configuration = configWs.LastValidConfig;
 
 				if (this.Configuration == null) {
 
-					Logger.Log (LogLevel.Warning, "Using default (and bad) values!. " + e);
+					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
 				}
-
-				SetLoading (false);
 			});
 		
 		}

@@ -46,7 +46,7 @@ namespace Superkoikoukesse.Common.Networking
 		protected void RequestPostJsonAsync (string requestBodyJson, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
 			Uri url = GetServiceUrl ();
-			
+
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (url);
 			request.Method = "POST";
 			request.ContentType = "application/x-www-form-urlencoded";
@@ -57,20 +57,28 @@ namespace Superkoikoukesse.Common.Networking
 			Logger.Log (LogLevel.Debug, "Request body: " + body);
 
 			if (Constants.UseEncryption) {
-				body = EncryptionHelper.Encrypt(body);
+				body = EncryptionHelper.Encrypt (body);
 				
 				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
 			}
 
 			// TODO Améliorer ce hack...
-			body = "r=" + System.Web.HttpUtility.UrlEncode(body);
+			body = "r=" + System.Web.HttpUtility.UrlEncode (body);
 
-			using (var streamWrite = new StreamWriter(request.GetRequestStream())) {
-				streamWrite.Write (body);
-				streamWrite.Close ();
+			try {
+				using (var streamWrite = new StreamWriter(request.GetRequestStream())) {
+					streamWrite.Write (body);
+					streamWrite.Close ();
+				}
+
+				asyncRequest (request, url, callbackSuccess, callbackFailure);
+				
+			} catch (WebException e) {
+				Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+				if (callbackFailure != null) {
+					callbackFailure (-1, e);
+				}
 			}
-
-			asyncRequest (request, url, callbackSuccess, callbackFailure);
 		}
 
 		/// <summary>
@@ -98,12 +106,7 @@ namespace Superkoikoukesse.Common.Networking
 		private void asyncRequest (WebRequest request, Uri url, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
 			Logger.Log (LogLevel.Info, "-> " + request.Method + " " + url);
-			if (IsHostReachable (url.ToString ())) {
-				if (callbackFailure != null) {
-					callbackFailure (-1, new ArgumentException (url + " is not reachable."));
-				}
-				return;
-			}
+
 			request.BeginGetResponse (result => {
 				var webRequest = result.AsyncState as HttpWebRequest;
 
@@ -150,7 +153,14 @@ namespace Superkoikoukesse.Common.Networking
 							callbackFailure (code, new ArgumentException (code + ": " + message));
 						}
 					}
-				} catch (Exception e) {
+				} 
+				catch (WebException e) {
+					Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+					if (callbackFailure != null) {
+						callbackFailure (-1, e);
+					}
+				}
+				catch (Exception e) {
 					// Log and callback
 					Logger.LogException (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
 					if (callbackFailure != null) {
