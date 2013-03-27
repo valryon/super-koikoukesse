@@ -12,7 +12,6 @@ namespace SuperKoikoukesse.iOS
 	{
 		private Quizz quizz;
 
-
 		public ScoreViewController () : base ("ScoreView", null)
 		{
 
@@ -30,7 +29,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-			SetViewDataFromQuizz();
+			SetViewDataFromQuizz ();
 		}
 
 		/// <summary>
@@ -41,36 +40,42 @@ namespace SuperKoikoukesse.iOS
 		{
 			this.quizz = q;
 
-			SetViewDataFromQuizz();
+			SetViewDataFromQuizz ();
 		}
 
-		private void SetViewDataFromQuizz() {
-			if(IsViewLoaded) {
+		/// <summary>
+		///  Display Game center leaderboards
+		/// </summary>
+		public void DisplayGameCenterLeaderboards ()
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.ShowLeaderboards (
+				ProfileService.Instance.AuthenticatedPlayer.GetLeaderboardId (quizz.Mode, quizz.Difficulty),
+				() => {
+				
+			}
+			);
+		}
+
+		private void SetViewDataFromQuizz ()
+		{
+			if (IsViewLoaded) {
 				this.scoreLabel.Text = quizz.Score.ToString ("00000000");
 				this.modeLabel.Text = quizz.Mode.ToString ();
 				this.difficultyLabel.Text = quizz.Difficulty.ToString ();
-				
-				// Display Game center leaderboards
-				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-				appDelegate.ShowLeaderboards (
-					ProfileService.Instance.AuthenticatedPlayer.GetLeaderboardId (quizz.Mode, quizz.Difficulty),
-					() => {
-					
-				}
-				);
 			}
 		}
 			                                        
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView(quizz.Mode, quizz.Difficulty);
+			appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty);
 		}
 			
 		partial void menuButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToMenuView();
+			appDelegate.SwitchToMenuView ();
 		}
 	}
 }
