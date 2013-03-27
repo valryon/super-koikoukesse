@@ -123,14 +123,6 @@
     <Compile Include="Controllers\CreditsViewController.designer.cs">
       <DependentUpon>CreditsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\HelpGeneralViewController.cs" />
-    <Compile Include="Controllers\HelpGeneralViewController.designer.cs">
-      <DependentUpon>HelpGeneralViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\HelpGameDifficultiesViewController.cs" />
-    <Compile Include="Controllers\HelpGameDifficultiesViewController.designer.cs">
-      <DependentUpon>HelpGameDifficultiesViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="GameCenter\GameCenterService.cs" />
     <Compile Include="Controllers\SplashscreenViewController.cs" />
     <Compile Include="Controllers\SplashscreenView.designer.cs">
@@ -148,8 +140,6 @@
     <InterfaceDefinition Include="Views\SplashscreenView.xib" />
     <InterfaceDefinition Include="Views\CreditsView.xib" />
     <InterfaceDefinition Include="Views\GameView.xib" />
-    <InterfaceDefinition Include="Views\HelpGameDifficultiesView.xib" />
-    <InterfaceDefinition Include="Views\HelpGeneralView.xib" />
     <InterfaceDefinition Include="Views\LoadingView.xib" />
     <InterfaceDefinition Include="Views\MenuDifficultyView.xib" />
     <InterfaceDefinition Include="Views\MenuView.xib" />

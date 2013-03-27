@@ -10,8 +10,6 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuDifficultyViewController : UIViewController
 	{
-		private HelpGameDifficultiesViewController helpViewController;
-
 		private GameModes m_mode;
 
 		public MenuDifficultyViewController ()
@@ -25,13 +23,6 @@ namespace SuperKoikoukesse.iOS
 			base.DidReceiveMemoryWarning ();
 			
 			// Release any cached data, images, etc that aren't in use.
-		}
-		
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-			
-			helpViewController = new HelpGameDifficultiesViewController ();
 		}
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender){
@@ -56,18 +47,6 @@ namespace SuperKoikoukesse.iOS
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToMenuView ();
 		}
-
-		#region Help 
-
-		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			showHelp();
-		}
-		
-		private void showHelp() {
-			View.AddSubview (helpViewController.View);
-		}
-
-		#endregion
 
 		/// <summary>
 		/// Sets the selected game mode.

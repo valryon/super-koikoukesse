@@ -11,8 +11,6 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuViewController : UIViewController
 	{
-		private HelpGeneralViewController helpViewController;
-
 		public MenuViewController ()
 			: base ("MenuView", null)
 		{
@@ -52,8 +50,6 @@ namespace SuperKoikoukesse.iOS
 			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
 			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
 
-			// Load help once
-			helpViewController = new HelpGeneralViewController ();
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -147,16 +143,6 @@ namespace SuperKoikoukesse.iOS
 		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToCreditsView ();
-		}
-
-		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			showHelp ();
-		}
-
-		private void showHelp ()
-		{
-			View.AddSubview (helpViewController.View);
 		}
 	}
 }
