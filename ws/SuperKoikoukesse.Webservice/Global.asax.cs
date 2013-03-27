@@ -34,6 +34,18 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
+               "WSPlayerServiceCredits",
+               "ws/playerupdate/credits",
+               new { controller = "Service", action = "PlayerCredits" }
+            );
+
+            routes.MapRoute(
+                "WSPlayerServiceCoins",
+                "ws/playerupdate/coins",
+                new { controller = "Service", action = "PlayerCoins" }
+             );
+
+            routes.MapRoute(
                "WSPlayerServiceGet",
                "ws/player/{playerId}",
                new { controller = "Service", action = "PlayerInfo" }
@@ -44,19 +56,7 @@ namespace SuperKoikoukesse.Webservice
                "ws/player/",
                new { controller = "Service", action = "PlayerCreate" }
             );
-
-            routes.MapRoute(
-               "WSPlayerServiceCredits",
-               "ws/player/credits",
-               new { controller = "Service", action = "PlayerCredits" }
-            );
-
-            routes.MapRoute(
-                "WSPlayerServiceCoins",
-                "ws/player/coins",
-                new { controller = "Service", action = "PlayerCoins" }
-             );
-
+            
             routes.MapRoute(
                "WSGameHistoryService",
                "ws/stats/add",
