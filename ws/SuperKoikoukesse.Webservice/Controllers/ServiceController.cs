@@ -61,6 +61,16 @@ namespace SuperKoikoukesse.Webservice.Controllers
                 response.Code = ErrorCodeEnum.InvalidRequest; ;
                 response.Message = e.ToString();
             }
+            catch (UnknowObjectException e)
+            {
+                response.Code = ErrorCodeEnum.UnknowObject;
+                response.Message = e.ToString();
+            }
+            catch (ObjectExistsException e)
+            {
+                response.Code = ErrorCodeEnum.UnknowObject;
+                response.Message = e.ToString();
+            }
             catch (Exception e)
             {
                 response.Code = ErrorCodeEnum.ServiceError;
@@ -88,19 +98,24 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// Retrieve player informations. Create if new
+        /// Retrieve player informations.
         /// </summary>
         /// <returns></returns>
         public ActionResult PlayerInfo(string playerId)
         {
             var response = CallService(() =>
             {
+                if (string.IsNullOrEmpty(playerId))
+                {
+                    throw new EmptyInputException("Missing player id");
+                }
+
                 PlayersDb playersDb = new PlayersDb();
                 Player p = playersDb.GetPlayer(playerId);
 
                 if (p == null)
                 {
-                    p = playersDb.CreatePlayer(playerId);
+                    throw new UnknowObjectException("Unknow player for id: " + playerId);
                 }
 
                 return p;
@@ -110,15 +125,91 @@ namespace SuperKoikoukesse.Webservice.Controllers
         }
 
         /// <summary>
-        /// Consume a credit from the player
+        /// Create a new player
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult PlayerCreate(string r)
+        {
+            var response = CallService(() =>
+            {
+                PlayerCreateInput newPlayer = DecryptJsonRequest<PlayerCreateInput>(r);
+
+                PlayersDb playersDb = new PlayersDb();
+                Player p = playersDb.GetPlayer(newPlayer.PlayerId);
+
+                // Already registered?
+                if (p == null)
+                {
+                    playersDb.CreatePlayer(newPlayer.PlayerId, newPlayer.Coins, newPlayer.Credits);
+                }
+                else
+                {
+                    throw new ObjectExistsException("We already have a player registered for " + newPlayer.PlayerId);
+                }
+
+                return null;
+            });
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Consume or add a credit to the player
         /// </summary>
         /// <param name="r">See documentation for expected json format</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult PlayerConsumeCredits(string r)
+        public ActionResult PlayerCredits(string r)
         {
             var response = CallService(() =>
             {
+                PlayerCreditsInput playerInput = DecryptJsonRequest<PlayerCreditsInput>(r);
+
+                PlayersDb playersDb = new PlayersDb();
+                Player p = playersDb.GetPlayer(playerInput.PlayerId);
+
+                // Doesn't exists?
+                if (p == null)
+                {
+                    throw new UnknowObjectException("Unknow player " + playerInput.PlayerId);
+                }
+
+                p.Credits += playerInput.Credits;
+
+                playersDb.Update(p);
+
+                return null;
+            });
+
+            return PrepareResponse(response);
+        }
+
+        /// <summary>
+        /// Consume or add a coins to the player
+        /// </summary>
+        /// <param name="r">See documentation for expected json format</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult PlayerCoins(string r)
+        {
+            var response = CallService(() =>
+            {
+                PlayerCoinsInput playerInput = DecryptJsonRequest<PlayerCoinsInput>(r);
+
+                PlayersDb playersDb = new PlayersDb();
+                Player p = playersDb.GetPlayer(playerInput.PlayerId);
+
+                // Doesn't exists?
+                if (p == null)
+                {
+                    throw new UnknowObjectException("Unknow player " + playerInput.PlayerId);
+                }
+
+                p.Credits += playerInput.Coins;
+
+                playersDb.Update(p);
+
                 return null;
             });
 

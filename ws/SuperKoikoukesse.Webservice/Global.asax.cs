@@ -34,16 +34,28 @@ namespace SuperKoikoukesse.Webservice
            );
 
             routes.MapRoute(
-               "WSPlayerService",
+               "WSPlayerServiceGet",
                "ws/player/{playerId}",
                new { controller = "Service", action = "PlayerInfo" }
-           );
+            );
 
             routes.MapRoute(
-               "WSUseCreditService",
-               "ws/player/{playerId}/usecredit",
-               new { controller = "Service", action = "PlayerConsumeCredits" }
-           );
+               "WSPlayerServiceCreate",
+               "ws/player/",
+               new { controller = "Service", action = "PlayerCreate" }
+            );
+
+            routes.MapRoute(
+               "WSPlayerServiceCredits",
+               "ws/player/credits",
+               new { controller = "Service", action = "PlayerCredits" }
+            );
+
+            routes.MapRoute(
+                "WSPlayerServiceCoins",
+                "ws/player/coins",
+                new { controller = "Service", action = "PlayerCoins" }
+             );
 
             routes.MapRoute(
                "WSGameHistoryService",

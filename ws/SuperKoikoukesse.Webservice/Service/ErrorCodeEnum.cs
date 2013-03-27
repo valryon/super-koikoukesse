@@ -9,6 +9,7 @@ namespace SuperKoikoukesse.Webservice.Service
         Ok  = 0,
         EmptyRequest = 100,
         InvalidRequest = 101,
+        UnknowObject = 102,
         ServiceError = 500,
     }
 }

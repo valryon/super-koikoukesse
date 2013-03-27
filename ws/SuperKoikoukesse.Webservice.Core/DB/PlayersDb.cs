@@ -20,12 +20,12 @@ namespace SuperKoikoukesse.Webservice.Core.DB
         /// </summary>
         /// <param name="gameCenterId"></param>
         /// <returns></returns>
-        public Player CreatePlayer(string gameCenterId)
+        public Player CreatePlayer(string gameCenterId, int coins, int credits)
         {
             Player p = new Player();
             p.CreationDate = DateTime.Now;
-            p.Coins = 2000; // TODO Valeurs
-            p.Credits = 5; // TODO Valeurs
+            p.Coins = coins; 
+            p.Credits = credits; 
             p.GameCenterId = gameCenterId;
             p.NickName = gameCenterId;
             p.SubscriptionType = 0;

@@ -8,8 +8,7 @@
         </th>
         <th>Description
         </th>
-        <th>
-            Appel
+        <th>Appel
         </th>
     </tr>
 
@@ -31,11 +30,29 @@
         <td><a class="btn btn-info" href="@Url.Action("PlayerInfo", "Service", new { playerId = "Valryon" })">Tester</a></td>
     </tr>
 
-        <tr>
-        <td>@Url.Action("PlayerConsumeCredits", "Service", new { playerId = "Valryon" })</td>
+    <tr>
+        <td>@Url.Action("PlayerCreate", "Service")</td>
         <td>POST
         </td>
-        <td>Consommer un crédit
+        <td>Création d'un joueur
+        </td>
+        <td>TODO</td>
+    </tr>
+
+     <tr>
+        <td>@Url.Action("PlayerCredits", "Service")</td>
+        <td>POST
+        </td>
+        <td>Consommer des crédits
+        </td>
+        <td>TODO</td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("PlayerCoins", "Service")</td>
+        <td>POST
+        </td>
+        <td>Consommer des coins
         </td>
         <td>TODO</td>
     </tr>
@@ -47,8 +64,7 @@
         </td>
         <td>Ajouter une ligne dans l'historique des parties
         </td>
-        <td>
-            TODO
+        <td>TODO
         </td>
     </tr>
 

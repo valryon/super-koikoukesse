@@ -49,10 +49,12 @@
     <Compile Include="DB\ConfigurationDb.cs" />
     <Compile Include="DB\PlayersDb.cs" />
     <Compile Include="DB\StatsDb.cs" />
+    <Compile Include="Exceptions\ObjectExistsException.cs" />
     <Compile Include="Exceptions\EmptyInputException.cs" />
     <Compile Include="Exceptions\ParseRequestException.cs" />
     <Compile Include="Exceptions\GenericServiceException.cs" />
     <Compile Include="DB\GamesDb.cs" />
+    <Compile Include="Exceptions\UnknowObjectException.cs" />
     <Compile Include="Model\GameConfiguration.cs" />
     <Compile Include="Model\DifficultiesEnum.cs" />
     <Compile Include="Model\Game.cs" />
