@@ -19,7 +19,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Request the webservice
 		/// </summary>
-		public void Request (Action<T> callback, Action<Exception> callbackFailure)
+		public void Request (Action<T> callback, Action<int, Exception> callbackFailure)
 		{
 			// Make the call
 			this.RequestJsonAsync (
@@ -45,7 +45,7 @@ namespace Superkoikoukesse.Common
 					PostRequest(default(T), false);
 
 					if (callbackFailure != null) {
-						callbackFailure (e);
+						callbackFailure (-1, e);
 					}
 				}
 			}),

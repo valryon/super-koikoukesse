@@ -118,6 +118,9 @@ namespace SuperKoikoukesse.iOS
 			m_quizz = new Quizz ();
 			m_quizz.Initialize (mode, diff, appDelegate.Configuration);
 		
+			// Consume one credit
+			ProfileService.Instance.UseCredit();
+
 			// Display game
 			if (m_isViewLoaded) {
 				updateViewToQuizz (m_quizz);

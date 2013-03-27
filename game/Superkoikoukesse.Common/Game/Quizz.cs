@@ -454,7 +454,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Send quizz data to the webservice
 		/// </summary>
-		public void SendQuizzData (Action<Exception> failureCallback)
+		public void SendQuizzData (Action<int, Exception> failureCallback)
 		{
 			WebserviceStats stats = new WebserviceStats ();
 

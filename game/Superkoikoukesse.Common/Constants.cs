@@ -24,9 +24,9 @@ namespace Superkoikoukesse.Common
 
 		public static int ProfileCacheDuration = 0;
 
-		public static int BaseCredits = 2500;
+		public static int BaseCredits = 3;
 
-		public static int BaseCoins = 3;
+		public static int BaseCoins = 2500;
 
 		#region Animations
 

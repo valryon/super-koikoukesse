@@ -1,5 +1,6 @@
 using System;
 using System.Json;
+using System.Web;
 
 namespace Superkoikoukesse.Common
 {
@@ -25,6 +26,12 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <value>The credits.</value>
 		public int Credits { get; set; }
+
+		/// <summary>
+		/// Subscription type (TODO)
+		/// </summary>
+		/// <value>The type of the subscription.</value>
+		public int SubscriptionType { get; set; }
 
 		/// <summary>
 		/// Earned coins
@@ -60,12 +67,23 @@ namespace Superkoikoukesse.Common
 			: this()
 		{
 			DisplayName = aplayer.DisplayName;
-			Id = aplayer.PlayerId;
+
+			// Clean ID from URL reserved chars
+			Id = aplayer.PlayerId.Replace(":","").Replace("&","").Replace("/","").Replace(" ","");
 		}
 
 		public void BuildFromJsonObject (JsonValue json)
 		{
+			//json	{{"Id": "10550e72-da74-4b07-ac6d-a18e02712ec4", "GameCenterId": "G1728633519", "NickName": "G1728633519", "CreationDate": "2013-03-27T11:22:51.96Z", "Credits": 2500, "Coins": 3, "SubscriptionType": 0}}	System.Json.JsonObject
+			string playerId = json ["GameCenterId"].ToString ();
+			int credits = Convert.ToInt32(json ["Credits"].ToString ());
+			int coins = Convert.ToInt32(json ["Coins"].ToString ());
+			int subscriptionType = Convert.ToInt32(json ["SubscriptionType"].ToString ());
 
+			this.Id = playerId;
+			this.Credits = credits;
+			this.Coins = coins;
+			this.SubscriptionType = subscriptionType;
 		}
 
 	}

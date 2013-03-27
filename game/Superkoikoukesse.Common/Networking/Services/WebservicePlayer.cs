@@ -21,7 +21,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/" + HttpUtility.UrlEncode (id));
+			return new Uri (Constants.WebserviceUrl + "ws/player/" + id);
 		}
 
 	}
@@ -41,7 +41,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Create a new player. We use a POST request to avoid spam
 		/// </summary>
-		public void CreatePlayer ()
+		public void CreatePlayer (Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("player", new JsonPrimitive (player.Id));
@@ -51,17 +51,19 @@ namespace Superkoikoukesse.Common
 			
 			this.RequestPostJsonAsync (json.ToString (), 
 			                           (success) => {
-				
+				if(callback != null) {
+					callback();
+				}
 			}, 
-			(exception) => {
-				
+			(code, ex) => {
+				if(callbackFailure != null) callbackFailure(code);
 			});
 			
 		}
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/" + HttpUtility.UrlEncode (player.Id));
+			return new Uri (Constants.WebserviceUrl + "ws/player/");
 		}
 		
 	}
@@ -82,7 +84,7 @@ namespace Superkoikoukesse.Common
 		/// 
 		/// </summary>
 		/// <param name="credits"></param>
-		public void AddCredits (int credits)
+		public void AddCredits (int credits, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("player", new JsonPrimitive (player.Id));
@@ -90,17 +92,17 @@ namespace Superkoikoukesse.Common
 			
 			this.RequestPostJsonAsync (json.ToString (), 
 			                           (success) => {
-				
+				if(callback != null) callback();
 			}, 
-			(exception) => {
-				
+			(code, ex) => {
+				if(callbackFailure != null) callbackFailure(code);
 			});
 			
 		}
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/" + HttpUtility.UrlEncode (player.Id)+"/credits");
+			return new Uri (Constants.WebserviceUrl + "ws/playerupdate/credits");
 		}
 		
 	}
@@ -121,7 +123,7 @@ namespace Superkoikoukesse.Common
 		/// 
 		/// </summary>
 		/// <param name="credits"></param>
-		public void AddCoins (int coins)
+		public void AddCoins (int coins, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("player", new JsonPrimitive (player.Id));
@@ -129,17 +131,17 @@ namespace Superkoikoukesse.Common
 			
 			this.RequestPostJsonAsync (json.ToString (), 
 			                           (success) => {
-				
+				if(callback != null) callback();
 			}, 
-			(exception) => {
-				
+			(code, ex) => {
+				if(callbackFailure != null) callbackFailure(code);
 			});
 			
 		}
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/" + HttpUtility.UrlEncode (player.Id)+"/coins");
+			return new Uri (Constants.WebserviceUrl + "ws/playerupdate/coins");
 		}
 
 		

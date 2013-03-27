@@ -68,18 +68,6 @@ namespace SuperKoikoukesse.iOS
 
 		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
 		{
-//			GKScore *myScoreValue = [[[GKScore alloc] initWithCategory:@"testleaderboard"] autorelease];
-//			myScoreValue.value = score;
-//			
-//			[myScoreValue reportScoreWithCompletionHandler:^(NSError *error){
-//				if(error != nil){
-//					NSLog(@"Score Submission Failed");
-//				} else {
-//					NSLog(@"Score Submitted");
-//				}
-//				
-//			 }];
-
 			string leaderboardId = GetLeaderboardId (mode, difficulty);
 
 			Logger.Log (LogLevel.Info, "Game Center  - Adding score to " + leaderboardId + "...");

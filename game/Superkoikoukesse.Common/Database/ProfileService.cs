@@ -86,37 +86,30 @@ namespace Superkoikoukesse.Common
 			
 			ws.Request ((player) => {
 				if (player != null) {
-					// Merge inormations
-					Player localPlayer = Player;
-					
-					localPlayer.Credits = player.Credits;
-					localPlayer.Coins = player.Coins;
-					localPlayer.DisplayName = player.DisplayName;
-				} else {
+					// Do we have some disconnected data that we want to upload now?
+					updateDisconnectedData ();
+				} 
+			},
+			(code, exception) => {
+
+				if (code == 102) {
+					// New player to create
 					Logger.Log (LogLevel.Info, "Unknow player to server");
 					
 					// Create player
 					WebserviceCreatePlayer wsCreate = new WebserviceCreatePlayer (Player);
-
-					wsCreate.CreatePlayer();
+					wsCreate.CreatePlayer ();
+				} else {
+					// Well, we crashed. See the log?
+					Logger.Log (LogLevel.Error, "Calling profile service failed!");
 				}
-			},
-			(exception) => {
-				// Well, we crashed. See the log?
-				Logger.Log (LogLevel.Error, "Calling service failed!");
 			});
-
-			// Do we have some disconnected data that we want to upload now?
-			updateDisconnectedData ();
-
-			// Is it time to earn some credits?
-			earnSomeCredits ();
 		}
 
 		/// <summary>
 		/// Earns some credits.
 		/// </summary>
-		private void earnSomeCredits ()
+		public void EarnSomeCredits ()
 		{
 			// Get local player
 			Player localPlayer = Player;
@@ -128,10 +121,17 @@ namespace Superkoikoukesse.Common
 				int currentCredits = localPlayer.Credits;
 				localPlayer.Credits = 5;
 
-				AddCredit (localPlayer.Credits - currentCredits);
-			}
+				int newCreditsCount = localPlayer.Credits - currentCredits;
 
-			DatabaseService.Instance.SavePlayer (localPlayer);
+				ModifyCredits (newCreditsCount, null,
+				               (code) => {
+					// Server failed to update credits
+					localPlayer.DisconnectedCreditsUsed = -newCreditsCount;
+					DatabaseService.Instance.SavePlayer (localPlayer);
+				});
+
+				DatabaseService.Instance.SavePlayer (localPlayer);
+			}
 		}
 
 		/// <summary>
@@ -141,31 +141,81 @@ namespace Superkoikoukesse.Common
 		{
 			Player localPlayer = Player;
 
-			if (localPlayer.DisconnectedCoinsEarned > 0) {
-				AddCredit (localPlayer.DisconnectedCoinsEarned);
-				localPlayer.DisconnectedCoinsEarned = 0;
+			if (localPlayer.DisconnectedCoinsEarned != 0) {
+				ModifyCoins (localPlayer.DisconnectedCoinsEarned,
+				               () => {
+					// Success
+					localPlayer.DisconnectedCoinsEarned = 0;
+					DatabaseService.Instance.SavePlayer (localPlayer);
+				},
+				null);
 			}
 
-			if (localPlayer.DisconnectedCreditsUsed > 0) {
-				AddCoins (localPlayer.DisconnectedCoinsEarned);
-				localPlayer.DisconnectedCreditsUsed = 0;
+			if (localPlayer.DisconnectedCreditsUsed != 0) {
+				ModifyCredits (localPlayer.DisconnectedCreditsUsed,
+				             () => {
+					// Success
+					localPlayer.DisconnectedCreditsUsed = 0;
+					DatabaseService.Instance.SavePlayer (localPlayer);
+				}, null);
 			}
 		}
 
-		public void AddCredit (int creditsUsed)
+		protected void ModifyCredits (int creditsUsed, Action callback, Action<int> callbackFailture)
 		{
 			if (creditsUsed != 0) {
+
+				Logger.Log (LogLevel.Info, "Using credits: " + creditsUsed);
+
 				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (Player);
-				wsCredits.AddCredits (creditsUsed);
+				wsCredits.AddCredits (creditsUsed, 
+				                      callback,
+
+				                      (code) => {
+					
+					// Store coins in disconnected data
+					Player localPlayer = Player;
+					localPlayer.DisconnectedCoinsEarned += creditsUsed;
+					
+					DatabaseService.Instance.SavePlayer (localPlayer);
+					
+					if (callbackFailture != null) {
+						callbackFailture (code);
+					}
+				});
 			}
 		}
 
-		public void AddCoins (int coinsUsed)
+		protected void ModifyCoins (int coinsUsed, Action callback, Action<int> callbackFailture)
 		{
 			if (coinsUsed != 0) {
+
+				Logger.Log (LogLevel.Info, "Using coins: " + coinsUsed);
+
 				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (Player);
-				wsCoins.AddCoins (coinsUsed);
+				wsCoins.AddCoins (coinsUsed,
+				                  callback,
+				                  (code) => {
+
+					// Store coins in disconnected data
+					Player localPlayer = Player;
+					localPlayer.DisconnectedCoinsEarned += coinsUsed;
+
+					DatabaseService.Instance.SavePlayer (localPlayer);
+
+					if (callbackFailture != null) {
+						callbackFailture (code);
+					}
+				});
 			}
+		}
+
+		/// <summary>
+		/// Use one credit
+		/// </summary>
+		public void UseCredit ()
+		{
+			ModifyCredits (-1, null, null);
 		}
 	}
 }

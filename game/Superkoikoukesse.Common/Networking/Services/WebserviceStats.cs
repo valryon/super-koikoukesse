@@ -11,7 +11,7 @@ namespace Superkoikoukesse.Common
 		{
 		}
 
-		public void SendStats (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers, Action<Exception> callbackFailure)
+		public void SendStats (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers, Action<int, Exception> callbackFailure)
 		{
 			var jsonBody = buildJson (playerId, score, mode, difficulty, date, answers);
 		

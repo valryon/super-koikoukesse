@@ -43,7 +43,7 @@ namespace Superkoikoukesse.Common.Networking
 		/// <param name="decrypt">If set to <c>true</c> decrypt.</param>
 		/// <param name="callbackSuccess">Callback success.</param>
 		/// <param name="callbackFailure">Callback failure.</param>
-		protected void RequestPostJsonAsync (string requestBodyJson, Action<ServiceResponse> callbackSuccess, Action<Exception> callbackFailure)
+		protected void RequestPostJsonAsync (string requestBodyJson, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
 			Uri url = GetServiceUrl ();
 			
@@ -78,7 +78,7 @@ namespace Superkoikoukesse.Common.Networking
 		/// </summary>
 		/// <param name="callbackSuccess">Callback success.</param>
 		/// <param name="callbackFailure">Callback failure.</param>
-		protected void RequestJsonAsync (Action<ServiceResponse> callbackSuccess, Action<Exception> callbackFailure)
+		protected void RequestJsonAsync (Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
 			Uri url = GetServiceUrl ();
 
@@ -95,30 +95,35 @@ namespace Superkoikoukesse.Common.Networking
 		/// <param name="decrypt">If set to <c>true</c> decrypt.</param>
 		/// <param name="callbackSuccess">Callback success.</param>
 		/// <param name="callbackFailure">Callback failure.</param>
-		private void asyncRequest (WebRequest request, Uri url, Action<ServiceResponse> callbackSuccess, Action<Exception> callbackFailure)
+		private void asyncRequest (WebRequest request, Uri url, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
 			Logger.Log (LogLevel.Info, "-> " + request.Method + " " + url);
 			if (IsHostReachable (url.ToString ())) {
 				if (callbackFailure != null) {
-					callbackFailure (new ArgumentException (url + " is not reachable."));
+					callbackFailure (-1, new ArgumentException (url + " is not reachable."));
 				}
 				return;
 			}
 			request.BeginGetResponse (result => {
 				var webRequest = result.AsyncState as HttpWebRequest;
+
 				try {
 					WebResponse webResponse = webRequest.EndGetResponse (result);
 					Stream streamResponse = webResponse.GetResponseStream ();
 					string json = string.Empty;
+
 					using (StreamReader reader = new StreamReader (streamResponse)) {
 						json = reader.ReadToEnd ();
 					}
+
 					// Decrypt if necessary
 					if (Constants.UseEncryption) {
 						json = EncryptionHelper.Decrypt (json);
 					}
+
 					// Parse response
 					ServiceResponse response = new ServiceResponse ();
+
 					// Open Json
 					JsonValue value = JsonObject.Parse (json);
 					int code = Convert.ToInt32 (value ["code"].ToString ());
@@ -133,6 +138,7 @@ namespace Superkoikoukesse.Common.Networking
 					response.Code = code;
 					response.Message = message;
 					response.JsonData = data;
+
 					if (code == 0) {
 						Logger.Log (LogLevel.Info, "<- OK ");
 						if (callbackSuccess != null) {
@@ -141,14 +147,14 @@ namespace Superkoikoukesse.Common.Networking
 					} else {
 						Logger.Log (LogLevel.Error, "<- KO " + code + ": " + message);
 						if (callbackFailure != null) {
-							callbackFailure (new ArgumentException (code + ": " + message));
+							callbackFailure (code, new ArgumentException (code + ": " + message));
 						}
 					}
 				} catch (Exception e) {
 					// Log and callback
 					Logger.LogException (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
 					if (callbackFailure != null) {
-						callbackFailure (e);
+						callbackFailure (-1, e);
 					}
 				}
 			}, request);

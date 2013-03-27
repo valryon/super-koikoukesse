@@ -89,7 +89,7 @@ namespace SuperKoikoukesse.iOS
 
 				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
 			},
-			(e) => {
+			(code, e) => {
 				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. " + e);
 
 				this.Configuration = configWs.LastValidConfig;
