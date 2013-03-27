@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.Webservice.Models
         [DataMember(Name = "player", IsRequired = true)]
         public string PlayerId { get; set; }
 
-        [DataMember(Name = "ios", IsRequired = true)]
+        [DataMember(Name = "platform", IsRequired = true)]
         public string Platform { get; set; }
 
         [DataMember(Name = "credits", IsRequired = true)]
