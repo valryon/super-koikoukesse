@@ -12,6 +12,12 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIPageControl pageControl { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView scrollView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton creditsButton { get; set; }
 
 		[Outlet]
@@ -32,9 +38,6 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton helpButton { get; set; }
 
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("scoreAttackButtonPressed:")]
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -50,11 +53,24 @@ namespace SuperKoikoukesse.iOS
 		[Action ("debugButtonPressed:")]
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
 
+		[Action ("creditsButtonPressed:")]
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
+
 		[Action ("helpButtonPressed:")]
 		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (pageControl != null) {
+				pageControl.Dispose ();
+				pageControl = null;
+			}
+
+			if (scrollView != null) {
+				scrollView.Dispose ();
+				scrollView = null;
+			}
+
 			if (creditsButton != null) {
 				creditsButton.Dispose ();
 				creditsButton = null;

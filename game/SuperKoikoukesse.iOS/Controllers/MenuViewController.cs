@@ -25,7 +25,14 @@ namespace SuperKoikoukesse.iOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			createPanels();
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -55,6 +62,52 @@ namespace SuperKoikoukesse.iOS
 
 			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
 		}
+
+		#region Scroll view and pagination
+
+		private void createPanels()
+		{
+			scrollView.Scrolled += ScrollViewScrolled;
+			
+			int count = 10;
+			RectangleF scrollFrame = scrollView.Frame;
+			scrollFrame.Width = scrollFrame.Width * count;
+			scrollView.ContentSize = scrollFrame.Size;
+			
+			for (int i=0; i<count; i++)
+			{
+				UILabel label = new UILabel();
+				label.TextColor = UIColor.Black;
+				label.TextAlignment = UITextAlignment.Center;
+				label.Text = i.ToString();
+				
+				if (i % 2 == 0)
+					label.BackgroundColor = UIColor.Red;
+				else
+					label.BackgroundColor = UIColor.Blue;
+				
+				RectangleF frame = scrollView.Frame;
+				PointF location = new PointF();
+				location.X = frame.Width * i;
+				
+				frame.Location = location;
+				label.Frame = frame;
+				
+				scrollView.AddSubview(label);
+			}
+
+			pageControl.Pages = count;
+		}
+
+		private void ScrollViewScrolled (object sender, EventArgs e)
+		{
+			double page = Math.Floor((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
+			
+			pageControl.CurrentPage = (int)page;
+		}
+
+		#endregion
+
 
 		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
