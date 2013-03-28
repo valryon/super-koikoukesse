@@ -67,8 +67,11 @@ namespace SuperKoikoukesse.iOS
 			pageControl.ValueChanged += (object sender, EventArgs e) => {
 				setScrollViewToPage(pageControl.CurrentPage);
 			};
-
-			scrollView.Scrolled += ScrollViewScrolled;
+			scrollView.DecelerationEnded += (object sender, EventArgs e) => {
+				double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
+				
+				pageControl.CurrentPage = (int)page;
+			};
 
 			List<UIViewController> panels = new List<UIViewController> ();
 
@@ -124,13 +127,6 @@ namespace SuperKoikoukesse.iOS
 
 		private void setScrollViewToPage(int page) {
 			scrollView.SetContentOffset(new PointF(page * scrollView.Frame.Width, 0 ), true);
-		}
-
-		private void ScrollViewScrolled (object sender, EventArgs e)
-		{
-			double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
-			
-			pageControl.CurrentPage = (int)page;
 		}
 
 		#endregion
