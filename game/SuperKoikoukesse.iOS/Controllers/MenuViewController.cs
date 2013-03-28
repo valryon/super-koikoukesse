@@ -12,9 +12,12 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuViewController : UIViewController
 	{
+		private List<UIViewController> panels;
+
 		public MenuViewController ()
 			: base ("MenuView", null)
 		{
+			panels = new List<UIViewController>();
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -73,7 +76,7 @@ namespace SuperKoikoukesse.iOS
 				pageControl.CurrentPage = (int)page;
 			};
 
-			List<UIViewController> panels = new List<UIViewController> ();
+			panels.Clear ();
 
 			// Credits
 			PagerMenuInfosViewController infos = new PagerMenuInfosViewController();

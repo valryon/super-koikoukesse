@@ -21,10 +21,15 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-			string modeId = mode.ToString().ToLower();
+			string modeId = mode.ToString ().ToLower ();
 			this.titleLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".title", "");
 			this.descriptionLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".desc", "");
-			this.image.Image = UIImage.FromFile (modeId+".png");
+			this.image.Image = UIImage.FromFile (modeId + ".png");
+		}
+
+		partial void playButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToDifficultiesView (mode);
 		}
 	}
 }

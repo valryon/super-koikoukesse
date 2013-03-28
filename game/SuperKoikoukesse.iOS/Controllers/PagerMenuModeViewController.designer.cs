@@ -8,17 +8,17 @@ using MonoTouch.Foundation;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("MenuModeViewController")]
+	[Register ("PagerMenuModeViewController")]
 	partial class PagerMenuModeViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIButton playButton { get; set; }
+
 		[Outlet]
 		MonoTouch.UIKit.UILabel titleLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel descriptionLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton playButton { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIImageView image { get; set; }
@@ -28,6 +28,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (playButton != null) {
+				playButton.Dispose ();
+				playButton = null;
+			}
+
 			if (titleLabel != null) {
 				titleLabel.Dispose ();
 				titleLabel = null;
@@ -36,11 +41,6 @@ namespace SuperKoikoukesse.iOS
 			if (descriptionLabel != null) {
 				descriptionLabel.Dispose ();
 				descriptionLabel = null;
-			}
-
-			if (playButton != null) {
-				playButton.Dispose ();
-				playButton = null;
 			}
 
 			if (image != null) {
