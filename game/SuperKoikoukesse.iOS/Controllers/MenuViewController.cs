@@ -64,6 +64,10 @@ namespace SuperKoikoukesse.iOS
 
 		private void createPanels ()
 		{
+			pageControl.ValueChanged += (object sender, EventArgs e) => {
+				setScrollViewToPage(pageControl.CurrentPage);
+			};
+
 			scrollView.Scrolled += ScrollViewScrolled;
 
 			List<UIViewController> panels = new List<UIViewController> ();
@@ -112,9 +116,14 @@ namespace SuperKoikoukesse.iOS
 			pageControl.Pages = count;
 
 			// Set 2nd page as the first displayed
-			int currentPage = 1;
-			scrollView.SetContentOffset(new PointF(currentPage * scrollView.Frame.Width, 0 ), true);
-			pageControl.CurrentPage = currentPage;
+			int firstDisplayedPageNumber = 1;
+			pageControl.CurrentPage = firstDisplayedPageNumber;
+
+			setScrollViewToPage(firstDisplayedPageNumber);
+		}
+
+		private void setScrollViewToPage(int page) {
+			scrollView.SetContentOffset(new PointF(page * scrollView.Frame.Width, 0 ), true);
 		}
 
 		private void ScrollViewScrolled (object sender, EventArgs e)
