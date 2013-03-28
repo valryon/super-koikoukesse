@@ -143,6 +143,7 @@
     <Compile Include="Controllers\PagerMenuInfosViewController.designer.cs">
       <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ColorConstants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
