@@ -174,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\empty_screen.png" />
-    <BundleResource Include="Assets\Fonts\SG10.ttf" />
     <BundleResource Include="..\..\database\images\00001.jpg">
       <Link>Resources\database\images\00001.jpg</Link>
     </BundleResource>

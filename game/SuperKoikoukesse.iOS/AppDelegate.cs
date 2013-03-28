@@ -32,7 +32,6 @@ namespace SuperKoikoukesse.iOS
 		private SplashscreenViewController splashScreenViewController;
 		private GameViewController gameViewController;
 		private MenuViewController menuViewController;
-		private MenuDifficultyViewController menuDifficultyViewController;
 		private ScoreViewController scoreViewController;
 		private LoadingViewController loadingViewController;
 		private CreditsViewController creditsViewController;
@@ -47,9 +46,6 @@ namespace SuperKoikoukesse.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			Logger.Log (LogLevel.Info, "Launching app...");
-
-			// Load the font once
-			CustomFont = UIFont.FromName ("SG10", 16);
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
@@ -268,12 +264,6 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		#endregion
-
-		/// <summary>
-		/// Font to use everywhere
-		/// </summary>
-		/// <value>The custom font.</value>
-		public UIFont CustomFont { get; set; }
 
 		/// <summary>
 		/// Global configuration
