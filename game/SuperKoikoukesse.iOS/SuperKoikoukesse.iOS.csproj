@@ -107,10 +107,6 @@
     <Compile Include="Controllers\GameViewController.designer.cs">
       <DependentUpon>GameViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\MenuViewController.cs" />
-    <Compile Include="Controllers\MenuViewController.designer.cs">
-      <DependentUpon>MenuViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\LoadingViewController.cs" />
     <Compile Include="Controllers\LoadingViewController.designer.cs">
       <DependentUpon>LoadingViewController.cs</DependentUpon>
@@ -132,6 +128,18 @@
     <Compile Include="Controllers\ScoreViewController.designer.cs">
       <DependentUpon>ScoreViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\MenuViewController.cs" />
+    <Compile Include="Controllers\PagerMenuModeViewController.cs" />
+    <Compile Include="Controllers\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PagerMenuModeViewController.designer.cs">
+      <DependentUpon>PagerMenuModeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PagerMenuInfosViewController.cs" />
+    <Compile Include="Controllers\PagerMenuInfosViewController.designer.cs">
+      <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -148,6 +156,8 @@
     <InterfaceDefinition Include="Views\MenuDifficultyView.xib" />
     <InterfaceDefinition Include="Views\MenuView.xib" />
     <InterfaceDefinition Include="Views\ScoreView.xib" />
+    <InterfaceDefinition Include="Views\PagerMenuModeView.xib" />
+    <InterfaceDefinition Include="Views\PagerMenuInfosView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">
@@ -792,6 +802,10 @@
     </BundleResource>
     <BundleResource Include="Resources\en.lproj\Localizable.strings" />
     <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\scoreattack.png" />
+    <BundleResource Include="Resources\survival.png" />
+    <BundleResource Include="Resources\timeattack.png" />
+    <BundleResource Include="Resources\versus.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

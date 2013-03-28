@@ -1,4 +1,9 @@
-"ScoreAttack" = "Score Attack";
-"TimeAttack" = "Time Attack";
-"Survival" = "Survival";
-"Versus" = "Versus";
+"scoreattack.title" = "Score Attack";
+"scoreattack.desc" 	= "Make the best score you can in 20 questions in a row!";
+"timeattack.title" 	= "Time Attack";
+"timeattack.desc" 	= "60 seconds to make the best score possible!";
+"survival.title" 	= "Survival";
+"survival.desc" 	= "Only 3 mistakes allowed. How long will you survive?";
+"versus.title" 		= "Versus";
+"versus.desc" 		= "Duel your friends!";
+

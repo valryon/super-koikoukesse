@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 using MonoTouch.Foundation;
@@ -28,7 +29,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewWillAppear (animated);
 
-			createPanels();
+			createPanels ();
 		}
 
 		public override void ViewDidLoad ()
@@ -61,43 +62,64 @@ namespace SuperKoikoukesse.iOS
 
 		#region Scroll view and pagination
 
-		private void createPanels()
+		private void createPanels ()
 		{
 			scrollView.Scrolled += ScrollViewScrolled;
-			
-			int count = 10;
+
+			List<UIViewController> panels = new List<UIViewController> ();
+
+			// Credits
+			PagerMenuInfosViewController infos = new PagerMenuInfosViewController();
+			panels.Add (infos);
+
+			// Build for each modes
+			// -- Score attack
+			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.ScoreAttack);
+			panels.Add (scoreAttackMode);
+
+			// -- Time attack
+			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TimeAttack);
+			panels.Add (timeAttackMode);
+
+			// -- Survival
+			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.Survival);
+			panels.Add (survivalMode);
+
+			// -- Versus
+			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+			panels.Add (versusMode);
+
+
+			int count = panels.Count;
 			RectangleF scrollFrame = scrollView.Frame;
 			scrollFrame.Width = scrollFrame.Width * count;
 			scrollView.ContentSize = scrollFrame.Size;
 			
-			for (int i=0; i<count; i++)
-			{
-				UILabel label = new UILabel();
-				label.TextColor = UIColor.Black;
-				label.TextAlignment = UITextAlignment.Center;
-				label.Text = i.ToString();
-				
-				if (i % 2 == 0)
-					label.BackgroundColor = UIColor.Red;
-				else
-					label.BackgroundColor = UIColor.Blue;
-				
+			for (int i = 0; i < count; i++) {
+
+				// Compute location and size
 				RectangleF frame = scrollView.Frame;
-				PointF location = new PointF();
+				PointF location = new PointF ();
 				location.X = frame.Width * i;
-				
 				frame.Location = location;
-				label.Frame = frame;
-				
-				scrollView.AddSubview(label);
+
+				panels[i].View.Frame = frame;
+
+				// Add to scroll and paging
+				scrollView.AddSubview (panels[i].View);
 			}
 
 			pageControl.Pages = count;
+
+			// Set 2nd page as the first displayed
+			int currentPage = 1;
+			scrollView.SetContentOffset(new PointF(currentPage * scrollView.Frame.Width, 0 ), true);
+			pageControl.CurrentPage = currentPage;
 		}
 
 		private void ScrollViewScrolled (object sender, EventArgs e)
 		{
-			double page = Math.Floor((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
+			double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
 			
 			pageControl.CurrentPage = (int)page;
 		}
@@ -140,7 +162,8 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
 		}
 
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToCreditsView ();
 		}
