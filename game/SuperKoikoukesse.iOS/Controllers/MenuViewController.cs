@@ -38,8 +38,8 @@ namespace SuperKoikoukesse.iOS
 			Player profile = ProfileService.Instance.Player;
 
 			// Display credits and coins
-			creditsLabel.Text = profile.Credits.ToString();
-			coinsLabel.Text = profile.Coins.ToString("000 000");
+			//creditsLabel.Text = profile.Credits.ToString();
+			//coinsLabel.Text = profile.Coins.ToString("000 000");
 		}
 
 		public override void ViewDidLoad ()
