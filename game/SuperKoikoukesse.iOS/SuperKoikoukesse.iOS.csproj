@@ -26,6 +26,7 @@
     <MtouchUseSGen>True</MtouchUseSGen>
     <MtouchI18n />
     <MtouchArch>ARMv7</MtouchArch>
+    <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
