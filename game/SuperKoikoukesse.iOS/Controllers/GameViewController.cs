@@ -22,7 +22,7 @@ namespace SuperKoikoukesse.iOS
 		#region UIView stuff
 
 		public GameViewController ()
-			: base ("GameView", null)
+			: base ("GameView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 

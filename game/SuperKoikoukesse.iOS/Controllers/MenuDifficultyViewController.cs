@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.iOS
 		private GameModes m_mode;
 
 		public MenuDifficultyViewController ()
-			: base ("MenuDifficultyView", null)
+			: base ("MenuDifficultyView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 		

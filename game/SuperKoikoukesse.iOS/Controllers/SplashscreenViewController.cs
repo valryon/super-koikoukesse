@@ -11,7 +11,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class SplashscreenViewController : UIViewController
 	{
-		public SplashscreenViewController () : base ("SplashscreenView", null)
+		public SplashscreenViewController () 
+			: base ("SplashscreenView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 		

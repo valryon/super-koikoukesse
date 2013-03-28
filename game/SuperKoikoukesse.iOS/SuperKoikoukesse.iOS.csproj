@@ -96,6 +96,8 @@
     <Folder Include="Resources\database\images\" />
     <Folder Include="Resources\fr.lproj\" />
     <Folder Include="GameCenter\" />
+    <Folder Include="Views\iPhone\" />
+    <Folder Include="Views\iPad\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -149,15 +151,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\SplashscreenView.xib" />
-    <InterfaceDefinition Include="Views\CreditsView.xib" />
-    <InterfaceDefinition Include="Views\GameView.xib" />
-    <InterfaceDefinition Include="Views\LoadingView.xib" />
-    <InterfaceDefinition Include="Views\MenuDifficultyView.xib" />
-    <InterfaceDefinition Include="Views\MenuView.xib" />
-    <InterfaceDefinition Include="Views\ScoreView.xib" />
-    <InterfaceDefinition Include="Views\PagerMenuModeView.xib" />
-    <InterfaceDefinition Include="Views\PagerMenuInfosView.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\LoadingView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\PagerMenuInfosView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\PagerMenuModeView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\ScoreView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\GameView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\LoadingView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuDifficultyView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\PagerMenuInfosView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\PagerMenuModeView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\ScoreView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ingame_background.png">

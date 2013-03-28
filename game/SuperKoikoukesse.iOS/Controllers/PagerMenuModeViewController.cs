@@ -12,7 +12,8 @@ namespace SuperKoikoukesse.iOS
 	{
 		private GameModes mode;
 
-		public PagerMenuModeViewController (GameModes m) : base ("PagerMenuModeView", null)
+		public PagerMenuModeViewController (GameModes m) 
+			: base ("PagerMenuModeView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 			this.mode = m;
 		}

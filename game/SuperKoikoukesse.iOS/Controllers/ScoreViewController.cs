@@ -12,7 +12,8 @@ namespace SuperKoikoukesse.iOS
 	{
 		private Quizz quizz;
 
-		public ScoreViewController () : base ("ScoreView", null)
+		public ScoreViewController () 
+			: base ("ScoreView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 
 		}

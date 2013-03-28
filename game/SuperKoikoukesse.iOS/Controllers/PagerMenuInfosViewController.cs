@@ -9,7 +9,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class PagerMenuInfosViewController : UIViewController
 	{
-		public PagerMenuInfosViewController () : base ("PagerMenuInfosView", null)
+		public PagerMenuInfosViewController () 
+			: base ("PagerMenuInfosView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 		

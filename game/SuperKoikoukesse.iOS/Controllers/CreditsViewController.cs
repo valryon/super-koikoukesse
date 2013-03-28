@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class CreditsViewController : UIViewController
 	{
 		public CreditsViewController ()
-			: base ("CreditsView", null)
+			: base ("CreditsView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 		

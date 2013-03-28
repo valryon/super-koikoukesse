@@ -10,7 +10,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class LoadingViewController : UIViewController
 	{
 		public LoadingViewController ()
-			: base ( "LoadingView", null)
+			: base ( "LoadingView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 		

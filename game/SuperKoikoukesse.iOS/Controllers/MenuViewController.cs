@@ -15,7 +15,7 @@ namespace SuperKoikoukesse.iOS
 		private List<UIViewController> panels;
 
 		public MenuViewController ()
-			: base ("MenuView", null)
+			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 			panels = new List<UIViewController>();
 		}

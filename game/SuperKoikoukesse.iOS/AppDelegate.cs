@@ -17,6 +17,13 @@ namespace SuperKoikoukesse.iOS
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		/// <summary>
+		/// iPhone or iPad ?
+		/// </summary>
+		/// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
+		public static bool UserInterfaceIdiomIsPhone {
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+		}
 
 		// class-level declarations
 		UIWindow window;
