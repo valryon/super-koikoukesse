@@ -173,27 +173,7 @@
     <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ingame_background.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </BundleResource>
-    <BundleResource Include="Resources\menu_background.jpg" />
-    <BundleResource Include="Resources\bt_blue_0.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </BundleResource>
-    <BundleResource Include="Resources\bt_blue_2.png" />
-    <BundleResource Include="Resources\bt_green_1.png" />
-    <BundleResource Include="Resources\bt_orange_0.png" />
-    <BundleResource Include="Resources\bt_orange_1.png" />
-    <BundleResource Include="Resources\bt_orange_2.png" />
-    <BundleResource Include="Resources\bt_pause_1.png" />
-    <BundleResource Include="Resources\bt_pause_2.png" />
-    <BundleResource Include="Resources\bt_red_1.png" />
     <BundleResource Include="Resources\empty_screen.png" />
-    <BundleResource Include="Resources\jauge_joker_0.png" />
-    <BundleResource Include="Resources\jauge_joker_1.png" />
-    <BundleResource Include="Resources\jauge_joker_2.png" />
-    <BundleResource Include="Resources\jauge_joker_3.png" />
-    <BundleResource Include="Resources\bt_blue_1.png" />
     <BundleResource Include="Assets\Fonts\SG10.ttf" />
     <BundleResource Include="..\..\database\images\00001.jpg">
       <Link>Resources\database\images\00001.jpg</Link>
@@ -819,6 +799,22 @@
     <BundleResource Include="Resources\survival.png" />
     <BundleResource Include="Resources\timeattack.png" />
     <BundleResource Include="Resources\versus.png" />
+    <BundleResource Include="Resources\bitecoin.png" />
+    <BundleResource Include="Resources\bitecoin%402x.png" />
+    <BundleResource Include="Resources\button_answer.png" />
+    <BundleResource Include="Resources\button_answer%402x.png" />
+    <BundleResource Include="Resources\button_gear.png" />
+    <BundleResource Include="Resources\button_gear%402x.png" />
+    <BundleResource Include="Resources\button_pause.png" />
+    <BundleResource Include="Resources\button_pause%402x.png" />
+    <BundleResource Include="Resources\button_play.png" />
+    <BundleResource Include="Resources\button_play%402x.png" />
+    <BundleResource Include="Resources\button_shop.png" />
+    <BundleResource Include="Resources\button_shop%402x.png" />
+    <BundleResource Include="Resources\heart_mini.png" />
+    <BundleResource Include="Resources\heart_mini%402x.png" />
+    <BundleResource Include="Resources\heart.png" />
+    <BundleResource Include="Resources\heart%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
