@@ -10,50 +10,55 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuDifficultyViewController : UIViewController
 	{
-		private GameModes m_mode;
+		public event Action<GameDifficulties> DifficultySelected;
+		public event Action BackSelected;
 
 		public MenuDifficultyViewController ()
 			: base ("MenuDifficultyView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
-		
-		public override void DidReceiveMemoryWarning ()
+
+		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
+			selectDifficulty (GameDifficulties.Easy);
 		}
 
-		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender){
-			SelectDifficulty(GameDifficulties.Easy);
-		}
-		partial void hardButtonPressed (MonoTouch.Foundation.NSObject sender){
-			SelectDifficulty(GameDifficulties.Hard);
-		}
-		partial void expertButtonPressed (MonoTouch.Foundation.NSObject sender){
-			SelectDifficulty(GameDifficulties.Expert);
-		}
-		partial void nolifeButtonPressed (MonoTouch.Foundation.NSObject sender){
-			SelectDifficulty(GameDifficulties.Nolife);
+		partial void hardButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			selectDifficulty (GameDifficulties.Hard);
 		}
 
-		private void SelectDifficulty(GameDifficulties diff) {
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView (m_mode, diff);
+		partial void expertButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			selectDifficulty (GameDifficulties.Expert);
 		}
 
-		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender){
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToMenuView ();
+		partial void nolifeButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			selectDifficulty (GameDifficulties.Nolife);
 		}
 
-		/// <summary>
-		/// Sets the selected game mode.
-		/// </summary>
-		/// <param name="mode">Mode.</param>
-		public void SetGameMode(GameModes mode) {
-			m_mode = mode;
+		private void selectDifficulty (GameDifficulties diff)
+		{
+			hideMyself ();
+
+			if (DifficultySelected != null) {
+				DifficultySelected (diff);
+			}
+		}
+
+		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			hideMyself ();
+
+			if (BackSelected != null) {
+				BackSelected ();
+			}
+		}
+
+		private void hideMyself ()
+		{
+			View.RemoveFromSuperview();
 		}
 	}
 }

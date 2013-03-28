@@ -12,6 +12,8 @@ namespace SuperKoikoukesse.iOS
 	{
 		private GameModes mode;
 
+		public event Action<GameModes> GameModeSelected;
+
 		public PagerMenuModeViewController (GameModes m) 
 			: base ("PagerMenuModeView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
@@ -29,8 +31,9 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		partial void playButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToDifficultiesView (mode);
+			if(GameModeSelected != null) {
+				GameModeSelected(mode);
+			}
 		}
 	}
 }

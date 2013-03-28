@@ -188,25 +188,6 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public void SwitchToDifficultiesView (GameModes mode)
-		{
-			if (menuDifficultyViewController == null) {
-				menuDifficultyViewController = new MenuDifficultyViewController ();
-			}
-			
-			menuDifficultyViewController.SetGameMode (mode);
-			
-			window.RootViewController.RemoveFromParentViewController ();
-			window.RootViewController = menuDifficultyViewController;
-			window.MakeKeyAndVisible ();
-			
-		}
-
-		/// <summary>
-		/// Change to ingame view
-		/// </summary>
-		/// <param name="mode">Mode.</param>
-		/// <param name="difficulty">Difficulty.</param>
 		public void SwitchToGameView (GameModes mode, GameDifficulties difficulty)
 		{
 			if (gameViewController == null) {

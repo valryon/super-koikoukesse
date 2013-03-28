@@ -13,6 +13,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class MenuViewController : UIViewController
 	{
 		private List<UIViewController> panels;
+		private MenuDifficultyViewController difficultyViewController;
 
 		public MenuViewController ()
 			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -79,18 +80,22 @@ namespace SuperKoikoukesse.iOS
 			// Build for each modes
 			// -- Score attack
 			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.ScoreAttack);
+			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (scoreAttackMode);
 
 			// -- Time attack
 			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TimeAttack);
+			timeAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (timeAttackMode);
 
 			// -- Survival
 			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.Survival);
+			survivalMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (survivalMode);
 
 			// -- Versus
 			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+			versusMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (versusMode);
 
 
@@ -128,6 +133,20 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		#endregion
+
+		void HandleGameModeSelected (GameModes mode)
+		{
+			// Display difficulty view
+			if(difficultyViewController == null) {
+				difficultyViewController = new MenuDifficultyViewController();
+				difficultyViewController.DifficultySelected += (GameDifficulties difficulty) => {
+					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+					appDelegate.SwitchToGameView (mode, difficulty);
+				}; 	
+			}
+
+			View.AddSubview(difficultyViewController.View);
+		}
 
 		/// <summary>
 		/// Force config reload (DEBUG)
