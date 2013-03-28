@@ -69,7 +69,11 @@ namespace Superkoikoukesse.Common
 			DisplayName = aplayer.DisplayName;
 
 			// Clean ID from URL reserved chars
-			Id = aplayer.PlayerId.Replace(":","").Replace("&","").Replace("/","").Replace(" ","");
+			// TODO TOCARD TU FAIS DE LA MERDE
+			if (aplayer.PlayerId != null)
+				Id = aplayer.PlayerId.Replace(":","").Replace("&","").Replace("/","").Replace(" ","");
+			else 
+				Id = "Tocard42";
 		}
 
 		public void BuildFromJsonObject (JsonValue json)
