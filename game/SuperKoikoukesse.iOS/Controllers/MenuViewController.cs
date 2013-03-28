@@ -17,7 +17,7 @@ namespace SuperKoikoukesse.iOS
 		public MenuViewController ()
 			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
-			panels = new List<UIViewController>();
+			panels = new List<UIViewController> ();
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -48,12 +48,6 @@ namespace SuperKoikoukesse.iOS
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
 
-			// Set fonts manually because Interface Builder is a dick.
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			scoreAttackButton.TitleLabel.Font = appDelegate.CustomFont;
-			timeAttackButton.TitleLabel.Font = appDelegate.CustomFont;
-			survivalButon.TitleLabel.Font = appDelegate.CustomFont;
-
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -68,7 +62,7 @@ namespace SuperKoikoukesse.iOS
 		private void createPanels ()
 		{
 			pageControl.ValueChanged += (object sender, EventArgs e) => {
-				setScrollViewToPage(pageControl.CurrentPage);
+				setScrollViewToPage (pageControl.CurrentPage);
 			};
 			scrollView.DecelerationEnded += (object sender, EventArgs e) => {
 				double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
@@ -79,7 +73,7 @@ namespace SuperKoikoukesse.iOS
 			panels.Clear ();
 
 			// Credits
-			PagerMenuInfosViewController infos = new PagerMenuInfosViewController();
+			PagerMenuInfosViewController infos = new PagerMenuInfosViewController ();
 			panels.Add (infos);
 
 			// Build for each modes
@@ -113,10 +107,10 @@ namespace SuperKoikoukesse.iOS
 				location.X = frame.Width * i;
 				frame.Location = location;
 
-				panels[i].View.Frame = frame;
+				panels [i].View.Frame = frame;
 
 				// Add to scroll and paging
-				scrollView.AddSubview (panels[i].View);
+				scrollView.AddSubview (panels [i].View);
 			}
 
 			pageControl.Pages = count;
@@ -125,33 +119,15 @@ namespace SuperKoikoukesse.iOS
 			int firstDisplayedPageNumber = 1;
 			pageControl.CurrentPage = firstDisplayedPageNumber;
 
-			setScrollViewToPage(firstDisplayedPageNumber);
+			setScrollViewToPage (firstDisplayedPageNumber);
 		}
 
-		private void setScrollViewToPage(int page) {
-			scrollView.SetContentOffset(new PointF(page * scrollView.Frame.Width, 0 ), true);
+		private void setScrollViewToPage (int page)
+		{
+			scrollView.SetContentOffset (new PointF (page * scrollView.Frame.Width, 0), true);
 		}
 
 		#endregion
-
-
-		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToDifficultiesView (GameModes.ScoreAttack);
-		}
-
-		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToDifficultiesView (GameModes.TimeAttack);
-		}
-
-		partial void survivalButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToDifficultiesView (GameModes.Survival);
-		}
 
 		/// <summary>
 		/// Force config reload (DEBUG)
@@ -170,10 +146,14 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
 		}
 
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToCreditsView ();
+			// TODO
+		}
+
+		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			// TODO
 		}
 	}
 }

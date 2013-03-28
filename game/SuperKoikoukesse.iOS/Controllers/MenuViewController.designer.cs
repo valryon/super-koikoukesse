@@ -12,6 +12,21 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel creditsLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton configButton { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton paramsButton { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton shopButton { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIPageControl pageControl { get; set; }
 
 		[Outlet]
@@ -24,43 +39,47 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton scoreAttackButton { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton timeAttackButton { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton survivalButon { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIButton debugButton { get; set; }
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton helpButton { get; set; }
+		[Action ("paramsButtonPressed:")]
+		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("scoreAttackButtonPressed:")]
-		partial void scoreAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("timeAttackButtonPressed:")]
-		partial void timeAttackButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("survivalButtonPressed:")]
-		partial void survivalButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("shopButtonPressed:")]
+		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("configButtonPressed:")]
 		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("debugButtonPressed:")]
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("helpButtonPressed:")]
-		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (coinsLabel != null) {
+				coinsLabel.Dispose ();
+				coinsLabel = null;
+			}
+
+			if (creditsLabel != null) {
+				creditsLabel.Dispose ();
+				creditsLabel = null;
+			}
+
+			if (configButton != null) {
+				configButton.Dispose ();
+				configButton = null;
+			}
+
+			if (paramsButton != null) {
+				paramsButton.Dispose ();
+				paramsButton = null;
+			}
+
+			if (shopButton != null) {
+				shopButton.Dispose ();
+				shopButton = null;
+			}
+
 			if (pageControl != null) {
 				pageControl.Dispose ();
 				pageControl = null;
@@ -81,29 +100,9 @@ namespace SuperKoikoukesse.iOS
 				bgImage = null;
 			}
 
-			if (scoreAttackButton != null) {
-				scoreAttackButton.Dispose ();
-				scoreAttackButton = null;
-			}
-
-			if (timeAttackButton != null) {
-				timeAttackButton.Dispose ();
-				timeAttackButton = null;
-			}
-
-			if (survivalButon != null) {
-				survivalButon.Dispose ();
-				survivalButon = null;
-			}
-
 			if (debugButton != null) {
 				debugButton.Dispose ();
 				debugButton = null;
-			}
-
-			if (helpButton != null) {
-				helpButton.Dispose ();
-				helpButton = null;
 			}
 		}
 	}
