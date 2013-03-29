@@ -14,6 +14,7 @@ namespace SuperKoikoukesse.iOS
 		private bool m_isAuthenticated;
 
 		public GameCenterService (UIViewController viewController)
+			: base()
 		{
 			m_viewController = viewController;
 		}
@@ -45,9 +46,14 @@ namespace SuperKoikoukesse.iOS
 					if (error != null) {
 						Logger.Log (LogLevel.Error, "Game Center Authentication failed! " + error);
 					} else {
+						m_isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 
-						Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
-						m_isAuthenticated = true;
+						if(m_isAuthenticated) {
+							Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
+						}
+						else {
+							Logger.Log (LogLevel.Warning, "Game Center - disabled !");
+						}
 					}
 
 					if(callback != null) {

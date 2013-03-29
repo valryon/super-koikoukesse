@@ -33,8 +33,6 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewWillAppear (animated);
 
-			createPanels ();
-
 			Player profile = ProfileService.Instance.Player;
 
 			// Display credits and coins
@@ -55,6 +53,7 @@ namespace SuperKoikoukesse.iOS
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
 
+			createPanels ();
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -104,7 +103,6 @@ namespace SuperKoikoukesse.iOS
 			versusMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (versusMode);
 
-
 			int count = panels.Count;
 			RectangleF scrollFrame = scrollView.Frame;
 			scrollFrame.Width = scrollFrame.Width * count;
@@ -143,15 +141,15 @@ namespace SuperKoikoukesse.iOS
 		void HandleGameModeSelected (GameModes mode)
 		{
 			// Display difficulty view
-			if(difficultyViewController == null) {
-				difficultyViewController = new MenuDifficultyViewController();
+			if (difficultyViewController == null) {
+				difficultyViewController = new MenuDifficultyViewController ();
 				difficultyViewController.DifficultySelected += (GameDifficulties difficulty) => {
 					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 					appDelegate.SwitchToGameView (mode, difficulty);
 				}; 	
 			}
 
-			View.AddSubview(difficultyViewController.View);
+			View.AddSubview (difficultyViewController.View);
 		}
 
 		/// <summary>

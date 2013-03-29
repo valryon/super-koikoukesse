@@ -69,20 +69,16 @@ namespace Superkoikoukesse.Common
 			DisplayName = aplayer.DisplayName;
 
 			// Clean ID from URL reserved chars
-			// TODO TOCARD TU FAIS DE LA MERDE
-			if (aplayer.PlayerId != null)
-				Id = aplayer.PlayerId.Replace(":","").Replace("&","").Replace("/","").Replace(" ","");
-			else 
-				Id = "Tocard42";
+			Id = aplayer.PlayerId.Replace (":", "").Replace ("&", "").Replace ("/", "").Replace (" ", "");
 		}
 
 		public void BuildFromJsonObject (JsonValue json)
 		{
 			//json	{{"Id": "10550e72-da74-4b07-ac6d-a18e02712ec4", "GameCenterId": "G1728633519", "NickName": "G1728633519", "CreationDate": "2013-03-27T11:22:51.96Z", "Credits": 2500, "Coins": 3, "SubscriptionType": 0}}	System.Json.JsonObject
 			string playerId = json ["GameCenterId"].ToString ();
-			int credits = Convert.ToInt32(json ["Credits"].ToString ());
-			int coins = Convert.ToInt32(json ["Coins"].ToString ());
-			int subscriptionType = Convert.ToInt32(json ["SubscriptionType"].ToString ());
+			int credits = Convert.ToInt32 (json ["Credits"].ToString ());
+			int coins = Convert.ToInt32 (json ["Coins"].ToString ());
+			int subscriptionType = Convert.ToInt32 (json ["SubscriptionType"].ToString ());
 
 			this.Id = playerId;
 			this.Credits = credits;

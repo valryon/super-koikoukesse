@@ -16,6 +16,11 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
+		/// Occurs when authentication is finished.
+		/// </summary>
+		public event Action<Player> Authentication;
+
+		/// <summary>
 		/// Authenticate the player
 		/// </summary>
 		public abstract void Authenticate(Action callback);
