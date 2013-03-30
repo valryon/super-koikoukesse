@@ -49,7 +49,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidAppear (animated);
 
-			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
+			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
 
 			UpdateCoinsAndCredits();
 		}
@@ -174,7 +174,7 @@ namespace SuperKoikoukesse.iOS
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			Constants.DebugMode = !Constants.DebugMode;
-			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
+			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
 			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
 		}
 
