@@ -70,7 +70,7 @@ namespace SuperKoikoukesse.iOS
 			// Display credits and coins
 			if (profile != null) {
 				creditsLabel.Text = profile.Credits.ToString ();
-				coinsLabel.Text = profile.Coins.ToString ("000.000");
+				coinsLabel.Text = profile.Coins.ToString ("000000");
 			}
 		}
 
@@ -119,8 +119,6 @@ namespace SuperKoikoukesse.iOS
 
 			scrollFrame.Width = scrollFrame.Width * count;
 			scrollView.ContentSize = scrollFrame.Size;
-
-			Logger.Log(LogLevel.Debug, "Pouet : "+scrollFrame);
 
 			for (int i = 0; i < count; i++) {
 
