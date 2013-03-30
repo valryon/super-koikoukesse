@@ -237,6 +237,22 @@ namespace SuperKoikoukesse.iOS
 			
 		}
 	
+		/// <summary>
+		/// Diplsy shop
+		/// </summary>
+		public void SwitchToShopView ()
+		{
+
+		}
+
+		/// <summary>
+		/// Display options as pop up
+		/// </summary>
+		public void ShowOptions ()
+		{
+
+		}
+
 		#endregion
 
 		#region Game center

@@ -20,6 +20,16 @@ namespace SuperKoikoukesse.iOS
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToCreditsView ();
+		}
+
+		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToShopView ();
+		}
 	}
 }
 

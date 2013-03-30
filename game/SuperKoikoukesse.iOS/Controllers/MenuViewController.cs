@@ -152,7 +152,6 @@ namespace SuperKoikoukesse.iOS
 
 		void HandleGameModeSelected (GameModes mode)
 		{
-
 			// Display difficulty view
 			if (difficultyViewController == null) {
 				difficultyViewController = new MenuDifficultyViewController ();
@@ -184,12 +183,14 @@ namespace SuperKoikoukesse.iOS
 
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			// TODO
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.ShowOptions ();
 		}
 
 		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			// TODO
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.SwitchToShopView ();
 		}
 	}
 }
