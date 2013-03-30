@@ -26,6 +26,9 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton menuButton { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UILabel bestScoreLabel { get; set; }
+
 		[Action ("retryButtonPressed:")]
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -57,6 +60,11 @@ namespace SuperKoikoukesse.iOS
 			if (menuButton != null) {
 				menuButton.Dispose ();
 				menuButton = null;
+			}
+
+			if (bestScoreLabel != null) {
+				bestScoreLabel.Dispose ();
+				bestScoreLabel = null;
 			}
 		}
 	}
