@@ -84,10 +84,13 @@ namespace Superkoikoukesse.Common
 			// Get the player on the webservice and merge data
 			WebserviceGetPlayer ws = new WebserviceGetPlayer (Player.Id);
 			
-			ws.Request ((player) => {
-				if (player != null) {
+			ws.Request ((serverPlayer) => {
+				if (serverPlayer != null) {
 
-					// TODO Sometimes we need to merge server data
+					// Merge server data
+					Player localPlayer = Player;
+
+					localPlayer.Credits = serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed;
 
 					// Do we have some disconnected data that we want to upload now?
 					updateDisconnectedData ();
@@ -122,16 +125,33 @@ namespace Superkoikoukesse.Common
 				bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
 
 				if (addCredits) {
+
+					Logger.Log(LogLevel.Info, "Reseting credits!");
+
+					// Modify the stored profile
 					int currentCredits = localPlayer.Credits;
+
+					// Reset credits
 					localPlayer.Credits = 5;
+
+					// Set date to today
+					// TODO Y U NO SAVE MY DATE?!
 					localPlayer.LastCreditsUpdate = DateTime.Now;
 					int newCreditsCount = localPlayer.Credits - currentCredits;
 
+					// Save
+					DatabaseService.Instance.SavePlayer (localPlayer);
+
+					// Reset cache
+					lastProfileCacheTime = DateTime.MinValue;
+
+					// Tell server what we've done
 					ModifyCredits (newCreditsCount, null,
 				               (code) => {
-						// Server failed to update credits
-						localPlayer.DisconnectedCreditsUsed = -newCreditsCount;
-						DatabaseService.Instance.SavePlayer (localPlayer);
+						// Server failed to update credits, store them for later
+						Player p = Player;
+						p.DisconnectedCreditsUsed = -newCreditsCount;
+						DatabaseService.Instance.SavePlayer (p);
 					});
 
 					DatabaseService.Instance.SavePlayer (localPlayer);
