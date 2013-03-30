@@ -41,13 +41,15 @@ namespace SuperKoikoukesse.iOS
 				
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
-
-			createPanels ();
 		}
-
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
+
+			if(panels.Count == 0) {
+				// We need auto layout to be set up, so we can create panels only here
+				createPanels ();
+			}
 
 			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
 
@@ -68,7 +70,7 @@ namespace SuperKoikoukesse.iOS
 			// Display credits and coins
 			if (profile != null) {
 				creditsLabel.Text = profile.Credits.ToString ();
-				coinsLabel.Text = profile.Coins.ToString ("000 000");
+				coinsLabel.Text = profile.Coins.ToString ("000.000");
 			}
 		}
 
@@ -114,9 +116,12 @@ namespace SuperKoikoukesse.iOS
 
 			int count = panels.Count;
 			RectangleF scrollFrame = scrollView.Frame;
+
 			scrollFrame.Width = scrollFrame.Width * count;
 			scrollView.ContentSize = scrollFrame.Size;
-			
+
+			Logger.Log(LogLevel.Debug, "Pouet : "+scrollFrame);
+
 			for (int i = 0; i < count; i++) {
 
 				// Compute location and size
@@ -149,6 +154,7 @@ namespace SuperKoikoukesse.iOS
 
 		void HandleGameModeSelected (GameModes mode)
 		{
+
 			// Display difficulty view
 			if (difficultyViewController == null) {
 				difficultyViewController = new MenuDifficultyViewController ();
