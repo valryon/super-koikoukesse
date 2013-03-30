@@ -72,13 +72,20 @@ namespace SuperKoikoukesse.iOS
 			UpdateConfiguration ();
 
 			// Register on Game Center
-			GameCenterService gameCenter = new GameCenterService (window.RootViewController);
+			GameCenter = new GameCenterPlayer (window.RootViewController);
+			GameCenter.Authenticate();
+			GameCenter.AuthenticationFinished += () => {
 
-			gameCenter.Authenticate(() => {
-				ProfileService.Instance.Initialize(gameCenter);
+				// Store a local profile from the game center info
+				ProfileService.Instance.Initialize (GameCenter);
+
+				if(menuViewController != null) 
+				{
+					menuViewController.UpdateCoinsAndCredits();
+				}
 
 				SetLoading (false);
-			});
+			};
 		}
 
 		/// <summary>
@@ -205,13 +212,13 @@ namespace SuperKoikoukesse.iOS
 			if (scoreViewController == null) {
 				scoreViewController = new ScoreViewController ();
 			}
-			scoreViewController.SetQuizzData(quizz);
+			scoreViewController.SetQuizzData (quizz);
 			
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = scoreViewController;
 			window.MakeKeyAndVisible ();
 
-			scoreViewController.DisplayGameCenterLeaderboards();
+			scoreViewController.DisplayGameCenterLeaderboards ();
 			
 		}
 
@@ -252,9 +259,8 @@ namespace SuperKoikoukesse.iOS
 
 						m_gkLeaderboardview = null;
 
-						if(callback != null)
-						{
-							callback();
+						if (callback != null) {
+							callback ();
 						}
 					};
 
@@ -275,6 +281,12 @@ namespace SuperKoikoukesse.iOS
 		/// Is loading something
 		/// </summary>
 		public bool IsLoading { get; private set; }
+
+		/// <summary>
+		/// Game center data
+		/// </summary>
+		/// <value>The game center.</value>
+		public GameCenterPlayer GameCenter  { get; private set; }
 
 		protected override void Dispose (bool disposing)
 		{

@@ -29,17 +29,6 @@ namespace SuperKoikoukesse.iOS
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-
-			Player profile = ProfileService.Instance.Player;
-
-			// Display credits and coins
-			//creditsLabel.Text = profile.Credits.ToString();
-			//coinsLabel.Text = profile.Coins.ToString("000 000");
-		}
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -61,6 +50,26 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidAppear (animated);
 
 			debugButton.SetTitle ("DEBUG: " + Constants.DebugMode, UIControlState.Normal);
+
+			UpdateCoinsAndCredits();
+		}
+
+		/// <summary>
+		/// Update counters
+		/// </summary>
+		public void UpdateCoinsAndCredits() {
+			
+			// Maybe we can add some credits?
+			ProfileService.Instance.EarnSomeCredits();
+
+			// Load the player from db
+			Player profile = ProfileService.Instance.Player;
+
+			// Display credits and coins
+			if (profile != null) {
+				creditsLabel.Text = profile.Credits.ToString ();
+				coinsLabel.Text = profile.Coins.ToString ("000 000");
+			}
 		}
 
 		#region Scroll view and pagination

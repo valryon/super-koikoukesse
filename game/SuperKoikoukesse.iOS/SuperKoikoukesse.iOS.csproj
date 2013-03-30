@@ -122,7 +122,6 @@
     <Compile Include="Controllers\CreditsViewController.designer.cs">
       <DependentUpon>CreditsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameCenter\GameCenterService.cs" />
     <Compile Include="Controllers\SplashscreenViewController.cs" />
     <Compile Include="Controllers\SplashscreenView.designer.cs">
       <DependentUpon>SplashscreenViewController.cs</DependentUpon>
@@ -144,6 +143,7 @@
       <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorConstants.cs" />
+    <Compile Include="GameCenter\GameCenterPlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

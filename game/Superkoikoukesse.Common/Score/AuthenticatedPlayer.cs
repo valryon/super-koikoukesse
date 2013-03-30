@@ -11,19 +11,30 @@ namespace Superkoikoukesse.Common
 	
 		public AuthenticatedPlayer ()
 		{
-			playerId = Guid.NewGuid().ToString();
+			playerId = Guid.NewGuid ().ToString ();
 			displayName = "Local";
+		}
+
+		/// <summary>
+		/// Event  call
+		/// </summary>
+		/// <param name="player">Player.</param>
+		protected void TriggerAuthenticationFinished ()
+		{
+			if (AuthenticationFinished != null) {
+				AuthenticationFinished ();
+			}
 		}
 
 		/// <summary>
 		/// Occurs when authentication is finished.
 		/// </summary>
-		public event Action<Player> Authentication;
+		public event Action AuthenticationFinished;
 
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public abstract void Authenticate(Action callback);
+		public abstract void Authenticate ();
 
 		/// <summary>
 		/// Send a score to a leaderboard
@@ -31,7 +42,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="score">Score.</param>
-		public abstract void AddScore(GameModes mode, GameDifficulties difficulty, int score);
+		public abstract void AddScore (GameModes mode, GameDifficulties difficulty, int score);
 
 		/// <summary>
 		/// Get the leaderbord name
@@ -39,8 +50,9 @@ namespace Superkoikoukesse.Common
 		/// <returns>The leaderboard identifier.</returns>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public virtual string GetLeaderboardId(GameModes mode, GameDifficulties difficulty) {
-			return (mode.ToString() + difficulty.ToString()).ToLower();
+		public virtual string GetLeaderboardId (GameModes mode, GameDifficulties difficulty)
+		{
+			return (mode.ToString () + difficulty.ToString ()).ToLower ();
 		}
 
 		/// <summary>

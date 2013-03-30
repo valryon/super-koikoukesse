@@ -8,12 +8,12 @@ namespace SuperKoikoukesse.iOS
 	/// <summary>
 	/// Game center integration
 	/// </summary>
-	public class GameCenterService : AuthenticatedPlayer
+	public class GameCenterPlayer : AuthenticatedPlayer
 	{
 		private UIViewController m_viewController;
 		private bool m_isAuthenticated;
 
-		public GameCenterService (UIViewController viewController)
+		public GameCenterPlayer (UIViewController viewController)
 			: base()
 		{
 			m_viewController = viewController;
@@ -22,7 +22,7 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public override void Authenticate (Action callback)
+		public override void Authenticate ()
 		{
 			m_isAuthenticated = false;
 			Logger.Log (LogLevel.Info, "Game Center Authentication requested...");
@@ -48,17 +48,14 @@ namespace SuperKoikoukesse.iOS
 					} else {
 						m_isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 
-						if(m_isAuthenticated) {
+						if (m_isAuthenticated) {
 							Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
-						}
-						else {
+						} else {
 							Logger.Log (LogLevel.Warning, "Game Center - disabled !");
 						}
 					}
 
-					if(callback != null) {
-						callback();
-					}
+					TriggerAuthenticationFinished();
 				};
 			} else {
 				// Versions prior to iOS 6.0
@@ -66,8 +63,16 @@ namespace SuperKoikoukesse.iOS
 					if (error != null) {
 						Logger.Log (LogLevel.Error, "Game Center Authentication failed! " + error);
 					} else {
-						m_isAuthenticated = true;
+						m_isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+						
+						if (m_isAuthenticated) {
+							Logger.Log (LogLevel.Info, "Game Center - " + PlayerId + "(" + DisplayName + ")");
+						} else {
+							Logger.Log (LogLevel.Warning, "Game Center - disabled !");
+						}
 					}
+
+					TriggerAuthenticationFinished();
 				});
 			}
 		}

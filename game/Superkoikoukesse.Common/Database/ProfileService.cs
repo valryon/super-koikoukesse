@@ -46,7 +46,7 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
-		/// Initialize profile service
+		/// Initialize a local profile from a player service like Game center
 		/// </summary>
 		/// <param name="aplayer">Aplayer.</param>
 		public void Initialize (AuthenticatedPlayer aplayer)
@@ -54,7 +54,7 @@ namespace Superkoikoukesse.Common
 			AuthenticatedPlayer = aplayer;
 			bool createNewProfile = false;
 
-			// try to get from database
+			// try to get from database (look at the getter)
 			if (Player == null) {
 
 				// Nothing found: create something
@@ -86,6 +86,9 @@ namespace Superkoikoukesse.Common
 			
 			ws.Request ((player) => {
 				if (player != null) {
+
+					// TODO Sometimes we need to merge server data
+
 					// Do we have some disconnected data that we want to upload now?
 					updateDisconnectedData ();
 				} 
@@ -114,23 +117,25 @@ namespace Superkoikoukesse.Common
 			// Get local player
 			Player localPlayer = Player;
 
-			// Time to get credits?
-			bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
+			if (localPlayer != null) {
+				// Time to get credits?
+				bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
 
-			if (addCredits) {
-				int currentCredits = localPlayer.Credits;
-				localPlayer.Credits = 5;
+				if (addCredits) {
+					int currentCredits = localPlayer.Credits;
+					localPlayer.Credits = 5;
+					localPlayer.LastCreditsUpdate = DateTime.Now;
+					int newCreditsCount = localPlayer.Credits - currentCredits;
 
-				int newCreditsCount = localPlayer.Credits - currentCredits;
-
-				ModifyCredits (newCreditsCount, null,
+					ModifyCredits (newCreditsCount, null,
 				               (code) => {
-					// Server failed to update credits
-					localPlayer.DisconnectedCreditsUsed = -newCreditsCount;
-					DatabaseService.Instance.SavePlayer (localPlayer);
-				});
+						// Server failed to update credits
+						localPlayer.DisconnectedCreditsUsed = -newCreditsCount;
+						DatabaseService.Instance.SavePlayer (localPlayer);
+					});
 
-				DatabaseService.Instance.SavePlayer (localPlayer);
+					DatabaseService.Instance.SavePlayer (localPlayer);
+				}
 			}
 		}
 
@@ -167,6 +172,13 @@ namespace Superkoikoukesse.Common
 
 				Logger.Log (LogLevel.Info, "Modifying credits: " + creditsUsed);
 
+				// Update local
+				Player p = Player;
+				p.Credits += creditsUsed;
+				
+				DatabaseService.Instance.SavePlayer (p);
+
+				// Tell the server
 				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (Player);
 				wsCredits.AddCredits (creditsUsed, 
 				                      callback,
@@ -192,6 +204,13 @@ namespace Superkoikoukesse.Common
 
 				Logger.Log (LogLevel.Info, "Using coins: " + coinsUsed);
 
+				// Update local
+				Player p = Player;
+				p.Coins += coinsUsed;
+				
+				DatabaseService.Instance.SavePlayer (p);
+				
+				// Tell the server
 				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (Player);
 				wsCoins.AddCoins (coinsUsed,
 				                  callback,
