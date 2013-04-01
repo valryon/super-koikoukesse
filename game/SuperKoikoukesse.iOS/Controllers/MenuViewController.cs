@@ -41,31 +41,43 @@ namespace SuperKoikoukesse.iOS
 				
 				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
 			}
+
+			// Hide credits and coins until player profile is loaded
+			coinsLabel.Hidden = true;
+			coinsImage.Hidden = true;
+			creditsLabel.Hidden = true;
+			creditsImage.Hidden = true;
 		}
+
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
 
-			if(panels.Count == 0) {
+			if (panels.Count == 0) {
 				// We need auto layout to be set up, so we can create panels only here
 				createPanels ();
 			}
 
 			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
 
-			UpdateCoinsAndCredits();
+			UpdateCoinsAndCredits ();
 		}
 
 		/// <summary>
 		/// Update counters
 		/// </summary>
-		public void UpdateCoinsAndCredits() {
-			
-			// Maybe we can add some credits?
-			ProfileService.Instance.EarnSomeCredits();
+		public void UpdateCoinsAndCredits ()
+		{
+			// Show infos is they were hidden
+			if (coinsLabel.Hidden) {
+				coinsLabel.Hidden = false;
+				coinsImage.Hidden = false;
+				creditsLabel.Hidden = false;
+				creditsImage.Hidden = false;
+			}
 
 			// Load the player from db
-			Player profile = ProfileService.Instance.Player;
+			Player profile = ProfileService.Instance.CachedPlayer;
 
 			// Display credits and coins
 			if (profile != null) {

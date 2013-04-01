@@ -30,10 +30,12 @@ namespace Superkoikoukesse.Common
 
 		public AuthenticatedPlayer AuthenticatedPlayer { get; private set; }
 
+		public event Action<Player> PlayerUpdated;
+
 		private DateTime lastProfileCacheTime;
 		private Player cachedLocalPlayer;
 
-		public Player Player {
+		public Player CachedPlayer {
 			get {
 				if (lastProfileCacheTime.AddMinutes (Constants.ProfileCacheDuration) <= DateTime.Now) {
 					lastProfileCacheTime = DateTime.Now;
@@ -52,73 +54,99 @@ namespace Superkoikoukesse.Common
 		public void Initialize (AuthenticatedPlayer aplayer)
 		{
 			AuthenticatedPlayer = aplayer;
-			bool createNewProfile = false;
 
-			// try to get from database (look at the getter)
-			if (Player == null) {
+			// Call game service auth method (Game center)
+			// ------------------------------------------------------------------------
+			aplayer.Authenticate (() => {
 
-				// Nothing found: create something
-				createNewProfile = true;
-			} else {
-				// Game center id is not the same as stored id?
-				if (Player.Id != aplayer.PlayerId) {
-					createNewProfile = true;
-				}
-			}
-
-			// Locally create the player
-			if (createNewProfile) {
-				Player freshlyCreatedPlayer = new Player (aplayer);
+				bool createNewProfile = false;
 				
-				DatabaseService.Instance.SavePlayer (freshlyCreatedPlayer);
-			}
+				// try to get from database (look at the getter)
+				if (CachedPlayer == null) {
+					
+					// Nothing found: create something
+					createNewProfile = true;
+					
+				} else {
+					// Game center id is not the same as stored id?
+					if (CachedPlayer.Id != aplayer.PlayerId) {
+						createNewProfile = true;
+					}
+				}
+				
+				// Locally create the player
+				// ------------------------------------------------------------------------
+				if (createNewProfile) {
 
-			UpdatePlayer ();
+					// Use game service infos if available
+					Player freshlyCreatedPlayer = new Player (aplayer);
+					
+					DatabaseService.Instance.SavePlayer (freshlyCreatedPlayer);
+				}
+
+				// Check the player on the server side
+				WebserviceGetPlayer ws = new WebserviceGetPlayer (CachedPlayer.Id);
+
+				// Make a GET and see if the player exists
+				// ------------------------------------------------------------------------
+				ws.Request ((serverPlayer) => {
+					if (serverPlayer != null) {
+						
+						// Merge server data
+						Player localPlayer = CachedPlayer;
+						
+						localPlayer.Credits = serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed;
+						
+						// Simply update
+						UpdatePlayer();
+					} 
+				},
+				(code, exception) => {
+					
+					if (code == 102) {
+
+						// New player to create
+						Logger.Log (LogLevel.Info, "Unknow player to server");
+						
+						// Create player on server
+						// ------------------------------------------------------------------------
+						WebserviceCreatePlayer wsCreate = new WebserviceCreatePlayer (CachedPlayer);
+						wsCreate.CreatePlayer ();
+
+					} else {
+						// Well, we crashed. See the log?
+						Logger.Log (LogLevel.Error, "Calling profile service failed!");
+					}
+
+					// Update anyway
+					UpdatePlayer();
+				});
+			});
 		}
 
 		/// <summary>
-		/// Updates the player profile by calling the webservice.
+		/// Updates the player profile (credits and coins)
 		/// </summary>
 		public void UpdatePlayer ()
 		{
-			// Get the player on the webservice and merge data
-			WebserviceGetPlayer ws = new WebserviceGetPlayer (Player.Id);
-			
-			ws.Request ((serverPlayer) => {
-				if (serverPlayer != null) {
+			// Do we have some disconnected data that we want to upload now?
+			updateDisconnectedData ();
 
-					// Merge server data
-					Player localPlayer = Player;
+			// Add credits if its time to do so
+			earnSomeCredits ();
 
-					localPlayer.Credits = serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed;
-
-					// Do we have some disconnected data that we want to upload now?
-					updateDisconnectedData ();
-				} 
-			},
-			(code, exception) => {
-
-				if (code == 102) {
-					// New player to create
-					Logger.Log (LogLevel.Info, "Unknow player to server");
-					
-					// Create player
-					WebserviceCreatePlayer wsCreate = new WebserviceCreatePlayer (Player);
-					wsCreate.CreatePlayer ();
-				} else {
-					// Well, we crashed. See the log?
-					Logger.Log (LogLevel.Error, "Calling profile service failed!");
-				}
-			});
+			if(PlayerUpdated != null) {
+				PlayerUpdated(CachedPlayer);
+			}
 		}
 
 		/// <summary>
 		/// Earns some credits.
 		/// </summary>
-		public void EarnSomeCredits ()
+		private void earnSomeCredits ()
 		{
 			// Get local player
-			Player localPlayer = Player;
+			Player localPlayer = CachedPlayer;
 
 			if (localPlayer != null) {
 				// Time to get credits?
@@ -126,7 +154,7 @@ namespace Superkoikoukesse.Common
 
 				if (addCredits) {
 
-					Logger.Log(LogLevel.Info, "Reseting credits!");
+					Logger.Log (LogLevel.Info, "Reseting credits!");
 
 					// Modify the stored profile
 					int currentCredits = localPlayer.Credits;
@@ -149,7 +177,7 @@ namespace Superkoikoukesse.Common
 					ModifyCredits (newCreditsCount, null,
 				               (code) => {
 						// Server failed to update credits, store them for later
-						Player p = Player;
+						Player p = CachedPlayer;
 						p.DisconnectedCreditsUsed = -newCreditsCount;
 						DatabaseService.Instance.SavePlayer (p);
 					});
@@ -164,7 +192,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		private void updateDisconnectedData ()
 		{
-			Player localPlayer = Player;
+			Player localPlayer = CachedPlayer;
 
 			if (localPlayer.DisconnectedCoinsEarned != 0) {
 				ModifyCoins (localPlayer.DisconnectedCoinsEarned,
@@ -193,20 +221,20 @@ namespace Superkoikoukesse.Common
 				Logger.Log (LogLevel.Info, "Modifying credits: " + creditsUsed);
 
 				// Update local
-				Player p = Player;
+				Player p = CachedPlayer;
 				p.Credits += creditsUsed;
 				
 				DatabaseService.Instance.SavePlayer (p);
 
 				// Tell the server
-				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (Player);
+				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (CachedPlayer);
 				wsCredits.AddCredits (creditsUsed, 
 				                      callback,
 
 				                      (code) => {
 					
 					// Store coins in disconnected data
-					Player localPlayer = Player;
+					Player localPlayer = CachedPlayer;
 					localPlayer.DisconnectedCreditsUsed += creditsUsed;
 					
 					DatabaseService.Instance.SavePlayer (localPlayer);
@@ -225,19 +253,19 @@ namespace Superkoikoukesse.Common
 				Logger.Log (LogLevel.Info, "Using coins: " + coinsUsed);
 
 				// Update local
-				Player p = Player;
+				Player p = CachedPlayer;
 				p.Coins += coinsUsed;
 				
 				DatabaseService.Instance.SavePlayer (p);
 				
 				// Tell the server
-				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (Player);
+				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (CachedPlayer);
 				wsCoins.AddCoins (coinsUsed,
 				                  callback,
 				                  (code) => {
 
 					// Store coins in disconnected data
-					Player localPlayer = Player;
+					Player localPlayer = CachedPlayer;
 					localPlayer.DisconnectedCoinsEarned += coinsUsed;
 
 					DatabaseService.Instance.SavePlayer (localPlayer);

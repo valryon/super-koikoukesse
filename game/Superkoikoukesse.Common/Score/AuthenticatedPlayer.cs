@@ -16,25 +16,9 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
-		/// Event  call
-		/// </summary>
-		/// <param name="player">Player.</param>
-		protected void TriggerAuthenticationFinished ()
-		{
-			if (AuthenticationFinished != null) {
-				AuthenticationFinished ();
-			}
-		}
-
-		/// <summary>
-		/// Occurs when authentication is finished.
-		/// </summary>
-		public event Action AuthenticationFinished;
-
-		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public abstract void Authenticate ();
+		public abstract void Authenticate (Action authenticationFinished);
 
 		/// <summary>
 		/// Send a score to a leaderboard

@@ -12,6 +12,12 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIImageView coinsImage { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView creditsImage { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
 
 		[Outlet]
@@ -55,6 +61,16 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (coinsImage != null) {
+				coinsImage.Dispose ();
+				coinsImage = null;
+			}
+
+			if (creditsImage != null) {
+				creditsImage.Dispose ();
+				creditsImage = null;
+			}
+
 			if (coinsLabel != null) {
 				coinsLabel.Dispose ();
 				coinsLabel = null;

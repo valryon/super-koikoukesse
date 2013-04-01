@@ -22,7 +22,7 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Authenticate the player
 		/// </summary>
-		public override void Authenticate ()
+		public override void Authenticate (Action authenticationFinished)
 		{
 			m_isAuthenticated = false;
 			Logger.Log (LogLevel.Info, "Game Center Authentication requested...");
@@ -55,7 +55,9 @@ namespace SuperKoikoukesse.iOS
 						}
 					}
 
-					TriggerAuthenticationFinished();
+					if(authenticationFinished != null) {
+						authenticationFinished();
+					}
 				};
 			} else {
 				// Versions prior to iOS 6.0
@@ -72,7 +74,9 @@ namespace SuperKoikoukesse.iOS
 						}
 					}
 
-					TriggerAuthenticationFinished();
+					if(authenticationFinished != null) {
+						authenticationFinished();
+					}
 				});
 			}
 		}

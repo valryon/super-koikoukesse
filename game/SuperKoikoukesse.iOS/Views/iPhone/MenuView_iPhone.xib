@@ -328,6 +328,7 @@
 								<string key="NSFrame">{{475, 8}, {73, 44}}</string>
 								<reference key="NSSuperview" ref="839417992"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -497,6 +498,22 @@
 						<reference key="destination" ref="1062173776"/>
 					</object>
 					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">creditsImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="379706998"/>
+					</object>
+					<int key="connectionID">487</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coinsImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="402260007"/>
+					</object>
+					<int key="connectionID">488</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -2088,7 +2105,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">486</int>
+			<int key="maxID">488</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2121,9 +2138,11 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImage">UIImageView</string>
+						<string key="coinsImage">UIImageView</string>
 						<string key="coinsLabel">UILabel</string>
 						<string key="configButton">UIButton</string>
 						<string key="creditsButton">UIButton</string>
+						<string key="creditsImage">UIImageView</string>
 						<string key="creditsLabel">UILabel</string>
 						<string key="debugButton">UIButton</string>
 						<string key="pageControl">UIPageControl</string>
@@ -2134,6 +2153,10 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="bgImage">
 							<string key="name">bgImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinsImage">
+							<string key="name">coinsImage</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="coinsLabel">
@@ -2147,6 +2170,10 @@
 						<object class="IBToOneOutletInfo" key="creditsButton">
 							<string key="name">creditsButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="creditsImage">
+							<string key="name">creditsImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="creditsLabel">
 							<string key="name">creditsLabel</string>

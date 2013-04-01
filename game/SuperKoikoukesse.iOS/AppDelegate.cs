@@ -73,18 +73,20 @@ namespace SuperKoikoukesse.iOS
 
 			// Register on Game Center
 			GameCenter = new GameCenterPlayer (window.RootViewController);
-			GameCenter.Authenticate();
-			GameCenter.AuthenticationFinished += () => {
 
-				// Store a local profile from the game center info
-				ProfileService.Instance.Initialize (GameCenter);
+			// Store a local profile from the game center info
+			// Or create a temporary local player
+			ProfileService.Instance.Initialize (GameCenter);
+			ProfileService.Instance.PlayerUpdated += (Player p) => {
 
-				if(menuViewController != null) 
-				{
-					menuViewController.UpdateCoinsAndCredits();
-				}
-
-				SetLoading (false);
+				InvokeOnMainThread( () => {
+					if(menuViewController != null) 
+					{
+						menuViewController.UpdateCoinsAndCredits();
+					}
+					
+					SetLoading (false);
+				});
 			};
 		}
 
