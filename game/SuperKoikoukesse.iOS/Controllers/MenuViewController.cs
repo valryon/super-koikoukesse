@@ -162,16 +162,18 @@ namespace SuperKoikoukesse.iOS
 
 		#endregion
 
-		void HandleGameModeSelected (GameModes mode)
+		void HandleGameModeSelected (GameModes m)
 		{
 			// Display difficulty view
 			if (difficultyViewController == null) {
 				difficultyViewController = new MenuDifficultyViewController ();
-				difficultyViewController.DifficultySelected += (GameDifficulties difficulty) => {
+				difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
 					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 					appDelegate.SwitchToGameView (mode, difficulty);
 				}; 	
 			}
+
+			difficultyViewController.SetMode(m);
 
 			View.AddSubview (difficultyViewController.View);
 		}
