@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace SuperKoikoukesse.Webservice.Controllers
 {
+    [Authorize]
     public class StatsController : Controller
     {
         /// <summary>
