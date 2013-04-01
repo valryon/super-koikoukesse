@@ -13,38 +13,39 @@
         {
             int i = 0;
             
-            <div class="span3">
+            <div class="span3 well">
 
                 <h4>@mode.ToString()</h4>
 
                 @foreach (SuperKoikoukesse.Webservice.Core.Model.DifficultiesEnum diff in Enum.GetValues(typeof(SuperKoikoukesse.Webservice.Core.Model.DifficultiesEnum)))
                 {
-                    
-                    <h5>@diff.ToString()</h5>
-                    
-                    <input type="hidden" name="@(mode)[@(i)].Mode" value="@(mode)" />
-                    <input type="hidden" name="@(mode)[@(i)].Difficulty" value="@(diff)" />
-            
-                    <label>Temps</label>
-                    <input type="text" name="@(mode)[@(i)].Time" value="@Model.GetValue(mode, diff).Time"/>
-              
-                    if (mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.ScoreAttack || mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.Versus)
-                    {          
-                    <label>Nombre de questions</label>
-                    <input type="text" name="@(mode)[@(i)].QuestionsCount" value="@Model.GetValue(mode, diff).QuestionsCount"/>
-                    }
+                    <hr />
+                    <div>
+                        <h5>@diff.ToString()</h5>
 
-                    if (mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.Survival)
-                    {          
-                    <label>Nombre de vies</label>
-                    <input type="text" name="@(mode)[@(i)].Lives" value="@Model.GetValue(mode, diff).Lives"/>
-                    }
-                
-                    <label>Score de base</label>
-                    <input type="text" name="@(mode)[@(i)].Score" value="@Model.GetValue(mode, diff).Score"/>
-                    
-                   
-                    i++;
+                        <input type="hidden" name="@(mode)[@(i)].Mode" value="@(mode)" />
+                        <input type="hidden" name="@(mode)[@(i)].Difficulty" value="@(diff)" />
+
+                        <label>Temps</label>
+                        <input class="input-mini" type="text" name="@(mode)[@(i)].Time" value="@Model.GetValue(mode, diff).Time"/>
+
+                        @if (mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.ScoreAttack || mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.Versus)
+                        {          
+                            <label>Nombre de questions</label>
+                            <input class="input-mini" type="text" name="@(mode)[@(i)].QuestionsCount" value="@Model.GetValue(mode, diff).QuestionsCount"/>
+                        }
+
+                        @if (mode == SuperKoikoukesse.Webservice.Core.Model.ModesEnum.Survival)
+                        {          
+                            <label>Nombre de vies</label>
+                            <input class="input-mini" type="text" name="@(mode)[@(i)].Lives" value="@Model.GetValue(mode, diff).Lives"/>
+                        }
+
+                        <label>Score de base</label>
+                        <input class="input-mini" type="text" name="@(mode)[@(i)].Score" value="@Model.GetValue(mode, diff).Score"/>
+
+                    </div>
+                        i++;
                 }
             </div>
         }
@@ -62,7 +63,7 @@
 <h3>Réinitialisation</h3>
 <p>
     Réinitialiser la configuration.
-    Remettre les valeurs par défaut connue du serveur. On va éviter de faire ça en prod.
+    Remettre les valeurs par défaut connues du serveur. On va éviter de faire ça en prod.
 </p>
 <p>
     <a class="btn btn-danger" href ="@Url.Action("Reinit", "Configuration")" >Réinitialiser</a>
