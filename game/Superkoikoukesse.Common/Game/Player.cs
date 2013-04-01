@@ -69,7 +69,7 @@ namespace Superkoikoukesse.Common
 			DisplayName = aplayer.DisplayName;
 
 			// Clean ID from URL reserved chars
-			Id = aplayer.PlayerId.Replace (":", "").Replace ("&", "").Replace ("/", "").Replace (" ", "");
+			Id = CleanId(aplayer.PlayerId);
 		}
 
 		public void BuildFromJsonObject (JsonValue json)
@@ -86,6 +86,14 @@ namespace Superkoikoukesse.Common
 			this.SubscriptionType = subscriptionType;
 		}
 
+		/// <summary>
+		/// Cleans the identifier.
+		/// </summary>
+		/// <returns>The identifier.</returns>
+		/// <param name="playerId">Player identifier.</param>
+		public static string CleanId(string playerId) {
+			return playerId.Replace (":", "").Replace ("&", "").Replace ("/", "").Replace (" ", "");
+		}
 	}
 }
 

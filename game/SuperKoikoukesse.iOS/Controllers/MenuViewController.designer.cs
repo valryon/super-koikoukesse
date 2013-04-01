@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton creditsButton { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView coinsImage { get; set; }
 
 		[Outlet]
@@ -39,13 +42,16 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIScrollView scrollView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton creditsButton { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton debugButton { get; set; }
+
+		[Action ("coinsButtonPressed:")]
+		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("creditsButtonPressed:")]
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("paramsButtonPressed:")]
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -61,6 +67,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (creditsButton != null) {
+				creditsButton.Dispose ();
+				creditsButton = null;
+			}
+
 			if (coinsImage != null) {
 				coinsImage.Dispose ();
 				coinsImage = null;
@@ -104,11 +115,6 @@ namespace SuperKoikoukesse.iOS
 			if (scrollView != null) {
 				scrollView.Dispose ();
 				scrollView = null;
-			}
-
-			if (creditsButton != null) {
-				creditsButton.Dispose ();
-				creditsButton = null;
 			}
 
 			if (bgImage != null) {

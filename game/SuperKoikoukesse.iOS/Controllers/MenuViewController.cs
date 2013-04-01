@@ -204,6 +204,14 @@ namespace SuperKoikoukesse.iOS
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToShopView ();
 		}
+
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			ProfileService.Instance.AddCreditsDebug(Constants.BaseCredits);
+		}
+
+		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender) {
+			ProfileService.Instance.AddCoinsDebug(Constants.BaseCoins);
+		}
 	}
 }
 
