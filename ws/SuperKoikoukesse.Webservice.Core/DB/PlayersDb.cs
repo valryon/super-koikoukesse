@@ -48,5 +48,30 @@ namespace SuperKoikoukesse.Webservice.Core.DB
 
             return player;
         }
+
+        /// <summary>
+        /// Get the player (or null if it doesn't exists)
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public Player GetPlayer(Guid guid)
+        {
+            var db = GetDb();
+
+            Player player = db.FindOneAs<Player>(Query<Player>.EQ(p => p.Id, guid));
+
+            return player;
+        }
+
+        /// <summary>
+        /// Delete a specific player
+        /// </summary>
+        /// <param name="guid"></param>
+        public void DeleteFromGuid(Guid guid)
+        {
+            var db = GetDb();
+
+            db.Remove(Query<Player>.Where(p => p.Id == guid));
+        }
     }
 }

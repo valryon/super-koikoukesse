@@ -1,4 +1,5 @@
 ﻿using SuperKoikoukesse.Webservice.Core.DB;
+using SuperKoikoukesse.Webservice.Core.Model;
 using SuperKoikoukesse.Webservice.Models;
 using SuperKoikoukesse.Webservice.ViewModels;
 using System;
@@ -19,6 +20,44 @@ namespace SuperKoikoukesse.Webservice.Controllers
             model.Players = db.ReadAll();
 
             return View(model);
+        }
+
+        public ActionResult AddCredits(string id, int credits)
+        {
+            Guid guid = new Guid(id);
+
+            PlayersDb db = new PlayersDb();
+
+            Player p = db.GetPlayer(guid);
+            p.Credits += credits;
+
+            db.Update(p);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddCoins(string id, int coins)
+        {
+            Guid guid = new Guid(id);
+
+            PlayersDb db = new PlayersDb();
+
+            Player p = db.GetPlayer(guid);
+            p.Coins += coins;
+
+            db.Update(p);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(string id)
+        {
+            Guid guid = new Guid(id);
+
+            PlayersDb db = new PlayersDb();
+
+            db.DeleteFromGuid(guid);
+
+            return RedirectToAction("Index");
         }
     }
 }

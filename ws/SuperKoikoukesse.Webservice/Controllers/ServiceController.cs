@@ -206,7 +206,7 @@ namespace SuperKoikoukesse.Webservice.Controllers
                     throw new UnknowObjectException("Unknow player " + playerInput.PlayerId);
                 }
 
-                p.Credits += playerInput.Coins;
+                p.Coins += playerInput.Coins;
 
                 playersDb.Update(p);
 
