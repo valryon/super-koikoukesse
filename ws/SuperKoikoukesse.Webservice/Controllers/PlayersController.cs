@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SuperKoikoukesse.Webservice.Controllers
 {
+    [Authorize]
     public class PlayersController : Controller
     {
         public ActionResult Index()
