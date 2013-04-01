@@ -23,17 +23,8 @@ namespace Superkoikoukesse.Common
 			LastValidConfig = localConfig;
 
 			if (success) {
-				bool saveNewConfig = true;
 
 				if (localConfig != null) {
-
-					// Update local if necessary
-					if (localConfig.LastUpdate >= newConfig.LastUpdate) {
-						saveNewConfig = false;
-					}
-				} 
-
-				if (saveNewConfig) {
 					saveConfigurationOnDevice (newConfig);
 				}
 

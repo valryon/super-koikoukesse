@@ -40,8 +40,6 @@ namespace Superkoikoukesse.Common
 	[Serializable]
 	public class GameConfiguration : IServiceOutput
 	{
-		public DateTime LastUpdate { get; set; }
-
 		public List<ModeConfigurationItem> ModesConfiguration { get; set; }
 
 		public List<PropertyConfigurationItem> Properties { get; set; }
@@ -93,20 +91,6 @@ namespace Superkoikoukesse.Common
 		{
 			// Example
 			//{{"Id": "f355f650-d2d1-4981-810d-a17a02145187", "ModesConfiguration": [{"Mode": 0, "Difficulty": 0, "Time": 20, "Score": 100, "QuestionsCount": 4}, {"Mode": 0, "Difficulty": 1, "Time": 10, "Score": 200, "QuestionsCount": 5}, {"Mode": 0, "Difficulty": 2, "Time": 10, "Score": 200, "QuestionsCount": 8}, {"Mode": 0, "Difficulty": 3, "Time": 4, "Score": 4200, "QuestionsCount": 42}, {"Mode": 2, "Difficulty": 0, "Time": 60, "Score": 100}], "Properties": [{"Key": "Other prop", "Value": "10", "Help": "Juste un test 1", "Target": 0}, {"Key": "Other prop", "Value": "10", "Help": "Juste un test 2", "Target": 0}]}}
-
-			// Get last update time
-			DateTime lastUpdateTime = DateTime.MinValue;
-
-			try {
-				if (json.ContainsKey ("LastUpdate")) {
-					lastUpdateTime = Convert.ToDateTime (json ["LastUpdate"].ToString ());
-				}
-			} catch (FormatException) {
-				//TODO
-				Logger.Log(LogLevel.Error, "Quenelle niveau 10 dans le parsing de la date de la config");
-			}
-
-			this.LastUpdate = lastUpdateTime;
 
 			// Parse "ModesConfiguration"
 			if (json.ContainsKey ("ModesConfiguration")) {
