@@ -100,6 +100,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The start time.</value>
 		public DateTime StartTime{ get; private set; }
 
+		/// <summary>
+		/// Current question index
+		/// </summary>
+		/// <value>The question number.</value>
+		public int QuestionNumber {get; private set;}
+
 		// Game parameters
 		private Queue<Question> m_questionsPool;
 		private int m_initialQuestionCount;
@@ -135,6 +141,7 @@ namespace Superkoikoukesse.Common
 			Results.Clear ();
 			StartTime = DateTime.Now;
 			m_mistakesCount = 0;
+			QuestionNumber = 0;
 
 			initializeQuizzFromConfiguration (config);
 
@@ -358,6 +365,8 @@ namespace Superkoikoukesse.Common
 		public void NextQuestion ()
 		{
 			Logger.Log (LogLevel.Info, "Next question requested");
+
+			QuestionNumber++;
 
 			// Infinite list of question
 			if (m_infiniteQuestions) {

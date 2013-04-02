@@ -98,7 +98,7 @@ namespace SuperKoikoukesse.iOS
 			m_quizz.Initialize (mode, diff, appDelegate.Configuration);
 		
 			// Consume one credit
-			ProfileService.Instance.UseCredit();
+			ProfileService.Instance.UseCredit ();
 
 			// Display game
 			if (m_isViewLoaded) {
@@ -115,6 +115,18 @@ namespace SuperKoikoukesse.iOS
 			// Set timer in a thread
 			var thread = new Thread (setGameTimer as ThreadStart);
 			thread.Start ();
+
+			// Display selected mode and difficulty
+			modeLabel.Text = m_quizz.Mode.ToString () + " - " + m_quizz.Difficulty;
+
+			// Display lives
+			if (q.Mode == GameModes.Survival) {
+				livesLabel.Hidden = false;
+				livesCountLabel.Hidden = false;
+			} else {
+				livesLabel.Hidden = true;
+				livesCountLabel.Hidden = true;
+			}
 		}
 
 		/// <summary>
@@ -191,6 +203,14 @@ namespace SuperKoikoukesse.iOS
 				jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
 			} else {
 				jokerButton.SetTitle ("JOKER", UIControlState.Normal);
+			}
+
+			// Question count
+			questionCountLabel.Text = m_quizz.QuestionNumber.ToString();
+
+			// Lives
+			if (m_quizz.Mode == GameModes.Survival) {
+				livesCountLabel.Text = m_quizz.Lives.ToString();
 			}
 		}
 
@@ -338,7 +358,7 @@ namespace SuperKoikoukesse.iOS
 
 				// Show score
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-				appDelegate.SwitchToScoreView(m_quizz);
+				appDelegate.SwitchToScoreView (m_quizz);
 			}
 		}
 

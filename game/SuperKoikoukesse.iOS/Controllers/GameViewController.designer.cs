@@ -12,6 +12,18 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel livesCountLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel livesLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel questionCountLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel modeLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
 
 		[Outlet]
@@ -73,6 +85,26 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (livesCountLabel != null) {
+				livesCountLabel.Dispose ();
+				livesCountLabel = null;
+			}
+
+			if (livesLabel != null) {
+				livesLabel.Dispose ();
+				livesLabel = null;
+			}
+
+			if (questionCountLabel != null) {
+				questionCountLabel.Dispose ();
+				questionCountLabel = null;
+			}
+
+			if (modeLabel != null) {
+				modeLabel.Dispose ();
+				modeLabel = null;
+			}
+
 			if (gameImageScroll != null) {
 				gameImageScroll.Dispose ();
 				gameImageScroll = null;
