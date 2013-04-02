@@ -74,6 +74,19 @@ namespace SuperKoikoukesse.iOS
 				coinsImage.Hidden = false;
 				creditsLabel.Hidden = false;
 				creditsImage.Hidden = false;
+
+				// Fade in
+				coinsLabel.Alpha = 0f;
+				coinsImage.Alpha = 0f;
+				creditsLabel.Alpha = 0f;
+				creditsImage.Alpha = 0f;
+
+				UIView.Animate (2f, () => {
+					coinsLabel.Alpha = 1f;
+					coinsImage.Alpha = 1f;
+					creditsLabel.Alpha = 1f;
+					creditsImage.Alpha = 1f;
+				});
 			}
 
 			// Load the player from db
