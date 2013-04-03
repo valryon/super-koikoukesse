@@ -43,12 +43,12 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Networking\" />
-    <Folder Include="Database\" />
     <Folder Include="Util\" />
     <Folder Include="Game\" />
     <Folder Include="Networking\Services\" />
     <Folder Include="Game\Enums\" />
     <Folder Include="Score\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,9 +56,6 @@
     <Compile Include="Util\EncryptionHelper.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Database\DatabaseService.cs" />
-    <Compile Include="Database\SQLite.cs" />
-    <Compile Include="Database\ImageService.cs" />
     <Compile Include="Game\Quizz.cs" />
     <Compile Include="Networking\IServiceOutput.cs" />
     <Compile Include="Game\GameInfo.cs" />
@@ -75,8 +72,11 @@
     <Compile Include="Game\Enums\GameDifficulties.cs" />
     <Compile Include="Game\Enums\GameZones.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Database\ProfileService.cs" />
     <Compile Include="Score\AuthenticatedPlayer.cs" />
     <Compile Include="Networking\Services\WebservicePlayer.cs" />
+    <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Services\SQLite.cs" />
+    <Compile Include="Services\ImageService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
   </ItemGroup>
 </Project>
