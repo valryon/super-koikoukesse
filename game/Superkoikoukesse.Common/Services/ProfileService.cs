@@ -157,7 +157,7 @@ namespace Superkoikoukesse.Common
 			if (localPlayer != null) {
 				// Time to get credits?
 				bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
-
+				addCredits = true;
 				if (addCredits) {
 
 					Logger.Log (LogLevel.Info, "Reseting credits!");
@@ -170,20 +170,22 @@ namespace Superkoikoukesse.Common
 
 					// Set date to today
 					localPlayer.LastCreditsUpdate = DateTime.Now;
-					int newCreditsCount = localPlayer.Credits - currentCredits;
+					int localAndServerCreditsDiff = localPlayer.Credits - currentCredits;
 
 					// Save
 					savePlayer (localPlayer);
 
-					// Tell server what we've done
-					ModifyCredits (newCreditsCount, null,
-				               (code) => {
-						// Server failed to update credits, store them for later
-						Player p = CachedPlayer;
-						p.DisconnectedCreditsUsed = -newCreditsCount;
+					if(localAndServerCreditsDiff != 0) {
+						// Tell server what we've done
+						ModifyCredits (localAndServerCreditsDiff, false, null,
+					               (code) => {
+							// Server failed to update credits, store them for later
+							Player p = CachedPlayer;
+							p.DisconnectedCreditsUsed = -localAndServerCreditsDiff;
 
-						savePlayer (localPlayer);
-					});
+							savePlayer (localPlayer);
+						});
+					}
 				}
 			}
 		}
@@ -207,7 +209,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			if (localPlayer.DisconnectedCreditsUsed != 0) {
-				ModifyCredits (localPlayer.DisconnectedCreditsUsed,
+				ModifyCredits (localPlayer.DisconnectedCreditsUsed, true,
 				             () => {
 					// Success
 					localPlayer.DisconnectedCreditsUsed = 0;
@@ -218,17 +220,19 @@ namespace Superkoikoukesse.Common
 			}
 		}
 
-		protected void ModifyCredits (int creditsUsed, Action callback, Action<int> callbackFailture)
+		protected void ModifyCredits (int creditsUsed, bool updateLocalPlayer, Action callback, Action<int> callbackFailture)
 		{
 			if (creditsUsed != 0) {
 
 				Logger.Log (LogLevel.Info, "Modifying credits: " + creditsUsed);
 
 				// Update local
-				Player p = CachedPlayer;
-				p.Credits += creditsUsed;
+				if (updateLocalPlayer) {
+					Player p = CachedPlayer;
+					p.Credits += creditsUsed;
 				
-				DatabaseService.Instance.SavePlayer (p);
+					DatabaseService.Instance.SavePlayer (p);
+				}
 
 				// Tell the server
 				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (CachedPlayer);
@@ -286,7 +290,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void AddCreditsDebug (int credits)
 		{
-			ModifyCredits (credits, null, null);
+			ModifyCredits (credits, true, null, null);
 			
 			if (PlayerUpdated != null) {
 				PlayerUpdated (CachedPlayer);
@@ -312,7 +316,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void UseCredit ()
 		{
-			ModifyCredits (-1, null, null);
+			ModifyCredits (-1, true, null, null);
 		}
 
 		// Save player routine
