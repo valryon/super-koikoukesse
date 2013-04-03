@@ -224,9 +224,6 @@ namespace SuperKoikoukesse.iOS
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = scoreViewController;
 			window.MakeKeyAndVisible ();
-
-			scoreViewController.DisplayGameCenterLeaderboards ();
-			
 		}
 
 		/// <summary>

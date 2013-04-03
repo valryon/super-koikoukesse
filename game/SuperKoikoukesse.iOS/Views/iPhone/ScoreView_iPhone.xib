@@ -286,7 +286,7 @@
 								<string key="NSFrame">{{135, 137}, {70, 21}}</string>
 								<reference key="NSSuperview" ref="286877511"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="598567098"/>
+								<reference key="NSNextKeyView" ref="618172666"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -310,6 +310,7 @@
 								<string key="NSFrame">{{193, 135}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="286877511"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="598567098"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -2235,7 +2236,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">355</int>
+			<int key="maxID">358</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
