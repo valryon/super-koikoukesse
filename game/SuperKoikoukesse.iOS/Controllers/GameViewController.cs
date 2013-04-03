@@ -206,11 +206,11 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Question count
-			questionCountLabel.Text = m_quizz.QuestionNumber.ToString();
+			questionCountLabel.Text = m_quizz.QuestionNumber.ToString ();
 
 			// Lives
 			if (m_quizz.Mode == GameModes.Survival) {
-				livesCountLabel.Text = m_quizz.Lives.ToString();
+				livesCountLabel.Text = m_quizz.Lives.ToString ();
 			}
 		}
 
@@ -296,7 +296,6 @@ namespace SuperKoikoukesse.iOS
 
 		private void setGameButtonTitles (Question q)
 		{
-
 			// Disable buttons
 			if (q == null) {
 
@@ -314,7 +313,9 @@ namespace SuperKoikoukesse.iOS
 			// Buttons for current question
 			else {
 
-				jokerButton.Enabled = true;
+				if (m_quizz.IsJokerAvailable) {
+					jokerButton.Enabled = true;
+				}
 
 				game1Button.Enabled = true;
 				game2Button.Enabled = true;
@@ -367,7 +368,6 @@ namespace SuperKoikoukesse.iOS
 
 		private void pauseAction ()
 		{
-
 			m_quizz.IsPaused = !m_quizz.IsPaused;
 
 			if (m_quizz.IsPaused) {
