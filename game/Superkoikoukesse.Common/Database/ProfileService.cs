@@ -96,7 +96,8 @@ namespace Superkoikoukesse.Common
 						Player localPlayer = CachedPlayer;
 
 						// Server credits should be right
-						localPlayer.Credits = serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed;
+						localPlayer.Credits = Math.Max (serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed, 0);
+						localPlayer.Coins = Math.Max (serverPlayer.Coins - localPlayer.DisconnectedCoinsEarned, 0); // We don't want negative values
 
 						savePlayer(localPlayer);
 
@@ -251,7 +252,7 @@ namespace Superkoikoukesse.Common
 		{
 			if (coinsUsed != 0) {
 
-				Logger.Log (LogLevel.Info, "Using coins: " + coinsUsed);
+				Logger.Log (LogLevel.Info, "Modifying coins: " + coinsUsed);
 
 				// Update local
 				Player p = CachedPlayer;
@@ -292,9 +293,9 @@ namespace Superkoikoukesse.Common
 
 		
 		/// <summary>
-		/// Add credits (DEBUG ONLY)
+		/// Add credits 
 		/// </summary>
-		public void AddCoinsDebug (int coins)
+		public void AddCoins (int coins)
 		{
 			ModifyCoins (coins, null, null);
 			

@@ -64,6 +64,7 @@ namespace SuperKoikoukesse.iOS
 				this.scoreLabel.Text = quizz.Score.ToString ("00000000");
 				this.modeLabel.Text = quizz.Mode.ToString ();
 				this.difficultyLabel.Text = quizz.Difficulty.ToString ();
+				this.coinsLabel.Text = quizz.EarnedCoins.ToString();
 			}
 		}
 			                                        

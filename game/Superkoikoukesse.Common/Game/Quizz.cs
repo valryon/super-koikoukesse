@@ -106,6 +106,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The question number.</value>
 		public int QuestionNumber {get; private set;}
 
+		/// <summary>
+		/// Coins to add
+		/// </summary>
+		/// <value>The earned coins.</value>
+		public int EarnedCoins {get; private set;}
+
 		// Game parameters
 		private Queue<Question> m_questionsPool;
 		private int m_initialQuestionCount;
@@ -458,16 +464,32 @@ namespace Superkoikoukesse.Common
 			}
 		}
 
+		public void EndQuizz() {
+
+			// Send score to Game Center
+			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
+
+			// Send score to our server
+			SendQuizzData();
+
+			// New coins
+			// SOLO = 1 coins per 1000 points
+			EarnedCoins = (int)Math.Round(Score / 1000f);
+
+			// Send those coins
+			ProfileService.Instance.AddCoins(EarnedCoins);
+		}
+
 		#region Stats
 
 		/// <summary>
 		/// Send quizz data to the webservice
 		/// </summary>
-		public void SendQuizzData (Action<int, Exception> failureCallback)
+		public void SendQuizzData ()
 		{
 			WebserviceStats stats = new WebserviceStats ();
 
-			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, failureCallback);
+			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, null);
 		}
 
 		#endregion

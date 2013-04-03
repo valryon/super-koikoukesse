@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class ScoreViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel modeLabel { get; set; }
 
 		[Outlet]
@@ -37,6 +40,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (coinsLabel != null) {
+				coinsLabel.Dispose ();
+				coinsLabel = null;
+			}
+
 			if (modeLabel != null) {
 				modeLabel.Dispose ();
 				modeLabel = null;

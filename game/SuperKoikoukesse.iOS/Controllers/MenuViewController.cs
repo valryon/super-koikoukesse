@@ -225,7 +225,7 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			ProfileService.Instance.AddCoinsDebug(Constants.BaseCoins);
+			ProfileService.Instance.AddCoins(Constants.BaseCoins);
 		}
 	}
 }

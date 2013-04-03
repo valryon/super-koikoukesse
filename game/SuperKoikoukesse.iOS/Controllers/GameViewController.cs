@@ -351,10 +351,7 @@ namespace SuperKoikoukesse.iOS
 				stopGameTimer ();
 
 				// Stats time
-				m_quizz.SendQuizzData (null);
-
-				// Game center
-				ProfileService.Instance.AuthenticatedPlayer.AddScore (m_quizz.Mode, m_quizz.Difficulty, m_quizz.Score);
+				m_quizz.EndQuizz ();
 
 				// Show score
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
