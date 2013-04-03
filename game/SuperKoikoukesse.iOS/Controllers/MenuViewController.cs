@@ -177,18 +177,24 @@ namespace SuperKoikoukesse.iOS
 
 		void HandleGameModeSelected (GameModes m)
 		{
-			// Display difficulty view
-			if (difficultyViewController == null) {
-				difficultyViewController = new MenuDifficultyViewController ();
-				difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
-					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-					appDelegate.SwitchToGameView (mode, difficulty);
-				}; 	
+			// Enough credits?
+			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
+
+				// Display difficulty view
+				if (difficultyViewController == null) {
+					difficultyViewController = new MenuDifficultyViewController ();
+					difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
+						var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+						appDelegate.SwitchToGameView (mode, difficulty);
+					}; 	
+				}
+
+				difficultyViewController.SetMode (m);
+
+				View.AddSubview (difficultyViewController.View);
+			} else {
+				Dialogs.ShowNoMoreCreditsDialogs ();
 			}
-
-			difficultyViewController.SetMode(m);
-
-			View.AddSubview (difficultyViewController.View);
 		}
 
 		/// <summary>
@@ -220,12 +226,14 @@ namespace SuperKoikoukesse.iOS
 			appDelegate.SwitchToShopView ();
 		}
 
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			ProfileService.Instance.AddCreditsDebug(Constants.BaseCredits);
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			ProfileService.Instance.AddCreditsDebug (Constants.BaseCredits);
 		}
 
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender) {
-			ProfileService.Instance.AddCoins(Constants.BaseCoins);
+		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			ProfileService.Instance.AddCoins (Constants.BaseCoins);
 		}
 	}
 }

@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Views\ColorConstants.cs" />
     <Compile Include="GameCenter\GameCenterPlayer.cs" />
+    <Compile Include="Controllers\Dialogs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

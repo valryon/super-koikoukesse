@@ -64,14 +64,18 @@ namespace SuperKoikoukesse.iOS
 				this.scoreLabel.Text = quizz.Score.ToString ("00000000");
 				this.modeLabel.Text = quizz.Mode.ToString ();
 				this.difficultyLabel.Text = quizz.Difficulty.ToString ();
-				this.coinsLabel.Text = quizz.EarnedCoins.ToString();
+				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
 			}
 		}
 			                                        
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty);
+			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
+				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+				appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty);
+			} else {
+				Dialogs.ShowNoMoreCreditsDialogs ();
+			}
 		}
 			
 		partial void menuButtonPressed (MonoTouch.Foundation.NSObject sender)
