@@ -27,7 +27,7 @@ namespace SuperKoikoukesse.iOS
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.Easy);
+			selectDifficulty (GameDifficulties.Normal);
 		}
 
 		partial void hardButtonPressed (MonoTouch.Foundation.NSObject sender)

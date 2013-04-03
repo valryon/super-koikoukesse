@@ -415,7 +415,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Change image transformation
-			if (Difficulty != GameDifficulties.Easy) {
+			if (Difficulty != GameDifficulties.Normal) {
 				ImageTransformation =  getImageTransformation();
 			}
 		}

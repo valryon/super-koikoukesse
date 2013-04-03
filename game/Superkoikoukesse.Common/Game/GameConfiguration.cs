@@ -101,7 +101,7 @@ namespace Superkoikoukesse.Common
 
 						// Parsing each game mode configuration
 						GameModes mode = GameModes.ScoreAttack;
-						GameDifficulties difficulty = GameDifficulties.Easy;
+						GameDifficulties difficulty = GameDifficulties.Normal;
 						int? time = null;
 						int? score = null;
 						int? questionCount = null;
