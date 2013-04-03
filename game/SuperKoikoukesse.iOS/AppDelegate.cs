@@ -27,6 +27,11 @@ namespace SuperKoikoukesse.iOS
 			get { return true; }
 		}
 
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
+		{
+			return  UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+		}
+
 		// class-level declarations
 		UIWindow window;
 		private SplashscreenViewController splashScreenViewController;

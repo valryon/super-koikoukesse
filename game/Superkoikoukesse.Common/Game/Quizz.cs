@@ -315,10 +315,12 @@ namespace Superkoikoukesse.Common
 					Logger.Log (LogLevel.Info, "Good answer! " + (isJoker ? "(JOKER)" : ""));
 					Combo++;
 
+					Combo = Math.Max (Combo, Constants.ComboMax);
+
 					JokerPartCount++;
 
-					if (JokerPartCount >= 3) {
-						JokerPartCount = 3; 
+					if (JokerPartCount >= Constants.JokerPartMax) {
+						JokerPartCount = Constants.JokerPartMax; 
 					}
 
 					// Apply bonus/malus per mode

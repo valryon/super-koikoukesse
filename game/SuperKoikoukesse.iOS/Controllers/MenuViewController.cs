@@ -20,7 +20,12 @@ namespace SuperKoikoukesse.iOS
 		{
 			panels = new List<UIViewController> ();
 		}
-		
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+		}
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.

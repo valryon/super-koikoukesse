@@ -37,6 +37,12 @@ namespace Superkoikoukesse.Common
 		public static float DezoomDuration = 5f; //seconds
 
 		#endregion
+
+		public static int ComboMax = 4;
+
+		public static int JokerPartMax = 3;
 	}
+
+
 }
 
