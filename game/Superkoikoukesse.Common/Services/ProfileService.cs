@@ -69,8 +69,10 @@ namespace Superkoikoukesse.Common
 					
 				} else {
 					// Game center id is not the same as stored id?
-					if (CachedPlayer.Id != Player.CleanId (aplayer.PlayerId)) {
-						createNewProfile = true;
+					if (aplayer.IsAuthenticated) {
+						if (CachedPlayer.Id != Player.CleanId (aplayer.PlayerId)) {
+							createNewProfile = true;
+						}
 					}
 				}
 				
@@ -81,7 +83,7 @@ namespace Superkoikoukesse.Common
 					// Use game service infos if available
 					Player freshlyCreatedPlayer = new Player (aplayer);
 
-					savePlayer(freshlyCreatedPlayer);
+					savePlayer (freshlyCreatedPlayer);
 				}
 
 				// Check the player on the server side
@@ -99,10 +101,10 @@ namespace Superkoikoukesse.Common
 						localPlayer.Credits = Math.Max (serverPlayer.Credits - localPlayer.DisconnectedCreditsUsed, 0);
 						localPlayer.Coins = Math.Max (serverPlayer.Coins - localPlayer.DisconnectedCoinsEarned, 0); // We don't want negative values
 
-						savePlayer(localPlayer);
+						savePlayer (localPlayer);
 
 						// Simply update
-						UpdatePlayer();
+						UpdatePlayer ();
 					} 
 				},
 				(code, exception) => {
@@ -123,7 +125,7 @@ namespace Superkoikoukesse.Common
 					}
 
 					// Update anyway
-					UpdatePlayer();
+					UpdatePlayer ();
 				});
 			});
 		}
@@ -139,8 +141,8 @@ namespace Superkoikoukesse.Common
 			// Add credits if its time to do so
 			earnSomeCredits ();
 
-			if(PlayerUpdated != null) {
-				PlayerUpdated(CachedPlayer);
+			if (PlayerUpdated != null) {
+				PlayerUpdated (CachedPlayer);
 			}
 		}
 
@@ -171,7 +173,7 @@ namespace Superkoikoukesse.Common
 					int newCreditsCount = localPlayer.Credits - currentCredits;
 
 					// Save
-					savePlayer(localPlayer);
+					savePlayer (localPlayer);
 
 					// Tell server what we've done
 					ModifyCredits (newCreditsCount, null,
@@ -180,7 +182,7 @@ namespace Superkoikoukesse.Common
 						Player p = CachedPlayer;
 						p.DisconnectedCreditsUsed = -newCreditsCount;
 
-						savePlayer(localPlayer);
+						savePlayer (localPlayer);
 					});
 				}
 			}
@@ -199,7 +201,7 @@ namespace Superkoikoukesse.Common
 					// Success
 					localPlayer.DisconnectedCoinsEarned = 0;
 
-					savePlayer(localPlayer);
+					savePlayer (localPlayer);
 				},
 				null);
 			}
@@ -210,7 +212,7 @@ namespace Superkoikoukesse.Common
 					// Success
 					localPlayer.DisconnectedCreditsUsed = 0;
 
-					savePlayer(localPlayer);
+					savePlayer (localPlayer);
 
 				}, null);
 			}
@@ -239,7 +241,7 @@ namespace Superkoikoukesse.Common
 					Player localPlayer = CachedPlayer;
 					localPlayer.DisconnectedCreditsUsed += creditsUsed;
 					
-					savePlayer(localPlayer);
+					savePlayer (localPlayer);
 					
 					if (callbackFailture != null) {
 						callbackFailture (code);
@@ -270,7 +272,7 @@ namespace Superkoikoukesse.Common
 					Player localPlayer = CachedPlayer;
 					localPlayer.DisconnectedCoinsEarned += coinsUsed;
 
-					savePlayer(localPlayer);
+					savePlayer (localPlayer);
 
 					if (callbackFailture != null) {
 						callbackFailture (code);
@@ -286,8 +288,8 @@ namespace Superkoikoukesse.Common
 		{
 			ModifyCredits (credits, null, null);
 			
-			if(PlayerUpdated != null) {
-				PlayerUpdated(CachedPlayer);
+			if (PlayerUpdated != null) {
+				PlayerUpdated (CachedPlayer);
 			}
 		}
 
@@ -299,8 +301,8 @@ namespace Superkoikoukesse.Common
 		{
 			ModifyCoins (coins, null, null);
 			
-			if(PlayerUpdated != null) {
-				PlayerUpdated(CachedPlayer);
+			if (PlayerUpdated != null) {
+				PlayerUpdated (CachedPlayer);
 			}
 		}
 
@@ -316,11 +318,14 @@ namespace Superkoikoukesse.Common
 		// Save player routine
 
 		private object saveLock;
-		private void savePlayer(Player p) {
 
-			if(saveLock == null) saveLock = new object();
+		private void savePlayer (Player p)
+		{
 
-			lock(saveLock) {
+			if (saveLock == null)
+				saveLock = new object ();
+
+			lock (saveLock) {
 				lastProfileCacheTime = DateTime.MinValue;
 				DatabaseService.Instance.SavePlayer (p);
 			}
