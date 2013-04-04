@@ -77,6 +77,7 @@ namespace Superkoikoukesse.Common
 
 			m_db.CreateTable<GameInfo> ();
 			m_db.CreateTable<Player> ();
+			m_db.CreateTable<LocalScore>();
 		}
 
 		/// <summary>
@@ -220,6 +221,33 @@ namespace Superkoikoukesse.Common
 			}
 
 			m_db.Insert (player);
+		}
+
+		#endregion
+
+		#region Scores
+
+		/// <summary>
+		/// Add a new score to the local DB
+		/// </summary>
+		/// <param name="score">Score.</param>
+		public void AddLocalScore(LocalScore score) {
+			m_db.Insert(score);
+		}
+
+		/// <summary>
+		/// Get scores from a leaderboard
+		/// </summary>
+		/// <returns>The local scores.</returns>
+		/// <param name="mode">Mode.</param>
+		/// <param name="difficulties">Difficulties.</param>
+		/// <param name="count">Count.</param>
+		public LocalScore[] GetLocalScores(GameModes mode, GameDifficulties difficulty, int count) {
+
+			return m_db.Table<LocalScore>()
+				.Where(s => (s.Mode == mode) && (s.Difficulty == difficulty))
+				.OrderByDescending(s => s.Score)
+				.Take (count).ToArray();
 		}
 
 		#endregion

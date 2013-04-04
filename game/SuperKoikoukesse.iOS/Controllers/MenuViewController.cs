@@ -14,6 +14,7 @@ namespace SuperKoikoukesse.iOS
 	{
 		private List<UIViewController> panels;
 		private MenuDifficultyViewController difficultyViewController;
+		private PagerMenuHighscoresViewController highScorePanel;
 
 		public MenuViewController ()
 			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -65,13 +66,13 @@ namespace SuperKoikoukesse.iOS
 
 			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
 
-			UpdateCoinsAndCredits ();
+			UpdateViewWithPlayerInfos ();
 		}
 
 		/// <summary>
 		/// Update counters
 		/// </summary>
-		public void UpdateCoinsAndCredits ()
+		public void UpdateViewWithPlayerInfos ()
 		{
 			// Show infos is they were hidden
 			if (coinsLabel.Hidden) {
@@ -102,6 +103,12 @@ namespace SuperKoikoukesse.iOS
 				creditsLabel.Text = profile.Credits.ToString ();
 				coinsLabel.Text = profile.Coins.ToString ("000000");
 			}
+
+			// Update leaderboards ?
+			if(highScorePanel != null) {
+				highScorePanel.ForceUpdate();
+			}
+
 		}
 
 		#region Scroll view and pagination
@@ -117,11 +124,16 @@ namespace SuperKoikoukesse.iOS
 				pageControl.CurrentPage = (int)page;
 			};
 
+			highScorePanel = null;
 			panels.Clear ();
 
 			// Credits
 			PagerMenuInfosViewController infos = new PagerMenuInfosViewController ();
 			panels.Add (infos);
+
+			// Highscores
+			highScorePanel = new PagerMenuHighscoresViewController ();
+			panels.Add (highScorePanel);
 
 			// Build for each modes
 			// -- Score attack
@@ -140,9 +152,9 @@ namespace SuperKoikoukesse.iOS
 			panels.Add (survivalMode);
 
 			// -- Versus
-			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
-			versusMode.GameModeSelected += HandleGameModeSelected;
-			panels.Add (versusMode);
+//			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+//			versusMode.GameModeSelected += HandleGameModeSelected;
+//			panels.Add (versusMode);
 
 			int count = panels.Count;
 			RectangleF scrollFrame = scrollView.Frame;

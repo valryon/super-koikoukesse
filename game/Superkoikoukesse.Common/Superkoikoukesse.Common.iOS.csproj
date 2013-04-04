@@ -72,11 +72,12 @@
     <Compile Include="Game\Enums\GameDifficulties.cs" />
     <Compile Include="Game\Enums\GameZones.cs" />
     <Compile Include="Game\Player.cs" />
-    <Compile Include="Score\AuthenticatedPlayer.cs" />
     <Compile Include="Networking\Services\WebservicePlayer.cs" />
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\SQLite.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Game\LocalScore.cs" />
+    <Compile Include="Game\AuthenticatedPlayer.cs" />
   </ItemGroup>
 </Project>

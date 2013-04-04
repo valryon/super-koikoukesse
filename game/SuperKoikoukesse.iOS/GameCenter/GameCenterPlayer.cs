@@ -55,8 +55,8 @@ namespace SuperKoikoukesse.iOS
 						}
 					}
 
-					if(authenticationFinished != null) {
-						authenticationFinished();
+					if (authenticationFinished != null) {
+						authenticationFinished ();
 					}
 				};
 			} else {
@@ -74,8 +74,8 @@ namespace SuperKoikoukesse.iOS
 						}
 					}
 
-					if(authenticationFinished != null) {
-						authenticationFinished();
+					if (authenticationFinished != null) {
+						authenticationFinished ();
 					}
 				});
 			}
@@ -95,6 +95,30 @@ namespace SuperKoikoukesse.iOS
 					Logger.Log (LogLevel.Error, "Game Center - Score not submited! " + error);
 				}
 			});
+		}
+
+		public override void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback)
+		{
+			if (IsAuthenticated) {
+
+				if (gcRankCallback != null) {
+
+					string leaderboardId = GetLeaderboardId (mode, difficulty);
+					GKLeaderboard leaderboard = new GKLeaderboard ();
+					leaderboard.GroupIdentifier = leaderboardId;
+
+					leaderboard.LoadScores ((scoreArray, error) => {
+
+						if (leaderboard.LocalPlayerScore != null) {
+							int bestScore = (int)leaderboard.LocalPlayerScore.Value;
+							int bestRank = leaderboard.LocalPlayerScore.Rank;
+
+							gcRankCallback (bestRank, bestScore);
+						}
+					});
+
+				}
+			}
 		}
 
 		public override string DisplayName {

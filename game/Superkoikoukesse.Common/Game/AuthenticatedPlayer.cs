@@ -29,6 +29,14 @@ namespace Superkoikoukesse.Common
 		public abstract void AddScore (GameModes mode, GameDifficulties difficulty, int score);
 
 		/// <summary>
+		/// Get the best score and its rank from leaderboard
+		/// </summary>
+		/// <param name="mode">Mode.</param>
+		/// <param name="difficulty">Difficulty.</param>
+		/// <param name="gcRankCallback">Best rank and score.</param>
+		public abstract void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback);
+
+		/// <summary>
 		/// Get the leaderbord name
 		/// </summary>
 		/// <returns>The leaderboard identifier.</returns>

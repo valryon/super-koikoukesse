@@ -468,6 +468,14 @@ namespace Superkoikoukesse.Common
 
 		public void EndQuizz() {
 
+			// Add score to local DB
+			DatabaseService.Instance.AddLocalScore(new LocalScore() {
+				Mode = Mode,
+				Difficulty = Difficulty,
+				Date = DateTime.Now,
+				Score = Score
+			});
+
 			// Send score to Game Center
 			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
