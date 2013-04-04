@@ -21,20 +21,72 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewWillAppear (animated);
 
-			if(highScoresController == null) {
-				highScoresController = new HighScoresControlViewController();
-				highScoresController.SetScoreParameters(GameModes.ScoreAttack, GameDifficulties.Normal);
+			if (highScoresController == null) {
+				highScoresController = new HighScoresControlViewController ();
+				highScoresController.SetScoreParameters (GameModes.ScoreAttack, GameDifficulties.Normal);
 
-				this.highscoreView.AddSubview(highScoresController.View);
+				this.highscoreView.AddSubview (highScoresController.View);
 			}
 		}
 
-		public void ForceUpdate() {
-			highScoresController.UpdateGameCenterLeaderboard();
+		public void ForceUpdate ()
+		{
+			highScoresController.UpdateGameCenterLeaderboard ();
 		}
 
-		partial void modeChanged (MonoTouch.Foundation.NSObject sender) {
-			highScoresController.SetScoreParameters(GameModes.TimeAttack, GameDifficulties.Hard);
+		/// <summary>
+		/// Get mode from the selector
+		/// </summary>
+		/// <returns>The mode.</returns>
+		private GameModes getMode ()
+		{
+
+			if (modeSelector.SelectedSegment >= 0) {
+				string mode = modeSelector.TitleAt (modeSelector.SelectedSegment);
+
+				if (mode.ToLower ().Contains ("score"))
+					return GameModes.ScoreAttack;
+				if (mode.ToLower ().Contains ("time"))
+					return GameModes.TimeAttack;
+				if (mode.ToLower ().Contains ("survival"))
+					return GameModes.Survival;
+				if (mode.ToLower ().Contains ("versus"))
+					return GameModes.Versus;
+			}
+
+			return GameModes.ScoreAttack;
+		}
+
+		/// <summary>
+		/// Get diff from the selector
+		/// </summary>
+		/// <returns>The difficulty.</returns>
+		private GameDifficulties getDifficulty ()
+		{
+			if (diffSelector.SelectedSegment >= 0) {
+				string diff = diffSelector.TitleAt (diffSelector.SelectedSegment);
+				
+				if (diff.ToLower ().Contains ("normal"))
+					return GameDifficulties.Normal;
+				if (diff.ToLower ().Contains ("hard"))
+					return GameDifficulties.Hard;
+				if (diff.ToLower ().Contains ("expert"))
+					return GameDifficulties.Expert;
+				if (diff.ToLower ().Contains ("nolife"))
+					return GameDifficulties.Nolife;
+			}
+
+			return GameDifficulties.Normal;
+		}
+
+		partial void modeChanged (MonoTouch.Foundation.NSObject sender)
+		{
+			highScoresController.SetScoreParameters (getMode (), getDifficulty ());
+		}
+
+		partial void difficultyChanged (MonoTouch.Foundation.NSObject sender)
+		{
+			highScoresController.SetScoreParameters (getMode (), getDifficulty ());
 		}
 	}
 }

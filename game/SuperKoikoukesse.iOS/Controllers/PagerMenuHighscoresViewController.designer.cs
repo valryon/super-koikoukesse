@@ -14,14 +14,33 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIView highscoreView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl modeSelector { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UISegmentedControl diffSelector { get; set; }
+
 		[Action ("modeChanged:")]
 		partial void modeChanged (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("difficultyChanged:")]
+		partial void difficultyChanged (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (highscoreView != null) {
 				highscoreView.Dispose ();
 				highscoreView = null;
+			}
+
+			if (modeSelector != null) {
+				modeSelector.Dispose ();
+				modeSelector = null;
+			}
+
+			if (diffSelector != null) {
+				diffSelector.Dispose ();
+				diffSelector = null;
 			}
 		}
 	}

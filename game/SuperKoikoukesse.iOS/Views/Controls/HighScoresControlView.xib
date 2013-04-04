@@ -364,7 +364,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
-						<string key="NSFrame">{{27, 20}, {123, 128}}</string>
+						<string key="NSFrame">{{28, 0}, {123, 128}}</string>
 						<reference key="NSSuperview" ref="256404120"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="716492728"/>
@@ -433,10 +433,9 @@
 							<object class="IBUIButton" id="398552623">
 								<reference key="NSNextResponder" ref="460940804"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 65}, {132, 44}}</string>
+								<string key="NSFrame">{{9, 49}, {132, 44}}</string>
 								<reference key="NSSuperview" ref="460940804"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -472,7 +471,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{164, 20}, {150, 134}}</string>
+						<string key="NSFrame">{{164, 10}, {150, 134}}</string>
 						<reference key="NSSuperview" ref="256404120"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="238305779"/>
@@ -714,9 +713,9 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="460940804"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="398552623"/>
 							<reference ref="322195538"/>
 							<reference ref="238305779"/>
+							<reference ref="398552623"/>
 						</array>
 						<reference key="parent" ref="256404120"/>
 						<string key="objectName">Game center</string>
