@@ -157,7 +157,7 @@ namespace Superkoikoukesse.Common
 			if (localPlayer != null) {
 				// Time to get credits?
 				bool addCredits = (localPlayer.LastCreditsUpdate.AddDays (1) <= DateTime.Now);
-				addCredits = true;
+
 				if (addCredits) {
 
 					Logger.Log (LogLevel.Info, "Reseting credits!");

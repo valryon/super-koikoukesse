@@ -76,6 +76,8 @@ namespace SuperKoikoukesse.iOS
 
 			UpdateConfiguration ();
 
+			RemoveExcludeGames();
+
 			// Register on Game Center
 			GameCenter = new GameCenterPlayer (window.RootViewController);
 
@@ -93,6 +95,23 @@ namespace SuperKoikoukesse.iOS
 					SetLoading (false);
 				});
 			};
+		}
+
+		/// <summary>
+		/// Download exclusions list and apply it to DB
+		/// </summary>
+		public void RemoveExcludeGames() {
+
+			WebserviceExcludedGames exGames = new WebserviceExcludedGames();
+			exGames.Request( (list) => {
+
+				foreach(int id in list.GamesId) {
+
+					DatabaseService.Instance.RemoveGame (id);
+				}
+
+			}, null);
+
 		}
 
 		/// <summary>

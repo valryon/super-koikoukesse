@@ -78,5 +78,6 @@
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Game\LocalScore.cs" />
     <Compile Include="Game\AuthenticatedPlayer.cs" />
+    <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
   </ItemGroup>
 </Project>

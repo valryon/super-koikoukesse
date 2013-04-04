@@ -150,17 +150,23 @@ namespace Superkoikoukesse.Common
 		/// Remove a game entry
 		/// </summary>
 		/// <param name="gameId">Game identifier.</param>
-		public void RemoveGame (GameInfo gameInfo)
+		public void RemoveGame (int gameId)
 		{
-			m_db.Delete (gameInfo);
+			GameInfo game = m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+
+			if (game != null) {
+				Logger.Log (LogLevel.Info, "Deleting game id " + gameId);
+
+				m_db.Delete<GameInfo> (game.GameId);
+			}
 		}
+
 
 		/// <summary>
 		/// Read games database
 		/// </summary>
 		public List<GameInfo> ReadGames ()
 		{
-
 			return m_db.Table<GameInfo> ().ToList ();
 		}
 
@@ -170,7 +176,6 @@ namespace Superkoikoukesse.Common
 		/// <returns>The game.</returns>
 		public GameInfo RandomGame ()
 		{
-
 			int randomIndex = m_random.Next (0, CountGames ());
 
 			return m_db.Table<GameInfo> ().ElementAt (randomIndex);
@@ -240,7 +245,8 @@ namespace Superkoikoukesse.Common
 				.OrderByDescending (s => s.Score).Take (999).ToList ();
 
 			for (int i = 0; i < modeScore.Count; i++) {
-				if(modeScore[i].Equals(score)) return i;
+				if (modeScore [i].Equals (score))
+					return i;
 			}
 			return 999; // TODO Bug
 
