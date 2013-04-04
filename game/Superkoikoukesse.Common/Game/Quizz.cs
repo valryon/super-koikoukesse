@@ -112,6 +112,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The earned coins.</value>
 		public int EarnedCoins {get; private set;}
 
+		/// <summary>
+		/// Rank found at the last score add
+		/// </summary>
+		/// <value>The rank for last score.</value>
+		public int  RankForLastScore {get; private set;}
+
 		// Game parameters
 		private Queue<Question> m_questionsPool;
 		private int m_initialQuestionCount;
@@ -469,7 +475,7 @@ namespace Superkoikoukesse.Common
 		public void EndQuizz() {
 
 			// Add score to local DB
-			DatabaseService.Instance.AddLocalScore(new LocalScore() {
+			RankForLastScore = DatabaseService.Instance.AddLocalScore(new LocalScore() {
 				Mode = Mode,
 				Difficulty = Difficulty,
 				Date = DateTime.Now,

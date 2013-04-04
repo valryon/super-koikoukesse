@@ -31,8 +31,8 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-			highScoreControl = new HighScoresControlViewController();
-			bodyView.AddSubview(highScoreControl.View);
+			highScoreControl = new HighScoresControlViewController ();
+			bodyView.AddSubview (highScoreControl.View);
 
 			SetViewDataFromQuizz ();
 		}
@@ -48,28 +48,16 @@ namespace SuperKoikoukesse.iOS
 			SetViewDataFromQuizz ();
 		}
 
-		/// <summary>
-		///  Display Game center leaderboards
-		/// </summary>
-		public void DisplayGameCenterLeaderboards ()
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.ShowLeaderboards (
-				ProfileService.Instance.AuthenticatedPlayer.GetLeaderboardId (quizz.Mode, quizz.Difficulty),
-				() => {
-				
-			}
-			);
-		}
-
 		private void SetViewDataFromQuizz ()
 		{
 			if (IsViewLoaded) {
 				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
-				highScoreControl.SetScoreParameters(quizz.Mode,quizz.Difficulty);
+
+				// Highscore control
+				highScoreControl.SetScoreParameters (quizz.Mode, quizz.Difficulty, quizz.RankForLastScore, quizz.Score);
 			}
 
-			}
+		}
 			                                        
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{

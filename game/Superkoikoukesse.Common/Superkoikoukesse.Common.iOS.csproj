@@ -47,7 +47,6 @@
     <Folder Include="Game\" />
     <Folder Include="Networking\Services\" />
     <Folder Include="Game\Enums\" />
-    <Folder Include="Score\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

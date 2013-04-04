@@ -11,8 +11,10 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class HighScoresControlViewController : UIViewController
 	{
+		private static int scoreLinesCount = 5;
 		private GameModes mode;
 		private GameDifficulties difficulty;
+		private int? newScoreRank, newScoreValue;
 
 		public HighScoresControlViewController () : base ("HighScoresControlView", null)
 		{
@@ -22,6 +24,8 @@ namespace SuperKoikoukesse.iOS
 		{
 			this.mode = m;
 			this.difficulty = d;
+			this.newScoreRank = newScoreRank;
+			this.newScoreValue = newScoreValue;
 
 			if (IsViewLoaded) {
 				setViewValues ();
@@ -41,11 +45,29 @@ namespace SuperKoikoukesse.iOS
 
 		private void setViewValues ()
 		{
+			// No new score
 			rankLastLabel.Hidden = true;
 			rankLastScoreLabel.Hidden = true;
+
+			// New score
+			if (newScoreRank.HasValue && newScoreValue.HasValue) {
+
+				// Not in top : display additionnal line
+				if (newScoreRank.Value >= scoreLinesCount) {
+					rankLastLabel.Hidden = false;
+					rankLastScoreLabel.Hidden = false;
+
+					rankLastLabel.Text = newScoreRank.Value.ToString()+".";
+					rankLastScoreLabel.Text = newScoreValue.Value.ToString("000000");
+				} else {
+					// In tops : TODO mettre en valeur
+					rankLastLabel.Hidden = true;
+					rankLastScoreLabel.Hidden = true;
+				}
+			}
 			
 			// Get local highscores
-			LocalScore[] localScores = DatabaseService.Instance.GetLocalScores (mode, difficulty, 5);
+			LocalScore[] localScores = DatabaseService.Instance.GetLocalScores (mode, difficulty, scoreLinesCount);
 			
 			// Fill labels...
 			if (localScores.Length > 0) {
@@ -88,16 +110,17 @@ namespace SuperKoikoukesse.iOS
 				rank5Label.Hidden = true;
 				rank5ScoreLabel.Hidden = true;
 			}
-			
+
 			// Get game center scores
-			UpdateGameCenterLeaderboard();
+			UpdateGameCenterLeaderboard ();
 		}
 
 		/// <summary>
 		/// Update game center part of the leaderboards. 
 		/// We might not be logged in at first so we want to be able to do it after authentication.
 		/// </summary>
-		public void UpdateGameCenterLeaderboard() {
+		public void UpdateGameCenterLeaderboard ()
+		{
 
 			gameCenterPanel.Hidden = !ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated;
 

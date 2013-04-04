@@ -77,7 +77,7 @@ namespace Superkoikoukesse.Common
 
 			m_db.CreateTable<GameInfo> ();
 			m_db.CreateTable<Player> ();
-			m_db.CreateTable<LocalScore>();
+			m_db.CreateTable<LocalScore> ();
 		}
 
 		/// <summary>
@@ -216,7 +216,7 @@ namespace Superkoikoukesse.Common
 			var playerTable = m_db.Table<Player> ();
 
 			// Clean to have only one element
-			if (playerTable.Count() > 0) {
+			if (playerTable.Count () > 0) {
 				m_db.DeleteAll<Player> ();
 			}
 
@@ -231,8 +231,19 @@ namespace Superkoikoukesse.Common
 		/// Add a new score to the local DB
 		/// </summary>
 		/// <param name="score">Score.</param>
-		public void AddLocalScore(LocalScore score) {
-			m_db.Insert(score);
+		public int AddLocalScore (LocalScore score)
+		{
+			m_db.Insert (score);
+
+			// Rank?
+			List<LocalScore> modeScore = m_db.Table<LocalScore> ().Where (s => (s.Mode == score.Mode) && (s.Difficulty == score.Difficulty))
+				.OrderByDescending (s => s.Score).Take (999).ToList ();
+
+			for (int i = 0; i < modeScore.Count; i++) {
+				if(modeScore[i].Equals(score)) return i;
+			}
+			return 999; // TODO Bug
+
 		}
 
 		/// <summary>
@@ -242,12 +253,12 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulties">Difficulties.</param>
 		/// <param name="count">Count.</param>
-		public LocalScore[] GetLocalScores(GameModes mode, GameDifficulties difficulty, int count) {
-
-			return m_db.Table<LocalScore>()
-				.Where(s => (s.Mode == mode) && (s.Difficulty == difficulty))
-				.OrderByDescending(s => s.Score)
-				.Take (count).ToArray();
+		public LocalScore[] GetLocalScores (GameModes mode, GameDifficulties difficulty, int count)
+		{
+			return m_db.Table<LocalScore> ()
+				.Where (s => (s.Mode == mode) && (s.Difficulty == difficulty))
+				.OrderByDescending (s => s.Score)
+				.Take (count).ToArray ();
 		}
 
 		#endregion
