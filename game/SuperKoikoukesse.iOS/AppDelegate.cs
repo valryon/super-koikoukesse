@@ -87,7 +87,7 @@ namespace SuperKoikoukesse.iOS
 				InvokeOnMainThread( () => {
 					if(menuViewController != null) 
 					{
-						menuViewController.UpdateCoinsAndCredits();
+						menuViewController.UpdateViewWithPlayerInfos();
 					}
 					
 					SetLoading (false);
