@@ -11,6 +11,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class ScoreViewController : UIViewController
 	{
 		private Quizz quizz;
+		private HighScoresControlViewController highScoreControl;
 
 		public ScoreViewController () 
 			: base ("ScoreView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -29,6 +30,9 @@ namespace SuperKoikoukesse.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			highScoreControl = new HighScoresControlViewController();
+			bodyView.AddSubview(highScoreControl.View);
 
 			SetViewDataFromQuizz ();
 		}
@@ -61,12 +65,11 @@ namespace SuperKoikoukesse.iOS
 		private void SetViewDataFromQuizz ()
 		{
 			if (IsViewLoaded) {
-				this.scoreLabel.Text = quizz.Score.ToString ("00000000");
-				this.modeLabel.Text = quizz.Mode.ToString ();
-				this.difficultyLabel.Text = quizz.Difficulty.ToString ();
 				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
+				highScoreControl.SetScoreParameters(quizz.Mode,quizz.Difficulty);
 			}
-		}
+
+			}
 			                                        
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{

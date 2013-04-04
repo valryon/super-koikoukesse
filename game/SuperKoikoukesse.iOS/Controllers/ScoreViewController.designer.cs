@@ -12,25 +12,16 @@ namespace SuperKoikoukesse.iOS
 	partial class ScoreViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIView bodyView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel modeLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel difficultyLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton retryButton { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton menuButton { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel bestScoreLabel { get; set; }
 
 		[Action ("retryButtonPressed:")]
 		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -40,24 +31,14 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (bodyView != null) {
+				bodyView.Dispose ();
+				bodyView = null;
+			}
+
 			if (coinsLabel != null) {
 				coinsLabel.Dispose ();
 				coinsLabel = null;
-			}
-
-			if (modeLabel != null) {
-				modeLabel.Dispose ();
-				modeLabel = null;
-			}
-
-			if (difficultyLabel != null) {
-				difficultyLabel.Dispose ();
-				difficultyLabel = null;
-			}
-
-			if (scoreLabel != null) {
-				scoreLabel.Dispose ();
-				scoreLabel = null;
 			}
 
 			if (retryButton != null) {
@@ -68,11 +49,6 @@ namespace SuperKoikoukesse.iOS
 			if (menuButton != null) {
 				menuButton.Dispose ();
 				menuButton = null;
-			}
-
-			if (bestScoreLabel != null) {
-				bestScoreLabel.Dispose ();
-				bestScoreLabel = null;
 			}
 		}
 	}

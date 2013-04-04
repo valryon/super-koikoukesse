@@ -28,9 +28,13 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		public override void ViewDidLoad ()
+		/// <summary>
+		/// Refresh scores each time we display the view
+		/// </summary>
+		/// <param name="animated">If set to <c>true</c> animated.</param>
+		public override void ViewDidAppear (bool animated)
 		{
-			base.ViewDidLoad ();
+			base.ViewDidAppear (animated);
 
 			setViewValues ();
 		}
