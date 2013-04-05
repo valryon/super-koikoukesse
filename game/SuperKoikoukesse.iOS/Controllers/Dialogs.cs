@@ -13,7 +13,18 @@ namespace SuperKoikoukesse.iOS
 				null,
 				"Ok",
 				"Acheter des crédits");
+			
+			alert.Show();
+		}
 
+		public static void ShowDebugFilterTooRestrictive ()
+		{
+			UIAlertView alert = new UIAlertView(
+				"Pas assez de jeux",
+				"Le filtre saisi a remonté moins de 30 images. Le jeu va peut-être planter, il faut revoir ce filtre ou peupler la base de données..",
+				null,
+				"Ok");
+			
 			alert.Show();
 		}
 	}

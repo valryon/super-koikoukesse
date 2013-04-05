@@ -233,6 +233,12 @@ namespace SuperKoikoukesse.iOS
 
 			f.Load ((gamesCount) => {
 
+				if(gamesCount < 30) {
+					BeginInvokeOnMainThread (() => {
+						Dialogs.ShowDebugFilterTooRestrictive();
+					});
+				}
+
 				// Prepare quizz
 				gameViewController.InitializeQuizz (mode, difficulty, f);
 
