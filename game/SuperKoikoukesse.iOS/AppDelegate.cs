@@ -76,7 +76,7 @@ namespace SuperKoikoukesse.iOS
 
 			UpdateConfiguration ();
 
-			RemoveExcludeGames();
+			RemoveExcludeGames ();
 
 			// Register on Game Center
 			GameCenter = new GameCenterPlayer (window.RootViewController);
@@ -86,10 +86,9 @@ namespace SuperKoikoukesse.iOS
 			ProfileService.Instance.Initialize (GameCenter);
 			ProfileService.Instance.PlayerUpdated += (Player p) => {
 
-				InvokeOnMainThread( () => {
-					if(menuViewController != null) 
-					{
-						menuViewController.UpdateViewWithPlayerInfos();
+				InvokeOnMainThread (() => {
+					if (menuViewController != null) {
+						menuViewController.UpdateViewWithPlayerInfos ();
 					}
 					
 					SetLoading (false);
@@ -100,12 +99,13 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Download exclusions list and apply it to DB
 		/// </summary>
-		public void RemoveExcludeGames() {
+		public void RemoveExcludeGames ()
+		{
 
-			WebserviceExcludedGames exGames = new WebserviceExcludedGames();
-			exGames.Request( (list) => {
+			WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
+			exGames.Request ((list) => {
 
-				foreach(int id in list.GamesId) {
+				foreach (int id in list.GamesId) {
 
 					DatabaseService.Instance.RemoveGame (id);
 				}
@@ -224,12 +224,30 @@ namespace SuperKoikoukesse.iOS
 			if (gameViewController == null) {
 				gameViewController = new GameViewController ();
 			}
-			
-			gameViewController.InitializeQuizz (mode, difficulty);
-			
-			window.RootViewController.RemoveFromParentViewController ();
-			window.RootViewController = gameViewController;
-			window.MakeKeyAndVisible ();
+
+			// Create a new filter
+			Filter f = new Filter (2000);
+
+			// Caching filter results
+			SetLoading (true);
+
+			f.Load ((gamesCount) => {
+
+				// Prepare quizz
+				gameViewController.InitializeQuizz (mode, difficulty, f);
+
+				// Display it
+				BeginInvokeOnMainThread (() => {
+
+					SetLoading (false);
+
+					window.RootViewController.RemoveFromParentViewController ();
+					window.RootViewController = gameViewController;
+					window.MakeKeyAndVisible ();
+
+				});
+
+			});
 			
 		}
 

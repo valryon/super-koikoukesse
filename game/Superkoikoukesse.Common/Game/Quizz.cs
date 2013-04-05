@@ -131,6 +131,7 @@ namespace Superkoikoukesse.Common
 		private List<int> m_correctAnswerIds;
 		private Random m_random;
 		private List<ImageTransformations> m_availableTransformations;
+		private Filter filter;
 
 		public Quizz ()
 		{
@@ -138,10 +139,11 @@ namespace Superkoikoukesse.Common
 			m_random = new Random (DateTime.Now.Millisecond);
 		}
 
-		public void Initialize (GameModes mode, GameDifficulties difficulty, GameConfiguration config)
+		public void Initialize (GameModes mode, GameDifficulties difficulty, GameConfiguration config, Filter databaseFilter)
 		{
 			Mode = mode;
 			Difficulty = difficulty;
+			filter = databaseFilter;
 
 			Logger.Log (LogLevel.Info, "Initializing quizz " + Mode + " " + Difficulty + "...");
 
@@ -240,7 +242,7 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
-		/// Get a rabdom question
+		/// Get a random question
 		/// </summary>
 		/// <returns>The random question.</returns>
 		internal Question getRandomQuestion ()
@@ -251,7 +253,7 @@ namespace Superkoikoukesse.Common
 
 			while (currentAnswersCount < m_answerCount) {
 
-				GameInfo game = DatabaseService.Instance.RandomGame ();
+				GameInfo game = filter.GetGame();
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 

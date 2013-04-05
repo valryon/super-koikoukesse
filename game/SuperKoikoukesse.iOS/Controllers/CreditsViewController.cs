@@ -32,8 +32,7 @@ namespace SuperKoikoukesse.iOS
 			// Load all publishers name and display them
 			StringBuilder credits = new StringBuilder();
 
-			var games =DatabaseService.Instance.ReadGames ();
-			var publishers = games.Select (g => g.Publisher).Distinct ().ToList ();
+			var publishers = DatabaseService.Instance.GetPublishers ();
 
 			foreach (var publisher in publishers) {
 				credits.Append(publisher+ " ");

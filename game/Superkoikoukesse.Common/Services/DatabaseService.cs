@@ -17,7 +17,6 @@ namespace Superkoikoukesse.Common
 
 		private DatabaseService ()
 		{
-			m_random = new Random (DateTime.Now.Millisecond);
 		}
 
 		/// <summary>
@@ -38,7 +37,6 @@ namespace Superkoikoukesse.Common
 
 		private string m_location;
 		private SQLiteConnection m_db;
-		private Random m_random;
 
 		#region Initialization
 
@@ -161,24 +159,43 @@ namespace Superkoikoukesse.Common
 			}
 		}
 
-
 		/// <summary>
-		/// Read games database
+		/// Read games database and get matching ids
 		/// </summary>
-		public List<GameInfo> ReadGames ()
+		public List<GameInfo> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
 		{
-			return m_db.Table<GameInfo> ().ToList ();
+			var query = m_db.Table<GameInfo> ()
+				.Where (g => (g.Year >= minYear) && (g.Year < maxYear));
+
+			if (publishers != null && publishers.Count > 0) {
+				query = query.Where (g => publishers.Contains (g.Publisher));
+			}
+
+			if (genres != null && genres.Count > 0) {
+				query = query.Where (g => genres.Contains (g.Genre));
+			}
+
+			if (platforms != null && platforms.Count > 0) {
+				query = query.Where (g => platforms.Contains (g.Platform));
+			}
+
+			return query.ToList ();
 		}
 
 		/// <summary>
-		/// Get a random game
+		/// Read games database and get matching ids
 		/// </summary>
-		/// <returns>The game.</returns>
-		public GameInfo RandomGame ()
+		public GameInfo ReadGame (int gameId)
 		{
-			int randomIndex = m_random.Next (0, CountGames ());
+			return m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+		}
 
-			return m_db.Table<GameInfo> ().ElementAt (randomIndex);
+		/// <summary>
+		/// Get all publishers
+		/// </summary>
+		public List<string> GetPublishers ()
+		{
+			return m_db.Table<GameInfo> ().Select (g => g.Publisher).Distinct ().ToList ();
 		}
 
 		/// <summary>
@@ -246,7 +263,7 @@ namespace Superkoikoukesse.Common
 
 			int rank = modeScore.IndexOf (score);
 	
-			if(rank >= 0) {
+			if (rank >= 0) {
 				return rank;
 			}
 

@@ -99,13 +99,13 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Initialize a new quizz game
 		/// </summary>
-		public void InitializeQuizz (GameModes mode, GameDifficulties diff)
+		public void InitializeQuizz (GameModes mode, GameDifficulties diff, Filter f)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 
 			// Prepare a quizz
 			m_quizz = new Quizz ();
-			m_quizz.Initialize (mode, diff, appDelegate.Configuration);
+			m_quizz.Initialize (mode, diff, appDelegate.Configuration, f);
 		
 			// Consume one credit
 			ProfileService.Instance.UseCredit ();
