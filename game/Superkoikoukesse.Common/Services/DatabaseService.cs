@@ -244,11 +244,13 @@ namespace Superkoikoukesse.Common
 			List<LocalScore> modeScore = m_db.Table<LocalScore> ().Where (s => (s.Mode == score.Mode) && (s.Difficulty == score.Difficulty))
 				.OrderByDescending (s => s.Score).Take (999).ToList ();
 
-			for (int i = 0; i < modeScore.Count; i++) {
-				if (modeScore [i].Equals (score))
-					return i;
+			int rank = modeScore.IndexOf (score);
+	
+			if(rank >= 0) {
+				return rank;
 			}
-			return 999; // TODO Bug
+
+			return 999;
 
 		}
 

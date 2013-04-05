@@ -25,7 +25,14 @@ namespace Superkoikoukesse.Common
 			if(obj is LocalScore) {
 				LocalScore s = obj as LocalScore;
 
-				return s.Mode.Equals(Mode) && s.Difficulty.Equals(Difficulty) && s.Date.Equals(Date) && s.Score.Equals(Score);
+				return s.Mode.Equals(Mode) && s.Difficulty.Equals(Difficulty) && s.Score.Equals(Score)
+					&& s.Date.Year == Date.Year  // Careful: SqlLite is not precise on date
+						&& s.Date.Month == Date.Month
+						&& s.Date.Day == Date.Day
+						&& s.Date.Hour == Date.Hour
+						&& s.Date.Minute == Date.Minute
+						&& s.Date.Second == Date.Second
+						;
 			}
 			return base.Equals (obj);
 		}
