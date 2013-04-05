@@ -303,7 +303,7 @@ namespace SuperKoikoukesse.iOS
 						}
 					};
 
-					window.RootViewController.PresentModalViewController (m_gkLeaderboardview, true);
+					window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
 				}
 			} 
 		}

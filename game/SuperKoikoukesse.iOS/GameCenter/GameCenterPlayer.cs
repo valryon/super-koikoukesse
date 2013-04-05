@@ -37,7 +37,7 @@ namespace SuperKoikoukesse.iOS
 					// for example, if the user used Game Center directly to log in
 					
 					if (ui != null) {
-						m_viewController.PresentModalViewController (ui, true);
+						m_viewController.PresentViewController (ui, true, null);
 					} else {
 						// Check if you are authenticated:
 						m_isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
@@ -59,7 +59,7 @@ namespace SuperKoikoukesse.iOS
 						authenticationFinished ();
 					}
 				};
-			} else {
+		} /* else {
 				// Versions prior to iOS 6.0
 				GKLocalPlayer.LocalPlayer.Authenticate ((error) => {
 					if (error != null) {
@@ -78,7 +78,7 @@ namespace SuperKoikoukesse.iOS
 						authenticationFinished ();
 					}
 				});
-			}
+			} */
 		}
 
 		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
