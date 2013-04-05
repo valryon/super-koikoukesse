@@ -226,7 +226,7 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Create a new filter
-			Filter f = new Filter (2000);
+			Filter f = new Filter ();
 
 			// Caching filter results
 			SetLoading (true);
