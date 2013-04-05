@@ -65,6 +65,16 @@ namespace SuperKoikoukesse.iOS
 			nextQuestion ();
 		}
 
+		partial void resumePauseButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			pauseAction ();
+		}
+
+		partial void quitGameButtonPressed (MonoTouch.Foundation.NSObject sender)
+		{
+			getBackToMenu();
+		}
+
 		#endregion
 		
 		#region Game 
@@ -115,6 +125,9 @@ namespace SuperKoikoukesse.iOS
 			// Set timer in a thread
 			var thread = new Thread (setGameTimer as ThreadStart);
 			thread.Start ();
+
+			// DIsable pause anyway
+			pauseView.Hidden = true;
 
 			// Display selected mode and difficulty
 			modeLabel.Text = m_quizz.Mode.ToString () + " - " + m_quizz.Difficulty;
@@ -369,6 +382,8 @@ namespace SuperKoikoukesse.iOS
 		private void pauseAction ()
 		{
 			m_quizz.IsPaused = !m_quizz.IsPaused;
+
+			pauseView.Hidden = !m_quizz.IsPaused;
 
 			if (m_quizz.IsPaused) {
 

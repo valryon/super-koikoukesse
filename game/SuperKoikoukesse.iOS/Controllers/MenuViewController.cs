@@ -178,8 +178,8 @@ namespace SuperKoikoukesse.iOS
 
 			pageControl.Pages = count;
 
-			// Set 2nd page as the first displayed
-			int firstDisplayedPageNumber = 1;
+			// Set 3rd page as the first displayed
+			int firstDisplayedPageNumber = 2;
 			pageControl.CurrentPage = firstDisplayedPageNumber;
 
 			setScrollViewToPage (firstDisplayedPageNumber);
