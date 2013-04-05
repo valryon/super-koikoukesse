@@ -318,10 +318,10 @@ namespace Superkoikoukesse.Common
 				result = CurrentQuestion.IsValidAnswer (index);
 
 				if (result) {
-					Logger.Log (LogLevel.Info, "Good answer! " + (isJoker ? "(JOKER)" : ""));
+					Logger.Log (LogLevel.Info, "Good answer!");
 					Combo++;
 
-					Combo = Math.Max (Combo, Constants.ComboMax);
+					Combo = Math.Min (Combo, Constants.ComboMax);
 
 					JokerPartCount++;
 
