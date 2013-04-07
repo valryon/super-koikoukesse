@@ -320,6 +320,8 @@ namespace SuperKoikoukesse.iOS
 
 		
 		#region Image Transformations
+
+		private UIView progressiveDrawView;
 		
 		private void setImageAnimation ()
 		{
@@ -333,6 +335,10 @@ namespace SuperKoikoukesse.iOS
 				m_animationTimer = null;
 			}
 		
+			if (progressiveDrawView != null) {
+				progressiveDrawView.RemoveFromSuperview ();
+				progressiveDrawView = null;
+			}
 
 			string animationKey = "imageTransformation";
 
@@ -365,50 +371,64 @@ namespace SuperKoikoukesse.iOS
 				
 			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
 
-				float baseX = gameImageScroll.Frame.X;
-				float baseY = gameImageScroll.Frame.Y;
-
 				// Random corner
-				float startX = 0f;
-				float startY = 0f;
-				float startWidth = 25f;
-				float startHeight = 25f;
+				float targetX = 0f;
+				float targetY = 0f;
 
-				int corner = random.Next (4);
+				int randomX = random.Next (3) - 1;
+				int randomY = random.Next (3) - 1;
 
-				switch (corner) {
-				
-				case 1:
-					// Top right corner
-					startX = gameImageScroll.Frame.X + gameImageScroll.Frame.Width - startWidth;
-					startY = gameImageScroll.Frame.Y;
+				switch (randomX) {
+					
+				case -1:
+					// Left
+					targetX = gameImage.Frame.X - gameImage.Frame.Width;
 					break;
-				case 2:
-					// Bottom right corner
-					startX = gameImageScroll.Frame.X + gameImageScroll.Frame.Width - startWidth;
-					startY = gameImageScroll.Frame.Y + gameImageScroll.Frame.Height - startHeight;
-					break;
-				case 3:
-					// Bottom left corner
-					startX = gameImageScroll.Frame.X;
-					startY = gameImageScroll.Frame.Y + gameImageScroll.Frame.Height - startHeight;
-					break;
-
-				default:
 				case 0:
-					// Top left corner
-					startX = gameImageScroll.Frame.X;
-					startY = gameImageScroll.Frame.Y;
+					// No move
+					targetX = gameImage.Frame.X;
+					break;
+				case 1:
+					// Right
+					targetX = gameImage.Frame.X + gameImage.Frame.Width;
 					break;
 				}
 
-				// Measures are on scrollview but animations are on image!
-				gameImage.Frame = new RectangleF (startX, startY, startWidth, startHeight);
+				// Avoid black suare not moving...
+				if (randomX == 0 && randomY == 0) {
+					randomY = 1;
+				}
+				switch (randomY) {
+					
+				case -1:
+					// Top
+					targetY = gameImage.Frame.Y - gameImage.Frame.Height;
+					break;
+				case 0:
+					// No move
+					targetY = gameImage.Frame.Y;
+					break;
+				case 1:
+					// Bottom
+					targetY = gameImage.Frame.Y + gameImage.Frame.Height;
+					break;
+				}
+
+				// Create black square
+				progressiveDrawView = new UIView (
+					new RectangleF (gameImage.Frame.X,
+				               gameImage.Frame.Y,
+				               gameImage.Frame.Width,
+				               gameImage.Frame.Height
+				)
+				);
+				progressiveDrawView.BackgroundColor = UIColor.Black;
+				gameImageScroll.AddSubview (progressiveDrawView);
 
 				UIView.Animate (
 					Constants.DezoomDuration,
 					() => {
-					gameImage.Frame = new RectangleF (baseX, baseY, imageBaseSizeWidth, imageBaseSizeHeight);
+					progressiveDrawView.Frame = new RectangleF (targetX, targetY, imageBaseSizeWidth, imageBaseSizeHeight);
 				});
 			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 				
