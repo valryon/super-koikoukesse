@@ -279,8 +279,6 @@ namespace Superkoikoukesse.Common
 		/// <returns>The image transformation.</returns>
 		private ImageTransformations getImageTransformation ()
 		{
-			return ImageTransformations.ProgressiveDrawing;
-
 			if (m_availableTransformations == null) {
 				m_availableTransformations = new List<ImageTransformations> ();
 
