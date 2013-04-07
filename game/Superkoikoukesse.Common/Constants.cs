@@ -36,6 +36,8 @@ namespace Superkoikoukesse.Common
 
 		public static float DezoomDuration = 5f; //seconds
 
+		public static float PixelizationDuration = 5f; //seconds
+
 		public static float ProgressiveDrawingDuration = 5f; //seconds
 
 		#endregion

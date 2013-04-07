@@ -412,25 +412,31 @@ namespace SuperKoikoukesse.iOS
 				});
 			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 				
-				m_currentPixelateFactor = 1f;
+				m_currentPixelateFactor = 0.025f;
 				pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
 				
 				// Thread animation
 				var thread = new Thread (() => {
-					
+
 					using (var pool = new NSAutoreleasePool()) {
-						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (0.1f, delegate { 
-							// TODO Améliorer, optimiser, tout ça...
-							m_currentPixelateFactor += 2;
-							
-							// Stop animation at 85% before it became a pixel's mess
-							if (m_currentPixelateFactor > (imageBaseSizeWidth * 0.5f)) {
-								m_currentPixelateFactor = imageBaseSizeWidth;
-								
+
+						float stepDuration = 0.5f;
+						float time = 0f;
+
+						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (stepDuration, delegate { 
+
+							time += (float)m_animationTimer.TimeInterval;
+
+							m_currentPixelateFactor += (stepDuration / Constants.PixelizationDuration) / 5f; // The magic number here is too slow the effet, because after 50% images just look like 100% images.
+
+							if (time >= Constants.PixelizationDuration) {
 								if (m_animationTimer != null) {
 									m_animationTimer.Dispose ();
 								}
+
+								m_currentPixelateFactor = 1f;
 							}
+
 							pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
 						});
 						
@@ -444,15 +450,22 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Downsample and upsample the game image to create a pixelate effect
 		/// </summary>
-		/// <param name="pixelateFactor">Pixelate factor.</param>
+		/// <param name="pixelateFactor">Between 0 and 1</param>
 		private void pixelateGameImage (float pixelateFactor, float maxWidth, float maxHeight)
 		{
-			var a = m_currentImage.Scale (new SizeF (pixelateFactor, pixelateFactor));
-			a.Scale (new SizeF (maxWidth, maxHeight));
-			
-			this.BeginInvokeOnMainThread (() => {
-				gameImage.Image = a;
-			});
+			if (pixelateFactor <= 0f)
+				pixelateFactor = 0.01f;
+			if (pixelateFactor > 1f)
+				pixelateFactor = 1f;
+
+			var a = m_currentImage.Scale (new SizeF ((float)Math.Round (maxWidth * pixelateFactor), (float)Math.Round (maxHeight * pixelateFactor)));
+			if (a != null) {
+				a.Scale (new SizeF (maxWidth, maxHeight));
+				
+				this.BeginInvokeOnMainThread (() => {
+					gameImage.Image = a;
+				});
+			}
 		}
 		
 		#endregion
