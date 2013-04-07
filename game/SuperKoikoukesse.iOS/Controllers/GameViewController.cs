@@ -14,23 +14,17 @@ namespace SuperKoikoukesse.iOS
 	public partial class GameViewController : UIViewController
 	{
 		private Quizz m_quizz;
-		private bool m_isViewLoaded;
 		private NSTimer m_timer, m_animationTimer;
 		private UIImage m_currentImage, m_pauseImage;
 		private float m_currentPixelateFactor;
+		private Random random;
 
 		#region UIView stuff
 
 		public GameViewController ()
 			: base ("GameView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
-		}
-
-		public override void LoadView ()
-		{
-			m_isViewLoaded = false;
-
-			base.LoadView ();
+			random = new Random (DateTime.Now.Millisecond);
 		}
 
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -72,7 +66,7 @@ namespace SuperKoikoukesse.iOS
 
 		partial void quitGameButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			getBackToMenu();
+			getBackToMenu ();
 		}
 
 		#endregion
@@ -87,13 +81,6 @@ namespace SuperKoikoukesse.iOS
 			string imgPath = "empty_screen.png";
 			m_pauseImage = UIImage.FromFile (imgPath);
 			gameImage.Image = m_pauseImage;
-
-			// Display things the first time here because we need the UIImageView and other components to be created
-			if (m_isViewLoaded == false) {
-				updateViewToQuizz (m_quizz);
-				updateViewToQuestion (m_quizz.CurrentQuestion);
-				m_isViewLoaded = true;
-			}
 		}
 
 		/// <summary>
@@ -109,12 +96,15 @@ namespace SuperKoikoukesse.iOS
 		
 			// Consume one credit
 			ProfileService.Instance.UseCredit ();
+		}
 
-			// Display game
-			if (m_isViewLoaded) {
-				updateViewToQuizz (m_quizz);
-				updateViewToQuestion (m_quizz.CurrentQuestion);
-			}
+		/// <summary>
+		/// Display quizz and first question
+		/// </summary>
+		public void DisplayQuizz ()
+		{
+			updateViewToQuizz (m_quizz);
+			updateViewToQuestion (m_quizz.CurrentQuestion);
 		}
 
 		/// <summary>
@@ -227,86 +217,6 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		private void setImageAnimation ()
-		{
-			// image size
-			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
-			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
-
-			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
-
-			if (m_animationTimer != null) {
-				m_animationTimer.Dispose ();
-				m_animationTimer = null;
-			}
-
-			if (m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
-
-				// Images are 500*500
-				// Scroll view is 250*250
-				// Dezoom consists of center the image on a dimension and dezoom to its original size
-				float startZoomFactor = Constants.DezoomFactor;
-				float width = gameImage.Frame.Width * startZoomFactor;
-				float height = gameImage.Frame.Height * startZoomFactor;
-
-				float x = imageBaseSizeWidth - (width / 2);
-				float y = imageBaseSizeHeight - (height / 2);
-
-				gameImage.Frame = new RectangleF (x, y, width, height);
-
-				UIView.Animate (
-					Constants.DezoomDuration,
-	                () => {
-					gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
-				}
-				);
-
-			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
-
-				m_currentPixelateFactor = 1f;
-				pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
-
-				// Thread animation
-				var thread = new Thread (() => {
-
-					using (var pool = new NSAutoreleasePool()) {
-						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (0.1f, delegate { 
-							// TODO Améliorer, optimiser, tout ça...
-							m_currentPixelateFactor += 2;
-
-							// Stop animation at 85% before it became a pixel's mess
-							if (m_currentPixelateFactor > (imageBaseSizeWidth * 0.5f)) {
-								m_currentPixelateFactor = imageBaseSizeWidth;
-
-								if (m_animationTimer != null) {
-									m_animationTimer.Dispose ();
-								}
-							}
-							pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
-						});
-					
-						NSRunLoop.Current.Run ();
-					}
-				});
-				thread.Start ();
-			}
-		}
-
-		/// <summary>
-		/// Downsample and upsample the game image to create a pixelate effect
-		/// </summary>
-		/// <param name="pixelateFactor">Pixelate factor.</param>
-		private void pixelateGameImage (float pixelateFactor, float maxWidth, float maxHeight)
-		{
-						
-			var a = m_currentImage.Scale (new SizeF (pixelateFactor, pixelateFactor));
-			a.Scale (new SizeF (maxWidth, maxHeight));
-			
-			this.BeginInvokeOnMainThread (() => {
-				gameImage.Image = a;
-			});
-		}
-
 		private void setGameButtonTitles (Question q)
 		{
 			// Disable buttons
@@ -406,6 +316,145 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
+		#endregion
+
+		
+		#region Image Transformations
+		
+		private void setImageAnimation ()
+		{
+			// image size
+			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
+			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
+
+			// Stop all running animations
+			if (m_animationTimer != null) {
+				m_animationTimer.Dispose ();
+				m_animationTimer = null;
+			}
+		
+
+			string animationKey = "imageTransformation";
+
+			// Stop all animations
+			View.Layer.RemoveAnimation (animationKey);
+			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+
+			Logger.Log (LogLevel.Debug, "Image transformation: " + m_quizz.ImageTransformation);
+
+			if (m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
+				
+				// Images are 500*500
+				// Scroll view is 250*250
+				// Dezoom consists of center the image on a dimension and dezoom to its original size
+				float startZoomFactor = Constants.DezoomFactor;
+				float width = gameImage.Frame.Width * startZoomFactor;
+				float height = gameImage.Frame.Height * startZoomFactor;
+				
+				float x = imageBaseSizeWidth - (width / 2);
+				float y = imageBaseSizeHeight - (height / 2);
+				
+				gameImage.Frame = new RectangleF (x, y, width, height);
+
+				UIView.BeginAnimations (animationKey);
+				UIView.SetAnimationBeginsFromCurrentState (true);
+				UIView.SetAnimationDuration (Constants.DezoomDuration);
+				gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
+				UIView.CommitAnimations ();
+
+				
+			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
+
+				float baseX = gameImageScroll.Frame.X;
+				float baseY = gameImageScroll.Frame.Y;
+
+				// Random corner
+				float startX = 0f;
+				float startY = 0f;
+				float startWidth = 25f;
+				float startHeight = 25f;
+
+				int corner = random.Next (4);
+
+				switch (corner) {
+				
+				case 1:
+					// Top right corner
+					startX = gameImageScroll.Frame.X + gameImageScroll.Frame.Width - startWidth;
+					startY = gameImageScroll.Frame.Y;
+					break;
+				case 2:
+					// Bottom right corner
+					startX = gameImageScroll.Frame.X + gameImageScroll.Frame.Width - startWidth;
+					startY = gameImageScroll.Frame.Y + gameImageScroll.Frame.Height - startHeight;
+					break;
+				case 3:
+					// Bottom left corner
+					startX = gameImageScroll.Frame.X;
+					startY = gameImageScroll.Frame.Y + gameImageScroll.Frame.Height - startHeight;
+					break;
+
+				default:
+				case 0:
+					// Top left corner
+					startX = gameImageScroll.Frame.X;
+					startY = gameImageScroll.Frame.Y;
+					break;
+				}
+
+				// Measures are on scrollview but animations are on image!
+				gameImage.Frame = new RectangleF (startX, startY, startWidth, startHeight);
+
+				UIView.Animate (
+					Constants.DezoomDuration,
+					() => {
+					gameImage.Frame = new RectangleF (baseX, baseY, imageBaseSizeWidth, imageBaseSizeHeight);
+				});
+			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
+				
+				m_currentPixelateFactor = 1f;
+				pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
+				
+				// Thread animation
+				var thread = new Thread (() => {
+					
+					using (var pool = new NSAutoreleasePool()) {
+						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (0.1f, delegate { 
+							// TODO Améliorer, optimiser, tout ça...
+							m_currentPixelateFactor += 2;
+							
+							// Stop animation at 85% before it became a pixel's mess
+							if (m_currentPixelateFactor > (imageBaseSizeWidth * 0.5f)) {
+								m_currentPixelateFactor = imageBaseSizeWidth;
+								
+								if (m_animationTimer != null) {
+									m_animationTimer.Dispose ();
+								}
+							}
+							pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
+						});
+						
+						NSRunLoop.Current.Run ();
+					}
+				});
+				thread.Start ();
+			}
+		}
+		
+		/// <summary>
+		/// Downsample and upsample the game image to create a pixelate effect
+		/// </summary>
+		/// <param name="pixelateFactor">Pixelate factor.</param>
+		private void pixelateGameImage (float pixelateFactor, float maxWidth, float maxHeight)
+		{
+			var a = m_currentImage.Scale (new SizeF (pixelateFactor, pixelateFactor));
+			a.Scale (new SizeF (maxWidth, maxHeight));
+			
+			this.BeginInvokeOnMainThread (() => {
+				gameImage.Image = a;
+			});
+		}
+		
 		#endregion
 	}
 }

@@ -9,7 +9,8 @@ namespace Superkoikoukesse.Common
 	{
 		None = 0,
 		Unzoom = 1,
-		Pixelization = 2
+		Pixelization = 2,
+		ProgressiveDrawing = 3
 	}
 }
 

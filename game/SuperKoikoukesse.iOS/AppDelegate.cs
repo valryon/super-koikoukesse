@@ -251,6 +251,7 @@ namespace SuperKoikoukesse.iOS
 					window.RootViewController = gameViewController;
 					window.MakeKeyAndVisible ();
 
+					gameViewController.DisplayQuizz();
 				});
 
 			});
