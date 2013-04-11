@@ -40,6 +40,9 @@ namespace SuperKoikoukesse.iOS
 		private ScoreViewController scoreViewController;
 		private LoadingViewController loadingViewController;
 		private CreditsViewController creditsViewController;
+		private bool databaseLoaded;
+		private bool profileLoaded;
+		private bool configurationLoaded;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -56,9 +59,6 @@ namespace SuperKoikoukesse.iOS
 			EncryptionHelper.SetKey (Constants.EncryptionKey);
 			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
 
-			// Try to open the database
-			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
-		
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
@@ -67,57 +67,137 @@ namespace SuperKoikoukesse.iOS
 			window.RootViewController = splashScreenViewController;
 			window.MakeKeyAndVisible ();
 
+			// Load all the things!
+			loadDatabase ();
+			loadPlayerProfile ();
+			loadConfiguration ();
+
 			return true;
 		}
 
-		public void FirstInitialization ()
+		/// <summary>
+		/// Load the database in a thread
+		/// </summary>
+		private void loadDatabase ()
 		{
-			SetLoading (true);
+			databaseLoaded = false;
 
-			UpdateConfiguration ();
+			// Create or load database
+			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
 
-			RemoveExcludeGames ();
+			// Create database structure as fast as possible so other threads can manipulate it.
+			if (DatabaseService.Instance.Exists == false) {
 
-			// Register on Game Center
-			GameCenter = new GameCenterPlayer (window.RootViewController);
+				DatabaseService.Instance.CreateTables();
+			}
 
-			// Store a local profile from the game center info
-			// Or create a temporary local player
-			ProfileService.Instance.Initialize (GameCenter);
-			ProfileService.Instance.PlayerUpdated += (Player p) => {
+			InvokeInBackground (() => {
+ 		
+				// Create database structure as fast as possible so other threads can manipulate it.
+				if (DatabaseService.Instance.Exists == false) {
 
-				InvokeOnMainThread (() => {
-					if (menuViewController != null) {
-						menuViewController.UpdateViewWithPlayerInfos ();
+					// Load gamedb.xml
+					String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
+					
+					DatabaseService.Instance.InitializeFromXml (xmlDatabase);
+				}
+
+				// Check excluded games
+				WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
+				exGames.Request ((list) => {
+					
+					foreach (int id in list.GamesId) {
+						DatabaseService.Instance.RemoveGame (id);
 					}
 					
-					SetLoading (false);
+				}, null);
+
+				databaseLoaded = true;
+
+				// Maybe it was the last thing to load
+				InvokeOnMainThread (() => {
+					loadingProgress ();
 				});
-			};
+			});
+
+
 		}
 
 		/// <summary>
-		/// Download exclusions list and apply it to DB
+		/// Load configuration in a thread
 		/// </summary>
-		public void RemoveExcludeGames ()
+		private void loadConfiguration ()
 		{
+			configurationLoaded = false;
+			
+			InvokeInBackground (() => {
 
-			WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
-			exGames.Request ((list) => {
+				// Load the configuration from webservice or from local
+				UpdateConfiguration (() => {
 
-				foreach (int id in list.GamesId) {
+					configurationLoaded = true;
 
-					DatabaseService.Instance.RemoveGame (id);
+					// Maybe it was the last thing to load
+					InvokeOnMainThread (() => {
+						loadingProgress ();
+					});
+				});
+			});
+		}
+
+		/// <summary>
+		/// Load Game Center and player profile in a thread
+		/// </summary>
+		private void loadPlayerProfile ()
+		{
+			profileLoaded = false;
+
+			// On main thread we load Game Center
+			GameCenter = new GameCenterPlayer ();
+			GameCenter.ShowGameCenter += (UIViewController gcController) => {
+				InvokeOnMainThread (() => {
+					window.RootViewController.PresentViewController (gcController, true, null);
+				});
+			};
+
+			// Player events
+			ProfileService.Instance.PlayerUpdated += (Player p) => {
+				
+				InvokeOnMainThread (() => {
+
+					profileLoaded = true;
+
+					// Maybe it was the last thing to load
+					loadingProgress ();
+
+					if (menuViewController != null) {
+						menuViewController.UpdateViewWithPlayerInfos ();
+					}
+				});
+			};
+			
+			// Store a local profile from the game center info
+			// Or create a temporary local player
+			ProfileService.Instance.Initialize (GameCenter);
+		}
+
+		private void loadingProgress ()
+		{
+			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded + " Profile: " + profileLoaded);
+
+			IsInitialized =  (databaseLoaded && profileLoaded && configurationLoaded);
+
+			if(IsInitialized) {
+				if(InitializationComplete != null) {
+					InitializationComplete();
 				}
-
-			}, null);
-
+			}
 		}
 
 		/// <summary>
 		/// Download webservice configuration
 		/// </summary>
-		public void UpdateConfiguration ()
+		public void UpdateConfiguration (Action complete)
 		{
 			// Get the distant configuration
 			WebserviceConfiguration configWs = new WebserviceConfiguration ();
@@ -125,17 +205,25 @@ namespace SuperKoikoukesse.iOS
 				this.Configuration = config;
 
 				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
+
+				if (complete != null)
+					complete ();
 			},
 			(code, e) => {
 				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. ");
 
+				// Try to use local
 				this.Configuration = configWs.LastValidConfig;
 
+				// No local? This is bad. Use default values.
 				if (this.Configuration == null) {
 
 					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
+
+					if (complete != null)
+						complete ();
 				}
 			});
 		
@@ -146,21 +234,15 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Add or hide a loading view
 		/// </summary>
-		/// <param name="value">If set to <c>true</c> value.</param>
-		public void SetLoading (bool value)
+		public void SetLoading (bool isLoading)
 		{
-
-			if (IsLoading != value) {
-				IsLoading = value;
-			}
-
 			if (loadingViewController == null) {
 				loadingViewController = new LoadingViewController ();
 			}
 
 			BeginInvokeOnMainThread (() => {
 
-				if (IsLoading) {
+				if (isLoading) {
 					DisplayLoading ();
 				} else {
 					HideLoading ();
@@ -233,9 +315,9 @@ namespace SuperKoikoukesse.iOS
 
 			f.Load ((gamesCount) => {
 
-				if(gamesCount < 30) {
+				if (gamesCount < 30) {
 					BeginInvokeOnMainThread (() => {
-						Dialogs.ShowDebugFilterTooRestrictive();
+						Dialogs.ShowDebugFilterTooRestrictive ();
 					});
 				}
 
@@ -251,7 +333,7 @@ namespace SuperKoikoukesse.iOS
 					window.RootViewController = gameViewController;
 					window.MakeKeyAndVisible ();
 
-					gameViewController.DisplayQuizz();
+					gameViewController.DisplayQuizz ();
 				});
 
 			});
@@ -336,15 +418,20 @@ namespace SuperKoikoukesse.iOS
 		#endregion
 
 		/// <summary>
+		/// Game is ready to be played
+		/// </summary>
+		public event Action InitializationComplete;
+
+		/// <summary>
 		/// Global configuration
 		/// </summary>
 		/// <value>The configuration.</value>
 		public GameConfiguration Configuration { get; set; }
 
 		/// <summary>
-		/// Is loading something
+		/// Is loading something in background
 		/// </summary>
-		public bool IsLoading { get; private set; }
+		public bool IsInitialized { get; private set; }
 
 		/// <summary>
 		/// Game center data

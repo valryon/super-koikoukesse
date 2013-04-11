@@ -68,7 +68,7 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Initialize table structure
 		/// </summary>
-		private void createTables ()
+		public void CreateTables ()
 		{
 
 			Logger.Log (LogLevel.Info, "Creating database schema");
@@ -84,9 +84,6 @@ namespace Superkoikoukesse.Common
 		/// <param name="xml">Xml.</param>
 		public void InitializeFromXml (string xml)
 		{
-
-			createTables ();
-
 			Logger.Log (LogLevel.Info, "Initializing database from xml...");
 			
 			// Parse the xml

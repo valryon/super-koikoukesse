@@ -39,14 +39,6 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-			// Initialize game database id first launch
-			if (DatabaseService.Instance.Exists == false) {
-				
-				// Load gamedb.xml
-				String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
-				
-				DatabaseService.Instance.InitializeFromXml (xmlDatabase);
-			}
 
 			// Hide credits and coins until player profile is loaded
 			coinsLabel.Hidden = true;
@@ -221,7 +213,7 @@ namespace SuperKoikoukesse.iOS
 		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.UpdateConfiguration ();
+			appDelegate.UpdateConfiguration (null);
 		}
 
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
