@@ -86,6 +86,20 @@ namespace Superkoikoukesse.Common
 
 			return matchingGames [randomIndex];
 		}
+
+		/// <summary>
+		/// Load a predefined filter for Stunfest
+		/// </summary>
+		public void StunfestMode ()
+		{
+			if(Genres != null) {
+				Genres.Clear();
+			}
+			else {
+				Genres = new List<string>();
+			}
+			Genres.Add ("combat");
+		}
 	}
 }
 

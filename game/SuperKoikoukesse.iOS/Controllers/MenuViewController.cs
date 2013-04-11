@@ -196,7 +196,14 @@ namespace SuperKoikoukesse.iOS
 					difficultyViewController = new MenuDifficultyViewController ();
 					difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
 						var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-						appDelegate.SwitchToGameView (mode, difficulty);
+
+						Filter filter = null;
+						if(difficultyViewController.StunfestMode) {
+							filter = new Filter();
+							filter.StunfestMode();
+						}
+
+						appDelegate.SwitchToGameView (mode, difficulty, filter);
 					}; 	
 				}
 

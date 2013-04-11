@@ -12,6 +12,12 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuDifficultyViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel stunfestModeLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton stunfestModeButton { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton easyButton { get; set; }
 
 		[Outlet]
@@ -29,9 +35,6 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton backButton { get; set; }
 
-		[Action ("backButtonPressed:")]
-		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("easyButtonPressed:")]
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -44,11 +47,27 @@ namespace SuperKoikoukesse.iOS
 		[Action ("nolifeButtonPressed:")]
 		partial void nolifeButtonPressed (MonoTouch.Foundation.NSObject sender);
 
+		[Action ("backButtonPressed:")]
+		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("stunfestModeButtonClick:")]
+		partial void stunfestModeButtonClick (MonoTouch.Foundation.NSObject sender);
+
 		[Action ("helpButtonPressed:")]
 		partial void helpButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (stunfestModeLabel != null) {
+				stunfestModeLabel.Dispose ();
+				stunfestModeLabel = null;
+			}
+
+			if (stunfestModeButton != null) {
+				stunfestModeButton.Dispose ();
+				stunfestModeButton = null;
+			}
+
 			if (easyButton != null) {
 				easyButton.Dispose ();
 				easyButton = null;

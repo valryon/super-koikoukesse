@@ -1774,6 +1774,7 @@
     <BundleResource Include="..\..\database\images\00521.jpg">
       <Link>Resources\database\images\00521.jpg</Link>
     </BundleResource>
+    <BundleResource Include="Resources\stunfest_mode.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

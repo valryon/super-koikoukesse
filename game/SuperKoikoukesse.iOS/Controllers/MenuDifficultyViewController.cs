@@ -5,6 +5,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
+using MonoTouch.CoreGraphics;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -20,9 +21,34 @@ namespace SuperKoikoukesse.iOS
 		{
 		}
 
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			setStunfestMode(true);
+			showStunfestMode();
+		}
+
 		public void SetMode (GameModes m)
 		{
 			mode = m;
+
+			if(IsViewLoaded) {
+				showStunfestMode();
+			}
+		}
+
+		private void showStunfestMode() {
+			if(mode == GameModes.ScoreAttack) {
+				stunfestModeLabel.Hidden = false;
+				stunfestModeButton.Hidden = false;
+				StunfestMode = true;
+			}
+			else {
+				stunfestModeLabel.Hidden = true;
+				stunfestModeButton.Hidden = true;
+				StunfestMode = false;
+			}
 		}
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -66,6 +92,24 @@ namespace SuperKoikoukesse.iOS
 		private void hideMyself ()
 		{
 			View.RemoveFromSuperview();
+		}
+
+		partial void stunfestModeButtonClick (MonoTouch.Foundation.NSObject sender)
+		{
+			setStunfestMode(!StunfestMode);
+		}
+
+		private void setStunfestMode(bool mode) {
+
+			StunfestMode = mode;
+
+			stunfestModeLabel.Text = (mode? "ON" : "OFF");
+		}
+
+		public bool StunfestMode
+		{
+			get;
+			set;
 		}
 	}
 }

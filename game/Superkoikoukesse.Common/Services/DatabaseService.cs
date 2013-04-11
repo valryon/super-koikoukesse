@@ -192,7 +192,12 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public List<string> GetPublishers ()
 		{
-			return m_db.Table<GameInfo> ().Select (g => g.Publisher).Distinct ().ToList ();
+			List<string> publishers = new List<string>();
+			foreach(GameInfo game in m_db.Table<GameInfo> ()) {
+				publishers.Add (game.Publisher);
+			}
+
+			return publishers;
 		}
 
 		/// <summary>

@@ -63,7 +63,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-				appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty);
+				appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty, quizz.Filter);
 			} else {
 				Dialogs.ShowNoMoreCreditsDialogs ();
 			}

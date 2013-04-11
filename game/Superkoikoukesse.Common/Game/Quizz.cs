@@ -118,6 +118,12 @@ namespace Superkoikoukesse.Common
 		/// <value>The rank for last score.</value>
 		public int  RankForLastScore {get; private set;}
 
+		/// <summary>
+		/// Filter for game database
+		/// </summary>
+		/// <value>The filter.</value>
+		public Filter Filter {get; private set;}
+
 		// Game parameters
 		private Queue<Question> m_questionsPool;
 		private int m_initialQuestionCount;
@@ -131,7 +137,6 @@ namespace Superkoikoukesse.Common
 		private List<int> m_correctAnswerIds;
 		private Random m_random;
 		private List<ImageTransformations> m_availableTransformations;
-		private Filter filter;
 
 		public Quizz ()
 		{
@@ -143,7 +148,7 @@ namespace Superkoikoukesse.Common
 		{
 			Mode = mode;
 			Difficulty = difficulty;
-			filter = databaseFilter;
+			Filter = databaseFilter;
 
 			Logger.Log (LogLevel.Info, "Initializing quizz " + Mode + " " + Difficulty + "...");
 
@@ -253,7 +258,7 @@ namespace Superkoikoukesse.Common
 
 			while (currentAnswersCount < m_answerCount) {
 
-				GameInfo game = filter.GetGame();
+				GameInfo game = Filter.GetGame();
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 
