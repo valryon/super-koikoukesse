@@ -50,8 +50,9 @@ namespace Superkoikoukesse.Common
 			}),
 			(code, ex) => {
 				PostRequest (default(T), false);
-
-				callbackFailure (code, ex);
+				if (callbackFailure != null) {
+					callbackFailure (code, ex);
+				}
 			}
 			);
 		}
