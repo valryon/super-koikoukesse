@@ -41,7 +41,6 @@ namespace SuperKoikoukesse.iOS
 		private LoadingViewController loadingViewController;
 		private CreditsViewController creditsViewController;
 		private bool databaseLoaded;
-		private bool profileLoaded;
 		private bool configurationLoaded;
 
 		//
@@ -69,7 +68,6 @@ namespace SuperKoikoukesse.iOS
 
 			// Load all the things!
 			loadDatabase ();
-			loadPlayerProfile ();
 			loadConfiguration ();
 
 			return true;
@@ -146,12 +144,11 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		/// <summary>
-		/// Load Game Center and player profile in a thread
+		/// Load Game Center and player profile
+		/// It's not the same mechanism, due to Game Center which should be displayed on the menu.
 		/// </summary>
-		private void loadPlayerProfile ()
+		public void LoadPlayerProfile ()
 		{
-			profileLoaded = false;
-
 			// On main thread we load Game Center
 			GameCenter = new GameCenterPlayer ();
 			GameCenter.ShowGameCenter += (UIViewController gcController) => {
@@ -164,11 +161,6 @@ namespace SuperKoikoukesse.iOS
 			ProfileService.Instance.PlayerUpdated += (Player p) => {
 				
 				InvokeOnMainThread (() => {
-
-					profileLoaded = true;
-
-					// Maybe it was the last thing to load
-					loadingProgress ();
 
 					if (menuViewController != null) {
 						menuViewController.UpdateViewWithPlayerInfos ();
@@ -183,9 +175,9 @@ namespace SuperKoikoukesse.iOS
 
 		private void loadingProgress ()
 		{
-			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded + " Profile: " + profileLoaded);
+			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
 
-			IsInitialized =  (databaseLoaded && profileLoaded && configurationLoaded);
+			IsInitialized =  (databaseLoaded && configurationLoaded);
 
 			if(IsInitialized) {
 				if(InitializationComplete != null) {

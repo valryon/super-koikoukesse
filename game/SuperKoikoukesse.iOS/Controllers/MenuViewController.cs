@@ -39,12 +39,14 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
-
 			// Hide credits and coins until player profile is loaded
 			coinsLabel.Hidden = true;
 			coinsImage.Hidden = true;
 			creditsLabel.Hidden = true;
 			creditsImage.Hidden = true;
+
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.LoadPlayerProfile();
 		}
 
 		public override void ViewDidAppear (bool animated)
