@@ -181,6 +181,15 @@ namespace SQLite
 			}
 		}
 		
+		public void EnableLoadExtension(int onoff)
+		{
+			SQLite3.Result r = SQLite3.EnableLoadExtension(Handle, onoff);
+			if (r != SQLite3.Result.OK) {
+				string msg = SQLite3.GetErrmsg (Handle);
+				throw SQLiteException.New (r, msg);
+			}
+		}
+		
 		static byte[] GetNullTerminatedUtf8 (string s)
 		{
 			var utf8Length = System.Text.Encoding.UTF8.GetByteCount (s);
@@ -359,13 +368,68 @@ namespace SQLite
 			
 			foreach (var indexName in indexes.Keys) {
 				var index = indexes[indexName];
-				const string sqlFormat = "create {3} index if not exists \"{0}\" on \"{1}\"(\"{2}\")";
 				var columns = String.Join("\",\"", index.Columns.OrderBy(i => i.Order).Select(i => i.ColumnName).ToArray());
-				var sql = String.Format (sqlFormat, indexName, index.TableName, columns, index.Unique ? "unique" : "");
-				count += Execute(sql);
+				count += CreateIndex(indexName, index.TableName, columns, index.Unique);
 			}
 			
 			return count;
+		}
+		
+		/// <summary>
+		/// Creates an index for the specified table and column.
+		/// </summary>
+		/// <param name="indexName">Name of the index to create</param>
+		/// <param name="tableName">Name of the database table</param>
+		/// <param name="columnName">Name of the column to index</param>
+		/// <param name="unique">Whether the index should be unique</param>
+		public int CreateIndex(string indexName, string tableName, string columnName, bool unique = false)
+		{
+			const string sqlFormat = "create {2} index if not exists \"{3}\" on \"{0}\"(\"{1}\")";
+			var sql = String.Format(sqlFormat, tableName, columnName, unique ? "unique" : "", indexName);
+			return Execute(sql);
+		}
+		
+		/// <summary>
+		/// Creates an index for the specified table and column.
+		/// </summary>
+		/// <param name="tableName">Name of the database table</param>
+		/// <param name="columnName">Name of the column to index</param>
+		/// <param name="unique">Whether the index should be unique</param>
+		public int CreateIndex(string tableName, string columnName, bool unique = false)
+		{
+			return CreateIndex(string.Concat(tableName, "_", columnName.Replace("\",\"", "_")), tableName, columnName, unique);
+		}
+		
+		/// <summary>
+		/// Creates an index for the specified object property.
+		/// e.g. CreateIndex<Client>(c => c.Name);
+		/// </summary>
+		/// <typeparam name="T">Type to reflect to a database table.</typeparam>
+		/// <param name="property">Property to index</param>
+		/// <param name="unique">Whether the index should be unique</param>
+		public void CreateIndex<T>(Expression<Func<T, object>> property, bool unique = false)
+		{
+			MemberExpression mx;
+			if (property.Body.NodeType == ExpressionType.Convert)
+			{
+				mx = ((UnaryExpression)property.Body).Operand as MemberExpression;
+			}
+			else
+			{
+				mx= (property.Body as MemberExpression);
+			}
+			var propertyInfo = mx.Member as PropertyInfo;
+			if (propertyInfo == null)
+			{
+				throw new ArgumentException("The lambda expression 'property' should point to a valid Property");
+			}
+			
+			var propName = propertyInfo.Name;
+			
+			var map = GetMapping<T>();
+			var colName = map.FindColumnWithPropertyName(propName).Name;
+			
+			CreateIndex(map.TableName, colName, unique);
 		}
 		
 		public class ColumnInfo
@@ -1110,6 +1174,28 @@ namespace SQLite
 			
 			var map = GetMapping (objType);
 			
+			#if NETFX_CORE
+			if (map.PK != null && map.PK.IsAutoGuid)
+			{
+				// no GetProperty so search our way up the inheritance chain till we find it
+				PropertyInfo prop;
+				while (objType != null)
+				{
+					var info = objType.GetTypeInfo();
+					prop = info.GetDeclaredProperty(map.PK.PropertyName);
+					if (prop != null) 
+					{
+						if (prop.GetValue(obj, null).Equals(Guid.Empty))
+						{
+							prop.SetValue(obj, Guid.NewGuid(), null);
+						}
+						break; 
+					}
+					
+					objType = info.BaseType;
+				}
+			}
+			#else
 			if (map.PK != null && map.PK.IsAutoGuid) {
 				var prop = objType.GetProperty(map.PK.PropertyName);
 				if (prop != null) {
@@ -1118,6 +1204,8 @@ namespace SQLite
 					}
 				}
 			}
+			#endif
+			
 			
 			var replacing = string.Compare (extra, "OR REPLACE", StringComparison.OrdinalIgnoreCase) == 0;
 			
@@ -1880,11 +1968,25 @@ namespace SQLite
 					T val = default(T);
 					
 					var stmt = Prepare ();
-					if (SQLite3.Step (stmt) == SQLite3.Result.Row) {
-						var colType = SQLite3.ColumnType (stmt, 0);
-						val = (T)ReadCol (stmt, 0, colType, typeof(T));
+					
+					try
+					{
+						var r = SQLite3.Step (stmt);
+						if (r == SQLite3.Result.Row) {
+							var colType = SQLite3.ColumnType (stmt, 0);
+							val = (T)ReadCol (stmt, 0, colType, typeof(T));
+						}
+						else if (r == SQLite3.Result.Done) {
+						}
+						else
+						{
+							throw SQLiteException.New (r, SQLite3.GetErrmsg (_conn.Handle));
+						}
 					}
-					Finalize (stmt);
+					finally
+					{
+						Finalize (stmt);
+					}
 					
 					return val;
 				}
@@ -2393,8 +2495,9 @@ namespace SQLite
 						}
 						else if (call.Method.Name == "Equals" && args.Length == 1) {
 							sqlCall = "(" + obj.CommandText + " = (" + args[0].CommandText + "))";
-						}
-						else {
+						} else if (call.Method.Name == "ToLower") {
+							sqlCall = "(lower(" + obj.CommandText + "))"; 
+						} else {
 							sqlCall = call.Method.Name.ToLower () + "(" + string.Join (",", args.Select (a => a.CommandText).ToArray ()) + ")";
 						}
 						return new CompileResult { CommandText = sqlCall };
@@ -2642,6 +2745,9 @@ namespace SQLite
 					
 					[DllImport("sqlite3", EntryPoint = "sqlite3_open16", CallingConvention = CallingConvention.Cdecl)]
 					public static extern Result Open16([MarshalAs(UnmanagedType.LPWStr)] string filename, out IntPtr db);
+					
+					[DllImport("sqlite3", EntryPoint = "sqlite3_enable_load_extension", CallingConvention=CallingConvention.Cdecl)]
+					public static extern Result EnableLoadExtension (IntPtr db, int onoff);
 					
 					[DllImport("sqlite3", EntryPoint = "sqlite3_close", CallingConvention=CallingConvention.Cdecl)]
 					public static extern Result Close (IntPtr db);
