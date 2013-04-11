@@ -154,6 +154,10 @@
     <Compile Include="Controllers\HighScoresControlViewController.designer.cs">
       <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\GamePauseViewController.cs" />
+    <Compile Include="Controllers\GamePauseViewController.designer.cs">
+      <DependentUpon>GamePauseViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -174,6 +178,7 @@
     <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\PagerMenuHighscoresView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
+    <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\empty_screen.png" />

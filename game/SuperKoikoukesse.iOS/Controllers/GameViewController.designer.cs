@@ -11,8 +11,6 @@ namespace SuperKoikoukesse.iOS
 	[Register ("GameViewController")]
 	partial class GameViewController
 	{
-		[Outlet]
-		MonoTouch.UIKit.UIView pauseView { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel livesCountLabel { get; set; }
@@ -68,12 +66,6 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton pauseButton { get; set; }
 
-		[Action ("resumePauseButtonPressed:")]
-		partial void resumePauseButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("quitGameButtonPressed:")]
-		partial void quitGameButtonPressed (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("game1ButtonPressed:")]
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender);
 
@@ -94,11 +86,6 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (pauseView != null) {
-				pauseView.Dispose ();
-				pauseView = null;
-			}
-
 			if (livesCountLabel != null) {
 				livesCountLabel.Dispose ();
 				livesCountLabel = null;

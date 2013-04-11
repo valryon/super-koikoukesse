@@ -19,6 +19,8 @@ namespace SuperKoikoukesse.iOS
 		private float m_currentPixelateFactor;
 		private Random random;
 
+		private GamePauseViewController pauseViewController;
+
 		#region UIView stuff
 
 		public GameViewController ()
@@ -59,16 +61,6 @@ namespace SuperKoikoukesse.iOS
 			nextQuestion ();
 		}
 
-		partial void resumePauseButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			pauseAction ();
-		}
-
-		partial void quitGameButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			getBackToMenu ();
-		}
-
 		#endregion
 		
 		#region Game 
@@ -78,6 +70,15 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 
 			// Load the pause/inactive screen image
+			pauseViewController = new GamePauseViewController();
+			pauseViewController.Resume = new Action(() => {
+				pauseAction();
+			});
+
+			pauseViewController.Quit = new Action(() => {
+				getBackToMenu();
+			});
+
 			string imgPath = "empty_screen.png";
 			m_pauseImage = UIImage.FromFile (imgPath);
 			gameImage.Image = m_pauseImage;
@@ -116,9 +117,6 @@ namespace SuperKoikoukesse.iOS
 			var thread = new Thread (setGameTimer as ThreadStart);
 			thread.Start ();
 
-			// DIsable pause anyway
-			pauseView.Hidden = true;
-
 			// Display selected mode and difficulty
 			modeLabel.Text = m_quizz.Mode.ToString () + " - " + m_quizz.Difficulty;
 
@@ -129,6 +127,11 @@ namespace SuperKoikoukesse.iOS
 			} else {
 				livesLabel.Hidden = true;
 				livesCountLabel.Hidden = true;
+			}
+
+			// Make sure we're not pausing
+			if(pauseViewController != null) {
+				pauseViewController.RemoveFromParentViewController();
 			}
 		}
 
@@ -293,9 +296,11 @@ namespace SuperKoikoukesse.iOS
 		{
 			m_quizz.IsPaused = !m_quizz.IsPaused;
 
-			pauseView.Hidden = !m_quizz.IsPaused;
-
 			if (m_quizz.IsPaused) {
+
+				pauseViewController.View.Frame = View.Frame;
+				View.AddSubview(pauseViewController.View);
+				View.BringSubviewToFront(pauseViewController.View);
 
 				// Mask game elements
 				gameImage.Image = m_pauseImage;
@@ -306,6 +311,8 @@ namespace SuperKoikoukesse.iOS
 				stopGameTimer ();
 
 			} else {
+
+				pauseViewController.View.RemoveFromSuperview();
 
 				gameImage.Image = m_currentImage;
 
