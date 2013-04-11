@@ -8,8 +8,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>Super Koikoukesse</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.pixelnest.superkoikoukesse</string>
 	<key>CFBundleVersion</key>
@@ -27,5 +25,7 @@
 	<array>
 		<string>Assets/Fonts/SG10.ttf</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Koikoukesse</string>
 </dict>
 </plist>

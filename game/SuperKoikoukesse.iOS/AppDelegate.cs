@@ -307,7 +307,7 @@ namespace SuperKoikoukesse.iOS
 				f = filter;
 			}
 			else {
-				new Filter ();
+				f = new Filter ();
 			}
 
 			// Caching filter results

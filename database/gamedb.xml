@@ -5730,4 +5730,1599 @@
     <Year>1992</Year>
     <IsRemoved>false</IsRemoved>
   </game>
+  <game>
+    <GameId>522</GameId>
+    <ImagePath>00522.jpg</ImagePath>
+    <TitlePAL>One Piece Grand Battle</TitlePAL>
+    <TitleUS>One Piece Grand Battle</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>2005</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>523</GameId>
+    <ImagePath>00523.jpg</ImagePath>
+    <TitlePAL>Naruto Ultimate Ninja Storm</TitlePAL>
+    <TitleUS>Naruto Ultimate Ninja Storm</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Namco Bandai</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>524</GameId>
+    <ImagePath>00524.jpg</ImagePath>
+    <TitlePAL>Dragon ball Z Budokai</TitlePAL>
+    <TitleUS>Dragon ball Z Budokai</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Infogrames</Publisher>
+    <Year>2002</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>525</GameId>
+    <ImagePath>00525.jpg</ImagePath>
+    <TitlePAL>Def Jam Vandetta</TitlePAL>
+    <TitleUS>Def Jam Vandetta</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Electronic Arts</Publisher>
+    <Year>2003</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>526</GameId>
+    <ImagePath>00526.jpg</ImagePath>
+    <TitlePAL>Blazblue Continuum Shift</TitlePAL>
+    <TitleUS>Blazblue Continuum Shift</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Arc System Works</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>527</GameId>
+    <ImagePath>00527.jpg</ImagePath>
+    <TitlePAL>King of fighter 13</TitlePAL>
+    <TitleUS>King of fighter 13</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Rising Star Games</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>528</GameId>
+    <ImagePath>00528.jpg</ImagePath>
+    <TitlePAL>UFC 2010 Undisputed</TitlePAL>
+    <TitleUS>UFC 2010 Undisputed</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>THQ</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>529</GameId>
+    <ImagePath>00529.jpg</ImagePath>
+    <TitlePAL>Fight Night Champion</TitlePAL>
+    <TitleUS>Fight Night Champion</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Electronic Arts</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>530</GameId>
+    <ImagePath>00530.jpg</ImagePath>
+    <TitlePAL>Skullgirls</TitlePAL>
+    <TitleUS>Skullgirls</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Autumn Games</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>531</GameId>
+    <ImagePath>00531.jpg</ImagePath>
+    <TitlePAL>Karateka</TitlePAL>
+    <TitleUS>Karateka</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Broderbund Software</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>532</GameId>
+    <ImagePath>00532.jpg</ImagePath>
+    <TitlePAL>Yie Ar kung Fu 2</TitlePAL>
+    <TitleUS>Yie Ar kung Fu 2</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>combat</Genre>
+    <Publisher>I-Imagine</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>533</GameId>
+    <ImagePath>00533.jpg</ImagePath>
+    <TitlePAL>Street Fighter</TitlePAL>
+    <TitleUS>Street Fighter</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Go!</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>534</GameId>
+    <ImagePath>00534.jpg</ImagePath>
+    <TitlePAL>Panza Kick Boxing</TitlePAL>
+    <TitleUS>Panza Kick Boxing</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Loriciel</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>535</GameId>
+    <ImagePath>00535.jpg</ImagePath>
+    <TitlePAL>Fatal fury</TitlePAL>
+    <TitleUS>Fatal fury</TitleUS>
+    <Platform>neo geo</Platform>
+    <Genre>combat</Genre>
+    <Publisher>SNK</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>536</GameId>
+    <ImagePath>00536.jpg</ImagePath>
+    <TitlePAL>Virtua Fighter</TitlePAL>
+    <TitleUS>Virtua Fighter</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1996</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>537</GameId>
+    <ImagePath>00537.jpg</ImagePath>
+    <TitlePAL>One Must Fall 2097</TitlePAL>
+    <TitleUS>One Must Fall 2097</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Epic Megagames</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>538</GameId>
+    <ImagePath>00538.jpg</ImagePath>
+    <TitlePAL>ClayFighter 2</TitlePAL>
+    <TitleUS>ClayFighter 2</TitleUS>
+    <Platform>super nes</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Interplay</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>539</GameId>
+    <ImagePath>00539.jpg</ImagePath>
+    <TitlePAL>Street Fighter EX Plus Alpha</TitlePAL>
+    <TitleUS>Street Fighter EX Plus Alpha</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>540</GameId>
+    <ImagePath>00540.jpg</ImagePath>
+    <TitlePAL>Tobal 2</TitlePAL>
+    <TitleUS>Tobal 2</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>541</GameId>
+    <ImagePath>00541.jpg</ImagePath>
+    <TitlePAL>Dead Or Alive 5</TitlePAL>
+    <TitleUS>Dead Or Alive 5</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Tecmo</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>542</GameId>
+    <ImagePath>00542.jpg</ImagePath>
+    <TitlePAL>Ehrgeiz</TitlePAL>
+    <TitleUS>Ehrgeiz</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Squaresoft</Publisher>
+    <Year>2000</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>543</GameId>
+    <ImagePath>00543.jpg</ImagePath>
+    <TitlePAL>Guilty gear X</TitlePAL>
+    <TitleUS>Guilty gear X</TitleUS>
+    <Platform>dreamcast</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sammy</Publisher>
+    <Year>2000</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>544</GameId>
+    <ImagePath>00544.jpg</ImagePath>
+    <TitlePAL>Fighting vipers 2</TitlePAL>
+    <TitleUS>Fighting vipers 2</TitleUS>
+    <Platform>dreamcast</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>2001</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>545</GameId>
+    <ImagePath>00545.jpg</ImagePath>
+    <TitlePAL>Bloody Roar</TitlePAL>
+    <TitleUS>Bloody Roar</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Hudson Soft</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>546</GameId>
+    <ImagePath>00546.jpg</ImagePath>
+    <TitlePAL>Mark Of The Wolves</TitlePAL>
+    <TitleUS>Mark Of The Wolves</TitleUS>
+    <Platform>neo geo</Platform>
+    <Genre>combat</Genre>
+    <Publisher>SNK</Publisher>
+    <Year>2000</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>547</GameId>
+    <ImagePath>00547.jpg</ImagePath>
+    <TitlePAL>Capcom vs SNK</TitlePAL>
+    <TitleUS>Capcom vs SNK</TitleUS>
+    <Platform>dreamcast</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>2000</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>548</GameId>
+    <ImagePath>00548.jpg</ImagePath>
+    <TitlePAL>Tatsunoko Vs Capcom</TitlePAL>
+    <TitleUS>Tatsunoko Vs Capcom</TitleUS>
+    <Platform>wii</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>549</GameId>
+    <ImagePath>00549.jpg</ImagePath>
+    <TitlePAL>Tekken Tag Tournament</TitlePAL>
+    <TitleUS>Tekken Tag Tournament</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>2000</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>550</GameId>
+    <ImagePath>00550.jpg</ImagePath>
+    <TitlePAL>Bleach Shattered Blade</TitlePAL>
+    <TitleUS>Bleach Shattered Blade</TitleUS>
+    <Platform>wii</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>551</GameId>
+    <ImagePath>00551.jpg</ImagePath>
+    <TitlePAL>Viewtiful Joe Red Hot Rumble</TitlePAL>
+    <TitleUS>Viewtiful Joe Red Hot Rumble</TitleUS>
+    <Platform>gamecube</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>2006</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>552</GameId>
+    <ImagePath>00552.jpg</ImagePath>
+    <TitlePAL>Virtua Fighter 5</TitlePAL>
+    <TitleUS>Virtua Fighter 5</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>2007</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>553</GameId>
+    <ImagePath>00553.jpg</ImagePath>
+    <TitlePAL>EA Sports MMA</TitlePAL>
+    <TitleUS>EA Sports MMA</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>combat</Genre>
+    <Publisher>EA Sports</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>554</GameId>
+    <ImagePath>00554.jpg</ImagePath>
+    <TitlePAL>Street Fighter X Tekken</TitlePAL>
+    <TitleUS>Street Fighter X Tekken</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>555</GameId>
+    <ImagePath>00555.jpg</ImagePath>
+    <TitlePAL>Battle Arena Toshiden</TitlePAL>
+    <TitleUS>Battle Arena Toshiden</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>556</GameId>
+    <ImagePath>00556.jpg</ImagePath>
+    <TitlePAL>Flying Dragon</TitlePAL>
+    <TitleUS>Flying Dragon</TitleUS>
+    <Platform>nintendo 64</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Natsume</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>557</GameId>
+    <ImagePath>00557.jpg</ImagePath>
+    <TitlePAL>Arcana Heart</TitlePAL>
+    <TitleUS>Arcana Heart</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Arc System Works</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>558</GameId>
+    <ImagePath>00558.jpg</ImagePath>
+    <TitlePAL>Asura Blade</TitlePAL>
+    <TitleUS>Asura Blade</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Fuuki</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>559</GameId>
+    <ImagePath>00559.jpg</ImagePath>
+    <TitlePAL>Budokan</TitlePAL>
+    <TitleUS>Budokan</TitleUS>
+    <Platform>megadrive</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Electronic Arts</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>560</GameId>
+    <ImagePath>00560.jpg</ImagePath>
+    <TitlePAL>Dissidia Final Fantasy</TitlePAL>
+    <TitleUS>Dissidia Final Fantasy</TitleUS>
+    <Platform>psp</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Square Enix</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>561</GameId>
+    <ImagePath>00561.jpg</ImagePath>
+    <TitlePAL>Evil Zone</TitlePAL>
+    <TitleUS>Evil Zone</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>562</GameId>
+    <ImagePath>00562.jpg</ImagePath>
+    <TitlePAL>Fullmetal Alchemist Dream Carnival</TitlePAL>
+    <TitleUS>Fullmetal Alchemist Dream Carnival</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Bandai</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>563</GameId>
+    <ImagePath>00563.jpg</ImagePath>
+    <TitlePAL>Darkstalkers</TitlePAL>
+    <TitleUS>Darkstalkers</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>564</GameId>
+    <ImagePath>00564.jpg</ImagePath>
+    <TitlePAL>Killing Zone</TitlePAL>
+    <TitleUS>Killing Zone</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Acclaim</Publisher>
+    <Year>1996</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>565</GameId>
+    <ImagePath>00565.jpg</ImagePath>
+    <TitlePAL>Last Bronx</TitlePAL>
+    <TitleUS>Last Bronx</TitleUS>
+    <Platform>saturn</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>566</GameId>
+    <ImagePath>00566.jpg</ImagePath>
+    <TitlePAL>Knights Of The Round</TitlePAL>
+    <TitleUS>Knights Of The Round</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>567</GameId>
+    <ImagePath>00567.jpg</ImagePath>
+    <TitlePAL>Asteroids</TitlePAL>
+    <TitleUS>Asteroids</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>1979</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>568</GameId>
+    <ImagePath>00568.jpg</ImagePath>
+    <TitlePAL>Berzerk</TitlePAL>
+    <TitleUS>Berzerk</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Stern Electronics</Publisher>
+    <Year>1980</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>569</GameId>
+    <ImagePath>00569.jpg</ImagePath>
+    <TitlePAL>Missile Command</TitlePAL>
+    <TitleUS>Missile Command</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>1980</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>570</GameId>
+    <ImagePath>00570.jpg</ImagePath>
+    <TitlePAL>Donkey Kong</TitlePAL>
+    <TitleUS>Donkey Kong</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Nintendo</Publisher>
+    <Year>1981</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>571</GameId>
+    <ImagePath>00571.jpg</ImagePath>
+    <TitlePAL>Frogger</TitlePAL>
+    <TitleUS>Frogger</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1981</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>572</GameId>
+    <ImagePath>00572.jpg</ImagePath>
+    <TitlePAL>Burger Time</TitlePAL>
+    <TitleUS>Burger Time</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Data East</Publisher>
+    <Year>1982</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>573</GameId>
+    <ImagePath>00573.jpg</ImagePath>
+    <TitlePAL>Joust</TitlePAL>
+    <TitleUS>Joust</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Williams Electronics</Publisher>
+    <Year>1982</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>574</GameId>
+    <ImagePath>00574.jpg</ImagePath>
+    <TitlePAL>Moon Patrol</TitlePAL>
+    <TitleUS>Moon Patrol</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Irem</Publisher>
+    <Year>1982</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>575</GameId>
+    <ImagePath>00575.jpg</ImagePath>
+    <TitlePAL>Pole Position</TitlePAL>
+    <TitleUS>Pole Position</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>course</Genre>
+    <Publisher>Namco</Publisher>
+    <Year>1982</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>576</GameId>
+    <ImagePath>00576.jpg</ImagePath>
+    <TitlePAL>Zaxxon</TitlePAL>
+    <TitleUS>Zaxxon</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1982</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>577</GameId>
+    <ImagePath>00577.jpg</ImagePath>
+    <TitlePAL>Title Fight</TitlePAL>
+    <TitleUS>Title Fight</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>sport</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>578</GameId>
+    <ImagePath>00578.jpg</ImagePath>
+    <TitlePAL>Smash Tv</TitlePAL>
+    <TitleUS>Smash Tv</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Acclaim</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>579</GameId>
+    <ImagePath>00579.jpg</ImagePath>
+    <TitlePAL>Guitar Freaks</TitlePAL>
+    <TitleUS>Guitar Freaks</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Konami</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>580</GameId>
+    <ImagePath>00580.jpg</ImagePath>
+    <TitlePAL>Dance Dance Revolution</TitlePAL>
+    <TitleUS>Dance Dance Revolution</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Konami</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>581</GameId>
+    <ImagePath>00581.jpg</ImagePath>
+    <TitlePAL>Beatmania</TitlePAL>
+    <TitleUS>Beatmania</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Konami</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>582</GameId>
+    <ImagePath>00582.jpg</ImagePath>
+    <TitlePAL>Operation Wolf</TitlePAL>
+    <TitleUS>Operation Wolf</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Taito</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>583</GameId>
+    <ImagePath>00583.jpg</ImagePath>
+    <TitlePAL>Defender</TitlePAL>
+    <TitleUS>Defender</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Williams Electronics</Publisher>
+    <Year>1980</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>584</GameId>
+    <ImagePath>00584.jpg</ImagePath>
+    <TitlePAL>House Of The Dead</TitlePAL>
+    <TitleUS>House Of The Dead</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>585</GameId>
+    <ImagePath>00585.jpg</ImagePath>
+    <TitlePAL>Marble Madness</TitlePAL>
+    <TitleUS>Marble Madness</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>1984</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>586</GameId>
+    <ImagePath>00586.jpg</ImagePath>
+    <TitlePAL>Ghosts'n Goblins</TitlePAL>
+    <TitleUS>Ghosts'n Goblins</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>587</GameId>
+    <ImagePath>00587.jpg</ImagePath>
+    <TitlePAL>Battle Fantasia</TitlePAL>
+    <TitleUS>Battle Fantasia</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Arc System Works</Publisher>
+    <Year>2007</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>588</GameId>
+    <ImagePath>00588.jpg</ImagePath>
+    <TitlePAL>Fighters' Impact</TitlePAL>
+    <TitleUS>Fighters' Impact</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Taito</Publisher>
+    <Year>1996</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>589</GameId>
+    <ImagePath>00589.jpg</ImagePath>
+    <TitlePAL>Raystorm</TitlePAL>
+    <TitleUS>Raystorm</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Taito</Publisher>
+    <Year>1996</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>590</GameId>
+    <ImagePath>00590.jpg</ImagePath>
+    <TitlePAL>Beast Busters</TitlePAL>
+    <TitleUS>Beast Busters</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>SNK</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>591</GameId>
+    <ImagePath>00591.jpg</ImagePath>
+    <TitlePAL>Time Crisis 4</TitlePAL>
+    <TitleUS>Time Crisis 4</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Namco</Publisher>
+    <Year>2006</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>592</GameId>
+    <ImagePath>00592.jpg</ImagePath>
+    <TitlePAL>Rampage World Tour</TitlePAL>
+    <TitleUS>Rampage World Tour</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>action</Genre>
+    <Publisher>Midway</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>593</GameId>
+    <ImagePath>00593.jpg</ImagePath>
+    <TitlePAL>WWF Wrestlemania</TitlePAL>
+    <TitleUS>WWF Wrestlemania</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Midway</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>594</GameId>
+    <ImagePath>00594.jpg</ImagePath>
+    <TitlePAL>Cyberbots</TitlePAL>
+    <TitleUS>Cyberbots</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>595</GameId>
+    <ImagePath>00595.jpg</ImagePath>
+    <TitlePAL>Pocket Fighter</TitlePAL>
+    <TitleUS>Pocket Fighter</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>596</GameId>
+    <ImagePath>00596.jpg</ImagePath>
+    <TitlePAL>Super Puzzle Fighter 2 Turbo</TitlePAL>
+    <TitleUS>Super Puzzle Fighter 2 Turbo</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1996</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>597</GameId>
+    <ImagePath>00597.jpg</ImagePath>
+    <TitlePAL>X-Men Children Of The Atom</TitlePAL>
+    <TitleUS>X-Men Children Of The Atom</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>598</GameId>
+    <ImagePath>00598.jpg</ImagePath>
+    <TitlePAL>Arlington Horse Racing</TitlePAL>
+    <TitleUS>Arlington Horse Racing</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>sport</Genre>
+    <Publisher>Strata</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>599</GameId>
+    <ImagePath>00599.jpg</ImagePath>
+    <TitlePAL>Mobile Suit Gundam</TitlePAL>
+    <TitleUS>Mobile Suit Gundam</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>combat</Genre>
+    <Publisher>Sotsu Agency Sunrise</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>600</GameId>
+    <ImagePath>00600.jpg</ImagePath>
+    <TitlePAL>Fruit Ninja</TitlePAL>
+    <TitleUS>Fruit Ninja</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>Halfbrick Studios</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>601</GameId>
+    <ImagePath>00601.jpg</ImagePath>
+    <TitlePAL>Jetpack Joyride</TitlePAL>
+    <TitleUS>Jetpack Joyride</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>Halfbrick Studios</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>602</GameId>
+    <ImagePath>00602.jpg</ImagePath>
+    <TitlePAL>Devil's Attorney</TitlePAL>
+    <TitleUS>Devil's Attorney</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>1337 Game Design AB</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>603</GameId>
+    <ImagePath>00603.jpg</ImagePath>
+    <TitlePAL>Doodle Jump</TitlePAL>
+    <TitleUS>Doodle Jump</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>Lima Sky</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>604</GameId>
+    <ImagePath>00604.jpg</ImagePath>
+    <TitlePAL>Plants Vs Zombies</TitlePAL>
+    <TitleUS>Plants Vs Zombies</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>PopCap Games</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>605</GameId>
+    <ImagePath>00605.jpg</ImagePath>
+    <TitlePAL>Draw Something</TitlePAL>
+    <TitleUS>Draw Something</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>Zynga</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>606</GameId>
+    <ImagePath>00606.jpg</ImagePath>
+    <TitlePAL>Song Pop</TitlePAL>
+    <TitleUS>Song Pop</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>FreshPlanet</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>607</GameId>
+    <ImagePath>00607.jpg</ImagePath>
+    <TitlePAL>Death Rally</TitlePAL>
+    <TitleUS>Death Rally</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>course</Genre>
+    <Publisher>Remedy Entertainment</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>608</GameId>
+    <ImagePath>00608.jpg</ImagePath>
+    <TitlePAL>Bastion</TitlePAL>
+    <TitleUS>Bastion</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Supergiant Games</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>609</GameId>
+    <ImagePath>00609.jpg</ImagePath>
+    <TitlePAL>Minecraft</TitlePAL>
+    <TitleUS>Minecraft</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Notch</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>610</GameId>
+    <ImagePath>00610.jpg</ImagePath>
+    <TitlePAL>Super Meat Boy</TitlePAL>
+    <TitleUS>Super Meat Boy</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Team Meat</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>611</GameId>
+    <ImagePath>00611.jpg</ImagePath>
+    <TitlePAL>Braid</TitlePAL>
+    <TitleUS>Braid</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Number None</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>612</GameId>
+    <ImagePath>00612.jpg</ImagePath>
+    <TitlePAL>Trine 2</TitlePAL>
+    <TitleUS>Trine 2</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Frozenbyte</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>613</GameId>
+    <ImagePath>00613.jpg</ImagePath>
+    <TitlePAL>Faster Than Light</TitlePAL>
+    <TitleUS>Faster Than Light</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>Subset Games</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>614</GameId>
+    <ImagePath>00614.jpg</ImagePath>
+    <TitlePAL>Spelunky</TitlePAL>
+    <TitleUS>Spelunky</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Mossmouth</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>615</GameId>
+    <ImagePath>00615.jpg</ImagePath>
+    <TitlePAL>Legend Of Grimrock</TitlePAL>
+    <TitleUS>Legend Of Grimrock</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Almost Human Games</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>616</GameId>
+    <ImagePath>00616.jpg</ImagePath>
+    <TitlePAL>Dofus</TitlePAL>
+    <TitleUS>Dofus</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Ankama</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>617</GameId>
+    <ImagePath>00617.jpg</ImagePath>
+    <TitlePAL>Kingdom Rush</TitlePAL>
+    <TitleUS>Kingdom Rush</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Ironhide Game Studio</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>618</GameId>
+    <ImagePath>00618.jpg</ImagePath>
+    <TitlePAL>Bioshock</TitlePAL>
+    <TitleUS>Bioshock</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>2K Games</Publisher>
+    <Year>2007</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>619</GameId>
+    <ImagePath>00619.jpg</ImagePath>
+    <TitlePAL>VVVVVV</TitlePAL>
+    <TitleUS>VVVVVV</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Terry Cavanagh</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>620</GameId>
+    <ImagePath>00620.jpg</ImagePath>
+    <TitlePAL>World Of Goo</TitlePAL>
+    <TitleUS>World Of Goo</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>2D Boy</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>621</GameId>
+    <ImagePath>00621.jpg</ImagePath>
+    <TitlePAL>Castle Crashers</TitlePAL>
+    <TitleUS>Castle Crashers</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>action</Genre>
+    <Publisher>The Behemoth</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>622</GameId>
+    <ImagePath>00622.jpg</ImagePath>
+    <TitlePAL>Audiosurf</TitlePAL>
+    <TitleUS>Audiosurf</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>BestGameEver</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>623</GameId>
+    <ImagePath>00623.jpg</ImagePath>
+    <TitlePAL>Diablo 3</TitlePAL>
+    <TitleUS>Diablo 3</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Blizzard Entertainment</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>624</GameId>
+    <ImagePath>00624.jpg</ImagePath>
+    <TitlePAL>Outcast</TitlePAL>
+    <TitleUS>Outcast</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Infogrames</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>625</GameId>
+    <ImagePath>00625.jpg</ImagePath>
+    <TitlePAL>Canabalt</TitlePAL>
+    <TitleUS>Canabalt</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>action</Genre>
+    <Publisher>Semi Secret Software</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>626</GameId>
+    <ImagePath>00626.jpg</ImagePath>
+    <TitlePAL>Edge</TitlePAL>
+    <TitleUS>Edge</TitleUS>
+    <Platform>smartphone</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Mobigames</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>627</GameId>
+    <ImagePath>00627.jpg</ImagePath>
+    <TitlePAL>Hotline Miami</TitlePAL>
+    <TitleUS>Hotline Miami</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Dennaton</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>628</GameId>
+    <ImagePath>00628.jpg</ImagePath>
+    <TitlePAL>Sine Mora</TitlePAL>
+    <TitleUS>Sine Mora</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Kalypso Media</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>629</GameId>
+    <ImagePath>00629.jpg</ImagePath>
+    <TitlePAL>Scott Pilgrim Contre Le Monde</TitlePAL>
+    <TitleUS>Scott Pilgrim Vs the World</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>action</Genre>
+    <Publisher>Ubisoft</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>630</GameId>
+    <ImagePath>00630.jpg</ImagePath>
+    <TitlePAL>Age of empires 3</TitlePAL>
+    <TitleUS>Age of empires 3</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>Microsoft</Publisher>
+    <Year>2005</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>631</GameId>
+    <ImagePath>00631.jpg</ImagePath>
+    <TitlePAL>Animal Crossing</TitlePAL>
+    <TitleUS>Animal Crossing</TitleUS>
+    <Platform>gamecube</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Nintendo</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>632</GameId>
+    <ImagePath>00632.jpg</ImagePath>
+    <TitlePAL>Arma 2</TitlePAL>
+    <TitleUS>Arma 2</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Bohemia Interactive</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>633</GameId>
+    <ImagePath>00633.jpg</ImagePath>
+    <TitlePAL>Ascendancy</TitlePAL>
+    <TitleUS>Ascendancy</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>Softgold</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>634</GameId>
+    <ImagePath>00634.jpg</ImagePath>
+    <TitlePAL>Azure Dreams</TitlePAL>
+    <TitleUS>Azure Dreams</TitleUS>
+    <Platform>playstation</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Konami</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>635</GameId>
+    <ImagePath>00635.jpg</ImagePath>
+    <TitlePAL>Beyond Good And Evil</TitlePAL>
+    <TitleUS>Beyond Good And Evil</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Ubisoft</Publisher>
+    <Year>2003</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>636</GameId>
+    <ImagePath>00636.jpg</ImagePath>
+    <TitlePAL>Baldur's Gate</TitlePAL>
+    <TitleUS>Baldur's Gate</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Interplay</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>637</GameId>
+    <ImagePath>00637.jpg</ImagePath>
+    <TitlePAL>Bucheron Simulator 2011</TitlePAL>
+    <TitleUS>Bucheron Simulator 2011</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>UIG Entertainment</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>638</GameId>
+    <ImagePath>00638.jpg</ImagePath>
+    <TitlePAL>Call Of Duty Modern Warfare 2</TitlePAL>
+    <TitleUS>Call Of Duty Modern Warfare 2</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Activision</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>639</GameId>
+    <ImagePath>00639.jpg</ImagePath>
+    <TitlePAL>Call Of Duty Black Ops 2</TitlePAL>
+    <TitleUS>Call Of Duty Black Ops 2</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Activision</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>640</GameId>
+    <ImagePath>00640.jpg</ImagePath>
+    <TitlePAL>Castlevania Lords Of Shadow</TitlePAL>
+    <TitleUS>Castlevania Lords Of Shadow</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>action</Genre>
+    <Publisher>Konami</Publisher>
+    <Year>2010</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>641</GameId>
+    <ImagePath>00641.jpg</ImagePath>
+    <TitlePAL>Catherine</TitlePAL>
+    <TitleUS>Catherine</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Deep Silver</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>642</GameId>
+    <ImagePath>00642.jpg</ImagePath>
+    <TitlePAL>Dark Souls</TitlePAL>
+    <TitleUS>Dark Souls</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Namco Bandai</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>643</GameId>
+    <ImagePath>00643.jpg</ImagePath>
+    <TitlePAL>Deus Ex Human Revolution</TitlePAL>
+    <TitleUS>Deus Ex Human Revolution</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Square Enix</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>644</GameId>
+    <ImagePath>00644.jpg</ImagePath>
+    <TitlePAL>Devil May Cry</TitlePAL>
+    <TitleUS>Devil May Cry</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>action</Genre>
+    <Publisher>Capcom</Publisher>
+    <Year>2001</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>645</GameId>
+    <ImagePath>00645.jpg</ImagePath>
+    <TitlePAL>Endless Space</TitlePAL>
+    <TitleUS>Endless Space</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>Amplitude Studios</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>646</GameId>
+    <ImagePath>00646.jpg</ImagePath>
+    <TitlePAL>Fable 2</TitlePAL>
+    <TitleUS>Fable 2</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Microsoft</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>647</GameId>
+    <ImagePath>00647.jpg</ImagePath>
+    <TitlePAL>Far Cry</TitlePAL>
+    <TitleUS>Far Cry</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Ubisoft</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>648</GameId>
+    <ImagePath>00648.jpg</ImagePath>
+    <TitlePAL>Fat Princess</TitlePAL>
+    <TitleUS>Fat Princess</TitleUS>
+    <Platform>playstation 3</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>Titan Studios</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>649</GameId>
+    <ImagePath>00649.jpg</ImagePath>
+    <TitlePAL>Flight Simulator X</TitlePAL>
+    <TitleUS>Flight Simulator X</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>Microsoft</Publisher>
+    <Year>2006</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>650</GameId>
+    <ImagePath>00650.jpg</ImagePath>
+    <TitlePAL>Football Manager 2013</TitlePAL>
+    <TitleUS>Football Manager 2013</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>651</GameId>
+    <ImagePath>00651.jpg</ImagePath>
+    <TitlePAL>Pong</TitlePAL>
+    <TitleUS>Pong</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>sport</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>1972</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>652</GameId>
+    <ImagePath>00652.jpg</ImagePath>
+    <TitlePAL>From Dust</TitlePAL>
+    <TitleUS>From Dust</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>Ubisoft</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>653</GameId>
+    <ImagePath>00653.jpg</ImagePath>
+    <TitlePAL>Full Throttle</TitlePAL>
+    <TitleUS>Full Throttle</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>LucasArts</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>654</GameId>
+    <ImagePath>00654.jpg</ImagePath>
+    <TitlePAL>Full House Poker</TitlePAL>
+    <TitleUS>Full House Poker</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>sport</Genre>
+    <Publisher>Microsoft</Publisher>
+    <Year>2011</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>655</GameId>
+    <ImagePath>00655.jpg</ImagePath>
+    <TitlePAL>Game Of Thrones</TitlePAL>
+    <TitleUS>Game Of Thrones</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Focus</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>656</GameId>
+    <ImagePath>00656.jpg</ImagePath>
+    <TitlePAL>Guild Wars</TitlePAL>
+    <TitleUS>Guild Wars</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>Ncsoft</Publisher>
+    <Year>2005</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>657</GameId>
+    <ImagePath>00657.jpg</ImagePath>
+    <TitlePAL>Grim Fandango</TitlePAL>
+    <TitleUS>Grim Fandango</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>LucasArts</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>658</GameId>
+    <ImagePath>00658.jpg</ImagePath>
+    <TitlePAL>Gyromancer</TitlePAL>
+    <TitleUS>Gyromancer</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>Square Enix</Publisher>
+    <Year>2009</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>659</GameId>
+    <ImagePath>00659.jpg</ImagePath>
+    <TitlePAL>Halo 3</TitlePAL>
+    <TitleUS>Halo 3</TitleUS>
+    <Platform>xbox360</Platform>
+    <Genre>action</Genre>
+    <Publisher>Microsoft</Publisher>
+    <Year>2007</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>660</GameId>
+    <ImagePath>00660.jpg</ImagePath>
+    <TitlePAL>Hitman Absolution</TitlePAL>
+    <TitleUS>Hitman Absolution</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Square Enix</Publisher>
+    <Year>2012</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>661</GameId>
+    <ImagePath>00661.jpg</ImagePath>
+    <TitlePAL>Ico</TitlePAL>
+    <TitleUS>Ico</TitleUS>
+    <Platform>playstation 2</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>Sony</Publisher>
+    <Year>2002</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>662</GameId>
+    <ImagePath>00662.jpg</ImagePath>
+    <TitlePAL>Ikaruga</TitlePAL>
+    <TitleUS>Ikaruga</TitleUS>
+    <Platform>gamecube</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>Atari</Publisher>
+    <Year>2003</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>663</GameId>
+    <ImagePath>00663.jpg</ImagePath>
+    <TitlePAL>Ikari Warriors</TitlePAL>
+    <TitleUS>Ikari Warriors</TitleUS>
+    <Platform>arcade</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>SNK</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>664</GameId>
+    <ImagePath>00664.jpg</ImagePath>
+    <TitlePAL>Iron Man</TitlePAL>
+    <TitleUS>Iron Man</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>action</Genre>
+    <Publisher>Sega</Publisher>
+    <Year>2008</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>665</GameId>
+    <ImagePath>00665.jpg</ImagePath>
+    <TitlePAL>Jagged Alliance 2</TitlePAL>
+    <TitleUS>Jagged Alliance 2</TitleUS>
+    <Platform>pc</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>Sir-Tech</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>666</GameId>
+    <ImagePath>00666.jpg</ImagePath>
+    <TitlePAL>Titan</TitlePAL>
+    <TitleUS>Titan</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>Titus</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
 </games>
