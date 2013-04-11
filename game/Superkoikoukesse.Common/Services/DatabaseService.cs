@@ -17,6 +17,7 @@ namespace Superkoikoukesse.Common
 
 		private DatabaseService ()
 		{
+			locker = new object ();
 		}
 
 		/// <summary>
@@ -37,6 +38,7 @@ namespace Superkoikoukesse.Common
 
 		private string m_location;
 		private SQLiteConnection m_db;
+		private object locker;
 
 		#region Initialization
 
@@ -70,12 +72,13 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void CreateTables ()
 		{
+			lock (locker) {
+				Logger.Log (LogLevel.Info, "Creating database schema");
 
-			Logger.Log (LogLevel.Info, "Creating database schema");
-
-			m_db.CreateTable<GameInfo> ();
-			m_db.CreateTable<Player> ();
-			m_db.CreateTable<LocalScore> ();
+				m_db.CreateTable<GameInfo> ();
+				m_db.CreateTable<Player> ();
+				m_db.CreateTable<LocalScore> ();
+			}
 		}
 
 		/// <summary>
@@ -138,7 +141,9 @@ namespace Superkoikoukesse.Common
 		/// <param name="gameInfo">Game info.</param>
 		public void AddGame (GameInfo gameInfo)
 		{
-			m_db.Insert (gameInfo);
+			lock (locker) {
+				m_db.Insert (gameInfo);
+			}
 		}
 
 		/// <summary>
@@ -152,7 +157,9 @@ namespace Superkoikoukesse.Common
 			if (game != null) {
 				Logger.Log (LogLevel.Info, "Deleting game id " + gameId);
 
-				m_db.Delete<GameInfo> (game.GameId);
+				lock (locker) {
+					m_db.Delete<GameInfo> (game.GameId);
+				}
 			}
 		}
 
@@ -161,22 +168,24 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public List<GameInfo> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
 		{
-			var query = m_db.Table<GameInfo> ()
+			lock (locker) {
+				var query = m_db.Table<GameInfo> ()
 				.Where (g => (g.Year >= minYear) && (g.Year < maxYear));
+			
+				if (publishers != null && publishers.Count > 0) {
+					query = query.Where (g => publishers.Contains (g.Publisher));
+				}
 
-			if (publishers != null && publishers.Count > 0) {
-				query = query.Where (g => publishers.Contains (g.Publisher));
+				if (genres != null && genres.Count > 0) {
+					query = query.Where (g => genres.Contains (g.Genre));
+				}
+
+				if (platforms != null && platforms.Count > 0) {
+					query = query.Where (g => platforms.Contains (g.Platform));
+				}
+
+				return query.ToList ();
 			}
-
-			if (genres != null && genres.Count > 0) {
-				query = query.Where (g => genres.Contains (g.Genre));
-			}
-
-			if (platforms != null && platforms.Count > 0) {
-				query = query.Where (g => platforms.Contains (g.Platform));
-			}
-
-			return query.ToList ();
 		}
 
 		/// <summary>
@@ -184,7 +193,9 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public GameInfo ReadGame (int gameId)
 		{
-			return m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+			lock (locker) {
+				return m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+			}
 		}
 
 		/// <summary>
@@ -192,9 +203,11 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public List<string> GetPublishers ()
 		{
-			List<string> publishers = new List<string>();
-			foreach(GameInfo game in m_db.Table<GameInfo> ()) {
-				publishers.Add (game.Publisher);
+			List<string> publishers = new List<string> ();
+			lock (locker) {
+				foreach (GameInfo game in m_db.Table<GameInfo> ()) {
+					publishers.Add (game.Publisher);
+				}
 			}
 
 			return publishers;
@@ -206,12 +219,14 @@ namespace Superkoikoukesse.Common
 		/// <returns>The games.</returns>
 		public int CountGames ()
 		{
-			var gameTable = m_db.Table<GameInfo> ();
+			lock (locker) {
+				var gameTable = m_db.Table<GameInfo> ();
 
-			try {
-				return gameTable.Count ();
-			} catch (Exception) {
-				return 0;
+				try {
+					return gameTable.Count ();
+				} catch (Exception) {
+					return 0;
+				}
 			}
 		}
 
@@ -226,9 +241,11 @@ namespace Superkoikoukesse.Common
 		public Player ReadPlayer ()
 		{
 			// Find the first player stored instance
-			var playerTable = m_db.Table<Player> ();
+			lock (locker) {
+				var playerTable = m_db.Table<Player> ();
 
-			return playerTable.FirstOrDefault ();
+				return playerTable.FirstOrDefault ();
+			}
 		}
 
 		/// <summary>
@@ -237,14 +254,16 @@ namespace Superkoikoukesse.Common
 		/// <param name="player">Player.</param>
 		public void SavePlayer (Player player)
 		{
-			var playerTable = m_db.Table<Player> ();
+			lock (locker) {
+				var playerTable = m_db.Table<Player> ();
 
-			// Clean to have only one element
-			if (playerTable.Count () > 0) {
-				m_db.DeleteAll<Player> ();
+				// Clean to have only one element
+				if (playerTable.Count () > 0) {
+					m_db.DeleteAll<Player> ();
+				}
+
+				m_db.Insert (player);
 			}
-
-			m_db.Insert (player);
 		}
 
 		#endregion
@@ -257,8 +276,9 @@ namespace Superkoikoukesse.Common
 		/// <param name="score">Score.</param>
 		public int AddLocalScore (LocalScore score)
 		{
-			m_db.Insert (score);
-
+			lock (locker) {
+				m_db.Insert (score);
+			}
 			// Rank?
 			List<LocalScore> modeScore = m_db.Table<LocalScore> ().Where (s => (s.Mode == score.Mode) && (s.Difficulty == score.Difficulty))
 				.OrderByDescending (s => s.Score).Take (999).ToList ();
@@ -282,10 +302,12 @@ namespace Superkoikoukesse.Common
 		/// <param name="count">Count.</param>
 		public LocalScore[] GetLocalScores (GameModes mode, GameDifficulties difficulty, int count)
 		{
-			return m_db.Table<LocalScore> ()
+			lock (locker) {
+				return m_db.Table<LocalScore> ()
 				.Where (s => (s.Mode == mode) && (s.Difficulty == difficulty))
 				.OrderByDescending (s => s.Score)
 				.Take (count).ToArray ();
+			}
 		}
 
 		#endregion
