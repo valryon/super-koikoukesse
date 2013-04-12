@@ -180,6 +180,7 @@ namespace SuperKoikoukesse.iOS
 			IsInitialized =  (databaseLoaded && configurationLoaded);
 
 			if(IsInitialized) {
+				SetLoading(false);
 				if(InitializationComplete != null) {
 					InitializationComplete();
 				}
@@ -286,6 +287,8 @@ namespace SuperKoikoukesse.iOS
 			window.RootViewController = menuViewController;
 			window.MakeKeyAndVisible ();
 
+			// Careful: we may not have fully loaded the game
+			SetLoading(!IsInitialized);
 		}
 
 		/// <summary>
