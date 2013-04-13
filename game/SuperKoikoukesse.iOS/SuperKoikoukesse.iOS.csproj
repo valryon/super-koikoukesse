@@ -2212,6 +2212,10 @@
     <BundleResource Include="..\..\database\images\00666.jpg">
       <Link>Resources\database\images\00666.jpg</Link>
     </BundleResource>
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

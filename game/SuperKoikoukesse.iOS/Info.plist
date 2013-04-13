@@ -27,5 +27,12 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Koikoukesse</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon</string>
+		<string>Icon@2x</string>
+		<string>Icon-72</string>
+		<string>Icon-72@2x</string>
+	</array>
 </dict>
 </plist>
