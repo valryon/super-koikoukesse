@@ -11,6 +11,17 @@ namespace SuperKoikoukesse.iOS
 	[Register ("GameViewController")]
 	partial class GameViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView timeEmpty { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView timeFull { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView timeTop { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel livesCountLabel { get; set; }
@@ -86,6 +97,26 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (timeFullHeightConstraint != null) {
+				timeFullHeightConstraint.Dispose ();
+				timeFullHeightConstraint = null;
+			}
+
+			if (timeEmpty != null) {
+				timeEmpty.Dispose ();
+				timeEmpty = null;
+			}
+
+			if (timeFull != null) {
+				timeFull.Dispose ();
+				timeFull = null;
+			}
+
+			if (timeTop != null) {
+				timeTop.Dispose ();
+				timeTop = null;
+			}
+
 			if (livesCountLabel != null) {
 				livesCountLabel.Dispose ();
 				livesCountLabel = null;

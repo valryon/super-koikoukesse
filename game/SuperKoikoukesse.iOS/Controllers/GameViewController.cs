@@ -141,9 +141,12 @@ namespace SuperKoikoukesse.iOS
 		private void setGameTimer ()
 		{
 			using (var pool = new NSAutoreleasePool()) {
+
+				float timerInterval = 0.025f;
+
 				// Every 1 sec we update game timer
-				m_timer = NSTimer.CreateRepeatingScheduledTimer (1f, delegate { 
-					m_quizz.SubstractTime (1f);
+				m_timer = NSTimer.CreateRepeatingScheduledTimer (timerInterval, delegate { 
+					m_quizz.SubstractTime (timerInterval);
 
 					if (m_quizz.TimeLeft < 0) {
 
@@ -154,8 +157,16 @@ namespace SuperKoikoukesse.iOS
 							nextQuestion ();
 						});
 					} else {
-						// Update label (UI Thread!)
+						// Update timer label and bar (UI Thread!)
 						this.InvokeOnMainThread (() => {
+
+							// Find the current bar height
+							float maxSize = timeEmpty.Frame.Height;
+							float timePercent = (m_quizz.TimeLeft / m_quizz.BaseTimeleft);
+							float currentTimeHeight = maxSize * timePercent;
+
+							timeFull.Frame.Height = currentTimeHeight; // Not working. At all. I'm sad.
+							timeFullHeightConstraint.Constant = currentTimeHeight;
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
 						});
 					}

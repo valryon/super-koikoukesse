@@ -37,6 +37,12 @@ namespace Superkoikoukesse.Common
 		public float TimeLeft { get; private set; }
 
 		/// <summary>
+		/// Time left for this game (seconds) when quizz starts
+		/// </summary>
+		/// <value>The time left.</value>
+		public float BaseTimeleft {private set; get;}
+
+		/// <summary>
 		/// Game is paused?
 		/// </summary>
 		/// <value><c>true</c> if this instance is paused; otherwise, <c>false</c>.</value>
@@ -129,7 +135,7 @@ namespace Superkoikoukesse.Common
 		private int m_initialQuestionCount;
 		private bool m_infiniteQuestions;
 		private int m_answerCount;
-		private float m_baseTimeleft;
+
 		private int m_baseScore;
 		private int m_jokerMinPart;
 		private int m_mistakesCount;
@@ -195,7 +201,7 @@ namespace Superkoikoukesse.Common
 				Logger.Log (LogLevel.Error, "No configuration for game mode " + Mode + "!");
 
 				m_initialQuestionCount = 5;
-				m_baseTimeleft = 60;
+				BaseTimeleft = 60;
 				m_baseScore = 1;
 
 			} else {
@@ -208,7 +214,7 @@ namespace Superkoikoukesse.Common
 					m_baseScore = modeConfig.Score.Value;
 				}
 				if (modeConfig.Time.HasValue) {
-					m_baseTimeleft = modeConfig.Time.Value;
+					BaseTimeleft = modeConfig.Time.Value;
 				}
 			}
 
@@ -243,7 +249,7 @@ namespace Superkoikoukesse.Common
 			m_answerCount = 4;
 			m_jokerMinPart = 3;
 
-			TimeLeft = m_baseTimeleft;
+			TimeLeft = BaseTimeleft;
 		}
 
 		/// <summary>
@@ -419,7 +425,7 @@ namespace Superkoikoukesse.Common
 						IsOver = true;
 					}
 				} else {
-					TimeLeft = m_baseTimeleft;
+					TimeLeft = BaseTimeleft;
 					IsOver = false;
 
 					if (Mode == GameModes.Survival) {
