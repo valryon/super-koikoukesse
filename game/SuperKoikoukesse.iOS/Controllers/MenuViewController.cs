@@ -208,6 +208,7 @@ namespace SuperKoikoukesse.iOS
 				}
 
 				difficultyViewController.SetMode (m);
+				difficultyViewController.View.Frame = View.Frame;
 
 				View.AddSubview (difficultyViewController.View);
 			} else {
