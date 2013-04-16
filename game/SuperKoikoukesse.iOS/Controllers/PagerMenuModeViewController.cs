@@ -34,15 +34,6 @@ namespace SuperKoikoukesse.iOS
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-
-			// Animate image
-			this.image.Transform = CGAffineTransform.MakeScale (1.10f, 1.10f);
-
-			UIView.Animate (1f, 0f,
-			                UIViewAnimationOptions.Autoreverse | UIViewAnimationOptions.Repeat,
-			                () => {
-				this.image.Transform = CGAffineTransform.MakeScale (0.90f, 0.90f);
-			},null);
 		}
 
 		partial void playButtonPressed (MonoTouch.Foundation.NSObject sender)
