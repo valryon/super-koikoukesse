@@ -18,6 +18,11 @@ namespace SuperKoikoukesse.iOS
 		{
 
 		}
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+		}
 		
 		public override void DidReceiveMemoryWarning ()
 		{

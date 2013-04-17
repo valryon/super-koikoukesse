@@ -21,6 +21,11 @@ namespace SuperKoikoukesse.iOS
 			this.mode = m;
 		}
 
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

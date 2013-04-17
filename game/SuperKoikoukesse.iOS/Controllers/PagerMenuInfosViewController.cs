@@ -13,7 +13,12 @@ namespace SuperKoikoukesse.iOS
 			: base ("PagerMenuInfosView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
-		
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
