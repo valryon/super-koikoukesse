@@ -131,7 +131,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Make sure we're not pausing
 			if(pauseViewController != null) {
-				pauseViewController.RemoveFromParentViewController();
+				pauseViewController.View.RemoveFromSuperview();
 			}
 		}
 
@@ -300,6 +300,11 @@ namespace SuperKoikoukesse.iOS
 		private void getBackToMenu ()
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+
+			if(pauseViewController != null) {
+				pauseViewController.View.RemoveFromSuperview();
+			}
+
 			appDelegate.SwitchToMenuView ();
 		}
 
