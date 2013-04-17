@@ -393,6 +393,8 @@ namespace SuperKoikoukesse.iOS
 				
 			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
 
+				float duration = Constants.ProgressiveDrawingDuration;
+
 				// Random corner
 				float targetX = 0f;
 				float targetY = 0f;
@@ -416,7 +418,7 @@ namespace SuperKoikoukesse.iOS
 					break;
 				}
 
-				// Avoid black suare not moving...
+				// Avoid black square not moving...
 				if (randomX == 0 && randomY == 0) {
 					randomY = 1;
 				}
@@ -436,6 +438,11 @@ namespace SuperKoikoukesse.iOS
 					break;
 				}
 
+				// Two directions? Speed is slower (= animation last longer)
+				if(randomX != 0 && randomY != 0) {
+					duration = duration  + (duration * (1/2));
+				}
+
 				// Create black square
 				progressiveDrawView = new UIView (
 					new RectangleF (gameImage.Frame.X,
@@ -448,7 +455,7 @@ namespace SuperKoikoukesse.iOS
 				gameImageScroll.AddSubview (progressiveDrawView);
 
 				UIView.Animate (
-					Constants.DezoomDuration,
+					duration,
 					() => {
 					progressiveDrawView.Frame = new RectangleF (targetX, targetY, imageBaseSizeWidth, imageBaseSizeHeight);
 				});
@@ -462,14 +469,14 @@ namespace SuperKoikoukesse.iOS
 
 					using (var pool = new NSAutoreleasePool()) {
 
-						float stepDuration = 0.5f;
+						float stepDuration = 0.15f;
 						float time = 0f;
 
 						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (stepDuration, delegate { 
 
 							time += (float)m_animationTimer.TimeInterval;
 
-							m_currentPixelateFactor += (stepDuration / Constants.PixelizationDuration) / 5f; // The magic number here is too slow the effet, because after 50% images just look like 100% images.
+							m_currentPixelateFactor += (stepDuration / Constants.PixelizationDuration) / 5f; // The magic number here is to slow the effet, because after 50% images just look like 100% images.
 
 							if (time >= Constants.PixelizationDuration) {
 								if (m_animationTimer != null) {
@@ -500,14 +507,22 @@ namespace SuperKoikoukesse.iOS
 			if (pixelateFactor > 1f)
 				pixelateFactor = 1f;
 
+			// Downscale by N
 			var a = m_currentImage.Scale (new SizeF ((float)Math.Round (maxWidth * pixelateFactor), (float)Math.Round (maxHeight * pixelateFactor)));
 			if (a != null) {
+
+				// Upscale by N
 				a.Scale (new SizeF (maxWidth, maxHeight));
-				
+
+				// Convolve by NxN
+				// - Create an empty image of the desired size
+
 				this.BeginInvokeOnMainThread (() => {
 					gameImage.Image = a;
 				});
 			}
+
+
 		}
 		
 		#endregion
