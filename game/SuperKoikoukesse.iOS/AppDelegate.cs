@@ -22,9 +22,7 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
 		public static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-			// FOrce iPhone
-			get { return true; }
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)

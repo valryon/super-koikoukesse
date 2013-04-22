@@ -179,6 +179,17 @@
     <InterfaceDefinition Include="Views\iPhone\PagerMenuHighscoresView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
     <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\GamePauseView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\GameView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\LoadingView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuDifficultyView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\MenuView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\PagerMenuHighscoresView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\PagerMenuInfosView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\PagerMenuModeView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\ScoreView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\empty_screen.png" />
