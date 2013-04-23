@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint jokerBottomConstraints { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView comboImage { get; set; }
 
 		[Outlet]
@@ -91,6 +94,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (jokerBottomConstraints != null) {
+				jokerBottomConstraints.Dispose ();
+				jokerBottomConstraints = null;
+			}
+
 			if (comboImage != null) {
 				comboImage.Dispose ();
 				comboImage = null;

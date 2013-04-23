@@ -235,19 +235,53 @@ namespace SuperKoikoukesse.iOS
 					break;
 			}
 
-			// Joker
+			/*
+			 * Joker
+			 */
+
+			// Enable the joker if enough questions has been answered correctly
 			jokerButton.Enabled = m_quizz.IsJokerAvailable;
 
+			// Animate the joker bottom space constraints to reflect the current state
+			UIView.Animate(0.3, 0, UIViewAnimationOptions.CurveEaseOut, () => { 
+				switch (m_quizz.JokerPartCount)
+				{
+					case 0:
+						jokerBottomConstraints.Constant = -60;
+						break;
+					case 1:
+						jokerBottomConstraints.Constant = -40;
+						break;
+					case 2:
+						jokerBottomConstraints.Constant = -20;
+						break;
+					default:
+						jokerBottomConstraints.Constant = 0;
+						break;
+				}
+
+				jokerButton.LayoutIfNeeded();
+			}, null);
+
+			// Joker content
 			if (Constants.DebugMode) {
-				jokerButton.SetTitle ("JOKER = " + m_quizz.JokerPartCount, UIControlState.Normal);
+				jokerButton.SetTitle ("Joker (" + m_quizz.JokerPartCount + ")", UIControlState.Normal);
 			} else {
-				jokerButton.SetTitle ("JOKER", UIControlState.Normal);
+				jokerButton.SetTitle ("Joker", UIControlState.Normal);
 			}
+
+			/*
+			 * Questions
+			 */
 
 			// Question count
 			questionCountLabel.Text = m_quizz.QuestionNumber.ToString ();
 
-			// Lives
+			/*
+			 * Lives
+			 */ 
+
+			// Display the correct number of lives
 			if (m_quizz.Mode == GameModes.Survival) {
 				switch (m_quizz.Lives)
 				{
@@ -261,7 +295,7 @@ namespace SuperKoikoukesse.iOS
 					livesImage.Image = new UIImage("lives_3.png");
 					break;
 				default:
-					// TODO 0
+					// TODO 0 state if needed
 					break;
 				}
 			}
