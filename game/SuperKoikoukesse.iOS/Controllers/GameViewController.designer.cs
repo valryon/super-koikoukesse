@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIImageView comboImage { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint timerLabelSize { get; set; }
 
 		[Outlet]
@@ -88,6 +91,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (comboImage != null) {
+				comboImage.Dispose ();
+				comboImage = null;
+			}
+
 			if (timerLabelSize != null) {
 				timerLabelSize.Dispose ();
 				timerLabelSize = null;

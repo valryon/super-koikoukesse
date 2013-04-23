@@ -20,7 +20,6 @@ namespace SuperKoikoukesse.iOS
 		private Random random;
 
 		private float m_timerBarSize;
-		private float m_timerLabelSize;
 
 		private GamePauseViewController pauseViewController;
 
@@ -73,7 +72,8 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 
 			m_timerBarSize = timerBarSize.Constant;
-			m_timerLabelSize = timerLabelSize.Constant;
+
+			gameImageScroll.Layer.CornerRadius = 27;
 
 			game1Button.TitleLabel.TextAlignment = UITextAlignment.Center;
 			game2Button.TitleLabel.TextAlignment = UITextAlignment.Center;
@@ -216,8 +216,24 @@ namespace SuperKoikoukesse.iOS
 			// Answers
 			setGameButtonTitles (q);
 
-			// Score & combo
+			// Score
 			scoreLabel.Text = m_quizz.Score.ToString ("000000");
+
+			// Combo
+			switch (m_quizz.Combo) {
+				case 2:
+					comboImage.Image = new UIImage("combo_x2.png");
+					break;
+				case 3:
+					comboImage.Image = new UIImage("combo_x3.png");
+					break;
+				case 4:
+					comboImage.Image = new UIImage("combo_x4.png");
+					break;
+				default:
+					comboImage.Image = new UIImage("combo_x1.png");
+					break;
+			}
 
 			// Joker
 			jokerButton.Enabled = m_quizz.IsJokerAvailable;

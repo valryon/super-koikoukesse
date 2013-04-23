@@ -2246,6 +2246,16 @@
     <BundleResource Include="Resources\joker%402x.png" />
     <BundleResource Include="Resources\shadow.png" />
     <BundleResource Include="Resources\shadow%402x.png" />
+    <BundleResource Include="Resources\combo_x1.png" />
+    <BundleResource Include="Resources\combo_x1%402x.png" />
+    <BundleResource Include="Resources\combo_x2.png" />
+    <BundleResource Include="Resources\combo_x2%402x.png" />
+    <BundleResource Include="Resources\combo_x3.png" />
+    <BundleResource Include="Resources\combo_x3%402x.png" />
+    <BundleResource Include="Resources\combo_x4.png" />
+    <BundleResource Include="Resources\combo_x4%402x.png" />
+    <BundleResource Include="Resources\image_background.png" />
+    <BundleResource Include="Resources\image_background%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
