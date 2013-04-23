@@ -18,6 +18,7 @@ namespace SuperKoikoukesse.iOS
 		private UIImage m_currentImage, m_pauseImage;
 		private float m_currentPixelateFactor;
 		private Random random;
+		private float m_timerBarSize;
 
 		private GamePauseViewController pauseViewController;
 
@@ -68,6 +69,13 @@ namespace SuperKoikoukesse.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			m_timerBarSize = timerBarSize.Constant;
+
+			game1Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+			game2Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+			game3Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+			game4Button.TitleLabel.TextAlignment = UITextAlignment.Center;
 
 			// Load the pause/inactive screen image
 			pauseViewController = new GamePauseViewController();
@@ -122,11 +130,9 @@ namespace SuperKoikoukesse.iOS
 
 			// Display lives
 			if (q.Mode == GameModes.Survival) {
-				livesLabel.Hidden = false;
-				livesCountLabel.Hidden = false;
+				livesImage.Hidden = false;
 			} else {
-				livesLabel.Hidden = true;
-				livesCountLabel.Hidden = true;
+				livesImage.Hidden = true;
 			}
 
 			// Make sure we're not pausing
@@ -161,12 +167,8 @@ namespace SuperKoikoukesse.iOS
 						this.InvokeOnMainThread (() => {
 
 							// Find the current bar height
-							float maxSize = timeEmpty.Frame.Height;
 							float timePercent = (m_quizz.TimeLeft / m_quizz.BaseTimeleft);
-							float currentTimeHeight = maxSize * timePercent;
-
-							timeFull.Frame.Height = currentTimeHeight; // Not working. At all. I'm sad.
-							timeFullHeightConstraint.Constant = currentTimeHeight;
+							timerBarSize.Constant = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
 						});
 					}
@@ -211,7 +213,6 @@ namespace SuperKoikoukesse.iOS
 
 			// Score & combo
 			scoreLabel.Text = m_quizz.Score.ToString ("000000");
-			comboLabel.Text = "x" + m_quizz.Combo;
 
 			// Joker
 			jokerButton.Enabled = m_quizz.IsJokerAvailable;
@@ -227,7 +228,21 @@ namespace SuperKoikoukesse.iOS
 
 			// Lives
 			if (m_quizz.Mode == GameModes.Survival) {
-				livesCountLabel.Text = m_quizz.Lives.ToString ();
+				switch (m_quizz.Lives)
+				{
+				case 1:
+					livesImage.Image = new UIImage("lives_1.png");
+					break;
+				case 2:
+					livesImage.Image = new UIImage("lives_2.png");
+					break;
+				case 3:
+					livesImage.Image = new UIImage("lives_3.png");
+					break;
+				default:
+					// TODO 0
+					break;
+				}
 			}
 		}
 

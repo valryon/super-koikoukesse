@@ -429,7 +429,7 @@ namespace Superkoikoukesse.Common
 					IsOver = false;
 
 					if (Mode == GameModes.Survival) {
-						IsOver = (Lives < 0);
+						IsOver = (Lives <= 0);
 					}
 				}
 			} else {

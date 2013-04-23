@@ -12,22 +12,16 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timerBarSize { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView timerBar { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView livesImage { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView timeEmpty { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView timeFull { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView timeTop { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel livesCountLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel livesLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel questionCountLabel { get; set; }
@@ -39,16 +33,10 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel comboLabel { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel scoreTitleLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel timeTitleLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
@@ -97,34 +85,24 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (timerBarSize != null) {
+				timerBarSize.Dispose ();
+				timerBarSize = null;
+			}
+
+			if (timerBar != null) {
+				timerBar.Dispose ();
+				timerBar = null;
+			}
+
+			if (livesImage != null) {
+				livesImage.Dispose ();
+				livesImage = null;
+			}
+
 			if (timeFullHeightConstraint != null) {
 				timeFullHeightConstraint.Dispose ();
 				timeFullHeightConstraint = null;
-			}
-
-			if (timeEmpty != null) {
-				timeEmpty.Dispose ();
-				timeEmpty = null;
-			}
-
-			if (timeFull != null) {
-				timeFull.Dispose ();
-				timeFull = null;
-			}
-
-			if (timeTop != null) {
-				timeTop.Dispose ();
-				timeTop = null;
-			}
-
-			if (livesCountLabel != null) {
-				livesCountLabel.Dispose ();
-				livesCountLabel = null;
-			}
-
-			if (livesLabel != null) {
-				livesLabel.Dispose ();
-				livesLabel = null;
 			}
 
 			if (questionCountLabel != null) {
@@ -142,11 +120,6 @@ namespace SuperKoikoukesse.iOS
 				gameImageScroll = null;
 			}
 
-			if (comboLabel != null) {
-				comboLabel.Dispose ();
-				comboLabel = null;
-			}
-
 			if (scoreLabel != null) {
 				scoreLabel.Dispose ();
 				scoreLabel = null;
@@ -155,11 +128,6 @@ namespace SuperKoikoukesse.iOS
 			if (scoreTitleLabel != null) {
 				scoreTitleLabel.Dispose ();
 				scoreTitleLabel = null;
-			}
-
-			if (timeTitleLabel != null) {
-				timeTitleLabel.Dispose ();
-				timeTitleLabel = null;
 			}
 
 			if (timeLeftLabel != null) {
