@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timerLabelSize { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint timerBarSize { get; set; }
 
 		[Outlet]
@@ -85,6 +88,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (timerLabelSize != null) {
+				timerLabelSize.Dispose ();
+				timerLabelSize = null;
+			}
+
 			if (timerBarSize != null) {
 				timerBarSize.Dispose ();
 				timerBarSize = null;

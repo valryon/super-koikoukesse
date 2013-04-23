@@ -18,7 +18,9 @@ namespace SuperKoikoukesse.iOS
 		private UIImage m_currentImage, m_pauseImage;
 		private float m_currentPixelateFactor;
 		private Random random;
+
 		private float m_timerBarSize;
+		private float m_timerLabelSize;
 
 		private GamePauseViewController pauseViewController;
 
@@ -71,6 +73,7 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 
 			m_timerBarSize = timerBarSize.Constant;
+			m_timerLabelSize = timerLabelSize.Constant;
 
 			game1Button.TitleLabel.TextAlignment = UITextAlignment.Center;
 			game2Button.TitleLabel.TextAlignment = UITextAlignment.Center;
@@ -167,8 +170,10 @@ namespace SuperKoikoukesse.iOS
 						this.InvokeOnMainThread (() => {
 
 							// Find the current bar height
-							float timePercent = (m_quizz.TimeLeft / m_quizz.BaseTimeleft);
-							timerBarSize.Constant = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
+							float pos = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
+							if (timerBarSize.Constant > 120f)
+								timerLabelSize.Constant = pos - 100f;
+							timerBarSize.Constant = pos;
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
 						});
 					}
