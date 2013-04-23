@@ -202,31 +202,12 @@
     <BundleResource Include="Resources\survival.png" />
     <BundleResource Include="Resources\timeattack.png" />
     <BundleResource Include="Resources\versus.png" />
-    <BundleResource Include="Resources\bitecoin.png" />
-    <BundleResource Include="Resources\bitecoin%402x.png" />
-    <BundleResource Include="Resources\button_answer.png" />
-    <BundleResource Include="Resources\button_answer%402x.png" />
-    <BundleResource Include="Resources\button_gear.png" />
-    <BundleResource Include="Resources\button_gear%402x.png" />
-    <BundleResource Include="Resources\button_pause.png" />
-    <BundleResource Include="Resources\button_pause%402x.png" />
-    <BundleResource Include="Resources\button_play.png" />
-    <BundleResource Include="Resources\button_play%402x.png" />
-    <BundleResource Include="Resources\button_shop.png" />
-    <BundleResource Include="Resources\button_shop%402x.png" />
-    <BundleResource Include="Resources\heart_mini.png" />
-    <BundleResource Include="Resources\heart_mini%402x.png" />
-    <BundleResource Include="Resources\heart.png" />
-    <BundleResource Include="Resources\heart%402x.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Default-568h%402x.png" />
     <BundleResource Include="Default.png" />
     <BundleResource Include="Default%402x.png" />
-    <BundleResource Include="Resources\timer_empty.png" />
-    <BundleResource Include="Resources\timer_full.png" />
-    <BundleResource Include="Resources\timer_top.png" />
     <BundleResource Include="..\..\database\images\00001.jpg">
       <Link>Resources\database\images\00001.jpg</Link>
     </BundleResource>
