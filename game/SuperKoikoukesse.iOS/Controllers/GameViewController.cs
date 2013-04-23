@@ -171,7 +171,7 @@ namespace SuperKoikoukesse.iOS
 
 							// Find the current bar height
 							float pos = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
-							if (timerBarSize.Constant > 120f)
+							if (timerBarSize.Constant > 125f)
 								timerLabelSize.Constant = pos - 100f;
 							timerBarSize.Constant = pos;
 							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");

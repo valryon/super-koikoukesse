@@ -2242,6 +2242,10 @@
     <BundleResource Include="Resources\button_pause%402x.png" />
     <BundleResource Include="Resources\timer_current.png" />
     <BundleResource Include="Resources\timer_current%402x.png" />
+    <BundleResource Include="Resources\joker.png" />
+    <BundleResource Include="Resources\joker%402x.png" />
+    <BundleResource Include="Resources\shadow.png" />
+    <BundleResource Include="Resources\shadow%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
