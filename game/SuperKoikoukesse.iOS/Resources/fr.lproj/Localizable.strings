@@ -1,9 +1,9 @@
  "scoreattack.title" 	= "Score Attack";
- "scoreattack.desc" 	= "Faire le meilleur score en 20 questions !";
+ "scoreattack.desc" 	= "Essayez de faire le meilleur score possible pendant 20 questions !";
  "timeattack.title" 	= "Time Attack";
- "timeattack.desc" 		= "60 seconds pour faire le meilleur score !";
- "survival.title" 		= "Survival";
- "survival.desc" 		= "Seuelement 3 erreurs autorisées... combien de temps tiendez-vous ?";
+ "timeattack.desc" 		= "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
+ "survival.title" 		= "Survive Mode";
+ "survival.desc" 		= "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
  "versus.title" 		= "Versus";
  "versus.desc" 			= "Affrontez vos amis !";
 

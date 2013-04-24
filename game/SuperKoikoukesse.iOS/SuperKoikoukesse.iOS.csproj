@@ -2266,6 +2266,10 @@
     <BundleResource Include="Resources\button_gear%402x.png" />
     <BundleResource Include="Resources\button_small_important.png" />
     <BundleResource Include="Resources\button_small_important%402x.png" />
+    <BundleResource Include="Resources\heart_mini.png" />
+    <BundleResource Include="Resources\heart_mini%402x.png" />
+    <BundleResource Include="Resources\menu_shadow.png" />
+    <BundleResource Include="Resources\menu_shadow%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
