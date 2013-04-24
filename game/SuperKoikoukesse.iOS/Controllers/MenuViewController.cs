@@ -95,7 +95,7 @@ namespace SuperKoikoukesse.iOS
 			// Display credits and coins
 			if (profile != null) {
 				creditsLabel.Text = profile.Credits.ToString ();
-				coinsLabel.Text = profile.Coins.ToString ("000000");
+				coinsLabel.Text = profile.Coins.ToString ();
 			}
 
 			// Update leaderboards ?
