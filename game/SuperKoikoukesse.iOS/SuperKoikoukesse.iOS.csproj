@@ -2256,6 +2256,16 @@
     <BundleResource Include="Resources\combo_x4%402x.png" />
     <BundleResource Include="Resources\image_background.png" />
     <BundleResource Include="Resources\image_background%402x.png" />
+    <BundleResource Include="Resources\button_small.png" />
+    <BundleResource Include="Resources\button_small%402x.png" />
+    <BundleResource Include="Resources\coin.png" />
+    <BundleResource Include="Resources\coin%402x.png" />
+    <BundleResource Include="Resources\heart.png" />
+    <BundleResource Include="Resources\heart%402x.png" />
+    <BundleResource Include="Resources\button_gear.png" />
+    <BundleResource Include="Resources\button_gear%402x.png" />
+    <BundleResource Include="Resources\button_small_important.png" />
+    <BundleResource Include="Resources\button_small_important%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
