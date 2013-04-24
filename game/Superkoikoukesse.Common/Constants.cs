@@ -30,8 +30,13 @@ namespace Superkoikoukesse.Common
 
 		#region Animations
 
+#if DEBUG
+		public static float SplashScreenOpenFadeDuration = 0.1f;
+		public static float SplashScreenCloseFadeDuration = 0.1f;
+#else
 		public static float SplashScreenOpenFadeDuration = 1f;
 		public static float SplashScreenCloseFadeDuration = 3f;
+#endif
 
 		public static float DezoomFactor = 10f;
 
