@@ -2,7 +2,7 @@
 "scoreattack.desc" 	= "Try to beat the score during a 20 questions challenge !";
 "timeattack.title" 	= "Time Attack";
 "timeattack.desc" 	= "Be careful, you have only 60 seconds to make the best score possible! Each wrong answer will decrease the time that you have.";
-"survival.title" 	= "Survive Mode";
+"survival.title" 	= "Survival";
 "survival.desc" 	= "Only 3 mistakes allowed... How long will you survive against the game ?";
 "versus.title" 		= "Versus";
 "versus.desc" 		= "Duel your friends!";
