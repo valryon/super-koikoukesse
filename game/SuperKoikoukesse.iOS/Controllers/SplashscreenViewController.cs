@@ -14,6 +14,7 @@ namespace SuperKoikoukesse.iOS
 		public SplashscreenViewController () 
 			: base ("SplashscreenView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
+			
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
@@ -33,16 +34,20 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidLoad ();
 
+			View.UserInteractionEnabled = true;
 			View.Alpha = 0f;
 
 			// Fade in & out animation
 			UIView.Animate (
-				Constants.SplashScreenFadeDuration,
+				Constants.SplashScreenOpenFadeDuration,
+				0,
+				UIViewAnimationOptions.CurveEaseIn,
 				() => {
 					View.Alpha = 1f;
 				}, () => {
+					Thread.Sleep(1000);
 					UIView.Animate (
-						Constants.SplashScreenFadeDuration,
+						Constants.SplashScreenCloseFadeDuration,
 							() => {
 						View.Alpha = 0f;
 
