@@ -52,18 +52,28 @@ namespace SuperKoikoukesse.iOS
 			// New score
 			if (newScoreRank.HasValue && newScoreValue.HasValue) {
 
+				// TODO if the current score is in the top 5, emphasize it
+				// otherwise, add it at the end
+
+
 				// Not in top : display additionnal line
-				if (newScoreRank.Value >= scoreLinesCount) {
+				//if (newScoreRank.Value >= scoreLinesCount) {
 					rankLastLabel.Hidden = false;
 					rankLastScoreLabel.Hidden = false;
 
-					rankLastLabel.Text = newScoreRank.Value.ToString()+".";
+					// TODO remove this line:
+					rankLastLabel.Text = "mon score";
+
+					// TODO uncomment this line:
+//					rankLastLabel.Text = newScoreRank.Value.ToString()+".";
+
+
 					rankLastScoreLabel.Text = newScoreValue.Value.ToString("000000");
-				} else {
-					// In tops : TODO mettre en valeur
-					rankLastLabel.Hidden = true;
-					rankLastScoreLabel.Hidden = true;
-				}
+//				} else {
+//					// In tops : TODO emphasize the corresponding one of the top 5 labels
+//					rankLastLabel.Hidden = true;
+//					rankLastScoreLabel.Hidden = true;
+//				}
 			}
 			
 			// Get local highscores
