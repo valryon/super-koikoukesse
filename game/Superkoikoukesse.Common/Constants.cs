@@ -34,7 +34,7 @@ namespace Superkoikoukesse.Common
 		public static float SplashScreenOpenFadeDuration = 0.1f;
 		public static float SplashScreenCloseFadeDuration = 0.1f;
 #else
-		public static float SplashScreenOpenFadeDuration = 1f;
+		public static float SplashScreenOpenFadeDuration = 1.5f;
 		public static float SplashScreenCloseFadeDuration = 3f;
 #endif
 
