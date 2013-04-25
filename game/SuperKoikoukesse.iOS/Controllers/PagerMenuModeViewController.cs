@@ -34,11 +34,16 @@ namespace SuperKoikoukesse.iOS
 			this.titleLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".title", "");
 			this.descriptionLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".desc", "");
 			this.image.Image = UIImage.FromFile (modeId + ".png");
+
+			this.descriptionLabel.SizeToFit();
 		}
 
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+
+			Player profile = ProfileService.Instance.CachedPlayer;
+			livesLeftLabel.Text = "(sur " + profile.Credits.ToString() + ")";
 		}
 
 		partial void playButtonPressed (MonoTouch.Foundation.NSObject sender)

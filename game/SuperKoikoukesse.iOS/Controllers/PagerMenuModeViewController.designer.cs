@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class PagerMenuModeViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel livesLeftLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton playButton { get; set; }
 
 		[Outlet]
@@ -28,6 +31,11 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (livesLeftLabel != null) {
+				livesLeftLabel.Dispose ();
+				livesLeftLabel = null;
+			}
+
 			if (playButton != null) {
 				playButton.Dispose ();
 				playButton = null;
