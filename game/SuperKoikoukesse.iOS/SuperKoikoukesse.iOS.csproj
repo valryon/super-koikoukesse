@@ -2272,6 +2272,8 @@
     <BundleResource Include="Resources\menu_shadow%402x.png" />
     <BundleResource Include="Resources\logo%402x.png" />
     <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\logo_lb.png" />
+    <BundleResource Include="Resources\logo_lb%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
