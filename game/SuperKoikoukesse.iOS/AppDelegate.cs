@@ -212,10 +212,10 @@ namespace SuperKoikoukesse.iOS
 					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
-
-					if (complete != null)
-						complete ();
 				}
+
+				if (complete != null)
+					complete ();
 			});
 		
 		}

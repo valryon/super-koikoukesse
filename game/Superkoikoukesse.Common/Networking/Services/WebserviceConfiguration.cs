@@ -11,28 +11,30 @@ namespace Superkoikoukesse.Common
 	{
 		public WebserviceConfiguration ()
 		{
+			// Compare downloaded config with local
+			GameConfiguration localConfig = loadConfigurationFromDevice ();
+			
+			LastValidConfig = localConfig;
 		}
 
 		public GameConfiguration LastValidConfig { get; set; }
 
 		protected override GameConfiguration PostRequest (GameConfiguration newConfig, bool success)
 		{
-			// Compare downloaded config with local
-			GameConfiguration localConfig = loadConfigurationFromDevice ();
-
-			LastValidConfig = localConfig;
-
 			if (success) {
 
-				if (localConfig != null) {
+				// TODO diff between the last and the new to see if we have to save
+				// the new config
+				// Maybe it's simpler to just save it all the time...
+				//if (LastValidConfig != null) {
 					saveConfigurationOnDevice (newConfig);
-				}
+				//}
 
 				// Return the config to use
 				return newConfig;
 			} else {
 				// Any error: use local file
-				return localConfig;
+				return LastValidConfig;
 			}
 		}
 
