@@ -81,5 +81,6 @@
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
     <Compile Include="Game\Filter.cs" />
     <Compile Include="Game\VersusMatch.cs" />
+    <Compile Include="Util\StringEx.cs" />
   </ItemGroup>
 </Project>

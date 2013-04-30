@@ -70,20 +70,20 @@ namespace Superkoikoukesse.Common
 		{
 			JsonValue json = JsonObject.Parse(jsonRaw);
 
-			MatchId = (json ["MatchId"].ToString ());
-			Player1Id = (json ["Player1Id"].ToString ());
-			Player2Id = (json ["Player2Id"].ToString ());
+			MatchId = json ["MatchId"];
+			Player1Id = json ["Player1Id"];
+			Player2Id = json ["Player2Id"];
 			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"].ToString ());
 
 			Filter = new Filter ();
-			Filter.FromJson (json ["Filter"].ToString ());
+			Filter.FromJson (json ["Filter"]);
 
 			Turns.Clear ();
 			if (json ["Turns"] != null && json ["Turns"] is JsonArray) {
 				foreach (JsonObject turnJson in ((JsonArray)json["Turns"])) {
 
-					int score = Convert.ToInt32 (turnJson ["Score"].ToString ());
-					string playerId = turnJson ["PlayerId"].ToString ();
+					int score = Convert.ToInt32 (turnJson ["Score"].ToString());
+					string playerId = turnJson ["PlayerId"];
 
 					Turns.Add (new VersusMatchTurn () {
 					PlayerId = playerId,

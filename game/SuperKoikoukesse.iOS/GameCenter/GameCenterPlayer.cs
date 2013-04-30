@@ -172,7 +172,7 @@ namespace SuperKoikoukesse.iOS
 				CurrentGKMatch.EndTurn (
 					new GKTurnBasedParticipant[] {opponent},
 					GKTurnBasedMatch.DefaultTimeout,
-					NSData.FromString (CurrentMatch.ToJson()), 
+					NSData.FromString (CurrentMatch.ToJson().ToBase64()), 
 					(e) => {
 					Logger.Log (LogLevel.Info, "Game Center Turn ended");
 
@@ -278,8 +278,12 @@ namespace SuperKoikoukesse.iOS
 					VersusMatch existingMatch = new VersusMatch();
 
 					try {
-					existingMatch.FromJson(NSString.FromData(match.MatchData, NSStringEncoding.UTF8).ToString());
-					this.parent.CurrentMatch = existingMatch;
+
+						string jsonBase64 = NSString.FromData(match.MatchData, NSStringEncoding.UTF8);
+						string json = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(jsonBase64));
+
+						existingMatch.FromJson(json.ToString());
+						this.parent.CurrentMatch = existingMatch;
 					}
 					catch(Exception e) {
 						matchError = true;
