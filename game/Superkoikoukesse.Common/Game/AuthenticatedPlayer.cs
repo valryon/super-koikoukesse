@@ -40,7 +40,7 @@ namespace Superkoikoukesse.Common
 		/// Create a new turn based match
 		/// </summary>
 		/// <param name="callback">Callback.</param>
-		public abstract void NewMatch(Action matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback);
+		public abstract void NewMatch(Action<VersusMatch> matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback);
 
 		/// <summary>
 		/// Ends the current match's turn.

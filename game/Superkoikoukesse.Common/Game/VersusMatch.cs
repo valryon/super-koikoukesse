@@ -26,6 +26,8 @@ namespace Superkoikoukesse.Common
 
 		public List<VersusMatchTurn>  Turns  { get; set; }
 
+		public GameDifficulties Difficulty { get; set; }
+
 		public VersusMatch ()
 		{
 			Turns = new List<VersusMatchTurn> ();
@@ -37,12 +39,12 @@ namespace Superkoikoukesse.Common
 		/// <returns>The json.</returns>
 		public string ToJson ()
 		{
-
 			JsonObject json = new JsonObject ();
 
 			json.Add (new KeyValuePair<string, JsonValue> ("MatchId", new JsonPrimitive (MatchId)));
 			json.Add (new KeyValuePair<string, JsonValue> ("Player1Id", new JsonPrimitive (Player1Id)));
 			json.Add (new KeyValuePair<string, JsonValue> ("Player2Id", new JsonPrimitive (Player2Id)));
+			json.Add (new KeyValuePair<string, JsonValue> ("Difficulty", Difficulty.ToString()));
 			json.Add (new KeyValuePair<string, JsonValue> ("Filter", Filter.ToJson ()));
 
 			JsonArray turnsJson = new JsonArray ();
@@ -71,6 +73,7 @@ namespace Superkoikoukesse.Common
 			MatchId = (json ["MatchId"].ToString ());
 			Player1Id = (json ["Player1Id"].ToString ());
 			Player2Id = (json ["Player2Id"].ToString ());
+			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"].ToString ());
 
 			Filter = new Filter ();
 			Filter.FromJson (json ["Filter"].ToString ());
@@ -87,6 +90,31 @@ namespace Superkoikoukesse.Common
 					Score = score
 				});
 				}
+			}
+		}
+
+		/// <summary>
+		/// Check if the given player should play or wait
+		/// </summary>
+		/// <param name="playerId">Player identifier.</param>
+		public bool IsPlayerTurn(string playerId) {
+
+			// First turn: player who create the match starts
+			if(Turns.Count == 0) return Player1Id == playerId;
+
+			// Get last turn
+			VersusMatchTurn lastTurn = Turns[Turns.Count - 1];
+
+			// Check if this is the other player
+			return lastTurn.PlayerId != playerId;
+		}
+		
+		/// <summary>
+		/// First turn of the match?
+		/// </summary>
+		public bool IsFirstTurn {
+			get {
+				return (Turns.Count == 0) ;
 			}
 		}
 	}

@@ -38,6 +38,17 @@ namespace SuperKoikoukesse.iOS
 			
 			alert.Show();
 		}
+
+		public static void ShowNotYourTurn ()
+		{
+			UIAlertView alert = new UIAlertView(
+				"En attente",
+				"Vous devez attendre que l'autre joueur ait joué son tour.",
+				null,
+				"Ok");
+			
+			alert.Show();
+		}
 	}
 }
 

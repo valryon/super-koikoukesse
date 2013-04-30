@@ -130,7 +130,7 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		public override void NewMatch (Action matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback)
+		public override void NewMatch (Action<VersusMatch> matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback)
 		{
 			GKMatchRequest matchRequest = new GKMatchRequest ();
 			matchRequest.MinPlayers = 2;
@@ -227,7 +227,8 @@ namespace SuperKoikoukesse.iOS
 
 		private class MatchMakerDelegate : GKTurnBasedMatchmakerViewControllerDelegate
 		{
-			public event Action MatchFoundCallback, CancelCallback, ErrorCallback, PlayerQuitCallback;
+			public event Action<VersusMatch> MatchFoundCallback;
+			public event Action CancelCallback, ErrorCallback, PlayerQuitCallback;
 
 			private GameCenterPlayer parent;
 
@@ -270,11 +271,20 @@ namespace SuperKoikoukesse.iOS
 
 				this.parent.CurrentGKMatch = match;
 
+				bool matchError = false;
+
 				// Match has data: it's not the first turn
 				if(match.MatchData.Length> 0) {
 					VersusMatch existingMatch = new VersusMatch();
+
+					try {
 					existingMatch.FromJson(NSString.FromData(match.MatchData, NSStringEncoding.UTF8).ToString());
 					this.parent.CurrentMatch = existingMatch;
+					}
+					catch(Exception e) {
+						matchError = true;
+						Logger.LogException(LogLevel.Error, "GameCenterPlayer.FoundMatch", e);
+					}
 				}
 				// No data: new match, 
 				else {
@@ -287,8 +297,16 @@ namespace SuperKoikoukesse.iOS
 					this.parent.CurrentMatch.Filter = new Filter();
 				}
 
-				if (MatchFoundCallback != null)
-					MatchFoundCallback ();
+				if(matchError == false) {
+					match.Remove(new GKNotificationHandler((e) => {}));
+
+					if (MatchFoundCallback != null)
+						MatchFoundCallback (this.parent.CurrentMatch);
+				}
+				else {
+					if (ErrorCallback != null)
+						ErrorCallback ();
+				}
 			}
 
 			public override void PlayerQuitForMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
