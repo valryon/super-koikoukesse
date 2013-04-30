@@ -73,7 +73,7 @@ namespace Superkoikoukesse.Common
 			MatchId = json ["MatchId"];
 			Player1Id = json ["Player1Id"];
 			Player2Id = json ["Player2Id"];
-			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"].ToString ());
+			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"]);
 
 			Filter = new Filter ();
 			Filter.FromJson (json ["Filter"]);
