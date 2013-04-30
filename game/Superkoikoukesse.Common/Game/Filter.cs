@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Json;
 
 namespace Superkoikoukesse.Common
 {
@@ -99,6 +100,22 @@ namespace Superkoikoukesse.Common
 				Genres = new List<string>();
 			}
 			Genres.Add ("combat");
+		}
+
+		/// <summary>
+		/// Serialize into Json
+		/// </summary>
+		/// <returns>The json.</returns>
+		public JsonValue ToJson() {
+			return "TODO Filter.ToJson";
+		}
+
+		/// <summary>
+		/// Create from json
+		/// </summary>
+		/// <param name="json">Json.</param>
+		public void FromJson(string json) {
+			// TODO Filter.FromJson 
 		}
 	}
 }

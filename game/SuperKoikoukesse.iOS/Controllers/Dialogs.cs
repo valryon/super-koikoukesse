@@ -27,6 +27,17 @@ namespace SuperKoikoukesse.iOS
 			
 			alert.Show();
 		}
+
+		public static void ShowAuthenticationRequired ()
+		{
+			UIAlertView alert = new UIAlertView(
+				"Game Center requis",
+				"Vous devez vous connectez à Game Center pour jouer en multijoueur.",
+				null,
+				"Ok");
+			
+			alert.Show();
+		}
 	}
 }
 

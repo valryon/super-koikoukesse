@@ -498,6 +498,13 @@ namespace Superkoikoukesse.Common
 			// Send score to Game Center
 			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
+			// Multiplayer? End turn
+			if(Mode == GameModes.Versus) {
+				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn(Score,() => {
+
+				});
+			}
+
 			// Send score to our server
 			SendQuizzData();
 

@@ -2,6 +2,8 @@ using System;
 using MonoTouch.GameKit;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
+using MonoTouch.Foundation;
+using Superkoikoukesse.Common.Utils;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -88,18 +90,20 @@ namespace SuperKoikoukesse.iOS
 
 		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
 		{
-			string leaderboardId = GetLeaderboardId (mode, difficulty);
+			if (mode != GameModes.Versus) {
+				string leaderboardId = GetLeaderboardId (mode, difficulty);
 
-			Logger.Log (LogLevel.Info, "Game Center  - Adding score to " + leaderboardId + "...");
+				Logger.Log (LogLevel.Info, "Game Center  - Adding score to " + leaderboardId + "...");
 
-			GKScore gkScore = new GKScore (leaderboardId);
-			gkScore.Value = score;
+				GKScore gkScore = new GKScore (leaderboardId);
+				gkScore.Value = score;
 
-			gkScore.ReportScore ((error) => {
-				if (error != null) {
-					Logger.Log (LogLevel.Error, "Game Center - Score not submited! " + error);
-				}
-			});
+				gkScore.ReportScore ((error) => {
+					if (error != null) {
+						Logger.Log (LogLevel.Error, "Game Center - Score not submited! " + error);
+					}
+				});
+			}
 		}
 
 		public override void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback)
@@ -123,6 +127,71 @@ namespace SuperKoikoukesse.iOS
 					});
 
 				}
+			}
+		}
+
+		public override void NewMatch (Action matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback)
+		{
+			GKMatchRequest matchRequest = new GKMatchRequest ();
+			matchRequest.MinPlayers = 2;
+			matchRequest.MaxPlayers = 2;
+			matchRequest.DefaultNumberOfPlayers = 2;
+
+			GKTurnBasedMatchmakerViewController matchMakerVc = new GKTurnBasedMatchmakerViewController (matchRequest);
+
+			var mmDelegate = new MatchMakerDelegate (this);
+			mmDelegate.MatchFoundCallback += matchFoundCallback;
+			mmDelegate.CancelCallback += cancelCallback;
+			mmDelegate.ErrorCallback += errorCallback;
+			mmDelegate.PlayerQuitCallback += playerQuitCallback;
+			matchMakerVc.Delegate = mmDelegate;
+
+			ShowGameCenter (matchMakerVc);
+		}
+
+		public override void EndMatchTurn (int score, Action callback)
+		{
+			if (CurrentMatch != null) {
+
+				// Find opponent
+				GKTurnBasedParticipant opponent = null;
+
+				foreach (var player in CurrentGKMatch.Participants) {
+					if (player.PlayerID != this.PlayerId) {
+						opponent = player;
+						break;
+					}
+				}
+
+				// Add data
+				CurrentMatch.Turns.Add (new VersusMatchTurn() {
+					PlayerId = this.PlayerId,
+					Score = score
+				});
+
+				CurrentGKMatch.EndTurn (
+					new GKTurnBasedParticipant[] {opponent},
+					GKTurnBasedMatch.DefaultTimeout,
+					NSData.FromString (CurrentMatch.ToJson()), 
+					(e) => {
+					Logger.Log (LogLevel.Info, "Game Center Turn ended");
+
+					if (e != null) {
+						Logger.Log (LogLevel.Error, e.LocalizedDescription);
+					}
+				});
+
+			} else {
+				Logger.Log (LogLevel.Error, "Cannot end the turn because we're not in a match!");
+			}
+		}
+
+		public override void QuitMatch (Action callback)
+		{
+			if (CurrentMatch != null) {
+				
+			} else {
+				Logger.Log (LogLevel.Error, "Cannot quit because we're not in a match!");
 			}
 		}
 
@@ -150,6 +219,93 @@ namespace SuperKoikoukesse.iOS
 			get {
 				return isAuthenticated;
 			}
+		}
+	
+		internal GKTurnBasedMatch CurrentGKMatch { get; set; }
+
+		// Delegate for turn-based Game Center
+
+		private class MatchMakerDelegate : GKTurnBasedMatchmakerViewControllerDelegate
+		{
+			public event Action MatchFoundCallback, CancelCallback, ErrorCallback, PlayerQuitCallback;
+
+			private GameCenterPlayer parent;
+
+			public MatchMakerDelegate (GameCenterPlayer parent)
+			{
+				this.parent = parent;
+			}
+
+			protected override void Dispose (bool disposing)
+			{
+				this.parent = null;
+				base.Dispose (disposing);
+			}
+
+			public override void WasCancelled (GKTurnBasedMatchmakerViewController viewController)
+			{
+				Logger.Log (LogLevel.Info, "MatchMakerDelegate.WasCancelled");
+
+				viewController.DismissViewController (true, null);
+
+				if (CancelCallback != null)
+					CancelCallback ();
+			}
+
+			public override void FailedWithError (GKTurnBasedMatchmakerViewController viewController, MonoTouch.Foundation.NSError error)
+			{
+				Logger.Log (LogLevel.Warning, "MatchMakerDelegate.FailedWithError");
+
+				viewController.DismissViewController (true, null);
+
+				if (ErrorCallback != null)
+					ErrorCallback ();
+			}
+
+			public override void FoundMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
+			{
+				Logger.Log (LogLevel.Info, "MatchMakerDelegate.FoundMatch");
+
+				viewController.DismissViewController (true, null);
+
+				this.parent.CurrentGKMatch = match;
+
+				// Match has data: it's not the first turn
+				if(match.MatchData.Length> 0) {
+					VersusMatch existingMatch = new VersusMatch();
+					existingMatch.FromJson(NSString.FromData(match.MatchData, NSStringEncoding.UTF8).ToString());
+					this.parent.CurrentMatch = existingMatch;
+				}
+				// No data: new match, 
+				else {
+					this.parent.CurrentMatch = new VersusMatch();
+
+					this.parent.CurrentMatch.MatchId = match.MatchID;
+					this.parent.CurrentMatch.Player1Id = match.Participants[0].PlayerID;
+					this.parent.CurrentMatch.Player2Id = match.Participants[1].PlayerID;
+
+					this.parent.CurrentMatch.Filter = new Filter();
+				}
+
+				if (MatchFoundCallback != null)
+					MatchFoundCallback ();
+			}
+
+			public override void PlayerQuitForMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
+			{
+				Logger.Log (LogLevel.Info, "MatchMakerDelegate.PlayerQuitForMatch");
+
+				//viewController.DismissViewController (true, null);
+
+				// Delete the match
+				match.Remove (new GKNotificationHandler ((error) => {
+					Logger.Log (LogLevel.Error, error.DebugDescription);
+				}));
+
+				if (PlayerQuitCallback != null)
+					PlayerQuitCallback ();
+			}
+
 		}
 	}
 }

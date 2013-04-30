@@ -7,6 +7,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using System.IO;
+using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -46,7 +47,7 @@ namespace SuperKoikoukesse.iOS
 			creditsImage.Hidden = true;
 
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.LoadPlayerProfile();
+			appDelegate.LoadPlayerProfile ();
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -99,8 +100,8 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Update leaderboards ?
-			if(highScorePanel != null) {
-				highScorePanel.ForceUpdate();
+			if (highScorePanel != null) {
+				highScorePanel.ForceUpdate ();
 			}
 
 		}
@@ -130,6 +131,11 @@ namespace SuperKoikoukesse.iOS
 			panels.Add (highScorePanel);
 
 			// Build for each modes
+			// -- Versus
+			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+			versusMode.GameModeSelected += HandleGameModeSelected;
+			panels.Add (versusMode);
+
 			// -- Score attack
 			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.ScoreAttack);
 			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
@@ -144,11 +150,6 @@ namespace SuperKoikoukesse.iOS
 			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.Survival);
 			survivalMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (survivalMode);
-
-			// -- Versus
-//			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
-//			versusMode.GameModeSelected += HandleGameModeSelected;
-//			panels.Add (versusMode);
 
 			int count = panels.Count;
 			RectangleF scrollFrame = scrollView.Frame;
@@ -186,31 +187,75 @@ namespace SuperKoikoukesse.iOS
 
 		#endregion
 
+		private void displayMatchMaker (GameModes mode)
+		{
+			ProfileService.Instance.AuthenticatedPlayer.NewMatch (
+				// Match found
+				() => {
+				displayDifficultyChooser (mode);
+			},
+			// Cancel
+			() => {
+				// Nothing, controller is already dismissed
+			},
+			// Error
+			() => {
+				// Display an error dialog?
+			},
+			// Player quit
+			() => {
+				// Kill the game? Inform the player?
+			}
+			);
+		}
+
+		private void displayDifficultyChooser (GameModes selectedMode)
+		{
+			// Display difficulty view
+			if (difficultyViewController == null) {
+				difficultyViewController = new MenuDifficultyViewController ();
+				difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
+					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+					
+					Filter filter = null;
+					if (difficultyViewController.StunfestMode) {
+						filter = new Filter ();
+						filter.StunfestMode ();
+					}
+					
+					appDelegate.SwitchToGameView (mode, difficulty, filter);
+				}; 	
+			}
+			
+			difficultyViewController.SetMode (selectedMode);
+			difficultyViewController.View.Frame = View.Frame;
+			
+			View.AddSubview (difficultyViewController.View);
+		}
+
 		void HandleGameModeSelected (GameModes m)
 		{
 			// Enough credits?
 			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
 
-				// Display difficulty view
-				if (difficultyViewController == null) {
-					difficultyViewController = new MenuDifficultyViewController ();
-					difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
-						var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+				if (m == GameModes.Versus) {
 
-						Filter filter = null;
-						if(difficultyViewController.StunfestMode) {
-							filter = new Filter();
-							filter.StunfestMode();
-						}
+					if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
+						ProfileService.Instance.AuthenticatedPlayer.Authenticate (() => {
 
-						appDelegate.SwitchToGameView (mode, difficulty, filter);
-					}; 	
+							if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+								displayMatchMaker (m);
+							} else {
+								// Dialog
+								Dialogs.ShowAuthenticationRequired ();
+							}
+						});
+					} else {
+						displayMatchMaker (m);
+					}
+				} else {
+					displayDifficultyChooser (m);
 				}
-
-				difficultyViewController.SetMode (m);
-				difficultyViewController.View.Frame = View.Frame;
-
-				View.AddSubview (difficultyViewController.View);
 			} else {
 				Dialogs.ShowNoMoreCreditsDialogs ();
 			}

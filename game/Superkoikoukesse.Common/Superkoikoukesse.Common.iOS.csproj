@@ -80,5 +80,6 @@
     <Compile Include="Game\AuthenticatedPlayer.cs" />
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
     <Compile Include="Game\Filter.cs" />
+    <Compile Include="Game\VersusMatch.cs" />
   </ItemGroup>
 </Project>

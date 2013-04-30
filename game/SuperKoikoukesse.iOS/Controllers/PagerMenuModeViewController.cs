@@ -45,8 +45,13 @@ namespace SuperKoikoukesse.iOS
 			// TODO if the game has just been installed, the default label will be displayed
 			// find a workaround in this case
 			Player profile = ProfileService.Instance.CachedPlayer;
-			if (profile != null)
-				livesLeftLabel.Text = "(sur " + profile.Credits.ToString() + ")";
+			if (profile != null) {
+
+				// TODO HACK Ici ça plante sur iPhone, livesLeftLabel est null au démarrage
+				if(livesLeftLabel != null) {
+					livesLeftLabel.Text = "(sur " + profile.Credits.ToString() + ")";
+				}
+			}
 		}
 
 		partial void playButtonPressed (MonoTouch.Foundation.NSObject sender)

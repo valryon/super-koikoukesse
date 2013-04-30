@@ -37,6 +37,24 @@ namespace Superkoikoukesse.Common
 		public abstract void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback);
 
 		/// <summary>
+		/// Create a new turn based match
+		/// </summary>
+		/// <param name="callback">Callback.</param>
+		public abstract void NewMatch(Action matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback);
+
+		/// <summary>
+		/// Ends the current match's turn.
+		/// </summary>
+		/// <param name="callback">Callback.</param>
+		public abstract void EndMatchTurn(int score, Action callback);
+
+		/// <summary>
+		/// Resigns the current match.
+		/// </summary>
+		/// <param name="callback">Callback.</param>
+		public abstract void QuitMatch(Action callback);
+
+		/// <summary>
 		/// Get the leaderbord name
 		/// </summary>
 		/// <returns>The leaderboard identifier.</returns>
@@ -75,6 +93,15 @@ namespace Superkoikoukesse.Common
 			get {
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Current versus match
+		/// </summary>
+		/// <value>The current match.</value>
+		public VersusMatch CurrentMatch 
+		{
+			get; protected set;
 		}
 	}
 }
