@@ -80,8 +80,7 @@ namespace Superkoikoukesse.Common
 			IsEnded = Convert.ToBoolean(json ["IsEnded"].ToString());
 			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"]);
 
-			Filter = new Filter ();
-			Filter.FromJson (json ["Filter"]);
+			Filter = new Filter (json ["Filter"]);
 
 			Turns.Clear ();
 			if (json ["Turns"] != null && json ["Turns"] is JsonArray) {

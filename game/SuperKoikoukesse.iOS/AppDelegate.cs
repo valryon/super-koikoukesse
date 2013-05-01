@@ -308,7 +308,7 @@ namespace SuperKoikoukesse.iOS
 				f = filter;
 			}
 			else {
-				f = new Filter ();
+				f = new Filter ("0", "Siphon filter", "defaultIcon");
 			}
 
 			// Caching filter results

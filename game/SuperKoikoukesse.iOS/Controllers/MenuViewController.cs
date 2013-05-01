@@ -245,13 +245,16 @@ namespace SuperKoikoukesse.iOS
 					
 					Filter filter = null;
 					if (difficultyViewController.StunfestMode) {
-						filter = new Filter ();
+						filter = new Filter ("1", "Stiunfest", "stunfestIcon");
 						filter.StunfestMode ();
 					}
 
 					// Remember to select Versus match parameters too
 					if (mode == GameModes.Versus) {
-						ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Difficulty = difficulty;
+						VersusMatch currentMatch = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
+
+						currentMatch.Difficulty = difficulty;
+						filter = currentMatch.Filter; // This is weird
 					}
 					
 					appDelegate.SwitchToGameView (mode, difficulty, filter);

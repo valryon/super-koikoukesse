@@ -348,7 +348,16 @@ namespace SuperKoikoukesse.iOS
 					match.Participants [0].MatchOutcome = GKTurnBasedMatchOutcome.First;
 					match.Participants [1].MatchOutcome = GKTurnBasedMatchOutcome.Second;
 
-					this.parent.CurrentMatch.Filter = new Filter ();
+					// TODO Select filter
+					this.parent.CurrentMatch.Filter = new Filter ("0", "MP Filter","defaultIcon",
+					                                              // Test data
+					                                              1990,
+					                                              2050,
+					                                              null,
+					                                              new System.Collections.Generic.List<string>() {"combat"},
+					                                              null
+														);
+
 				}
 
 				if (matchError == false) {
