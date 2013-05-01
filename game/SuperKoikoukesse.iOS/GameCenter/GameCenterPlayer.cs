@@ -159,27 +159,72 @@ namespace SuperKoikoukesse.iOS
 				foreach (var player in CurrentGKMatch.Participants) {
 					if (player.PlayerID != this.PlayerId) {
 						opponent = player;
-						break;
 					}
 				}
 
 				// Add data
-				CurrentMatch.Turns.Add (new VersusMatchTurn() {
+				CurrentMatch.Turns.Add (new VersusMatchTurn () {
 					PlayerId = this.PlayerId,
 					Score = score
 				});
 
-				CurrentGKMatch.EndTurn (
-					new GKTurnBasedParticipant[] {opponent},
-					GKTurnBasedMatch.DefaultTimeout,
-					NSData.FromString (CurrentMatch.ToJson().ToBase64()), 
-					(e) => {
-					Logger.Log (LogLevel.Info, "Game Center Turn ended");
+				bool isMatchOver = false;
 
-					if (e != null) {
-						Logger.Log (LogLevel.Error, e.LocalizedDescription);
+				// Is the match over?
+				// We should have one turn for each player
+				if(CurrentMatch.Turns.Count > 0 
+				   && CurrentMatch.Turns.Count % CurrentGKMatch.Participants.Length == 0) {
+					isMatchOver = true;
+				}
+
+				if (isMatchOver == false) {
+					CurrentGKMatch.EndTurn (
+						new GKTurnBasedParticipant[] {opponent},
+						GKTurnBasedMatch.DefaultTimeout,
+						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
+						(e) => {
+							Logger.Log (LogLevel.Info, "Game Center Turn ended");
+
+							if (e != null) {
+								Logger.Log (LogLevel.Error, e.DebugDescription);
+							}
+						}
+					);
+				} else {
+
+					// Check for winner / loser
+					int maxScore = 0;
+					string winnerPlayerId = string.Empty;
+
+					foreach(VersusMatchTurn turn in CurrentMatch.Turns) {
+						if(turn.Score > maxScore) {
+							winnerPlayerId = turn.PlayerId;
+							maxScore = turn.Score;
+						}
 					}
-				});
+
+					// Set win and deafeat to the players
+					foreach(GKTurnBasedParticipant participant in CurrentGKMatch.Participants) {
+						if(participant.PlayerID == winnerPlayerId) {
+							participant.MatchOutcome = GKTurnBasedMatchOutcome.Won;
+						}
+						else {
+							participant.MatchOutcome = GKTurnBasedMatchOutcome.Lost;
+						}
+					}
+
+					CurrentGKMatch.EndMatchInTurn(
+						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
+						(e) => {
+							Logger.Log (LogLevel.Info, "Game Center Match ended");
+							
+							if (e != null) {
+								Logger.Log (LogLevel.Error, e.DebugDescription);
+							}
+						}
+					);
+				}
+
 
 			} else {
 				Logger.Log (LogLevel.Error, "Cannot end the turn because we're not in a match!");
@@ -274,40 +319,42 @@ namespace SuperKoikoukesse.iOS
 				bool matchError = false;
 
 				// Match has data: it's not the first turn
-				if(match.MatchData.Length> 0) {
-					VersusMatch existingMatch = new VersusMatch();
+				if (match.MatchData.Length > 0) {
+					VersusMatch existingMatch = new VersusMatch ();
 
 					try {
 
-						string jsonBase64 = NSString.FromData(match.MatchData, NSStringEncoding.UTF8);
-						string json = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(jsonBase64));
+						string jsonBase64 = NSString.FromData (match.MatchData, NSStringEncoding.UTF8);
+						string json = System.Text.Encoding.UTF8.GetString (Convert.FromBase64String (jsonBase64));
 
-						existingMatch.FromJson(json.ToString());
+						existingMatch.FromJson (json.ToString ());
 						this.parent.CurrentMatch = existingMatch;
-					}
-					catch(Exception e) {
+					} catch (Exception e) {
 						matchError = true;
-						Logger.LogException(LogLevel.Error, "GameCenterPlayer.FoundMatch", e);
+						Logger.LogException (LogLevel.Error, "GameCenterPlayer.FoundMatch", e);
 					}
 				}
 				// No data: new match, 
 				else {
-					this.parent.CurrentMatch = new VersusMatch();
+					this.parent.CurrentMatch = new VersusMatch ();
 
 					this.parent.CurrentMatch.MatchId = match.MatchID;
-					this.parent.CurrentMatch.Player1Id = match.Participants[0].PlayerID;
-					this.parent.CurrentMatch.Player2Id = match.Participants[1].PlayerID;
+					this.parent.CurrentMatch.Player1Id = match.Participants [0].PlayerID;
+					this.parent.CurrentMatch.Player2Id = match.Participants [1].PlayerID;
 
-					this.parent.CurrentMatch.Filter = new Filter();
+					// Set up outcomes
+					match.Participants [0].MatchOutcome = GKTurnBasedMatchOutcome.First;
+					match.Participants [1].MatchOutcome = GKTurnBasedMatchOutcome.Second;
+
+					this.parent.CurrentMatch.Filter = new Filter ();
 				}
 
-				if(matchError == false) {
-					match.Remove(new GKNotificationHandler((e) => {}));
+				if (matchError == false) {
+					match.Remove (new GKNotificationHandler ((e) => {}));
 
 					if (MatchFoundCallback != null)
 						MatchFoundCallback (this.parent.CurrentMatch);
-				}
-				else {
+				} else {
 					if (ErrorCallback != null)
 						ErrorCallback ();
 				}
