@@ -105,12 +105,10 @@ namespace Superkoikoukesse.Common
 		/// <param name="count">Count.</param>
 		public GameInfo GetGame ()
 		{
-			Logger.Log(LogLevel.Debug, "Petit enculé 2");
 			// Random game
 			var random = new Random (DateTime.Now.Millisecond);
 			int randomIndex = random.Next (matchingGames.Count);
 
-			Logger.Log(LogLevel.Debug, "Petit enculé 1");
 			return matchingGames [randomIndex];
 		}
 

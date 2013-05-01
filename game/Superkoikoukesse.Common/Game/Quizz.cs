@@ -264,11 +264,7 @@ namespace Superkoikoukesse.Common
 
 			while (currentAnswersCount < m_answerCount) {
 
-				Logger.Log(LogLevel.Debug, "Petit enculé 1");
-
 				GameInfo game = Filter.GetGame();
-
-				Logger.Log(LogLevel.Debug, "Petit enculé 4");
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 
@@ -278,13 +274,10 @@ namespace Superkoikoukesse.Common
 					// Decide that the first will be the correct answer
 					if (q.CorrectAnswer == null) {
 
-						Logger.Log(LogLevel.Debug, "Petit enculé OK");
 						q.CorrectAnswer = game;
 						m_correctAnswerIds.Add (q.CorrectAnswer.GameId);
 					}
 				}
-
-				Logger.Log(LogLevel.Debug, "Petit enculé 5");
 			}
 			// Randomize answers
 			q.ShuffleAnswers ();
