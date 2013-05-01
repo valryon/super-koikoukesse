@@ -43,7 +43,17 @@ namespace SuperKoikoukesse.iOS
 		{
 			UIAlertView alert = new UIAlertView(
 				"En attente",
-				"Vous devez attendre que l'autre joueur ait joué son tour.",
+				"Vous devez attendre que l'autre joueur ait joué son tour. TODO Voir le score en cours ?",
+				null,
+				"Ok");
+			
+			alert.Show();
+		}
+
+		public static void ShowMatchEnded() {
+			UIAlertView alert = new UIAlertView(
+				"Match terminé",
+				"Ce match est terminé. TODO Voir le résultat ?",
 				null,
 				"Ok");
 			

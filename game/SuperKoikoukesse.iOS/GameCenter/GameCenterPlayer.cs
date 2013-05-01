@@ -177,6 +177,8 @@ namespace SuperKoikoukesse.iOS
 					isMatchOver = true;
 				}
 
+				CurrentMatch.IsEnded = isMatchOver;
+
 				if (isMatchOver == false) {
 					CurrentGKMatch.EndTurn (
 						new GKTurnBasedParticipant[] {opponent},

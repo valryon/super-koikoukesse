@@ -194,18 +194,22 @@ namespace SuperKoikoukesse.iOS
 			(match) => {
 
 				// First turn: choose game parameters
-				if(match.IsFirstTurn) {
+				if (match.IsFirstTurn) {
 					displayDifficultyChooser (mode);
-				}
-				else {
+				} else {
 					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 
-					if(match.IsPlayerTurn(ProfileService.Instance.AuthenticatedPlayer.PlayerId)) {
-						// Player turn
-						appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
+					if (match.IsEnded) {
+						// See the final score
+						Dialogs.ShowMatchEnded ();
 					} else {
-						// TODO Other player turn: display last score?
-						Dialogs.ShowNotYourTurn();
+						if (match.IsPlayerTurn (ProfileService.Instance.AuthenticatedPlayer.PlayerId)) {
+							// Player turn
+							appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
+						} else {
+							// TODO Other player turn: display last score?
+							Dialogs.ShowNotYourTurn ();
+						}
 					}
 				}
 			},
@@ -216,13 +220,13 @@ namespace SuperKoikoukesse.iOS
 			// Error
 			() => {
 				// Display an error dialog?
-				UIAlertView alert = new UIAlertView(
+				UIAlertView alert = new UIAlertView (
 					"Une erreur est survenue",
 					"Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
 					null,
 					"Ok");
 				
-				alert.Show();
+				alert.Show ();
 			},
 			// Player quit
 			() => {
@@ -246,7 +250,7 @@ namespace SuperKoikoukesse.iOS
 					}
 
 					// Remember to select Versus match parameters too
-					if(mode == GameModes.Versus) {
+					if (mode == GameModes.Versus) {
 						ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Difficulty = difficulty;
 					}
 					

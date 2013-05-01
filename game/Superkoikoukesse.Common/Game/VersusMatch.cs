@@ -16,6 +16,8 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public class VersusMatch
 	{
+		public bool IsEnded { get; set; }
+
 		public string MatchId { get; set; }
 
 		public Filter Filter { get; set; }
@@ -31,6 +33,7 @@ namespace Superkoikoukesse.Common
 		public VersusMatch ()
 		{
 			Turns = new List<VersusMatchTurn> ();
+			IsEnded = false;
 		}
 
 		/// <summary>
@@ -42,6 +45,7 @@ namespace Superkoikoukesse.Common
 			JsonObject json = new JsonObject ();
 
 			json.Add (new KeyValuePair<string, JsonValue> ("MatchId", new JsonPrimitive (MatchId)));
+			json.Add (new KeyValuePair<string, JsonValue> ("IsEnded", new JsonPrimitive (IsEnded)));
 			json.Add (new KeyValuePair<string, JsonValue> ("Player1Id", new JsonPrimitive (Player1Id)));
 			json.Add (new KeyValuePair<string, JsonValue> ("Player2Id", new JsonPrimitive (Player2Id)));
 			json.Add (new KeyValuePair<string, JsonValue> ("Difficulty", Difficulty.ToString()));
@@ -73,6 +77,7 @@ namespace Superkoikoukesse.Common
 			MatchId = json ["MatchId"];
 			Player1Id = json ["Player1Id"];
 			Player2Id = json ["Player2Id"];
+			IsEnded = Convert.ToBoolean(json ["IsEnded"].ToString());
 			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"]);
 
 			Filter = new Filter ();
