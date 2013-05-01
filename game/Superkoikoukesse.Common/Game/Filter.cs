@@ -59,7 +59,6 @@ namespace Superkoikoukesse.Common
 		/// <value>The platform.</value>
 		public List<string> Platforms { get; private set; }
 
-		private Random random;
 		private List<GameInfo> matchingGames;
 
 		public Filter (JsonValue json)
@@ -78,8 +77,6 @@ namespace Superkoikoukesse.Common
 			Publishers = publishers;
 			Genres = genres;
 			Platforms = platforms;
-
-			random = new Random (DateTime.Now.Millisecond);
 		}
 
 		/// <summary>
@@ -108,9 +105,12 @@ namespace Superkoikoukesse.Common
 		/// <param name="count">Count.</param>
 		public GameInfo GetGame ()
 		{
+			Logger.Log(LogLevel.Debug, "Petit enculé 2");
 			// Random game
+			var random = new Random (DateTime.Now.Millisecond);
 			int randomIndex = random.Next (matchingGames.Count);
 
+			Logger.Log(LogLevel.Debug, "Petit enculé 1");
 			return matchingGames [randomIndex];
 		}
 
