@@ -172,8 +172,8 @@ namespace SuperKoikoukesse.iOS
 
 				// Is the match over?
 				// We should have one turn for each player
-				if(CurrentMatch.Turns.Count > 0 
-				   && CurrentMatch.Turns.Count % CurrentGKMatch.Participants.Length == 0) {
+				if (CurrentMatch.Turns.Count > 0 
+					&& CurrentMatch.Turns.Count % CurrentGKMatch.Participants.Length == 0) {
 					isMatchOver = true;
 				}
 
@@ -185,12 +185,12 @@ namespace SuperKoikoukesse.iOS
 						GKTurnBasedMatch.DefaultTimeout,
 						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
 						(e) => {
-							Logger.Log (LogLevel.Info, "Game Center Turn ended");
+						Logger.Log (LogLevel.Info, "Game Center Turn ended");
 
-							if (e != null) {
-								Logger.Log (LogLevel.Error, e.DebugDescription);
-							}
+						if (e != null) {
+							Logger.Log (LogLevel.Error, e.DebugDescription);
 						}
+					}
 					);
 				} else {
 
@@ -198,32 +198,37 @@ namespace SuperKoikoukesse.iOS
 					int maxScore = 0;
 					string winnerPlayerId = string.Empty;
 
-					foreach(VersusMatchTurn turn in CurrentMatch.Turns) {
-						if(turn.Score > maxScore) {
+					foreach (VersusMatchTurn turn in CurrentMatch.Turns) {
+						if (turn.Score > maxScore) {
 							winnerPlayerId = turn.PlayerId;
 							maxScore = turn.Score;
+						} else if (turn.Score == maxScore) {
+							winnerPlayerId = string.Empty;
 						}
 					}
 
-					// Set win and deafeat to the players
-					foreach(GKTurnBasedParticipant participant in CurrentGKMatch.Participants) {
-						if(participant.PlayerID == winnerPlayerId) {
-							participant.MatchOutcome = GKTurnBasedMatchOutcome.Won;
-						}
-						else {
-							participant.MatchOutcome = GKTurnBasedMatchOutcome.Lost;
-						}
-					}
-
-					CurrentGKMatch.EndMatchInTurn(
-						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
-						(e) => {
-							Logger.Log (LogLevel.Info, "Game Center Match ended");
-							
-							if (e != null) {
-								Logger.Log (LogLevel.Error, e.DebugDescription);
+					// Set win and defeat state to the players
+					foreach (GKTurnBasedParticipant participant in CurrentGKMatch.Participants) {
+						if (string.IsNullOrEmpty (winnerPlayerId)) {
+							participant.MatchOutcome = GKTurnBasedMatchOutcome.Tied;
+						} else {
+							if (participant.PlayerID == winnerPlayerId) {
+								participant.MatchOutcome = GKTurnBasedMatchOutcome.Won;
+							} else {
+								participant.MatchOutcome = GKTurnBasedMatchOutcome.Lost;
 							}
 						}
+					}
+
+					CurrentGKMatch.EndMatchInTurn (
+						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
+						(e) => {
+						Logger.Log (LogLevel.Info, "Game Center Match ended");
+							
+						if (e != null) {
+							Logger.Log (LogLevel.Error, e.DebugDescription);
+						}
+					}
 					);
 				}
 
@@ -349,14 +354,14 @@ namespace SuperKoikoukesse.iOS
 					match.Participants [1].MatchOutcome = GKTurnBasedMatchOutcome.Second;
 
 					// TODO Select filter
-					this.parent.CurrentMatch.Filter = new Filter ("0", "MP Filter","defaultIcon",
+					this.parent.CurrentMatch.Filter = new Filter ("0", "MP Filter", "defaultIcon",
 					                                              // Test data
 					                                              1990,
 					                                              2050,
 					                                              null,
-					                                              new System.Collections.Generic.List<string>() {"combat"},
+					                                              new System.Collections.Generic.List<string> () {"combat"},
 					                                              null
-														);
+					);
 
 				}
 
