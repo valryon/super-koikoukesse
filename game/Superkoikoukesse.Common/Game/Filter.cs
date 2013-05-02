@@ -134,6 +134,8 @@ namespace Superkoikoukesse.Common
 
 						if (game == null) {
 							Logger.Log (LogLevel.Error, "The game with id " + answerId + " wasn't loaded by the filter!");
+							// HACK : The game is missing, let's not crash.
+							return null;
 						} else {
 							q.Answers.Add (game);
 
