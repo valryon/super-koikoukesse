@@ -60,12 +60,13 @@ namespace Superkoikoukesse.Common
 		public List<string> Platforms { get; private set; }
 
 		/// <summary>
-		/// Define specific game ids
+		/// Define specific game ids and their answers
 		/// </summary>
 		/// <value>The game identifiers.</value>
-		public List<int> RequiredGameIds { get; set; }
+		public Dictionary<int, int[]> RequiredGameIds { get; set; }
 
 		private int currentRequiredGameIdsIndex;
+		private int currentRequiredGameIdsAnswerIndex;
 		private List<GameInfo> matchingGames;
 
 		public Filter (JsonValue json)
@@ -113,40 +114,58 @@ namespace Superkoikoukesse.Common
 		}
 
 		/// <summary>
+		/// Get a new question for a multiplayer match, not the first turn
+		/// </summary>
+		/// <returns>The question.</returns>
+		public Question GetMatchQuestion ()
+		{
+			if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+				
+				if (currentRequiredGameIdsIndex < RequiredGameIds.Count) {
+
+					Question q = new Question ();
+
+					KeyValuePair<int, int[]> questionInfo = RequiredGameIds.ElementAt (currentRequiredGameIdsIndex);
+
+					for (int i=0; i < questionInfo.Value.Length; i++) {
+
+						int answerId = questionInfo.Value[i];
+						GameInfo game = matchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
+
+						if (game == null) {
+							Logger.Log (LogLevel.Error, "The game with id " + answerId + " wasn't loaded by the filter!");
+						} else {
+							q.Answers.Add (game);
+
+							if (answerId == questionInfo.Key) {
+								q.CorrectAnswer = game;
+							}
+						}
+					}
+					
+					currentRequiredGameIdsIndex++;
+
+					return q;
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
 		/// Get a game corresponding to this filter
 		/// </summary>
 		/// <returns>The games.</returns>
 		/// <param name="count">Count.</param>
-		public GameInfo GetGame (bool isRandomAnswer)
+		public GameInfo GetRandomGame ()
 		{
 			GameInfo game = null;
 
-			// Required game
-			if (isRandomAnswer == false) {
-				if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+			// Random game
+			var random = new Random (DateTime.Now.Millisecond);
+			int randomIndex = random.Next (matchingGames.Count);
 
-					if (currentRequiredGameIdsIndex < RequiredGameIds.Count) {
-						int id = RequiredGameIds [currentRequiredGameIdsIndex];
-
-						game = matchingGames.Where (g => g.GameId == id).FirstOrDefault ();
-
-						if (game == null) {
-							Logger.Log (LogLevel.Error, "The game with id " + id + " wasn't loaded by the filter!");
-						}
-					}
-
-					currentRequiredGameIdsIndex++;
-				}
-			}
-
-			if (game == null) {
-				// Random game
-				var random = new Random (DateTime.Now.Millisecond);
-				int randomIndex = random.Next (matchingGames.Count);
-
-				game = matchingGames [randomIndex];
-			}
-
+			game = matchingGames [randomIndex];
 
 			return game;
 		}
@@ -208,8 +227,20 @@ namespace Superkoikoukesse.Common
 			if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
 				JsonArray requiredGameIdJson = new JsonArray ();
 				
-				foreach (var gId in RequiredGameIds) {
-					requiredGameIdJson.Add (gId);
+				foreach (var question in RequiredGameIds) {
+					JsonObject questionJson = new JsonObject ();
+
+					questionJson.Add (new KeyValuePair<string, JsonValue> ("GameId", new JsonPrimitive (question.Key)));
+
+					JsonArray answersJson = new JsonArray ();
+
+					for (int i=0; i<question.Value.Length; i++) {
+						answersJson.Add (question.Value [i]);
+					}
+
+					questionJson.Add ("Answers", answersJson);
+
+					requiredGameIdJson.Add (questionJson);
 				}
 				
 				json.Add ("RequiredGameIds", requiredGameIdJson);
@@ -263,10 +294,19 @@ namespace Superkoikoukesse.Common
 			if (json.ContainsKey ("RequiredGameIds")) {
 				
 				if (json ["RequiredGameIds"] is JsonArray) {
-					RequiredGameIds = new List<int> ();
+					RequiredGameIds = new Dictionary<int, int[]> ();
 					
-					foreach (var gId in ((JsonArray)json["RequiredGameIds"])) {
-						RequiredGameIds.Add (Convert.ToInt32 (gId.ToString ()));
+					foreach (var jsonQuestion in ((JsonArray)json["RequiredGameIds"])) {
+
+						int gameId = Convert.ToInt32 (jsonQuestion ["GameId"].ToString ());
+						List<int> answers = new List<int> ();
+
+						foreach (var jsonAnswer in ((JsonArray)jsonQuestion["Answers"])) {
+							int answerGameId = Convert.ToInt32 (jsonAnswer.ToString ());
+							answers.Add (answerGameId);
+						}
+
+						RequiredGameIds.Add (gameId, answers.ToArray());
 					}
 				}
 			}

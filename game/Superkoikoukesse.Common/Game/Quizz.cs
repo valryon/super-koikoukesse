@@ -259,33 +259,46 @@ namespace Superkoikoukesse.Common
 		{
 			int currentAnswersCount = 0;
 
-			Question q = new Question ();
+			Question q = null;
 
-			bool isFirstAndCorrectAnswer = true;
-
-			while (currentAnswersCount < m_answerCount) {
-
-				// If we have a given game questions list (versus mode), we can randomize all answers except the correct one
-				GameInfo game = Filter.GetGame (! isFirstAndCorrectAnswer);
-
-				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
-
-					q.Answers.Add (game);
-					currentAnswersCount++;
-
-					// Decide that the first will be the correct answer
-					if (isFirstAndCorrectAnswer) {
-
-						q.CorrectAnswer = game;
-						m_correctAnswerIds.Add (q.CorrectAnswer.GameId);
-
-						isFirstAndCorrectAnswer = false;
-					}
+			// Multiplayer and not the first turn?
+			// We must play exactly the same game as the other players
+			if (Mode == GameModes.Versus) {
+				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn == false) {
+					q = Filter.GetMatchQuestion ();
 				}
 			}
-			// Randomize answers
-			q.ShuffleAnswers ();
 
+			// Not multiplayer or no more registered quesiton?
+			// Let's go random
+			if (q == null) {
+
+				q = new Question ();
+				bool isFirstAndCorrectAnswer = true;
+
+				while (currentAnswersCount < m_answerCount) {
+
+					// If we have a given game questions list (versus mode), we can randomize all answers except the correct one
+					GameInfo game = Filter.GetRandomGame ();
+
+					if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
+
+						q.Answers.Add (game);
+						currentAnswersCount++;
+
+						// Decide that the first will be the correct answer
+						if (isFirstAndCorrectAnswer) {
+
+							q.CorrectAnswer = game;
+							m_correctAnswerIds.Add (q.CorrectAnswer.GameId);
+
+							isFirstAndCorrectAnswer = false;
+						}
+					}
+				}
+				// Randomize answers
+				q.ShuffleAnswers ();
+			}
 			return q;
 		}
 
@@ -445,6 +458,23 @@ namespace Superkoikoukesse.Common
 				} 
 			}
 
+			// Multiplayer specifity: register all first player question @ answers
+			if (IsOver == false && Mode == GameModes.Versus) {
+
+				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
+					
+					Filter matchFilter = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Filter;
+
+					if (matchFilter.RequiredGameIds == null) {
+						matchFilter.RequiredGameIds = new Dictionary<int, int[]> ();
+					}
+
+					matchFilter.RequiredGameIds.Add (CurrentQuestion.CorrectAnswer.GameId, 
+					                                 CurrentQuestion.Answers.Select (a => a.GameId).ToArray ()
+					);
+				}
+			}
+
 			// Change image transformation
 			if (Difficulty != GameDifficulties.Normal) {
 				ImageTransformation = getImageTransformation ();
@@ -505,19 +535,6 @@ namespace Superkoikoukesse.Common
 
 			// Multiplayer? End turn
 			if (Mode == GameModes.Versus) {
-				// Register games that have been played
-				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
-
-					Filter matchFilter = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Filter;
-
-					matchFilter.RequiredGameIds = new List<int> ();
-
-					foreach (var gameId in Results.Keys) {
-						matchFilter.RequiredGameIds.Add (gameId);
-					}
-				
-				}
-
 				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
 
 				});
