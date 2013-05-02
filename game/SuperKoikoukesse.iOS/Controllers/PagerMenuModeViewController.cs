@@ -31,8 +31,8 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 
 			string modeId = mode.ToString ().ToLower ();
-			this.titleLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".title", "");
-			this.descriptionLabel.Text = NSBundle.MainBundle.LocalizedString (modeId + ".desc", "");
+			this.titleLabel.Text = Localization.Get (modeId + ".title");
+			this.descriptionLabel.Text = Localization.Get  (modeId + ".desc");
 			this.image.Image = UIImage.FromFile (modeId + ".png");
 
 			this.descriptionLabel.SizeToFit();

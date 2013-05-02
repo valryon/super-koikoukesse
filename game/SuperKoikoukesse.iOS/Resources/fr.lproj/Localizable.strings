@@ -5,5 +5,20 @@
  "survival.title" 		= "Survival";
  "survival.desc" 		= "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
  "versus.title" 		= "Versus";
- "versus.desc" 			= "Affrontez vos amis !";
-
+ "versus.desc" 			= "Affrontez vos amis ! Choisissez un thème, un adversaire et faite le meilleur score pour montrer votre culture jeu-videoludique !";
+ "scores.local"			= "mes meilleurs scores";
+ "scores.online"		= "en ligne";
+ "scores.my"			= "mon score actuel";
+ "scores.first"			= "premier";
+ "scores.second"		= "deuxième";
+ "scores.third"			= "troisième";
+ "credits.small"		= "Un jeu de Pixelnest Studio et Rednalhgih.";
+ "credits.title"		= "Crédits";
+ "credits.legal"		= "Toutes les images utilisées dans le jeu appartiennent à leur propriétaires respectifs, listés ci-dessous.";
+ "shop.title" 			= "Magasin";
+ "button.back"			= "Retour";
+ "button.quit"			= "Quitter";
+ "game.pause"			= "Pause";
+ "game.joker"			= "Joker";
+ "game.score"			= "score";
+ "game.combo"			= "combo";

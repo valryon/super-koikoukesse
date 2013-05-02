@@ -46,6 +46,11 @@ namespace SuperKoikoukesse.iOS
 			creditsLabel.Hidden = true;
 			creditsImage.Hidden = true;
 
+			// Localized elements
+			if(authorsLabel != null) {
+				authorsLabel.Text = Localization.Get("credits.small");
+			}
+
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.LoadPlayerProfile ();
 		}

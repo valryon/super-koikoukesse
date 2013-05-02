@@ -100,6 +100,7 @@
     <Folder Include="Views\iPhone\" />
     <Folder Include="Views\iPad\" />
     <Folder Include="Views\Controls\" />
+    <Folder Include="Tools\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -158,6 +159,7 @@
     <Compile Include="Controllers\GamePauseViewController.designer.cs">
       <DependentUpon>GamePauseViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Localization.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

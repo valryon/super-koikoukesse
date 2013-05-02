@@ -625,6 +625,14 @@
 					<int key="connectionID">500</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">authorsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="626132542"/>
+					</object>
+					<int key="connectionID">1258</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">configButtonPressed:</string>
 						<reference key="source" ref="853069665"/>
@@ -2623,7 +2631,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1257</int>
+			<int key="maxID">1258</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2665,6 +2673,7 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="authorsLabel">UILabel</string>
 						<string key="bgImage">UIImageView</string>
 						<string key="coinsImage">UIImageView</string>
 						<string key="coinsLabel">UILabel</string>
@@ -2679,6 +2688,10 @@
 						<string key="shopButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="authorsLabel">
+							<string key="name">authorsLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="bgImage">
 							<string key="name">bgImage</string>
 							<string key="candidateClassName">UIImageView</string>

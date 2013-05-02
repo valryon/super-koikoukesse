@@ -12,6 +12,9 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UILabel authorsLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton creditsButton { get; set; }
 
 		[Outlet]
@@ -47,11 +50,11 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton debugButton { get; set; }
 
-		[Action ("coinsButtonPressed:")]
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("configButtonPressed:")]
+		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("debugButtonPressed:")]
+		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("paramsButtonPressed:")]
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -59,14 +62,19 @@ namespace SuperKoikoukesse.iOS
 		[Action ("shopButtonPressed:")]
 		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("configButtonPressed:")]
-		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("creditsButtonPressed:")]
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("debugButtonPressed:")]
-		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("coinsButtonPressed:")]
+		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (authorsLabel != null) {
+				authorsLabel.Dispose ();
+				authorsLabel = null;
+			}
+
 			if (creditsButton != null) {
 				creditsButton.Dispose ();
 				creditsButton = null;
