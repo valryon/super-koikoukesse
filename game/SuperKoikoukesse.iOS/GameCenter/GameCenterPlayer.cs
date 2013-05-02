@@ -380,6 +380,17 @@ namespace SuperKoikoukesse.iOS
 			{
 				Logger.Log (LogLevel.Info, "MatchMakerDelegate.PlayerQuitForMatch");
 
+				// Mark current player as quiter
+				foreach(GKTurnBasedParticipant participant in match.Participants) {
+					if(participant.PlayerID == this.parent.PlayerId) {
+						participant.MatchOutcome = GKTurnBasedMatchOutcome.Quit;
+					}
+					else {
+						// Win?
+						participant.MatchOutcome = GKTurnBasedMatchOutcome.Won;
+					}
+				}
+
 				//viewController.DismissViewController (true, null);
 
 				// Delete the match
