@@ -40,7 +40,7 @@ namespace Superkoikoukesse.Common
 		/// Time left for this game (seconds) when quizz starts
 		/// </summary>
 		/// <value>The time left.</value>
-		public float BaseTimeleft {private set; get;}
+		public float BaseTimeleft { private set; get; }
 
 		/// <summary>
 		/// Game is paused?
@@ -110,32 +110,31 @@ namespace Superkoikoukesse.Common
 		/// Current question index
 		/// </summary>
 		/// <value>The question number.</value>
-		public int QuestionNumber {get; private set;}
+		public int QuestionNumber { get; private set; }
 
 		/// <summary>
 		/// Coins to add
 		/// </summary>
 		/// <value>The earned coins.</value>
-		public int EarnedCoins {get; private set;}
+		public int EarnedCoins { get; private set; }
 
 		/// <summary>
 		/// Rank found at the last score add
 		/// </summary>
 		/// <value>The rank for last score.</value>
-		public int  RankForLastScore {get; private set;}
+		public int  RankForLastScore { get; private set; }
 
 		/// <summary>
 		/// Filter for game database
 		/// </summary>
 		/// <value>The filter.</value>
-		public Filter Filter {get; private set;}
+		public Filter Filter { get; private set; }
 
 		// Game parameters
 		private Queue<Question> m_questionsPool;
 		private int m_initialQuestionCount;
 		private bool m_infiniteQuestions;
 		private int m_answerCount;
-
 		private int m_baseScore;
 		private int m_jokerMinPart;
 		private int m_mistakesCount;
@@ -262,9 +261,12 @@ namespace Superkoikoukesse.Common
 
 			Question q = new Question ();
 
+			bool isFirstAndCorrectAnswer = true;
+
 			while (currentAnswersCount < m_answerCount) {
 
-				GameInfo game = Filter.GetGame();
+				// If we have a given game questions list (versus mode), we can randomize all answers except the correct one
+				GameInfo game = Filter.GetGame (! isFirstAndCorrectAnswer);
 
 				if (q.Answers.Contains (game) == false && m_correctAnswerIds.Contains (game.GameId) == false) {
 
@@ -272,10 +274,12 @@ namespace Superkoikoukesse.Common
 					currentAnswersCount++;
 
 					// Decide that the first will be the correct answer
-					if (q.CorrectAnswer == null) {
+					if (isFirstAndCorrectAnswer) {
 
 						q.CorrectAnswer = game;
 						m_correctAnswerIds.Add (q.CorrectAnswer.GameId);
+
+						isFirstAndCorrectAnswer = false;
 					}
 				}
 			}
@@ -296,7 +300,7 @@ namespace Superkoikoukesse.Common
 
 				foreach (ImageTransformations it in Enum.GetValues (typeof(ImageTransformations))) {
 
-					if(it != ImageTransformations.None) {
+					if (it != ImageTransformations.None) {
 						m_availableTransformations.Add (it);
 					}
 				}
@@ -344,7 +348,7 @@ namespace Superkoikoukesse.Common
 					}
 
 					// Apply bonus/malus per mode
-					if(Mode == GameModes.ScoreAttack) {
+					if (Mode == GameModes.ScoreAttack) {
 						malus = (int)TimeLeft;
 					}
 
@@ -359,8 +363,7 @@ namespace Superkoikoukesse.Common
 					// Apply bonus/malus per mode
 					if (Mode == GameModes.ScoreAttack) {
 						malus = 25;
-					}
-					else if (Mode == GameModes.TimeAttack) {
+					} else if (Mode == GameModes.TimeAttack) {
 
 						malus = 25;
 
@@ -444,7 +447,7 @@ namespace Superkoikoukesse.Common
 
 			// Change image transformation
 			if (Difficulty != GameDifficulties.Normal) {
-				ImageTransformation =  getImageTransformation();
+				ImageTransformation = getImageTransformation ();
 			}
 		}
 
@@ -486,10 +489,11 @@ namespace Superkoikoukesse.Common
 			}
 		}
 
-		public void EndQuizz() {
+		public void EndQuizz ()
+		{
 
 			// Add score to local DB
-			RankForLastScore = DatabaseService.Instance.AddLocalScore(new LocalScore() {
+			RankForLastScore = DatabaseService.Instance.AddLocalScore (new LocalScore () {
 				Mode = Mode,
 				Difficulty = Difficulty,
 				Date = DateTime.Now,
@@ -500,21 +504,34 @@ namespace Superkoikoukesse.Common
 			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
 			// Multiplayer? End turn
-			if(Mode == GameModes.Versus) {
-				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn(Score,() => {
+			if (Mode == GameModes.Versus) {
+				// Register games that have been played
+				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
+
+					Filter matchFilter = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Filter;
+
+					matchFilter.RequiredGameIds = new List<int> ();
+
+					foreach (var gameId in Results.Keys) {
+						matchFilter.RequiredGameIds.Add (gameId);
+					}
+				
+				}
+
+				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
 
 				});
 			}
 
 			// Send score to our server
-			SendQuizzData();
+			SendQuizzData ();
 
 			// New coins
 			// SOLO = 1 coins per 1000 points
-			EarnedCoins = (int)Math.Round(Score / 1000f);
+			EarnedCoins = (int)Math.Round (Score / 1000f);
 
 			// Send those coins
-			ProfileService.Instance.AddCoins(EarnedCoins);
+			ProfileService.Instance.AddCoins (EarnedCoins);
 		}
 
 		#region Stats

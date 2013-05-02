@@ -59,6 +59,13 @@ namespace Superkoikoukesse.Common
 		/// <value>The platform.</value>
 		public List<string> Platforms { get; private set; }
 
+		/// <summary>
+		/// Define specific game ids
+		/// </summary>
+		/// <value>The game identifiers.</value>
+		public List<int> RequiredGameIds { get; set; }
+
+		private int currentRequiredGameIdsIndex;
 		private List<GameInfo> matchingGames;
 
 		public Filter (JsonValue json)
@@ -77,6 +84,9 @@ namespace Superkoikoukesse.Common
 			Publishers = publishers;
 			Genres = genres;
 			Platforms = platforms;
+
+			RequiredGameIds = null;
+			currentRequiredGameIdsIndex = 0;
 		}
 
 		/// <summary>
@@ -88,6 +98,10 @@ namespace Superkoikoukesse.Common
 			BackgroundWorker worker = new BackgroundWorker ();
 
 			worker.DoWork += (object sender, DoWorkEventArgs e) => {
+
+				if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+					currentRequiredGameIdsIndex = 0;
+				}
 
 				matchingGames = DatabaseService.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
 
@@ -103,13 +117,38 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <returns>The games.</returns>
 		/// <param name="count">Count.</param>
-		public GameInfo GetGame ()
+		public GameInfo GetGame (bool isRandomAnswer)
 		{
-			// Random game
-			var random = new Random (DateTime.Now.Millisecond);
-			int randomIndex = random.Next (matchingGames.Count);
+			GameInfo game = null;
 
-			return matchingGames [randomIndex];
+			// Required game
+			if (isRandomAnswer == false) {
+				if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+
+					if (currentRequiredGameIdsIndex < RequiredGameIds.Count) {
+						int id = RequiredGameIds [currentRequiredGameIdsIndex];
+
+						game = matchingGames.Where (g => g.GameId == id).FirstOrDefault ();
+
+						if (game == null) {
+							Logger.Log (LogLevel.Error, "The game with id " + id + " wasn't loaded by the filter!");
+						}
+					}
+
+					currentRequiredGameIdsIndex++;
+				}
+			}
+
+			if (game == null) {
+				// Random game
+				var random = new Random (DateTime.Now.Millisecond);
+				int randomIndex = random.Next (matchingGames.Count);
+
+				game = matchingGames [randomIndex];
+			}
+
+
+			return game;
 		}
 
 		/// <summary>
@@ -159,14 +198,22 @@ namespace Superkoikoukesse.Common
 			}
 			if (Platforms != null && Platforms.Count > 0) {
 				JsonArray platformsJson = new JsonArray ();
-
+				
 				foreach (var platform in Platforms) {
 					platformsJson.Add (platform);
 				}
-
+				
 				json.Add ("Platforms", platformsJson);
 			}
-
+			if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+				JsonArray requiredGameIdJson = new JsonArray ();
+				
+				foreach (var gId in RequiredGameIds) {
+					requiredGameIdJson.Add (gId);
+				}
+				
+				json.Add ("RequiredGameIds", requiredGameIdJson);
+			}
 
 			return json;
 		}
@@ -212,6 +259,19 @@ namespace Superkoikoukesse.Common
 					}
 				}
 			}
+
+			if (json.ContainsKey ("RequiredGameIds")) {
+				
+				if (json ["RequiredGameIds"] is JsonArray) {
+					RequiredGameIds = new List<int> ();
+					
+					foreach (var gId in ((JsonArray)json["RequiredGameIds"])) {
+						RequiredGameIds.Add (Convert.ToInt32 (gId.ToString ()));
+					}
+				}
+			}
+
+
 		}
 
 	}
