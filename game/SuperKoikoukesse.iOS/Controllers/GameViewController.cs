@@ -16,6 +16,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class GameViewController : UIViewController
 	{
 		private Quizz m_quizz;
+		private NSTimer m_timer;
 		private UIImage m_currentImage, m_pauseImage;
 		private Random random;
 
