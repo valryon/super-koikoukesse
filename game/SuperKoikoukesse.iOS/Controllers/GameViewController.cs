@@ -589,22 +589,19 @@ namespace SuperKoikoukesse.iOS
 				filter = pixellateFilter;
 			}  else if (m_quizz.ImageTransformation == ImageTransformations.Test) {
 
-				// Pixelate!
-				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
+				GPUImageSwirlFilter testFilter = new GPUImageSwirlFilter();
 
-				float duration = Constants.PixelizationDuration;
+				float duration = 5f;
 				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
 
-				// Get the pixelate factor
-				// From 0 (clear) to 1f (max, do not do that)
-				float startPixelateFactor = 0.01f;
-				float stepValue = (startPixelateFactor / duration);
-				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
+				float startValue = 1f;
+				float stepValue = (startValue / duration);
+				float currentValue = startValue + (imageTransformationElapsedTime * stepValue);
 
-				pixellateFilter.FractionalWidthOfAPixel = currentPixelateFactor;
+				testFilter.Radius = currentValue;
 
 				// Set the filter
-				filter = pixellateFilter;
+				filter = testFilter;
 			} 
 
 			if(filter != null) {
@@ -630,7 +627,7 @@ namespace SuperKoikoukesse.iOS
 					animationIntervalBase = Constants.PixelizationDuration / 12f;
 					break;
 				default:
-
+					// Update with the timer
 					animationIntervalBase = timerUpdateFrequency;
 					break;
 			}
