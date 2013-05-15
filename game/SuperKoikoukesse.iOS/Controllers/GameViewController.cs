@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading;
 using MonoTouch.CoreGraphics;
 using GPUImage;
+using GPUImage.Filters;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -434,6 +435,8 @@ namespace SuperKoikoukesse.iOS
 			bool isInitialized = (imageTransformationElapsedTime > 0f);
 			imageTransformationElapsedTime += elapsedTime;
 
+			GPUImageFilter filter = null;
+
 			// Zoom and unzoom
 			if(m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
 
@@ -443,7 +446,8 @@ namespace SuperKoikoukesse.iOS
 				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
 
 				// From elapsed time and animation duration
-				// Get the current animation value by linear interpolation
+				// Get the current zoom factor (10x, 8x, etc)
+				// We stop at 1x and not 0x that's why we substract 1 here.
 				float stepValue = (startZoomFactor-1) / duration;
 				float currentZoomFactor = startZoomFactor - (imageTransformationElapsedTime * stepValue);
 
@@ -459,14 +463,40 @@ namespace SuperKoikoukesse.iOS
 					width = Math.Max(width, imageBaseSizeWidth);
 					height = Math.Max(height, imageBaseSizeHeight);
 
-					// Center in the scroll view
+					// Center largest image in the scroll view
 					float x = (imageBaseSizeWidth/2) - (width / 2);
 					float y = (imageBaseSizeHeight/2) - (height / 2);
 
 					gameImage.Frame = new RectangleF (x, y, width, height);
 				});
+			} else if(m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
+
+				// Pixelate!
+				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
+
+				// Get the pixelate factor
+				// From 0 (clear) to 1f (max, do not do that)
+				float duration = Constants.PixelizationDuration;
+				float startPixelateFactor = 0.07f;
+				float stepValue = (startPixelateFactor / duration);
+				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
+
+				pixellateFilter.FractionalWidthOfAPixel = currentPixelateFactor;
+
+				// Set the filter
+				filter = pixellateFilter;
 			}
 
+			if(filter != null) {
+
+				// Generic filter call
+				UIImage processedImage = filter.ImageByFilteringImage (m_currentImage);
+
+				// Set the image
+				BeginInvokeOnMainThread (() => {
+					gameImage.Image = processedImage;
+				});
+			}
 		}
 
 		private UIView progressiveDrawView;
@@ -477,6 +507,8 @@ namespace SuperKoikoukesse.iOS
 		private void setImageAnimation ()
 		{
 			imageTransformationElapsedTime = 0;
+
+			updateImageTransformation (0f);
 
 			// image size
 			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
