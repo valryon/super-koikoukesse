@@ -24,6 +24,9 @@ namespace SuperKoikoukesse.iOS
 		private float m_timerBarSize;
 		private float imageTransformationElapsedTime;
 
+		private UIView progressiveDrawView;
+		private float progressiveDrawTargetX,progressiveDrawTargetY;
+
 		private GamePauseViewController pauseViewController;
 
 		#region UIView stuff
@@ -432,13 +435,12 @@ namespace SuperKoikoukesse.iOS
 			// REMEMBER WE ARE ON THE TIMER THREAD
 			// Not the UI one.
 
-			bool isInitialized = (imageTransformationElapsedTime > 0f);
 			imageTransformationElapsedTime += elapsedTime;
 
 			GPUImageFilter filter = null;
 
 			// Zoom and unzoom
-			if(m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
+			if (m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
 
 				float startZoomFactor = Constants.DezoomFactor;
 				float duration = Constants.DezoomDuration;
@@ -448,7 +450,7 @@ namespace SuperKoikoukesse.iOS
 				// From elapsed time and animation duration
 				// Get the current zoom factor (10x, 8x, etc)
 				// We stop at 1x and not 0x that's why we substract 1 here.
-				float stepValue = (startZoomFactor-1) / duration;
+				float stepValue = (startZoomFactor - 1) / duration;
 				float currentZoomFactor = startZoomFactor - (imageTransformationElapsedTime * stepValue);
 
 				BeginInvokeOnMainThread (() => {
@@ -469,14 +471,16 @@ namespace SuperKoikoukesse.iOS
 
 					gameImage.Frame = new RectangleF (x, y, width, height);
 				});
-			} else if(m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
+			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 
 				// Pixelate!
 				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
 
+				float duration = Constants.PixelizationDuration;
+				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
+				
 				// Get the pixelate factor
 				// From 0 (clear) to 1f (max, do not do that)
-				float duration = Constants.PixelizationDuration;
 				float startPixelateFactor = 0.07f;
 				float stepValue = (startPixelateFactor / duration);
 				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
@@ -485,6 +489,94 @@ namespace SuperKoikoukesse.iOS
 
 				// Set the filter
 				filter = pixellateFilter;
+			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
+
+				float duration = Constants.ProgressiveDrawingDuration;
+				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
+			
+				// All in the UI thread so we can acces UI things properties
+				BeginInvokeOnMainThread (() => {
+
+					if (progressiveDrawView == null) {
+
+						// Choose a random corner
+						float targetX = 0f;
+						float targetY = 0f;
+
+						int randomX = random.Next (3) - 1;
+						int randomY = random.Next (3) - 1;
+
+						switch (randomX) {
+
+							case -1:
+							// Left
+							targetX = - gameImageScroll.Frame.Width;
+							break;
+							case 0:
+							// No move
+							targetX = 0;
+							break;
+							case 1:
+							// Right
+							targetX = gameImageScroll.Frame.Width;
+							break;
+						}
+
+						// Avoid black square not moving...
+						if (randomX == 0 && randomY == 0) {
+							randomY = 1;
+						}
+						switch (randomY) {
+
+							case -1:
+							// Top
+							targetY = - gameImageScroll.Frame.Height;
+							break;
+							case 0:
+							// No move
+							targetY = 0;
+							break;
+							case 1:
+							// Bottom
+							targetY = gameImageScroll.Frame.Height;
+							break;
+						}
+
+						// Two directions? Speed is slower (= animation last longer)
+						if(randomX != 0 && randomY != 0) {
+							duration = duration  + (duration * (1/2));
+						}
+
+						progressiveDrawTargetX = targetX;
+						progressiveDrawTargetY = targetY;
+
+						// Create black square
+						progressiveDrawView = new UIView (
+							new RectangleF (0,0,
+						                gameImageScroll.Frame.Width,
+						                gameImageScroll.Frame.Height
+						                )
+							);
+
+						progressiveDrawView.BackgroundColor = UIColor.Black;
+						gameImageScroll.AddSubview (progressiveDrawView);
+					} 
+					else 
+					{
+						// Move the black square
+						// The the movement value for each second
+						// Remember that we start from 0,0
+						float progressiveDrawingStepValueX = progressiveDrawTargetX / duration;
+						float progressiveDrawingStepValueY = progressiveDrawTargetY / duration;
+
+						// Apply the movement for the elapsed time
+						float x = progressiveDrawingStepValueX * imageTransformationElapsedTime;
+						float y = progressiveDrawingStepValueY * imageTransformationElapsedTime;
+
+						progressiveDrawView.Frame = new RectangleF (x, y, gameImageScroll.Frame.Width, gameImageScroll.Frame.Height);
+					}
+					
+				});
 			}
 
 			if(filter != null) {
@@ -499,172 +591,22 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		private UIView progressiveDrawView;
-
 		/// <summary>
 		/// Initialize image transformation
 		/// </summary>
 		private void setImageAnimation ()
 		{
+			// Reset any related var
 			imageTransformationElapsedTime = 0;
 
+			// Set first image to display
 			updateImageTransformation (0f);
 
-			// image size
-			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
-			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
-
-			// Stop all running animations
-			if (m_animationTimer != null) {
-				m_animationTimer.Dispose ();
-				m_animationTimer = null;
-			}
-		
+			// The black square from progressive drawing
 			if (progressiveDrawView != null) {
 				progressiveDrawView.RemoveFromSuperview ();
 				progressiveDrawView = null;
 			}
-
-			string animationKey = "imageTransformation";
-
-			// Stop all animations
-			View.Layer.RemoveAnimation (animationKey);
-			gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
-
-			Logger.Log (LogLevel.Debug, "Image transformation: " + m_quizz.ImageTransformation);
-
-			if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
-
-				float duration = Constants.ProgressiveDrawingDuration;
-
-				// Random corner
-				float targetX = 0f;
-				float targetY = 0f;
-
-				int randomX = random.Next (3) - 1;
-				int randomY = random.Next (3) - 1;
-
-				switch (randomX) {
-					
-				case -1:
-					// Left
-					targetX = gameImage.Frame.X - gameImage.Frame.Width;
-					break;
-				case 0:
-					// No move
-					targetX = gameImage.Frame.X;
-					break;
-				case 1:
-					// Right
-					targetX = gameImage.Frame.X + gameImage.Frame.Width;
-					break;
-				}
-
-				// Avoid black square not moving...
-				if (randomX == 0 && randomY == 0) {
-					randomY = 1;
-				}
-				switch (randomY) {
-					
-				case -1:
-					// Top
-					targetY = gameImage.Frame.Y - gameImage.Frame.Height;
-					break;
-				case 0:
-					// No move
-					targetY = gameImage.Frame.Y;
-					break;
-				case 1:
-					// Bottom
-					targetY = gameImage.Frame.Y + gameImage.Frame.Height;
-					break;
-				}
-
-				// Two directions? Speed is slower (= animation last longer)
-				if(randomX != 0 && randomY != 0) {
-					duration = duration  + (duration * (1/2));
-				}
-
-				// Create black square
-				progressiveDrawView = new UIView (
-					new RectangleF (gameImage.Frame.X,
-				               gameImage.Frame.Y,
-				               gameImage.Frame.Width,
-				               gameImage.Frame.Height
-				)
-				);
-				progressiveDrawView.BackgroundColor = UIColor.Black;
-				gameImageScroll.AddSubview (progressiveDrawView);
-//
-//				UIView.Animate (
-//					duration,
-//					() => {
-//					progressiveDrawView.Frame = new RectangleF (targetX, targetY, imageBaseSizeWidth, imageBaseSizeHeight);
-//				});
-			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
-				
-				m_currentPixelateFactor = 0.025f;
-				pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
-				
-				// Thread animation
-				var thread = new Thread (() => {
-
-					using (var pool = new NSAutoreleasePool()) {
-
-						float stepDuration = 0.15f;
-						float time = 0f;
-
-						m_animationTimer = NSTimer.CreateRepeatingScheduledTimer (stepDuration, delegate { 
-
-							time += (float)m_animationTimer.TimeInterval;
-
-							m_currentPixelateFactor += (stepDuration / Constants.PixelizationDuration) / 5f; // The magic number here is to slow the effet, because after 50% images just look like 100% images.
-
-							if (time >= Constants.PixelizationDuration) {
-								if (m_animationTimer != null) {
-									m_animationTimer.Dispose ();
-								}
-
-								m_currentPixelateFactor = 1f;
-							}
-
-							pixelateGameImage (m_currentPixelateFactor, imageBaseSizeWidth, imageBaseSizeHeight);
-						});
-						
-						NSRunLoop.Current.Run ();
-					}
-				});
-//				thread.Start ();
-			}
-		}
-		
-		/// <summary>
-		/// Downsample and upsample the game image to create a pixelate effect
-		/// </summary>
-		/// <param name="pixelateFactor">Between 0 and 1</param>
-		private void pixelateGameImage (float pixelateFactor, float maxWidth, float maxHeight)
-		{
-			if (pixelateFactor <= 0f)
-				pixelateFactor = 0.01f;
-			if (pixelateFactor > 1f)
-				pixelateFactor = 1f;
-
-			// Downscale by N
-			var a = m_currentImage.Scale (new SizeF ((float)Math.Round (maxWidth * pixelateFactor), (float)Math.Round (maxHeight * pixelateFactor)));
-			if (a != null) {
-
-				// Upscale by N
-				a.Scale (new SizeF (maxWidth, maxHeight));
-
-				// Convolve by NxN
-				// - Create an empty image of the desired size
-
-				this.BeginInvokeOnMainThread (() => {
-					gameImage.Image = a;
-				});
-			}
-
-
 		}
 		
 		#endregion
