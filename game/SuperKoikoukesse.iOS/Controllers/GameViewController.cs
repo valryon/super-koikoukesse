@@ -21,6 +21,7 @@ namespace SuperKoikoukesse.iOS
 		private Random random;
 
 		private float m_timerBarSize;
+		private float imageTransformationElapsedTime;
 
 		private GamePauseViewController pauseViewController;
 
@@ -156,27 +157,36 @@ namespace SuperKoikoukesse.iOS
 
 				// Every 1 sec we update game timer
 				m_timer = NSTimer.CreateRepeatingScheduledTimer (timerInterval, delegate { 
-					m_quizz.SubstractTime (timerInterval);
 
-					if (m_quizz.TimeLeft < 0) {
+					if (m_quizz.IsPaused == false) 
+					{
+						m_quizz.SubstractTime (timerInterval);
 
-						m_quizz.TimeIsOver ();
+						updateImageTransformation(timerInterval);
 
-						// No answer selected
-						this.InvokeOnMainThread (() => {
-							nextQuestion ();
-						});
-					} else {
-						// Update timer label and bar (UI Thread!)
-						this.InvokeOnMainThread (() => {
+						if (m_quizz.TimeLeft < 0) {
 
-							// Find the current bar height
-							float pos = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
-							if (timerBarSize.Constant > 125f)
-								timerLabelSize.Constant = pos - 100f;
-							timerBarSize.Constant = pos;
-							timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
-						});
+							m_quizz.TimeIsOver ();
+
+							// No answer selected
+							this.InvokeOnMainThread (() => {
+								nextQuestion ();
+							});
+						} else {
+							// Update timer label and bar (UI Thread!)
+							this.InvokeOnMainThread (() => {
+
+								// Find the current bar height
+								float pos = m_quizz.TimeLeft * m_timerBarSize / m_quizz.BaseTimeleft;
+								if (timerBarSize.Constant > 125f)
+								{
+									timerLabelSize.Constant = pos - 100f;
+								}
+
+								timerBarSize.Constant = pos;
+								timeLeftLabel.Text = m_quizz.TimeLeft.ToString ("00");
+							});
+						}
 					}
 				});
 
@@ -394,9 +404,6 @@ namespace SuperKoikoukesse.iOS
 
 				setGameButtonTitles (null);
 
-				// Pause game
-				stopGameTimer ();
-
 			} else {
 
 				pauseViewController.View.RemoveFromSuperview();
@@ -404,9 +411,6 @@ namespace SuperKoikoukesse.iOS
 				gameImage.Image = m_currentImage;
 
 				setGameButtonTitles (m_quizz.CurrentQuestion);
-
-				// Resume game
-				setGameTimer ();
 			}
 		}
 
@@ -415,10 +419,65 @@ namespace SuperKoikoukesse.iOS
 		
 		#region Image Transformations
 
+
+
+		private void updateImageTransformation(float elapsedTime) {
+
+			if (m_quizz.ImageTransformation == ImageTransformations.None) {
+				return;
+			}
+
+			// Update the image transformation 
+			// REMEMBER WE ARE ON THE TIMER THREAD
+			// Not the UI one.
+
+			bool isInitialized = (imageTransformationElapsedTime > 0f);
+			imageTransformationElapsedTime += elapsedTime;
+
+			// Zoom and unzoom
+			if(m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
+
+				float startZoomFactor = Constants.DezoomFactor;
+				float duration = Constants.DezoomDuration;
+
+				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
+
+				// From elapsed time and animation duration
+				// Get the current animation value by linear interpolation
+				float stepValue = (startZoomFactor-1) / duration;
+				float currentZoomFactor = startZoomFactor - (imageTransformationElapsedTime * stepValue);
+
+				BeginInvokeOnMainThread (() => {
+
+					// image size
+					float imageBaseSizeWidth = gameImageScroll.Frame.Width;
+					float imageBaseSizeHeight = gameImageScroll.Frame.Height;
+
+					float width = imageBaseSizeWidth * currentZoomFactor;
+					float height = imageBaseSizeHeight * currentZoomFactor;
+
+					width = Math.Max(width, imageBaseSizeWidth);
+					height = Math.Max(height, imageBaseSizeHeight);
+
+					// Center in the scroll view
+					float x = (imageBaseSizeWidth/2) - (width / 2);
+					float y = (imageBaseSizeHeight/2) - (height / 2);
+
+					gameImage.Frame = new RectangleF (x, y, width, height);
+				});
+			}
+
+		}
+
 		private UIView progressiveDrawView;
-		
+
+		/// <summary>
+		/// Initialize image transformation
+		/// </summary>
 		private void setImageAnimation ()
 		{
+			imageTransformationElapsedTime = 0;
+
 			// image size
 			float imageBaseSizeWidth = gameImageScroll.Frame.Width;
 			float imageBaseSizeHeight = gameImageScroll.Frame.Height;
@@ -442,27 +501,7 @@ namespace SuperKoikoukesse.iOS
 
 			Logger.Log (LogLevel.Debug, "Image transformation: " + m_quizz.ImageTransformation);
 
-			if (m_quizz.ImageTransformation == ImageTransformations.Unzoom) {
-				
-				// Images are 500*500
-				// Scroll view is 250*250
-				// Dezoom consists of center the image on a dimension and dezoom to its original size
-				float startZoomFactor = Constants.DezoomFactor;
-				float width = gameImage.Frame.Width * startZoomFactor;
-				float height = gameImage.Frame.Height * startZoomFactor;
-				
-				float x = imageBaseSizeWidth - (width / 2);
-				float y = imageBaseSizeHeight - (height / 2);
-				
-				gameImage.Frame = new RectangleF (x, y, width, height);
-
-				UIView.BeginAnimations (animationKey);
-				UIView.SetAnimationDuration (Constants.DezoomDuration);
-				gameImage.Frame = new RectangleF (0, 0, imageBaseSizeWidth, imageBaseSizeHeight);
-				UIView.CommitAnimations ();
-
-				
-			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
+			if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
 
 				float duration = Constants.ProgressiveDrawingDuration;
 
@@ -524,12 +563,12 @@ namespace SuperKoikoukesse.iOS
 				);
 				progressiveDrawView.BackgroundColor = UIColor.Black;
 				gameImageScroll.AddSubview (progressiveDrawView);
-
-				UIView.Animate (
-					duration,
-					() => {
-					progressiveDrawView.Frame = new RectangleF (targetX, targetY, imageBaseSizeWidth, imageBaseSizeHeight);
-				});
+//
+//				UIView.Animate (
+//					duration,
+//					() => {
+//					progressiveDrawView.Frame = new RectangleF (targetX, targetY, imageBaseSizeWidth, imageBaseSizeHeight);
+//				});
 			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
 				
 				m_currentPixelateFactor = 0.025f;
@@ -563,7 +602,7 @@ namespace SuperKoikoukesse.iOS
 						NSRunLoop.Current.Run ();
 					}
 				});
-				thread.Start ();
+//				thread.Start ();
 			}
 		}
 		
