@@ -15,6 +15,8 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class GameViewController : UIViewController
 	{
+		private const float timerUpdateFrequency = 0.025f;
+
 		private Quizz m_quizz;
 		private NSTimer m_timer;
 		private UIImage m_currentImage, m_pauseImage;
@@ -23,6 +25,8 @@ namespace SuperKoikoukesse.iOS
 		private float m_timerBarSize;
 		private float imageTransformationElapsedTime;
 
+		// Image transformations
+		private float animationIntervalBase,animationIntervalCountdown;
 		private UIView progressiveDrawView;
 		private float progressiveDrawTargetX,progressiveDrawTargetY;
 
@@ -156,16 +160,14 @@ namespace SuperKoikoukesse.iOS
 		{
 			using (var pool = new NSAutoreleasePool()) {
 
-				float timerInterval = 0.025f;
-
 				// Every 1 sec we update game timer
-				m_timer = NSTimer.CreateRepeatingScheduledTimer (timerInterval, delegate { 
+				m_timer = NSTimer.CreateRepeatingScheduledTimer (timerUpdateFrequency, delegate { 
 
 					if (m_quizz.IsPaused == false) 
 					{
-						m_quizz.SubstractTime (timerInterval);
+						m_quizz.SubstractTime (timerUpdateFrequency);
 
-						updateImageTransformation(timerInterval);
+						updateImageTransformation(timerUpdateFrequency);
 
 						if (m_quizz.TimeLeft < 0) {
 
@@ -430,12 +432,21 @@ namespace SuperKoikoukesse.iOS
 				return;
 			}
 
+			imageTransformationElapsedTime += elapsedTime;
+
+			// Check countdown, to know if we should update image
+			animationIntervalCountdown -= elapsedTime;
+			if (animationIntervalCountdown <= 0f) {
+				animationIntervalCountdown = animationIntervalBase;
+			} else {
+				// Do not update 
+				return;
+			}
+
 			// Update the image transformation 
 			// REMEMBER WE ARE ON THE TIMER THREAD
 			// Not the UI one.
-
-			imageTransformationElapsedTime += elapsedTime;
-
+			// Don't worry, system will bring it back to you if you forget. So kind.
 			GPUImageFilter filter = null;
 
 			// Zoom and unzoom
@@ -470,24 +481,6 @@ namespace SuperKoikoukesse.iOS
 
 					gameImage.Frame = new RectangleF (x, y, width, height);
 				});
-			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
-
-				// Pixelate!
-				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
-
-				float duration = Constants.PixelizationDuration;
-				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
-				
-				// Get the pixelate factor
-				// From 0 (clear) to 1f (max, do not do that)
-				float startPixelateFactor = 0.07f;
-				float stepValue = (startPixelateFactor / duration);
-				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
-
-				pixellateFilter.FractionalWidthOfAPixel = currentPixelateFactor;
-
-				// Set the filter
-				filter = pixellateFilter;
 			} else if (m_quizz.ImageTransformation == ImageTransformations.ProgressiveDrawing) {
 
 				float duration = Constants.ProgressiveDrawingDuration;
@@ -576,7 +569,43 @@ namespace SuperKoikoukesse.iOS
 					}
 					
 				});
-			}
+			} else if (m_quizz.ImageTransformation == ImageTransformations.Pixelization) {
+
+				// Pixelate!
+				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
+
+				float duration = Constants.PixelizationDuration;
+				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
+
+				// Get the pixelate factor
+				// From 0 (clear) to 1f (max, do not do that)
+				float startPixelateFactor = 0.07f;
+				float stepValue = (startPixelateFactor / duration);
+				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
+
+				pixellateFilter.FractionalWidthOfAPixel = currentPixelateFactor;
+
+				// Set the filter
+				filter = pixellateFilter;
+			}  else if (m_quizz.ImageTransformation == ImageTransformations.Test) {
+
+				// Pixelate!
+				GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter ();
+
+				float duration = Constants.PixelizationDuration;
+				imageTransformationElapsedTime = Math.Min (imageTransformationElapsedTime, duration);
+
+				// Get the pixelate factor
+				// From 0 (clear) to 1f (max, do not do that)
+				float startPixelateFactor = 0.01f;
+				float stepValue = (startPixelateFactor / duration);
+				float currentPixelateFactor = startPixelateFactor - (imageTransformationElapsedTime * stepValue);
+
+				pixellateFilter.FractionalWidthOfAPixel = currentPixelateFactor;
+
+				// Set the filter
+				filter = pixellateFilter;
+			} 
 
 			if(filter != null) {
 
@@ -595,10 +624,21 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		private void setImageAnimation ()
 		{
+			// Define frequency
+			switch (m_quizz.ImageTransformation) {
+				case ImageTransformations.Pixelization: 
+					animationIntervalBase = Constants.PixelizationDuration / 12f;
+					break;
+				default:
+
+					animationIntervalBase = timerUpdateFrequency;
+					break;
+			}
 			// Reset any related var
 			imageTransformationElapsedTime = 0;
 
 			// Set first image to display
+			animationIntervalCountdown = 0f;
 			updateImageTransformation (0f);
 
 			// The black square from progressive drawing

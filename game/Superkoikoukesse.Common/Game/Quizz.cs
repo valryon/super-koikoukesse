@@ -309,7 +309,7 @@ namespace Superkoikoukesse.Common
 		private ImageTransformations getImageTransformation ()
 		{
 			// HACK DEBUG
-//			return ImageTransformations.ProgressiveDrawing;
+			return ImageTransformations.Pixelization;
 
 			if (m_availableTransformations == null) {
 				m_availableTransformations = new List<ImageTransformations> ();
