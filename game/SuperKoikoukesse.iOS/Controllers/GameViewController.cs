@@ -8,6 +8,7 @@ using Superkoikoukesse.Common;
 using System.IO;
 using System.Threading;
 using MonoTouch.CoreGraphics;
+using GPUImage;
 
 namespace SuperKoikoukesse.iOS
 {
