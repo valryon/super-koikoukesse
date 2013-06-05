@@ -163,6 +163,7 @@
       <DependentUpon>GamePauseViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Localization.cs" />
+    <Compile Include="Views\ViewTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -179,7 +180,6 @@
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\PagerMenuInfosView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\PagerMenuModeView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\ScoreView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\PagerMenuHighscoresView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />

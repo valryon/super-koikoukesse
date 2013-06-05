@@ -13,10 +13,10 @@ namespace SuperKoikoukesse.iOS
 		private Quizz quizz;
 		private HighScoresControlViewController highScoreControl;
 
-		public ScoreViewController () 
-			: base ("ScoreView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+		public ScoreViewController (Quizz q) 
+			: base (null, null)
 		{
-
+			quizz = q;
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
@@ -24,47 +24,76 @@ namespace SuperKoikoukesse.iOS
 			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
 		}
 		
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			highScoreControl = new HighScoresControlViewController ();
-			bodyView.AddSubview (highScoreControl.View);
+			createView ();
 
 			SetViewDataFromQuizz ();
 		}
 
-		/// <summary>
-		/// Sets the quizz data.
-		/// </summary>
-		/// <param name="q">Finished quizz</param>
-		public void SetQuizzData (Quizz q)
+		private void createView() 
 		{
-			this.quizz = q;
+			View = ViewTools.CreateUIView ();
 
-			SetViewDataFromQuizz ();
+			// Common
+			// ------------------------------------------
+
+			// Game over label
+			UILabel titleLabel = ViewTools.Createlabel(new RectangleF (10, 10, 150, 50), Localization.Get("game.over"));
+			View.AddSubview (titleLabel);
+
+			// Quit button
+			UIButton quitButton = ViewTools.CreateButton (
+				new RectangleF(10, 100, 200, 80), 
+				Localization.Get("button.quit"),
+				menuButtonPressed
+				);
+
+			View.AddSubview (quitButton);
+
+			// Versus
+			// ------------------------------------------
+			if(quizz.Mode == GameModes.Versus) 
+			{
+
+				// Game center state
+
+			}
+			// Solo
+			// ------------------------------------------
+			else 
+			{
+				// Score
+
+				// Game center
+
+				// Retry
+				UIButton retryButton = ViewTools.CreateImportantButton (
+					new RectangleF(10, 200, 200, 80), 
+					Localization.Get("button.retry"),
+					retryButtonPressed
+					);
+
+				View.AddSubview (retryButton);
+			}
+
+
 		}
 
 		private void SetViewDataFromQuizz ()
 		{
 			if (IsViewLoaded) {
-				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
+//				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
 
 				// Highscore control
-				highScoreControl.SetScoreParameters (quizz.Mode, quizz.Difficulty, quizz.RankForLastScore, quizz.Score);
+//				highScoreControl.SetScoreParameters (quizz.Mode, quizz.Difficulty, quizz.RankForLastScore, quizz.Score);
 			}
 
 		}
 			                                        
-		partial void retryButtonPressed (MonoTouch.Foundation.NSObject sender)
+		 void retryButtonPressed ()
 		{
 			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
@@ -74,7 +103,7 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 			
-		partial void menuButtonPressed (MonoTouch.Foundation.NSObject sender)
+		 void menuButtonPressed ()
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToMenuView ();

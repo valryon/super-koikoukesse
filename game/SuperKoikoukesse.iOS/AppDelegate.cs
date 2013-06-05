@@ -343,10 +343,11 @@ namespace SuperKoikoukesse.iOS
 
 		public void SwitchToScoreView (Quizz quizz)
 		{
-			if (scoreViewController == null) {
-				scoreViewController = new ScoreViewController ();
+			if (scoreViewController != null) {
+				scoreViewController.Dispose ();
+				scoreViewController = null;
 			}
-			scoreViewController.SetQuizzData (quizz);
+			scoreViewController = new ScoreViewController (quizz);
 			
 			window.RootViewController.RemoveFromParentViewController ();
 			window.RootViewController = scoreViewController;

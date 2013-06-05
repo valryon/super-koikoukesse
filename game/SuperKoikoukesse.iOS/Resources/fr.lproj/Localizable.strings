@@ -18,7 +18,9 @@
  "shop.title" 			= "Magasin";
  "button.back"			= "Retour";
  "button.quit"			= "Quitter";
+ "button.retry"			= "Rejouer";
  "game.pause"			= "Pause";
  "game.joker"			= "Joker";
  "game.score"			= "score";
  "game.combo"			= "combo";
+ "game.over"			= "Partie terminée !";

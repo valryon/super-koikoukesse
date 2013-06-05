@@ -18,7 +18,9 @@
 "shop.title" 		= "Shop";
 "button.back"		= "Back";
 "button.quit"		= "Quit";
+"button.retry"		= "Play again";
 "game.pause"		= "Pause";
 "game.joker"		= "Joker";
 "game.score"		= "score";
 "game.combo"		= "combo";
+"game.over"			= "Game Over!";
