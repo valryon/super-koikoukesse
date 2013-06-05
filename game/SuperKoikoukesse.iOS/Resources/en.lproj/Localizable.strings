@@ -24,3 +24,11 @@
 "game.score"		= "score";
 "game.combo"		= "combo";
 "game.over"			= "Game Over!";
+"normal.title"		= "Normal";
+"normal.desc"		= "The normal difficulty";
+"hard.title"		= "Hard";
+"hard.desc"			= "A bit harder";
+"expert.title"		= "Expert";
+"expert.desc"		= "Really hard";
+"nolife.title"		= "Hell";
+"nolife.desc"		= "IMPOSSIBLE!";

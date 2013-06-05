@@ -24,3 +24,11 @@
  "game.score"			= "score";
  "game.combo"			= "combo";
  "game.over"			= "Partie terminée !";
+ "normal.title"			= "Normal";
+"normal.desc"			= "Pour démarrer";
+"hard.title"			= "Difficile";
+"hard.desc"				= "Un peu plus dur";
+"expert.title"			= "Expert";
+"expert.desc"			= "Vraiment dur";
+"nolife.title"			= "Infernal";
+"nolife.desc"			= "IMPOSSIBLE !";
