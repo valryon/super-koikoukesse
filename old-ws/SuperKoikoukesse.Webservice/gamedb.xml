@@ -1,0 +1,2258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<games>
+  <game>
+    <GameId>1</GameId>
+    <ImagePath>00001.jpg</ImagePath>
+    <TitlePAL>A-Train</TitlePAL>
+    <TitleUS>A-Train</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>2</GameId>
+    <ImagePath>00002.jpg</ImagePath>
+    <TitlePAL>Abuse</TitlePAL>
+    <TitleUS>Abuse</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>alive mediasoft</Publisher>
+    <Year>1998</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>3</GameId>
+    <ImagePath>00003.jpg</ImagePath>
+    <TitlePAL>Addictaball</TitlePAL>
+    <TitleUS>Addictaball</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>alligata software</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>4</GameId>
+    <ImagePath>00004.jpg</ImagePath>
+    <TitlePAL>Agony</TitlePAL>
+    <TitleUS>Agony</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>5</GameId>
+    <ImagePath>00005.jpg</ImagePath>
+    <TitlePAL>Air Supply</TitlePAL>
+    <TitleUS>Air Supply</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>magic bytes</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>6</GameId>
+    <ImagePath>00006.jpg</ImagePath>
+    <TitlePAL>Akira</TitlePAL>
+    <TitleUS>Akira</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ice</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>7</GameId>
+    <ImagePath>00007.jpg</ImagePath>
+    <TitlePAL>Alien Breed</TitlePAL>
+    <TitleUS>Alien Breed</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>8</GameId>
+    <ImagePath>00008.jpg</ImagePath>
+    <TitlePAL>Alien Syndrome</TitlePAL>
+    <TitleUS>Alien Syndrome</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ace</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>9</GameId>
+    <ImagePath>00009.jpg</ImagePath>
+    <TitlePAL>Another World</TitlePAL>
+    <TitleUS>Out of This World</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>dephine software</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>10</GameId>
+    <ImagePath>00010.jpg</ImagePath>
+    <TitlePAL>Apidya</TitlePAL>
+    <TitleUS>Apidya</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>11</GameId>
+    <ImagePath>00011.jpg</ImagePath>
+    <TitlePAL>Arabian Nights</TitlePAL>
+    <TitleUS>Arabian Nights</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>krisalis</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>12</GameId>
+    <ImagePath>00012.jpg</ImagePath>
+    <TitlePAL>Assassin</TitlePAL>
+    <TitleUS>Assassin</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>13</GameId>
+    <ImagePath>00013.jpg</ImagePath>
+    <TitlePAL>Awesome</TitlePAL>
+    <TitleUS>Awesome</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>14</GameId>
+    <ImagePath>00014.jpg</ImagePath>
+    <TitlePAL>Badlands</TitlePAL>
+    <TitleUS>Badlands</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>atari</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>15</GameId>
+    <ImagePath>00015.jpg</ImagePath>
+    <TitlePAL>Ballistix</TitlePAL>
+    <TitleUS>Ballistix</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psyclapse</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>16</GameId>
+    <ImagePath>00016.jpg</ImagePath>
+    <TitlePAL>Bat 2</TitlePAL>
+    <TitleUS>Bat 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>ubi soft</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>17</GameId>
+    <ImagePath>00017.jpg</ImagePath>
+    <TitlePAL>Battle Chess</TitlePAL>
+    <TitleUS>Battle Chess</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>electronic arts</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>18</GameId>
+    <ImagePath>00018.jpg</ImagePath>
+    <TitlePAL>Battle Isle</TitlePAL>
+    <TitleUS>Battle Isle</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>ubi soft</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>19</GameId>
+    <ImagePath>00019.jpg</ImagePath>
+    <TitlePAL>Beach Volley</TitlePAL>
+    <TitleUS>Beach Volley</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>20</GameId>
+    <ImagePath>00020.jpg</ImagePath>
+    <TitlePAL>Beneath A Steel Sky</TitlePAL>
+    <TitleUS>Beneath A Steel Sky</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>virgin interactive</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>21</GameId>
+    <ImagePath>00021.jpg</ImagePath>
+    <TitlePAL>Bivouac</TitlePAL>
+    <TitleUS>Final Assault</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>22</GameId>
+    <ImagePath>00022.jpg</ImagePath>
+    <TitlePAL>Black Crypt</TitlePAL>
+    <TitleUS>Black Crypt</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>electronic arts</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>23</GameId>
+    <ImagePath>00023.jpg</ImagePath>
+    <TitlePAL>Blades Of Steel</TitlePAL>
+    <TitleUS>Blades Of Steel</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>konami</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>24</GameId>
+    <ImagePath>00024.jpg</ImagePath>
+    <TitlePAL>Blood Money</TitlePAL>
+    <TitleUS>Blood Money</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>25</GameId>
+    <ImagePath>00025.jpg</ImagePath>
+    <TitlePAL>Body Blows</TitlePAL>
+    <TitleUS>Body Blows</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>26</GameId>
+    <ImagePath>00026.jpg</ImagePath>
+    <TitlePAL>Bomb'X</TitlePAL>
+    <TitleUS>Bomb'X</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>mediagogo</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>27</GameId>
+    <ImagePath>00027.jpg</ImagePath>
+    <TitlePAL>Brutal Sports Football</TitlePAL>
+    <TitleUS>Brutal Sports Football</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>millenium</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>28</GameId>
+    <ImagePath>00028.jpg</ImagePath>
+    <TitlePAL>Burning Rubber</TitlePAL>
+    <TitleUS>Burning Rubber</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>29</GameId>
+    <ImagePath>00029.jpg</ImagePath>
+    <TitlePAL>Cadaver</TitlePAL>
+    <TitleUS>Cadaver</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>image works</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>30</GameId>
+    <ImagePath>00030.jpg</ImagePath>
+    <TitlePAL>Caesar</TitlePAL>
+    <TitleUS>Caesar</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>impressions</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>31</GameId>
+    <ImagePath>00031.jpg</ImagePath>
+    <TitlePAL>Cannon Fodder</TitlePAL>
+    <TitleUS>Cannon Fodder</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>virgin interactive</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>32</GameId>
+    <ImagePath>00032.jpg</ImagePath>
+    <TitlePAL>Captive</TitlePAL>
+    <TitleUS>Captive</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>mindscape</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>33</GameId>
+    <ImagePath>00033.jpg</ImagePath>
+    <TitlePAL>Chaos Engine</TitlePAL>
+    <TitleUS>Chaos Engine</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>renegade</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>34</GameId>
+    <ImagePath>00034.jpg</ImagePath>
+    <TitlePAL>Civilization</TitlePAL>
+    <TitleUS>Civilization</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>microprose software</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>35</GameId>
+    <ImagePath>00035.jpg</ImagePath>
+    <TitlePAL>Curse Of Enchantia</TitlePAL>
+    <TitleUS>Curse Of Enchantia</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>core design</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>36</GameId>
+    <ImagePath>00036.jpg</ImagePath>
+    <TitlePAL>D-Generation</TitlePAL>
+    <TitleUS>D-Generation</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>mindscape</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>37</GameId>
+    <ImagePath>00037.jpg</ImagePath>
+    <TitlePAL>Damocles</TitlePAL>
+    <TitleUS>Damocles</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>novagen</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>38</GameId>
+    <ImagePath>00038.jpg</ImagePath>
+    <TitlePAL>Darkseed</TitlePAL>
+    <TitleUS>Darkseed</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>cyberdreams</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>39</GameId>
+    <ImagePath>00039.jpg</ImagePath>
+    <TitlePAL>Death Trap</TitlePAL>
+    <TitleUS>Death Trap</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>anco</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>true</IsRemoved>
+  </game>
+  <game>
+    <GameId>40</GameId>
+    <ImagePath>00040.jpg</ImagePath>
+    <TitlePAL>Deuteros</TitlePAL>
+    <TitleUS>Deuteros</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>activision</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>41</GameId>
+    <ImagePath>00041.jpg</ImagePath>
+    <TitlePAL>Disc</TitlePAL>
+    <TitleUS>Disc</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>loriciel</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>42</GameId>
+    <ImagePath>00042.jpg</ImagePath>
+    <TitlePAL>Disposable Hero</TitlePAL>
+    <TitleUS>Disposable Hero</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>43</GameId>
+    <ImagePath>00043.jpg</ImagePath>
+    <TitlePAL>Dragon Breed</TitlePAL>
+    <TitleUS>Dragon Breed</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>activision</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>44</GameId>
+    <ImagePath>00044.jpg</ImagePath>
+    <TitlePAL>Dune 2</TitlePAL>
+    <TitleUS>Dune 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>virgin games</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>45</GameId>
+    <ImagePath>00045.jpg</ImagePath>
+    <TitlePAL>Elvira</TitlePAL>
+    <TitleUS>Elvira</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>accolade</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>46</GameId>
+    <ImagePath>00046.jpg</ImagePath>
+    <TitlePAL>Emmanuelle</TitlePAL>
+    <TitleUS>Emmanuelle</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>tomahawk</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>47</GameId>
+    <ImagePath>00047.jpg</ImagePath>
+    <TitlePAL>Excalibur</TitlePAL>
+    <TitleUS>Excalibur</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>kingsoft</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>48</GameId>
+    <ImagePath>00048.jpg</ImagePath>
+    <TitlePAL>Eye Of The Beholder</TitlePAL>
+    <TitleUS>Eye Of The Beholder</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>strategic simulations</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>49</GameId>
+    <ImagePath>00049.jpg</ImagePath>
+    <TitlePAL>F-29 Retaliator</TitlePAL>
+    <TitleUS>F-29 Retaliator</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>50</GameId>
+    <ImagePath>00050.jpg</ImagePath>
+    <TitlePAL>Face Off</TitlePAL>
+    <TitleUS>Face Off</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>anco</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>51</GameId>
+    <ImagePath>00051.jpg</ImagePath>
+    <TitlePAL>Fascination</TitlePAL>
+    <TitleUS>Fascination</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>tomahawk</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>52</GameId>
+    <ImagePath>00052.jpg</ImagePath>
+    <TitlePAL>Final Blow</TitlePAL>
+    <TitleUS>Final Blow</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>storm</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>53</GameId>
+    <ImagePath>00053.jpg</ImagePath>
+    <TitlePAL>Fire And Forget</TitlePAL>
+    <TitleUS>Fire And Forget</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>titus software</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>54</GameId>
+    <ImagePath>00054.jpg</ImagePath>
+    <TitlePAL>Fire And Ice</TitlePAL>
+    <TitleUS>Fire And Ice</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>renegade</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>55</GameId>
+    <ImagePath>00055.jpg</ImagePath>
+    <TitlePAL>Flashback</TitlePAL>
+    <TitleUS>Flashback</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>us gold</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>56</GameId>
+    <ImagePath>00056.jpg</ImagePath>
+    <TitlePAL>Full Contact</TitlePAL>
+    <TitleUS>Full Contact</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>57</GameId>
+    <ImagePath>00057.jpg</ImagePath>
+    <TitlePAL>Fury Of The Furries</TitlePAL>
+    <TitleUS>Fury Of The Furries</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>atreid concept</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>58</GameId>
+    <ImagePath>00058.jpg</ImagePath>
+    <TitlePAL>Future Basketball</TitlePAL>
+    <TitleUS>Future Basketball</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>hewson consultants</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>59</GameId>
+    <ImagePath>00059.jpg</ImagePath>
+    <TitlePAL>Gladiators</TitlePAL>
+    <TitleUS>Gladiators</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>combat</Genre>
+    <Publisher>smash 16</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>60</GameId>
+    <ImagePath>00060.jpg</ImagePath>
+    <TitlePAL>Global Effect</TitlePAL>
+    <TitleUS>Global Effect</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>millenium</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>61</GameId>
+    <ImagePath>00061.jpg</ImagePath>
+    <TitlePAL>Gobliiins</TitlePAL>
+    <TitleUS>Gobliiins</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>coktel vision</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>62</GameId>
+    <ImagePath>00062.jpg</ImagePath>
+    <TitlePAL>Gods</TitlePAL>
+    <TitleUS>Gods</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>renegade</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>63</GameId>
+    <ImagePath>00063.jpg</ImagePath>
+    <TitlePAL>Guardian</TitlePAL>
+    <TitleUS>Guardian</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>acide software</Publisher>
+    <Year>1994</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>64</GameId>
+    <ImagePath>00064.jpg</ImagePath>
+    <TitlePAL>Harlequin</TitlePAL>
+    <TitleUS>Harlequin</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>65</GameId>
+    <ImagePath>00065.jpg</ImagePath>
+    <TitlePAL>Heimdall</TitlePAL>
+    <TitleUS>Heimdall</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>core design</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>66</GameId>
+    <ImagePath>00066.jpg</ImagePath>
+    <TitlePAL>Hero Quest</TitlePAL>
+    <TitleUS>Hero Quest</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>67</GameId>
+    <ImagePath>00067.jpg</ImagePath>
+    <TitlePAL>Hugo Delire</TitlePAL>
+    <TitleUS>Hugo Delire</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>silverrock productions</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>68</GameId>
+    <ImagePath>00068.jpg</ImagePath>
+    <TitlePAL>Hybris</TitlePAL>
+    <TitleUS>Hybris</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>discovery software</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>69</GameId>
+    <ImagePath>00069.jpg</ImagePath>
+    <TitlePAL>Infestation</TitlePAL>
+    <TitleUS>Infestation</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>70</GameId>
+    <ImagePath>00070.jpg</ImagePath>
+    <TitlePAL>Ishar</TitlePAL>
+    <TitleUS>Ishar</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>silmaris</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>71</GameId>
+    <ImagePath>00071.jpg</ImagePath>
+    <TitlePAL>It Came From The Desert</TitlePAL>
+    <TitleUS>It Came From The Desert</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>cinemaware</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>72</GameId>
+    <ImagePath>00072.jpg</ImagePath>
+    <TitlePAL>Ivanhoe</TitlePAL>
+    <TitleUS>Ivanhoe</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>73</GameId>
+    <ImagePath>00073.jpg</ImagePath>
+    <TitlePAL>Jaguar XJ220</TitlePAL>
+    <TitleUS>Jaguar XJ220</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>core design</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>74</GameId>
+    <ImagePath>00074.jpg</ImagePath>
+    <TitlePAL>James Pond 2</TitlePAL>
+    <TitleUS>James Pond 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>millenium</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>75</GameId>
+    <ImagePath>00075.jpg</ImagePath>
+    <TitlePAL>Jumping Jack'son</TitlePAL>
+    <TitleUS>Jumping Jack'son</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>76</GameId>
+    <ImagePath>00076.jpg</ImagePath>
+    <TitlePAL>Jupiter's Masterdrive</TitlePAL>
+    <TitleUS>Jupiter's Masterdrive</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>ubi soft</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>77</GameId>
+    <ImagePath>00077.jpg</ImagePath>
+    <TitlePAL>Kgb</TitlePAL>
+    <TitleUS>Kgb</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>virgin games</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>78</GameId>
+    <ImagePath>00078.jpg</ImagePath>
+    <TitlePAL>The Killing Game Show</TitlePAL>
+    <TitleUS>The Killing Game Show</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>79</GameId>
+    <ImagePath>00079.jpg</ImagePath>
+    <TitlePAL>Klax</TitlePAL>
+    <TitleUS>Klax</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>domark</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>80</GameId>
+    <ImagePath>00080.jpg</ImagePath>
+    <TitlePAL>Krypton Egg</TitlePAL>
+    <TitleUS>Krypton Egg</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>hitsoft</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>81</GameId>
+    <ImagePath>00081.jpg</ImagePath>
+    <TitlePAL>L'Arme Fatale</TitlePAL>
+    <TitleUS>Lethal Weapon</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>82</GameId>
+    <ImagePath>00082.jpg</ImagePath>
+    <TitlePAL>Last Battle</TitlePAL>
+    <TitleUS>Last Battle</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>elite</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>83</GameId>
+    <ImagePath>00083.jpg</ImagePath>
+    <TitlePAL>Leander</TitlePAL>
+    <TitleUS>Leander</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>84</GameId>
+    <ImagePath>00084.jpg</ImagePath>
+    <TitlePAL>Legend Of Kyrandia</TitlePAL>
+    <TitleUS>Legend Of Kyrandia</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>virgin games</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>85</GameId>
+    <ImagePath>00085.jpg</ImagePath>
+    <TitlePAL>Last Ninja 3</TitlePAL>
+    <TitleUS>Last Ninja 3</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>system 3</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>86</GameId>
+    <ImagePath>00086.jpg</ImagePath>
+    <TitlePAL>Logical</TitlePAL>
+    <TitleUS>Logical</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>rainbow arts</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>87</GameId>
+    <ImagePath>00087.jpg</ImagePath>
+    <TitlePAL>Loom</TitlePAL>
+    <TitleUS>Loom</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>lucasfilm games</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>88</GameId>
+    <ImagePath>00088.jpg</ImagePath>
+    <TitlePAL>The Lost Patrol</TitlePAL>
+    <TitleUS>The Lost Patrol</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>89</GameId>
+    <ImagePath>00089.jpg</ImagePath>
+    <TitlePAL>Lure Of The Temptress</TitlePAL>
+    <TitleUS>Lure Of The Temptress</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>virgin games</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>90</GameId>
+    <ImagePath>00090.jpg</ImagePath>
+    <TitlePAL>Magic Pockets</TitlePAL>
+    <TitleUS>Magic Pockets</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>renegade</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>91</GameId>
+    <ImagePath>00091.jpg</ImagePath>
+    <TitlePAL>Maupiti Island</TitlePAL>
+    <TitleUS>Maupiti Island</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>lankhor</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>92</GameId>
+    <ImagePath>00092.jpg</ImagePath>
+    <TitlePAL>Mega Lo Mania</TitlePAL>
+    <TitleUS>Mega Lo Mania</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>image works</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>93</GameId>
+    <ImagePath>00093.jpg</ImagePath>
+    <TitlePAL>Moonstone</TitlePAL>
+    <TitleUS>Moonstone</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>mindscape</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>94</GameId>
+    <ImagePath>00094.jpg</ImagePath>
+    <TitlePAL>Myst</TitlePAL>
+    <TitleUS>Myst</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>pxl computers</Publisher>
+    <Year>1997</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>95</GameId>
+    <ImagePath>00095.jpg</ImagePath>
+    <TitlePAL>Nitro</TitlePAL>
+    <TitleUS>Nitro</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>96</GameId>
+    <ImagePath>00096.jpg</ImagePath>
+    <TitlePAL>Nord Et Sud</TitlePAL>
+    <TitleUS>North And South</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>97</GameId>
+    <ImagePath>00097.jpg</ImagePath>
+    <TitlePAL>One Step Beyond</TitlePAL>
+    <TitleUS>One Step Beyond</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>98</GameId>
+    <ImagePath>00098.jpg</ImagePath>
+    <TitlePAL>Ooops Up</TitlePAL>
+    <TitleUS>Ooops Up</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>demonware</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>99</GameId>
+    <ImagePath>00099.jpg</ImagePath>
+    <TitlePAL>Operation Stealth</TitlePAL>
+    <TitleUS>Operation Stealth</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>us gold</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>100</GameId>
+    <ImagePath>00100.jpg</ImagePath>
+    <TitlePAL>Overdrive</TitlePAL>
+    <TitleUS>Overdrive</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>101</GameId>
+    <ImagePath>00101.jpg</ImagePath>
+    <TitlePAL>Pac-Mania</TitlePAL>
+    <TitleUS>Pac-Mania</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>grandslam</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>102</GameId>
+    <ImagePath>00102.jpg</ImagePath>
+    <TitlePAL>Pang</TitlePAL>
+    <TitleUS>Pang</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>103</GameId>
+    <ImagePath>00103.jpg</ImagePath>
+    <TitlePAL>Pirates</TitlePAL>
+    <TitleUS>Pirates</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>aventure</Genre>
+    <Publisher>microprose software</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>104</GameId>
+    <ImagePath>00104.jpg</ImagePath>
+    <TitlePAL>Premiere</TitlePAL>
+    <TitleUS>Premiere</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>core design</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>105</GameId>
+    <ImagePath>00105.jpg</ImagePath>
+    <TitlePAL>Project X</TitlePAL>
+    <TitleUS>Project X</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>team 17</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>106</GameId>
+    <ImagePath>00106.jpg</ImagePath>
+    <TitlePAL>Puzznic</TitlePAL>
+    <TitleUS>Puzznic</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>107</GameId>
+    <ImagePath>00107.jpg</ImagePath>
+    <TitlePAL>Robocop 3</TitlePAL>
+    <TitleUS>Robocop 3</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>108</GameId>
+    <ImagePath>00108.jpg</ImagePath>
+    <TitlePAL>Saint Dragon</TitlePAL>
+    <TitleUS>Saint Dragon</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>storm</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>109</GameId>
+    <ImagePath>00109.jpg</ImagePath>
+    <TitlePAL>Second Samurai</TitlePAL>
+    <TitleUS>Second Samurai</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>110</GameId>
+    <ImagePath>00110.jpg</ImagePath>
+    <TitlePAL>Sexy Droids</TitlePAL>
+    <TitleUS>Sexy Droids</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>magic bytes</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>111</GameId>
+    <ImagePath>00111pg</ImagePath>
+    <TitlePAL>Shadow Of The Beast 2</TitlePAL>
+    <TitleUS>Shadow Of The Beast 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>112</GameId>
+    <ImagePath>00112.jpg</ImagePath>
+    <TitlePAL>Sleepwalker</TitlePAL>
+    <TitleUS>Sleepwalker</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>113</GameId>
+    <ImagePath>00113.jpg</ImagePath>
+    <TitlePAL>Space Ace</TitlePAL>
+    <TitleUS>Space Ace</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>readysoft</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>114</GameId>
+    <ImagePath>00114.jpg</ImagePath>
+    <TitlePAL>Speedball 2</TitlePAL>
+    <TitleUS>Speedball 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>sport</Genre>
+    <Publisher>image works</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>115</GameId>
+    <ImagePath>00115.jpg</ImagePath>
+    <TitlePAL>Super Cars 2</TitlePAL>
+    <TitleUS>Super Cars 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>116</GameId>
+    <ImagePath>00116.jpg</ImagePath>
+    <TitlePAL>Syndicate</TitlePAL>
+    <TitleUS>Syndicate</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>electronic arts</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>117</GameId>
+    <ImagePath>00117.jpg</ImagePath>
+    <TitlePAL>The Lost Vikings</TitlePAL>
+    <TitleUS>The Lost Vikings</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>interplay productions</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>118</GameId>
+    <ImagePath>00118.jpg</ImagePath>
+    <TitlePAL>Turrican 2</TitlePAL>
+    <TitleUS>Turrican 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>rainbow arts</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>119</GameId>
+    <ImagePath>00119.jpg</ImagePath>
+    <TitlePAL>Twintris</TitlePAL>
+    <TitleUS>Twintris</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>digital marketing</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>120</GameId>
+    <ImagePath>00120.jpg</ImagePath>
+    <TitlePAL>Ugh</TitlePAL>
+    <TitleUS>Ugh</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>play bytes</Publisher>
+    <Year>1992</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>121</GameId>
+    <ImagePath>00121.jpg</ImagePath>
+    <TitlePAL>Volfied</TitlePAL>
+    <TitleUS>Volfied</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>action</Genre>
+    <Publisher>empire software</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>122</GameId>
+    <ImagePath>00122.jpg</ImagePath>
+    <TitlePAL>Vroom</TitlePAL>
+    <TitleUS>Vroom</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>course</Genre>
+    <Publisher>lankhor</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>123</GameId>
+    <ImagePath>00123.jpg</ImagePath>
+    <TitlePAL>Whale's Voyage</TitlePAL>
+    <TitleUS>Whale's Voyage</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>flaire software</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>124</GameId>
+    <ImagePath>00124.jpg</ImagePath>
+    <TitlePAL>Wings Of Death</TitlePAL>
+    <TitleUS>Wings Of Death</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>thalion</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>125</GameId>
+    <ImagePath>00125.jpg</ImagePath>
+    <TitlePAL>Xenon 2</TitlePAL>
+    <TitleUS>Xenon 2</TitleUS>
+    <Platform>amiga</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>image works</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>126</GameId>
+    <ImagePath>00126.jpg</ImagePath>
+    <TitlePAL>Action Fighter</TitlePAL>
+    <TitleUS>Action Fighter</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>firebird</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>127</GameId>
+    <ImagePath>00127.jpg</ImagePath>
+    <TitlePAL>After Burner</TitlePAL>
+    <TitleUS>After Burner</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>activision</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>128</GameId>
+    <ImagePath>00128.jpg</ImagePath>
+    <TitlePAL>Airwolf</TitlePAL>
+    <TitleUS>Airwolf</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>armsoft</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>129</GameId>
+    <ImagePath>00129.jpg</ImagePath>
+    <TitlePAL>Aliens</TitlePAL>
+    <TitleUS>Aliens</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>electric dreams software</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>130</GameId>
+    <ImagePath>00130.jpg</ImagePath>
+    <TitlePAL>Arkanoid</TitlePAL>
+    <TitleUS>Arkanoid</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>imagin software</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>131</GameId>
+    <ImagePath>00131.jpg</ImagePath>
+    <TitlePAL>Avenger</TitlePAL>
+    <TitleUS>Avenger</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>132</GameId>
+    <ImagePath>00132.jpg</ImagePath>
+    <TitlePAL>Ball Breaker</TitlePAL>
+    <TitleUS>Ball Breaker</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>crl</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>133</GameId>
+    <ImagePath>00133.jpg</ImagePath>
+    <TitlePAL>Barbarian</TitlePAL>
+    <TitleUS>Barbarian</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>combat</Genre>
+    <Publisher>psygnosis</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>134</GameId>
+    <ImagePath>00134.jpg</ImagePath>
+    <TitlePAL>Basket Master</TitlePAL>
+    <TitleUS>Basket Master</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>sport</Genre>
+    <Publisher>imagin software</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>135</GameId>
+    <ImagePath>00135.jpg</ImagePath>
+    <TitlePAL>Batman</TitlePAL>
+    <TitleUS>Batman</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>136</GameId>
+    <ImagePath>00136.jpg</ImagePath>
+    <TitlePAL>Bob Winner</TitlePAL>
+    <TitleUS>Bob Winner</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>loriciel</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>137</GameId>
+    <ImagePath>00137.jpg</ImagePath>
+    <TitlePAL>Bomb Jack</TitlePAL>
+    <TitleUS>Bomb Jack</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>elite systems</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>138</GameId>
+    <ImagePath>00138.jpg</ImagePath>
+    <TitlePAL>Buggy Boy</TitlePAL>
+    <TitleUS>Buggy Boy</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>course</Genre>
+    <Publisher>elite systems</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>139</GameId>
+    <ImagePath>00139.jpg</ImagePath>
+    <TitlePAL>Burnin' Rubber</TitlePAL>
+    <TitleUS>Burnin' Rubber</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>course</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>140</GameId>
+    <ImagePath>00140.jpg</ImagePath>
+    <TitlePAL>California Games</TitlePAL>
+    <TitleUS>California Games</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>sport</Genre>
+    <Publisher>epyx</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>141</GameId>
+    <ImagePath>00141.jpg</ImagePath>
+    <TitlePAL>Cauldron 2</TitlePAL>
+    <TitleUS>Cauldron 2</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>palace software</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>142</GameId>
+    <ImagePath>00142.jpg</ImagePath>
+    <TitlePAL>Combat School</TitlePAL>
+    <TitleUS>Combat School</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>143</GameId>
+    <ImagePath>00143.jpg</ImagePath>
+    <TitlePAL>Commando</TitlePAL>
+    <TitleUS>Commando</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>elite systems</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>144</GameId>
+    <ImagePath>00144.jpg</ImagePath>
+    <TitlePAL>Contamination</TitlePAL>
+    <TitleUS>Contamination</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>ere informatique</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>145</GameId>
+    <ImagePath>00145.jpg</ImagePath>
+    <TitlePAL>Crazy Cars</TitlePAL>
+    <TitleUS>Crazy Cars</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>course</Genre>
+    <Publisher>titus software</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>146</GameId>
+    <ImagePath>00146.jpg</ImagePath>
+    <TitlePAL>Cybernoid</TitlePAL>
+    <TitleUS>Cybernoid</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>hewson consultants</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>147</GameId>
+    <ImagePath>00147.jpg</ImagePath>
+    <TitlePAL>Deflektor</TitlePAL>
+    <TitleUS>Deflektor</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>148</GameId>
+    <ImagePath>00148.jpg</ImagePath>
+    <TitlePAL>Eden Blues</TitlePAL>
+    <TitleUS>Eden Blues</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ere informatique</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>149</GameId>
+    <ImagePath>00149.jpg</ImagePath>
+    <TitlePAL>Elite</TitlePAL>
+    <TitleUS>Elite</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>firebird</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>150</GameId>
+    <ImagePath>00150.jpg</ImagePath>
+    <TitlePAL>Exolon</TitlePAL>
+    <TitleUS>Exolon</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>hewson consultants</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>151</GameId>
+    <ImagePath>00151.jpg</ImagePath>
+    <TitlePAL>Freddy Hardest</TitlePAL>
+    <TitleUS>Freddy Hardest</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>dinamic</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>152</GameId>
+    <ImagePath>00152.jpg</ImagePath>
+    <TitlePAL>Fruity Frank</TitlePAL>
+    <TitleUS>Fruity Frank</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>kuma computers</Publisher>
+    <Year>1984</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>153</GameId>
+    <ImagePath>00153.jpg</ImagePath>
+    <TitlePAL>Future Knight</TitlePAL>
+    <TitleUS>Future Knight</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>154</GameId>
+    <ImagePath>00154.jpg</ImagePath>
+    <TitlePAL>Gauntlet 2</TitlePAL>
+    <TitleUS>Gauntlet 2</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>us gold</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>155</GameId>
+    <ImagePath>00155.jpg</ImagePath>
+    <TitlePAL>Green Beret</TitlePAL>
+    <TitleUS>Green Beret</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>imagin software</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>156</GameId>
+    <ImagePath>00156.jpg</ImagePath>
+    <TitlePAL>Gryzor</TitlePAL>
+    <TitleUS>Gryzor</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>157</GameId>
+    <ImagePath>00157.jpg</ImagePath>
+    <TitlePAL>Hold-Up</TitlePAL>
+    <TitleUS>Hold-Up</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ere informatique</Publisher>
+    <Year>1984</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>158</GameId>
+    <ImagePath>00158.jpg</ImagePath>
+    <TitlePAL>Impossamole</TitlePAL>
+    <TitleUS>Impossamole</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>159</GameId>
+    <ImagePath>00159.jpg</ImagePath>
+    <TitlePAL>Jack The Nipper</TitlePAL>
+    <TitleUS>Jack The Nipper</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>160</GameId>
+    <ImagePath>00160.jpg</ImagePath>
+    <TitlePAL>Jet Set Willy</TitlePAL>
+    <TitleUS>Jet Set Willy</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>software projects</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>161</GameId>
+    <ImagePath>00161.jpg</ImagePath>
+    <TitlePAL>Juggernaut</TitlePAL>
+    <TitleUS>Juggernaut</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>gestion</Genre>
+    <Publisher>crl</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>162</GameId>
+    <ImagePath>00162.jpg</ImagePath>
+    <TitlePAL>Krackout</TitlePAL>
+    <TitleUS>Krackout</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>163</GameId>
+    <ImagePath>00163.jpg</ImagePath>
+    <TitlePAL>Macadam Bumper</TitlePAL>
+    <TitleUS>Macadam Bumper</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ere informatique</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>164</GameId>
+    <ImagePath>00164.jpg</ImagePath>
+    <TitlePAL>Metro Cross</TitlePAL>
+    <TitleUS>Metro Cross</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>us gold</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>165</GameId>
+    <ImagePath>00165.jpg</ImagePath>
+    <TitlePAL>Nebulus</TitlePAL>
+    <TitleUS>Nebulus</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>hewson consultants</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>166</GameId>
+    <ImagePath>00166.jpg</ImagePath>
+    <TitlePAL>Nemesis The Warlock</TitlePAL>
+    <TitleUS>Nemesis The Warlock</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>martech</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>167</GameId>
+    <ImagePath>00167.jpg</ImagePath>
+    <TitlePAL>Operation Thunderbolt</TitlePAL>
+    <TitleUS>Operation Thunderbolt</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>168</GameId>
+    <ImagePath>00168.jpg</ImagePath>
+    <TitlePAL>Paperboy</TitlePAL>
+    <TitleUS>Paperboy</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>elite systems</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>169</GameId>
+    <ImagePath>00169.jpg</ImagePath>
+    <TitlePAL>Purple Saturn Day</TitlePAL>
+    <TitleUS>Purple Saturn Day</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>course</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>170</GameId>
+    <ImagePath>00170.jpg</ImagePath>
+    <TitlePAL>Rampage</TitlePAL>
+    <TitleUS>Rampage</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>activision</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>171</GameId>
+    <ImagePath>00171.jpg</ImagePath>
+    <TitlePAL>Renegade</TitlePAL>
+    <TitleUS>Renegade</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>taito</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>172</GameId>
+    <ImagePath>00172.jpg</ImagePath>
+    <TitlePAL>Rick Dangerous</TitlePAL>
+    <TitleUS>Rick Dangerous</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>firebird</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>173</GameId>
+    <ImagePath>00173.jpg</ImagePath>
+    <TitlePAL>Rodland</TitlePAL>
+    <TitleUS>Rodland</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>the sales curve</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>174</GameId>
+    <ImagePath>00174.jpg</ImagePath>
+    <TitlePAL>Savage</TitlePAL>
+    <TitleUS>Savage</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>firebird</Publisher>
+    <Year>1988</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>175</GameId>
+    <ImagePath>00175.jpg</ImagePath>
+    <TitlePAL>Short Circuit</TitlePAL>
+    <TitleUS>Short Circuit</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>ocean</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>176</GameId>
+    <ImagePath>00176.jpg</ImagePath>
+    <TitlePAL>Skweek</TitlePAL>
+    <TitleUS>Skweek</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>loriciel</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>177</GameId>
+    <ImagePath>00177.jpg</ImagePath>
+    <TitlePAL>Split Personalities</TitlePAL>
+    <TitleUS>Split Personalities</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>domark</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>178</GameId>
+    <ImagePath>00178.jpg</ImagePath>
+    <TitlePAL>Spy vs Spy</TitlePAL>
+    <TitleUS>Spy vs Spy</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>beyond games</Publisher>
+    <Year>1985</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>179</GameId>
+    <ImagePath>00179.jpg</ImagePath>
+    <TitlePAL>Stormlord</TitlePAL>
+    <TitleUS>Stormlord</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>hewson consultants</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>180</GameId>
+    <ImagePath>00180.jpg</ImagePath>
+    <TitlePAL>Teenage Queen</TitlePAL>
+    <TitleUS>Teenage Queen</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>sport</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>181</GameId>
+    <ImagePath>00181.jpg</ImagePath>
+    <TitlePAL>Trailblazer</TitlePAL>
+    <TitleUS>Trailblazer</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>course</Genre>
+    <Publisher>gremlin graphics</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>182</GameId>
+    <ImagePath>00182.jpg</ImagePath>
+    <TitlePAL>Trantor</TitlePAL>
+    <TitleUS>Trantor</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>go!</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>183</GameId>
+    <ImagePath>00183.jpg</ImagePath>
+    <TitlePAL>Vindicators</TitlePAL>
+    <TitleUS>Vindicators</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>action</Genre>
+    <Publisher>domark</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>184</GameId>
+    <ImagePath>00184.jpg</ImagePath>
+    <TitlePAL>Winter Games</TitlePAL>
+    <TitleUS>Winter Games</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>sport</Genre>
+    <Publisher>epyx</Publisher>
+    <Year>1986</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>185</GameId>
+    <ImagePath>00185.jpg</ImagePath>
+    <TitlePAL>Xor</TitlePAL>
+    <TitleUS>Xor</TitleUS>
+    <Platform>amstrad</Platform>
+    <Genre>strategie</Genre>
+    <Publisher>logotron entertainment</Publisher>
+    <Year>1987</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>186</GameId>
+    <ImagePath>00186.jpg</ImagePath>
+    <TitlePAL>Adventures Of Lolo</TitlePAL>
+    <TitleUS>Adventures Of Lolo</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>hal laboratory</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>187</GameId>
+    <ImagePath>00187.jpg</ImagePath>
+    <TitlePAL>Breath Of Fire</TitlePAL>
+    <TitleUS>Breath Of Fire</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>capcom</Publisher>
+    <Year>2001</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>188</GameId>
+    <ImagePath>00188.jpg</ImagePath>
+    <TitlePAL>Catrap</TitlePAL>
+    <TitleUS>Catrap</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>asmik</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>189</GameId>
+    <ImagePath>00189.jpg</ImagePath>
+    <TitlePAL>Gargoyle's Quest</TitlePAL>
+    <TitleUS>Gargoyle's Quest</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>capcom</Publisher>
+    <Year>1991</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>190</GameId>
+    <ImagePath>00190.jpg</ImagePath>
+    <TitlePAL>Golden Sun</TitlePAL>
+    <TitleUS>Golden Sun</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>2002</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>191</GameId>
+    <ImagePath>00191.jpg</ImagePath>
+    <TitlePAL>Grand theft Auto</TitlePAL>
+    <TitleUS>Grand theft Auto</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>take 2 interactive</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>192</GameId>
+    <ImagePath>00192.jpg</ImagePath>
+    <TitlePAL>Lady Sia</TitlePAL>
+    <TitleUS>Lady Sia</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>tdk mediactive</Publisher>
+    <Year>2001</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>193</GameId>
+    <ImagePath>00193.jpg</ImagePath>
+    <TitlePAL>Looney Tunes</TitlePAL>
+    <TitleUS>Looney Tunes</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>194</GameId>
+    <ImagePath>00194.jpg</ImagePath>
+    <TitlePAL>Mario's Picross</TitlePAL>
+    <TitleUS>Mario's Picross</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>1995</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>195</GameId>
+    <ImagePath>00195.jpg</ImagePath>
+    <TitlePAL>Megaman Zero</TitlePAL>
+    <TitleUS>Megaman Zero</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>capcom</Publisher>
+    <Year>2002</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>196</GameId>
+    <ImagePath>00196.jpg</ImagePath>
+    <TitlePAL>Mystic Quest</TitlePAL>
+    <TitleUS>Mystic Quest</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>squaresoft</Publisher>
+    <Year>1993</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>197</GameId>
+    <ImagePath>00197.jpg</ImagePath>
+    <TitlePAL>Nemesis</TitlePAL>
+    <TitleUS>Nemesis</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>shmup</Genre>
+    <Publisher>konami</Publisher>
+    <Year>1990</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>198</GameId>
+    <ImagePath>00198.jpg</ImagePath>
+    <TitlePAL>Puyo Puyo Fever</TitlePAL>
+    <TitleUS>Puyo Puyo Fever</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>sega</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>199</GameId>
+    <ImagePath>00199.jpg</ImagePath>
+    <TitlePAL>Sega Rally</TitlePAL>
+    <TitleUS>Sega Rally</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>course</Genre>
+    <Publisher>infogrames</Publisher>
+    <Year>2003</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>200</GameId>
+    <ImagePath>00200.jpg</ImagePath>
+    <TitlePAL>Sonic Battle</TitlePAL>
+    <TitleUS>Sonic Battle</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>thq</Publisher>
+    <Year>2004</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>201</GameId>
+    <ImagePath>00201.jpg</ImagePath>
+    <TitlePAL>Super Mario Land</TitlePAL>
+    <TitleUS>Super Mario Land</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>202</GameId>
+    <ImagePath>00202.jpg</ImagePath>
+    <TitlePAL>Tactics Ogre</TitlePAL>
+    <TitleUS>Tactics Ogre</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>rpg</Genre>
+    <Publisher>atlus</Publisher>
+    <Year>2002</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>203</GameId>
+    <ImagePath>00203.jpg</ImagePath>
+    <TitlePAL>Tetris</TitlePAL>
+    <TitleUS>Tetris</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>reflexion</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>1989</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>204</GameId>
+    <ImagePath>00204.jpg</ImagePath>
+    <TitlePAL>Turok</TitlePAL>
+    <TitleUS>Turok</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>acclaim</Publisher>
+    <Year>1999</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+  <game>
+    <GameId>205</GameId>
+    <ImagePath>00205.jpg</ImagePath>
+    <TitlePAL>Warioland 4</TitlePAL>
+    <TitleUS>Warioland 4</TitleUS>
+    <Platform>gameboy</Platform>
+    <Genre>action</Genre>
+    <Publisher>nintendo</Publisher>
+    <Year>2001</Year>
+    <IsRemoved>false</IsRemoved>
+  </game>
+</games>

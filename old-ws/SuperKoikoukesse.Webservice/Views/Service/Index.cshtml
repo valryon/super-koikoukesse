@@ -1,0 +1,79 @@
+﻿<h2>Etat du webservice</h2>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>URL
+        </th>
+        <th>Méthode
+        </th>
+        <th>Description
+        </th>
+        <th>Appel
+        </th>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("GamesExclusions", "Service")</td>
+        <td>GET
+        </td>
+        <td>Récupération des jeux exclus post-livraison
+        </td>
+        <td><a class="btn btn-info" href="@Url.Action("Exclusions", "Service")">Tester</a></td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("PlayerInfo", "Service", new { playerId = "Valryon" })</td>
+        <td>GET
+        </td>
+        <td>Récupération des info d'un joueur
+        </td>
+        <td><a class="btn btn-info" href="@Url.Action("PlayerInfo", "Service", new { playerId = "Valryon" })">Tester</a></td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("PlayerCreate", "Service")</td>
+        <td>POST
+        </td>
+        <td>Création d'un joueur
+        </td>
+        <td>TODO</td>
+    </tr>
+
+     <tr>
+        <td>@Url.Action("PlayerCredits", "Service")</td>
+        <td>POST
+        </td>
+        <td>Consommer des crédits
+        </td>
+        <td>TODO</td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("PlayerCoins", "Service")</td>
+        <td>POST
+        </td>
+        <td>Consommer des coins
+        </td>
+        <td>TODO</td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("StatsAddGame", "Service")
+        </td>
+        <td>POST
+        </td>
+        <td>Ajouter une ligne dans l'historique des parties
+        </td>
+        <td>TODO
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Url.Action("Config", "Service", new { target = 0 })</td>
+        <td>GET
+        </td>
+        <td>Récupération de la configuration
+        </td>
+        <td><a class="btn btn-info" href="@Url.Action("Config", "Service", new { target = 0 })">Tester</a></td>
+    </tr>
+</table>

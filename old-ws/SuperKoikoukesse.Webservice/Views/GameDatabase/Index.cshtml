@@ -1,0 +1,97 @@
+﻿@model SuperKoikoukesse.Webservice.ViewModels.GameDatabaseModel
+@{
+    ViewBag.Title = "Game list";
+}
+
+<h2>Base de données</h2>
+
+<h3>Données</h3>
+<div class="row-fluid">
+
+    <div class="pagination">
+
+        <ul>
+            <li class="@(Model.Page > 1 ? "" : "disabled")"><a href="@Url.Action("Index", "GameDatabase", new { page = Model.Page - 1 })"><span>&larr;</span></a></li>
+
+            @for (int i = 1; i <= Model.MaxPage; i++)
+            {
+                <li class="@(i == Model.Page ? "active" : "")"><a href="@Url.Action("Index", "GameDatabase", new { page = i })"><span>@i</span></a></li>
+            }
+
+            <li class="@(Model.Page < Model.MaxPage ? "" : "disabled")"><a href="@Url.Action("Index", "GameDatabase", new { page = Model.Page + 1 })"><span>&rarr;</span></a></li>
+        </ul>
+
+    </div>
+
+    <table class="table table-striped table-hover table-bordered table-condensed">
+        <tr>
+            <th>Game Id</th>
+            <th>Image</th>
+            <th>Titre (PAL)</th>
+            <th>Titre (US)</th>
+            <th>Platforme</th>
+            <th>Genre</th>
+            <th>Editeur</th>
+            <th>Année</th>
+            <th></th>
+        </tr>
+
+        @foreach (SuperKoikoukesse.Webservice.Core.Model.Game game in Model.Games)
+        {
+            <tr class="@(game.IsRemoved ? "error" : "")" id="game_@(game.GameId)">
+                <td>
+                    @game.GameId
+                </td>
+                <td>
+                    @game.ImagePath
+                </td>
+                <td>
+                    @game.TitlePAL
+                </td>
+                <td>
+                    @game.TitleUS
+                </td>
+                <td>
+                    @game.Platform
+                </td>
+                <td>
+                    @game.Genre
+                </td>
+                <td>
+                    @game.Publisher
+                </td>
+                <td>
+                    @game.Year
+                </td>
+                <td>
+                    @if (game.IsRemoved)
+                    {
+                        <a href="@Url.Action("Authorize", new {gameId = game.GameId})">Autoriser</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Exclude", new {gameId = game.GameId})">Exclure</a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<h3>Actions</h3>
+
+<div class="row-fluid">
+
+    <h3>Importer fichier CSV</h3>
+    @Html.Partial("ImportCSVForm")
+
+    <h3>Exporter</h3>
+
+    <p>
+        <a class="btn" href="@Url.Action("ExportCSV","GameDatabase")">Export CSV</a>
+        <a class="btn" href="@Url.Action("ExportXml","GameDatabase")">Export XML</a>
+    </p>
+</div>
+
+

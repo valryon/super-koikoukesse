@@ -1,0 +1,53 @@
+﻿@model SuperKoikoukesse.Webservice.ViewModels.StatsModel
+<h2>Stats</h2>
+
+<ul>
+    <li><a href="@Url.Action("QuestionStats", "Stats")">Stats des questions</a></li>
+</ul>
+
+<h2>Liste des parties</h2>
+
+<p>
+    <a class="btn btn-info" href="@Url.Action("ExportCSV", "Stats")">Export CSV</a>
+</p>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Id
+        </th>
+        <th>Joueur
+        </th>
+        <th>Date
+        </th>
+        <th>Mode
+        </th>
+        <th>Difficulté
+        </th>
+        <th>Score
+        </th>
+    </tr>
+
+    @foreach (var stat in Model.Stats)
+    {
+        <tr>
+            <td>
+                @stat.Id
+            </td>
+            <td>
+                @stat.PlayerId
+            </td>
+            <td>
+                @stat.Date
+            </td>
+            <td>
+                @stat.Mode
+            </td>
+            <td>
+                @stat.Difficulty
+            </td>
+            <td>
+                @stat.Score
+            </td>
+        </tr>
+    }
+</table>
