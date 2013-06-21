@@ -1,0 +1,12 @@
+%html
+  %head
+    %title Stats
+
+  %body
+    %h1 Stats home
+    %p Wabon!
+
+  %ul
+    - @stats.each do |stats|
+      %li
+        = stats.playerId
