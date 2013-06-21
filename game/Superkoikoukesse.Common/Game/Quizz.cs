@@ -563,7 +563,7 @@ namespace Superkoikoukesse.Common
 		{
 			WebserviceStats stats = new WebserviceStats ();
 
-			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, null);
+			stats.SendStats (ProfileService.Instance.CachedPlayer.Id, Score, Mode, Difficulty, StartTime, Results, null);
 		}
 
 		#endregion
