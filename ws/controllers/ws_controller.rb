@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'data_mapper'
+require "base64"
 
 class App < Sinatra::Base
   # Webservice URL
@@ -15,6 +16,15 @@ class App < Sinatra::Base
 
   # Create a new stat line
   post '/stats.json' do
-    puts "Creating new stat... hum"
+    puts "Creating new stat..."
+    incomingjson = params[:r]
+
+    if incomingjson != nil
+      doc = JSON.parse(incomingjson)
+      stat = Stats.create_json(doc)
+      "Ok"
+    else
+      "Ko missing 'r'"
+    end
   end
 end
