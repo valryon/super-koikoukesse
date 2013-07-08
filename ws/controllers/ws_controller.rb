@@ -21,7 +21,7 @@ class App < Sinatra::Base
 
     if incomingjson != nil
       doc = JSON.parse(incomingjson)
-      stat = Stats.create_json(doc)
+      stat = Stats.json_create(doc)
       "Ok"
     else
       "Ko missing 'r'"
