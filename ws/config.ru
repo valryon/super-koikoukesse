@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require(:default)
-
-require './app'
-
-run App
+# config.ru is used by shotgun (local dev server)
+require './app.rb'
+run Sinatra::Application
