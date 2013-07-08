@@ -21,10 +21,27 @@ end
 # ******************************
 
 # Get player in database
-get '/players.json' do
+get '/players.json/:playerId' do
   response = WsResponse.new
 
-  #TODO
+  if params[:playerId] != nil
+    playerId = params[:playerId]
+
+    # Find in database
+    existingPlayer = Players.first(:playerId => playerId)
+
+    if existingPlayer != nil
+      response.code = ErrorCodes::OK
+      response.data = existingPlayer.to_json
+    else
+      response.error = "Unknow player for id #{params[:playerId] }"
+      response.code = ErrorCodes::UNKNOWOBJECT
+    end
+
+  else
+    response.error = "Missing playerId argument in request."
+    response.code = ErrorCodes::EMPTYREQUEST
+  end
 
   return response.to_json
 end

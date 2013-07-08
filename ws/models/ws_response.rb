@@ -5,7 +5,7 @@ class WsResponse
 
   attr_accessor :code
   attr_accessor :error
-  attr_accessor :response
+  attr_accessor :data
 
   def initialize
     code = ErrorCodes::OK
@@ -15,7 +15,7 @@ class WsResponse
     "{
       \"c\": #{@code}
       \"e\": \"#{@error}\"
-      \"r\": \"#{@response}\"
+      \"r\": \"#{@data}\"
     }"
   end
 

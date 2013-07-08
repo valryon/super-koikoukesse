@@ -1,4 +1,4 @@
-class Stats
+class Players
   include DataMapper::Resource
 
   property :id, Serial
@@ -8,8 +8,8 @@ class Stats
   property :coins, Integer
 
 
-   def to_json(*a)
-
+  def to_json(*a)
+    "Wabon player TODO"
   end
 
   def self.json_create(o)
