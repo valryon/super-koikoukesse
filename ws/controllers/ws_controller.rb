@@ -16,15 +16,25 @@ class App < Sinatra::Base
 
   # Create a new stat line
   post '/stats.json' do
-    puts "Creating new stat..."
+
     incomingjson = params[:r]
 
     if incomingjson != nil
       doc = JSON.parse(incomingjson)
       stat = Stats.json_create(doc)
-      "Ok"
+      savingIsOk = stat.save
+
+      if savingIsOk
+        '{ "code": 0 }'
+      else
+        stat.errors.each do |e|
+          puts e
+        end
+        '{ "code": 100 }'
+      end
     else
-      "Ko missing 'r'"
+      # TODO Nice error management
+      '{ "code": 100 }'
     end
   end
 end

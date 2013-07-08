@@ -34,14 +34,12 @@ class Stats
     # {"player"=>"G1725278793", "score"=>455, "mode"=>0, "difficulty"=>0, "date"=>"2013-06-21 04:51:58",
     # "answers"=>[{"id"=>52, "result"=>false}, {"id"=>543, "result"=>true}, ...]}
 
-    print o
-
     # Parse the json to get the right elements
     playerId = o["player"]
-    score = o["score"]
-    mode = o["mode"]
-    difficulty = o["difficulty"]
-    date = Date.strptime(o["date"], '%Y-%m-%d %H:%M:%S')
+    score = o["score"].to_i
+    mode = o["mode"].to_i
+    difficulty = o["difficulty"].to_i
+    date = DateTime.strptime(o["date"], '%Y-%m-%d %H:%M:%S')
 
     # Answers are in an array
     answers = nil
@@ -57,11 +55,11 @@ class Stats
 
     # Check if we filled everything
     if(playerId == nil or score == nil or mode == nil or difficulty == nil or date == nil or answers == nil)
-      # Invalid JSON. Exception?
+      # TODO Nice error management
     end
 
     # Create a new stat object
-    return Stats.new(playerId, score, mode, difficulty, date, answers)
+    return Stats.new(playerId, score, date, mode, difficulty, answers)
   end
 end
 
