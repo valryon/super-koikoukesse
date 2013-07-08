@@ -176,3 +176,5 @@ ws/SuperKoikoukesse.Webservice/SuperKoikoukesse.Webservice.log
 *.sublime-workspace
 
 ws/ws.sublime-project
+
+ws/db/dev.db
