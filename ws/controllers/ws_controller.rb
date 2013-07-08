@@ -13,7 +13,11 @@ require "base64"
 
 # Get all games to exludes
 get '/exclusions.json' do
-  "TODO"
+  esponse = WsResponse.new
+
+  #TODO
+
+  return response.to_json
 end
 
 # ******************************
@@ -50,7 +54,43 @@ end
 post '/players.json' do
   response = WsResponse.new
 
-  #TODO
+  # Parse the json and check for all mandatory fields
+  incomingjson = params[:r]
+  doc = JSON.parse(incomingjson)
+
+  playerId = doc["player"]
+  platform = doc["platform"].to_i
+  credits = doc["credits"].to_i
+  coins = doc["coins"].to_i
+
+  # Control if we have everything
+  if playerId == nil or platform == nil or credits == nil or coins == nil
+    response.code = ErrorCodes::INVALIDJSON
+    response.error = "Invalid JSON"
+  else
+
+    # Exists in DB?
+    existingPlayer = Players.first(:playerId => playerId)
+    if existingPlayer != nil
+      response.code = ErrorCodes::SERVERERROR
+      response.error = "Player #{playerId} already exists!"
+    else
+
+      # Create the player
+      p = Players.new
+
+      savingIsOk = p.save
+      if savingIsOk
+        response.code = ErrorCodes::OK
+      else
+        response.code =  ErrorCodes::SERVERERROR
+        response.error = "Errors during player save... "
+
+        stat.errors.each do |e|
+          response.error += e
+        end
+    end
+  end
 
   return response.to_json
 end
