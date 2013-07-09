@@ -23,7 +23,7 @@ get '/ws/questions/ex.json' do
     # Build JSON
     rJson = "["
     excludedQuestions.each do |q|
-      rJson += "#{q},"
+      rJson += ("#{q},")
     end
 
     rJson += "]"
