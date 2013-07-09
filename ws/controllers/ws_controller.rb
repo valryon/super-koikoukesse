@@ -10,11 +10,30 @@ require "base64"
 # ******************************
 
 # Get all games to exludes
-get '/exclusions.json' do
+get '/ws/questions/ex.json' do
   response = WsResponse.new
 
-  #TODO
-  # Retourne list id
+  # Read all excluded questions
+  excludedQuestions = Questions.all(:excluded => true, :fields => [:id])
+
+  if excludedQuestions != nil
+
+    response.code = ErrorCodes::OK
+
+    # Build JSON
+    rJson = "["
+    excludedQuestions.each do |q|
+      rJson += "#{q},"
+    end
+
+    rJson += "]"
+
+    response.data = rJson
+
+  else
+    response.code = ErrorCodes::SERVERERROR
+    response.error = "Cannot retrieve questions information..."
+  end
 
   return response.to_json
 end
@@ -25,7 +44,7 @@ end
 
 # Get player in database
 #----------------------------------
-get '/players.json/:playerId' do
+get '/ws/players.json/:playerId' do
   response = WsResponse.new
 
   if params[:playerId] != nil
@@ -52,7 +71,7 @@ end
 
 # Create player
 #----------------------------------
-post '/players.json' do
+post '/ws/players.json' do
 
   # JSON example
   #{"player": "G1725278793", "credits": 2, "coins": 150, "platform": "ios"}
@@ -97,7 +116,7 @@ end
 
 # Add coins
 #----------------------------------
-post '/players/coins.json' do
+post '/ws/players/coins.json' do
   response = WsResponse.new
 
   # JSON example
@@ -136,7 +155,7 @@ end
 
 # Add credits
 #----------------------------------
-post '/players/credits.json' do
+post '/ws/players/credits.json' do
   response = WsResponse.new
 
   # JSON example
@@ -179,7 +198,7 @@ end
 
 # Create a new stat line
 #----------------------------------
-post '/stats.json' do
+post '/ws/stats.json' do
 
   response = WsResponse.new
 
@@ -220,7 +239,7 @@ end
 
 # Get the configuration for a platform
 #----------------------------------
-get '/config.json/:platform/:version' do
+get '/ws/config.json/:platform/:version' do
   response = WsResponse.new
 
   #TODO

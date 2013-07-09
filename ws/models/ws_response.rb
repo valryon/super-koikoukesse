@@ -15,7 +15,7 @@ class WsResponse
     "{
       \"c\": #{@code}
       \"e\": \"#{@error}\"
-      \"r\": \"#{@data}\"
+      \"r\": #{@data}
     }"
   end
 
