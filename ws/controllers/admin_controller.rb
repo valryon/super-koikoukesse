@@ -48,6 +48,7 @@ post '/admin/questions/upload' do
 
         cols = line.split(';')
 
+        q.gameId = cols[0].to_i
         q.image = cols[1]
         q.titlePAL = cols[2]
         q.titleUS = cols[3]

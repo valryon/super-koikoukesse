@@ -5,6 +5,7 @@ class Questions
   include DataMapper::Resource
 
   property :id, Serial
+  property :gameId, Integer
   property :image, String
   property :titlePAL, String
   property :titleUS, String
