@@ -1,11 +1,9 @@
+# Webservice
 require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'data_mapper'
 require "base64"
-
-# Webservice URL
-#----------------------------------
 
 # ******************************
 # GAMES
@@ -16,6 +14,7 @@ get '/exclusions.json' do
   response = WsResponse.new
 
   #TODO
+  # Retourne list id
 
   return response.to_json
 end
@@ -25,6 +24,7 @@ end
 # ******************************
 
 # Get player in database
+#----------------------------------
 get '/players.json/:playerId' do
   response = WsResponse.new
 
@@ -51,36 +51,31 @@ get '/players.json/:playerId' do
 end
 
 # Create player
+#----------------------------------
 post '/players.json' do
+
+  # JSON example
+  #{"player": "G1725278793", "credits": 2, "coins": 150, "platform": "ios"}
+
   response = WsResponse.new
 
   # Parse the json and check for all mandatory fields
   incomingjson = params[:r]
   doc = JSON.parse(incomingjson)
 
-  playerId = doc["player"]
-  platform = doc["platform"].to_i
-  credits = doc["credits"].to_i
-  coins = doc["coins"].to_i
+  p = Players.json_create(doc)
 
-  # Control if we have everything
-  if playerId == nil or platform == nil or credits == nil or coins == nil
-    response.code = ErrorCodes::INVALIDJSON
-    response.error = "Invalid JSON"
-
-  else
+  if p != nil
 
     # Exists in DB?
-    existingPlayer = Players.first(:playerId => playerId)
+    existingPlayer = Players.first(:playerId => p.playerId)
+
     if existingPlayer != nil
       response.code = ErrorCodes::SERVERERROR
-      response.error = "Player #{playerId} already exists!"
+      response.error = "Player #{p.playerId} already exists!"
     else
-
-      # Create the player
-      p = Players.new
-
       savingIsOk = p.save
+
       if savingIsOk
         response.code = ErrorCodes::OK
       else
@@ -90,27 +85,35 @@ post '/players.json' do
         stat.errors.each do |e|
           response.error += e
         end #each
-
       end
     end
+  else
+    response.code =  ErrorCodes::INVALIDJSON
+    response.error = "Cannot parse given JSON into player"
   end
 
   return response.to_json
 end
 
 # Add coins
+#----------------------------------
 post '/players/coins.json' do
   response = WsResponse.new
 
+  # JSON example
+  # {"player": "G1725278793", "credits": 2}
   #TODO
 
   return response.to_json
 end
 
 # Add credits
+#----------------------------------
 post '/players/credits.json' do
   response = WsResponse.new
 
+  # JSON example
+  # {"player": "G1725278793", "credits": 2}
   #TODO
 
   return response.to_json
@@ -121,6 +124,7 @@ end
 # ******************************
 
 # Create a new stat line
+#----------------------------------
 post '/stats.json' do
 
   response = WsResponse.new
@@ -146,6 +150,21 @@ post '/stats.json' do
     response.code = ErrorCodes::INVALIDJSON
     response.error = "Invalid JSON"
   end
+
+  return response.to_json
+end
+
+# ******************************
+# CONFIGURATION
+# ******************************
+
+# Get the configuration for a platform
+#----------------------------------
+get '/config.json/:platform/:version' do
+  response = WsResponse.new
+
+  #TODO
+
 
   return response.to_json
 end

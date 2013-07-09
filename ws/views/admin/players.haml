@@ -12,6 +12,7 @@
       %th Date de création
       %th Coins
       %th Credits
+      %th Platforme
 
     - @players.each do |p|
       %tr
@@ -23,4 +24,5 @@
           = p.coins
         %td
           = p.credits
-
+        %td
+          = p.platform
