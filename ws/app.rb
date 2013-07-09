@@ -3,11 +3,6 @@ require 'sinatra'
 require 'haml'
 require 'data_mapper'
 
-# Load up all models BEFORE the database init
-Dir[File.dirname(__FILE__) + "/models/*.rb"].each do |file|
-  require file
-end
-
 ## Greetings
 puts "=> Running in #{settings.environment} environment"
 
@@ -24,6 +19,11 @@ set :raise_errors   , true
 # -- All routes ending with .json return json content
 before %r{.+\.json$} do
   content_type 'application/json'
+end
+
+# Load up all models BEFORE the database init
+Dir[File.dirname(__FILE__) + "/models/*.rb"].each do |file|
+  require file
 end
 
 # Data Mapper

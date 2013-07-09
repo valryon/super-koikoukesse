@@ -1,3 +1,6 @@
+#
+# User of the game
+#
 class Players
   include DataMapper::Resource
 
