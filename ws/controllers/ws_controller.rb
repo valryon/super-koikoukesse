@@ -101,8 +101,35 @@ post '/players/coins.json' do
   response = WsResponse.new
 
   # JSON example
-  # {"player": "G1725278793", "credits": 2}
-  #TODO
+  # {"player": "G1725278793", "coins": 2}
+  incomingjson = params[:r]
+  doc = JSON.parse(incomingjson)
+
+  playerId = doc["player"]
+  coins = doc["coins"].to_i
+
+  p = Players.first(:playerId => playerId)
+
+  if p == nil
+    response.error = "Unknow player for id #{playerId}"
+    response.code = ErrorCodes::UNKNOWOBJECT
+  else
+
+    p.coins += coins
+
+    savingIsOk = p.save
+
+    if savingIsOk
+      response.code = ErrorCodes::OK
+    else
+      response.code =  ErrorCodes::SERVERERROR
+      response.error = "Errors during player save... "
+
+      stat.errors.each do |e|
+        response.error += e
+      end #each
+    end
+  end
 
   return response.to_json
 end
@@ -114,7 +141,34 @@ post '/players/credits.json' do
 
   # JSON example
   # {"player": "G1725278793", "credits": 2}
-  #TODO
+  incomingjson = params[:r]
+  doc = JSON.parse(incomingjson)
+
+  playerId = doc["player"]
+  credits = doc["credits"].to_i
+
+  p = Players.first(:playerId => playerId)
+
+  if p == nil
+    response.error = "Unknow player for id #{playerId}"
+    response.code = ErrorCodes::UNKNOWOBJECT
+  else
+
+    p.credits += credits
+
+    savingIsOk = p.save
+
+    if savingIsOk
+      response.code = ErrorCodes::OK
+    else
+      response.code =  ErrorCodes::SERVERERROR
+      response.error = "Errors during player save... "
+
+      stat.errors.each do |e|
+        response.error += e
+      end #each
+    end
+  end
 
   return response.to_json
 end
@@ -134,17 +188,23 @@ post '/stats.json' do
   if incomingjson != nil
     doc = JSON.parse(incomingjson)
     stat = Stats.json_create(doc)
-    savingIsOk = stat.save
 
-    if savingIsOk
-      response.code = ErrorCodes::OK
+    if stat != nil
+      savingIsOk = stat.save
+
+      if savingIsOk
+        response.code = ErrorCodes::OK
+      else
+        response.code =  ErrorCodes::SERVERERROR
+        response.error = "Errors during stat save... "
+
+        stat.errors.each do |e|
+          response.error += e
+        end
+      end
     else
       response.code =  ErrorCodes::SERVERERROR
-      response.error = "Errors during stat save... "
-
-      stat.errors.each do |e|
-        response.error += e
-      end
+      response.error = "Error on stat creation... "
     end
   else
     response.code = ErrorCodes::INVALIDJSON

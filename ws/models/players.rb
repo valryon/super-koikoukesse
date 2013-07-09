@@ -17,7 +17,15 @@ class Players
   end
 
   def to_json(*a)
-    "Wabon player TODO"
+    # {"id": "G1728633519", "date": "2013-03-27T11:22:51.96Z", "credits": 2500, "coins": 3}
+
+    "{
+      \"id\": #{self.playerId},
+      \"date\": #{self.creation_date},
+      \"credits\": #{self.credits},
+      \"coins\": #{self.coins},
+      \"platform\": #{self.platform},
+    }"
   end
 
   #

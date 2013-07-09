@@ -49,6 +49,7 @@ class Stats
     # Check if we filled everything
     if(playerId == nil or score == nil or mode == nil or difficulty == nil or date == nil or answers == nil)
       # TODO Nice error management
+      return nil
     end
 
     # Create a new stat object
