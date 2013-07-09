@@ -10,7 +10,3 @@ group :development do
   gem "shotgun"
   gem "tux"
 end
-
-group :production do
-  gem 'thin'
-end

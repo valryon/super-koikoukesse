@@ -13,7 +13,7 @@ require "base64"
 
 # Get all games to exludes
 get '/exclusions.json' do
-  esponse = WsResponse.new
+  response = WsResponse.new
 
   #TODO
 
@@ -67,6 +67,7 @@ post '/players.json' do
   if playerId == nil or platform == nil or credits == nil or coins == nil
     response.code = ErrorCodes::INVALIDJSON
     response.error = "Invalid JSON"
+
   else
 
     # Exists in DB?
@@ -88,7 +89,9 @@ post '/players.json' do
 
         stat.errors.each do |e|
           response.error += e
-        end
+        end #each
+
+      end
     end
   end
 
