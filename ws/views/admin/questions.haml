@@ -2,12 +2,18 @@
 %p Liste des jeux et état (exclu ou non)
 
 %div
-  %p Upload CSV
+  %h2 Upload CSV
   %form{:action=>"./questions/upload",:method=>"post"   ,:enctype=>"multipart/form-data"}
     %input{:type=>"file",:name=>"file"}
     %input{:type=>"submit",:value=>"Upload"}
 
 %div
+  %h2 Export
+  %a(href="./questions/export.json") JSON
+  %a(href="./questions/export.xml") XML
+
+%div
+  %h2 Liste des questions
   %table
     %tr
       %th Id

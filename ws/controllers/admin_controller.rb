@@ -70,8 +70,21 @@ end
 get '/admin/questions/?' do
   auth
 
-  @questions = Questions.all
+  @questions = Question.all
   haml :"admin/questions"
+end
+
+get '/admin/questions/export.json' do
+  auth
+
+  games = Question.all
+  return "{ \"games\": "+ games.to_json + "}"
+end
+get '/admin/questions/export.xml' do
+  auth
+
+  games = Question.all
+  return "<?xml version=\"1.0\"?>"+ games.to_xml
 end
 
 get '/admin/questions/exclude/:id' do
@@ -82,7 +95,7 @@ get '/admin/questions/exclude/:id' do
   if qId != nil
 
     # Find the matching question
-    q = Questions.first(:gameId => qId)
+    q = Question.first(:gameId => qId)
 
     if q != nil
       # Change exclusion
@@ -106,7 +119,7 @@ post '/admin/questions/upload' do
   if params[:file] && (tmpfile = params[:file][:tempfile]) && (name = params[:file][:filename])
 
     # Delete everything
-    Questions.destroy
+    Question.destroy
 
     # Parse it!
     File.open(tmpfile, "r").each_line do |line|
@@ -114,7 +127,7 @@ post '/admin/questions/upload' do
       if isFirst
         isFirst = false
       else
-        q = Questions.new
+        q = Question.new
 
         cols = line.split(';')
 

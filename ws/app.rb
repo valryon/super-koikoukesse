@@ -21,6 +21,10 @@ enable :sessions
 before %r{.+\.json$} do
   content_type 'application/json'
 end
+# -- Same for .xml
+before %r{.+\.xml$} do
+  content_type 'application/xml'
+end
 
 # Load up all models BEFORE the database init
 Dir[File.dirname(__FILE__) + "/models/*.rb"].each do |file|

@@ -22,7 +22,7 @@ get '/ws/questions/ex.json' do
   response = WsResponse.new
 
   # Read all excluded questions
-  excludedQuestions = Questions.all(:excluded => true, :fields => [:id])
+  excludedQuestions = Question.all(:excluded => true, :fields => [:id])
 
   if excludedQuestions != nil
 

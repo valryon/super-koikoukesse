@@ -1,7 +1,7 @@
 #
 # Stat for a complete game of the quizz
 #
-class Questions
+class Question
   include DataMapper::Resource
 
   property :id, Serial
