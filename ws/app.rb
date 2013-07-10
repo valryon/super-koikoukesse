@@ -17,6 +17,9 @@ set :logging        , true
 set :raise_errors   , true
 enable :sessions
 
+# Set our own config
+$io_encryption = false
+
 # -- All routes ending with .json return json content
 before %r{.+\.json$} do
   content_type 'application/json'

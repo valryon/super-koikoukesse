@@ -19,9 +19,14 @@ class WsResponse
     }"
   end
 
+  # Return the json response, encrypted or not
   def to_output
-    # return self.to_json
-    return Encryption::encrypt(self.to_json)
+
+    if $io_encryption
+      return Encryption::encrypt(self.to_json)
+    else
+      return self.to_json
+    end
   end
 
 end
