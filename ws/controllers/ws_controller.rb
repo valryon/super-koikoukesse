@@ -242,8 +242,15 @@ end
 get '/ws/config.json/:platform/:version' do
   response = WsResponse.new
 
-  #TODO
+  quizConfig = Configuration.first(:order => [ :version.desc ])
 
+  if quizConfig == nil
+    response.code =  ErrorCodes::SERVERERROR
+    response.error = "Configuration not found"
+  else
+    response.code = ErrorCodes::OK
+    response.data = quizConfig.to_json
+  end
 
   return response.to_json
 end

@@ -6,8 +6,39 @@ require 'data_mapper'
 # Application admin panel
 #----------------------------------
 
+# Admin home
 get '/admin' do
   haml :"admin/index"
+end
+
+# Configuration
+get '/admin/config' do
+  @quizConfig = Configuration.first(:order => [ :version.desc ])
+
+  if @quizConfig == nil
+    puts "Creating new config..."
+    @quizConfig = Configuration.new
+    @quizConfig.save
+  end
+
+  haml :"admin/config"
+end
+
+post '/admin/config/update' do
+
+  content = params[:content]
+  version = params[:version].to_i
+
+  if content != nil and version != nil
+    puts "Updating config..."
+    c = Configuration.new
+    c.version = version + 1
+    c.content = content
+    c.save
+  end
+
+  # Redirect
+  redirect '/admin/config'
 end
 
 # players list
