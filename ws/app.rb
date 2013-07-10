@@ -29,10 +29,12 @@ end
 # Data Mapper
 puts "=> Initializing database..."
 
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db/dev.db")
+
 configure :development do
   DataMapper::Logger.new($stdout, :debug)
 end
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db/dev.db")
+
 DataMapper.auto_upgrade!
 
 puts "=> Initializing database OK"
