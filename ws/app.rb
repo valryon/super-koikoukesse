@@ -45,7 +45,10 @@ DataMapper.finalize
 
 puts "=> Initializing database OK"
 
-# Load up all controllers last
+# Load up all controllers and stuff last
+Dir[File.dirname(__FILE__) + "/tools/*.rb"].each do |file|
+  require file
+end
 Dir[File.dirname(__FILE__) + "/controllers/*.rb"].each do |file|
   require file
 end

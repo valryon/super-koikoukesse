@@ -14,7 +14,7 @@ get '/ws/?' do
 
   response.error = "Check documentation for protocol"
 
-  return response.to_json
+  return response.to_output
 end
 
 # Get all games to exludes
@@ -43,7 +43,7 @@ get '/ws/questions/ex.json' do
     response.error = "Cannot retrieve questions information..."
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # ******************************
@@ -74,7 +74,7 @@ get '/ws/players.json/:playerId' do
     response.code = ErrorCodes::EMPTYREQUEST
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # Create player
@@ -119,7 +119,7 @@ post '/ws/players.json' do
     response.error = "Cannot parse given JSON into player"
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # Add coins
@@ -158,7 +158,7 @@ post '/ws/players/coins.json' do
     end
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # Add credits
@@ -197,7 +197,7 @@ post '/ws/players/credits.json' do
     end
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # ******************************
@@ -238,7 +238,7 @@ post '/ws/stats.json' do
     response.error = "Invalid JSON"
   end
 
-  return response.to_json
+  return response.to_output
 end
 
 # ******************************
@@ -260,5 +260,5 @@ get '/ws/config.json/:platform/:version' do
     response.data = quizConfig.to_json
   end
 
-  return response.to_json
+  return response.to_output
 end

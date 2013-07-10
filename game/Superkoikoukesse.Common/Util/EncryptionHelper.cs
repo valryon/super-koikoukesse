@@ -12,15 +12,15 @@ namespace Superkoikoukesse.Common.Utils
     {
         private static string cryptoKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
 		private const char FillCharacter = '_';
-		private const int KeyLength = 16;
+		private const int KeyLength = 32;
 
 		public static void SetKey(string key) {
 
 			if (string.IsNullOrEmpty (key)) {
 				throw new ApplicationException("Encryption key cannot be empty!");
 			}
-			if (key.Length > 16) {
-				throw new ApplicationException("Encryption key must be 16 chars max!");
+			if (key.Length > KeyLength) {
+				throw new ApplicationException("Encryption key must be "+KeyLength+" chars max!");
 			}
 
 			Logger.Log (LogLevel.Info, "Setting encryption key.");
@@ -46,8 +46,9 @@ namespace Superkoikoukesse.Common.Utils
 				byte[] cipheredData = Convert.FromBase64String(cipheredText);
 				
 				crypto = new RijndaelManaged();
-				crypto.KeySize = 128;
-				crypto.Padding = PaddingMode.PKCS7;
+				crypto.KeySize = 256;
+//				crypto.Padding = PaddingMode.PKCS7;
+				crypto.Mode = CipherMode.CBC;
 				
 				decryptor = crypto.CreateDecryptor(Encoding.UTF8.GetBytes(finalKey), Encoding.UTF8.GetBytes(finalKey));
 				
@@ -93,8 +94,8 @@ namespace Superkoikoukesse.Common.Utils
 			try
 			{
 				crypto = new RijndaelManaged();
-				crypto.KeySize = 128;
-				crypto.Padding = PaddingMode.PKCS7;
+				crypto.KeySize = 256;
+//				crypto.Padding = PaddingMode.PKCS7;
 				crypto.Mode = CipherMode.CBC;
 
 				encryptor = crypto.CreateEncryptor(Encoding.UTF8.GetBytes(finalKey), Encoding.UTF8.GetBytes(finalKey));

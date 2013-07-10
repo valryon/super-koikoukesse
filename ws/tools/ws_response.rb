@@ -19,4 +19,9 @@ class WsResponse
     }"
   end
 
+  def to_output
+    # return self.to_json
+    return Encryption::encrypt(self.to_json)
+  end
+
 end
