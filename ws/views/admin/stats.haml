@@ -1,0 +1,28 @@
+%html
+  %head
+    %title Super Koikoukesse - Statistiques parties
+
+  %body
+    %h1 Utilisateurs
+    %p Dernières parties jouées.
+
+  %table
+    %tr
+      %th Player
+      %th Date
+      %th Mode
+      %th Difficulté
+      %th Score
+
+    - @stats.each do |stats|
+      %tr
+        %td
+          = stats.playerId
+        %td
+          = stats.date
+        %td
+          = stats.mode
+        %td
+          = stats.difficulty
+        %td
+          = stats.score

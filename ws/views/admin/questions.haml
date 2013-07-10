@@ -1,0 +1,44 @@
+%html
+  %head
+    %title Super Koikoukesse - Base de questions
+
+  %body
+    %h1 Base de questions
+    %p Liste des jeux et état (exclu ou non)
+
+    %div
+      %p Upload CSV
+      %form{:action=>"./questions/upload",:method=>"post"   ,:enctype=>"multipart/form-data"}
+        %input{:type=>"file",:name=>"file"}
+        %input{:type=>"submit",:value=>"Upload"}
+
+    %div
+      %table
+        %tr
+          %th Id
+          %th Titre PAL
+          %th Image
+          %th Genre
+          %th Editeur
+          %th Année
+          %th Platforme
+          %th Exclu ?
+
+        - @questions.each do |q|
+          %tr
+            %td
+              = q.gameId
+            %td
+              = q.titlePAL
+            %td
+              = q.image
+            %td
+              = q.genre
+            %td
+              = q.publisher
+            %td
+              = q.year
+            %td
+              = q.platform
+            %td
+              = q.excluded

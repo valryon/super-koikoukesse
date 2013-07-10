@@ -170,3 +170,11 @@ pip-log.txt
 *.userprefs
 Superkoikoukesse.Webservice.log
 ws/SuperKoikoukesse.Webservice/SuperKoikoukesse.Webservice.log
+
+*.sublime-project
+
+*.sublime-workspace
+
+ws/ws.sublime-project
+
+ws/db/dev.db
