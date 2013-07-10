@@ -13,11 +13,14 @@ get '/?' do
 end
 
 get '/admin/?' do
+  auth
   haml :"admin/index"
 end
 
 # Configuration
 get '/admin/config/?' do
+  auth
+
   @quizConfig = Configuration.first(:order => [ :version.desc ])
 
   if @quizConfig == nil
@@ -30,6 +33,7 @@ get '/admin/config/?' do
 end
 
 post '/admin/config/update' do
+  auth
 
   content = params[:content]
   version = params[:version].to_i
@@ -48,23 +52,30 @@ end
 
 # players list
 get '/admin/players/?' do
+  auth
+
   @players = Players.all(:order => [ :creation_date.desc ])
   haml :"admin/players"
 end
 
 # Stats list
 get '/admin/stats/?' do
+  auth
+
   @stats = Stats.all(:order => [ :date.desc ])
   haml :"admin/stats"
 end
 
 # Games
 get '/admin/questions/?' do
+  auth
+
   @questions = Questions.all
   haml :"admin/questions"
 end
 
 get '/admin/questions/exclude/:id' do
+  auth
 
   qId = params[:id].to_i
 
@@ -88,7 +99,7 @@ get '/admin/questions/exclude/:id' do
 end
 
 post '/admin/questions/upload' do
-
+  auth
   isFirst = true
 
   # Get the CSV file

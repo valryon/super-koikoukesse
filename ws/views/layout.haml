@@ -5,16 +5,24 @@
   %body
     #wrapper
       #header
-        %a(href="/admin") Admin
-        %ul
-          %li
-            %a(href="/admin/questions") questions
-          %li
-            %a(href="/admin/config") config
-          %li
-            %a(href="/admin/players") players
-          %li
-            %a(href="/admin/stats") stats
+        #login
+          - if login?
+            %a{:href => "/logout"}
+              = "Connecté (#{username})!"
+          - else
+            %a{:href => "/login"} Login
+
+        #links
+          %a(href="/admin") Admin
+          %ul
+            %li
+              %a(href="/admin/questions") questions
+            %li
+              %a(href="/admin/config") config
+            %li
+              %a(href="/admin/players") players
+            %li
+              %a(href="/admin/stats") stats
       #content
         =yield
       #footer

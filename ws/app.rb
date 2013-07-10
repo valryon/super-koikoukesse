@@ -15,6 +15,7 @@ set :haml           , :format => :html5
 set :dump_errors    , true
 set :logging        , true
 set :raise_errors   , true
+enable :sessions
 
 # -- All routes ending with .json return json content
 before %r{.+\.json$} do
