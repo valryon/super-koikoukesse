@@ -7,12 +7,12 @@ require 'data_mapper'
 #----------------------------------
 
 # Admin home
-get '/admin' do
+get '/admin/?' do
   haml :"admin/index"
 end
 
 # Configuration
-get '/admin/config' do
+get '/admin/config/?' do
   @quizConfig = Configuration.first(:order => [ :version.desc ])
 
   if @quizConfig == nil
@@ -42,19 +42,19 @@ post '/admin/config/update' do
 end
 
 # players list
-get '/admin/players' do
+get '/admin/players/?' do
   @players = Players.all(:order => [ :creation_date.desc ])
   haml :"admin/players"
 end
 
 # Stats list
-get '/admin/stats' do
+get '/admin/stats/?' do
   @stats = Stats.all(:order => [ :date.desc ])
   haml :"admin/stats"
 end
 
 # Games
-get '/admin/questions' do
+get '/admin/questions/?' do
   @questions = Questions.all
   haml :"admin/questions"
 end
