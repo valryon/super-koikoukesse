@@ -59,6 +59,29 @@ get '/admin/questions/?' do
   haml :"admin/questions"
 end
 
+get '/admin/questions/exclude/:id' do
+
+  qId = params[:id].to_i
+
+  if qId != nil
+
+    # Find the matching question
+    q = Questions.first(:gameId => qId)
+
+    if q != nil
+      # Change exclusion
+      q.excluded = !q.excluded
+
+      # Save
+      q.save
+    end
+
+  end
+
+  # Redirect
+  redirect '/admin/questions'
+end
+
 post '/admin/questions/upload' do
 
   isFirst = true

@@ -36,6 +36,7 @@ configure :development do
 end
 
 DataMapper.auto_upgrade!
+DataMapper.finalize
 
 puts "=> Initializing database OK"
 

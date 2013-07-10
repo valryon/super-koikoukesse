@@ -22,7 +22,8 @@
           %th Editeur
           %th Année
           %th Platforme
-          %th Exclu ?
+          %th Exclu
+          %th Actions
 
         - @questions.each do |q|
           %tr
@@ -42,3 +43,5 @@
               = q.platform
             %td
               = q.excluded
+            %td
+              <a href="./questions/exclude/#{q.gameId}" >X</a>
