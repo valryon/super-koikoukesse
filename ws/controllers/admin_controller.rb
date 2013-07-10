@@ -7,6 +7,11 @@ require 'data_mapper'
 #----------------------------------
 
 # Admin home
+get '/?' do
+  # Redirect
+  redirect '/admin'
+end
+
 get '/admin/?' do
   haml :"admin/index"
 end

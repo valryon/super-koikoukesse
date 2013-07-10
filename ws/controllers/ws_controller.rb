@@ -9,6 +9,14 @@ require "base64"
 # GAMES
 # ******************************
 
+get '/ws/?' do
+  response = WsResponse.new
+
+  response.error = "Check documentation for protocol"
+
+  return response.to_json
+end
+
 # Get all games to exludes
 get '/ws/questions/ex.json' do
   response = WsResponse.new
