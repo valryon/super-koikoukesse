@@ -133,7 +133,7 @@ post '/ws/players/coins.json' do
   response = WsResponse.new
 
   # JSON example
-  # {"player": "G1725278793", "coins": 2}
+  # {"playerId": "G1725278793", "coins": 2}
   incomingjson = params[:r]
 
   if $io_encryption
@@ -142,7 +142,7 @@ post '/ws/players/coins.json' do
 
   doc = JSON.parse(incomingjson)
 
-  playerId = doc["player"]
+  playerId = doc["playerId"]
   coins = doc["coins"].to_i
 
   p = Players.first(:playerId => playerId)
@@ -177,7 +177,7 @@ post '/ws/players/credits.json' do
   response = WsResponse.new
 
   # JSON example
-  # {"player": "G1725278793", "credits": 2}
+  # {"playerId": "G1725278793", "credits": 2}
   incomingjson = params[:r]
 
   if $io_encryption
@@ -186,7 +186,7 @@ post '/ws/players/credits.json' do
 
   doc = JSON.parse(incomingjson)
 
-  playerId = doc["player"]
+  playerId = doc["playerId"]
   credits = doc["credits"].to_i
 
   p = Players.first(:playerId => playerId)

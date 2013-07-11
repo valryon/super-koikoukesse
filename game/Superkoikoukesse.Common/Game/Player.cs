@@ -74,11 +74,10 @@ namespace Superkoikoukesse.Common
 
 		public void BuildFromJsonObject (JsonValue json)
 		{
-			//json	{"id": "G1728633519", "date": "2013-03-27T11:22:51.96Z", "credits": 2500, "coins": 3}
-			string playerId = json ["id"].ToString ();
+			//json	{"id":1,"playerId":"G1725278793","creation_date":"2013-07-11T11:16:59+02:00","credits":13,"coins":7500,"platform":"ios"}
+			string playerId = json ["playerId"].ToString ();
 			int credits = Convert.ToInt32 (json ["credits"].ToString ());
 			int coins = Convert.ToInt32 (json ["coins"].ToString ());
-//			int subscriptionType = Convert.ToInt32 (json ["SubscriptionType"].ToString ());
 
 			this.Id = playerId;
 			this.Credits = credits;

@@ -5,9 +5,9 @@ namespace Superkoikoukesse.Common
 	public static class Constants
 	{
 		// Local debug
-		public static string WebserviceUrl = "http://localhost:9393/ws/"; // End with slash!
+		//public static string WebserviceUrl = "http://localhost:9393/ws/"; // End with slash!
 		// Heroku
-		//public static string WebserviceUrl = "http://super-koikoukesse.herokuapp.com/ws/"; // End with slash!
+		public static string WebserviceUrl = "http://super-koikoukesse.herokuapp.com/ws/"; // End with slash!
 
 		public static string EncryptionKey = "p_o6u-e/t*+!";
 

@@ -44,7 +44,7 @@ namespace Superkoikoukesse.Common
 		public void CreatePlayer (Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("playerId", new JsonPrimitive (player.Id));
 			json.Add ("platform", new JsonPrimitive ("ios")); // TODO Android
 			json.Add ("credits", new JsonPrimitive (player.Credits));
 			json.Add ("coins", new JsonPrimitive (player.Coins));
@@ -87,7 +87,7 @@ namespace Superkoikoukesse.Common
 		public void AddCredits (int credits, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("playerId", new JsonPrimitive (player.Id));
 			json.Add ("credits", new JsonPrimitive (credits));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
@@ -126,7 +126,7 @@ namespace Superkoikoukesse.Common
 		public void AddCoins (int coins, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("playerId", new JsonPrimitive (player.Id));
 			json.Add ("coins", new JsonPrimitive (coins));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
