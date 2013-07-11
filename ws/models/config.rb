@@ -16,11 +16,11 @@ class Configuration
   end
 
   def to_json(*a)
-    "{
-      \"version\": #{self.version},
-      \"last_edit\": #{self.last_edit},
-      \"config\": \"#{self.content}\"
-    }"
+    json =  "{"
+    json += "\"version\": #{self.version},"
+    json += "\"last_edit\": \"#{self.last_edit.strftime('%Y-%m-%d %H:%M:%S')}\","
+    json += "\"config\": #{self.content}"
+    json += "}"
   end
 
 end

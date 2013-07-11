@@ -5,10 +5,8 @@ require 'json'
 require 'data_mapper'
 require "base64"
 
-# ******************************
-# GAMES
-# ******************************
-
+# WS Home
+#----------------------------------
 get '/ws/?' do
   response = WsResponse.new
 
@@ -17,26 +15,29 @@ get '/ws/?' do
   return response.to_output
 end
 
+# ******************************
+# GAMES
+# ******************************
+
 # Get all games to exludes
+#----------------------------------
 get '/ws/questions/ex.json' do
   response = WsResponse.new
 
   # Read all excluded questions
-  excludedQuestions = Question.all(:excluded => true, :fields => [:id])
+  excludedQuestions = Question.all(:excluded => true)
 
   if excludedQuestions != nil
 
     response.code = ErrorCodes::OK
 
-    # Build JSON
-    rJson = "["
+    a = Array.new
+
     excludedQuestions.each do |q|
-      rJson += ("#{q.gameId},")
+      a.push (q.gameId)
     end
 
-    rJson += "]"
-
-    response.data = rJson
+    response.data = a.to_json
 
   else
     response.code = ErrorCodes::SERVERERROR

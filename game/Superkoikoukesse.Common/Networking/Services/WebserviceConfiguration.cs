@@ -27,7 +27,7 @@ namespace Superkoikoukesse.Common
 				// the new config
 				// Maybe it's simpler to just save it all the time...
 				//if (LastValidConfig != null) {
-					saveConfigurationOnDevice (newConfig);
+				saveConfigurationOnDevice (newConfig);
 				//}
 
 				// Return the config to use
@@ -66,10 +66,14 @@ namespace Superkoikoukesse.Common
 
 				Logger.Log (LogLevel.Info, "Loading configuration...");
 
-				XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
-				using (TextReader reader = new StreamReader (filePath)) {
-					
-					config = (GameConfiguration)serializer.Deserialize (reader); 
+				try {
+					XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
+					using (TextReader reader = new StreamReader (filePath)) {
+						config = (GameConfiguration)serializer.Deserialize (reader); 
+					}
+				} catch (Exception) {
+					Logger.Log (LogLevel.Error, "Error during config file load. Removing it from disk so next time it should be cleaned up.");
+					File.Delete (filePath);
 				}
 			} else {
 				Logger.Log (LogLevel.Info, "No configuration file found.");
@@ -82,9 +86,8 @@ namespace Superkoikoukesse.Common
 		{
 			// TODO Android
 
-			return new Uri (Constants.WebserviceUrl + "ws/config/" + (int)GameTargets.iOS);
+			return new Uri (Constants.WebserviceUrl + "config.json/" + GameTargets.iOS.ToString ().ToLower () + "/1");
 		}
-
 	}
 }
 

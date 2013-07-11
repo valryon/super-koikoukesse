@@ -1,5 +1,5 @@
 {
-  "modes": [
+"modes": [
     {"Mode": 0, "Difficulty": 0, "Time": 10, "Score": 100, "QuestionsCount": 20},
     {"Mode": 0, "Difficulty": 1, "Time": 10, "Score": 200, "QuestionsCount": 20},
     {"Mode": 0, "Difficulty": 2, "Time": 10, "Score": 400, "QuestionsCount": 20},
@@ -16,4 +16,5 @@
     {"Mode": 3, "Difficulty": 1, "Time": 10, "Score": 200, "QuestionsCount": 10},
     {"Mode": 3, "Difficulty": 2, "Time": 10, "Score": 400, "QuestionsCount": 10},
     {"Mode": 3, "Difficulty": 3, "Time": 10, "Score": 800, "QuestionsCount": 10}
+    ]
 }

@@ -12,20 +12,26 @@ class WsResponse
   end
 
   def to_json(*a)
-    "{
-      \"c\": #{@code}
-      \"e\": \"#{@error}\"
-      \"r\": #{@data}
-    }"
+    json = "{"
+    json += "\"c\": #{@code},"
+    if error != nil
+      json += "\"e\": \"#{@error}\","
+    end
+    if data != nil
+      json += "\"r\": #{@data}"
+    end
+    json += "}"
   end
 
   # Return the json response, encrypted or not
   def to_output
 
+    json = self.to_json
+
     if $io_encryption
-      return Encryption::encrypt(self.to_json)
+      return Encryption::encrypt(json)
     else
-      return self.to_json
+      return json
     end
   end
 

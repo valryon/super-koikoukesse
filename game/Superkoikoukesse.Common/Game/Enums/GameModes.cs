@@ -7,7 +7,7 @@ namespace Superkoikoukesse.Common
 		ScoreAttack = 0,
 		TimeAttack = 1,
 		Survival = 2,
-		Versus = 4 // Mistake :P
+		Versus = 3 
 	}
 }
 

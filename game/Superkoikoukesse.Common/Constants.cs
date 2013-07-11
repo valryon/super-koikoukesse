@@ -4,11 +4,14 @@ namespace Superkoikoukesse.Common
 {
 	public static class Constants
 	{
-		public static string WebserviceUrl = "http://skkk.dmayance.com/"; // End with slash!
+		// Local debug
+		public static string WebserviceUrl = "http://localhost:9393/ws/"; // End with slash!
+		// Heroku
+		//public static string WebserviceUrl = "http://super-koikoukesse.herokuapp.com/ws/"; // End with slash!
 
 		public static string EncryptionKey = "p_o6u-e/t*+!";
 
-		public static bool UseEncryption = true;
+		public static bool UseEncryption = false;
 
 		public static string DatabaseLocation = "superkoikoukesse.sqlite";
 
