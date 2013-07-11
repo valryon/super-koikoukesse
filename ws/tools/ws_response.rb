@@ -13,12 +13,12 @@ class WsResponse
 
   def to_json(*a)
     json = "{"
-    json += "\"c\": #{@code},"
+    json += "\"c\": #{@code}"
     if error != nil
-      json += "\"e\": \"#{@error}\","
+      json += ",\"e\": \"#{@error}\""
     end
     if data != nil
-      json += "\"r\": #{@data}"
+      json += ",\"r\": #{@data}"
     end
     json += "}"
   end

@@ -84,11 +84,15 @@ post '/ws/players.json' do
 
   # JSON example
   #{"player": "G1725278793", "credits": 2, "coins": 150, "platform": "ios"}
-
   response = WsResponse.new
 
   # Parse the json and check for all mandatory fields
   incomingjson = params[:r]
+
+  if $io_encryption
+    incomingjson = Encryption::decrypt(incomingjson)
+  end
+
   doc = JSON.parse(incomingjson)
 
   p = Players.json_create(doc)
@@ -131,6 +135,11 @@ post '/ws/players/coins.json' do
   # JSON example
   # {"player": "G1725278793", "coins": 2}
   incomingjson = params[:r]
+
+  if $io_encryption
+    incomingjson = Encryption::decrypt(incomingjson)
+  end
+
   doc = JSON.parse(incomingjson)
 
   playerId = doc["player"]
@@ -170,6 +179,11 @@ post '/ws/players/credits.json' do
   # JSON example
   # {"player": "G1725278793", "credits": 2}
   incomingjson = params[:r]
+
+  if $io_encryption
+    incomingjson = Encryption::decrypt(incomingjson)
+  end
+
   doc = JSON.parse(incomingjson)
 
   playerId = doc["player"]
@@ -214,6 +228,11 @@ post '/ws/stats.json' do
   incomingjson = params[:r]
 
   if incomingjson != nil
+
+    if $io_encryption
+      incomingjson = Encryption::decrypt(incomingjson)
+    end
+
     doc = JSON.parse(incomingjson)
     stat = Stats.json_create(doc)
 
