@@ -4,7 +4,6 @@ GEM
     addressable (2.3.5)
     bcrypt-ruby (3.1.0)
     bond (0.4.3)
-    crypt (1.1.4)
     daemons (1.1.9)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
@@ -60,7 +59,6 @@ GEM
     do_sqlite3 (0.10.13)
       data_objects (= 0.10.13)
     eventmachine (1.0.3)
-    ezcrypto (0.7.2)
     fastercsv (1.5.5)
     haml (4.0.3)
       tilt
@@ -105,11 +103,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  crypt
   data_mapper
   dm-postgres-adapter
   dm-sqlite-adapter
-  ezcrypto
   haml
   pg
   shotgun
