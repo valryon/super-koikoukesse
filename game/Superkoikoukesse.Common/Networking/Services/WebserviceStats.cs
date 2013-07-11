@@ -58,7 +58,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/stats/add");
+			return new Uri (Constants.WebserviceUrl + "stats.json");
 		}
 
 

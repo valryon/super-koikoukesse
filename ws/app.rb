@@ -18,7 +18,7 @@ set :raise_errors   , true
 enable :sessions
 
 # Set our own config
-$io_encryption = false
+$io_encryption = true
 
 # -- All routes ending with .json return json content
 before %r{.+\.json$} do

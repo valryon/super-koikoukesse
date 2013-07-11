@@ -11,7 +11,7 @@ namespace Superkoikoukesse.Common
 
 		public static string EncryptionKey = "p_o6u-e/t*+!";
 
-		public static bool UseEncryption = false;
+		public static bool UseEncryption = true;
 
 		public static string DatabaseLocation = "superkoikoukesse.sqlite";
 

@@ -12,7 +12,6 @@ namespace Superkoikoukesse.Common
 	public class DatabaseService
 	{
 		#region Singleton 
-
 		private static DatabaseService m_instance;
 
 		private DatabaseService ()
@@ -33,15 +32,11 @@ namespace Superkoikoukesse.Common
 				return m_instance;
 			}
 		}
-
 		#endregion
-
 		private string m_location;
 		private SQLiteConnection m_db;
 		private object locker;
-
 		#region Initialization
-
 		/// <summary>
 		/// Load the database
 		/// </summary>
@@ -91,35 +86,37 @@ namespace Superkoikoukesse.Common
 			
 			// Parse the xml
 			// Format:
-			//			<games>
-			//				<game>
-			//					<GameId>1</GameId>
-			//					<ImagePath>00001.jpg</ImagePath>
-			//					<TitlePAL>A-Train</TitlePAL>
-			//					<TitleUS>A-Train</TitleUS>
-			//					<Platform>amiga</Platform>
-			//					<Genre>gestion</Genre>
-			//					<Publisher>ocean</Publisher>
-			//					<Year>1992</Year>
-			//					<IsRemoved>true</IsRemoved>
-			//				</game>
-			//			</games>
+			//			<questions>
+			//				<question>
+			//					<id type="integer">1</id>
+			//					<gameId type="integer">1</gameId>
+			//					<image>00001.jpg</image>
+			//					<titlePAL>A-Train</titlePAL>
+			//					<titleUS>A-Train</titleUS>
+			//					<titleJAP/>
+			//					<platform>Amiga</platform>
+			//					<genre>gestion</genre>
+			//					<publisher>Ocean</publisher>
+			//					<year type="integer">1992</year>
+			//					<excluded type="trueclass">false</excluded>
+			//				</question>
+			//			</questions>
 			int addCount = 0;
 			XElement element = XElement.Parse (xml);
 
-			foreach (XElement gameXml in element.Elements("game")) {
+			foreach (XElement gameXml in element.Elements("question")) {
 
 				GameInfo game = new GameInfo ();
 
-				game.GameId = Convert.ToInt32 (gameXml.Element ("GameId").Value);
-				game.ImagePath = gameXml.Element ("ImagePath").Value;
-				game.TitlePAL = gameXml.Element ("TitlePAL").Value;
-				game.TitleUS = gameXml.Element ("TitleUS").Value;
-				game.Platform = gameXml.Element ("Platform").Value;
-				game.Genre = gameXml.Element ("Genre").Value;
-				game.Publisher = gameXml.Element ("Publisher").Value;
-				game.Year = Convert.ToInt32 (gameXml.Element ("Year").Value);
-				bool isRemoved = Convert.ToBoolean (gameXml.Element ("IsRemoved").Value);
+				game.GameId = Convert.ToInt32 (gameXml.Element ("gameId").Value);
+				game.ImagePath = gameXml.Element ("image").Value;
+				game.TitlePAL = gameXml.Element ("titlePAL").Value;
+				game.TitleUS = gameXml.Element ("titleUS").Value;
+				game.Platform = gameXml.Element ("platform").Value;
+				game.Genre = gameXml.Element ("genre").Value;
+				game.Publisher = gameXml.Element ("publisher").Value;
+				game.Year = Convert.ToInt32 (gameXml.Element ("year").Value);
+				bool isRemoved = Convert.ToBoolean (gameXml.Element ("excluded").Value);
 
 				if (isRemoved == false) {
 					addCount++;
@@ -130,11 +127,8 @@ namespace Superkoikoukesse.Common
 
 			Logger.Log (LogLevel.Info, "Initialization completed, " + addCount + " games added!");
 		}
-
 		#endregion
-
 		#region GameInfo storage
-
 		/// <summary>
 		/// Add a new game entry
 		/// </summary>
@@ -229,11 +223,8 @@ namespace Superkoikoukesse.Common
 				}
 			}
 		}
-
 		#endregion
-
 		#region Player
-
 		/// <summary>
 		/// Get the stored player information
 		/// </summary>
@@ -265,11 +256,8 @@ namespace Superkoikoukesse.Common
 				m_db.Insert (player);
 			}
 		}
-
 		#endregion
-
 		#region Scores
-
 		/// <summary>
 		/// Add a new score to the local DB
 		/// </summary>
@@ -309,9 +297,7 @@ namespace Superkoikoukesse.Common
 				.Take (count).ToArray ();
 			}
 		}
-
 		#endregion
-
 		/// <summary>
 		/// Gets a value indicating whether the game database exists.
 		/// </summary>
