@@ -195,18 +195,14 @@
     <InterfaceDefinition Include="Views\iPad\PagerMenuModeView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\ScoreView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
+    <InterfaceDefinition Include="Views\Main_iPhone.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\empty_screen.png" />
     <BundleResource Include="..\..\database\gamedb.xml">
       <Link>Resources\database\gamedb.xml</Link>
     </BundleResource>
     <BundleResource Include="Resources\en.lproj\Localizable.strings" />
     <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\scoreattack.png" />
-    <BundleResource Include="Resources\survival.png" />
-    <BundleResource Include="Resources\timeattack.png" />
-    <BundleResource Include="Resources\versus.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -1776,7 +1772,6 @@
     <BundleResource Include="..\..\database\images\00521.jpg">
       <Link>Resources\database\images\00521.jpg</Link>
     </BundleResource>
-    <BundleResource Include="Resources\stunfest_mode.png" />
     <BundleResource Include="..\..\database\images\00522.jpg">
       <Link>Resources\database\images\00522.jpg</Link>
     </BundleResource>
@@ -2213,78 +2208,5 @@
     <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Icon-72.png" />
     <BundleResource Include="Resources\Icon-72%402x.png" />
-    <BundleResource Include="Resources\button.png" />
-    <BundleResource Include="Resources\button%402x.png" />
-    <BundleResource Include="Resources\combo_arrow.png" />
-    <BundleResource Include="Resources\combo_arrow%402x.png" />
-    <BundleResource Include="Resources\combo_background.png" />
-    <BundleResource Include="Resources\combo_background%402x.png" />
-    <BundleResource Include="Resources\combo_l1d.png" />
-    <BundleResource Include="Resources\combo_l1d%402x.png" />
-    <BundleResource Include="Resources\combo_l1e.png" />
-    <BundleResource Include="Resources\combo_l1e%402x.png" />
-    <BundleResource Include="Resources\combo_l2d.png" />
-    <BundleResource Include="Resources\combo_l2d%402x.png" />
-    <BundleResource Include="Resources\combo_l2e.png" />
-    <BundleResource Include="Resources\combo_l2e%402x.png" />
-    <BundleResource Include="Resources\combo_l3d.png" />
-    <BundleResource Include="Resources\combo_l3d%402x.png" />
-    <BundleResource Include="Resources\combo_l3e.png" />
-    <BundleResource Include="Resources\combo_l3e%402x.png" />
-    <BundleResource Include="Resources\combo_l4d.png" />
-    <BundleResource Include="Resources\combo_l4d%402x.png" />
-    <BundleResource Include="Resources\combo_l4e.png" />
-    <BundleResource Include="Resources\combo_l4e%402x.png" />
-    <BundleResource Include="Resources\lives_1.png" />
-    <BundleResource Include="Resources\lives_3%402x.png" />
-    <BundleResource Include="Resources\lives_3.png" />
-    <BundleResource Include="Resources\lives_2%402x.png" />
-    <BundleResource Include="Resources\lives_2.png" />
-    <BundleResource Include="Resources\lives_1%402x.png" />
-    <BundleResource Include="Resources\timer_full.png" />
-    <BundleResource Include="Resources\timer_full%402x.png" />
-    <BundleResource Include="Resources\button_pause.png" />
-    <BundleResource Include="Resources\button_pause%402x.png" />
-    <BundleResource Include="Resources\timer_current.png" />
-    <BundleResource Include="Resources\timer_current%402x.png" />
-    <BundleResource Include="Resources\joker.png" />
-    <BundleResource Include="Resources\joker%402x.png" />
-    <BundleResource Include="Resources\shadow.png" />
-    <BundleResource Include="Resources\shadow%402x.png" />
-    <BundleResource Include="Resources\combo_x1.png" />
-    <BundleResource Include="Resources\combo_x1%402x.png" />
-    <BundleResource Include="Resources\combo_x2.png" />
-    <BundleResource Include="Resources\combo_x2%402x.png" />
-    <BundleResource Include="Resources\combo_x3.png" />
-    <BundleResource Include="Resources\combo_x3%402x.png" />
-    <BundleResource Include="Resources\combo_x4.png" />
-    <BundleResource Include="Resources\combo_x4%402x.png" />
-    <BundleResource Include="Resources\image_background.png" />
-    <BundleResource Include="Resources\image_background%402x.png" />
-    <BundleResource Include="Resources\button_small.png" />
-    <BundleResource Include="Resources\button_small%402x.png" />
-    <BundleResource Include="Resources\coin.png" />
-    <BundleResource Include="Resources\coin%402x.png" />
-    <BundleResource Include="Resources\heart.png" />
-    <BundleResource Include="Resources\heart%402x.png" />
-    <BundleResource Include="Resources\button_gear.png" />
-    <BundleResource Include="Resources\button_gear%402x.png" />
-    <BundleResource Include="Resources\button_small_important.png" />
-    <BundleResource Include="Resources\button_small_important%402x.png" />
-    <BundleResource Include="Resources\heart_mini.png" />
-    <BundleResource Include="Resources\heart_mini%402x.png" />
-    <BundleResource Include="Resources\menu_shadow.png" />
-    <BundleResource Include="Resources\menu_shadow%402x.png" />
-    <BundleResource Include="Resources\logo%402x.png" />
-    <BundleResource Include="Resources\logo.png" />
-    <BundleResource Include="Resources\logo_lb.png" />
-    <BundleResource Include="Resources\logo_lb%402x.png" />
-    <BundleResource Include="Resources\button_back.png" />
-    <BundleResource Include="Resources\button_back%402x.png" />
-    <BundleResource Include="Resources\top_shadow.png" />
-    <BundleResource Include="Resources\top_shadow%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
