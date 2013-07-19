@@ -25,9 +25,25 @@ namespace SuperKoikoukesse.iOS
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
+    /// <summary>
+    /// Get the supported orientations for the device:
+    /// - portrait for iPhone
+    /// - landscape for iPad
+    /// </summary>
+    /// <returns>Landscape if iPad, portrait otherwise</returns>
+    public static UIInterfaceOrientationMask HasSupportedInterfaceOrientations()
+    {
+      // If iPad, only landscape
+      if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+        return UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+
+      // If iPhone, only portrait
+      return UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.PortraitUpsideDown;
+    }
+
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
 		{
-			return  UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+      return AppDelegate.HasSupportedInterfaceOrientations();
 		}
 
 		// class-level declarations

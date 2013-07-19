@@ -15,7 +15,7 @@ namespace SuperKoikoukesse.iOS
 		}
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
-			return  UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+      return AppDelegate.HasSupportedInterfaceOrientations();
 		}
 	}
 }
