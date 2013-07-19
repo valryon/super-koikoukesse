@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			// Landscape mode
 			UIView view = new UIView(new RectangleF(0,0,UIScreen.MainScreen.Bounds.Height,UIScreen.MainScreen.Bounds.Width));
-			view.BackgroundColor = ColorConstants.ToUIColor (ColorConstants.BRAND_WHITE);
+//			view.BackgroundColor = PXNConstants.ToUIColor (PXNConstants.BRAND_WHITE);
 
 			return view;
 		}
@@ -21,7 +21,7 @@ namespace SuperKoikoukesse.iOS
 		public static UILabel Createlabel(RectangleF frame, string text) 
 		{
 			UILabel label = new UILabel (frame);
-			label.TextColor = ColorConstants.ToUIColor (ColorConstants.TEXT_BLACK);
+//			label.TextColor = PXNConstants.ToUIColor (PXNConstants.TEXT_BLACK);
 			label.Text = text;
 			label.BackgroundColor = new UIColor (0f,0f,0f,0f);
 
@@ -33,7 +33,7 @@ namespace SuperKoikoukesse.iOS
 			UIButton button = new UIButton (frame);
 
 			button.SetTitle (text, UIControlState.Normal);
-			button.SetTitleColor(ColorConstants.ToUIColor (ColorConstants.TEXT_WHITE), UIControlState.Normal);
+//			button.SetTitleColor(PXNConstants.ToUIColor (PXNConstants.TEXT_WHITE), UIControlState.Normal);
 			button.SetBackgroundImage(new UIImage("button_small.png"), UIControlState.Normal);
 
 			if (onClick != null) {

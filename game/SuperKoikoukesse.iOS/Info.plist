@@ -5,8 +5,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>io.pixelnest.superkoikoukesse</string>
@@ -19,8 +17,6 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	<key>UIStatusBarHidden</key>
-	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Assets/Fonts/SG10.ttf</string>

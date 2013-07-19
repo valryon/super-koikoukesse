@@ -147,7 +147,6 @@
     <Compile Include="Controllers\PagerMenuInfosViewController.designer.cs">
       <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ColorConstants.cs" />
     <Compile Include="GameCenter\GameCenterPlayer.cs" />
     <Compile Include="Controllers\Dialogs.cs" />
     <Compile Include="Controllers\PagerMenuHighscoresViewController.cs" />
@@ -164,6 +163,7 @@
     </Compile>
     <Compile Include="Tools\Localization.cs" />
     <Compile Include="Views\ViewTools.cs" />
+    <Compile Include="Views\PXNConstants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -196,6 +196,7 @@
     <InterfaceDefinition Include="Views\iPad\ScoreView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
     <InterfaceDefinition Include="Views\Main_iPhone.storyboard" />
+    <InterfaceDefinition Include="Views\Main_iPad.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">
@@ -2208,5 +2209,7 @@
     <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Icon-72.png" />
     <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\button_iPhone.png" />
+    <BundleResource Include="Resources\button_iPhone%402x.png" />
   </ItemGroup>
 </Project>
