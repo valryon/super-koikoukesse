@@ -14,6 +14,7 @@
                 <outlet property="game4Button" destination="Zoi-7V-wcK" id="m8E-dq-BP1"/>
                 <outlet property="gameImage" destination="5" id="6"/>
                 <outlet property="gameImageScroll" destination="39" id="40"/>
+                <outlet property="jokerBottomConstraints" destination="wjP-cx-Nc6" id="e41-lT-hEb"/>
                 <outlet property="jokerButton" destination="7" id="12"/>
                 <outlet property="livesImage" destination="LRR-ec-4nU" id="JiA-gx-FJx"/>
                 <outlet property="modeLabel" destination="531" id="551"/>
@@ -37,6 +38,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                            <rect key="frame" x="106" y="10" width="108" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <size key="titleShadowOffset" width="1" height="1"/>
+                            <state key="normal" title="Joker" backgroundImage="button_shop.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="jokerButtonPressed:" destination="-1" eventType="touchUpInside" id="38"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24" userLabel="Pause button">
                             <rect key="frame" x="4" y="270" width="42" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,6 +91,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="U9V-QM-GIr"/>
                         <constraint firstItem="iuR-Bi-spM" firstAttribute="leading" secondItem="43" secondAttribute="leading" constant="90" id="uri-rT-SGz"/>
+                        <constraint firstItem="7" firstAttribute="top" secondItem="43" secondAttribute="top" constant="10" id="wjP-cx-Nc6"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="169" userLabel="Body">
@@ -95,25 +116,6 @@
                                 <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="s9x-RF-Md2"/>
                             </constraints>
                         </scrollView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                            <rect key="frame" x="6" y="516" width="108" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <size key="titleShadowOffset" width="1" height="1"/>
-                            <state key="normal" title="Joker" backgroundImage="button_shop.png">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="disabled">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="highlighted">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="jokerButtonPressed:" destination="-1" eventType="touchUpInside" id="38"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="464" userLabel="Question count label">
                             <rect key="frame" x="20" y="5" width="40" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
