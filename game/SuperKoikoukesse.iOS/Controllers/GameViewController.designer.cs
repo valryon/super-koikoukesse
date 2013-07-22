@@ -12,52 +12,10 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint jokerBottomConstraints { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView comboImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint timerLabelSize { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint timerBarSize { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView timerBar { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView livesImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel questionCountLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel modeLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel scoreTitleLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView gameImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton jokerButton { get; set; }
+		MonoTouch.UIKit.UIImageView comboImage { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton game1Button { get; set; }
@@ -72,7 +30,55 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton game4Button { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIImageView gameImage { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint jokerBottomConstraints { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton jokerButton { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView livesImage { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel modeLabel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton pauseButton { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel questionCountLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel scoreTitleLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIImageView timerBar { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timerBarSize { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint timerLabelSize { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView viewAnswers { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView viewInformations { get; set; }
 
 		[Action ("game1ButtonPressed:")]
 		partial void game1ButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -86,11 +92,11 @@ namespace SuperKoikoukesse.iOS
 		[Action ("game4ButtonPressed:")]
 		partial void game4ButtonPressed (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("pauseButtonPressed:")]
-		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender);
-
 		[Action ("jokerButtonPressed:")]
 		partial void jokerButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("pauseButtonPressed:")]
+		partial void pauseButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -197,6 +203,16 @@ namespace SuperKoikoukesse.iOS
 			if (pauseButton != null) {
 				pauseButton.Dispose ();
 				pauseButton = null;
+			}
+
+			if (viewAnswers != null) {
+				viewAnswers.Dispose ();
+				viewAnswers = null;
+			}
+
+			if (viewInformations != null) {
+				viewInformations.Dispose ();
+				viewInformations = null;
 			}
 		}
 	}
