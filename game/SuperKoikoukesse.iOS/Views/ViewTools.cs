@@ -52,6 +52,31 @@ namespace SuperKoikoukesse.iOS
 
 			return button;
 		}
+
+    /// <summary>
+    /// Style a button.
+    /// </summary>
+    /// <param name="button">Button.</param>
+    public static void StyleButton(UIButton button)
+    {
+      button.SetBackgroundImage(new UIImage("button_iPhone.png"), UIControlState.Normal);
+
+      // Text color + size
+      button.Font = UIFont.FromName("HelveticaNeue", 15);
+      button.SetTitleColor(UIColor.White, UIControlState.Normal);
+      button.SetTitleColor(UIColor.FromHSB(0, 0, 0.8f), UIControlState.Highlighted);
+
+      // Shadow color + offset
+      button.SetTitleShadowColor(PXNConstants.HALF_ALPHA_BLACK, UIControlState.Normal);
+      button.TitleShadowOffset = new SizeF(0, 1);
+
+      // Edge
+      button.TitleEdgeInsets = new UIEdgeInsets(0, 5, 0, 5);
+
+      // Alignement + wrap
+      button.TitleLabel.LineBreakMode = UILineBreakMode.WordWrap;
+      button.TitleLabel.TextAlignment = UITextAlignment.Center;
+    }
 	}
 }
 

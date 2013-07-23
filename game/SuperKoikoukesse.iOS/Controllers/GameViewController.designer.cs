@@ -15,7 +15,7 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView comboImage { get; set; }
+		MonoTouch.UIKit.UIButton ButtonPause { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint ConstraintLeadingTimerLabel { get; set; }
@@ -45,6 +45,9 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton jokerButton { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UILabel LabelCurrentTime { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView livesImage { get; set; }
 
 		[Outlet]
@@ -63,10 +66,13 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel timeLeftLabel { get; set; }
+		MonoTouch.UIKit.UIView ViewAnswers { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView ViewAnswers { get; set; }
+		MonoTouch.UIKit.UIView ViewCombo { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewImageShadow { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIView ViewInformations { get; set; }
@@ -99,9 +105,14 @@ namespace SuperKoikoukesse.iOS
 				bgImage = null;
 			}
 
-			if (comboImage != null) {
-				comboImage.Dispose ();
-				comboImage = null;
+			if (ButtonPause != null) {
+				ButtonPause.Dispose ();
+				ButtonPause = null;
+			}
+
+			if (ConstraintLeadingTimerLabel != null) {
+				ConstraintLeadingTimerLabel.Dispose ();
+				ConstraintLeadingTimerLabel = null;
 			}
 
 			if (game1Button != null) {
@@ -144,6 +155,11 @@ namespace SuperKoikoukesse.iOS
 				jokerButton = null;
 			}
 
+			if (LabelCurrentTime != null) {
+				LabelCurrentTime.Dispose ();
+				LabelCurrentTime = null;
+			}
+
 			if (livesImage != null) {
 				livesImage.Dispose ();
 				livesImage = null;
@@ -174,14 +190,19 @@ namespace SuperKoikoukesse.iOS
 				timeFullHeightConstraint = null;
 			}
 
-			if (timeLeftLabel != null) {
-				timeLeftLabel.Dispose ();
-				timeLeftLabel = null;
+			if (ViewCombo != null) {
+				ViewCombo.Dispose ();
+				ViewCombo = null;
 			}
 
 			if (ViewAnswers != null) {
 				ViewAnswers.Dispose ();
 				ViewAnswers = null;
+			}
+
+			if (ViewImageShadow != null) {
+				ViewImageShadow.Dispose ();
+				ViewImageShadow = null;
 			}
 
 			if (ViewInformations != null) {
@@ -192,11 +213,6 @@ namespace SuperKoikoukesse.iOS
 			if (ViewTimer != null) {
 				ViewTimer.Dispose ();
 				ViewTimer = null;
-			}
-
-			if (ConstraintLeadingTimerLabel != null) {
-				ConstraintLeadingTimerLabel.Dispose ();
-				ConstraintLeadingTimerLabel = null;
 			}
 		}
 	}

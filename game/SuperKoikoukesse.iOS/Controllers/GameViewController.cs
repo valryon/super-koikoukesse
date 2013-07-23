@@ -40,6 +40,7 @@ namespace SuperKoikoukesse.iOS
     private GamePauseViewController mPauseViewController;
 
     #endregion
+
     #region Constructors
 
     public GameViewController() : base ("GameView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -104,16 +105,22 @@ namespace SuperKoikoukesse.iOS
       gameImage.Image = mPauseImage;
     }
 
+    public override void ViewDidAppear(bool animated)
+    {
+      base.ViewDidAppear(animated);
+
+      ViewImageShadow.Layer.ShadowColor = UIColor.Black.CGColor;
+      ViewImageShadow.Layer.ShadowOpacity = 0.4f;
+      ViewImageShadow.Layer.ShadowRadius = 10f;
+    }
+
     /// <summary>
     /// Style the main view.
     /// </summary>
     public void StyleView()
     {
-      View.BackgroundColor = PXNConstants.BRAND_BACKGROUND;
-
-      scoreLabel.TextColor = PXNConstants.MAIN_TEXT_COLOR;
-      scoreTitleLabel.TextColor = PXNConstants.MAIN_TEXT_COLOR;
-
+      ViewCombo.Layer.CornerRadius = 6;
+      ViewImageShadow.Layer.CornerRadius = 13;
       gameImageScroll.Layer.CornerRadius = 13;
 
       // Informations
@@ -123,10 +130,10 @@ namespace SuperKoikoukesse.iOS
       StyleAnswers(ViewAnswers);
 
       // Buttons
-      StyleButton(game1Button);
-      StyleButton(game2Button);
-      StyleButton(game3Button);
-      StyleButton(game4Button);
+      game1Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+      game2Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+      game3Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+      game4Button.TitleLabel.TextAlignment = UITextAlignment.Center;
     }
 
     /// <summary>
@@ -135,8 +142,6 @@ namespace SuperKoikoukesse.iOS
     /// <param name="view">View.</param>
     public void StyleInformations(UIView view)
     {
-      view.BackgroundColor = PXNConstants.BRAND_GREY;
-
       // Bottom border
       var border = new CALayer();
       border.Frame = new RectangleF(0, view.Frame.Height, view.Frame.Width, 1);
@@ -161,8 +166,6 @@ namespace SuperKoikoukesse.iOS
     /// <param name="view">View.</param>
     public void StyleAnswers(UIView view)
     {
-      view.BackgroundColor = PXNConstants.BRAND_GREY;
-
       // Border top
       var border = new CALayer();
       border.Frame = new RectangleF(0, -1, view.Frame.Width, 1);
@@ -181,30 +184,6 @@ namespace SuperKoikoukesse.iOS
       view.Layer.AddSublayer(gradient);
     }
 
-    /// <summary>
-    /// Style a button.
-    /// </summary>
-    /// <param name="button">Button.</param>
-    public void StyleButton(UIButton button)
-    {
-      button.SetBackgroundImage(new UIImage("button_iPhone.png"), UIControlState.Normal);
-
-      // Text color + size
-      button.Font = UIFont.FromName("HelveticaNeue", 15);
-      button.SetTitleColor(UIColor.White, UIControlState.Normal);
-      button.SetTitleColor(UIColor.FromHSB(0, 0, 0.8f), UIControlState.Highlighted);
-
-      // Shadow color + offset
-      button.SetTitleShadowColor(PXNConstants.HALF_ALPHA_BLACK, UIControlState.Normal);
-      button.TitleShadowOffset = new SizeF(0, 1);
-
-      // Edge
-      button.TitleEdgeInsets = new UIEdgeInsets(0, 5, 0, 5);
-
-      // Alignement + wrap
-      button.TitleLabel.LineBreakMode = UILineBreakMode.WordWrap;
-      button.TitleLabel.TextAlignment = UITextAlignment.Center;
-    }
 
     /// <summary>
     /// Initialize a new quizz game
@@ -300,7 +279,7 @@ namespace SuperKoikoukesse.iOS
                 }
 
                 ConstraintLeadingTimerLabel.Constant = pos;
-                timeLeftLabel.Text = mQuizz.TimeLeft.ToString("00");
+                LabelCurrentTime.Text = mQuizz.TimeLeft.ToString("00");
               });
             }
           }
@@ -332,7 +311,7 @@ namespace SuperKoikoukesse.iOS
       Logger.Log(LogLevel.Info, "Setting up view for current question " + q);
 
       // Timer
-      timeLeftLabel.Text = mQuizz.TimeLeft.ToString("00");
+      LabelCurrentTime.Text = mQuizz.TimeLeft.ToString("00");
 
       // Image
       string imgPath = ImageService.Instance.Getimage(q.CorrectAnswer);
@@ -348,21 +327,21 @@ namespace SuperKoikoukesse.iOS
       scoreLabel.Text = mQuizz.Score.ToString("000000");
 
       // Combo
-      switch (mQuizz.Combo)
-      {
-        case 2:
-          comboImage.Image = new UIImage("combo_x2.png");
-          break;
-        case 3:
-          comboImage.Image = new UIImage("combo_x3.png");
-          break;
-        case 4:
-          comboImage.Image = new UIImage("combo_x4.png");
-          break;
-        default:
-          comboImage.Image = new UIImage("combo_x1.png");
-          break;
-      }
+//      switch (mQuizz.Combo)
+//      {
+//        case 2:
+//          comboImage.Image = new UIImage("combo_x2.png");
+//          break;
+//        case 3:
+//          comboImage.Image = new UIImage("combo_x3.png");
+//          break;
+//        case 4:
+//          comboImage.Image = new UIImage("combo_x4.png");
+//          break;
+//        default:
+//          comboImage.Image = new UIImage("combo_x1.png");
+//          break;
+//      }
 
       /*
 			 * Joker
@@ -525,7 +504,7 @@ namespace SuperKoikoukesse.iOS
       if (mQuizz.IsPaused)
       {
 
-        mPauseViewController.View.Frame = View.Frame;
+        mPauseViewController.View.Frame = View.Window.Frame;
         View.AddSubview(mPauseViewController.View);
         View.BringSubviewToFront(mPauseViewController.View);
 
