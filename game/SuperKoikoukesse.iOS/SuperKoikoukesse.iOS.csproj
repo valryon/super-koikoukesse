@@ -164,6 +164,11 @@
     <Compile Include="Tools\Localization.cs" />
     <Compile Include="Views\ViewTools.cs" />
     <Compile Include="Views\PXNConstants.cs" />
+    <Compile Include="PXNTimerLabel.cs" />
+    <Compile Include="PXNTimerLabel.designer.cs">
+      <DependentUpon>PXNTimerLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PXNNavigationButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -2211,5 +2216,15 @@
     <BundleResource Include="Resources\Icon-72%402x.png" />
     <BundleResource Include="Resources\button_iPhone.png" />
     <BundleResource Include="Resources\button_iPhone%402x.png" />
+    <BundleResource Include="Resources\timer_background.png" />
+    <BundleResource Include="Resources\timer_background%402x.png" />
+    <BundleResource Include="Resources\timer_label.png" />
+    <BundleResource Include="Resources\timer_label%402x.png" />
+    <BundleResource Include="Resources\button_arrow.png" />
+    <BundleResource Include="Resources\button_arrow%402x.png" />
+    <BundleResource Include="Resources\image_empty.png" />
+    <BundleResource Include="Resources\image_empty%402x.png" />
+    <BundleResource Include="Resources\combo_indicator.png" />
+    <BundleResource Include="Resources\combo_indicator%402x.png" />
   </ItemGroup>
 </Project>
