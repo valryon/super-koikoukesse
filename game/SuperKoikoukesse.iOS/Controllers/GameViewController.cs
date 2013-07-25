@@ -33,6 +33,7 @@ namespace SuperKoikoukesse.iOS
     // Image transformations
     private float mAnimationIntervalBase;
     private float mAnimationIntervalCountdown;
+
     private UIView mProgressiveDrawView;
     private float mProgressiveDrawTargetX;
     private float mProgressiveDrawTargetY;
@@ -48,46 +49,6 @@ namespace SuperKoikoukesse.iOS
       mRandom = new Random(DateTime.Now.Millisecond);
     }
 
-    #endregion
-
-    #region Handlers
-
-    partial void OnButton1Touched(NSObject sender)
-    {
-      gameButtonPressed(0);
-    }
-
-    partial void OnButton2Touched(NSObject sender)
-    {
-      gameButtonPressed(1);
-    }
-
-    partial void OnButton3Touched(NSObject sender)
-    {
-      gameButtonPressed(2);
-    }
-
-    partial void OnButton4Touched(NSObject sender)
-    {
-      gameButtonPressed(3);
-    }
-
-    partial void OnPauseTouched(NSObject sender)
-    {
-      pauseAction();
-    }
-
-    partial void OnJokerTouched(NSObject sender)
-    {
-      mQuizz.UseJoker();
-
-      nextQuestion();
-    }
-
-    #endregion
-
-    #region Game 
-
     public override void ViewDidLoad()
     {
       base.ViewDidLoad();
@@ -98,8 +59,8 @@ namespace SuperKoikoukesse.iOS
 
       // Load the pause/inactive screen image
       mPauseViewController = new GamePauseViewController();
-      mPauseViewController.Resume = () => pauseAction();
-      mPauseViewController.Quit = () => getBackToMenu();
+      mPauseViewController.Resume = Pause;
+      mPauseViewController.Quit = Back;
 
       mPauseImage = UIImage.FromFile("empty_screen.png");
       gameImage.Image = mPauseImage;
@@ -109,10 +70,14 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewDidAppear(animated);
 
-      ViewImageShadow.Layer.ShadowColor = UIColor.Black.CGColor;
-      ViewImageShadow.Layer.ShadowOpacity = 0.4f;
-      ViewImageShadow.Layer.ShadowRadius = 10f;
+      SetShadow(ViewImageShadow);
     }
+
+    #endregion
+
+    #region Methods
+
+    #region Styling
 
     /// <summary>
     /// Style the main view.
@@ -122,6 +87,8 @@ namespace SuperKoikoukesse.iOS
       ViewCombo.Layer.CornerRadius = 6;
       ViewImageShadow.Layer.CornerRadius = 13;
       gameImageScroll.Layer.CornerRadius = 13;
+
+      CreateParticlesEngine(ViewEmitter);
 
       // Informations
       StyleInformations(ViewInformations);
@@ -134,6 +101,29 @@ namespace SuperKoikoukesse.iOS
       game2Button.TitleLabel.TextAlignment = UITextAlignment.Center;
       game3Button.TitleLabel.TextAlignment = UITextAlignment.Center;
       game4Button.TitleLabel.TextAlignment = UITextAlignment.Center;
+    }
+
+    public void SetShadow(UIView view)
+    {
+      view.Layer.ShadowColor = UIColor.Black.CGColor;
+      view.Layer.ShadowOpacity = 0.4f;
+      view.Layer.ShadowRadius = 10f;
+    }
+
+    public void CreateParticlesEngine(UIView view)
+    {
+      var emitter = new PXNComboGauge(
+        x: ViewEmitter.Frame.Width,
+        y: ViewEmitter.Frame.Height / 2,
+        width: 1f,
+        height: ViewEmitter.Frame.Height - 4
+        );
+
+      var mask = new CAShapeLayer();
+      mask.Frame = ViewCombo.Layer.Frame;
+      mask.CornerRadius = 6;
+
+      view.Layer.AddSublayer(emitter);
     }
 
     /// <summary>
@@ -184,6 +174,9 @@ namespace SuperKoikoukesse.iOS
       view.Layer.AddSublayer(gradient);
     }
 
+    #endregion
+
+    #region Quizz
 
     /// <summary>
     /// Initialize a new quizz game
@@ -195,7 +188,7 @@ namespace SuperKoikoukesse.iOS
       // Prepare a quizz
       mQuizz = new Quizz();
       mQuizz.Initialize(mode, diff, appDelegate.Configuration, f);
-		
+    
       // Consume one credit
       ProfileService.Instance.UseCredit();
     }
@@ -205,17 +198,17 @@ namespace SuperKoikoukesse.iOS
     /// </summary>
     public void DisplayQuizz()
     {
-      updateViewToQuizz(mQuizz);
-      updateViewToQuestion(mQuizz.CurrentQuestion);
+      UpdateViewWithQuizz(mQuizz);
+      UpdateViewWithQuestion(mQuizz.CurrentQuestion);
     }
 
     /// <summary>
     /// Initialize the view for a new quizz
     /// </summary>
-    private void updateViewToQuizz(Quizz q)
+    private void UpdateViewWithQuizz(Quizz q)
     {
       // Set timer in a thread
-      var thread = new Thread(setGameTimer as ThreadStart);
+      var thread = new Thread(SetGameTimer as ThreadStart);
       thread.Start();
 
       // Display selected mode and difficulty
@@ -238,10 +231,55 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
+    #endregion
+
+    #region Navigation
+
+    private void Back()
+    {
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+
+      if (mPauseViewController != null)
+      {
+        mPauseViewController.View.RemoveFromSuperview();
+      }
+
+      appDelegate.SwitchToMenuView();
+    }
+
+    private void Pause()
+    {
+      mQuizz.IsPaused = !mQuizz.IsPaused;
+
+      if (mQuizz.IsPaused)
+      {
+        mPauseViewController.View.Frame = View.Window.Frame;
+        View.AddSubview(mPauseViewController.View);
+        View.BringSubviewToFront(mPauseViewController.View);
+
+        // Mask game elements
+        gameImage.Image = mPauseImage;
+
+        SetButtonsTitle(null);
+      }
+      else
+      {
+        mPauseViewController.View.RemoveFromSuperview();
+
+        gameImage.Image = mCurrentImage;
+
+        SetButtonsTitle(mQuizz.CurrentQuestion);
+      }
+    }
+
+    #endregion
+
+    #region Game
+
     /// <summary>
     /// Launch the game timer
     /// </summary>
-    private void setGameTimer()
+    private void SetGameTimer()
     {
       using (var pool = new NSAutoreleasePool())
       {
@@ -263,7 +301,7 @@ namespace SuperKoikoukesse.iOS
 
               // No answer selected
               this.InvokeOnMainThread(() => {
-                nextQuestion();
+                GoToNextQuestion();
               });
             }
             else
@@ -292,7 +330,7 @@ namespace SuperKoikoukesse.iOS
     /// <summary>
     /// Stop the game timer
     /// </summary>
-    private void stopGameTimer()
+    private void StopGameTimer()
     {
       if (mTimer != null)
       {
@@ -306,7 +344,7 @@ namespace SuperKoikoukesse.iOS
     /// Setup all the view elements for a given question
     /// </summary>
     /// <param name="q">Q.</param>
-    private void updateViewToQuestion(Question q)
+    private void UpdateViewWithQuestion(Question q)
     {
       Logger.Log(LogLevel.Info, "Setting up view for current question " + q);
 
@@ -321,31 +359,43 @@ namespace SuperKoikoukesse.iOS
       setImageAnimation();
 
       // Answers
-      setGameButtonTitles(q);
+      SetButtonsTitle(q);
 
       // Score
       scoreLabel.Text = mQuizz.Score.ToString("000000");
 
       // Combo
-//      switch (mQuizz.Combo)
-//      {
-//        case 2:
-//          comboImage.Image = new UIImage("combo_x2.png");
-//          break;
-//        case 3:
-//          comboImage.Image = new UIImage("combo_x3.png");
-//          break;
-//        case 4:
-//          comboImage.Image = new UIImage("combo_x4.png");
-//          break;
-//        default:
-//          comboImage.Image = new UIImage("combo_x1.png");
-//          break;
-//      }
+      var width = 0f;
+      switch (mQuizz.Combo)
+      {
+        case 2:
+          LabelCombo.Text = "x2";
+          width = 82f;
+          break;
+        case 3:
+          LabelCombo.Text = "x3";
+          width = 41f;
+          break;
+        case 4:
+          LabelCombo.Text = "x4";
+          width = 0f;
+          break;
+        default:
+          LabelCombo.Text = "x1";
+          width = 123f;
+          break;
+      }
+
+      UIView.Animate(1f, 0.1f, UIViewAnimationOptions.CurveEaseIn, () => 
+      {
+        ConstraintCombo.Constant = width;
+        //ViewEmitter.SetNeedsLayout();
+        ViewEmitter.LayoutIfNeeded();
+      }, null);
 
       /*
-			 * Joker
-			 */
+       * Joker
+       */
 
       // Enable the joker if enough questions has been answered correctly
       jokerButton.Enabled = mQuizz.IsJokerAvailable;
@@ -382,15 +432,15 @@ namespace SuperKoikoukesse.iOS
       }
 
       /*
-			 * Questions
-			 */
+       * Questions
+       */
 
       // Question count
       questionCountLabel.Text = mQuizz.QuestionNumber.ToString();
 
       /*
-			 * Lives
-			 */ 
+       * Lives
+       */ 
 
       // Display the correct number of lives
       if (mQuizz.Mode == GameModes.Survival)
@@ -407,13 +457,13 @@ namespace SuperKoikoukesse.iOS
             livesImage.Image = new UIImage("lives_3.png");
             break;
           default:
-					// TODO 0 state if needed
+          // TODO 0 state if needed
             break;
         }
       }
     }
 
-    private void setGameButtonTitles(Question q)
+    private void SetButtonsTitle(Question q)
     {
       // Disable buttons
       if (q == null)
@@ -430,8 +480,8 @@ namespace SuperKoikoukesse.iOS
         game3Button.SetTitle("", UIControlState.Normal);
         game4Button.SetTitle("", UIControlState.Normal);
       } 
-			// Buttons for current question
-			else
+      // Buttons for current question
+      else
       {
 
         if (mQuizz.IsJokerAvailable)
@@ -456,25 +506,25 @@ namespace SuperKoikoukesse.iOS
     /// 
     /// </summary>
     /// <param name="index">Answer pressed, -1 if no response</param>
-    private void gameButtonPressed(int index, bool isJoker = false)
+    private void Answer(int index, bool isJoker = false)
     {
       mQuizz.SelectAnswer(index, isJoker);
 
-      nextQuestion();
+      GoToNextQuestion();
     }
 
-    private void nextQuestion()
+    private void GoToNextQuestion()
     {
       mQuizz.NextQuestion();
-			
+      
       if (mQuizz.IsOver == false)
       {
-        updateViewToQuestion(mQuizz.CurrentQuestion);
+        UpdateViewWithQuestion(mQuizz.CurrentQuestion);
       }
       else
       {
         // Stop timer
-        stopGameTimer();
+        StopGameTimer();
 
         // Stats time
         mQuizz.EndQuizz();
@@ -485,46 +535,46 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
-    private void getBackToMenu()
-    {
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-
-      if (mPauseViewController != null)
-      {
-        mPauseViewController.View.RemoveFromSuperview();
-      }
-
-      appDelegate.SwitchToMenuView();
-    }
-
-    private void pauseAction()
-    {
-      mQuizz.IsPaused = !mQuizz.IsPaused;
-
-      if (mQuizz.IsPaused)
-      {
-
-        mPauseViewController.View.Frame = View.Window.Frame;
-        View.AddSubview(mPauseViewController.View);
-        View.BringSubviewToFront(mPauseViewController.View);
-
-        // Mask game elements
-        gameImage.Image = mPauseImage;
-
-        setGameButtonTitles(null);
-
-      }
-      else
-      {
-
-        mPauseViewController.View.RemoveFromSuperview();
-
-        gameImage.Image = mCurrentImage;
-
-        setGameButtonTitles(mQuizz.CurrentQuestion);
-      }
-    }
     #endregion
+
+    #endregion
+
+    #region Handlers
+
+    partial void OnButton1Touched(NSObject sender)
+    {
+      Answer(0);
+    }
+
+    partial void OnButton2Touched(NSObject sender)
+    {
+      Answer(1);
+    }
+
+    partial void OnButton3Touched(NSObject sender)
+    {
+      Answer(2);
+    }
+
+    partial void OnButton4Touched(NSObject sender)
+    {
+      Answer(3);
+    }
+
+    partial void OnPauseTouched(NSObject sender)
+    {
+      Pause();
+    }
+
+    partial void OnJokerTouched(NSObject sender)
+    {
+      mQuizz.UseJoker();
+
+      GoToNextQuestion();
+    }
+
+    #endregion
+
     #region Image Transformations
     private void updateImageTransformation(float elapsedTime)
     {

@@ -18,6 +18,9 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton ButtonPause { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint ConstraintCombo { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.NSLayoutConstraint ConstraintLeadingTimerLabel { get; set; }
 
 		[Outlet]
@@ -45,6 +48,9 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton jokerButton { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UILabel LabelCombo { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel LabelCurrentTime { get; set; }
 
 		[Outlet]
@@ -70,6 +76,9 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIView ViewCombo { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewEmitter { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIView ViewImageShadow { get; set; }
@@ -190,14 +199,14 @@ namespace SuperKoikoukesse.iOS
 				timeFullHeightConstraint = null;
 			}
 
-			if (ViewCombo != null) {
-				ViewCombo.Dispose ();
-				ViewCombo = null;
-			}
-
 			if (ViewAnswers != null) {
 				ViewAnswers.Dispose ();
 				ViewAnswers = null;
+			}
+
+			if (ViewEmitter != null) {
+				ViewEmitter.Dispose ();
+				ViewEmitter = null;
 			}
 
 			if (ViewImageShadow != null) {
@@ -210,9 +219,24 @@ namespace SuperKoikoukesse.iOS
 				ViewInformations = null;
 			}
 
+			if (ViewCombo != null) {
+				ViewCombo.Dispose ();
+				ViewCombo = null;
+			}
+
 			if (ViewTimer != null) {
 				ViewTimer.Dispose ();
 				ViewTimer = null;
+			}
+
+			if (LabelCombo != null) {
+				LabelCombo.Dispose ();
+				LabelCombo = null;
+			}
+
+			if (ConstraintCombo != null) {
+				ConstraintCombo.Dispose ();
+				ConstraintCombo = null;
 			}
 		}
 	}

@@ -104,6 +104,7 @@
     <Folder Include="Views\iPad\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Tools\" />
+    <Folder Include="Views\Particles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -169,6 +170,7 @@
       <DependentUpon>PXNTimerLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\PXNNavigationButton.cs" />
+    <Compile Include="Views\Particles\PXNComboGauge.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -2226,5 +2228,6 @@
     <BundleResource Include="Resources\image_empty%402x.png" />
     <BundleResource Include="Resources\combo_indicator.png" />
     <BundleResource Include="Resources\combo_indicator%402x.png" />
+    <BundleResource Include="Resources\particle.png" />
   </ItemGroup>
 </Project>

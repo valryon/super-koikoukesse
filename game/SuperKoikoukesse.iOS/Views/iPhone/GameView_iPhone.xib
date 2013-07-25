@@ -8,10 +8,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
                 <outlet property="ButtonPause" destination="24" id="nKL-qy-czv"/>
+                <outlet property="ConstraintCombo" destination="dzc-W5-rdc" id="IVY-Py-zfb"/>
                 <outlet property="ConstraintLeadingTimerLabel" destination="yfl-ab-79z" id="7bj-c9-8XN"/>
+                <outlet property="LabelCombo" destination="35" id="iyR-UK-EfI"/>
                 <outlet property="LabelCurrentTime" destination="iuR-Bi-spM" id="2tS-qX-0c1"/>
                 <outlet property="ViewAnswers" destination="44" id="UNl-WJ-Weo"/>
-                <outlet property="ViewCombo" destination="8nP-1q-la0" id="Gte-PS-JmN"/>
+                <outlet property="ViewCombo" destination="8nP-1q-la0" id="6Hg-I4-GqV"/>
+                <outlet property="ViewEmitter" destination="nzW-ND-eEg" id="VyP-PL-SvQ"/>
                 <outlet property="ViewImageShadow" destination="sRb-UC-yYO" id="U9g-eX-vOU"/>
                 <outlet property="ViewInformations" destination="43" id="dWj-2W-RfO"/>
                 <outlet property="game1Button" destination="a4Z-YQ-vyK" id="WCj-Zj-Zae"/>
@@ -193,13 +196,24 @@
                                     <color key="textColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-1q-la0">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nP-1q-la0" userLabel="Gauge">
                                     <rect key="frame" x="9" y="6" width="123" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzW-ND-eEg" userLabel="Emitter">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        </view>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
                                     <constraints>
+                                        <constraint firstItem="nzW-ND-eEg" firstAttribute="height" secondItem="8nP-1q-la0" secondAttribute="height" id="Lle-ce-HIb"/>
                                         <constraint firstAttribute="width" constant="123" id="N1O-NT-8h6"/>
+                                        <constraint firstAttribute="trailing" secondItem="nzW-ND-eEg" secondAttribute="trailing" constant="123" id="dzc-W5-rdc"/>
+                                        <constraint firstItem="nzW-ND-eEg" firstAttribute="top" secondItem="8nP-1q-la0" secondAttribute="top" id="iKE-N4-Q2k"/>
                                         <constraint firstAttribute="height" constant="25" id="j8y-LM-mwg"/>
+                                        <constraint firstItem="nzW-ND-eEg" firstAttribute="leading" secondItem="8nP-1q-la0" secondAttribute="leading" id="wfI-46-XJN"/>
                                     </constraints>
                                 </view>
                             </subviews>
