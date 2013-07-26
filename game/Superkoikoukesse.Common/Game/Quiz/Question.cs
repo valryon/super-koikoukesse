@@ -9,14 +9,6 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public class Question
 	{
-		public List<GameInfo> Answers { get; set; }
-
-		public GameInfo CorrectAnswer { get; set; }
-
-		public int ScoreBonus { get; set; }
-
-		public int TimeBonus { get; set; }
-
 		public Question ()
 		{
 			Answers = new List<GameInfo> ();
@@ -92,6 +84,30 @@ namespace Superkoikoukesse.Common
 		{
 			return CorrectAnswer.ToString ();
 		}
+
+		/// <summary>
+		/// Possible answer for this question
+		/// </summary>
+		/// <value>The answers.</value>
+		public List<GameInfo> Answers { get; set; }
+
+		/// <summary>
+		/// The correct question answer.
+		/// </summary>
+		/// <value>The correct answer.</value>
+		public GameInfo CorrectAnswer { get; set; }
+
+		/// <summary>
+		/// Score won for this question
+		/// </summary>
+		/// <value>The score bonus.</value>
+		public int ScoreBonus { get; set; }
+
+		/// <summary>
+		/// Time won for this question
+		/// </summary>
+		/// <value>The time bonus.</value>
+		public int TimeBonus { get; set; }
 	}
 }
 

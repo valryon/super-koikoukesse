@@ -48,14 +48,14 @@
     <Folder Include="Game\Enums\" />
     <Folder Include="Services\" />
     <Folder Include="Tools\" />
+    <Folder Include="Game\Quiz\" />
+    <Folder Include="Game\Players\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Game\Quizz.cs" />
     <Compile Include="Networking\IServiceOutput.cs" />
     <Compile Include="Game\GameInfo.cs" />
-    <Compile Include="Game\Question.cs" />
     <Compile Include="Game\GameConfiguration.cs" />
     <Compile Include="Game\Enums\GameModes.cs" />
     <Compile Include="Networking\BaseWebserviceCaller.cs" />
@@ -66,21 +66,23 @@
     <Compile Include="Game\Enums\TextTransformations.cs" />
     <Compile Include="Game\Enums\GameDifficulties.cs" />
     <Compile Include="Game\Enums\GameZones.cs" />
-    <Compile Include="Game\Player.cs" />
     <Compile Include="Networking\Services\WebservicePlayer.cs" />
     <Compile Include="Services\DatabaseService.cs" />
     <Compile Include="Services\SQLite.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\ProfileService.cs" />
-    <Compile Include="Game\LocalScore.cs" />
-    <Compile Include="Game\AuthenticatedPlayer.cs" />
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
-    <Compile Include="Game\Filter.cs" />
-    <Compile Include="Game\VersusMatch.cs" />
     <Compile Include="Tools\NetworkAvailability.cs" />
     <Compile Include="Tools\EncryptionHelper.cs" />
     <Compile Include="Tools\Logger.cs" />
     <Compile Include="Tools\StringEx.cs" />
     <Compile Include="Game\Enums\Platforms.cs" />
+    <Compile Include="Game\Quiz\Question.cs" />
+    <Compile Include="Game\Quiz\Filter.cs" />
+    <Compile Include="Game\Quiz\LocalScore.cs" />
+    <Compile Include="Game\Quiz\Quizz.cs" />
+    <Compile Include="Game\Players\AuthenticatedPlayer.cs" />
+    <Compile Include="Game\Players\Player.cs" />
+    <Compile Include="Game\Players\VersusMatch.cs" />
   </ItemGroup>
 </Project>
