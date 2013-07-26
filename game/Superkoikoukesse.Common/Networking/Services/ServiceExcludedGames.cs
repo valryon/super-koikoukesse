@@ -13,7 +13,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/games/exclusions");
+			return new Uri (Constants.WEBSERVICE_URL + "questions/ex.json");
 		}
 	}
 }

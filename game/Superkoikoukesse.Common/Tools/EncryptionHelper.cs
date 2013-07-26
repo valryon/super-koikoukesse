@@ -11,7 +11,7 @@ namespace Superkoikoukesse.Common.Utils
     public static class EncryptionHelper
     {
 		private const char KEY_FILL_CHARACTER = '_';
-		private const int KEY_LENGTH = 16;
+		private const int KEY_LENGTH = 32;
 
 		/// <summary>
 		/// Application encryption key. Not constant!
@@ -54,8 +54,8 @@ namespace Superkoikoukesse.Common.Utils
 				byte[] cipheredData = Convert.FromBase64String(cipheredText);
 				
 				crypto = new RijndaelManaged();
-				crypto.KeySize = 128;
-				crypto.Padding = PaddingMode.PKCS7;
+				crypto.KeySize = 256;
+				crypto.Mode = CipherMode.CBC;
 				
 				decryptor = crypto.CreateDecryptor(Encoding.UTF8.GetBytes(finalKey), Encoding.UTF8.GetBytes(finalKey));
 				
@@ -101,8 +101,7 @@ namespace Superkoikoukesse.Common.Utils
 			try
 			{
 				crypto = new RijndaelManaged();
-				crypto.KeySize = 128;
-				crypto.Padding = PaddingMode.PKCS7;
+				crypto.KeySize = 256;
 				crypto.Mode = CipherMode.CBC;
 
 				encryptor = crypto.CreateEncryptor(Encoding.UTF8.GetBytes(finalKey), Encoding.UTF8.GetBytes(finalKey));
