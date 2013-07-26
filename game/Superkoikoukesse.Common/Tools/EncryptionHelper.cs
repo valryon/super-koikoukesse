@@ -10,10 +10,18 @@ namespace Superkoikoukesse.Common.Utils
 	/// </summary>
     public static class EncryptionHelper
     {
-        private static string cryptoKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
-		private const char FillCharacter = '_';
-		private const int KeyLength = 16;
+		private const char KEY_FILL_CHARACTER = '_';
+		private const int KEY_LENGTH = 16;
 
+		/// <summary>
+		/// Application encryption key. Not constant!
+		/// </summary>
+		private static string EncryptionKey = "j7gdft5'(eqA84Mo"; // 16 octets MAX
+
+		/// <summary>
+		/// Setup the encryption key
+		/// </summary>
+		/// <param name="key">string of 0 to 16 chars</param>
 		public static void SetKey(string key) {
 
 			if (string.IsNullOrEmpty (key)) {
@@ -24,7 +32,7 @@ namespace Superkoikoukesse.Common.Utils
 			}
 
 			Logger.I("Setting encryption key.");
-			cryptoKey = key;
+			EncryptionKey = key;
 		}
 
         /// <summary>
@@ -34,7 +42,7 @@ namespace Superkoikoukesse.Common.Utils
         /// <returns></returns>
 		public static String Decrypt(String cipheredText)
 		{
-			string finalKey = cryptoKey.PadRight(KeyLength, FillCharacter);
+			string finalKey = EncryptionKey.PadRight(KEY_LENGTH, KEY_FILL_CHARACTER);
 			
 			RijndaelManaged crypto = null;
 			MemoryStream mStream = null;
@@ -81,7 +89,7 @@ namespace Superkoikoukesse.Common.Utils
         /// <returns></returns>
 		public static String Encrypt(String plainText)
 		{
-			string finalKey = cryptoKey.PadRight(KeyLength, FillCharacter);
+			string finalKey = EncryptionKey.PadRight(KEY_LENGTH, KEY_FILL_CHARACTER);
 			
 			RijndaelManaged crypto = null;
 			MemoryStream mStream = null;

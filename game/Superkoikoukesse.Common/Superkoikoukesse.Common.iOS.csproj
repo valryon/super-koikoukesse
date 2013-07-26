@@ -43,17 +43,14 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Networking\" />
-    <Folder Include="Util\" />
     <Folder Include="Game\" />
     <Folder Include="Networking\Services\" />
     <Folder Include="Game\Enums\" />
     <Folder Include="Services\" />
+    <Folder Include="Tools\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Util\NetworkAvailability.cs" />
-    <Compile Include="Util\EncryptionHelper.cs" />
-    <Compile Include="Util\Logger.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Game\Quizz.cs" />
     <Compile Include="Networking\IServiceOutput.cs" />
@@ -81,6 +78,9 @@
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
     <Compile Include="Game\Filter.cs" />
     <Compile Include="Game\VersusMatch.cs" />
-    <Compile Include="Util\StringEx.cs" />
+    <Compile Include="Tools\NetworkAvailability.cs" />
+    <Compile Include="Tools\EncryptionHelper.cs" />
+    <Compile Include="Tools\Logger.cs" />
+    <Compile Include="Tools\StringEx.cs" />
   </ItemGroup>
 </Project>
