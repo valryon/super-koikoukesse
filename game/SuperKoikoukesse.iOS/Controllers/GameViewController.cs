@@ -215,7 +215,7 @@ namespace SuperKoikoukesse.iOS
       modeLabel.Text = mQuizz.Mode.ToString() + " - " + mQuizz.Difficulty;
 
       // Display lives
-      if (q.Mode == GameModes.Survival)
+      if (q.Mode == GameModes.SURVIVAL)
       {
         livesImage.Hidden = false;
       }
@@ -443,7 +443,7 @@ namespace SuperKoikoukesse.iOS
        */ 
 
       // Display the correct number of lives
-      if (mQuizz.Mode == GameModes.Survival)
+      if (mQuizz.Mode == GameModes.SURVIVAL)
       {
         switch (mQuizz.Lives)
         {
@@ -579,7 +579,7 @@ namespace SuperKoikoukesse.iOS
     private void updateImageTransformation(float elapsedTime)
     {
 
-      if (mQuizz.ImageTransformation == ImageTransformations.None)
+      if (mQuizz.ImageTransformation == ImageTransformations.NONE)
       {
         return;
       }
@@ -605,7 +605,7 @@ namespace SuperKoikoukesse.iOS
       GPUImageFilter filter = null;
 
       // Zoom and unzoom
-      if (mQuizz.ImageTransformation == ImageTransformations.Unzoom)
+      if (mQuizz.ImageTransformation == ImageTransformations.UNZOOM)
       {
 
         float startZoomFactor = Constants.ANIMATION_DEZOOM_FACTOR;
@@ -638,7 +638,7 @@ namespace SuperKoikoukesse.iOS
           gameImage.Frame = new RectangleF(x, y, width, height);
         });
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.ProgressiveDrawing)
+      else if (mQuizz.ImageTransformation == ImageTransformations.PROGRESSIVE_DRAWING)
       {
 
         float duration = Constants.ANIMATION_PROGRESSIVE_DRAWING_DURATION;
@@ -733,7 +733,7 @@ namespace SuperKoikoukesse.iOS
 					
         });
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.Pixelization)
+      else if (mQuizz.ImageTransformation == ImageTransformations.PIXELIZATION)
       {
 
         // Pixelate!
@@ -753,7 +753,7 @@ namespace SuperKoikoukesse.iOS
         // Set the filter
         filter = pixellateFilter;
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.Test)
+      else if (mQuizz.ImageTransformation == ImageTransformations.TEST)
       {
 
         GPUImageSwirlFilter testFilter = new GPUImageSwirlFilter();
@@ -792,7 +792,7 @@ namespace SuperKoikoukesse.iOS
       // Define frequency
       switch (mQuizz.ImageTransformation)
       {
-        case ImageTransformations.Pixelization: 
+        case ImageTransformations.PIXELIZATION: 
           mAnimationIntervalBase = Constants.ANIMATION_PIXELISATION_DURATION / 12f;
           break;
         default:

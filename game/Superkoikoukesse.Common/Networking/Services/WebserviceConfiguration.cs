@@ -82,7 +82,7 @@ namespace Superkoikoukesse.Common
 		{
 			// TODO Android
 
-			return new Uri (Constants.WEBSERVICE_URL + "ws/config/" + (int)GameTargets.iOS);
+			return new Uri (Constants.WEBSERVICE_URL + "ws/config/" + (int)Platforms.IOS);
 		}
 
 	}

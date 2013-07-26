@@ -40,7 +40,7 @@ namespace Superkoikoukesse.Common
 				title = Answers [answerIndex].TitleUS;
 			}
 
-			if (transformation != TextTransformations.None) {
+			if (transformation != TextTransformations.NONE) {
 
 				string[] words = title.Split (' ');
 				string maskedTitle = "";
@@ -48,7 +48,7 @@ namespace Superkoikoukesse.Common
 				foreach (string w in words) {
 
 					for (int i=0; i<w.Length; i++) {
-						if (i == 0 && transformation == TextTransformations.FirstLetterOnly) {
+						if (i == 0 && transformation == TextTransformations.FIRST_LETTER_ONLY) {
 							maskedTitle += w [i];
 						} else {
 							maskedTitle += "_";

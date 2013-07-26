@@ -90,7 +90,7 @@ namespace SuperKoikoukesse.iOS
 
 		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
 		{
-			if (mode != GameModes.Versus) {
+			if (mode != GameModes.VERSUS) {
 				string leaderboardId = GetLeaderboardId (mode, difficulty);
 
 				Logger.I("Game Center  - Adding score to " + leaderboardId + "...");

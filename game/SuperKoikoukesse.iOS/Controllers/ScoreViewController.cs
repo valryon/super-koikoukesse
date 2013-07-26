@@ -60,7 +60,7 @@ namespace SuperKoikoukesse.iOS
 
 			View.AddSubview (quitButton);
 
-			if (quizz.Mode == GameModes.Versus) {
+			if (quizz.Mode == GameModes.VERSUS) {
 
 				// Game center versus
 				// ------------------------------------------

@@ -28,7 +28,7 @@ namespace SuperKoikoukesse.iOS
 
 			if (highScoresController == null) {
 				highScoresController = new HighScoresControlViewController ();
-				highScoresController.SetScoreParameters (GameModes.ScoreAttack, GameDifficulties.Normal);
+				highScoresController.SetScoreParameters (GameModes.SCORE_ATTACK, GameDifficulties.NORMAL);
 
 				this.highscoreView.AddSubview (highScoresController.View);
 			}
@@ -50,16 +50,16 @@ namespace SuperKoikoukesse.iOS
 				string mode = modeSelector.TitleAt (modeSelector.SelectedSegment);
 
 				if (mode.ToLower ().Contains ("score"))
-					return GameModes.ScoreAttack;
+					return GameModes.SCORE_ATTACK;
 				if (mode.ToLower ().Contains ("time"))
-					return GameModes.TimeAttack;
+					return GameModes.TIME_ATTACK;
 				if (mode.ToLower ().Contains ("survival"))
-					return GameModes.Survival;
+					return GameModes.SURVIVAL;
 				if (mode.ToLower ().Contains ("versus"))
-					return GameModes.Versus;
+					return GameModes.VERSUS;
 			}
 
-			return GameModes.ScoreAttack;
+			return GameModes.SCORE_ATTACK;
 		}
 
 		/// <summary>
@@ -72,16 +72,16 @@ namespace SuperKoikoukesse.iOS
 				string diff = diffSelector.TitleAt (diffSelector.SelectedSegment);
 				
 				if (diff.ToLower ().Contains ("normal"))
-					return GameDifficulties.Normal;
+					return GameDifficulties.NORMAL;
 				if (diff.ToLower ().Contains ("hard"))
-					return GameDifficulties.Hard;
+					return GameDifficulties.HARD;
 				if (diff.ToLower ().Contains ("expert"))
-					return GameDifficulties.Expert;
+					return GameDifficulties.EXPERT;
 				if (diff.ToLower ().Contains ("nolife"))
-					return GameDifficulties.Nolife;
+					return GameDifficulties.NOLIFE;
 			}
 
-			return GameDifficulties.Normal;
+			return GameDifficulties.NORMAL;
 		}
 
 		partial void modeChanged (MonoTouch.Foundation.NSObject sender)

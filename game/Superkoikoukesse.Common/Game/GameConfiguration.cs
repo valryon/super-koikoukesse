@@ -100,8 +100,8 @@ namespace Superkoikoukesse.Common
 					foreach (JsonValue c in modesConfig) {
 
 						// Parsing each game mode configuration
-						GameModes mode = GameModes.ScoreAttack;
-						GameDifficulties difficulty = GameDifficulties.Normal;
+						GameModes mode = GameModes.SCORE_ATTACK;
+						GameDifficulties difficulty = GameDifficulties.NORMAL;
 						int? time = null;
 						int? score = null;
 						int? questionCount = null;

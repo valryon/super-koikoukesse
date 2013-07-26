@@ -137,22 +137,22 @@ namespace SuperKoikoukesse.iOS
 
 			// Build for each modes
 			// -- Versus
-			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.VERSUS);
 			versusMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (versusMode);
 
 			// -- Score attack
-			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.ScoreAttack);
+			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.SCORE_ATTACK);
 			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (scoreAttackMode);
 
 			// -- Time attack
-			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TimeAttack);
+			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TIME_ATTACK);
 			timeAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (timeAttackMode);
 
 			// -- Survival
-			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.Survival);
+			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.SURVIVAL);
 			survivalMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (survivalMode);
 
@@ -255,7 +255,7 @@ namespace SuperKoikoukesse.iOS
 					}
 
 					// Remember to select Versus match parameters too
-					if (mode == GameModes.Versus) {
+					if (mode == GameModes.VERSUS) {
 						VersusMatch currentMatch = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
 
 						currentMatch.Difficulty = difficulty;
@@ -277,7 +277,7 @@ namespace SuperKoikoukesse.iOS
 			// Enough credits?
 			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
 
-				if (m == GameModes.Versus) {
+				if (m == GameModes.VERSUS) {
 
 					if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
 						ProfileService.Instance.AuthenticatedPlayer.Authenticate (() => {

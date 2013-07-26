@@ -217,31 +217,31 @@ namespace Superkoikoukesse.Common
 				}
 			}
 
-			if (Mode == GameModes.TimeAttack) {
+			if (Mode == GameModes.TIME_ATTACK) {
 				m_infiniteQuestions = true;
-			} else if (Mode == GameModes.Survival) {
+			} else if (Mode == GameModes.SURVIVAL) {
 				m_infiniteQuestions = true;
 			} else {
 				m_infiniteQuestions = false;
 			}
 
 			// Transformations
-			ImageTransformation = ImageTransformations.None;
-			TextTransformation = TextTransformations.None;
+			ImageTransformation = ImageTransformations.NONE;
+			TextTransformation = TextTransformations.NONE;
 
-			if (Difficulty == GameDifficulties.Hard) {
-
-				ImageTransformation = getImageTransformation ();
-
-			} else if (Difficulty == GameDifficulties.Expert) {
+			if (Difficulty == GameDifficulties.HARD) {
 
 				ImageTransformation = getImageTransformation ();
-				TextTransformation = TextTransformations.FirstLetterOnly;
 
-			} else if (Difficulty == GameDifficulties.Nolife) {
+			} else if (Difficulty == GameDifficulties.EXPERT) {
 
 				ImageTransformation = getImageTransformation ();
-				TextTransformation = TextTransformations.UnderscoresOnly;
+				TextTransformation = TextTransformations.FIRST_LETTER_ONLY;
+
+			} else if (Difficulty == GameDifficulties.NOLIFE) {
+
+				ImageTransformation = getImageTransformation ();
+				TextTransformation = TextTransformations.UNDERSCORES_ONLY;
 			}
 
 			// Static vars
@@ -263,7 +263,7 @@ namespace Superkoikoukesse.Common
 
 			// Multiplayer and not the first turn?
 			// We must play exactly the same game as the other players
-			if (Mode == GameModes.Versus) {
+			if (Mode == GameModes.VERSUS) {
 				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn == false) {
 					q = Filter.GetMatchQuestion ();
 				}
@@ -316,7 +316,7 @@ namespace Superkoikoukesse.Common
 
 				foreach (ImageTransformations it in Enum.GetValues (typeof(ImageTransformations))) {
 
-					if (it != ImageTransformations.None) {
+					if (it != ImageTransformations.NONE) {
 						m_availableTransformations.Add (it);
 					}
 				}
@@ -364,7 +364,7 @@ namespace Superkoikoukesse.Common
 					}
 
 					// Apply bonus/malus per mode
-					if (Mode == GameModes.ScoreAttack) {
+					if (Mode == GameModes.SCORE_ATTACK) {
 						malus = (int)TimeLeft;
 					}
 
@@ -377,16 +377,16 @@ namespace Superkoikoukesse.Common
 					m_mistakesCount++;
 
 					// Apply bonus/malus per mode
-					if (Mode == GameModes.ScoreAttack) {
+					if (Mode == GameModes.SCORE_ATTACK) {
 						malus = 25;
-					} else if (Mode == GameModes.TimeAttack) {
+					} else if (Mode == GameModes.TIME_ATTACK) {
 
 						malus = 25;
 
 						// Losing time for each mistakes
 						SubstractTime (m_mistakesCount); // 1 sec per accumulated mistakes
 
-					} else if (Mode == GameModes.Survival) {
+					} else if (Mode == GameModes.SURVIVAL) {
 
 						// Losing live for each mistakes
 						Lives--;
@@ -440,7 +440,7 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = m_questionsPool.Dequeue ();
 
 				// Reset timer
-				if (Mode == GameModes.TimeAttack) {
+				if (Mode == GameModes.TIME_ATTACK) {
 					if (TimeLeft < 0) {
 						IsOver = true;
 					}
@@ -448,13 +448,13 @@ namespace Superkoikoukesse.Common
 					TimeLeft = BaseTimeleft;
 					IsOver = false;
 
-					if (Mode == GameModes.Survival) {
+					if (Mode == GameModes.SURVIVAL) {
 						IsOver = (Lives <= 0);
 					}
 				}
 			} else {
 
-				if (Mode != GameModes.TimeAttack) {
+				if (Mode != GameModes.TIME_ATTACK) {
 
 					Logger.I("Quizz is over!");
 					IsOver = true;
@@ -462,7 +462,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Multiplayer specifity: register all first player question @ answers
-			if (IsOver == false && Mode == GameModes.Versus) {
+			if (IsOver == false && Mode == GameModes.VERSUS) {
 
 				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
 					
@@ -479,7 +479,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Change image transformation
-			if (Difficulty != GameDifficulties.Normal) {
+			if (Difficulty != GameDifficulties.NORMAL) {
 				ImageTransformation = getImageTransformation ();
 			}
 		}
@@ -489,7 +489,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void TimeIsOver ()
 		{
-			if (Mode == GameModes.TimeAttack) {
+			if (Mode == GameModes.TIME_ATTACK) {
 				IsOver = true;
 			} else {
 				SelectAnswer (-1);
@@ -537,7 +537,7 @@ namespace Superkoikoukesse.Common
 			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
 			// Multiplayer? End turn
-			if (Mode == GameModes.Versus) {
+			if (Mode == GameModes.VERSUS) {
 				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
 
 				});

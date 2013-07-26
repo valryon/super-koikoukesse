@@ -2,12 +2,15 @@ using System;
 
 namespace Superkoikoukesse.Common
 {
+	/// <summary>
+	/// Avaialable difficulties 
+	/// </summary>
 	public enum GameDifficulties : int
 	{
-		Normal = 0,
-		Hard = 1,
-		Expert = 2,
-		Nolife = 3
+		NORMAL = 0,
+		HARD = 1,
+		EXPERT = 2,
+		NOLIFE = 3
 	}
 }
 

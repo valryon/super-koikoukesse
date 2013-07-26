@@ -44,7 +44,7 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		private void showStunfestMode() {
-			if(mode == GameModes.ScoreAttack) {
+			if(mode == GameModes.SCORE_ATTACK) {
 				stunfestModeLabel.Hidden = false;
 				stunfestModeButton.Hidden = false;
 				StunfestMode = true;
@@ -58,22 +58,22 @@ namespace SuperKoikoukesse.iOS
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.Normal);
+			selectDifficulty (GameDifficulties.NORMAL);
 		}
 
 		partial void hardButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.Hard);
+			selectDifficulty (GameDifficulties.HARD);
 		}
 
 		partial void expertButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.Expert);
+			selectDifficulty (GameDifficulties.EXPERT);
 		}
 
 		partial void nolifeButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.Nolife);
+			selectDifficulty (GameDifficulties.NOLIFE);
 		}
 
 		private void selectDifficulty (GameDifficulties diff)
