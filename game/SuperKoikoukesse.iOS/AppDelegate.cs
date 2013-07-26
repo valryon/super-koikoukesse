@@ -66,7 +66,7 @@ namespace SuperKoikoukesse.iOS
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			Logger.Log (LogLevel.Info, "Launching app...");
+			Logger.I("Launching app...");
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
@@ -189,7 +189,7 @@ namespace SuperKoikoukesse.iOS
 
 		private void loadingProgress ()
 		{
-			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
+			Logger.I("Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
 
 			IsInitialized =  (databaseLoaded && configurationLoaded);
 
@@ -211,13 +211,13 @@ namespace SuperKoikoukesse.iOS
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
-				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
+				Logger.I("Configuration loaded and updated.");
 
 				if (complete != null)
 					complete ();
 			},
 			(code, e) => {
-				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. ");
+				Logger.W( "Configuration was not loaded!. ");
 
 				// Try to use local
 				this.Configuration = configWs.LastValidConfig;
@@ -225,7 +225,7 @@ namespace SuperKoikoukesse.iOS
 				// No local? This is bad. Use default values.
 				if (this.Configuration == null) {
 
-					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
+					Logger.W( "Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
 				}

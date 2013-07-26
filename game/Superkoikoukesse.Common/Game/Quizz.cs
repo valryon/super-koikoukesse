@@ -155,7 +155,7 @@ namespace Superkoikoukesse.Common
 			Difficulty = difficulty;
 			Filter = databaseFilter;
 
-			Logger.Log (LogLevel.Info, "Initializing quizz " + Mode + " " + Difficulty + "...");
+			Logger.I("Initializing quizz " + Mode + " " + Difficulty + "...");
 
 			// Initialize score, lives, combo
 			TimeLeft = -1;
@@ -179,7 +179,7 @@ namespace Superkoikoukesse.Common
 				m_questionsPool.Enqueue (q);
 			}
 
-			Logger.Log (LogLevel.Info, "Quizz ready: " + m_questionsPool.Count + " questions in cache!");
+			Logger.I("Quizz ready: " + m_questionsPool.Count + " questions in cache!");
 
 			// Get the first
 			NextQuestion ();
@@ -197,7 +197,7 @@ namespace Superkoikoukesse.Common
 			// Get values
 			if (modeConfig == null) {
 
-				Logger.Log (LogLevel.Error, "No configuration for game mode " + Mode + "!");
+				Logger.E( "No configuration for game mode " + Mode + "!");
 
 				m_initialQuestionCount = 5;
 				BaseTimeleft = 60;
@@ -341,7 +341,7 @@ namespace Superkoikoukesse.Common
 			bool result = false;
 
 			if (isJoker) {
-				Logger.Log (LogLevel.Info, "Joker answer");
+				Logger.I("Joker answer");
 
 				comboToApply = 0;
 
@@ -352,7 +352,7 @@ namespace Superkoikoukesse.Common
 				result = CurrentQuestion.IsValidAnswer (index);
 
 				if (result) {
-					Logger.Log (LogLevel.Info, "Good answer!");
+					Logger.I("Good answer!");
 					Combo++;
 
 					Combo = Math.Min (Combo, Constants.COMBO_MAXIMUM_COUNT);
@@ -369,7 +369,7 @@ namespace Superkoikoukesse.Common
 					}
 
 				} else {
-					Logger.Log (LogLevel.Info, "Bad answer...");
+					Logger.I("Bad answer...");
 					Combo = 1;
 					comboToApply = 0;
 					JokerPartCount = 0;
@@ -391,7 +391,7 @@ namespace Superkoikoukesse.Common
 						// Losing live for each mistakes
 						Lives--;
 
-						Logger.Log (LogLevel.Debug, "Remaining lives: " + Lives);
+						Logger.D( "Remaining lives: " + Lives);
 					}
 				}
 			}
@@ -402,7 +402,7 @@ namespace Superkoikoukesse.Common
 			if (Results.ContainsKey (CurrentQuestion.CorrectAnswer.GameId) == false) {
 				Results.Add (CurrentQuestion.CorrectAnswer.GameId, result);
 			} else {
-				Logger.Log (LogLevel.Error, "Duplicated question registered! Are you testing something stupid?"); 
+				Logger.E( "Duplicated question registered! Are you testing something stupid?"); 
 			}
 		}
 
@@ -411,7 +411,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void NextQuestion ()
 		{
-			Logger.Log (LogLevel.Info, "Next question requested");
+			Logger.I("Next question requested");
 
 			QuestionNumber++;
 
@@ -421,15 +421,15 @@ namespace Superkoikoukesse.Common
 
 					int questionCachedCount = 5;
 
-					Logger.Log (LogLevel.Info, "Caching questions...");
+					Logger.I("Caching questions...");
 
 					// Pool some
 					for (int i=0; i<questionCachedCount; i++) {
-						Logger.Log (LogLevel.Info, "Caching questions..." + i);
+						Logger.I("Caching questions..." + i);
 						m_questionsPool.Enqueue (getRandomQuestion ());
 					}
 
-					Logger.Log (LogLevel.Info, "Cached " + questionCachedCount + " new questions.");
+					Logger.I("Cached " + questionCachedCount + " new questions.");
 
 				}
 			}
@@ -456,7 +456,7 @@ namespace Superkoikoukesse.Common
 
 				if (Mode != GameModes.TimeAttack) {
 
-					Logger.Log (LogLevel.Info, "Quizz is over!");
+					Logger.I("Quizz is over!");
 					IsOver = true;
 				} 
 			}

@@ -22,7 +22,7 @@ namespace Superkoikoukesse.Common
 					GamesId.Add (id);
 				}
 				catch(Exception e) {
-					Logger.LogException(LogLevel.Error, "ExcludedGamesList.BuildFromJsonObject",e);
+					Logger.E("ExcludedGamesList.BuildFromJsonObject",e);
 				}
 
 			}

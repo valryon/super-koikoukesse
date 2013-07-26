@@ -314,7 +314,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
 			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
-			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DEBUG_MODE);
+			Logger.I("Debug mode? " + Constants.DEBUG_MODE);
 		}
 
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)

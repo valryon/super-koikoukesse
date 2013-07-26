@@ -112,7 +112,7 @@ namespace Superkoikoukesse.Common
 					if (code == 102) {
 
 						// New player to create
-						Logger.Log (LogLevel.Info, "Unknow player to server");
+						Logger.I("Unknow player to server");
 						
 						// Create player on server
 						// ------------------------------------------------------------------------
@@ -121,7 +121,7 @@ namespace Superkoikoukesse.Common
 
 					} else {
 						// Well, we crashed. See the log?
-						Logger.Log (LogLevel.Error, "Calling profile service failed!");
+						Logger.E( "Calling profile service failed!");
 					}
 
 					// Update anyway
@@ -160,7 +160,7 @@ namespace Superkoikoukesse.Common
 
 				if (addCredits) {
 
-					Logger.Log (LogLevel.Info, "Reseting credits!");
+					Logger.I("Reseting credits!");
 
 					// Modify the stored profile
 					int currentCredits = localPlayer.Credits;
@@ -224,7 +224,7 @@ namespace Superkoikoukesse.Common
 		{
 			if (creditsUsed != 0) {
 
-				Logger.Log (LogLevel.Info, "Modifying credits: " + creditsUsed);
+				Logger.I("Modifying credits: " + creditsUsed);
 
 				// Update local
 				if (updateLocalPlayer) {
@@ -258,7 +258,7 @@ namespace Superkoikoukesse.Common
 		{
 			if (coinsUsed != 0) {
 
-				Logger.Log (LogLevel.Info, "Modifying coins: " + coinsUsed);
+				Logger.I("Modifying coins: " + coinsUsed);
 
 				// Update local
 				Player p = CachedPlayer;

@@ -54,12 +54,12 @@ namespace Superkoikoukesse.Common.Networking
 
 			string body = requestBodyJson;
 
-			Logger.Log (LogLevel.Debug, "Request body: " + body);
+			Logger.D( "Request body: " + body);
 
 			if (Constants.ENABLE_ENCRYPTION) {
 				body = EncryptionHelper.Encrypt (body);
 				
-				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
+				Logger.D( "Encrypted request body: " + body);
 			}
 
 			// TODO Améliorer ce hack...
@@ -74,7 +74,7 @@ namespace Superkoikoukesse.Common.Networking
 				asyncRequest (request, url, callbackSuccess, callbackFailure);
 				
 			} catch (WebException e) {
-				Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+				Logger.W( "<- KO Network issues? " + e.Message + " "+url);
 				if (callbackFailure != null) {
 					callbackFailure (-1, e);
 				}
@@ -105,7 +105,7 @@ namespace Superkoikoukesse.Common.Networking
 		/// <param name="callbackFailure">Callback failure.</param>
 		private void asyncRequest (WebRequest request, Uri url, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
-			Logger.Log (LogLevel.Info, "-> " + request.Method + " " + url);
+			Logger.I("-> " + request.Method + " " + url);
 
 			request.BeginGetResponse (result => {
 				var webRequest = result.AsyncState as HttpWebRequest;
@@ -143,26 +143,26 @@ namespace Superkoikoukesse.Common.Networking
 					response.JsonData = data;
 
 					if (code == 0) {
-						Logger.Log (LogLevel.Info, "<- OK ");
+						Logger.I("<- OK ");
 						if (callbackSuccess != null) {
 							callbackSuccess (response);
 						}
 					} else {
-						Logger.Log (LogLevel.Error, "<- KO " + code + ": " + message);
+						Logger.E( "<- KO " + code + ": " + message);
 						if (callbackFailure != null) {
 							callbackFailure (code, new ArgumentException (code + ": " + message));
 						}
 					}
 				} 
 				catch (WebException e) {
-					Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+					Logger.W( "<- KO Network issues? " + e.Message + " "+url);
 					if (callbackFailure != null) {
 						callbackFailure (-1, e);
 					}
 				}
 				catch (Exception e) {
 					// Log and callback
-					Logger.LogException (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
+					Logger.E( "WebserviceCaller.RequestJsonAsync ", e);
 					if (callbackFailure != null) {
 						callbackFailure (-1, e);
 					}

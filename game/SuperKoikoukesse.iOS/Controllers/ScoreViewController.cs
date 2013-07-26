@@ -75,7 +75,7 @@ namespace SuperKoikoukesse.iOS
 				}
 				else {
 					// We should never be here but check...
-					Logger.Log (LogLevel.Error, "Match not ended and player turn: wtf are you doing in score view?");
+					Logger.E( "Match not ended and player turn: wtf are you doing in score view?");
 				}
 
 				// Load players avatar

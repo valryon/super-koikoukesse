@@ -346,7 +346,7 @@ namespace SuperKoikoukesse.iOS
     /// <param name="q">Q.</param>
     private void UpdateViewWithQuestion(Question q)
     {
-      Logger.Log(LogLevel.Info, "Setting up view for current question " + q);
+      Logger.I ( "Setting up view for current question " + q);
 
       // Timer
       LabelCurrentTime.Text = mQuizz.TimeLeft.ToString("00");

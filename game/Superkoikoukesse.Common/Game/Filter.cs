@@ -133,7 +133,7 @@ namespace Superkoikoukesse.Common
 						GameInfo game = matchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
 
 						if (game == null) {
-							Logger.Log (LogLevel.Error, "The game with id " + answerId + " wasn't loaded by the filter!");
+							Logger.E( "The game with id " + answerId + " wasn't loaded by the filter!");
 							// HACK : The game is missing, let's not crash.
 							return null;
 						} else {

@@ -51,19 +51,19 @@ namespace Superkoikoukesse.Common
 			m_location = location;
 
 			// Initialize db connection
-			Logger.Log (LogLevel.Info, "Loading database... " + m_location);
+			Logger.I("Loading database... " + m_location);
 			m_db = new SQLiteConnection (location);
 
 			// Try to figure if we're in a first launch
 			int gamesCount = CountGames ();
 			Exists = gamesCount > 0;
 
-			Logger.Log (LogLevel.Debug, gamesCount + " games in database.");
+			Logger.D( gamesCount + " games in database.");
 
 			if (Exists) {
-				Logger.Log (LogLevel.Info, "Database loaded.");
+				Logger.I("Database loaded.");
 			} else {
-				Logger.Log (LogLevel.Warning, "Database not found.");
+				Logger.W( "Database not found.");
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace Superkoikoukesse.Common
 		public void CreateTables ()
 		{
 			lock (locker) {
-				Logger.Log (LogLevel.Info, "Creating database schema");
+				Logger.I("Creating database schema");
 
 				m_db.CreateTable<GameInfo> ();
 				m_db.CreateTable<Player> ();
@@ -87,7 +87,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="xml">Xml.</param>
 		public void InitializeFromXml (string xml)
 		{
-			Logger.Log (LogLevel.Info, "Initializing database from xml...");
+			Logger.I("Initializing database from xml...");
 			
 			// Parse the xml
 			// Format:
@@ -128,7 +128,7 @@ namespace Superkoikoukesse.Common
 				}
 			}
 
-			Logger.Log (LogLevel.Info, "Initialization completed, " + addCount + " games added!");
+			Logger.I("Initialization completed, " + addCount + " games added!");
 		}
 
 		#endregion
@@ -155,7 +155,7 @@ namespace Superkoikoukesse.Common
 			GameInfo game = m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
 
 			if (game != null) {
-				Logger.Log (LogLevel.Info, "Deleting game id " + gameId);
+				Logger.I("Deleting game id " + gameId);
 
 				lock (locker) {
 					m_db.Delete<GameInfo> (game.GameId);

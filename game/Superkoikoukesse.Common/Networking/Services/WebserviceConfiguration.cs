@@ -44,7 +44,7 @@ namespace Superkoikoukesse.Common
 
 			var filePath = Path.Combine (path, Constants.CONFIG_FILE_LOCATION);
 		
-			Logger.Log (LogLevel.Info, "Saving configuration...");
+			Logger.I("Saving configuration...");
 
 			XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
 
@@ -64,7 +64,7 @@ namespace Superkoikoukesse.Common
 
 			if (File.Exists (filePath)) {
 
-				Logger.Log (LogLevel.Info, "Loading configuration...");
+				Logger.I("Loading configuration...");
 
 				XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
 				using (TextReader reader = new StreamReader (filePath)) {
@@ -72,7 +72,7 @@ namespace Superkoikoukesse.Common
 					config = (GameConfiguration)serializer.Deserialize (reader); 
 				}
 			} else {
-				Logger.Log (LogLevel.Info, "No configuration file found.");
+				Logger.I("No configuration file found.");
 			}
 
 			return config;

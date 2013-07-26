@@ -39,7 +39,7 @@ namespace Superkoikoukesse.Common
 					}
 				} catch (Exception e) {
 					// Log and callback
-					Logger.LogException (LogLevel.Error, "GenericService.Request ", e);
+					Logger.E( "GenericService.Request ", e);
 
 					PostRequest (default(T), false);
 

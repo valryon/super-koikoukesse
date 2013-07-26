@@ -23,7 +23,7 @@ namespace Superkoikoukesse.Common.Utils
 				throw new ApplicationException("Encryption key must be 16 chars max!");
 			}
 
-			Logger.Log (LogLevel.Info, "Setting encryption key.");
+			Logger.I("Setting encryption key.");
 			cryptoKey = key;
 		}
 
