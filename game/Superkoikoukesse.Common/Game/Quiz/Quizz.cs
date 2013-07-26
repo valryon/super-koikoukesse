@@ -166,7 +166,7 @@ namespace Superkoikoukesse.Common
 				while (currentAnswersCount < mAnswerCount) {
 
 					// If we have a given game questions list (versus mode), we can randomize all answers except the correct one
-					GameInfo game = Filter.GetRandomGame ();
+					GameEntry game = Filter.GetRandomGame ();
 
 					if (q.Answers.Contains (game) == false && mCorrectAnswerIds.Contains (game.GameId) == false) {
 
@@ -448,7 +448,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void SendQuizzData ()
 		{
-			WebserviceStats stats = new WebserviceStats ();
+			ServiceStats stats = new ServiceStats ();
 
 			stats.SendStats ("Valryon", Score, Mode, Difficulty, StartTime, Results, null);
 		}

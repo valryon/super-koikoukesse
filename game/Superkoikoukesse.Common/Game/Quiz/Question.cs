@@ -11,7 +11,7 @@ namespace Superkoikoukesse.Common
 	{
 		public Question ()
 		{
-			Answers = new List<GameInfo> ();
+			Answers = new List<GameEntry> ();
 		}
 
 		/// <summary>
@@ -23,7 +23,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="transformation"> </param>
 		public string GetGameTitle (int answerIndex, GameZones zone, TextTransformations transformation)
 		{
-			GameInfo game = Answers [answerIndex];
+			GameEntry game = Answers [answerIndex];
 			string title = "";
 
 			if (zone == GameZones.PAL) {
@@ -89,13 +89,13 @@ namespace Superkoikoukesse.Common
 		/// Possible answer for this question
 		/// </summary>
 		/// <value>The answers.</value>
-		public List<GameInfo> Answers { get; set; }
+		public List<GameEntry> Answers { get; set; }
 
 		/// <summary>
 		/// The correct question answer.
 		/// </summary>
 		/// <value>The correct answer.</value>
-		public GameInfo CorrectAnswer { get; set; }
+		public GameEntry CorrectAnswer { get; set; }
 
 		/// <summary>
 		/// Score won for this question

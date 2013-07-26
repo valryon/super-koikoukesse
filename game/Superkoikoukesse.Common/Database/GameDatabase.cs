@@ -75,7 +75,7 @@ namespace Superkoikoukesse.Common
 			lock (mLocker) {
 				Logger.I("Creating database schema");
 
-				mDb.CreateTable<GameInfo> ();
+				mDb.CreateTable<GameEntry> ();
 				mDb.CreateTable<Player> ();
 				mDb.CreateTable<LocalScore> ();
 			}
@@ -109,7 +109,7 @@ namespace Superkoikoukesse.Common
 
 			foreach (XElement gameXml in element.Elements("game")) {
 
-				GameInfo game = new GameInfo ();
+				GameEntry game = new GameEntry ();
 
 				game.GameId = Convert.ToInt32 (gameXml.Element ("GameId").Value);
 				game.ImagePath = gameXml.Element ("ImagePath").Value;
@@ -139,7 +139,7 @@ namespace Superkoikoukesse.Common
 		/// Add a new game entry
 		/// </summary>
 		/// <param name="gameInfo">Game info.</param>
-		public void AddGame (GameInfo gameInfo)
+		public void AddGame (GameEntry gameInfo)
 		{
 			lock (mLocker) {
 				mDb.Insert (gameInfo);
@@ -152,13 +152,13 @@ namespace Superkoikoukesse.Common
 		/// <param name="gameId">Game identifier.</param>
 		public void RemoveGame (int gameId)
 		{
-			GameInfo game = mDb.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+			GameEntry game = mDb.Table<GameEntry> ().Where (g => g.GameId == gameId).FirstOrDefault ();
 
 			if (game != null) {
 				Logger.I("Deleting game id " + gameId);
 
 				lock (mLocker) {
-					mDb.Delete<GameInfo> (game.GameId);
+					mDb.Delete<GameEntry> (game.GameId);
 				}
 			}
 		}
@@ -166,10 +166,10 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Read games database and get matching ids
 		/// </summary>
-		public List<GameInfo> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
+		public List<GameEntry> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
 		{
 			lock (mLocker) {
-				var query = mDb.Table<GameInfo> ()
+				var query = mDb.Table<GameEntry> ()
 				.Where (g => (g.Year >= minYear) && (g.Year < maxYear));
 			
 				if (publishers != null && publishers.Count > 0) {
@@ -191,10 +191,10 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Read games database and get matching ids
 		/// </summary>
-		public GameInfo ReadGame (int gameId)
+		public GameEntry ReadGame (int gameId)
 		{
 			lock (mLocker) {
-				return mDb.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+				return mDb.Table<GameEntry> ().Where (g => g.GameId == gameId).FirstOrDefault ();
 			}
 		}
 
@@ -205,7 +205,7 @@ namespace Superkoikoukesse.Common
 		{
 			List<string> publishers = new List<string> ();
 			lock (mLocker) {
-				foreach (GameInfo game in mDb.Table<GameInfo> ()) {
+				foreach (GameEntry game in mDb.Table<GameEntry> ()) {
 					publishers.Add (game.Publisher);
 				}
 			}
@@ -220,7 +220,7 @@ namespace Superkoikoukesse.Common
 		public int CountGames ()
 		{
 			lock (mLocker) {
-				var gameTable = mDb.Table<GameInfo> ();
+				var gameTable = mDb.Table<GameEntry> ();
 
 				try {
 					return gameTable.Count ();

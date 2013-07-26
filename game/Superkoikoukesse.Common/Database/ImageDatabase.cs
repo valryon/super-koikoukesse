@@ -42,7 +42,7 @@ namespace Superkoikoukesse.Common
 		/// Get the image of a game.
 		/// </summary>
 		/// <param name="game">Game.</param>
-		public string Getimage(GameInfo game) {
+		public string Getimage(GameEntry game) {
 			return Path.Combine (mImagesRootLocation, game.ImagePath);
 		}
 	}

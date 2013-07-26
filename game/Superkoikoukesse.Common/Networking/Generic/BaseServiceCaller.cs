@@ -7,27 +7,11 @@ using Superkoikoukesse.Common.Utils;
 namespace Superkoikoukesse.Common.Networking
 {
 	/// <summary>
-	/// Webservice response format
-	/// </summary>
-	public class ServiceResponse
-	{
-		public int Code { get; set; }
-		
-		public string Message { get; set; }
-		
-		public string JsonData { get; set; }
-		
-		public ServiceResponse ()
-		{
-		}
-	}
-
-	/// <summary>
 	/// Utilities to reach Game Webservice
 	/// </summary>
-	public abstract class BaseWebserviceCaller
+	public abstract class BaseServiceCaller
 	{
-		public BaseWebserviceCaller ()
+		public BaseServiceCaller ()
 		{
 		}
 

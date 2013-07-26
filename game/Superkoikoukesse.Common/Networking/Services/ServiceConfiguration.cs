@@ -7,17 +7,15 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Webservice for configuration
 	/// </summary>
-	public class WebserviceConfiguration : GenericModelWeberviceCaller<GameConfiguration>
+	public class ServiceConfiguration : BaseModelServiceCaller<GameConfiguration>
 	{
-		public WebserviceConfiguration ()
+		public ServiceConfiguration ()
 		{
 			// Compare downloaded config with local
 			GameConfiguration localConfig = loadConfigurationFromDevice ();
 			
 			LastValidConfig = localConfig;
 		}
-
-		public GameConfiguration LastValidConfig { get; set; }
 
 		protected override GameConfiguration PostRequest (GameConfiguration newConfig, bool success)
 		{
@@ -84,6 +82,8 @@ namespace Superkoikoukesse.Common
 
 			return new Uri (Constants.WEBSERVICE_URL + "ws/config/" + (int)Platforms.IOS);
 		}
+		
+		public GameConfiguration LastValidConfig { get; set; }
 
 	}
 }

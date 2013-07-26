@@ -4,14 +4,13 @@ using Superkoikoukesse.Common.Networking;
 
 namespace Superkoikoukesse.Common
 {
-
 	/// <summary>
-	/// Generic webservice caller
+	/// Generic webservice caller linked to a type
 	/// </summary>
-	public abstract class GenericModelWeberviceCaller<T> : BaseWebserviceCaller
+	public abstract class BaseModelServiceCaller<T> : BaseServiceCaller
 		where T:IServiceOutput,new()
 	{
-		public GenericModelWeberviceCaller ()
+		public BaseModelServiceCaller ()
 			: base()
 		{
 		}

@@ -115,7 +115,7 @@ namespace SuperKoikoukesse.iOS
 				}
 
 				// Check excluded games
-				WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
+				ServiceExcludedGames exGames = new ServiceExcludedGames ();
 				exGames.Request ((list) => {
 					
 					foreach (int id in list.GamesId) {
@@ -207,7 +207,7 @@ namespace SuperKoikoukesse.iOS
 		public void UpdateConfiguration (Action complete)
 		{
 			// Get the distant configuration
-			WebserviceConfiguration configWs = new WebserviceConfiguration ();
+			ServiceConfiguration configWs = new ServiceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 

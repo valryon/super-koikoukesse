@@ -13,7 +13,7 @@ namespace Superkoikoukesse.Common
 	{
 		private int mCurrentRequiredGameIdsIndex;
 		private int mCurrentRequiredGameIdsAnswerIndex;
-		private List<GameInfo> mMatchingGames;
+		private List<GameEntry> mMatchingGames;
 
 		public Filter (JsonValue json)
 		{
@@ -76,7 +76,7 @@ namespace Superkoikoukesse.Common
 					for (int i=0; i < questionInfo.Value.Length; i++) {
 
 						int answerId = questionInfo.Value[i];
-						GameInfo game = mMatchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
+						GameEntry game = mMatchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
 
 						if (game == null) {
 							Logger.E( "The game with id " + answerId + " wasn't loaded by the filter!");
@@ -105,9 +105,9 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <returns>The games.</returns>
 		/// <param name="count">Count.</param>
-		public GameInfo GetRandomGame ()
+		public GameEntry GetRandomGame ()
 		{
-			GameInfo game = null;
+			GameEntry game = null;
 
 			// Random game
 			var random = new Random (DateTime.Now.Millisecond);

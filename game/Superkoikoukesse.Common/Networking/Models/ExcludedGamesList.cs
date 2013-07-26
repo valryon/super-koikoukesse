@@ -6,8 +6,6 @@ namespace Superkoikoukesse.Common
 {
 	public class ExcludedGamesList : IServiceOutput
 	{
-		public List<int> GamesId {get;set;}
-
 		public ExcludedGamesList() {
 			GamesId = new List<int>();
 		}
@@ -28,19 +26,8 @@ namespace Superkoikoukesse.Common
 			}
 		}
 
-	}
+		public List<int> GamesId {get;set;}
 
-	public class WebserviceExcludedGames : GenericModelWeberviceCaller<ExcludedGamesList>
-	{
-		public WebserviceExcludedGames ()
-			: base()
-		{
-		}
-
-		public override Uri GetServiceUrl ()
-		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/games/exclusions");
-		}
 	}
 }
 

@@ -5,9 +5,9 @@ using System.Json;
 
 namespace Superkoikoukesse.Common
 {
-	public class WebserviceStats : BaseWebserviceCaller
+	public class ServiceStats : BaseServiceCaller
 	{
-		public WebserviceStats ()
+		public ServiceStats ()
 		{
 		}
 

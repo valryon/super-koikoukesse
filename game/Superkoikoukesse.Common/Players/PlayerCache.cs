@@ -89,7 +89,7 @@ namespace Superkoikoukesse.Common
 				}
 
 				// Check the player on the server side
-				WebserviceGetPlayer ws = new WebserviceGetPlayer (CachedPlayer.Id);
+				ServiceGetPlayer ws = new ServiceGetPlayer (CachedPlayer.Id);
 
 				// Make a GET and see if the player exists
 				// ------------------------------------------------------------------------
@@ -118,7 +118,7 @@ namespace Superkoikoukesse.Common
 						
 						// Create player on server
 						// ------------------------------------------------------------------------
-						WebserviceCreatePlayer wsCreate = new WebserviceCreatePlayer (CachedPlayer);
+						ServiceCreatePlayer wsCreate = new ServiceCreatePlayer (CachedPlayer);
 						wsCreate.CreatePlayer ();
 
 					} else {
@@ -237,7 +237,7 @@ namespace Superkoikoukesse.Common
 				}
 
 				// Tell the server
-				WebservicePlayerCredits wsCredits = new WebservicePlayerCredits (CachedPlayer);
+				ServicePlayerCredits wsCredits = new ServicePlayerCredits (CachedPlayer);
 				wsCredits.AddCredits (creditsUsed, 
 				                      callback,
 
@@ -269,7 +269,7 @@ namespace Superkoikoukesse.Common
 				GameDatabase.Instance.SavePlayer (p);
 				
 				// Tell the server
-				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (CachedPlayer);
+				ServicePlayerCoins wsCoins = new ServicePlayerCoins (CachedPlayer);
 				wsCoins.AddCoins (coinsUsed,
 				                  callback,
 				                  (code) => {

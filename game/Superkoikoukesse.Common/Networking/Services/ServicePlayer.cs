@@ -10,18 +10,18 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Get a player profile (or test if it exists)
 	/// </summary>
-	public class WebserviceGetPlayer : GenericModelWeberviceCaller<Player>
+	public class ServiceGetPlayer : BaseModelServiceCaller<Player>
 	{
-		private string id;
+		private string mId;
 
-		public WebserviceGetPlayer (string playerId)
+		public ServiceGetPlayer (string playerId)
 		{
-			this.id = playerId;
+			this.mId = playerId;
 		}
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/player/" + id);
+			return new Uri (Constants.WEBSERVICE_URL + "ws/player/" + mId);
 		}
 
 	}
@@ -29,13 +29,13 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Create a new player profile
 	/// </summary>
-	public class WebserviceCreatePlayer : BaseWebserviceCaller
+	public class ServiceCreatePlayer : BaseServiceCaller
 	{
-		private Player player;
+		private Player mPlayer;
 		
-		public WebserviceCreatePlayer (Player p)
+		public ServiceCreatePlayer (Player p)
 		{
-			this.player = p;
+			this.mPlayer = p;
 		}
 		
 		/// <summary>
@@ -44,10 +44,10 @@ namespace Superkoikoukesse.Common
 		public void CreatePlayer (Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("player", new JsonPrimitive (mPlayer.Id));
 			json.Add ("platform", new JsonPrimitive ("ios")); // TODO Android
-			json.Add ("credits", new JsonPrimitive (player.Credits));
-			json.Add ("coins", new JsonPrimitive (player.Coins));
+			json.Add ("credits", new JsonPrimitive (mPlayer.Credits));
+			json.Add ("coins", new JsonPrimitive (mPlayer.Coins));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
 			                           (success) => {
@@ -71,13 +71,13 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Manage player credits
 	/// </summary>
-	public class WebservicePlayerCredits : BaseWebserviceCaller
+	public class ServicePlayerCredits : BaseServiceCaller
 	{
-		private Player player;
+		private Player mPlayer;
 
-		public WebservicePlayerCredits (Player p)
+		public ServicePlayerCredits (Player p)
 		{
-			this.player = p;
+			this.mPlayer = p;
 		}
 		
 		/// <summary>
@@ -87,7 +87,7 @@ namespace Superkoikoukesse.Common
 		public void AddCredits (int credits, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("player", new JsonPrimitive (mPlayer.Id));
 			json.Add ("credits", new JsonPrimitive (credits));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
@@ -110,13 +110,13 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Manage player coins
 	/// </summary>
-	public class WebservicePlayerCoins : BaseWebserviceCaller
+	public class ServicePlayerCoins : BaseServiceCaller
 	{
-		private Player player;
+		private Player mPlayer;
 		
-		public WebservicePlayerCoins (Player p)
+		public ServicePlayerCoins (Player p)
 		{
-			this.player = p;
+			this.mPlayer = p;
 		}
 		
 		/// <summary>
@@ -126,7 +126,7 @@ namespace Superkoikoukesse.Common
 		public void AddCoins (int coins, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (player.Id));
+			json.Add ("player", new JsonPrimitive (mPlayer.Id));
 			json.Add ("coins", new JsonPrimitive (coins));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
