@@ -10,6 +10,44 @@ namespace Superkoikoukesse.Common
 	public class Player : IServiceOutput
 	{
 		/// <summary>
+		/// Cleans the identifier.
+		/// </summary>
+		/// <returns>The identifier.</returns>
+		/// <param name="playerId">Player identifier.</param>
+		public static string CleanId(string playerId) {
+			return playerId.Replace (":", "").Replace ("&", "").Replace ("/", "").Replace (" ", "");
+		}
+
+		public Player ()
+		{
+			Credits = Constants.BASE_CREDITS;
+			Coins = Constants.BASE_COINS;
+		}
+
+		public Player (AuthenticatedPlayer aplayer)
+			: this()
+		{
+			DisplayName = aplayer.DisplayName;
+
+			// Clean ID from URL reserved chars
+			Id = CleanId(aplayer.PlayerId);
+		}
+
+		public void BuildFromJsonObject (JsonValue json)
+		{
+			//json	{{"Id": "10550e72-da74-4b07-ac6d-a18e02712ec4", "GameCenterId": "G1728633519", "NickName": "G1728633519", "CreationDate": "2013-03-27T11:22:51.96Z", "Credits": 2500, "Coins": 3, "SubscriptionType": 0}}	System.Json.JsonObject
+			string playerId = json ["GameCenterId"].ToString ();
+			int credits = Convert.ToInt32 (json ["Credits"].ToString ());
+			int coins = Convert.ToInt32 (json ["Coins"].ToString ());
+			int subscriptionType = Convert.ToInt32 (json ["SubscriptionType"].ToString ());
+
+			this.Id = playerId;
+			this.Credits = credits;
+			this.Coins = coins;
+			this.SubscriptionType = subscriptionType;
+		}
+
+		/// <summary>
 		/// Unique identifier for the player (game center id)
 		/// </summary>
 		/// <value>The identifier.</value>
@@ -56,44 +94,6 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <value>The disconnected coins earned.</value>
 		public int DisconnectedCoinsEarned  { get; set; }
-
-		public Player ()
-		{
-			Credits = Constants.BASE_CREDITS;
-			Coins = Constants.BASE_COINS;
-		}
-
-		public Player (AuthenticatedPlayer aplayer)
-			: this()
-		{
-			DisplayName = aplayer.DisplayName;
-
-			// Clean ID from URL reserved chars
-			Id = CleanId(aplayer.PlayerId);
-		}
-
-		public void BuildFromJsonObject (JsonValue json)
-		{
-			//json	{{"Id": "10550e72-da74-4b07-ac6d-a18e02712ec4", "GameCenterId": "G1728633519", "NickName": "G1728633519", "CreationDate": "2013-03-27T11:22:51.96Z", "Credits": 2500, "Coins": 3, "SubscriptionType": 0}}	System.Json.JsonObject
-			string playerId = json ["GameCenterId"].ToString ();
-			int credits = Convert.ToInt32 (json ["Credits"].ToString ());
-			int coins = Convert.ToInt32 (json ["Coins"].ToString ());
-			int subscriptionType = Convert.ToInt32 (json ["SubscriptionType"].ToString ());
-
-			this.Id = playerId;
-			this.Credits = credits;
-			this.Coins = coins;
-			this.SubscriptionType = subscriptionType;
-		}
-
-		/// <summary>
-		/// Cleans the identifier.
-		/// </summary>
-		/// <returns>The identifier.</returns>
-		/// <param name="playerId">Player identifier.</param>
-		public static string CleanId(string playerId) {
-			return playerId.Replace (":", "").Replace ("&", "").Replace ("/", "").Replace (" ", "");
-		}
 	}
 }
 

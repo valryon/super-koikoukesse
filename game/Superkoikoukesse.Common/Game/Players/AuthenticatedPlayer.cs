@@ -7,12 +7,12 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public abstract class AuthenticatedPlayer
 	{
-		private string playerId, displayName;
+		private string mPlayerId, mDisplayName;
 	
 		public AuthenticatedPlayer ()
 		{
-			playerId = Guid.NewGuid ().ToString ();
-			displayName = "Local";
+			mPlayerId = Guid.NewGuid ().ToString ();
+			mDisplayName = "Local";
 		}
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace Superkoikoukesse.Common
 		/// <value>The player identifier.</value>
 		public virtual string PlayerId {
 			get {
-				return playerId;
+				return mPlayerId;
 			}
 		}
 
@@ -81,7 +81,7 @@ namespace Superkoikoukesse.Common
 		/// <value>The player identifier.</value>
 		public virtual string DisplayName {
 			get {
-				return displayName;
+				return mDisplayName;
 			}
 		}
 
