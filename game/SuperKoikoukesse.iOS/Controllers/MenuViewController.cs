@@ -96,7 +96,7 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Load the player from db
-			Player profile = ProfileService.Instance.CachedPlayer;
+			Player profile = PlayerCache.Instance.CachedPlayer;
 
 			// Display credits and coins
 			if (profile != null) {
@@ -194,7 +194,7 @@ namespace SuperKoikoukesse.iOS
 
 		private void displayMatchMaker (GameModes mode)
 		{
-			ProfileService.Instance.AuthenticatedPlayer.NewMatch (
+			PlayerCache.Instance.AuthenticatedPlayer.NewMatch (
 			// Match found
 			(match) => {
 
@@ -208,7 +208,7 @@ namespace SuperKoikoukesse.iOS
 						// See the final score
 						Dialogs.ShowMatchEnded ();
 					} else {
-						if (match.IsPlayerTurn (ProfileService.Instance.AuthenticatedPlayer.PlayerId)) {
+						if (match.IsPlayerTurn (PlayerCache.Instance.AuthenticatedPlayer.PlayerId)) {
 							// Player turn
 							appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
 						} else {
@@ -256,7 +256,7 @@ namespace SuperKoikoukesse.iOS
 
 					// Remember to select Versus match parameters too
 					if (mode == GameModes.VERSUS) {
-						VersusMatch currentMatch = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
+						VersusMatch currentMatch = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
 
 						currentMatch.Difficulty = difficulty;
 						filter = currentMatch.Filter; // This is weird
@@ -275,14 +275,14 @@ namespace SuperKoikoukesse.iOS
 		void HandleGameModeSelected (GameModes m)
 		{
 			// Enough credits?
-			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
+			if (PlayerCache.Instance.CachedPlayer.Credits > 0) {
 
 				if (m == GameModes.VERSUS) {
 
-					if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
-						ProfileService.Instance.AuthenticatedPlayer.Authenticate (() => {
+					if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
+						PlayerCache.Instance.AuthenticatedPlayer.Authenticate (() => {
 
-							if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+							if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
 								displayMatchMaker (m);
 							} else {
 								// Dialog
@@ -331,12 +331,12 @@ namespace SuperKoikoukesse.iOS
 
 		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
+			PlayerCache.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
 		}
 
 		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCoins (Constants.BASE_COINS);
+			PlayerCache.Instance.AddCoins (Constants.BASE_COINS);
 		}
 	}
 }

@@ -151,7 +151,7 @@ namespace Superkoikoukesse.Common
 			// Multiplayer and not the first turn?
 			// We must play exactly the same game as the other players
 			if (Mode == GameModes.VERSUS) {
-				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn == false) {
+				if (PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn == false) {
 					q = Filter.GetMatchQuestion ();
 				}
 			}
@@ -351,9 +351,9 @@ namespace Superkoikoukesse.Common
 			// Multiplayer specifity: register all first player question @ answers
 			if (IsOver == false && Mode == GameModes.VERSUS) {
 
-				if (ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
+				if (PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
 					
-					Filter matchFilter = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch.Filter;
+					Filter matchFilter = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch.Filter;
 
 					if (matchFilter.RequiredGameIds == null) {
 						matchFilter.RequiredGameIds = new Dictionary<int, int[]> ();
@@ -423,11 +423,11 @@ namespace Superkoikoukesse.Common
 			});
 
 			// Send score to Game Center
-			ProfileService.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
+			PlayerCache.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
 			// Multiplayer? End turn
 			if (Mode == GameModes.VERSUS) {
-				ProfileService.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
+				PlayerCache.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
 
 				});
 			}
@@ -440,7 +440,7 @@ namespace Superkoikoukesse.Common
 			EarnedCoins = (int)Math.Round (Score / 1000f);
 
 			// Send those coins
-			ProfileService.Instance.AddCoins (EarnedCoins);
+			PlayerCache.Instance.AddCoins (EarnedCoins);
 		}
 
 		/// <summary>

@@ -190,7 +190,7 @@ namespace SuperKoikoukesse.iOS
       mQuizz.Initialize(mode, diff, appDelegate.Configuration, f);
     
       // Consume one credit
-      ProfileService.Instance.UseCredit();
+      PlayerCache.Instance.UseCredit();
     }
 
     /// <summary>

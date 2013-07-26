@@ -49,7 +49,6 @@
     <Folder Include="Services\" />
     <Folder Include="Tools\" />
     <Folder Include="Game\Quiz\" />
-    <Folder Include="Game\Players\" />
     <Folder Include="Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -69,7 +68,6 @@
     <Compile Include="Game\Enums\GameZones.cs" />
     <Compile Include="Networking\Services\WebservicePlayer.cs" />
     <Compile Include="Services\ImageService.cs" />
-    <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
     <Compile Include="Tools\NetworkAvailability.cs" />
     <Compile Include="Tools\EncryptionHelper.cs" />
@@ -80,10 +78,11 @@
     <Compile Include="Game\Quiz\Filter.cs" />
     <Compile Include="Game\Quiz\LocalScore.cs" />
     <Compile Include="Game\Quiz\Quizz.cs" />
-    <Compile Include="Game\Players\AuthenticatedPlayer.cs" />
-    <Compile Include="Game\Players\Player.cs" />
-    <Compile Include="Game\Players\VersusMatch.cs" />
     <Compile Include="Database\SQLite.cs" />
     <Compile Include="Database\GameDatabase.cs" />
+    <Compile Include="Players\AuthenticatedPlayer.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\VersusMatch.cs" />
+    <Compile Include="Players\PlayerCache.cs" />
   </ItemGroup>
 </Project>

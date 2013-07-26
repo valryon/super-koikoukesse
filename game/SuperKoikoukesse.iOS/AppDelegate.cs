@@ -172,7 +172,7 @@ namespace SuperKoikoukesse.iOS
 			};
 
 			// Player events
-			ProfileService.Instance.PlayerUpdated += (Player p) => {
+			PlayerCache.Instance.PlayerUpdated += (Player p) => {
 				
 				InvokeOnMainThread (() => {
 
@@ -184,7 +184,7 @@ namespace SuperKoikoukesse.iOS
 			
 			// Store a local profile from the game center info
 			// Or create a temporary local player
-			ProfileService.Instance.Initialize (GameCenter);
+			PlayerCache.Instance.Initialize (GameCenter);
 		}
 
 		private void loadingProgress ()
@@ -410,7 +410,7 @@ namespace SuperKoikoukesse.iOS
 
 		public void ShowLeaderboards (string id, Action callback)
 		{
-			if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+			if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
 				if (m_gkLeaderboardview == null) {
 					m_gkLeaderboardview = new GKLeaderboardViewController ();
 				}

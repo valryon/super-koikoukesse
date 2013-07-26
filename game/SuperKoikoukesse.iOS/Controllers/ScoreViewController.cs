@@ -64,13 +64,13 @@ namespace SuperKoikoukesse.iOS
 
 				// Game center versus
 				// ------------------------------------------
-				VersusMatch match = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
+				VersusMatch match = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
 
 				// Game center match status
 				if (match.IsEnded) {
 					// -- Match is over
 				} 
-				else if (match.IsPlayerTurn(ProfileService.Instance.AuthenticatedPlayer.PlayerId) == false) {
+				else if (match.IsPlayerTurn(PlayerCache.Instance.AuthenticatedPlayer.PlayerId) == false) {
 					// -- Player is waiting for the opponent to play
 				}
 				else {
@@ -161,7 +161,7 @@ namespace SuperKoikoukesse.iOS
 
 		void retryButtonPressed ()
 		{
-			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
+			if (PlayerCache.Instance.CachedPlayer.Credits > 0) {
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 				appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty, quizz.Filter);
 			} else {
