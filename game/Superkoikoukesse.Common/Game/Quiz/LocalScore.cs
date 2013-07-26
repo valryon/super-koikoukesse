@@ -12,14 +12,6 @@ namespace Superkoikoukesse.Common
 		{
 		}
 
-		public GameModes Mode {get;set;}
-
-		public GameDifficulties Difficulty {get;set;}
-
-		public int Score {get;set;}
-
-		public DateTime Date {get;set;}
-
 		public override bool Equals (object obj)
 		{
 			if(obj is LocalScore) {
@@ -36,10 +28,20 @@ namespace Superkoikoukesse.Common
 			}
 			return base.Equals (obj);
 		}
+
 		public override int GetHashCode ()
 		{
 			return base.GetHashCode ();
 		}
+
+		
+		public GameModes Mode {get;set;}
+
+		public GameDifficulties Difficulty {get;set;}
+
+		public int Score {get;set;}
+
+		public DateTime Date {get;set;}
 	}
 }
 

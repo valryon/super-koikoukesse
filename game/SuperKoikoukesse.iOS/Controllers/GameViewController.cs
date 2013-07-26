@@ -297,7 +297,7 @@ namespace SuperKoikoukesse.iOS
             if (mQuizz.TimeLeft < 0)
             {
 
-              mQuizz.TimeIsOver();
+              mQuizz.SetTimeOver();
 
               // No answer selected
               this.InvokeOnMainThread(() => {
@@ -515,7 +515,7 @@ namespace SuperKoikoukesse.iOS
 
     private void GoToNextQuestion()
     {
-      mQuizz.NextQuestion();
+      mQuizz.SetNextQuestion();
       
       if (mQuizz.IsOver == false)
       {
