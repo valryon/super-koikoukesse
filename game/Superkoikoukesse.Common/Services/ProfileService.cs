@@ -40,7 +40,7 @@ namespace Superkoikoukesse.Common
 				if (lastProfileCacheTime.AddMinutes (Constants.PROFILE_CACHE_DURATION) <= DateTime.Now) {
 					lastProfileCacheTime = DateTime.Now;
 
-					cachedLocalPlayer = DatabaseService.Instance.ReadPlayer ();
+					cachedLocalPlayer = GameDatabase.Instance.ReadPlayer ();
 				}
 
 				return cachedLocalPlayer;
@@ -231,7 +231,7 @@ namespace Superkoikoukesse.Common
 					Player p = CachedPlayer;
 					p.Credits += creditsUsed;
 				
-					DatabaseService.Instance.SavePlayer (p);
+					GameDatabase.Instance.SavePlayer (p);
 				}
 
 				// Tell the server
@@ -264,7 +264,7 @@ namespace Superkoikoukesse.Common
 				Player p = CachedPlayer;
 				p.Coins += coinsUsed;
 				
-				DatabaseService.Instance.SavePlayer (p);
+				GameDatabase.Instance.SavePlayer (p);
 				
 				// Tell the server
 				WebservicePlayerCoins wsCoins = new WebservicePlayerCoins (CachedPlayer);
@@ -331,7 +331,7 @@ namespace Superkoikoukesse.Common
 
 			lock (saveLock) {
 				lastProfileCacheTime = DateTime.MinValue;
-				DatabaseService.Instance.SavePlayer (p);
+				GameDatabase.Instance.SavePlayer (p);
 			}
 		}
 	}

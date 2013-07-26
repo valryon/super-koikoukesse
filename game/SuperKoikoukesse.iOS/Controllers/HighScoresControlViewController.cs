@@ -77,7 +77,7 @@ namespace SuperKoikoukesse.iOS
 			}
 			
 			// Get local highscores
-			LocalScore[] localScores = DatabaseService.Instance.GetLocalScores (mode, difficulty, scoreLinesCount);
+			LocalScore[] localScores = GameDatabase.Instance.GetLocalScores (mode, difficulty, scoreLinesCount);
 			
 			// Fill labels...
 			if (localScores.Length > 0) {

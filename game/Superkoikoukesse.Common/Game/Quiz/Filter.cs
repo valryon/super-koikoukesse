@@ -50,7 +50,7 @@ namespace Superkoikoukesse.Common
 					mCurrentRequiredGameIdsIndex = 0;
 				}
 
-				mMatchingGames = DatabaseService.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
+				mMatchingGames = GameDatabase.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
 
 				loadingComplete (mMatchingGames.Count);
 

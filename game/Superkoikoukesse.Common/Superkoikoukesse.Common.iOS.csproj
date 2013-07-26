@@ -50,6 +50,7 @@
     <Folder Include="Tools\" />
     <Folder Include="Game\Quiz\" />
     <Folder Include="Game\Players\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -67,8 +68,6 @@
     <Compile Include="Game\Enums\GameDifficulties.cs" />
     <Compile Include="Game\Enums\GameZones.cs" />
     <Compile Include="Networking\Services\WebservicePlayer.cs" />
-    <Compile Include="Services\DatabaseService.cs" />
-    <Compile Include="Services\SQLite.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
@@ -84,5 +83,7 @@
     <Compile Include="Game\Players\AuthenticatedPlayer.cs" />
     <Compile Include="Game\Players\Player.cs" />
     <Compile Include="Game\Players\VersusMatch.cs" />
+    <Compile Include="Database\SQLite.cs" />
+    <Compile Include="Database\GameDatabase.cs" />
   </ItemGroup>
 </Project>

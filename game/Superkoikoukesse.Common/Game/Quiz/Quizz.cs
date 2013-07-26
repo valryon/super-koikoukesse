@@ -415,7 +415,7 @@ namespace Superkoikoukesse.Common
 		public void EndQuizz ()
 		{
 			// Add score to local DB
-			RankForLastScore = DatabaseService.Instance.AddLocalScore (new LocalScore () {
+			RankForLastScore = GameDatabase.Instance.AddLocalScore (new LocalScore () {
 				Mode = Mode,
 				Difficulty = Difficulty,
 				Date = DateTime.Now,

@@ -95,23 +95,23 @@ namespace SuperKoikoukesse.iOS
 			databaseLoaded = false;
 
 			// Create or load database
-			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
+			GameDatabase.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
 
 			// Create database structure as fast as possible so other threads can manipulate it.
-			if (DatabaseService.Instance.Exists == false) {
+			if (GameDatabase.Instance.Exists == false) {
 
-				DatabaseService.Instance.CreateTables();
+				GameDatabase.Instance.CreateTables();
 			}
 
 			InvokeInBackground (() => {
  		
 				// Create database structure as fast as possible so other threads can manipulate it.
-				if (DatabaseService.Instance.Exists == false) {
+				if (GameDatabase.Instance.Exists == false) {
 
 					// Load gamedb.xml
 					String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
 					
-					DatabaseService.Instance.InitializeFromXml (xmlDatabase);
+					GameDatabase.Instance.InitializeFromXml (xmlDatabase);
 				}
 
 				// Check excluded games
@@ -119,7 +119,7 @@ namespace SuperKoikoukesse.iOS
 				exGames.Request ((list) => {
 					
 					foreach (int id in list.GamesId) {
-						DatabaseService.Instance.RemoveGame (id);
+						GameDatabase.Instance.RemoveGame (id);
 					}
 					
 				}, null);
