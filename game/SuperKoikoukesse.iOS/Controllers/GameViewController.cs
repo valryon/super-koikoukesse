@@ -44,7 +44,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public GameViewController() : base ("GameView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public GameViewController() : base("GameView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
       mRandom = new Random(DateTime.Now.Millisecond);
     }
@@ -117,11 +117,7 @@ namespace SuperKoikoukesse.iOS
         y: ViewEmitter.Frame.Height / 2,
         width: 1f,
         height: ViewEmitter.Frame.Height - 4
-        );
-
-      var mask = new CAShapeLayer();
-      mask.Frame = ViewCombo.Layer.Frame;
-      mask.CornerRadius = 6;
+      );
 
       view.Layer.AddSublayer(emitter);
     }

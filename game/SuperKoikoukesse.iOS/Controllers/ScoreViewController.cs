@@ -8,172 +8,201 @@ using System.Collections.Generic;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class ScoreViewController : UIViewController
-	{
-		private Quizz quizz;
-		private static Dictionary<string, UIImage> playerImageCache;
+  public partial class ScoreViewController : UIViewController
+  {
+    #region Members
 
-		public ScoreViewController (Quizz q) 
-			: base (null, null)
-		{
-			quizz = q;
-			playerImageCache = new Dictionary<string, UIImage> ();
-		}
+    private Quizz mQuizz;
+    private static Dictionary<string, UIImage> mPlayerImageCache;
 
-		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
-		{
+    #endregion
+
+    #region Constructors
+
+    public ScoreViewController(Quizz q) : base ("ScoreView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    {
+      mQuizz = q;
+      mPlayerImageCache = new Dictionary<string, UIImage>();
+    }
+
+    public override void ViewDidLoad()
+    {
+      base.ViewDidLoad();
+
+      //CreateView();
+      //SetViewDataFromQuizz();
+    }
+
+    #endregion
+
+    #region Methods
+
+    public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
+    {
       return AppDelegate.HasSupportedInterfaceOrientations();
-		}
+    }
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
+    private void CreateView()
+    {
+      View = ViewTools.CreateUIView();
 
-			createView ();
+      // Common
+      // ------------------------------------------
 
-			SetViewDataFromQuizz ();
-		}
+      // Game over label
+      UILabel titleLabel = ViewTools.Createlabel(new RectangleF(10, 10, 150, 50), Localization.Get("game.over"));
+      View.AddSubview(titleLabel);
 
-		private void createView ()
-		{
-			View = ViewTools.CreateUIView ();
+      // Mode and difficulty
+      UILabel modeLabel = ViewTools.Createlabel(new RectangleF(10, 60, 150, 50), Localization.Get(mQuizz.Mode.ToString().ToLower() + ".title"));
+      View.AddSubview(modeLabel);
+      UILabel difficultyLabel = ViewTools.Createlabel(new RectangleF(10, 110, 150, 50), Localization.Get(mQuizz.Difficulty.ToString().ToLower() + ".title"));
+      View.AddSubview(difficultyLabel);
 
-			// Common
-			// ------------------------------------------
+      // Quit button
+      UIButton quitButton = ViewTools.CreateButton(
+        new RectangleF(10, 500, 200, 80), 
+        Localization.Get("button.quit"),
+        OnMenuPressed
+      );
 
-			// Game over label
-			UILabel titleLabel = ViewTools.Createlabel (new RectangleF (10, 10, 150, 50), Localization.Get ("game.over"));
-			View.AddSubview (titleLabel);
+      View.AddSubview(quitButton);
 
-			// Mode and difficulty
-			UILabel modeLabel = ViewTools.Createlabel (new RectangleF (10, 60, 150, 50), Localization.Get (quizz.Mode.ToString().ToLower() + ".title"));
-			View.AddSubview (modeLabel);
-			UILabel difficultyLabel = ViewTools.Createlabel (new RectangleF (10, 110, 150, 50), Localization.Get (quizz.Difficulty.ToString().ToLower() +  ".title"));
-			View.AddSubview (difficultyLabel);
+      if (mQuizz.Mode == GameModes.Versus)
+      {
 
-			// Quit button
-			UIButton quitButton = ViewTools.CreateButton (
-				new RectangleF (10, 500, 200, 80), 
-				Localization.Get ("button.quit"),
-				menuButtonPressed
-			);
+        // Game center versus
+        // ------------------------------------------
+        VersusMatch match = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
 
-			View.AddSubview (quitButton);
+        // Game center match status
+        if (match.IsEnded)
+        {
+          // -- Match is over
+        }
+        else if (match.IsPlayerTurn(ProfileService.Instance.AuthenticatedPlayer.PlayerId) == false)
+        {
+          // -- Player is waiting for the opponent to play
+        }
+        else
+        {
+          // We should never be here but check...
+          Logger.Log(LogLevel.Error, "Match not ended and player turn: wtf are you doing in score view?");
+        }
 
-			if (quizz.Mode == GameModes.Versus) {
+        // Load players avatar
+        if (mPlayerImageCache.ContainsKey(match.Player1Id) == false)
+        {
+          GKPlayer.LoadPlayersForIdentifiers(
+            new string[] { match.Player1Id },
+            LoadPlayers
+          );
+        }
+        if (mPlayerImageCache.ContainsKey(match.Player2Id) == false)
+        {
+          GKPlayer.LoadPlayersForIdentifiers(
+            new string[] { match.Player2Id },
+            LoadPlayers
+          );
+        }
 
-				// Game center versus
-				// ------------------------------------------
-				VersusMatch match = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
+        // Game infos
+        // There is only two turns but here it's a generic data structure
+        foreach (var turn in match.Turns)
+        {
+          string playerId = turn.PlayerId;
+          int score = turn.Score;
 
-				// Game center match status
-				if (match.IsEnded) {
-					// -- Match is over
-				} 
-				else if (match.IsPlayerTurn(ProfileService.Instance.AuthenticatedPlayer.PlayerId) == false) {
-					// -- Player is waiting for the opponent to play
-				}
-				else {
-					// We should never be here but check...
-					Logger.Log (LogLevel.Error, "Match not ended and player turn: wtf are you doing in score view?");
-				}
+          UIImage avatar = null;
+          if (mPlayerImageCache.TryGetValue(playerId, out avatar) == false)
+          {
+            // Default avatar
+            avatar = new UIImage();
+          }
+        }
+      }
+      else
+      {
+        // Solo
+        // ------------------------------------------ 
 
-				// Load players avatar
-				if (playerImageCache.ContainsKey (match.Player1Id) == false) {
-					GKPlayer.LoadPlayersForIdentifiers (
-						new string[]{match.Player1Id},
-						playersLoaded
-					);
-				}
-				if (playerImageCache.ContainsKey (match.Player2Id) == false) {
-					GKPlayer.LoadPlayersForIdentifiers (
-						new string[]{match.Player2Id},
-						playersLoaded
-					);
-				}
+        // Score
+        // -- Title
+        UILabel localScoreTitle = ViewTools.Createlabel(new RectangleF(400, 50, 150, 50), Localization.Get("scores.local"));
+        View.AddSubview(localScoreTitle);
 
-				// Game infos
-				// There is only two turns but here it's a generic data structure
-				foreach (var turn in match.Turns) 
-				{
-					string playerId = turn.PlayerId;
-					int score = turn.Score;
+        // -- Current score
+        UILabel currentScore = ViewTools.Createlabel(new RectangleF(400, 50, 150, 50), Localization.Get("scores.local"));
+        View.AddSubview(localScoreTitle);
 
-					UIImage avatar = null;
-					if (playerImageCache.TryGetValue (playerId, out avatar) == false) {
-						// Default avatar
-						avatar = new UIImage ();
-					}
-				}
-			}
-			else 
-			{
-				// Solo
-				// ------------------------------------------ 
+        // Game center scores
 
-				// Score
-				// -- Title
-				UILabel localScoreTitle = ViewTools.Createlabel (new RectangleF (400, 50, 150, 50), Localization.Get ("scores.local"));
-				View.AddSubview (localScoreTitle);
+        // Retry
+        UIButton retryButton = ViewTools.CreateImportantButton(
+          new RectangleF(10, 700, 200, 80), 
+          Localization.Get("button.retry"),
+          OnRetryPressed
+        );
 
-				// -- Current score
-				UILabel currentScore = ViewTools.Createlabel (new RectangleF (400, 50, 150, 50), Localization.Get ("scores.local"));
-				View.AddSubview (localScoreTitle);
+        View.AddSubview(retryButton);
+      }
+    }
 
-				// Game center scores
+    private void LoadPlayers(GKPlayer[] players, NSError error)
+    {
 
-				// Retry
-				UIButton retryButton = ViewTools.CreateImportantButton (
-					new RectangleF (10, 700, 200, 80), 
-					Localization.Get ("button.retry"),
-					retryButtonPressed
-				);
+      foreach (GKPlayer player in players)
+      {
+        player.LoadPhoto(GKPhotoSize.Normal, (image, loadImageError) => {
 
-				View.AddSubview (retryButton);
-			}
-		}
+          mPlayerImageCache.Add(player.PlayerID, image);
 
-		
-		private void playersLoaded(GKPlayer[] players, NSError error) {
+          BeginInvokeOnMainThread(() => {
+            // TODO Refresh images
+          });
+        });
+      }
+    }
 
-			foreach(GKPlayer player in players) {
-				player.LoadPhoto(GKPhotoSize.Normal, (image, loadImageError) => {
+    private void SetViewDataFromQuizz()
+    {
+      if (IsViewLoaded)
+      {
+//        this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
 
-					playerImageCache.Add(player.PlayerID, image);
+        // Highscore control
+//        highScoreControl.SetScoreParameters (quizz.Mode, quizz.Difficulty, quizz.RankForLastScore, quizz.Score);
+      }
 
-					BeginInvokeOnMainThread(() => {
-						// TODO Refresh images
-					});
-				});
-			}
-		}
+    }
 
-		private void SetViewDataFromQuizz ()
-		{
-			if (IsViewLoaded) {
-//				this.coinsLabel.Text = quizz.EarnedCoins.ToString ();
+    #endregion
 
-				// Highscore control
-//				highScoreControl.SetScoreParameters (quizz.Mode, quizz.Difficulty, quizz.RankForLastScore, quizz.Score);
-			}
+    #region Handlers
 
-		}
+    public void OnRetryPressed()
+    {
+      if (ProfileService.Instance.CachedPlayer.Credits > 0)
+      {
+        var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+        appDelegate.SwitchToGameView(mQuizz.Mode, mQuizz.Difficulty, mQuizz.Filter);
+      }
+      else
+      {
+        Dialogs.ShowNoMoreCreditsDialogs();
+      }
+    }
 
-		void retryButtonPressed ()
-		{
-			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
-				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-				appDelegate.SwitchToGameView (quizz.Mode, quizz.Difficulty, quizz.Filter);
-			} else {
-				Dialogs.ShowNoMoreCreditsDialogs ();
-			}
-		}
+    public void OnMenuPressed()
+    {
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      appDelegate.SwitchToMenuView();
+    }
 
-		void menuButtonPressed ()
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToMenuView ();
-		}
-	}
+    #endregion
+
+    #region Properties
+    #endregion
+  }
 }
 

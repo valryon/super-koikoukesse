@@ -165,10 +165,6 @@
     <Compile Include="Tools\Localization.cs" />
     <Compile Include="Views\ViewTools.cs" />
     <Compile Include="Views\PXNConstants.cs" />
-    <Compile Include="PXNTimerLabel.cs" />
-    <Compile Include="PXNTimerLabel.designer.cs">
-      <DependentUpon>PXNTimerLabel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\PXNNavigationButton.cs" />
     <Compile Include="Views\Particles\PXNComboGauge.cs" />
   </ItemGroup>
@@ -204,6 +200,7 @@
     <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
     <InterfaceDefinition Include="Views\Main_iPhone.storyboard" />
     <InterfaceDefinition Include="Views\Main_iPad.storyboard" />
+    <InterfaceDefinition Include="Views\iPhone\ScoreView_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">

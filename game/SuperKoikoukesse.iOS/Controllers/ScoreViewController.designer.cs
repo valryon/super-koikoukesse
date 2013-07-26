@@ -8,8 +8,8 @@ using MonoTouch.Foundation;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("ScoreViewController")]
-	partial class ScoreViewController
-	{
-	}
+  [Register("ScoreViewController")]
+  partial class ScoreViewController
+  {
+  }
 }
