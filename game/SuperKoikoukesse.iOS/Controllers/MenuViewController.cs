@@ -64,7 +64,7 @@ namespace SuperKoikoukesse.iOS
 				createPanels ();
 			}
 
-			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
+			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
 
 			UpdateViewWithPlayerInfos ();
 		}
@@ -312,9 +312,9 @@ namespace SuperKoikoukesse.iOS
 
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			Constants.DebugMode = !Constants.DebugMode;
-			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
-			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
+			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
+			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
+			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DEBUG_MODE);
 		}
 
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -331,12 +331,12 @@ namespace SuperKoikoukesse.iOS
 
 		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCreditsDebug (Constants.BaseCredits);
+			ProfileService.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
 		}
 
 		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCoins (Constants.BaseCoins);
+			ProfileService.Instance.AddCoins (Constants.BASE_COINS);
 		}
 	}
 }

@@ -37,7 +37,7 @@ namespace Superkoikoukesse.Common
 
 		public Player CachedPlayer {
 			get {
-				if (lastProfileCacheTime.AddMinutes (Constants.ProfileCacheDuration) <= DateTime.Now) {
+				if (lastProfileCacheTime.AddMinutes (Constants.PROFILE_CACHE_DURATION) <= DateTime.Now) {
 					lastProfileCacheTime = DateTime.Now;
 
 					cachedLocalPlayer = DatabaseService.Instance.ReadPlayer ();

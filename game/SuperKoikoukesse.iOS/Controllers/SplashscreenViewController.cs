@@ -39,7 +39,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Fade in & out animation
 			UIView.Animate (
-				Constants.SplashScreenOpenFadeDuration,
+				Constants.SPLASHSCREEN_OPEN_FADE_DURATION,
 				0,
 				UIViewAnimationOptions.CurveEaseIn,
 				() => {
@@ -47,7 +47,7 @@ namespace SuperKoikoukesse.iOS
 				}, () => {
 					Thread.Sleep(1000);
 					UIView.Animate (
-						Constants.SplashScreenCloseFadeDuration,
+						Constants.SPLASHSCREEN_CLOSE_FADE_DURATION,
 							() => {
 						View.Alpha = 0f;
 

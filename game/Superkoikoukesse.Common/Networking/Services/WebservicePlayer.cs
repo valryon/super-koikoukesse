@@ -21,7 +21,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/" + id);
+			return new Uri (Constants.WEBSERVICE_URL + "ws/player/" + id);
 		}
 
 	}
@@ -63,7 +63,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/player/");
+			return new Uri (Constants.WEBSERVICE_URL + "ws/player/");
 		}
 		
 	}
@@ -102,7 +102,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/playerupdate/credits");
+			return new Uri (Constants.WEBSERVICE_URL + "ws/playerupdate/credits");
 		}
 		
 	}
@@ -141,7 +141,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/playerupdate/coins");
+			return new Uri (Constants.WEBSERVICE_URL + "ws/playerupdate/coins");
 		}
 
 		

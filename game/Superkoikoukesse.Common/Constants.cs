@@ -2,55 +2,124 @@ using System;
 
 namespace Superkoikoukesse.Common
 {
+	/// <summary>
+	/// Constants for the game (ingame, views, configuration)
+	/// </summary>
 	public static class Constants
 	{
-		public static string WebserviceUrl = "http://skkk.dmayance.com/"; // End with slash!
+		/// <summary>
+		/// URL of the koikoukesse webservice
+		/// </summary>
+		public static string WEBSERVICE_URL = "http://skkk.dmayance.com/"; // End with slash!
 
-		public static string EncryptionKey = "p_o6u-e/t*+!";
+		/// <summary>
+		/// 16 char key for encryption
+		/// </summary>
+		public static string ENCRYPTION_KEY = "p_o6u-e/t*+!";
 
-		public static bool UseEncryption = true;
+		/// <summary>
+		/// Use encryption to communicate with webservice
+		/// </summary>
+		public static bool ENABLE_ENCRYPTION = true;
 
-		public static string DatabaseLocation = "superkoikoukesse.sqlite";
+		/// <summary>
+		/// Game database location
+		/// </summary>
+		public static string DATABASE_LOCATION = "superkoikoukesse.sqlite";
 
-		public static string ImagesRootLocation = "database/images/";
+		/// <summary>
+		/// Images database location
+		/// </summary>
+		public static string IMAGE_ROOT_LOCATION = "database/images/";
 
-		public static string ConfigFileLocation = "gameconfig.xml";
+		/// <summary>
+		/// Configuration file location
+		/// </summary>
+		public static string CONFIG_FILE_LOCATION = "gameconfig.xml";
 
 #if DEBUG
-		public static bool DebugMode = true;
+
+		/// <summary>
+		/// Enable debug mode
+		/// </summary>
+		public static bool DEBUG_MODE = true;
 #else 
-		public static bool DebugMode = false;
+		/// <summary>
+		/// Enable debug mode (disable in release mode)
+		/// </summary>
+		public static bool DEBUG_MODE = false;
 #endif
 
-		public static int ProfileCacheDuration = 0;
+		/// <summary>
+		/// Time (minutes) to keep profile in cache without reloading it
+		/// </summary>
+		public static int PROFILE_CACHE_DURATION = 5;
 
-		public static int BaseCredits = 3;
+		/// <summary>
+		/// Default credits amount
+		/// </summary>
+		public static int BASE_CREDITS = 3;
 
-		public static int BaseCoins = 2500;
+		/// <summary>
+		/// Defalut coins amount
+		/// </summary>
+		public static int BASE_COINS = 2500;
 
 		#region Animations
 
 #if DEBUG
-		public static float SplashScreenOpenFadeDuration = 0.1f;
-		public static float SplashScreenCloseFadeDuration = 0.1f;
+		/// <summary>
+		/// Animation time for splashscreen fade in 
+		/// </summary>
+		public static float SPLASHSCREEN_OPEN_FADE_DURATION = 0.1f;
+
+		/// <summary>
+		/// Animation time for splashscreen fade out
+		/// </summary>
+		public static float SPLASHSCREEN_CLOSE_FADE_DURATION = 0.1f;
 #else
-		public static float SplashScreenOpenFadeDuration = 1.5f;
-		public static float SplashScreenCloseFadeDuration = 3f;
+		/// <summary>
+		/// Animation time for splashscreen fade in 
+		/// </summary>
+		public static float SPLASHSCREEN_OPEN_FADE_DURATION = 1.5f;
+
+		/// <summary>
+		/// Animation time for splashscreen fade out
+		/// </summary>
+		public static float SPLASHSCREEN_CLOSE_FADE_DURATION = 3f;
 #endif
 
-		public static float DezoomFactor = 10f;
+		/// <summary>
+		/// Factor value for dezoom animation
+		/// </summary>
+		public static float ANIMATION_DEZOOM_FACTOR = 10f;
 
-		public static float DezoomDuration = 5f; //seconds
+		/// <summary>
+		/// Duration for dezoom animation
+		/// </summary>
+		public static float ANIMATION_DEZOOM_DURATION = 5f; //seconds
 
-		public static float PixelizationDuration = 5f; //seconds
+		/// <summary>
+		/// Duration for pixelisation animation
+		/// </summary>
+		public static float ANIMATION_PIXELISATION_DURATION = 5f; //seconds
 
-		public static float ProgressiveDrawingDuration = 5f; //seconds
+		/// <summary>
+		/// Duration for progressive drawing animation
+		/// </summary>
+		public static float ANIMATION_PROGRESSIVE_DRAWING_DURATION = 5f; //seconds
 
 		#endregion
 
-		public static int ComboMax = 4;
+		/// <summary>
+		/// Maximum combo count
+		/// </summary>
+		public static int COMBO_MAXIMUM_COUNT = 4;
 
-		public static int JokerPartMax = 3;
+		/// <summary>
+		/// Number of good questions to answer to enable joker
+		/// </summary>
+		public static int JOKER_PART_COUNT = 3;
 	}
 
 

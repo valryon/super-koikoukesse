@@ -422,7 +422,7 @@ namespace SuperKoikoukesse.iOS
       }, null);
 
       // Joker content
-      if (Constants.DebugMode)
+      if (Constants.DEBUG_MODE)
       {
         jokerButton.SetTitle("Joker (" + mQuizz.JokerPartCount + ")", UIControlState.Normal);
       }
@@ -608,8 +608,8 @@ namespace SuperKoikoukesse.iOS
       if (mQuizz.ImageTransformation == ImageTransformations.Unzoom)
       {
 
-        float startZoomFactor = Constants.DezoomFactor;
-        float duration = Constants.DezoomDuration;
+        float startZoomFactor = Constants.ANIMATION_DEZOOM_FACTOR;
+        float duration = Constants.ANIMATION_DEZOOM_DURATION;
 
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 
@@ -641,7 +641,7 @@ namespace SuperKoikoukesse.iOS
       else if (mQuizz.ImageTransformation == ImageTransformations.ProgressiveDrawing)
       {
 
-        float duration = Constants.ProgressiveDrawingDuration;
+        float duration = Constants.ANIMATION_PROGRESSIVE_DRAWING_DURATION;
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 			
         // All in the UI thread so we can acces UI things properties
@@ -739,7 +739,7 @@ namespace SuperKoikoukesse.iOS
         // Pixelate!
         GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter();
 
-        float duration = Constants.PixelizationDuration;
+        float duration = Constants.ANIMATION_PIXELISATION_DURATION;
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 
         // Get the pixelate factor
@@ -793,7 +793,7 @@ namespace SuperKoikoukesse.iOS
       switch (mQuizz.ImageTransformation)
       {
         case ImageTransformations.Pixelization: 
-          mAnimationIntervalBase = Constants.PixelizationDuration / 12f;
+          mAnimationIntervalBase = Constants.ANIMATION_PIXELISATION_DURATION / 12f;
           break;
         default:
 					// Update with the timer

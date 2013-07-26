@@ -56,7 +56,7 @@ namespace Superkoikoukesse.Common.Networking
 
 			Logger.Log (LogLevel.Debug, "Request body: " + body);
 
-			if (Constants.UseEncryption) {
+			if (Constants.ENABLE_ENCRYPTION) {
 				body = EncryptionHelper.Encrypt (body);
 				
 				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
@@ -120,7 +120,7 @@ namespace Superkoikoukesse.Common.Networking
 					}
 
 					// Decrypt if necessary
-					if (Constants.UseEncryption) {
+					if (Constants.ENABLE_ENCRYPTION) {
 						json = EncryptionHelper.Decrypt (json);
 					}
 

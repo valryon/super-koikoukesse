@@ -69,8 +69,8 @@ namespace SuperKoikoukesse.iOS
 			Logger.Log (LogLevel.Info, "Launching app...");
 
 			// Global parameters
-			EncryptionHelper.SetKey (Constants.EncryptionKey);
-			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
+			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
+			ImageService.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -95,7 +95,7 @@ namespace SuperKoikoukesse.iOS
 			databaseLoaded = false;
 
 			// Create or load database
-			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
+			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
 
 			// Create database structure as fast as possible so other threads can manipulate it.
 			if (DatabaseService.Instance.Exists == false) {

@@ -59,8 +59,8 @@ namespace Superkoikoukesse.Common
 
 		public Player ()
 		{
-			Credits = Constants.BaseCredits;
-			Coins = Constants.BaseCoins;
+			Credits = Constants.BASE_CREDITS;
+			Coins = Constants.BASE_COINS;
 		}
 
 		public Player (AuthenticatedPlayer aplayer)

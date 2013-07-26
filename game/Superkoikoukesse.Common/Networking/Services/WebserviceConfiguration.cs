@@ -42,7 +42,7 @@ namespace Superkoikoukesse.Common
 		{
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 
-			var filePath = Path.Combine (path, Constants.ConfigFileLocation);
+			var filePath = Path.Combine (path, Constants.CONFIG_FILE_LOCATION);
 		
 			Logger.Log (LogLevel.Info, "Saving configuration...");
 
@@ -60,7 +60,7 @@ namespace Superkoikoukesse.Common
 
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			
-			var filePath = Path.Combine (path, Constants.ConfigFileLocation);
+			var filePath = Path.Combine (path, Constants.CONFIG_FILE_LOCATION);
 
 			if (File.Exists (filePath)) {
 
@@ -82,7 +82,7 @@ namespace Superkoikoukesse.Common
 		{
 			// TODO Android
 
-			return new Uri (Constants.WebserviceUrl + "ws/config/" + (int)GameTargets.iOS);
+			return new Uri (Constants.WEBSERVICE_URL + "ws/config/" + (int)GameTargets.iOS);
 		}
 
 	}
