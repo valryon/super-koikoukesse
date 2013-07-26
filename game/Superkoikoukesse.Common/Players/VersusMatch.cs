@@ -4,6 +4,9 @@ using System.Json;
 
 namespace Superkoikoukesse.Common
 {
+	/// <summary>
+	/// Played turn for the a match
+	/// </summary>
 	public class VersusMatchTurn
 	{
 		public int Score { get; set; }
@@ -16,20 +19,6 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public class VersusMatch
 	{
-		public bool IsEnded { get; set; }
-
-		public string MatchId { get; set; }
-
-		public Filter Filter { get; set; }
-
-		public string Player1Id { get; set; }
-
-		public string Player2Id { get; set; }
-
-		public List<VersusMatchTurn>  Turns  { get; set; }
-
-		public GameDifficulties Difficulty { get; set; }
-
 		public VersusMatch ()
 		{
 			Turns = new List<VersusMatchTurn> ();
@@ -121,6 +110,20 @@ namespace Superkoikoukesse.Common
 				return (Turns.Count == 0) ;
 			}
 		}
+
+		public bool IsEnded { get; set; }
+
+		public string MatchId { get; set; }
+
+		public Filter Filter { get; set; }
+
+		public string Player1Id { get; set; }
+
+		public string Player2Id { get; set; }
+
+		public List<VersusMatchTurn>  Turns  { get; set; }
+
+		public GameDifficulties Difficulty { get; set; }
 	}
 }
 

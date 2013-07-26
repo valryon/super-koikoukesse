@@ -64,7 +64,7 @@ namespace SuperKoikoukesse.iOS
 				createPanels ();
 			}
 
-			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
+			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
 
 			UpdateViewWithPlayerInfos ();
 		}
@@ -96,7 +96,7 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Load the player from db
-			Player profile = ProfileService.Instance.CachedPlayer;
+			Player profile = PlayerCache.Instance.CachedPlayer;
 
 			// Display credits and coins
 			if (profile != null) {
@@ -137,22 +137,22 @@ namespace SuperKoikoukesse.iOS
 
 			// Build for each modes
 			// -- Versus
-			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.Versus);
+			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.VERSUS);
 			versusMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (versusMode);
 
 			// -- Score attack
-			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.ScoreAttack);
+			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.SCORE_ATTACK);
 			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (scoreAttackMode);
 
 			// -- Time attack
-			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TimeAttack);
+			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TIME_ATTACK);
 			timeAttackMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (timeAttackMode);
 
 			// -- Survival
-			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.Survival);
+			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.SURVIVAL);
 			survivalMode.GameModeSelected += HandleGameModeSelected;
 			panels.Add (survivalMode);
 
@@ -194,7 +194,7 @@ namespace SuperKoikoukesse.iOS
 
 		private void displayMatchMaker (GameModes mode)
 		{
-			ProfileService.Instance.AuthenticatedPlayer.NewMatch (
+			PlayerCache.Instance.AuthenticatedPlayer.NewMatch (
 			// Match found
 			(match) => {
 
@@ -208,7 +208,7 @@ namespace SuperKoikoukesse.iOS
 						// See the final score
 						Dialogs.ShowMatchEnded ();
 					} else {
-						if (match.IsPlayerTurn (ProfileService.Instance.AuthenticatedPlayer.PlayerId)) {
+						if (match.IsPlayerTurn (PlayerCache.Instance.AuthenticatedPlayer.PlayerId)) {
 							// Player turn
 							appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
 						} else {
@@ -255,8 +255,8 @@ namespace SuperKoikoukesse.iOS
 					}
 
 					// Remember to select Versus match parameters too
-					if (mode == GameModes.Versus) {
-						VersusMatch currentMatch = ProfileService.Instance.AuthenticatedPlayer.CurrentMatch;
+					if (mode == GameModes.VERSUS) {
+						VersusMatch currentMatch = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
 
 						currentMatch.Difficulty = difficulty;
 						filter = currentMatch.Filter; // This is weird
@@ -275,14 +275,14 @@ namespace SuperKoikoukesse.iOS
 		void HandleGameModeSelected (GameModes m)
 		{
 			// Enough credits?
-			if (ProfileService.Instance.CachedPlayer.Credits > 0) {
+			if (PlayerCache.Instance.CachedPlayer.Credits > 0) {
 
-				if (m == GameModes.Versus) {
+				if (m == GameModes.VERSUS) {
 
-					if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
-						ProfileService.Instance.AuthenticatedPlayer.Authenticate (() => {
+					if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
+						PlayerCache.Instance.AuthenticatedPlayer.Authenticate (() => {
 
-							if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+							if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
 								displayMatchMaker (m);
 							} else {
 								// Dialog
@@ -312,9 +312,9 @@ namespace SuperKoikoukesse.iOS
 
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			Constants.DebugMode = !Constants.DebugMode;
-			debugButton.SetTitle (Constants.DebugMode + "", UIControlState.Normal);
-			Logger.Log (LogLevel.Info, "Debug mode? " + Constants.DebugMode);
+			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
+			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
+			Logger.I("Debug mode? " + Constants.DEBUG_MODE);
 		}
 
 		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -331,12 +331,12 @@ namespace SuperKoikoukesse.iOS
 
 		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCreditsDebug (Constants.BaseCredits);
+			PlayerCache.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
 		}
 
 		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			ProfileService.Instance.AddCoins (Constants.BaseCoins);
+			PlayerCache.Instance.AddCoins (Constants.BASE_COINS);
 		}
 	}
 }

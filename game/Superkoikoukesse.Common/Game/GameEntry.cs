@@ -6,7 +6,7 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Game entry in the database
 	/// </summary>
-	public class GameInfo
+	public class GameEntry
 	{
 		/// <summary>
 		/// Id in the server database
@@ -73,7 +73,7 @@ namespace Superkoikoukesse.Common
 		}
 
 
-		public GameInfo ()
+		public GameEntry ()
 		{
 		}
 
@@ -84,8 +84,8 @@ namespace Superkoikoukesse.Common
 
 		public override bool Equals (object obj)
 		{
-			if (obj is GameInfo) {
-				GameInfo g2 = obj as GameInfo;
+			if (obj is GameEntry) {
+				GameEntry g2 = obj as GameEntry;
 
 				return (GameId == g2.GameId);
 			}

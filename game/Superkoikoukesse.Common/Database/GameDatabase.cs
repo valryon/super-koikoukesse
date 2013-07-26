@@ -9,36 +9,36 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Database service.
 	/// </summary>
-	public class DatabaseService
+	public class GameDatabase
 	{
 		#region Singleton 
 
-		private static DatabaseService m_instance;
+		private static GameDatabase mInstance;
 
-		private DatabaseService ()
+		private GameDatabase ()
 		{
-			locker = new object ();
+			mLocker = new object ();
 		}
 
 		/// <summary>
 		/// Singleton
 		/// </summary>
 		/// <value>The instance.</value>
-		public static DatabaseService Instance {
+		public static GameDatabase Instance {
 			get {
-				if (m_instance == null) {
-					m_instance = new DatabaseService ();
+				if (mInstance == null) {
+					mInstance = new GameDatabase ();
 				}
 
-				return m_instance;
+				return mInstance;
 			}
 		}
 
 		#endregion
 
-		private string m_location;
-		private SQLiteConnection m_db;
-		private object locker;
+		private string mLocation;
+		private SQLiteConnection mDb;
+		private object mLocker;
 
 		#region Initialization
 
@@ -48,22 +48,22 @@ namespace Superkoikoukesse.Common
 		/// <param name="location">Location.</param>
 		public void Load (string location)
 		{
-			m_location = location;
+			mLocation = location;
 
 			// Initialize db connection
-			Logger.Log (LogLevel.Info, "Loading database... " + m_location);
-			m_db = new SQLiteConnection (location);
+			Logger.I("Loading database... " + mLocation);
+			mDb = new SQLiteConnection (location);
 
 			// Try to figure if we're in a first launch
 			int gamesCount = CountGames ();
 			Exists = gamesCount > 0;
 
-			Logger.Log (LogLevel.Debug, gamesCount + " games in database.");
+			Logger.D( gamesCount + " games in database.");
 
 			if (Exists) {
-				Logger.Log (LogLevel.Info, "Database loaded.");
+				Logger.I("Database loaded.");
 			} else {
-				Logger.Log (LogLevel.Warning, "Database not found.");
+				Logger.W( "Database not found.");
 			}
 		}
 
@@ -72,12 +72,12 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void CreateTables ()
 		{
-			lock (locker) {
-				Logger.Log (LogLevel.Info, "Creating database schema");
+			lock (mLocker) {
+				Logger.I("Creating database schema");
 
-				m_db.CreateTable<GameInfo> ();
-				m_db.CreateTable<Player> ();
-				m_db.CreateTable<LocalScore> ();
+				mDb.CreateTable<GameEntry> ();
+				mDb.CreateTable<Player> ();
+				mDb.CreateTable<LocalScore> ();
 			}
 		}
 
@@ -87,7 +87,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="xml">Xml.</param>
 		public void InitializeFromXml (string xml)
 		{
-			Logger.Log (LogLevel.Info, "Initializing database from xml...");
+			Logger.I("Initializing database from xml...");
 			
 			// Parse the xml
 			// Format:
@@ -107,19 +107,19 @@ namespace Superkoikoukesse.Common
 			int addCount = 0;
 			XElement element = XElement.Parse (xml);
 
-			foreach (XElement gameXml in element.Elements("game")) {
+			foreach (XElement gameXml in element.Elements("question")) {
 
-				GameInfo game = new GameInfo ();
+				GameEntry game = new GameEntry ();
 
-				game.GameId = Convert.ToInt32 (gameXml.Element ("GameId").Value);
-				game.ImagePath = gameXml.Element ("ImagePath").Value;
-				game.TitlePAL = gameXml.Element ("TitlePAL").Value;
-				game.TitleUS = gameXml.Element ("TitleUS").Value;
-				game.Platform = gameXml.Element ("Platform").Value;
-				game.Genre = gameXml.Element ("Genre").Value;
-				game.Publisher = gameXml.Element ("Publisher").Value;
-				game.Year = Convert.ToInt32 (gameXml.Element ("Year").Value);
-				bool isRemoved = Convert.ToBoolean (gameXml.Element ("IsRemoved").Value);
+				game.GameId = Convert.ToInt32 (gameXml.Element ("gameId").Value);
+				game.ImagePath = gameXml.Element ("image").Value;
+				game.TitlePAL = gameXml.Element ("titlePAL").Value;
+				game.TitleUS = gameXml.Element ("titleUS").Value;
+				game.Platform = gameXml.Element ("platform").Value;
+				game.Genre = gameXml.Element ("genre").Value;
+				game.Publisher = gameXml.Element ("publisher").Value;
+				game.Year = Convert.ToInt32 (gameXml.Element ("year").Value);
+				bool isRemoved = Convert.ToBoolean (gameXml.Element ("excluded").Value);
 
 				if (isRemoved == false) {
 					addCount++;
@@ -128,7 +128,7 @@ namespace Superkoikoukesse.Common
 				}
 			}
 
-			Logger.Log (LogLevel.Info, "Initialization completed, " + addCount + " games added!");
+			Logger.I("Initialization completed, " + addCount + " games added!");
 		}
 
 		#endregion
@@ -139,10 +139,10 @@ namespace Superkoikoukesse.Common
 		/// Add a new game entry
 		/// </summary>
 		/// <param name="gameInfo">Game info.</param>
-		public void AddGame (GameInfo gameInfo)
+		public void AddGame (GameEntry gameInfo)
 		{
-			lock (locker) {
-				m_db.Insert (gameInfo);
+			lock (mLocker) {
+				mDb.Insert (gameInfo);
 			}
 		}
 
@@ -152,13 +152,13 @@ namespace Superkoikoukesse.Common
 		/// <param name="gameId">Game identifier.</param>
 		public void RemoveGame (int gameId)
 		{
-			GameInfo game = m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+			GameEntry game = mDb.Table<GameEntry> ().Where (g => g.GameId == gameId).FirstOrDefault ();
 
 			if (game != null) {
-				Logger.Log (LogLevel.Info, "Deleting game id " + gameId);
+				Logger.I("Deleting game id " + gameId);
 
-				lock (locker) {
-					m_db.Delete<GameInfo> (game.GameId);
+				lock (mLocker) {
+					mDb.Delete<GameEntry> (game.GameId);
 				}
 			}
 		}
@@ -166,10 +166,10 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Read games database and get matching ids
 		/// </summary>
-		public List<GameInfo> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
+		public List<GameEntry> ReadGames (int minYear, int maxYear, List<string> publishers, List<string> genres, List<string> platforms)
 		{
-			lock (locker) {
-				var query = m_db.Table<GameInfo> ()
+			lock (mLocker) {
+				var query = mDb.Table<GameEntry> ()
 				.Where (g => (g.Year >= minYear) && (g.Year < maxYear));
 			
 				if (publishers != null && publishers.Count > 0) {
@@ -191,10 +191,10 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Read games database and get matching ids
 		/// </summary>
-		public GameInfo ReadGame (int gameId)
+		public GameEntry ReadGame (int gameId)
 		{
-			lock (locker) {
-				return m_db.Table<GameInfo> ().Where (g => g.GameId == gameId).FirstOrDefault ();
+			lock (mLocker) {
+				return mDb.Table<GameEntry> ().Where (g => g.GameId == gameId).FirstOrDefault ();
 			}
 		}
 
@@ -204,8 +204,8 @@ namespace Superkoikoukesse.Common
 		public List<string> GetPublishers ()
 		{
 			List<string> publishers = new List<string> ();
-			lock (locker) {
-				foreach (GameInfo game in m_db.Table<GameInfo> ()) {
+			lock (mLocker) {
+				foreach (GameEntry game in mDb.Table<GameEntry> ()) {
 					publishers.Add (game.Publisher);
 				}
 			}
@@ -219,8 +219,8 @@ namespace Superkoikoukesse.Common
 		/// <returns>The games.</returns>
 		public int CountGames ()
 		{
-			lock (locker) {
-				var gameTable = m_db.Table<GameInfo> ();
+			lock (mLocker) {
+				var gameTable = mDb.Table<GameEntry> ();
 
 				try {
 					return gameTable.Count ();
@@ -241,8 +241,8 @@ namespace Superkoikoukesse.Common
 		public Player ReadPlayer ()
 		{
 			// Find the first player stored instance
-			lock (locker) {
-				var playerTable = m_db.Table<Player> ();
+			lock (mLocker) {
+				var playerTable = mDb.Table<Player> ();
 
 				return playerTable.FirstOrDefault ();
 			}
@@ -254,15 +254,15 @@ namespace Superkoikoukesse.Common
 		/// <param name="player">Player.</param>
 		public void SavePlayer (Player player)
 		{
-			lock (locker) {
-				var playerTable = m_db.Table<Player> ();
+			lock (mLocker) {
+				var playerTable = mDb.Table<Player> ();
 
 				// Clean to have only one element
 				if (playerTable.Count () > 0) {
-					m_db.DeleteAll<Player> ();
+					mDb.DeleteAll<Player> ();
 				}
 
-				m_db.Insert (player);
+				mDb.Insert (player);
 			}
 		}
 
@@ -276,11 +276,11 @@ namespace Superkoikoukesse.Common
 		/// <param name="score">Score.</param>
 		public int AddLocalScore (LocalScore score)
 		{
-			lock (locker) {
-				m_db.Insert (score);
+			lock (mLocker) {
+				mDb.Insert (score);
 			}
 			// Rank?
-			List<LocalScore> modeScore = m_db.Table<LocalScore> ().Where (s => (s.Mode == score.Mode) && (s.Difficulty == score.Difficulty))
+			List<LocalScore> modeScore = mDb.Table<LocalScore> ().Where (s => (s.Mode == score.Mode) && (s.Difficulty == score.Difficulty))
 				.OrderByDescending (s => s.Score).Take (999).ToList ();
 
 			int rank = modeScore.IndexOf (score);
@@ -302,8 +302,8 @@ namespace Superkoikoukesse.Common
 		/// <param name="count">Count.</param>
 		public LocalScore[] GetLocalScores (GameModes mode, GameDifficulties difficulty, int count)
 		{
-			lock (locker) {
-				return m_db.Table<LocalScore> ()
+			lock (mLocker) {
+				return mDb.Table<LocalScore> ()
 				.Where (s => (s.Mode == mode) && (s.Difficulty == difficulty))
 				.OrderByDescending (s => s.Score)
 				.Take (count).ToArray ();

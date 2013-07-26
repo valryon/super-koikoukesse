@@ -2,12 +2,15 @@ using System;
 
 namespace Superkoikoukesse.Common
 {
+	/// <summary>
+	/// Available game modes
+	/// </summary>
 	public enum GameModes : int
 	{
-		ScoreAttack = 0,
-		TimeAttack = 1,
-		Survival = 2,
-		Versus = 4 // Mistake :P
+		SCORE_ATTACK = 0,
+		TIME_ATTACK = 1,
+		SURVIVAL = 2,
+		VERSUS = 3
 	}
 }
 

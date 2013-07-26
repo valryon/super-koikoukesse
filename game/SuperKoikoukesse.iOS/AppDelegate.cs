@@ -66,11 +66,11 @@ namespace SuperKoikoukesse.iOS
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			Logger.Log (LogLevel.Info, "Launching app...");
+			Logger.I("Launching app...");
 
 			// Global parameters
-			EncryptionHelper.SetKey (Constants.EncryptionKey);
-			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
+			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
+			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -95,31 +95,31 @@ namespace SuperKoikoukesse.iOS
 			databaseLoaded = false;
 
 			// Create or load database
-			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
+			GameDatabase.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
 
 			// Create database structure as fast as possible so other threads can manipulate it.
-			if (DatabaseService.Instance.Exists == false) {
+			if (GameDatabase.Instance.Exists == false) {
 
-				DatabaseService.Instance.CreateTables();
+				GameDatabase.Instance.CreateTables();
 			}
 
 			InvokeInBackground (() => {
  		
 				// Create database structure as fast as possible so other threads can manipulate it.
-				if (DatabaseService.Instance.Exists == false) {
+				if (GameDatabase.Instance.Exists == false) {
 
 					// Load gamedb.xml
 					String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
 					
-					DatabaseService.Instance.InitializeFromXml (xmlDatabase);
+					GameDatabase.Instance.InitializeFromXml (xmlDatabase);
 				}
 
 				// Check excluded games
-				WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
+				ServiceExcludedGames exGames = new ServiceExcludedGames ();
 				exGames.Request ((list) => {
 					
 					foreach (int id in list.GamesId) {
-						DatabaseService.Instance.RemoveGame (id);
+						GameDatabase.Instance.RemoveGame (id);
 					}
 					
 				}, null);
@@ -172,7 +172,7 @@ namespace SuperKoikoukesse.iOS
 			};
 
 			// Player events
-			ProfileService.Instance.PlayerUpdated += (Player p) => {
+			PlayerCache.Instance.PlayerUpdated += (Player p) => {
 				
 				InvokeOnMainThread (() => {
 
@@ -184,12 +184,12 @@ namespace SuperKoikoukesse.iOS
 			
 			// Store a local profile from the game center info
 			// Or create a temporary local player
-			ProfileService.Instance.Initialize (GameCenter);
+			PlayerCache.Instance.Initialize (GameCenter);
 		}
 
 		private void loadingProgress ()
 		{
-			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
+			Logger.I("Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
 
 			IsInitialized =  (databaseLoaded && configurationLoaded);
 
@@ -207,17 +207,17 @@ namespace SuperKoikoukesse.iOS
 		public void UpdateConfiguration (Action complete)
 		{
 			// Get the distant configuration
-			WebserviceConfiguration configWs = new WebserviceConfiguration ();
+			ServiceConfiguration configWs = new ServiceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
-				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
+				Logger.I("Configuration loaded and updated.");
 
 				if (complete != null)
 					complete ();
 			},
 			(code, e) => {
-				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. ");
+				Logger.W( "Configuration was not loaded!. ");
 
 				// Try to use local
 				this.Configuration = configWs.LastValidConfig;
@@ -225,7 +225,7 @@ namespace SuperKoikoukesse.iOS
 				// No local? This is bad. Use default values.
 				if (this.Configuration == null) {
 
-					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
+					Logger.W( "Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
 				}
@@ -410,7 +410,7 @@ namespace SuperKoikoukesse.iOS
 
 		public void ShowLeaderboards (string id, Action callback)
 		{
-			if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+			if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
 				if (m_gkLeaderboardview == null) {
 					m_gkLeaderboardview = new GKLeaderboardViewController ();
 				}

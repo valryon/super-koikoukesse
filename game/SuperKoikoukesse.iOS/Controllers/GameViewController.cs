@@ -186,7 +186,7 @@ namespace SuperKoikoukesse.iOS
       mQuizz.Initialize(mode, diff, appDelegate.Configuration, f);
     
       // Consume one credit
-      ProfileService.Instance.UseCredit();
+      PlayerCache.Instance.UseCredit();
     }
 
     /// <summary>
@@ -211,7 +211,7 @@ namespace SuperKoikoukesse.iOS
       modeLabel.Text = mQuizz.Mode.ToString() + " - " + mQuizz.Difficulty;
 
       // Display lives
-      if (q.Mode == GameModes.Survival)
+      if (q.Mode == GameModes.SURVIVAL)
       {
         livesImage.Hidden = false;
       }
@@ -293,7 +293,7 @@ namespace SuperKoikoukesse.iOS
             if (mQuizz.TimeLeft < 0)
             {
 
-              mQuizz.TimeIsOver();
+              mQuizz.SetTimeOver();
 
               // No answer selected
               this.InvokeOnMainThread(() => {
@@ -342,13 +342,13 @@ namespace SuperKoikoukesse.iOS
     /// <param name="q">Q.</param>
     private void UpdateViewWithQuestion(Question q)
     {
-      Logger.Log(LogLevel.Info, "Setting up view for current question " + q);
+      Logger.I ( "Setting up view for current question " + q);
 
       // Timer
       LabelCurrentTime.Text = mQuizz.TimeLeft.ToString("00");
 
       // Image
-      string imgPath = ImageService.Instance.Getimage(q.CorrectAnswer);
+      string imgPath = ImageDatabase.Instance.Getimage(q.CorrectAnswer);
       mCurrentImage = UIImage.FromFile(imgPath);
       gameImage.Image = mCurrentImage;
 
@@ -418,7 +418,7 @@ namespace SuperKoikoukesse.iOS
       }, null);
 
       // Joker content
-      if (Constants.DebugMode)
+      if (Constants.DEBUG_MODE)
       {
         jokerButton.SetTitle("Joker (" + mQuizz.JokerPartCount + ")", UIControlState.Normal);
       }
@@ -439,7 +439,7 @@ namespace SuperKoikoukesse.iOS
        */ 
 
       // Display the correct number of lives
-      if (mQuizz.Mode == GameModes.Survival)
+      if (mQuizz.Mode == GameModes.SURVIVAL)
       {
         switch (mQuizz.Lives)
         {
@@ -511,7 +511,7 @@ namespace SuperKoikoukesse.iOS
 
     private void GoToNextQuestion()
     {
-      mQuizz.NextQuestion();
+      mQuizz.SetNextQuestion();
       
       if (mQuizz.IsOver == false)
       {
@@ -575,7 +575,7 @@ namespace SuperKoikoukesse.iOS
     private void updateImageTransformation(float elapsedTime)
     {
 
-      if (mQuizz.ImageTransformation == ImageTransformations.None)
+      if (mQuizz.ImageTransformation == ImageTransformations.NONE)
       {
         return;
       }
@@ -601,11 +601,11 @@ namespace SuperKoikoukesse.iOS
       GPUImageFilter filter = null;
 
       // Zoom and unzoom
-      if (mQuizz.ImageTransformation == ImageTransformations.Unzoom)
+      if (mQuizz.ImageTransformation == ImageTransformations.UNZOOM)
       {
 
-        float startZoomFactor = Constants.DezoomFactor;
-        float duration = Constants.DezoomDuration;
+        float startZoomFactor = Constants.ANIMATION_DEZOOM_FACTOR;
+        float duration = Constants.ANIMATION_DEZOOM_DURATION;
 
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 
@@ -634,10 +634,10 @@ namespace SuperKoikoukesse.iOS
           gameImage.Frame = new RectangleF(x, y, width, height);
         });
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.ProgressiveDrawing)
+      else if (mQuizz.ImageTransformation == ImageTransformations.PROGRESSIVE_DRAWING)
       {
 
-        float duration = Constants.ProgressiveDrawingDuration;
+        float duration = Constants.ANIMATION_PROGRESSIVE_DRAWING_DURATION;
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 			
         // All in the UI thread so we can acces UI things properties
@@ -729,13 +729,13 @@ namespace SuperKoikoukesse.iOS
 					
         });
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.Pixelization)
+      else if (mQuizz.ImageTransformation == ImageTransformations.PIXELIZATION)
       {
 
         // Pixelate!
         GPUImagePixellateFilter pixellateFilter = new GPUImagePixellateFilter();
 
-        float duration = Constants.PixelizationDuration;
+        float duration = Constants.ANIMATION_PIXELISATION_DURATION;
         mImageTransformationElapsedTime = Math.Min(mImageTransformationElapsedTime, duration);
 
         // Get the pixelate factor
@@ -749,7 +749,7 @@ namespace SuperKoikoukesse.iOS
         // Set the filter
         filter = pixellateFilter;
       }
-      else if (mQuizz.ImageTransformation == ImageTransformations.Test)
+      else if (mQuizz.ImageTransformation == ImageTransformations.TEST)
       {
 
         GPUImageSwirlFilter testFilter = new GPUImageSwirlFilter();
@@ -788,8 +788,8 @@ namespace SuperKoikoukesse.iOS
       // Define frequency
       switch (mQuizz.ImageTransformation)
       {
-        case ImageTransformations.Pixelization: 
-          mAnimationIntervalBase = Constants.PixelizationDuration / 12f;
+        case ImageTransformations.PIXELIZATION: 
+          mAnimationIntervalBase = Constants.ANIMATION_PIXELISATION_DURATION / 12f;
           break;
         default:
 					// Update with the timer

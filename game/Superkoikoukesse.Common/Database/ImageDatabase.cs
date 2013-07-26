@@ -3,13 +3,13 @@ using System.IO;
 
 namespace Superkoikoukesse.Common
 {
-	public class ImageService
+	public class ImageDatabase
 	{
 		#region Singleton 
 		
-		private static ImageService m_instance;
+		private static ImageDatabase mInstance;
 		
-		private ImageService ()
+		private ImageDatabase ()
 		{
 		}
 		
@@ -17,33 +17,33 @@ namespace Superkoikoukesse.Common
 		/// Singleton
 		/// </summary>
 		/// <value>The instance.</value>
-		public static ImageService Instance {
+		public static ImageDatabase Instance {
 			get {
-				if(m_instance == null) {
-					m_instance = new ImageService();
+				if(mInstance == null) {
+					mInstance = new ImageDatabase();
 				}
 				
-				return m_instance;
+				return mInstance;
 			}
 		}
 		
 		#endregion
 
-		private string m_imagesRootLocation;
+		private string mImagesRootLocation;
 
 		/// <summary>
 		/// Initialize the image database service
 		/// </summary>
 		public void Initialize (string imagesRootLocation) {
-			m_imagesRootLocation = imagesRootLocation;
+			mImagesRootLocation = imagesRootLocation;
 		}
 
 		/// <summary>
 		/// Get the image of a game.
 		/// </summary>
 		/// <param name="game">Game.</param>
-		public string Getimage(GameInfo game) {
-			return Path.Combine (m_imagesRootLocation, game.ImagePath);
+		public string Getimage(GameEntry game) {
+			return Path.Combine (mImagesRootLocation, game.ImagePath);
 		}
 	}
 }

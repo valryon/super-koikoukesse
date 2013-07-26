@@ -7,6 +7,9 @@ using MonoTouch.CoreFoundation;
 
 namespace Superkoikoukesse.Common.Utils
 {
+	/// <summary>
+	/// Network status enumeration
+	/// </summary>
 	public enum NetworkStatus
 	{
 		NotReachable,
@@ -14,10 +17,10 @@ namespace Superkoikoukesse.Common.Utils
 		ReachableViaWiFiNetwork
 	}
 
-/// <summary>
-/// Reachability.
-/// </summary>
-/// <see>https://github.com/xamarin/monotouch-samples/blob/master/ReachabilitySample/reachability.cs</see>
+	/// <summary>
+	/// Reachability.
+	/// </summary>
+	/// <see>https://github.com/xamarin/monotouch-samples/blob/master/ReachabilitySample/reachability.cs</see>
 	public static class NetworkAvailability
 	{
 	
@@ -36,8 +39,12 @@ namespace Superkoikoukesse.Common.Utils
 		
 			return isReachable && noConnectionRequired;
 		}
-	
-		// Is the host reachable with the current network configuration
+
+		/// <summary>
+		/// Is the host reachable with the current network configuration
+		/// </summary>
+		/// <returns><c>true</c> if is host reachable the specified host; otherwise, <c>false</c>.</returns>
+		/// <param name="host">Host.</param>
 		public static bool IsHostReachable (string host)
 		{
 			if (host == null || host.Length == 0)
@@ -52,21 +59,19 @@ namespace Superkoikoukesse.Common.Utils
 			}
 			return false;
 		}
-	
 		// 
 		// Raised every time there is an interesting reachable event, 
 		// we do not even pass the info as to what changed, and 
 		// we lump all three status we probe into one
 		//
 		public static event EventHandler ReachabilityChanged;
-	
+
 		static void OnChange (NetworkReachabilityFlags flags)
 		{
 			var h = ReachabilityChanged;
 			if (h != null)
 				h (null, EventArgs.Empty);
 		}
-	
 		//
 		// Returns true if it is possible to reach the AdHoc WiFi network
 		// and optionally provides extra network reachability flags as the
@@ -92,7 +97,7 @@ namespace Superkoikoukesse.Common.Utils
 		
 			return IsReachableWithoutRequiringConnection (flags);
 		}
-	
+
 		static NetworkReachability defaultRouteReachability;
 
 		static bool IsNetworkAvailable (out NetworkReachabilityFlags flags)
@@ -106,7 +111,7 @@ namespace Superkoikoukesse.Common.Utils
 				return false;
 			return IsReachableWithoutRequiringConnection (flags);
 		}
-	
+
 		static NetworkReachability remoteHostReachability;
 
 		public static NetworkStatus RemoteHostStatus (string HostName)
@@ -137,7 +142,7 @@ namespace Superkoikoukesse.Common.Utils
 		
 			return NetworkStatus.ReachableViaWiFiNetwork;
 		}
-	
+
 		public static NetworkStatus InternetConnectionStatus ()
 		{
 			NetworkReachabilityFlags flags;
@@ -151,7 +156,7 @@ namespace Superkoikoukesse.Common.Utils
 				return NetworkStatus.NotReachable;
 			return NetworkStatus.ReachableViaWiFiNetwork;
 		}
-	
+
 		public static NetworkStatus LocalWifiConnectionStatus ()
 		{
 			NetworkReachabilityFlags flags;

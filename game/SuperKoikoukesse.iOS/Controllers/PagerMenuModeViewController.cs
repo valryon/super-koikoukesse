@@ -44,7 +44,7 @@ namespace SuperKoikoukesse.iOS
 
 			// TODO if the game has just been installed, the default label will be displayed
 			// find a workaround in this case
-			Player profile = ProfileService.Instance.CachedPlayer;
+			Player profile = PlayerCache.Instance.CachedPlayer;
 			if (profile != null) {
 
 				// TODO HACK Ici ça plante sur iPhone, livesLeftLabel est null au démarrage

@@ -6,8 +6,6 @@ namespace Superkoikoukesse.Common
 {
 	public class ExcludedGamesList : IServiceOutput
 	{
-		public List<int> GamesId {get;set;}
-
 		public ExcludedGamesList() {
 			GamesId = new List<int>();
 		}
@@ -22,25 +20,14 @@ namespace Superkoikoukesse.Common
 					GamesId.Add (id);
 				}
 				catch(Exception e) {
-					Logger.LogException(LogLevel.Error, "ExcludedGamesList.BuildFromJsonObject",e);
+					Logger.E("ExcludedGamesList.BuildFromJsonObject",e);
 				}
 
 			}
 		}
 
-	}
+		public List<int> GamesId {get;set;}
 
-	public class WebserviceExcludedGames : GenericModelWeberviceCaller<ExcludedGamesList>
-	{
-		public WebserviceExcludedGames ()
-			: base()
-		{
-		}
-
-		public override Uri GetServiceUrl ()
-		{
-			return new Uri (Constants.WebserviceUrl + "ws/games/exclusions");
-		}
 	}
 }
 

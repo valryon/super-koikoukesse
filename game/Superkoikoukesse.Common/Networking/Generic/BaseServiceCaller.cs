@@ -7,27 +7,11 @@ using Superkoikoukesse.Common.Utils;
 namespace Superkoikoukesse.Common.Networking
 {
 	/// <summary>
-	/// Webservice response format
-	/// </summary>
-	public class ServiceResponse
-	{
-		public int Code { get; set; }
-		
-		public string Message { get; set; }
-		
-		public string JsonData { get; set; }
-		
-		public ServiceResponse ()
-		{
-		}
-	}
-
-	/// <summary>
 	/// Utilities to reach Game Webservice
 	/// </summary>
-	public abstract class BaseWebserviceCaller
+	public abstract class BaseServiceCaller
 	{
-		public BaseWebserviceCaller ()
+		public BaseServiceCaller ()
 		{
 		}
 
@@ -54,12 +38,12 @@ namespace Superkoikoukesse.Common.Networking
 
 			string body = requestBodyJson;
 
-			Logger.Log (LogLevel.Debug, "Request body: " + body);
+			Logger.D( "Request body: " + body);
 
-			if (Constants.UseEncryption) {
+			if (Constants.ENABLE_ENCRYPTION) {
 				body = EncryptionHelper.Encrypt (body);
 				
-				Logger.Log (LogLevel.Debug, "Encrypted request body: " + body);
+				Logger.D( "Encrypted request body: " + body);
 			}
 
 			// TODO Améliorer ce hack...
@@ -74,7 +58,7 @@ namespace Superkoikoukesse.Common.Networking
 				asyncRequest (request, url, callbackSuccess, callbackFailure);
 				
 			} catch (WebException e) {
-				Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+				Logger.W( "<- KO Network issues? " + e.Message + " "+url);
 				if (callbackFailure != null) {
 					callbackFailure (-1, e);
 				}
@@ -105,7 +89,7 @@ namespace Superkoikoukesse.Common.Networking
 		/// <param name="callbackFailure">Callback failure.</param>
 		private void asyncRequest (WebRequest request, Uri url, Action<ServiceResponse> callbackSuccess, Action<int, Exception> callbackFailure)
 		{
-			Logger.Log (LogLevel.Info, "-> " + request.Method + " " + url);
+			Logger.I("-> " + request.Method + " " + url);
 
 			request.BeginGetResponse (result => {
 				var webRequest = result.AsyncState as HttpWebRequest;
@@ -120,7 +104,7 @@ namespace Superkoikoukesse.Common.Networking
 					}
 
 					// Decrypt if necessary
-					if (Constants.UseEncryption) {
+					if (Constants.ENABLE_ENCRYPTION) {
 						json = EncryptionHelper.Decrypt (json);
 					}
 
@@ -129,11 +113,11 @@ namespace Superkoikoukesse.Common.Networking
 
 					// Open Json
 					JsonValue value = JsonObject.Parse (json);
-					int code = Convert.ToInt32 (value ["code"].ToString ());
+					int code = Convert.ToInt32 (value ["c"].ToString ());
 					string message = null;
 					string data = null;
-					if (value.ContainsKey ("message")) {
-						message = value ["message"];
+					if (value.ContainsKey ("e")) {
+						message = value ["e"];
 					}
 					if (value.ContainsKey ("r")) {
 						data = value ["r"].ToString ();
@@ -143,26 +127,26 @@ namespace Superkoikoukesse.Common.Networking
 					response.JsonData = data;
 
 					if (code == 0) {
-						Logger.Log (LogLevel.Info, "<- OK ");
+						Logger.I("<- OK ");
 						if (callbackSuccess != null) {
 							callbackSuccess (response);
 						}
 					} else {
-						Logger.Log (LogLevel.Error, "<- KO " + code + ": " + message);
+						Logger.E( "<- KO " + code + ": " + message);
 						if (callbackFailure != null) {
 							callbackFailure (code, new ArgumentException (code + ": " + message));
 						}
 					}
 				} 
 				catch (WebException e) {
-					Logger.Log (LogLevel.Warning, "<- KO Network issues? " + e.Message + " "+url);
+					Logger.W( "<- KO Network issues? " + e.Message + " "+url);
 					if (callbackFailure != null) {
 						callbackFailure (-1, e);
 					}
 				}
 				catch (Exception e) {
 					// Log and callback
-					Logger.LogException (LogLevel.Error, "WebserviceCaller.RequestJsonAsync ", e);
+					Logger.E( "WebserviceCaller.RequestJsonAsync ", e);
 					if (callbackFailure != null) {
 						callbackFailure (-1, e);
 					}

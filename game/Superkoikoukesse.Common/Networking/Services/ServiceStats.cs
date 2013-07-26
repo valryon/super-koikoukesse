@@ -5,9 +5,9 @@ using System.Json;
 
 namespace Superkoikoukesse.Common
 {
-	public class WebserviceStats : BaseWebserviceCaller
+	public class ServiceStats : BaseServiceCaller
 	{
-		public WebserviceStats ()
+		public ServiceStats ()
 		{
 		}
 
@@ -58,7 +58,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WebserviceUrl + "ws/stats/add");
+			return new Uri (Constants.WEBSERVICE_URL + "stats.json");
 		}
 
 
