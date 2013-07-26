@@ -11,63 +11,9 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public class Filter: IServiceOutput
 	{
-		/// <summary>
-		/// Unique filter ID
-		/// </summary>
-		/// <value>The identifier.</value>
-		public string Id  { get; private set; }
-
-		/// <summary>
-		/// Filter name
-		/// </summary>
-		/// <value>The name.</value>
-		public string Name  { get; private set; }
-
-		/// <summary>
-		/// Filter icon to use
-		/// </summary>
-		/// <value>The icon.</value>
-		public string Icon  { get; private set; }
-
-		/// <summary>
-		/// Minimal year for a game
-		/// </summary>
-		/// <value>The minimum year.</value>
-		public int MinYear { get; private set; }
-
-		/// <summary>
-		/// Maximal year for a game
-		/// </summary>
-		/// <value>The max year.</value>
-		public int MaxYear { get; private set; }
-
-		/// <summary>
-		/// Specify pbulishers
-		/// </summary>
-		/// <value>The publisher.</value>
-		public List<string> Publishers { get; private set; }
-
-		/// <summary>
-		/// Specify a genre
-		/// </summary>
-		/// <value>The genre.</value>
-		public List<string> Genres { get; private set; }
-
-		/// <summary>
-		/// Specify a platform
-		/// </summary>
-		/// <value>The platform.</value>
-		public List<string> Platforms { get; private set; }
-
-		/// <summary>
-		/// Define specific game ids and their answers
-		/// </summary>
-		/// <value>The game identifiers.</value>
-		public Dictionary<int, int[]> RequiredGameIds { get; set; }
-
-		private int currentRequiredGameIdsIndex;
-		private int currentRequiredGameIdsAnswerIndex;
-		private List<GameInfo> matchingGames;
+		private int mCurrentRequiredGameIdsIndex;
+		private int mCurrentRequiredGameIdsAnswerIndex;
+		private List<GameInfo> mMatchingGames;
 
 		public Filter (JsonValue json)
 		{
@@ -87,7 +33,7 @@ namespace Superkoikoukesse.Common
 			Platforms = platforms;
 
 			RequiredGameIds = null;
-			currentRequiredGameIdsIndex = 0;
+			mCurrentRequiredGameIdsIndex = 0;
 		}
 
 		/// <summary>
@@ -101,12 +47,12 @@ namespace Superkoikoukesse.Common
 			worker.DoWork += (object sender, DoWorkEventArgs e) => {
 
 				if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
-					currentRequiredGameIdsIndex = 0;
+					mCurrentRequiredGameIdsIndex = 0;
 				}
 
-				matchingGames = DatabaseService.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
+				mMatchingGames = DatabaseService.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
 
-				loadingComplete (matchingGames.Count);
+				loadingComplete (mMatchingGames.Count);
 
 			};
 
@@ -121,16 +67,16 @@ namespace Superkoikoukesse.Common
 		{
 			if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
 				
-				if (currentRequiredGameIdsIndex < RequiredGameIds.Count) {
+				if (mCurrentRequiredGameIdsIndex < RequiredGameIds.Count) {
 
 					Question q = new Question ();
 
-					KeyValuePair<int, int[]> questionInfo = RequiredGameIds.ElementAt (currentRequiredGameIdsIndex);
+					KeyValuePair<int, int[]> questionInfo = RequiredGameIds.ElementAt (mCurrentRequiredGameIdsIndex);
 
 					for (int i=0; i < questionInfo.Value.Length; i++) {
 
 						int answerId = questionInfo.Value[i];
-						GameInfo game = matchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
+						GameInfo game = mMatchingGames.Where (g => g.GameId == answerId).FirstOrDefault ();
 
 						if (game == null) {
 							Logger.E( "The game with id " + answerId + " wasn't loaded by the filter!");
@@ -145,7 +91,7 @@ namespace Superkoikoukesse.Common
 						}
 					}
 					
-					currentRequiredGameIdsIndex++;
+					mCurrentRequiredGameIdsIndex++;
 
 					return q;
 				}
@@ -165,9 +111,9 @@ namespace Superkoikoukesse.Common
 
 			// Random game
 			var random = new Random (DateTime.Now.Millisecond);
-			int randomIndex = random.Next (matchingGames.Count);
+			int randomIndex = random.Next (mMatchingGames.Count);
 
-			game = matchingGames [randomIndex];
+			game = mMatchingGames [randomIndex];
 
 			return game;
 		}
@@ -316,6 +262,63 @@ namespace Superkoikoukesse.Common
 
 		}
 
+		#region Properties
+
+		/// <summary>
+		/// Unique filter ID
+		/// </summary>
+		/// <value>The identifier.</value>
+		public string Id  { get; private set; }
+
+		/// <summary>
+		/// Filter name
+		/// </summary>
+		/// <value>The name.</value>
+		public string Name  { get; private set; }
+
+		/// <summary>
+		/// Filter icon to use
+		/// </summary>
+		/// <value>The icon.</value>
+		public string Icon  { get; private set; }
+
+		/// <summary>
+		/// Minimal year for a game
+		/// </summary>
+		/// <value>The minimum year.</value>
+		public int MinYear { get; private set; }
+
+		/// <summary>
+		/// Maximal year for a game
+		/// </summary>
+		/// <value>The max year.</value>
+		public int MaxYear { get; private set; }
+
+		/// <summary>
+		/// Specify pbulishers
+		/// </summary>
+		/// <value>The publisher.</value>
+		public List<string> Publishers { get; private set; }
+
+		/// <summary>
+		/// Specify a genre
+		/// </summary>
+		/// <value>The genre.</value>
+		public List<string> Genres { get; private set; }
+
+		/// <summary>
+		/// Specify a platform
+		/// </summary>
+		/// <value>The platform.</value>
+		public List<string> Platforms { get; private set; }
+
+		/// <summary>
+		/// Define specific game ids and their answers
+		/// </summary>
+		/// <value>The game identifiers.</value>
+		public Dictionary<int, int[]> RequiredGameIds { get; set; }
+
+		#endregion
 	}
 }
 
