@@ -10,7 +10,8 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// URL of the koikoukesse webservice
 		/// </summary>
-		public static string WEBSERVICE_URL = "http://skkk.dmayance.com/"; // End with slash!
+		//public static string WEBSERVICE_URL = "http://localhost:9393/ws/"
+		public static string WEBSERVICE_URL = "http://super-koikoukesse.herokuapp.com/ws/"; // End with slash!
 
 		/// <summary>
 		/// 16 char key for encryption

@@ -41,13 +41,13 @@ namespace Superkoikoukesse.Common
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 
 			var filePath = Path.Combine (path, Constants.CONFIG_FILE_LOCATION);
-		
-			Logger.I("Saving configuration...");
+
+			Logger.I ("Saving configuration...");
 
 			XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
 
 			using (TextWriter writer = new StreamWriter (filePath)) {
-			
+
 				serializer.Serialize (writer, config); 
 			}
 		}
@@ -57,17 +57,21 @@ namespace Superkoikoukesse.Common
 			GameConfiguration config = null;
 
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-			
+
 			var filePath = Path.Combine (path, Constants.CONFIG_FILE_LOCATION);
 
 			if (File.Exists (filePath)) {
 
-				Logger.I("Loading configuration...");
+				Logger.I( "Loading configuration...");
 
-				XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
-				using (TextReader reader = new StreamReader (filePath)) {
-					
-					config = (GameConfiguration)serializer.Deserialize (reader); 
+				try {
+					XmlSerializer serializer = new XmlSerializer (typeof(GameConfiguration));
+					using (TextReader reader = new StreamReader (filePath)) {
+						config = (GameConfiguration)serializer.Deserialize (reader); 
+					}
+				} catch (Exception) {
+					Logger.E("Error during config file load. Removing it from disk so next time it should be cleaned up.");
+					File.Delete (filePath);
 				}
 			} else {
 				Logger.I("No configuration file found.");
@@ -80,7 +84,7 @@ namespace Superkoikoukesse.Common
 		{
 			// TODO Android
 
-			return new Uri (Constants.WEBSERVICE_URL + "ws/config/" + (int)Platforms.IOS);
+			return new Uri (Constants.WEBSERVICE_URL + "config.json/" + Platforms.IOS.ToString ().ToLower () + "/1");
 		}
 		
 		public GameConfiguration LastValidConfig { get; set; }

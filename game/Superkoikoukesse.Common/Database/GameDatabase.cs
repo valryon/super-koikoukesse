@@ -107,19 +107,19 @@ namespace Superkoikoukesse.Common
 			int addCount = 0;
 			XElement element = XElement.Parse (xml);
 
-			foreach (XElement gameXml in element.Elements("game")) {
+			foreach (XElement gameXml in element.Elements("question")) {
 
 				GameEntry game = new GameEntry ();
 
-				game.GameId = Convert.ToInt32 (gameXml.Element ("GameId").Value);
-				game.ImagePath = gameXml.Element ("ImagePath").Value;
-				game.TitlePAL = gameXml.Element ("TitlePAL").Value;
-				game.TitleUS = gameXml.Element ("TitleUS").Value;
-				game.Platform = gameXml.Element ("Platform").Value;
-				game.Genre = gameXml.Element ("Genre").Value;
-				game.Publisher = gameXml.Element ("Publisher").Value;
-				game.Year = Convert.ToInt32 (gameXml.Element ("Year").Value);
-				bool isRemoved = Convert.ToBoolean (gameXml.Element ("IsRemoved").Value);
+				game.GameId = Convert.ToInt32 (gameXml.Element ("gameId").Value);
+				game.ImagePath = gameXml.Element ("image").Value;
+				game.TitlePAL = gameXml.Element ("titlePAL").Value;
+				game.TitleUS = gameXml.Element ("titleUS").Value;
+				game.Platform = gameXml.Element ("platform").Value;
+				game.Genre = gameXml.Element ("genre").Value;
+				game.Publisher = gameXml.Element ("publisher").Value;
+				game.Year = Convert.ToInt32 (gameXml.Element ("year").Value);
+				bool isRemoved = Convert.ToBoolean (gameXml.Element ("excluded").Value);
 
 				if (isRemoved == false) {
 					addCount++;

@@ -21,7 +21,7 @@ namespace Superkoikoukesse.Common
 
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/player/" + mId);
+			return new Uri (Constants.WEBSERVICE_URL + "players.json/" + mId);
 		}
 
 	}
@@ -44,7 +44,7 @@ namespace Superkoikoukesse.Common
 		public void CreatePlayer (Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (mPlayer.Id));
+			json.Add ("playerId", new JsonPrimitive (mPlayer.Id));
 			json.Add ("platform", new JsonPrimitive ("ios")); // TODO Android
 			json.Add ("credits", new JsonPrimitive (mPlayer.Credits));
 			json.Add ("coins", new JsonPrimitive (mPlayer.Coins));
@@ -63,7 +63,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/player/");
+			return new Uri (Constants.WEBSERVICE_URL + "players.json/");
 		}
 		
 	}
@@ -87,7 +87,7 @@ namespace Superkoikoukesse.Common
 		public void AddCredits (int credits, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (mPlayer.Id));
+			json.Add ("playerId", new JsonPrimitive (mPlayer.Id));
 			json.Add ("credits", new JsonPrimitive (credits));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
@@ -102,7 +102,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/playerupdate/credits");
+			return new Uri (Constants.WEBSERVICE_URL + "players/credits.json");
 		}
 		
 	}
@@ -126,7 +126,7 @@ namespace Superkoikoukesse.Common
 		public void AddCoins (int coins, Action callback = null, Action<int> callbackFailure = null)
 		{
 			JsonObject json = new JsonObject ();
-			json.Add ("player", new JsonPrimitive (mPlayer.Id));
+			json.Add ("playerId", new JsonPrimitive (mPlayer.Id));
 			json.Add ("coins", new JsonPrimitive (coins));
 			
 			this.RequestPostJsonAsync (json.ToString (), 
@@ -141,7 +141,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "ws/playerupdate/coins");
+			return new Uri (Constants.WEBSERVICE_URL + "players/coins.json");
 		}
 
 		

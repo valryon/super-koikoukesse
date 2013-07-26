@@ -113,11 +113,11 @@ namespace Superkoikoukesse.Common.Networking
 
 					// Open Json
 					JsonValue value = JsonObject.Parse (json);
-					int code = Convert.ToInt32 (value ["code"].ToString ());
+					int code = Convert.ToInt32 (value ["c"].ToString ());
 					string message = null;
 					string data = null;
-					if (value.ContainsKey ("message")) {
-						message = value ["message"];
+					if (value.ContainsKey ("e")) {
+						message = value ["e"];
 					}
 					if (value.ContainsKey ("r")) {
 						data = value ["r"].ToString ();

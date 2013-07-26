@@ -35,16 +35,14 @@ namespace Superkoikoukesse.Common
 
 		public void BuildFromJsonObject (JsonValue json)
 		{
-			//json	{{"Id": "10550e72-da74-4b07-ac6d-a18e02712ec4", "GameCenterId": "G1728633519", "NickName": "G1728633519", "CreationDate": "2013-03-27T11:22:51.96Z", "Credits": 2500, "Coins": 3, "SubscriptionType": 0}}	System.Json.JsonObject
-			string playerId = json ["GameCenterId"].ToString ();
-			int credits = Convert.ToInt32 (json ["Credits"].ToString ());
-			int coins = Convert.ToInt32 (json ["Coins"].ToString ());
-			int subscriptionType = Convert.ToInt32 (json ["SubscriptionType"].ToString ());
+			//json  {"id":1,"playerId":"G1725278793","creation_date":"2013-07-11T11:16:59+02:00","credits":13,"coins":7500,"platform":"ios"}
+			string playerId = json ["playerId"].ToString ();
+			int credits = Convert.ToInt32 (json ["credits"].ToString ());
+			int coins = Convert.ToInt32 (json ["coins"].ToString ());
 
 			this.Id = playerId;
 			this.Credits = credits;
 			this.Coins = coins;
-			this.SubscriptionType = subscriptionType;
 		}
 
 		/// <summary>
@@ -64,12 +62,6 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		/// <value>The credits.</value>
 		public int Credits { get; set; }
-
-		/// <summary>
-		/// Subscription type (TODO)
-		/// </summary>
-		/// <value>The type of the subscription.</value>
-		public int SubscriptionType { get; set; }
 
 		/// <summary>
 		/// Earned coins
