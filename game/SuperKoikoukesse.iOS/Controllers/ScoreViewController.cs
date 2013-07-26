@@ -71,7 +71,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Handlers
 
-    private void OnRetryTouched()
+    partial void OnRetryTouched(NSObject sender)
     {
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
@@ -84,7 +84,7 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
-    private void OnMenuTouched()
+    partial void OnMenuTouched(NSObject sender)
     {
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
       appDelegate.SwitchToMenuView();

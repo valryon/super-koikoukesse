@@ -8,8 +8,17 @@ using MonoTouch.Foundation;
 
 namespace SuperKoikoukesse.iOS
 {
-  [Register("ScoreViewController")]
-  partial class ScoreViewController
-  {
-  }
+	[Register ("ScoreViewController")]
+	partial class ScoreViewController
+	{
+		[Action ("OnMenuTouched:")]
+		partial void OnMenuTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnRetryTouched:")]
+		partial void OnRetryTouched (MonoTouch.Foundation.NSObject sender);
+		
+		void ReleaseDesignerOutlets ()
+		{
+		}
+	}
 }

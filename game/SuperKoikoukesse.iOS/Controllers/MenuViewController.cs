@@ -249,10 +249,6 @@ namespace SuperKoikoukesse.iOS
 					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 					
 					Filter filter = null;
-					if (difficultyViewController.StunfestMode) {
-						filter = new Filter ("1", "Stiunfest", "stunfestIcon");
-						filter.StunfestMode ();
-					}
 
 					// Remember to select Versus match parameters too
 					if (mode == GameModes.VERSUS) {

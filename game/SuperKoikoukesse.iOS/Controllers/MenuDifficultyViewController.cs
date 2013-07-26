@@ -22,38 +22,13 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
-		{
+    {
       return AppDelegate.HasSupportedInterfaceOrientations();
-		}
-
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-
-			setStunfestMode(true);
-			showStunfestMode();
-		}
+    }
 
 		public void SetMode (GameModes m)
 		{
 			mode = m;
-
-			if(IsViewLoaded) {
-				showStunfestMode();
-			}
-		}
-
-		private void showStunfestMode() {
-			if(mode == GameModes.SCORE_ATTACK) {
-				stunfestModeLabel.Hidden = false;
-				stunfestModeButton.Hidden = false;
-				StunfestMode = true;
-			}
-			else {
-				stunfestModeLabel.Hidden = true;
-				stunfestModeButton.Hidden = true;
-				StunfestMode = false;
-			}
 		}
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
@@ -97,24 +72,6 @@ namespace SuperKoikoukesse.iOS
 		private void hideMyself ()
 		{
 			View.RemoveFromSuperview();
-		}
-
-		partial void stunfestModeButtonClick (MonoTouch.Foundation.NSObject sender)
-		{
-			setStunfestMode(!StunfestMode);
-		}
-
-		private void setStunfestMode(bool mode) {
-
-			StunfestMode = mode;
-
-			stunfestModeLabel.Text = (mode? "ON" : "OFF");
-		}
-
-		public bool StunfestMode
-		{
-			get;
-			set;
 		}
 	}
 }
