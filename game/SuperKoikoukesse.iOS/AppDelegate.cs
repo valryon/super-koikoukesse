@@ -70,7 +70,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
-			ImageService.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
+			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
 			// Create first view
 			window = new UIWindow (UIScreen.MainScreen.Bounds);

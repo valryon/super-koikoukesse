@@ -352,7 +352,7 @@ namespace SuperKoikoukesse.iOS
       LabelCurrentTime.Text = mQuizz.TimeLeft.ToString("00");
 
       // Image
-      string imgPath = ImageService.Instance.Getimage(q.CorrectAnswer);
+      string imgPath = ImageDatabase.Instance.Getimage(q.CorrectAnswer);
       mCurrentImage = UIImage.FromFile(imgPath);
       gameImage.Image = mCurrentImage;
 
