@@ -42,9 +42,7 @@ namespace SuperKoikoukesse.iOS
 
 			// Hide credits and coins until player profile is loaded
 			coinsLabel.Hidden = true;
-			coinsImage.Hidden = true;
 			creditsLabel.Hidden = true;
-			creditsImage.Hidden = true;
 
 			// Localized elements
 			if(authorsLabel != null) {
@@ -77,21 +75,15 @@ namespace SuperKoikoukesse.iOS
 			// Show infos is they were hidden
 			if (coinsLabel.Hidden) {
 				coinsLabel.Hidden = false;
-				coinsImage.Hidden = false;
 				creditsLabel.Hidden = false;
-				creditsImage.Hidden = false;
 
 				// Fade in
 				coinsLabel.Alpha = 0f;
-				coinsImage.Alpha = 0f;
 				creditsLabel.Alpha = 0f;
-				creditsImage.Alpha = 0f;
 
 				UIView.Animate (2f, () => {
 					coinsLabel.Alpha = 1f;
-					coinsImage.Alpha = 1f;
 					creditsLabel.Alpha = 1f;
-					creditsImage.Alpha = 1f;
 				});
 			}
 

@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -15,43 +16,43 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UILabel authorsLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton creditsButton { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView coinsImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView creditsImage { get; set; }
+		MonoTouch.UIKit.UIImageView bgImage { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel creditsLabel { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIButton configButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton paramsButton { get; set; }
+		MonoTouch.UIKit.UIButton creditsButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton shopButton { get; set; }
+		MonoTouch.UIKit.UILabel creditsLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton debugButton { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIPageControl pageControl { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIButton paramsButton { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIScrollView scrollView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView bgImage { get; set; }
+		MonoTouch.UIKit.UIButton shopButton { get; set; }
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton debugButton { get; set; }
+		[Action ("coinsButtonPressed:")]
+		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("configButtonPressed:")]
 		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("creditsButtonPressed:")]
+		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
 
 		[Action ("debugButtonPressed:")]
 		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
@@ -61,12 +62,6 @@ namespace SuperKoikoukesse.iOS
 
 		[Action ("shopButtonPressed:")]
 		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("coinsButtonPressed:")]
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -78,16 +73,6 @@ namespace SuperKoikoukesse.iOS
 			if (creditsButton != null) {
 				creditsButton.Dispose ();
 				creditsButton = null;
-			}
-
-			if (coinsImage != null) {
-				coinsImage.Dispose ();
-				coinsImage = null;
-			}
-
-			if (creditsImage != null) {
-				creditsImage.Dispose ();
-				creditsImage = null;
 			}
 
 			if (coinsLabel != null) {

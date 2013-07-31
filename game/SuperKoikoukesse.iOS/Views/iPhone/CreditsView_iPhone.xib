@@ -1,158 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment version="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreditsViewController">
             <connections>
-                <outlet property="backButton" destination="8" id="9"/>
                 <outlet property="creditsLabel" destination="6" id="7"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1" userLabel="Credits view">
-            <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63" userLabel="Header">
-                    <rect key="frame" x="0.0" y="0.0" width="568" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="Body">
-                    <rect key="frame" x="0.0" y="60" width="568" height="211"/>
+                    <rect key="frame" x="0.0" y="0.0" width="321" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                            <rect key="frame" x="249" y="11" width="70" height="20"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-VS-9VZ" customClass="PXNNavigationButton">
+                            <rect key="frame" x="10" y="12" width="60" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="70" id="89"/>
+                                <constraint firstAttribute="width" constant="60" id="Up3-ae-H7y"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Toutes les marques appartiennent à leur propriétairs respectif, blabla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                            <rect key="frame" x="81" y="45" width="425" height="38"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="425" id="102"/>
-                                <constraint firstAttribute="height" constant="38" id="120"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                            <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                            <rect key="frame" x="74" y="27" width="415" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="415" id="99"/>
-                                <constraint firstAttribute="height" constant="36" id="100"/>
-                            </constraints>
-                            <attributedString key="attributedText">
-                                <fragment content="Pixelnest Studio &amp; Laurent Brossard - 2013">
-                                    <attributes>
-                                        <color key="NSColor" red="0.1215686275" green="0.47450980390000003" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="12" name="Helvetica"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                            <rect key="frame" x="20" y="91" width="522" height="100"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="80" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="434" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                                    <rect key="frame" x="44" y="-34" width="434" height="195"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="195" id="30"/>
-                                    </constraints>
-                                    <mutableString key="text">alive mediasoft alligata software psygnosis magic bytes ice team 17 ace dephine software krisalis atari psyclapse ubi soft ocean virgin interactive infogrames electronic arts konami mediagogo image works impressions mindscape renegade microprose software core design novagen cyberdreams activision loriciel gremlin graphics virgin games accolade tomahawk kingsoft strategic simulations anco storm titus software us gold atreid concept hewson consultants smash 16 millenium coktel vision acide software silverrock productions discovery software silmaris cinemaware domark hitsoft elite system 3 rainbow arts lucasfilm games lankhor pxl computers demonware grandslam readysoft interplay productions digital marketing play bytes empire software flaire software thalion firebird armsoft electric dreams software imagin software crl elite systems epyx palace software ere informatique dinamic kuma computers software projects martech taito the sales curve beyond games go! logotron entertainment hal laboratory capcom asmik nintendo take 2 interactive tdk mediactive squaresoft sega thq atlus acclaim</mutableString>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                    <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="6" firstAttribute="centerX" secondItem="11" secondAttribute="centerX" id="13"/>
-                                <constraint firstItem="6" firstAttribute="top" secondItem="11" secondAttribute="top" constant="-34" id="16"/>
-                                <constraint firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="44" id="97"/>
-                                <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="-61" id="98"/>
-                            </constraints>
-                        </scrollView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" constant="20" symbolic="YES" id="46"/>
-                        <constraint firstItem="11" firstAttribute="leading" secondItem="36" secondAttribute="leading" constant="20" symbolic="YES" id="50"/>
-                        <constraint firstItem="4" firstAttribute="centerX" secondItem="36" secondAttribute="centerX" id="105"/>
-                        <constraint firstItem="4" firstAttribute="top" secondItem="36" secondAttribute="top" constant="11" id="107"/>
-                        <constraint firstItem="12" firstAttribute="leading" secondItem="36" secondAttribute="leading" constant="74" id="114"/>
-                        <constraint firstItem="12" firstAttribute="centerX" secondItem="11" secondAttribute="centerX" id="115"/>
-                        <constraint firstItem="12" firstAttribute="top" secondItem="36" secondAttribute="top" constant="27" id="116"/>
-                        <constraint firstItem="5" firstAttribute="leading" secondItem="36" secondAttribute="leading" constant="81" id="117"/>
-                        <constraint firstItem="5" firstAttribute="top" secondItem="36" secondAttribute="top" constant="45" id="118"/>
-                        <constraint firstItem="11" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="8" symbolic="YES" id="119"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76" userLabel="Footer">
-                    <rect key="frame" x="0.0" y="261" width="568" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                            <rect key="frame" x="475" y="8" width="73" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="73" id="34"/>
-                                <constraint firstAttribute="height" constant="44" id="87"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                            <state key="normal" title="Retour" backgroundImage="button_shop.png">
-                                <color key="titleColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Back" image="button_arrow.png">
+                                <color key="titleColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="highlighted">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="10"/>
-                            </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.88235294818878174" green="0.88235294818878174" blue="0.88235294818878174" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="8" firstAttribute="centerY" secondItem="76" secondAttribute="centerY" id="85"/>
-                        <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" constant="20" symbolic="YES" id="86"/>
+                        <constraint firstItem="Bab-VS-9VZ" firstAttribute="leading" secondItem="63" secondAttribute="leading" constant="10" id="4C0-75-VdB"/>
+                        <constraint firstAttribute="centerY" secondItem="Bab-VS-9VZ" secondAttribute="centerY" id="5Ep-YZ-BGx"/>
+                        <constraint firstAttribute="height" constant="44" id="GMm-F6-Huo"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36" userLabel="Body">
+                    <rect key="frame" x="0.0" y="44" width="319" height="524"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                            <rect key="frame" x="132" y="10" width="55" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Toutes les marques appartiennent à leur propriétairs respectif, blabla" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                            <rect key="frame" x="60" y="64" width="200" height="14"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="qBf-hR-9xJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pixelnest Studio &amp; Laurent Brossard - 2013" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                            <rect key="frame" x="44" y="40" width="232" height="14"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                            <rect key="frame" x="20" y="98" width="280" height="406"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="80" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="434" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                    <rect key="frame" x="0.0" y="0.0" width="434" height="210"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <string key="text">alive mediasoft alligata software psygnosis magic bytes ice team 17 ace dephine software krisalis atari psyclapse ubi soft ocean virgin interactive infogrames electronic arts konami mediagogo image works impressions mindscape renegade microprose software core design novagen cyberdreams activision loriciel gremlin graphics virgin games accolade tomahawk kingsoft strategic simulations anco storm titus software us gold atreid concept hewson consultants smash 16 millenium coktel vision acide software silverrock productions discovery software silmaris cinemaware domark hitsoft elite system 3 rainbow arts lucasfilm games lankhor pxl computers demonware grandslam readysoft interplay productions digital marketing play bytes empire software flaire software thalion firebird armsoft electric dreams software imagin software crl elite systems epyx palace software ere informatique dinamic kuma computers software projects martech taito the sales curve beyond games go! logotron entertainment hal laboratory capcom asmik nintendo take 2 interactive tdk mediactive squaresoft sega thq atlus acclaim</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="9BN-QZ-kI1"/>
+                                <constraint firstItem="6" firstAttribute="leading" secondItem="11" secondAttribute="leading" id="OXP-bg-Kic"/>
+                                <constraint firstAttribute="trailing" secondItem="6" secondAttribute="trailing" id="g7R-cD-36X"/>
+                                <constraint firstItem="6" firstAttribute="top" secondItem="11" secondAttribute="top" id="jv1-ZF-z6t"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="11" firstAttribute="leading" secondItem="36" secondAttribute="leading" constant="20" id="2Qo-WH-ayu"/>
+                        <constraint firstAttribute="centerX" secondItem="12" secondAttribute="centerX" id="C9c-Ha-vHM"/>
+                        <constraint firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="H8s-D5-Jy4"/>
+                        <constraint firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="M70-Sk-uD3"/>
+                        <constraint firstItem="4" firstAttribute="top" secondItem="36" secondAttribute="top" constant="10" id="TdV-9h-HnP"/>
+                        <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" constant="20" id="TfJ-uf-OjC"/>
+                        <constraint firstItem="11" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="20" id="gbS-aQ-75Z"/>
+                        <constraint firstItem="12" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="10" id="qnL-DG-GsB"/>
+                        <constraint firstItem="5" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="10" id="rXy-Qy-Yvb"/>
+                        <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" constant="20" id="xS3-wa-19h"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.95294123888015747" green="0.95294123888015747" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
-                <constraint firstItem="36" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="38"/>
-                <constraint firstItem="36" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="40"/>
-                <constraint firstItem="36" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60" id="58"/>
-                <constraint firstAttribute="bottom" secondItem="36" secondAttribute="bottom" constant="49" id="62"/>
-                <constraint firstItem="63" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="68"/>
-                <constraint firstItem="63" firstAttribute="top" secondItem="1" secondAttribute="top" id="72"/>
-                <constraint firstAttribute="bottom" secondItem="63" secondAttribute="bottom" constant="261" id="74"/>
-                <constraint firstItem="63" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="75"/>
-                <constraint firstItem="76" firstAttribute="top" secondItem="1" secondAttribute="top" constant="261" id="81"/>
-                <constraint firstItem="76" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="82"/>
-                <constraint firstItem="76" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="83"/>
-                <constraint firstItem="76" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="84"/>
+                <constraint firstItem="36" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="47o-Dp-kSO"/>
+                <constraint firstItem="36" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="4Y2-nr-Aut"/>
+                <constraint firstItem="36" firstAttribute="top" secondItem="63" secondAttribute="bottom" id="6k0-VG-hEc"/>
+                <constraint firstItem="63" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Fu1-Nq-5bl"/>
+                <constraint firstAttribute="bottom" secondItem="36" secondAttribute="bottom" id="SHg-sA-Lfp"/>
+                <constraint firstItem="63" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="aWb-cX-64T"/>
+                <constraint firstItem="63" firstAttribute="top" secondItem="1" secondAttribute="top" id="kCz-bt-esf"/>
             </constraints>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="button_shop.png" width="225" height="95"/>
+        <image name="button_arrow.png" width="11" height="20"/>
     </resources>
 </document>
