@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuModeViewController">
+            <connections>
+                <outlet property="ButtonPlay" destination="LBW-RJ-8nH" id="LHs-r5-sMS"/>
+                <outlet property="LabelDescription" destination="7" id="kam-X3-WNy"/>
+                <outlet property="LabelLifes" destination="5" id="s8Z-Ja-MkI"/>
+                <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="if9-7Z-apQ">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1" userLabel="Card">
+                    <rect key="frame" x="47" y="117" width="300" height="333"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="7" userLabel="Description">
+                            <rect key="frame" x="20" y="117" width="260" height="156"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <string key="text">° When you find the correct answer three times in a row, you gain a joker that you can use to skip a question.
+
+° Each correct answer increments the combo gauge.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1t-N5-qQb" userLabel="View Header">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="71"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="track#926z-014208az2B3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-zA-4yJ" userLabel="Tracking Number">
+                                    <rect key="frame" x="5" y="0.0" width="196" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="9"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Attack" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="115" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="Title">
+                                    <rect key="frame" x="20" y="27" width="115" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                    <color key="textColor" red="0.40392160415649414" green="0.80392163991928101" blue="0.86274516582489014" alpha="1" colorSpace="deviceRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_mode_score.png" translatesAutoresizingMaskIntoConstraints="NO" id="1DV-N1-rCQ">
+                                    <rect key="frame" x="250" y="21" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="0oF-TZ-C4s"/>
+                                        <constraint firstAttribute="height" constant="30" id="Ggp-O1-see"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="1DV-N1-rCQ" secondAttribute="trailing" constant="20" id="8jG-CR-0Gd"/>
+                                <constraint firstItem="5" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="20" id="KFF-kA-qaA"/>
+                                <constraint firstItem="1DV-N1-rCQ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="hVx-eP-Jcq"/>
+                                <constraint firstAttribute="height" constant="71" id="j9g-bE-3SS"/>
+                                <constraint firstAttribute="centerY" secondItem="1DV-N1-rCQ" secondAttribute="centerY" id="s7t-3w-S9M"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SuperKoikoukesse is a game created by Pixelnest Studio and Laurent Brossard." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="166" translatesAutoresizingMaskIntoConstraints="NO" id="26X-at-nHe">
+                            <rect key="frame" x="7" y="298" width="166" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Try to beat the score during a 20 questions challenge !" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-ry-tx1">
+                            <rect key="frame" x="20" y="88" width="250" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBW-RJ-8nH" userLabel="Button Play">
+                            <rect key="frame" x="196" y="281" width="104" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.22" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="1bN-lK-pea"/>
+                                <constraint firstAttribute="width" constant="104" id="gxU-jW-yQg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                            <inset key="imageEdgeInsets" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="play" image="button_arrow.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="OnPlayTouched:" destination="-1" eventType="touchUpInside" id="2dy-3N-lIF"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.40392160415649414" green="0.80392163991928101" blue="0.86274516582489014" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="h1t-N5-qQb" firstAttribute="top" secondItem="1" secondAttribute="top" id="1TE-Nl-F02"/>
+                        <constraint firstItem="h1t-N5-qQb" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="4Pq-Ui-NeJ"/>
+                        <constraint firstAttribute="trailing" secondItem="h1t-N5-qQb" secondAttribute="trailing" id="Qvq-LX-m8Q"/>
+                        <constraint firstAttribute="width" constant="300" id="ihk-zY-cTr"/>
+                        <constraint firstAttribute="bottom" secondItem="LBW-RJ-8nH" secondAttribute="bottom" constant="12" id="jJQ-si-8Eg"/>
+                        <constraint firstAttribute="height" constant="333" id="lw2-xs-kJL"/>
+                        <constraint firstItem="LBW-RJ-8nH" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="mZT-KQ-Brr"/>
+                    </constraints>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="88P-00-Wqq"/>
+                <constraint firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="EDb-aP-9VS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button_arrow.png" width="11" height="20"/>
+        <image name="icon_mode_score.png" width="30" height="30"/>
+    </resources>
+</document>

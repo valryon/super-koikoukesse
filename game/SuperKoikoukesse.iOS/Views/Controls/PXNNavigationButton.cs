@@ -18,9 +18,27 @@ namespace SuperKoikoukesse.iOS
 
     public PXNNavigationButton(IntPtr handle) : base(handle) {}
 
+    public override void AwakeFromNib()
+    {
+      base.AwakeFromNib();
+      Style();
+    }
+
     #endregion
 
     #region Methods
+
+    public void Style()
+    {
+      // Button
+      AdjustsImageWhenHighlighted = false;
+
+      // Font
+      TitleLabel.Font = UIFont.SystemFontOfSize(16);
+
+      // Title
+      SetTitleColor(PXNConstants.BRAND_COLOR, UIControlState.Normal);
+    }
 
     // Simple override to set the alpha on the whole button when highlighted
     public override bool Highlighted

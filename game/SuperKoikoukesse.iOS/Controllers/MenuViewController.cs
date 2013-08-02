@@ -1,8 +1,6 @@
-
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
@@ -11,321 +9,347 @@ using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class MenuViewController : UIViewController
-	{
-		private List<UIViewController> panels;
-		private MenuDifficultyViewController difficultyViewController;
-		private PagerMenuHighscoresViewController highScorePanel;
+  public partial class MenuViewController : UIViewController
+  {
+    private List<UIViewController> panels;
+    private MenuDifficultyViewController difficultyViewController;
+    private PagerMenuHighscoresViewController highScorePanel;
 
-		public MenuViewController ()
+    public MenuViewController()
 			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
-		{
-			panels = new List<UIViewController> ();
-		}
+    {
+      panels = new List<UIViewController>();
+    }
 
-		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
-		{
+    public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
+    {
       return AppDelegate.HasSupportedInterfaceOrientations();
-		}
+    }
 
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
+    public override void DidReceiveMemoryWarning()
+    {
+      // Releases the view if it doesn't have a superview.
+      base.DidReceiveMemoryWarning();
 			
-			// Release any cached data, images, etc that aren't in use.
-		}
+      // Release any cached data, images, etc that aren't in use.
+    }
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
+    public override void ViewDidLoad()
+    {
+      base.ViewDidLoad();
 
-			// Hide credits and coins until player profile is loaded
-			coinsLabel.Hidden = true;
-			creditsLabel.Hidden = true;
+      // Hide credits and coins until player profile is loaded
+      coinsLabel.Hidden = true;
+      creditsLabel.Hidden = true;
 
-			// Localized elements
-			if(authorsLabel != null) {
-				authorsLabel.Text = Localization.Get("credits.small");
-			}
+      // Localized elements
+      if (authorsLabel != null)
+      {
+        authorsLabel.Text = Localization.Get("credits.small");
+      }
 
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.LoadPlayerProfile ();
-		}
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      appDelegate.LoadPlayerProfile();
+    }
 
-		public override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
+    public override void ViewDidAppear(bool animated)
+    {
+      base.ViewDidAppear(animated);
 
-			if (panels.Count == 0) {
-				// We need auto layout to be set up, so we can create panels only here
-				createPanels ();
-			}
+      if (panels.Count == 0)
+      {
+        // We need auto layout to be set up, so we can create panels only here
+        createPanels();
+      }
 
-			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
+      debugButton.SetTitle(Constants.DEBUG_MODE + "", UIControlState.Normal);
 
-			UpdateViewWithPlayerInfos ();
-		}
+      UpdateViewWithPlayerInfos();
+    }
 
-		/// <summary>
-		/// Update counters
-		/// </summary>
-		public void UpdateViewWithPlayerInfos ()
-		{
-			// Show infos is they were hidden
-			if (coinsLabel.Hidden) {
-				coinsLabel.Hidden = false;
-				creditsLabel.Hidden = false;
+    /// <summary>
+    /// Update counters
+    /// </summary>
+    public void UpdateViewWithPlayerInfos()
+    {
+      // Show infos is they were hidden
+      if (coinsLabel.Hidden)
+      {
+        coinsLabel.Hidden = false;
+        creditsLabel.Hidden = false;
 
-				// Fade in
-				coinsLabel.Alpha = 0f;
-				creditsLabel.Alpha = 0f;
+        // Fade in
+        coinsLabel.Alpha = 0f;
+        creditsLabel.Alpha = 0f;
 
-				UIView.Animate (2f, () => {
-					coinsLabel.Alpha = 1f;
-					creditsLabel.Alpha = 1f;
-				});
-			}
+        UIView.Animate(2f, () => {
+          coinsLabel.Alpha = 1f;
+          creditsLabel.Alpha = 1f;
+        });
+      }
 
-			// Load the player from db
-			Player profile = PlayerCache.Instance.CachedPlayer;
+      // Load the player from db
+      Player profile = PlayerCache.Instance.CachedPlayer;
 
-			// Display credits and coins
-			if (profile != null) {
-				creditsLabel.Text = profile.Credits.ToString ();
-				coinsLabel.Text = profile.Coins.ToString ();
-			}
+      // Display credits and coins
+      if (profile != null)
+      {
+        creditsLabel.Text = profile.Credits.ToString();
+        coinsLabel.Text = profile.Coins.ToString();
+      }
 
-			// Update leaderboards ?
-			if (highScorePanel != null) {
-				highScorePanel.ForceUpdate ();
-			}
+      // Update leaderboards ?
+      if (highScorePanel != null)
+      {
+        highScorePanel.ForceUpdate();
+      }
 
-		}
-
-		#region Scroll view and pagination
-
-		private void createPanels ()
-		{
-			pageControl.ValueChanged += (object sender, EventArgs e) => {
-				setScrollViewToPage (pageControl.CurrentPage);
-			};
-			scrollView.DecelerationEnded += (object sender, EventArgs e) => {
-				double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
+    }
+    #region Scroll view and pagination
+    private void createPanels()
+    {
+      pageControl.ValueChanged += (object sender, EventArgs e) => {
+        setScrollViewToPage(pageControl.CurrentPage);
+      };
+      scrollView.DecelerationEnded += (object sender, EventArgs e) => {
+        double page = Math.Floor((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
 				
-				pageControl.CurrentPage = (int)page;
-			};
+        pageControl.CurrentPage = (int) page;
+      };
 
-			highScorePanel = null;
-			panels.Clear ();
+      highScorePanel = null;
+      panels.Clear();
 
-			// Credits
-			PagerMenuInfosViewController infos = new PagerMenuInfosViewController ();
-			panels.Add (infos);
+      // Credits
+      PagerMenuInfosViewController infos = new PagerMenuInfosViewController();
+      panels.Add(infos);
 
-			// Highscores
-			highScorePanel = new PagerMenuHighscoresViewController ();
-			panels.Add (highScorePanel);
+      // Highscores
+      highScorePanel = new PagerMenuHighscoresViewController();
+      panels.Add(highScorePanel);
 
-			// Build for each modes
-			// -- Versus
-			PagerMenuModeViewController versusMode = new PagerMenuModeViewController (GameModes.VERSUS);
-			versusMode.GameModeSelected += HandleGameModeSelected;
-			panels.Add (versusMode);
+      // Build for each modes
+      // -- Versus
+      CardViewController versusMode = new CardViewController(GameModes.VERSUS);
+      versusMode.GameModeSelected += HandleGameModeSelected;
+      panels.Add(versusMode);
 
-			// -- Score attack
-			PagerMenuModeViewController scoreAttackMode = new PagerMenuModeViewController (GameModes.SCORE_ATTACK);
-			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
-			panels.Add (scoreAttackMode);
+      // -- Score attack
+      CardViewController scoreAttackMode = new CardViewController(GameModes.SCORE_ATTACK);
+      scoreAttackMode.GameModeSelected += HandleGameModeSelected;
+      panels.Add(scoreAttackMode);
 
-			// -- Time attack
-			PagerMenuModeViewController timeAttackMode = new PagerMenuModeViewController (GameModes.TIME_ATTACK);
-			timeAttackMode.GameModeSelected += HandleGameModeSelected;
-			panels.Add (timeAttackMode);
+      // -- Time attack
+      CardViewController timeAttackMode = new CardViewController(GameModes.TIME_ATTACK);
+      timeAttackMode.GameModeSelected += HandleGameModeSelected;
+      panels.Add(timeAttackMode);
 
-			// -- Survival
-			PagerMenuModeViewController survivalMode = new PagerMenuModeViewController (GameModes.SURVIVAL);
-			survivalMode.GameModeSelected += HandleGameModeSelected;
-			panels.Add (survivalMode);
+      // -- Survival
+      CardViewController survivalMode = new CardViewController(GameModes.SURVIVAL);
+      survivalMode.GameModeSelected += HandleGameModeSelected;
+      panels.Add(survivalMode);
 
-			int count = panels.Count;
-			RectangleF scrollFrame = scrollView.Frame;
+      int count = panels.Count;
+      RectangleF scrollFrame = scrollView.Frame;
 
-			scrollFrame.Width = scrollFrame.Width * count;
-			scrollView.ContentSize = scrollFrame.Size;
+      scrollFrame.Width = scrollFrame.Width * count;
+      scrollView.ContentSize = scrollFrame.Size;
 
-			for (int i = 0; i < count; i++) {
+      for (int i = 0; i < count; i++)
+      {
 
-				// Compute location and size
-				RectangleF frame = scrollView.Frame;
-				PointF location = new PointF ();
-				location.X = frame.Width * i;
-				frame.Location = location;
+        // Compute location and size
+        RectangleF frame = scrollView.Frame;
 
-				panels [i].View.Frame = frame;
+        PointF location = new PointF();
+        location.X = frame.Width * i;
+        frame.Location = location;
 
-				// Add to scroll and paging
-				scrollView.AddSubview (panels [i].View);
-			}
+        panels[i].View.Frame = frame;
 
-			pageControl.Pages = count;
+        // Add to scroll and paging
+        scrollView.AddSubview(panels[i].View);
+      }
 
-			// Set 3rd page as the first displayed
-			int firstDisplayedPageNumber = 2;
-			pageControl.CurrentPage = firstDisplayedPageNumber;
+      pageControl.Pages = count;
 
-			setScrollViewToPage (firstDisplayedPageNumber);
-		}
+      // Set 3rd page as the first displayed
+      int firstDisplayedPageNumber = 2;
+      pageControl.CurrentPage = firstDisplayedPageNumber;
 
-		private void setScrollViewToPage (int page)
-		{
-			scrollView.SetContentOffset (new PointF (page * scrollView.Frame.Width, 0), true);
-		}
+      setScrollViewToPage(firstDisplayedPageNumber);
+    }
 
-		#endregion
-
-		private void displayMatchMaker (GameModes mode)
-		{
-			PlayerCache.Instance.AuthenticatedPlayer.NewMatch (
+    private void setScrollViewToPage(int page)
+    {
+      scrollView.SetContentOffset(new PointF(page * scrollView.Frame.Width, 0), true);
+    }
+    #endregion
+    private void displayMatchMaker(GameModes mode)
+    {
+      PlayerCache.Instance.AuthenticatedPlayer.NewMatch(
 			// Match found
-			(match) => {
+        (match) => {
 
-				// First turn: choose game parameters
-				if (match.IsFirstTurn) {
-					displayDifficultyChooser (mode);
-				} else {
-					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+        // First turn: choose game parameters
+        if (match.IsFirstTurn)
+        {
+          displayDifficultyChooser(mode);
+        }
+        else
+        {
+          var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 
-					if (match.IsEnded) {
-						// See the final score
-						Dialogs.ShowMatchEnded ();
-					} else {
-						if (match.IsPlayerTurn (PlayerCache.Instance.AuthenticatedPlayer.PlayerId)) {
-							// Player turn
-							appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
-						} else {
-							// TODO Other player turn: display last score?
-							Dialogs.ShowNotYourTurn ();
-						}
-					}
-				}
-			},
+          if (match.IsEnded)
+          {
+            // See the final score
+            Dialogs.ShowMatchEnded();
+          }
+          else
+          {
+            if (match.IsPlayerTurn(PlayerCache.Instance.AuthenticatedPlayer.PlayerId))
+            {
+              // Player turn
+              appDelegate.SwitchToGameView(mode, match.Difficulty, match.Filter);
+            }
+            else
+            {
+              // TODO Other player turn: display last score?
+              Dialogs.ShowNotYourTurn();
+            }
+          }
+        }
+      },
 			// Cancel
-			() => {
-				// Nothing, controller is already dismissed
-			},
+        () => {
+        // Nothing, controller is already dismissed
+      },
 			// Error
-			() => {
-				// Display an error dialog?
-				UIAlertView alert = new UIAlertView (
-					"Une erreur est survenue",
-					"Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
-					null,
-					"Ok");
+        () => {
+        // Display an error dialog?
+        UIAlertView alert = new UIAlertView(
+          "Une erreur est survenue",
+          "Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
+          null,
+          "Ok");
 				
-				alert.Show ();
-			},
+        alert.Show();
+      },
 			// Player quit
-			() => {
-				// Kill the game? Inform the player?
-			}
-			);
-		}
+        () => {
+        // Kill the game? Inform the player?
+      }
+      );
+    }
 
-		private void displayDifficultyChooser (GameModes selectedMode)
-		{
-			// Display difficulty view
-			if (difficultyViewController == null) {
-				difficultyViewController = new MenuDifficultyViewController ();
-				difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
-					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+    private void displayDifficultyChooser(GameModes selectedMode)
+    {
+      // Display difficulty view
+      if (difficultyViewController == null)
+      {
+        difficultyViewController = new MenuDifficultyViewController();
+        difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
+          var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
-					Filter filter = null;
+          Filter filter = null;
 
-					// Remember to select Versus match parameters too
-					if (mode == GameModes.VERSUS) {
-						VersusMatch currentMatch = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
+          // Remember to select Versus match parameters too
+          if (mode == GameModes.VERSUS)
+          {
+            VersusMatch currentMatch = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
 
-						currentMatch.Difficulty = difficulty;
-						filter = currentMatch.Filter; // This is weird
-					}
+            currentMatch.Difficulty = difficulty;
+            filter = currentMatch.Filter; // This is weird
+          }
 					
-					appDelegate.SwitchToGameView (mode, difficulty, filter);
-				}; 	
-			}
+          appDelegate.SwitchToGameView(mode, difficulty, filter);
+        }; 	
+      }
 			
-			difficultyViewController.SetMode (selectedMode);
-			difficultyViewController.View.Frame = View.Frame;
+      difficultyViewController.SetMode(selectedMode);
+      difficultyViewController.View.Frame = View.Frame;
 			
-			View.AddSubview (difficultyViewController.View);
-		}
+      View.AddSubview(difficultyViewController.View);
+    }
 
-		void HandleGameModeSelected (GameModes m)
-		{
-			// Enough credits?
-			if (PlayerCache.Instance.CachedPlayer.Credits > 0) {
+    void HandleGameModeSelected(GameModes m)
+    {
+      // Enough credits?
+      if (PlayerCache.Instance.CachedPlayer.Credits > 0)
+      {
 
-				if (m == GameModes.VERSUS) {
+        if (m == GameModes.VERSUS)
+        {
 
-					if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false) {
-						PlayerCache.Instance.AuthenticatedPlayer.Authenticate (() => {
+          if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
+          {
+            PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
 
-							if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
-								displayMatchMaker (m);
-							} else {
-								// Dialog
-								Dialogs.ShowAuthenticationRequired ();
-							}
-						});
-					} else {
-						displayMatchMaker (m);
-					}
-				} else {
-					displayDifficultyChooser (m);
-				}
-			} else {
-				Dialogs.ShowNoMoreCreditsDialogs ();
-			}
-		}
+              if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
+              {
+                displayMatchMaker(m);
+              }
+              else
+              {
+                // Dialog
+                Dialogs.ShowAuthenticationRequired();
+              }
+            });
+          }
+          else
+          {
+            displayMatchMaker(m);
+          }
+        }
+        else
+        {
+          displayDifficultyChooser(m);
+        }
+      }
+      else
+      {
+        Dialogs.ShowNoMoreCreditsDialogs();
+      }
+    }
 
-		/// <summary>
-		/// Force config reload (DEBUG)
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.UpdateConfiguration (null);
-		}
+    /// <summary>
+    /// Force config reload (DEBUG)
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    partial void configButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      appDelegate.UpdateConfiguration(null);
+    }
 
-		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
-			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
-			Logger.I("Debug mode? " + Constants.DEBUG_MODE);
-		}
+    partial void debugButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
+      debugButton.SetTitle(Constants.DEBUG_MODE + "", UIControlState.Normal);
+      Logger.I("Debug mode? " + Constants.DEBUG_MODE);
+    }
 
-		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.ShowOptions ();
-		}
+    partial void paramsButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      appDelegate.ShowOptions();
+    }
 
-		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToShopView ();
-		}
+    partial void shopButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      appDelegate.SwitchToShopView();
+    }
 
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			PlayerCache.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
-		}
+    partial void creditsButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      PlayerCache.Instance.AddCreditsDebug(Constants.BASE_CREDITS);
+    }
 
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			PlayerCache.Instance.AddCoins (Constants.BASE_COINS);
-		}
-	}
+    partial void coinsButtonPressed(MonoTouch.Foundation.NSObject sender)
+    {
+      PlayerCache.Instance.AddCoins(Constants.BASE_COINS);
+    }
+  }
 }
 
