@@ -7,10 +7,10 @@ using MonoTouch.UIKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class PagerMenuInfosViewController : UIViewController
+	public partial class CardInfo : UIViewController
 	{
-		public PagerMenuInfosViewController () 
-			: base ("PagerMenuInfosView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+		public CardInfo () 
+			: base ("CardInfo"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 

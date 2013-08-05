@@ -8,12 +8,12 @@ using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class PagerMenuHighscoresViewController : UIViewController
+	public partial class CardScore : UIViewController
 	{
 		private HighScoresControlViewController highScoresController;
 
-		public PagerMenuHighscoresViewController ()
-			: base ("PagerMenuHighscoresView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+		public CardScore ()
+			: base ("CardScore" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}
 

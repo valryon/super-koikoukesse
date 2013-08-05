@@ -9,7 +9,7 @@ using MonoTouch.Foundation;
 namespace SuperKoikoukesse.iOS
 {
 	[Register ("PagerMenuHighscoresView")]
-	partial class PagerMenuHighscoresViewController
+	partial class CardScore
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIView highscoreView { get; set; }

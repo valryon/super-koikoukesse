@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.iOS
   {
     private List<UIViewController> panels;
     private MenuDifficultyViewController difficultyViewController;
-    private PagerMenuHighscoresViewController highScorePanel;
+    private CardScore highScorePanel;
 
     public MenuViewController()
 			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -121,11 +121,11 @@ namespace SuperKoikoukesse.iOS
       panels.Clear();
 
       // Credits
-      PagerMenuInfosViewController infos = new PagerMenuInfosViewController();
+      CardInfo infos = new CardInfo();
       panels.Add(infos);
 
       // Highscores
-      highScorePanel = new PagerMenuHighscoresViewController();
+      highScorePanel = new CardScore();
       panels.Add(highScorePanel);
 
       // Build for each modes
