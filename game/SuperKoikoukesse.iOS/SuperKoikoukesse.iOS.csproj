@@ -156,16 +156,18 @@
     <Compile Include="Views\Controls\PXNNavigationButton.cs" />
     <Compile Include="Views\Particles\PXNComboGauge.cs" />
     <Compile Include="Views\Controls\PXNNavigationBackButton.cs" />
-    <Compile Include="Controllers\CardViewController.cs" />
-    <Compile Include="Controllers\CardViewController.designer.cs" />
-    <Compile Include="Controllers\CardInfo.designer.cs">
-      <DependentUpon>CardInfo.cs</DependentUpon>
+    <Compile Include="Controllers\CardModeViewController.cs" />
+    <Compile Include="Controllers\CardModeViewController.designer.cs">
+      <DependentUpon>CardModeViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CardScore.designer.cs">
-      <DependentUpon>CardScore.cs</DependentUpon>
+    <Compile Include="Controllers\CardInfoViewController.designer.cs">
+      <DependentUpon>CardInfoViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CardInfo.cs" />
-    <Compile Include="Controllers\CardScore.cs" />
+    <Compile Include="Controllers\CardScoreViewController.designer.cs">
+      <DependentUpon>CardScoreViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardInfoViewController.cs" />
+    <Compile Include="Controllers\CardScoreViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

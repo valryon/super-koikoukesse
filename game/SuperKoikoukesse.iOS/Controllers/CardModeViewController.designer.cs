@@ -10,7 +10,7 @@ using System.CodeDom.Compiler;
 namespace SuperKoikoukesse.iOS
 {
 	[Register ("PagerMenuModeViewController")]
-	partial class CardViewController
+	partial class CardModeViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton ButtonPlay { get; set; }

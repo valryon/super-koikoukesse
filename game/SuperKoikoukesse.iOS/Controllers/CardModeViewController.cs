@@ -7,7 +7,7 @@ using MonoTouch.CoreGraphics;
 
 namespace SuperKoikoukesse.iOS
 {
-  public partial class CardViewController : UIViewController
+  public partial class CardModeViewController : UIViewController
   {
     #region Members
 
@@ -17,8 +17,8 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public CardViewController(GameModes mode) 
-      : base ("Card" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public CardModeViewController(GameModes mode) 
+      : base ("CardMode" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
       _mode = mode;
     }

@@ -130,22 +130,22 @@ namespace SuperKoikoukesse.iOS
 
       // Build for each modes
       // -- Versus
-      CardViewController versusMode = new CardViewController(GameModes.VERSUS);
+      CardModeViewController versusMode = new CardModeViewController(GameModes.VERSUS);
       versusMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(versusMode);
 
       // -- Score attack
-      CardViewController scoreAttackMode = new CardViewController(GameModes.SCORE_ATTACK);
+      CardModeViewController scoreAttackMode = new CardModeViewController(GameModes.SCORE_ATTACK);
       scoreAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(scoreAttackMode);
 
       // -- Time attack
-      CardViewController timeAttackMode = new CardViewController(GameModes.TIME_ATTACK);
+      CardModeViewController timeAttackMode = new CardModeViewController(GameModes.TIME_ATTACK);
       timeAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(timeAttackMode);
 
       // -- Survival
-      CardViewController survivalMode = new CardViewController(GameModes.SURVIVAL);
+      CardModeViewController survivalMode = new CardModeViewController(GameModes.SURVIVAL);
       survivalMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(survivalMode);
 
