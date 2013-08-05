@@ -8,7 +8,7 @@ using MonoTouch.Foundation;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("HighScoresControlView")]
+  [Register ("HighScoresControlViewController")]
 	partial class HighScoresControlViewController
 	{
 		[Outlet]

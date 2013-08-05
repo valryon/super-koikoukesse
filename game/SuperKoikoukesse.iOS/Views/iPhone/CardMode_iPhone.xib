@@ -10,11 +10,12 @@
                 <outlet property="LabelDescription" destination="7" id="kam-X3-WNy"/>
                 <outlet property="LabelLifes" destination="5" id="s8Z-Ja-MkI"/>
                 <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
+                <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="if9-7Z-apQ">
+        <view contentMode="scaleToFill" id="if9-7Z-apQ" userLabel="Container">
             <rect key="frame" x="0.0" y="0.0" width="395" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>

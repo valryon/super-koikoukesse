@@ -31,6 +31,8 @@ namespace SuperKoikoukesse.iOS
       LabelTitle.Text = Localization.Get(modeId + ".title");
       LabelDescription.Text = Localization.Get(modeId + ".desc");
       LabelDescription.SizeToFit();
+
+      ViewCard.Layer.CornerRadius = 3f;
     }
 
     public override void ViewDidAppear(bool animated)

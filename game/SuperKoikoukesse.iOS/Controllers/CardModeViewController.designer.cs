@@ -9,7 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("PagerMenuModeViewController")]
+  [Register ("CardModeViewController")]
 	partial class CardModeViewController
 	{
 		[Outlet]
@@ -24,14 +24,17 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelTitle { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewCard { get; set; }
+
 		[Action ("OnPlayTouched:")]
 		partial void OnPlayTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (LabelLifes != null) {
-				LabelLifes.Dispose ();
-				LabelLifes = null;
+			if (ViewCard != null) {
+				ViewCard.Dispose ();
+				ViewCard = null;
 			}
 
 			if (ButtonPlay != null) {
@@ -42,6 +45,11 @@ namespace SuperKoikoukesse.iOS
 			if (LabelDescription != null) {
 				LabelDescription.Dispose ();
 				LabelDescription = null;
+			}
+
+			if (LabelLifes != null) {
+				LabelLifes.Dispose ();
+				LabelLifes = null;
 			}
 
 			if (LabelTitle != null) {

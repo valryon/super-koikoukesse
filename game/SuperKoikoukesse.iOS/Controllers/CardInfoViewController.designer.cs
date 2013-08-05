@@ -9,7 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("PagerMenuInfosViewController")]
+  [Register ("CardInfoViewController")]
 	partial class CardInfoViewController
 	{
 		[Action ("OnCreditsTouched:")]

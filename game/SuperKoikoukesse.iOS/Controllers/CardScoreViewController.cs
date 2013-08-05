@@ -30,7 +30,7 @@ namespace SuperKoikoukesse.iOS
         _innerController = new HighScoresControlViewController();
         _innerController.SetScoreParameters(GameModes.SCORE_ATTACK, GameDifficulties.NORMAL);
 
-        ViewScore.AddSubview(_innerController.View);
+        this.ViewScore.AddSubview(_innerController.View);
       }
     }
 

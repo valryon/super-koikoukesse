@@ -9,7 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("PagerMenuHighscoresView")]
+  [Register ("CardScoreViewController")]
 	partial class CardScoreViewController
 	{
 		[Outlet]
