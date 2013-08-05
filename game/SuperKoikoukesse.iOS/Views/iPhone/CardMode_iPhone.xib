@@ -36,8 +36,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="300" height="71"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="track#926z-014208az2B3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-zA-4yJ" userLabel="Tracking Number">
-                                    <rect key="frame" x="5" y="0.0" width="196" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track#926z-014208az2B3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-zA-4yJ" userLabel="Tracking Number">
+                                    <rect key="frame" x="5" y="3" width="119" height="11"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="9"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -58,11 +58,24 @@
                                         <constraint firstAttribute="height" constant="30" id="Ggp-O1-see"/>
                                     </constraints>
                                 </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSl-Sc-pYJ">
+                                    <rect key="frame" x="0.0" y="16" width="124" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="P4i-eb-tEQ"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="1DV-N1-rCQ" secondAttribute="trailing" constant="20" id="8jG-CR-0Gd"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="top" secondItem="uL7-zA-4yJ" secondAttribute="bottom" constant="2" id="919-tZ-Ofr"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="trailing" secondItem="uL7-zA-4yJ" secondAttribute="trailing" id="D75-36-KbN"/>
                                 <constraint firstItem="5" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="20" id="KFF-kA-qaA"/>
+                                <constraint firstItem="uL7-zA-4yJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="5" id="NNd-vu-HAN"/>
+                                <constraint firstItem="uL7-zA-4yJ" firstAttribute="top" secondItem="h1t-N5-qQb" secondAttribute="top" constant="3" id="XCz-Ym-Ugs"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" id="Ys3-O7-sPV"/>
                                 <constraint firstItem="1DV-N1-rCQ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="hVx-eP-Jcq"/>
                                 <constraint firstAttribute="height" constant="71" id="j9g-bE-3SS"/>
                                 <constraint firstAttribute="centerY" secondItem="1DV-N1-rCQ" secondAttribute="centerY" id="s7t-3w-S9M"/>
