@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -12,35 +13,35 @@ namespace SuperKoikoukesse.iOS
 	partial class CardScoreViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIView highscoreView { get; set; }
+		MonoTouch.UIKit.UISegmentedControl SelectorDifficulty { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl modeSelector { get; set; }
+		MonoTouch.UIKit.UISegmentedControl SelectorMode { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl diffSelector { get; set; }
+		MonoTouch.UIKit.UIView ViewScore { get; set; }
 
-		[Action ("modeChanged:")]
-		partial void modeChanged (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnDifficultyChanged:")]
+		partial void OnDifficultyChanged (MonoTouch.Foundation.NSObject sender);
 
-		[Action ("difficultyChanged:")]
-		partial void difficultyChanged (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnModeChanged:")]
+		partial void OnModeChanged (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (highscoreView != null) {
-				highscoreView.Dispose ();
-				highscoreView = null;
+			if (ViewScore != null) {
+				ViewScore.Dispose ();
+				ViewScore = null;
 			}
 
-			if (modeSelector != null) {
-				modeSelector.Dispose ();
-				modeSelector = null;
+			if (SelectorMode != null) {
+				SelectorMode.Dispose ();
+				SelectorMode = null;
 			}
 
-			if (diffSelector != null) {
-				diffSelector.Dispose ();
-				diffSelector = null;
+			if (SelectorDifficulty != null) {
+				SelectorDifficulty.Dispose ();
+				SelectorDifficulty = null;
 			}
 		}
 	}

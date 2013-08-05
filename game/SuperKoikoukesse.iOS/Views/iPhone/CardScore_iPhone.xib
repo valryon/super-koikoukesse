@@ -6,9 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuHighscoresView">
             <connections>
-                <outlet property="diffSelector" destination="21" id="25"/>
+                <outlet property="SelectorDifficulty" destination="21" id="PuV-o5-Aec"/>
+                <outlet property="SelectorMode" destination="6" id="00s-Xq-Cqh"/>
+                <outlet property="ViewScore" destination="17" id="JII-oj-gLd"/>
                 <outlet property="highscoreView" destination="17" id="18"/>
-                <outlet property="modeSelector" destination="6" id="24"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -27,7 +28,7 @@
                         <segment title="Versus"/>
                     </segments>
                     <connections>
-                        <action selector="modeChanged:" destination="-1" eventType="valueChanged" id="19"/>
+                        <action selector="OnModeChanged:" destination="-1" eventType="valueChanged" id="Cuh-fz-dMj"/>
                     </connections>
                 </segmentedControl>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="21">
@@ -40,7 +41,7 @@
                         <segment title="Nolife"/>
                     </segments>
                     <connections>
-                        <action selector="difficultyChanged:" destination="-1" eventType="valueChanged" id="23"/>
+                        <action selector="OnDifficultyChanged:" destination="-1" eventType="valueChanged" id="zBc-yS-rPd"/>
                     </connections>
                 </segmentedControl>
                 <view contentMode="scaleToFill" id="17" userLabel="HighscoreController">

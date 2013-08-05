@@ -1,39 +1,25 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
 	[Register ("PagerMenuInfosViewController")]
 	partial class CardInfoViewController
 	{
-		[Outlet]
-		MonoTouch.UIKit.UIButton creditsButton { get; set; }
+		[Action ("OnCreditsTouched:")]
+		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton shopButton { get; set; }
-
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("shopButtonPressed:")]
-		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnShopTouched:")]
+		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (creditsButton != null) {
-				creditsButton.Dispose ();
-				creditsButton = null;
-			}
-
-			if (shopButton != null) {
-				shopButton.Dispose ();
-				shopButton = null;
-			}
 		}
 	}
 }

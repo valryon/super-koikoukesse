@@ -10,7 +10,7 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
-    private HighScoresControlViewController highScoresController;
+    private HighScoresControlViewController _innerController;
 
     #endregion
 
@@ -25,12 +25,12 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewWillAppear(animated);
 
-      if (highScoresController == null)
+      if (_innerController == null)
       {
-        highScoresController = new HighScoresControlViewController();
-        highScoresController.SetScoreParameters(GameModes.SCORE_ATTACK, GameDifficulties.NORMAL);
+        _innerController = new HighScoresControlViewController();
+        _innerController.SetScoreParameters(GameModes.SCORE_ATTACK, GameDifficulties.NORMAL);
 
-        this.highscoreView.AddSubview(highScoresController.View);
+        ViewScore.AddSubview(_innerController.View);
       }
     }
 
@@ -45,19 +45,19 @@ namespace SuperKoikoukesse.iOS
 
     public void ForceUpdate()
     {
-      highScoresController.UpdateGameCenterLeaderboard();
+      _innerController.UpdateGameCenterLeaderboard();
     }
 
     /// <summary>
     /// Get mode from the selector
     /// </summary>
     /// <returns>The mode.</returns>
-    private GameModes getMode()
+    private GameModes GetMode()
     {
 
-      if (modeSelector.SelectedSegment >= 0)
+      if (SelectorMode.SelectedSegment >= 0)
       {
-        string mode = modeSelector.TitleAt(modeSelector.SelectedSegment);
+        string mode = SelectorMode.TitleAt(SelectorMode.SelectedSegment);
 
         if (mode.ToLower().Contains("score"))
           return GameModes.SCORE_ATTACK;
@@ -76,11 +76,11 @@ namespace SuperKoikoukesse.iOS
     /// Get diff from the selector
     /// </summary>
     /// <returns>The difficulty.</returns>
-    private GameDifficulties getDifficulty()
+    private GameDifficulties GetDifficulty()
     {
-      if (diffSelector.SelectedSegment >= 0)
+      if (SelectorDifficulty.SelectedSegment >= 0)
       {
-        string diff = diffSelector.TitleAt(diffSelector.SelectedSegment);
+        string diff = SelectorDifficulty.TitleAt(SelectorDifficulty.SelectedSegment);
 
         if (diff.ToLower().Contains("normal"))
           return GameDifficulties.NORMAL;
@@ -99,14 +99,14 @@ namespace SuperKoikoukesse.iOS
 
     #region Handlers
 
-    partial void modeChanged(MonoTouch.Foundation.NSObject sender)
+    partial void OnModeChanged(MonoTouch.Foundation.NSObject sender)
     {
-      highScoresController.SetScoreParameters(getMode(), getDifficulty());
+      _innerController.SetScoreParameters(GetMode(), GetDifficulty());
     }
 
-    partial void difficultyChanged(MonoTouch.Foundation.NSObject sender)
+    partial void OnDifficultyChanged(MonoTouch.Foundation.NSObject sender)
     {
-      highScoresController.SetScoreParameters(getMode(), getDifficulty());
+      _innerController.SetScoreParameters(GetMode(), GetDifficulty());
     }
 
     #endregion

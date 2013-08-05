@@ -6,8 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuInfosViewController">
             <connections>
-                <outlet property="creditsButton" destination="6" id="8"/>
-                <outlet property="shopButton" destination="7" id="9"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -60,7 +58,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="creditsButtonPressed:" destination="-1" eventType="touchUpInside" id="10"/>
+                                <action selector="OnCreditsTouched:" destination="-1" eventType="touchUpInside" id="TDk-xq-jjs"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
@@ -75,7 +73,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="shopButtonPressed:" destination="-1" eventType="touchUpInside" id="11"/>
+                                <action selector="OnShopTouched:" destination="-1" eventType="touchUpInside" id="dyH-vs-4p5"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="UVu-4G-C5E">
