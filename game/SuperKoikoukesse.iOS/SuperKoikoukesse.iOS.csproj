@@ -140,16 +140,8 @@
     <Compile Include="Controllers\MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\PagerMenuInfosViewController.cs" />
-    <Compile Include="Controllers\PagerMenuInfosViewController.designer.cs">
-      <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="GameCenter\GameCenterPlayer.cs" />
     <Compile Include="Controllers\Dialogs.cs" />
-    <Compile Include="Controllers\PagerMenuHighscoresViewController.cs" />
-    <Compile Include="Controllers\PagerMenuHighscoresViewController.designer.cs">
-      <DependentUpon>PagerMenuHighscoresViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\HighScoresControlViewController.cs" />
     <Compile Include="Controllers\HighScoresControlViewController.designer.cs">
       <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
@@ -166,6 +158,14 @@
     <Compile Include="Views\Controls\PXNNavigationBackButton.cs" />
     <Compile Include="Controllers\CardViewController.cs" />
     <Compile Include="Controllers\CardViewController.designer.cs" />
+    <Compile Include="Controllers\CardInfo.designer.cs">
+      <DependentUpon>CardInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardScore.designer.cs">
+      <DependentUpon>CardScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardInfo.cs" />
+    <Compile Include="Controllers\CardScore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

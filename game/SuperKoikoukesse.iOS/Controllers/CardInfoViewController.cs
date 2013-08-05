@@ -7,9 +7,9 @@ using MonoTouch.UIKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class CardInfo : UIViewController
+	public partial class CardInfoViewController : UIViewController
 	{
-		public CardInfo () 
+		public CardInfoViewController () 
 			: base ("CardInfo"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}

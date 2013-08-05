@@ -8,11 +8,11 @@ using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class CardScore : UIViewController
+	public partial class CardScoreViewController : UIViewController
 	{
 		private HighScoresControlViewController highScoresController;
 
-		public CardScore ()
+		public CardScoreViewController ()
 			: base ("CardScore" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
 		}

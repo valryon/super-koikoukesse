@@ -9,7 +9,7 @@ using MonoTouch.Foundation;
 namespace SuperKoikoukesse.iOS
 {
 	[Register ("PagerMenuInfosViewController")]
-	partial class CardInfo
+	partial class CardInfoViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton creditsButton { get; set; }
