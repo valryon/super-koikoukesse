@@ -492,10 +492,10 @@ namespace SuperKoikoukesse.iOS
         game4Button.Enabled = true;
 
         // TODO PAL
-        game1Button.SetTitle(q.GetGameTitle(0, GameZones.PAL, mQuizz.TextTransformation), UIControlState.Normal);
-        game2Button.SetTitle(q.GetGameTitle(1, GameZones.PAL, mQuizz.TextTransformation), UIControlState.Normal);
-        game3Button.SetTitle(q.GetGameTitle(2, GameZones.PAL, mQuizz.TextTransformation), UIControlState.Normal);
-        game4Button.SetTitle(q.GetGameTitle(3, GameZones.PAL, mQuizz.TextTransformation), UIControlState.Normal);
+        game1Button.SetTitle(q.GetGameTitle(0, GameZone.PAL, mQuizz.TextTransformation), UIControlState.Normal);
+        game2Button.SetTitle(q.GetGameTitle(1, GameZone.PAL, mQuizz.TextTransformation), UIControlState.Normal);
+        game3Button.SetTitle(q.GetGameTitle(2, GameZone.PAL, mQuizz.TextTransformation), UIControlState.Normal);
+        game4Button.SetTitle(q.GetGameTitle(3, GameZone.PAL, mQuizz.TextTransformation), UIControlState.Normal);
       }
     }
 

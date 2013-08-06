@@ -21,14 +21,14 @@ namespace Superkoikoukesse.Common
 		/// <param name="i">The index.</param>
 		/// <param name="zone"></param>
 		/// <param name="transformation"> </param>
-		public string GetGameTitle (int answerIndex, GameZones zone, TextTransformations transformation)
+		public string GetGameTitle (int answerIndex, GameZone zone, TextTransformations transformation)
 		{
 			GameEntry game = Answers [answerIndex];
 			string title = "";
 
-			if (zone == GameZones.PAL) {
+			if (zone == GameZone.PAL) {
 				title = Answers [answerIndex].TitlePAL;
-			} else if (zone == GameZones.NTSC) {
+			} else if (zone == GameZone.NTSC) {
 				title = Answers [answerIndex].TitleUS;
 			}
 

@@ -57,7 +57,6 @@
     <Compile Include="Game\Enums\ImageTransformations.cs" />
     <Compile Include="Game\Enums\TextTransformations.cs" />
     <Compile Include="Game\Enums\GameDifficulties.cs" />
-    <Compile Include="Game\Enums\GameZones.cs" />
     <Compile Include="Tools\NetworkAvailability.cs" />
     <Compile Include="Tools\EncryptionHelper.cs" />
     <Compile Include="Tools\Logger.cs" />
@@ -86,5 +85,6 @@
     <Compile Include="Networking\Services\ServicePlayer.cs" />
     <Compile Include="Game\GameEntry.cs" />
     <Compile Include="Game\Enums\GameMode.cs" />
+    <Compile Include="Game\Enums\GameZone.cs" />
   </ItemGroup>
 </Project>
