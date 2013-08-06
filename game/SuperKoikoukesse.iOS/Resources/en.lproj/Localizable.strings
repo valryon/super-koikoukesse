@@ -4,7 +4,7 @@
 
 // Score Attack
 "mode.score.title"        = "Score Attack";
-"mode.score.desc.main"    =  "";
+"mode.score.desc.main"    =  "° When you find the correct answer three times in a row, you gain a joker that you can use to skip a question.\n\n° Each correct answer increments the combo gauge.";
 "mode.score.desc.sub"     = "Try to beat the score during a 20 questions challenge !";
 
 // Time Attack
