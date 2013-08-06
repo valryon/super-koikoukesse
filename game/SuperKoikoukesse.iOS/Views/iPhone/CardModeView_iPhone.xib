@@ -7,8 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardModeViewController">
             <connections>
                 <outlet property="ButtonPlay" destination="LBW-RJ-8nH" id="LHs-r5-sMS"/>
+                <outlet property="ImageIcon" destination="1DV-N1-rCQ" id="FQD-bz-YOd"/>
                 <outlet property="LabelDescription" destination="7" id="kam-X3-WNy"/>
-                <outlet property="LabelLifes" destination="5" id="s8Z-Ja-MkI"/>
+                <outlet property="LabelMainDescription" destination="m1B-ry-tx1" id="9oB-GI-q4g"/>
                 <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
                 <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
                 <outlet property="ViewShadow" destination="xwg-nu-pWj" id="xMF-jW-sTa"/>
@@ -21,12 +22,12 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwg-nu-pWj" userLabel="Shadow">
-                    <rect key="frame" x="47" y="118" width="300" height="332"/>
+                    <rect key="frame" x="47" y="120" width="300" height="332"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1" userLabel="Card">
-                    <rect key="frame" x="47" y="117" width="300" height="333"/>
+                    <rect key="frame" x="47" y="119" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1t-N5-qQb" userLabel="View - Header">

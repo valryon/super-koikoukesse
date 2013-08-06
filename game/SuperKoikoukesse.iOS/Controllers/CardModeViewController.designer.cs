@@ -15,10 +15,13 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton ButtonPlay { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIImageView ImageIcon { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel LabelDescription { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel LabelLifes { get; set; }
+		MonoTouch.UIKit.UILabel LabelMainDescription { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelTitle { get; set; }
@@ -39,14 +42,14 @@ namespace SuperKoikoukesse.iOS
 				ButtonPlay = null;
 			}
 
+			if (LabelMainDescription != null) {
+				LabelMainDescription.Dispose ();
+				LabelMainDescription = null;
+			}
+
 			if (LabelDescription != null) {
 				LabelDescription.Dispose ();
 				LabelDescription = null;
-			}
-
-			if (LabelLifes != null) {
-				LabelLifes.Dispose ();
-				LabelLifes = null;
 			}
 
 			if (LabelTitle != null) {
@@ -54,14 +57,19 @@ namespace SuperKoikoukesse.iOS
 				LabelTitle = null;
 			}
 
-			if (ViewShadow != null) {
-				ViewShadow.Dispose ();
-				ViewShadow = null;
+			if (ImageIcon != null) {
+				ImageIcon.Dispose ();
+				ImageIcon = null;
 			}
 
 			if (ViewCard != null) {
 				ViewCard.Dispose ();
 				ViewCard = null;
+			}
+
+			if (ViewShadow != null) {
+				ViewShadow.Dispose ();
+				ViewShadow = null;
 			}
 		}
 	}

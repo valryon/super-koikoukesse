@@ -56,10 +56,10 @@ namespace SuperKoikoukesse.iOS
       {
 
         // TODO HACK Crash on iPhone, LabelLifes is null
-        if (LabelLifes != null)
-        {
-          LabelLifes.Text = "(sur " + profile.Credits.ToString() + ")";
-        }
+//        if (LabelLifes != null)
+//        {
+//          LabelLifes.Text = "(sur " + profile.Credits.ToString() + ")";
+//        }
       }
     }
 
