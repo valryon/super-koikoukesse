@@ -4,23 +4,23 @@
 
 // Score Attack
 "mode.score.title" 	      = "Score Attack";
-"mode.score.desc.main"    =  "";
-"mode.score.desc.sub" 	  = "Essayez de faire le meilleur score possible pendant 20 questions !";
+"mode.score.desc.main"    = "Essayez de faire le meilleur score possible pendant 20 questions !";
+"mode.score.desc.sub"     =  "";
 
 // Time Attack
 "mode.time.title"         = "Time Attack";
-"mode.time.desc.main"     = "";
-"mode.time.desc.sub"      = "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
+"mode.time.desc.main"     = "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
+"mode.time.desc.sub"      = "";
 
 // Survival
 "mode.survival.title" 	  = "Survival";
-"mode.survival.desc.main" = "";
-"mode.survival.desc.sub" 	= "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
+"mode.survival.desc.main" = "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
+"mode.survival.desc.sub"  = "";
 
 // Versus
 "mode.versus.title" 		  = "Versus";
-"mode.versus.desc.main"   = "";
-"mode.versus.desc.sub"	  = "Affrontez vos amis ! Choisissez un thème, un adversaire et faite le meilleur score pour montrer votre culture jeu-videoludique !";
+"mode.versus.desc.main"   = "Affrontez vos amis ! Choisissez un thème, un adversaire et faite le meilleur score pour montrer votre culture jeu-videoludique !";
+"mode.versus.desc.sub"    = "";
 
 //
 // Difficulties 
