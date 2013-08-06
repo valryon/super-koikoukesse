@@ -33,6 +33,7 @@ namespace SuperKoikoukesse.iOS
       LabelDescription.SizeToFit();
 
       ViewCard.Layer.CornerRadius = 3f;
+      ViewCard.Layer.MasksToBounds = true;
     }
 
     public override void ViewDidAppear(bool animated)

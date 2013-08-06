@@ -85,6 +85,7 @@ namespace SuperKoikoukesse.iOS
     public void StyleView()
     {
       ViewCombo.Layer.CornerRadius = 6;
+      ViewCombo.Layer.MasksToBounds = true;
       ViewImageShadow.Layer.CornerRadius = 13;
       gameImageScroll.Layer.CornerRadius = 13;
 
