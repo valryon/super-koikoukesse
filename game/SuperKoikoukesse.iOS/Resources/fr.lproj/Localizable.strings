@@ -1,34 +1,76 @@
- "scoreattack.title" 	= "Score Attack";
- "scoreattack.desc" 	= "Essayez de faire le meilleur score possible pendant 20 questions !";
- "timeattack.title" 	= "Time Attack";
- "timeattack.desc" 		= "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
- "survival.title" 		= "Survival";
- "survival.desc" 		= "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
- "versus.title" 		= "Versus";
- "versus.desc" 			= "Affrontez vos amis ! Choisissez un thème, un adversaire et faite le meilleur score pour montrer votre culture jeu-videoludique !";
- "scores.local"			= "mes meilleurs scores";
- "scores.online"		= "en ligne";
- "scores.my"			= "mon score actuel";
- "scores.first"			= "premier";
- "scores.second"		= "deuxième";
- "scores.third"			= "troisième";
- "credits.small"		= "Un jeu de Pixelnest Studio et Rednalhgih.";
- "credits.title"		= "Crédits";
- "credits.legal"		= "Toutes les images utilisées dans le jeu appartiennent à leur propriétaires respectifs, listés ci-dessous.";
- "shop.title" 			= "Magasin";
- "button.back"			= "Retour";
- "button.quit"			= "Quitter";
- "button.retry"			= "Rejouer";
- "game.pause"			= "Pause";
- "game.joker"			= "Joker";
- "game.score"			= "score";
- "game.combo"			= "combo";
- "game.over"			= "Partie terminée !";
- "normal.title"			= "Normal";
-"normal.desc"			= "Pour démarrer";
-"hard.title"			= "Difficile";
-"hard.desc"				= "Un peu plus dur";
-"expert.title"			= "Expert";
-"expert.desc"			= "Vraiment dur";
-"nolife.title"			= "Infernal";
-"nolife.desc"			= "IMPOSSIBLE !";
+//
+// Modes
+//
+
+// Score Attack
+"mode.score.title" 	      = "Score Attack";
+"mode.score.desc.main"    =  "";
+"mode.score.desc.sub" 	  = "Essayez de faire le meilleur score possible pendant 20 questions !";
+
+// Time Attack
+"mode.time.title"         = "Time Attack";
+"mode.time.desc.main"     = "";
+"mode.time.desc.sub"      = "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
+
+// Survival
+"mode.survival.title" 	  = "Survival";
+"mode.survival.desc.main" = "";
+"mode.survival.desc.sub" 	= "Seulement 3 erreurs autorisées... Combien de temps pourrez-vous tenir contre le jeu ?";
+
+// Versus
+"mode.versus.title" 		  = "Versus";
+"mode.versus.desc.main"   = "";
+"mode.versus.desc.sub"	  = "Affrontez vos amis ! Choisissez un thème, un adversaire et faite le meilleur score pour montrer votre culture jeu-videoludique !";
+
+//
+// Difficulties 
+//
+ 
+// Normal
+"normal.title"    = "Normal";
+"normal.desc"     = "Pour démarrer";
+
+// Hard
+"hard.title"      = "Difficile";
+"hard.desc"       = "Les choses sérieuses commencent";
+
+// Expert
+"expert.title"    = "Expert";
+"expert.desc"     = "Vraiment dur";
+
+// Insane
+"insane.title"    = "Dément";
+"insane.desc"     = "IMPOSSIBLE !";
+
+//
+// Misc
+//
+
+// Scores
+"scores.local"		= "mes meilleurs scores";
+"scores.online"		= "en ligne";
+"scores.my"			  = "mon score actuel";
+"scores.first"		= "premier";
+"scores.second"		= "deuxième";
+"scores.third"		= "troisième";
+
+// Credits
+"credits.small"		= "Un jeu de Pixelnest Studio et Rednalhgih.";
+"credits.title"		= "Crédits";
+"credits.legal"		= "Toutes les images utilisées dans le jeu appartiennent à leur propriétaires respectifs, listés ci-dessous.";
+
+// Shop
+"shop.title" 			= "Magasin";
+
+// Buttons
+"button.back"			= "Retour";
+"button.quit"			= "Quitter";
+"button.retry"		= "Rejouer";
+
+// Game
+"game.pause"			= "Pause";
+"game.joker"			= "Joker";
+"game.score"			= "score";
+"game.combo"			= "combo";
+"game.over"			  = "Partie terminée !";
+

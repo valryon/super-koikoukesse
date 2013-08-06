@@ -1,34 +1,76 @@
-"scoreattack.title" = "Score Attack";
-"scoreattack.desc" 	= "Try to beat the score during a 20 questions challenge !";
-"timeattack.title" 	= "Time Attack";
-"timeattack.desc" 	= "Be careful, you have only 60 seconds to make the best score possible! Each wrong answer will decrease the time that you have.";
-"survival.title" 	= "Survival";
-"survival.desc" 	= "Only 3 mistakes allowed... How long will you survive against the game ?";
-"versus.title" 		= "Duel";
-"versus.desc" 		= "Duel your friends! Select a theme, an opponent and show the world that you know video games like no one else!";
-"scores.local"		= "my best scores";
-"scores.online"		= "online";
-"scores.my"			= "my current score";
-"scores.first"		= "first";
-"scores.second"		= "second";
-"scores.third"		= "third";
-"credits.small"		= "A Pixelnest Studio & Rednalhgih game.";
-"credits.title"		= "Credits";
-"credits.legal"		= "All images used in the game are licenced and owned by their respective owners, listed below.";
-"shop.title" 		= "Shop";
-"button.back"		= "Back";
-"button.quit"		= "Quit";
-"button.retry"		= "Play again";
-"game.pause"		= "Pause";
-"game.joker"		= "Joker";
-"game.score"		= "score";
-"game.combo"		= "combo";
-"game.over"			= "Game Over!";
-"normal.title"		= "Normal";
-"normal.desc"		= "The normal difficulty";
-"hard.title"		= "Hard";
-"hard.desc"			= "A bit harder";
-"expert.title"		= "Expert";
-"expert.desc"		= "Really hard";
-"nolife.title"		= "Hell";
-"nolife.desc"		= "IMPOSSIBLE!";
+//
+// Modes
+//
+
+// Score Attack
+"mode.score.title"        = "Score Attack";
+"mode.score.desc.main"    =  "";
+"mode.score.desc.sub"     = "Try to beat the score during a 20 questions challenge !";
+
+// Time Attack
+"mode.time.title"         = "Time Attack";
+"mode.time.desc.main"     = "";
+"mode.time.desc.sub"      = "Be careful, you have only 60 seconds to make the best score possible! Each wrong answer will decrease the time that you have.";
+
+// Survival
+"mode.survival.title"     = "Survival";
+"mode.survival.desc.main" = "";
+"mode.survival.desc.sub"  = "Only 3 mistakes allowed... How long will you survive against the game ?";
+
+// Versus
+"mode.versus.title"       = "Duel";
+"mode.versus.desc.main"   = "";
+"mode.versus.desc.sub"    = "Duel your friends! Select a theme, an opponent and show the world that you know video games like no one else!";
+
+//
+// Difficulties 
+//
+ 
+// Normal
+"normal.title"    = "Normal";
+"normal.desc"     = "To start";
+
+// Hard
+"hard.title"      = "Hard";
+"hard.desc"       = "It's getting harder";
+
+// Expert
+"expert.title"    = "Expert";
+"expert.desc"     = "Really hard";
+
+// Insane
+"insane.title"    = "Insane";
+"insane.desc"     = "IMPOSSIBLE !";
+
+//
+// Misc
+//
+
+// Scores
+"scores.local"    = "my best scores";
+"scores.online"   = "online";
+"scores.my"       = "my current score";
+"scores.first"    = "first";
+"scores.second"   = "second";
+"scores.third"    = "third";
+
+// Credits
+"credits.small"   = "A Pixelnest Studio & Rednalhgih game.";
+"credits.title"   = "Credits";
+"credits.legal"   = "All images used in the game are licenced and owned by their respective owners, listed below.";
+
+// Shop
+"shop.title"      = "Shop";
+
+// Buttons
+"button.back"     = "Back";
+"button.quit"     = "Quit";
+"button.retry"    = "Play again";
+
+// Game
+"game.pause"      = "Pause";
+"game.joker"      = "Joker";
+"game.score"      = "score";
+"game.combo"      = "combo";
+"game.over"       = "Game Over !";
+
