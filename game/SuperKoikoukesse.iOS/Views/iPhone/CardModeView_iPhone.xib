@@ -11,6 +11,7 @@
                 <outlet property="LabelLifes" destination="5" id="s8Z-Ja-MkI"/>
                 <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
                 <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
+                <outlet property="ViewShadow" destination="xwg-nu-pWj" id="xMF-jW-sTa"/>
                 <outlet property="view" destination="if9-7Z-apQ" id="oiy-rT-r7x"/>
             </connections>
         </placeholder>
@@ -19,6 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="395" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwg-nu-pWj" userLabel="Shadow">
+                    <rect key="frame" x="47" y="118" width="300" height="332"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1" userLabel="Card">
                     <rect key="frame" x="47" y="117" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +140,11 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="88P-00-Wqq"/>
+                <constraint firstItem="1" firstAttribute="height" secondItem="xwg-nu-pWj" secondAttribute="height" id="9Ea-Rv-VWh"/>
                 <constraint firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="EDb-aP-9VS"/>
+                <constraint firstAttribute="centerX" secondItem="xwg-nu-pWj" secondAttribute="centerX" id="IAa-b7-XO7"/>
+                <constraint firstAttribute="centerY" secondItem="xwg-nu-pWj" secondAttribute="centerY" id="MN8-ng-jrQ"/>
+                <constraint firstItem="1" firstAttribute="width" secondItem="xwg-nu-pWj" secondAttribute="width" id="PrK-7B-nHC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

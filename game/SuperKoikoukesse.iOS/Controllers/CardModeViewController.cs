@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using MonoTouch.CoreGraphics;
+using MonoTouch.CoreAnimation;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -32,6 +33,14 @@ namespace SuperKoikoukesse.iOS
       LabelDescription.Text = Localization.Get(modeId + ".desc");
       LabelDescription.SizeToFit();
 
+      // Add the shadow to the background view
+      ViewShadow.Layer.CornerRadius = 3f;
+      ViewShadow.Layer.ShadowColor = UIColor.Black.CGColor;
+      ViewShadow.Layer.ShadowRadius = 1.5f;
+      ViewShadow.Layer.ShadowOffset = new SizeF(0, 0);
+      ViewShadow.Layer.ShadowOpacity = 0.2f;
+
+      // Set the radius & mask on the card
       ViewCard.Layer.CornerRadius = 3f;
       ViewCard.Layer.MasksToBounds = true;
     }
