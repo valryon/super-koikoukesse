@@ -12,7 +12,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class HighScoresControlViewController : UIViewController
 	{
 		private static int scoreLinesCount = 5;
-		private GameModes mode;
+		private GameMode mode;
 		private GameDifficulties difficulty;
 		private int? newScoreRank, newScoreValue;
 
@@ -20,7 +20,7 @@ namespace SuperKoikoukesse.iOS
 		{
 		}
 
-		public void SetScoreParameters (GameModes m, GameDifficulties d, int? newScoreRank = null, int? newScoreValue = null)
+		public void SetScoreParameters (GameMode m, GameDifficulties d, int? newScoreRank = null, int? newScoreValue = null)
 		{
 			this.mode = m;
 			this.difficulty = d;

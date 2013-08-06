@@ -35,7 +35,7 @@ namespace Superkoikoukesse.Common
 		}
 
 		
-		public GameModes Mode {get;set;}
+		public GameMode Mode {get;set;}
 
 		public GameDifficulties Difficulty {get;set;}
 

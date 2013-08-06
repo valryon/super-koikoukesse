@@ -88,9 +88,9 @@ namespace SuperKoikoukesse.iOS
 			});
 		}
 
-		public override void AddScore (GameModes mode, GameDifficulties difficulty, int score)
+		public override void AddScore (GameMode mode, GameDifficulties difficulty, int score)
 		{
-			if (mode != GameModes.VERSUS) {
+			if (mode != GameMode.VERSUS) {
 				string leaderboardId = GetLeaderboardId (mode, difficulty);
 
 				Logger.I("Game Center  - Adding score to " + leaderboardId + "...");
@@ -106,7 +106,7 @@ namespace SuperKoikoukesse.iOS
 			}
 		}
 
-		public override void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback)
+		public override void GetBestScoreAndRank (GameMode mode, GameDifficulties difficulty, Action<int,int> gcRankCallback)
 		{
 			if (IsAuthenticated) {
 

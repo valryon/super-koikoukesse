@@ -178,7 +178,7 @@ namespace SuperKoikoukesse.iOS
     /// <summary>
     /// Initialize a new quizz game
     /// </summary>
-    public void InitializeQuizz(GameModes mode, GameDifficulties diff, Filter f)
+    public void InitializeQuizz(GameMode mode, GameDifficulties diff, Filter f)
     {
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 
@@ -212,7 +212,7 @@ namespace SuperKoikoukesse.iOS
       modeLabel.Text = mQuizz.Mode.ToString() + " - " + mQuizz.Difficulty;
 
       // Display lives
-      if (q.Mode == GameModes.SURVIVAL)
+      if (q.Mode == GameMode.SURVIVAL)
       {
         livesImage.Hidden = false;
       }
@@ -440,7 +440,7 @@ namespace SuperKoikoukesse.iOS
        */ 
 
       // Display the correct number of lives
-      if (mQuizz.Mode == GameModes.SURVIVAL)
+      if (mQuizz.Mode == GameMode.SURVIVAL)
       {
         switch (mQuizz.Lives)
         {

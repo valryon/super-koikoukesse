@@ -54,7 +54,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Game\Enums\GameModes.cs" />
     <Compile Include="Game\Enums\ImageTransformations.cs" />
     <Compile Include="Game\Enums\TextTransformations.cs" />
     <Compile Include="Game\Enums\GameDifficulties.cs" />
@@ -86,5 +85,6 @@
     <Compile Include="Networking\Models\ExcludedGamesList.cs" />
     <Compile Include="Networking\Services\ServicePlayer.cs" />
     <Compile Include="Game\GameEntry.cs" />
+    <Compile Include="Game\Enums\GameMode.cs" />
   </ItemGroup>
 </Project>

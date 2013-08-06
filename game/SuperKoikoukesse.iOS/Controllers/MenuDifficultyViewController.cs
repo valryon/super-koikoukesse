@@ -11,10 +11,10 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuDifficultyViewController : UIViewController
 	{
-		public event Action<GameModes, GameDifficulties> DifficultySelected;
+		public event Action<GameMode, GameDifficulties> DifficultySelected;
 		public event Action BackSelected;
 
-		private GameModes mode;
+		private GameMode mode;
 
 		public MenuDifficultyViewController ()
 			: base ("MenuDifficultyView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
@@ -26,7 +26,7 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
-		public void SetMode (GameModes m)
+		public void SetMode (GameMode m)
 		{
 			mode = m;
 		}

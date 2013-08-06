@@ -26,7 +26,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="score">Score.</param>
-		public abstract void AddScore (GameModes mode, GameDifficulties difficulty, int score);
+		public abstract void AddScore (GameMode mode, GameDifficulties difficulty, int score);
 
 		/// <summary>
 		/// Get the best score and its rank from leaderboard
@@ -34,7 +34,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="gcRankCallback">Best rank and score.</param>
-		public abstract void GetBestScoreAndRank (GameModes mode, GameDifficulties difficulty, Action<int,int> gcRankCallback);
+		public abstract void GetBestScoreAndRank (GameMode mode, GameDifficulties difficulty, Action<int,int> gcRankCallback);
 
 		/// <summary>
 		/// Create a new turn based match
@@ -60,7 +60,7 @@ namespace Superkoikoukesse.Common
 		/// <returns>The leaderboard identifier.</returns>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public virtual string GetLeaderboardId (GameModes mode, GameDifficulties difficulty)
+		public virtual string GetLeaderboardId (GameMode mode, GameDifficulties difficulty)
 		{
 			return (mode.ToString () + difficulty.ToString ()).ToLower ();
 		}

@@ -32,7 +32,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="config">Config.</param>
 		/// <param name="databaseFilter">Database filter.</param>
-		public void Initialize (GameModes mode, GameDifficulties difficulty, GameConfiguration config, Filter databaseFilter)
+		public void Initialize (GameMode mode, GameDifficulties difficulty, GameConfiguration config, Filter databaseFilter)
 		{
 			Mode = mode;
 			Difficulty = difficulty;
@@ -104,9 +104,9 @@ namespace Superkoikoukesse.Common
 				}
 			}
 
-			if (Mode == GameModes.TIME_ATTACK) {
+			if (Mode == GameMode.TIME_ATTACK) {
 				mInfiniteQuestions = true;
-			} else if (Mode == GameModes.SURVIVAL) {
+			} else if (Mode == GameMode.SURVIVAL) {
 				mInfiniteQuestions = true;
 			} else {
 				mInfiniteQuestions = false;
@@ -150,7 +150,7 @@ namespace Superkoikoukesse.Common
 
 			// Multiplayer and not the first turn?
 			// We must play exactly the same game as the other players
-			if (Mode == GameModes.VERSUS) {
+			if (Mode == GameMode.VERSUS) {
 				if (PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn == false) {
 					q = Filter.GetMatchQuestion ();
 				}
@@ -251,7 +251,7 @@ namespace Superkoikoukesse.Common
 					}
 
 					// Apply bonus/malus per mode
-					if (Mode == GameModes.SCORE_ATTACK) {
+					if (Mode == GameMode.SCORE_ATTACK) {
 						malus = (int)TimeLeft;
 					}
 
@@ -264,16 +264,16 @@ namespace Superkoikoukesse.Common
 					mMistakesCount++;
 
 					// Apply bonus/malus per mode
-					if (Mode == GameModes.SCORE_ATTACK) {
+					if (Mode == GameMode.SCORE_ATTACK) {
 						malus = 25;
-					} else if (Mode == GameModes.TIME_ATTACK) {
+					} else if (Mode == GameMode.TIME_ATTACK) {
 
 						malus = 25;
 
 						// Losing time for each mistakes
 						SubstractTime (mMistakesCount); // 1 sec per accumulated mistakes
 
-					} else if (Mode == GameModes.SURVIVAL) {
+					} else if (Mode == GameMode.SURVIVAL) {
 
 						// Losing live for each mistakes
 						Lives--;
@@ -327,7 +327,7 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = mQuestionsPool.Dequeue ();
 
 				// Reset timer
-				if (Mode == GameModes.TIME_ATTACK) {
+				if (Mode == GameMode.TIME_ATTACK) {
 					if (TimeLeft < 0) {
 						IsOver = true;
 					}
@@ -335,13 +335,13 @@ namespace Superkoikoukesse.Common
 					TimeLeft = BaseTimeleft;
 					IsOver = false;
 
-					if (Mode == GameModes.SURVIVAL) {
+					if (Mode == GameMode.SURVIVAL) {
 						IsOver = (Lives <= 0);
 					}
 				}
 			} else {
 
-				if (Mode != GameModes.TIME_ATTACK) {
+				if (Mode != GameMode.TIME_ATTACK) {
 
 					Logger.I("Quizz is over!");
 					IsOver = true;
@@ -349,7 +349,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Multiplayer specifity: register all first player question @ answers
-			if (IsOver == false && Mode == GameModes.VERSUS) {
+			if (IsOver == false && Mode == GameMode.VERSUS) {
 
 				if (PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch.IsFirstTurn) {
 					
@@ -376,7 +376,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void SetTimeOver ()
 		{
-			if (Mode == GameModes.TIME_ATTACK) {
+			if (Mode == GameMode.TIME_ATTACK) {
 				IsOver = true;
 			} else {
 				SelectAnswer (-1);
@@ -426,7 +426,7 @@ namespace Superkoikoukesse.Common
 			PlayerCache.Instance.AuthenticatedPlayer.AddScore (Mode, Difficulty, Score);
 
 			// Multiplayer? End turn
-			if (Mode == GameModes.VERSUS) {
+			if (Mode == GameMode.VERSUS) {
 				PlayerCache.Instance.AuthenticatedPlayer.EndMatchTurn (Score, () => {
 
 				});
@@ -459,7 +459,7 @@ namespace Superkoikoukesse.Common
 		/// Game mode
 		/// </summary>
 		/// <value>The mode.</value>
-		public GameModes Mode { get; set; }
+		public GameMode Mode { get; set; }
 
 		/// <summary>
 		/// Game Difficulty

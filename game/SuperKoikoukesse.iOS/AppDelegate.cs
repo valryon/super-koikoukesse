@@ -310,7 +310,7 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulty">Difficulty.</param>
-		public void SwitchToGameView (GameModes mode, GameDifficulties difficulty, Filter filter = null)
+		public void SwitchToGameView (GameMode mode, GameDifficulties difficulty, Filter filter = null)
 		{
 			if (gameViewController == null) {
 				gameViewController = new GameViewController ();

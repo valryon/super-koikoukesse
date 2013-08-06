@@ -11,14 +11,14 @@ namespace Superkoikoukesse.Common
 		{
 		}
 
-		public void SendStats (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers, Action<int, Exception> callbackFailure)
+		public void SendStats (string playerId, int score, GameMode mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers, Action<int, Exception> callbackFailure)
 		{
 			var jsonBody = buildJson (playerId, score, mode, difficulty, date, answers);
 		
 			RequestPostJsonAsync (jsonBody, null, callbackFailure);
 		}
 
-		private string buildJson (string playerId, int score, GameModes mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers)
+		private string buildJson (string playerId, int score, GameMode mode, GameDifficulties difficulty, DateTime date, Dictionary<int, bool> answers)
 		{
 //			{
 //			“player”:”Varyon”,

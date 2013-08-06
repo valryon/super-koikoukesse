@@ -130,22 +130,22 @@ namespace SuperKoikoukesse.iOS
 
       // Build for each modes
       // -- Versus
-      CardModeViewController versusMode = new CardModeViewController(GameModes.VERSUS);
+      CardModeViewController versusMode = new CardModeViewController(GameMode.VERSUS);
       versusMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(versusMode);
 
       // -- Score attack
-      CardModeViewController scoreAttackMode = new CardModeViewController(GameModes.SCORE_ATTACK);
+      CardModeViewController scoreAttackMode = new CardModeViewController(GameMode.SCORE_ATTACK);
       scoreAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(scoreAttackMode);
 
       // -- Time attack
-      CardModeViewController timeAttackMode = new CardModeViewController(GameModes.TIME_ATTACK);
+      CardModeViewController timeAttackMode = new CardModeViewController(GameMode.TIME_ATTACK);
       timeAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(timeAttackMode);
 
       // -- Survival
-      CardModeViewController survivalMode = new CardModeViewController(GameModes.SURVIVAL);
+      CardModeViewController survivalMode = new CardModeViewController(GameMode.SURVIVAL);
       survivalMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(survivalMode);
 
@@ -185,7 +185,7 @@ namespace SuperKoikoukesse.iOS
       scrollView.SetContentOffset(new PointF(page * scrollView.Frame.Width, 0), true);
     }
     #endregion
-    private void displayMatchMaker(GameModes mode)
+    private void displayMatchMaker(GameMode mode)
     {
       PlayerCache.Instance.AuthenticatedPlayer.NewMatch(
 			// Match found
@@ -242,19 +242,19 @@ namespace SuperKoikoukesse.iOS
       );
     }
 
-    private void displayDifficultyChooser(GameModes selectedMode)
+    private void displayDifficultyChooser(GameMode selectedMode)
     {
       // Display difficulty view
       if (difficultyViewController == null)
       {
         difficultyViewController = new MenuDifficultyViewController();
-        difficultyViewController.DifficultySelected += (GameModes mode, GameDifficulties difficulty) => {
+        difficultyViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
           var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
           Filter filter = null;
 
           // Remember to select Versus match parameters too
-          if (mode == GameModes.VERSUS)
+          if (mode == GameMode.VERSUS)
           {
             VersusMatch currentMatch = PlayerCache.Instance.AuthenticatedPlayer.CurrentMatch;
 
@@ -272,13 +272,13 @@ namespace SuperKoikoukesse.iOS
       View.AddSubview(difficultyViewController.View);
     }
 
-    void HandleGameModeSelected(GameModes m)
+    void HandleGameModeSelected(GameMode m)
     {
       // Enough credits?
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
 
-        if (m == GameModes.VERSUS)
+        if (m == GameMode.VERSUS)
         {
 
           if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
