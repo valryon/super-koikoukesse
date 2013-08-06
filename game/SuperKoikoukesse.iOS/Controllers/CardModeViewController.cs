@@ -12,13 +12,13 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
-    private GameModes _mode;
+    private GameMode _mode;
 
     #endregion
 
     #region Constructors
 
-    public CardModeViewController(GameModes mode) 
+    public CardModeViewController(GameMode mode) 
       : base ("CardModeView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
       _mode = mode;
@@ -88,7 +88,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Properties
 
-    public event Action<GameModes> GameModeSelected;
+    public event Action<GameMode> GameModeSelected;
 
     #endregion
   }

@@ -28,7 +28,7 @@ namespace SuperKoikoukesse.iOS
       if (_innerController == null)
       {
         _innerController = new HighScoresControlViewController();
-        _innerController.SetScoreParameters(GameMode.SCORE_ATTACK, GameDifficulties.NORMAL);
+        _innerController.SetScoreParameters(GameMode.SCORE, GameDifficulties.NORMAL);
 
         this.ViewScore.AddSubview(_innerController.View);
       }
@@ -60,16 +60,16 @@ namespace SuperKoikoukesse.iOS
         string mode = SelectorMode.TitleAt(SelectorMode.SelectedSegment);
 
         if (mode.ToLower().Contains("score"))
-          return GameMode.SCORE_ATTACK;
+          return GameMode.SCORE;
         if (mode.ToLower().Contains("time"))
-          return GameMode.TIME_ATTACK;
+          return GameMode.TIME;
         if (mode.ToLower().Contains("survival"))
           return GameMode.SURVIVAL;
         if (mode.ToLower().Contains("versus"))
           return GameMode.VERSUS;
       }
 
-      return GameMode.SCORE_ATTACK;
+      return GameMode.SCORE;
     }
 
     /// <summary>

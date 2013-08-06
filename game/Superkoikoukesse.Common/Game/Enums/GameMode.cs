@@ -5,10 +5,10 @@ namespace Superkoikoukesse.Common
 	/// <summary>
 	/// Available game modes
 	/// </summary>
-	public enum GameModes : int
+	public enum GameMode : int
 	{
-		SCORE_ATTACK = 0,
-		TIME_ATTACK = 1,
+		SCORE = 0,
+		TIME = 1,
 		SURVIVAL = 2,
 		VERSUS = 3
 	}

@@ -135,12 +135,12 @@ namespace SuperKoikoukesse.iOS
       panels.Add(versusMode);
 
       // -- Score attack
-      CardModeViewController scoreAttackMode = new CardModeViewController(GameMode.SCORE_ATTACK);
+      CardModeViewController scoreAttackMode = new CardModeViewController(GameMode.SCORE);
       scoreAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(scoreAttackMode);
 
       // -- Time attack
-      CardModeViewController timeAttackMode = new CardModeViewController(GameMode.TIME_ATTACK);
+      CardModeViewController timeAttackMode = new CardModeViewController(GameMode.TIME);
       timeAttackMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(timeAttackMode);
 

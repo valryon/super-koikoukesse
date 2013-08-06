@@ -104,7 +104,7 @@ namespace Superkoikoukesse.Common
 				}
 			}
 
-			if (Mode == GameMode.TIME_ATTACK) {
+			if (Mode == GameMode.TIME) {
 				mInfiniteQuestions = true;
 			} else if (Mode == GameMode.SURVIVAL) {
 				mInfiniteQuestions = true;
@@ -251,7 +251,7 @@ namespace Superkoikoukesse.Common
 					}
 
 					// Apply bonus/malus per mode
-					if (Mode == GameMode.SCORE_ATTACK) {
+					if (Mode == GameMode.SCORE) {
 						malus = (int)TimeLeft;
 					}
 
@@ -264,9 +264,9 @@ namespace Superkoikoukesse.Common
 					mMistakesCount++;
 
 					// Apply bonus/malus per mode
-					if (Mode == GameMode.SCORE_ATTACK) {
+					if (Mode == GameMode.SCORE) {
 						malus = 25;
-					} else if (Mode == GameMode.TIME_ATTACK) {
+					} else if (Mode == GameMode.TIME) {
 
 						malus = 25;
 
@@ -327,7 +327,7 @@ namespace Superkoikoukesse.Common
 				CurrentQuestion = mQuestionsPool.Dequeue ();
 
 				// Reset timer
-				if (Mode == GameMode.TIME_ATTACK) {
+				if (Mode == GameMode.TIME) {
 					if (TimeLeft < 0) {
 						IsOver = true;
 					}
@@ -341,7 +341,7 @@ namespace Superkoikoukesse.Common
 				}
 			} else {
 
-				if (Mode != GameMode.TIME_ATTACK) {
+				if (Mode != GameMode.TIME) {
 
 					Logger.I("Quizz is over!");
 					IsOver = true;
@@ -376,7 +376,7 @@ namespace Superkoikoukesse.Common
 		/// </summary>
 		public void SetTimeOver ()
 		{
-			if (Mode == GameMode.TIME_ATTACK) {
+			if (Mode == GameMode.TIME) {
 				IsOver = true;
 			} else {
 				SelectAnswer (-1);
