@@ -8,8 +8,8 @@
             <connections>
                 <outlet property="ButtonPlay" destination="LBW-RJ-8nH" id="LHs-r5-sMS"/>
                 <outlet property="ImageIcon" destination="1DV-N1-rCQ" id="FQD-bz-YOd"/>
-                <outlet property="LabelDescription" destination="7" id="kam-X3-WNy"/>
-                <outlet property="LabelMainDescription" destination="m1B-ry-tx1" id="9oB-GI-q4g"/>
+                <outlet property="LabelDescriptionMain" destination="m1B-ry-tx1" id="pn6-wd-hJO"/>
+                <outlet property="LabelDescriptionSub" destination="7" id="tSK-hA-vd7"/>
                 <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
                 <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
                 <outlet property="ViewShadow" destination="xwg-nu-pWj" id="xMF-jW-sTa"/>
@@ -101,7 +101,7 @@
                             <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try to beat the score during a 20 questions challenge !" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-ry-tx1" userLabel="Label - Title Desc">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try to beat the score during a 20 questions challenge !" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-ry-tx1" userLabel="Label - Desc Main">
                             <rect key="frame" x="35" y="99" width="230" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -119,7 +119,7 @@
                                 <constraint firstAttribute="height" constant="0.5" id="Lzc-B6-IrB"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="7" userLabel="Label - Desc">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="7" userLabel="Label - Desc Sub">
                             <rect key="frame" x="35" y="163" width="230" height="98"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">° When you find the correct answer three times in a row, you gain a joker that you can use to skip a question.

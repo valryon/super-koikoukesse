@@ -28,10 +28,18 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewDidLoad();
 
-      var modeId = _mode.ToString().ToLower();
-      LabelTitle.Text = Localization.Get(modeId + ".title");
-      LabelDescription.Text = Localization.Get(modeId + ".desc");
-      LabelDescription.SizeToFit();
+      // Get the mode i18n key (the enum name corresponds to the i18n key)
+      var mode = _mode.ToString().ToLower();
+
+      // Set the text
+      LabelTitle.Text = Localization.Get("mode." + mode + ".title");
+      LabelDescriptionMain.Text = Localization.Get("mode." + mode + ".desc.main");
+      LabelDescriptionSub.Text = Localization.Get("mode." + mode + ".desc.sub");
+
+      // Resize
+      LabelTitle.SizeToFit();
+      LabelDescriptionMain.SizeToFit();
+      LabelDescriptionSub.SizeToFit();
 
       // Add the shadow to the background view
       ViewShadow.Layer.CornerRadius = 3f;
