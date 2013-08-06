@@ -4,14 +4,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuModeViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardModeViewController">
             <connections>
                 <outlet property="ButtonPlay" destination="LBW-RJ-8nH" id="LHs-r5-sMS"/>
                 <outlet property="LabelDescription" destination="7" id="kam-X3-WNy"/>
                 <outlet property="LabelLifes" destination="5" id="s8Z-Ja-MkI"/>
                 <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
                 <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="view" destination="if9-7Z-apQ" id="oiy-rT-r7x"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -132,7 +132,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="88P-00-Wqq"/>
                 <constraint firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="EDb-aP-9VS"/>

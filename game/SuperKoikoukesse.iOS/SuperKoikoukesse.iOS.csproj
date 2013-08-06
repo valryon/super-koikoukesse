@@ -196,12 +196,12 @@
     <InterfaceDefinition Include="Views\Main_iPhone.storyboard" />
     <InterfaceDefinition Include="Views\Main_iPad.storyboard" />
     <InterfaceDefinition Include="Views\iPhone\ScoreView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\CardScore_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPad\CardScore_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\CardMode_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPhone\CardMode_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\CardInfo_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPad\CardInfo_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardInfoView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardModeView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardScoreView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardInfoView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardModeView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardScoreView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">

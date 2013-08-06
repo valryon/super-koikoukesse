@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuInfosViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardInfoViewController">
             <connections>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -100,7 +100,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Rvj-ZV-tIA" secondAttribute="centerX" id="CO6-s9-yTY"/>
                 <constraint firstAttribute="centerY" secondItem="Rvj-ZV-tIA" secondAttribute="centerY" id="zjp-ra-Wna"/>

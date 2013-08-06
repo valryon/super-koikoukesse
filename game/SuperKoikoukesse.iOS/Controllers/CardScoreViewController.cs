@@ -17,7 +17,7 @@ namespace SuperKoikoukesse.iOS
     #region Constructors
 
     public CardScoreViewController()
-      : base ("CardScore" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+      : base ("CardScoreView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
     }
 

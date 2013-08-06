@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PagerMenuHighscoresView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardScoreViewController">
             <connections>
                 <outlet property="SelectorDifficulty" destination="21" id="PuV-o5-Aec"/>
                 <outlet property="SelectorMode" destination="6" id="00s-Xq-Cqh"/>
@@ -60,7 +60,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="gn5-K0-vWJ" secondAttribute="centerY" id="ESY-EF-nzl"/>
                 <constraint firstAttribute="centerX" secondItem="gn5-K0-vWJ" secondAttribute="centerX" id="blJ-GS-aEl"/>

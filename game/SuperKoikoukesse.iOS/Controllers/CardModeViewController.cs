@@ -18,7 +18,7 @@ namespace SuperKoikoukesse.iOS
     #region Constructors
 
     public CardModeViewController(GameModes mode) 
-      : base ("CardMode" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+      : base ("CardModeView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
       _mode = mode;
     }
