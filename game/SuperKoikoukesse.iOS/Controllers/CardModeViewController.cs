@@ -30,6 +30,11 @@ namespace SuperKoikoukesse.iOS
 
       // Get the mode i18n key (the enum name corresponds to the i18n key)
       var mode = _mode.ToString().ToLower();
+      var color = PXNConstants.GetModeColor(_mode);
+
+      // Colors
+      LabelTitle.TextColor = color;
+      ViewCard.BackgroundColor = color;
 
       // Add a border below the header
       var borderBottom = new CALayer();
