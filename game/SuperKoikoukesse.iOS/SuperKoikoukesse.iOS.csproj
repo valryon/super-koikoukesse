@@ -2229,5 +2229,9 @@
     <BundleResource Include="Resources\particle.png" />
     <BundleResource Include="Resources\icon_mode_score.png" />
     <BundleResource Include="Resources\icon_mode_score%402x.png" />
+    <BundleResource Include="Resources\arrow_to_left.png" />
+    <BundleResource Include="Resources\arrow_to_left%402x.png" />
+    <BundleResource Include="Resources\arrow_to_right.png" />
+    <BundleResource Include="Resources\arrow_to_right%402x.png" />
   </ItemGroup>
 </Project>
