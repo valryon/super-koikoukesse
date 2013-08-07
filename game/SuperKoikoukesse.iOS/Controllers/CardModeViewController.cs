@@ -31,6 +31,12 @@ namespace SuperKoikoukesse.iOS
       // Get the mode i18n key (the enum name corresponds to the i18n key)
       var mode = _mode.ToString().ToLower();
 
+      // Add a border below the header
+      var borderBottom = new CALayer();
+      borderBottom.Frame = new RectangleF(0, ViewHeader.Frame.Height, ViewHeader.Frame.Width, 0.5f);
+      borderBottom.BackgroundColor = UIColor.FromHSB(0, 0, 0.7f).CGColor;
+      ViewHeader.Layer.AddSublayer(borderBottom);
+
       // Set the text
       LabelTitle.Text = Localization.Get("mode." + mode + ".title");
       LabelDescriptionMain.Text = Localization.Get("mode." + mode + ".desc.main");

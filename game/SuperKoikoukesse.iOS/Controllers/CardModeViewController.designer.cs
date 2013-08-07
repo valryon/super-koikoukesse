@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -30,6 +31,9 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIView ViewCard { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIView ViewHeader { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIView ViewShadow { get; set; }
 
 		[Action ("OnPlayTouched:")]
@@ -47,16 +51,6 @@ namespace SuperKoikoukesse.iOS
 				ImageIcon = null;
 			}
 
-			if (LabelTitle != null) {
-				LabelTitle.Dispose ();
-				LabelTitle = null;
-			}
-
-			if (ViewCard != null) {
-				ViewCard.Dispose ();
-				ViewCard = null;
-			}
-
 			if (LabelDescriptionMain != null) {
 				LabelDescriptionMain.Dispose ();
 				LabelDescriptionMain = null;
@@ -65,6 +59,21 @@ namespace SuperKoikoukesse.iOS
 			if (LabelDescriptionSub != null) {
 				LabelDescriptionSub.Dispose ();
 				LabelDescriptionSub = null;
+			}
+
+			if (LabelTitle != null) {
+				LabelTitle.Dispose ();
+				LabelTitle = null;
+			}
+
+			if (ViewHeader != null) {
+				ViewHeader.Dispose ();
+				ViewHeader = null;
+			}
+
+			if (ViewCard != null) {
+				ViewCard.Dispose ();
+				ViewCard = null;
 			}
 
 			if (ViewShadow != null) {

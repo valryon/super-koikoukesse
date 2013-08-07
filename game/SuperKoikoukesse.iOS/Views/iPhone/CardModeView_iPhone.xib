@@ -10,8 +10,9 @@
                 <outlet property="ImageIcon" destination="1DV-N1-rCQ" id="FQD-bz-YOd"/>
                 <outlet property="LabelDescriptionMain" destination="m1B-ry-tx1" id="pn6-wd-hJO"/>
                 <outlet property="LabelDescriptionSub" destination="7" id="tSK-hA-vd7"/>
-                <outlet property="LabelTitle" destination="5" id="Hwc-ao-EpZ"/>
+                <outlet property="LabelTitle" destination="NqA-Z0-3ST" id="7rk-ob-115"/>
                 <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
+                <outlet property="ViewHeader" destination="h1t-N5-qQb" id="pMH-LP-hdK"/>
                 <outlet property="ViewShadow" destination="xwg-nu-pWj" id="xMF-jW-sTa"/>
                 <outlet property="view" destination="if9-7Z-apQ" id="oiy-rT-r7x"/>
             </connections>
@@ -49,11 +50,11 @@
                                         <constraint firstAttribute="height" constant="0.5" id="P4i-eb-tEQ"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Attack" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="115" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="Label - Title">
-                                    <rect key="frame" x="20" y="27" width="115" height="24"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score attack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqA-Z0-3ST">
+                                    <rect key="frame" x="20" y="26" width="142" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                    <color key="textColor" red="0.40392160415649414" green="0.80392163991928101" blue="0.86274516582489014" alpha="1" colorSpace="deviceRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <color key="textColor" red="0.40392160420000001" green="0.80392163989999998" blue="0.86274516580000005" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_mode_score.png" translatesAutoresizingMaskIntoConstraints="NO" id="1DV-N1-rCQ" userLabel="Image - Icon">
@@ -70,24 +71,24 @@
                                 <constraint firstAttribute="trailing" secondItem="1DV-N1-rCQ" secondAttribute="trailing" constant="20" id="8jG-CR-0Gd"/>
                                 <constraint firstItem="YSl-Sc-pYJ" firstAttribute="top" secondItem="uL7-zA-4yJ" secondAttribute="bottom" constant="2" id="919-tZ-Ofr"/>
                                 <constraint firstItem="YSl-Sc-pYJ" firstAttribute="trailing" secondItem="uL7-zA-4yJ" secondAttribute="trailing" id="D75-36-KbN"/>
-                                <constraint firstItem="5" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="20" id="KFF-kA-qaA"/>
+                                <constraint firstItem="NqA-Z0-3ST" firstAttribute="bottom" secondItem="1DV-N1-rCQ" secondAttribute="bottom" constant="5" id="Fkw-JI-Drn"/>
                                 <constraint firstItem="uL7-zA-4yJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="6" id="NNd-vu-HAN"/>
                                 <constraint firstItem="uL7-zA-4yJ" firstAttribute="top" secondItem="h1t-N5-qQb" secondAttribute="top" constant="6" id="XCz-Ym-Ugs"/>
                                 <constraint firstItem="YSl-Sc-pYJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" id="Ys3-O7-sPV"/>
-                                <constraint firstItem="1DV-N1-rCQ" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="hVx-eP-Jcq"/>
+                                <constraint firstItem="NqA-Z0-3ST" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="20" id="ced-Wv-PKr"/>
                                 <constraint firstAttribute="height" constant="71" id="j9g-bE-3SS"/>
                                 <constraint firstAttribute="centerY" secondItem="1DV-N1-rCQ" secondAttribute="centerY" id="s7t-3w-S9M"/>
                             </constraints>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a game costs one ticket" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPZ-vi-6Q6" userLabel="Label - Tip">
-                            <rect key="frame" x="14" y="284" width="86" height="10"/>
+                            <rect key="frame" x="14" y="285" width="86" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRC-kw-P0p" userLabel="View - Line">
-                            <rect key="frame" x="0.0" y="297" width="161" height="1"/>
+                            <rect key="frame" x="0.0" y="298" width="161" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
@@ -95,7 +96,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SuperKoikoukesse is a game created by Pixelnest Studio and Laurent Brossard." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="147" translatesAutoresizingMaskIntoConstraints="NO" id="26X-at-nHe" userLabel="Label - Creators">
-                            <rect key="frame" x="14" y="300" width="147" height="19"/>
+                            <rect key="frame" x="14" y="301" width="147" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
@@ -157,7 +158,7 @@
                         <constraint firstItem="26X-at-nHe" firstAttribute="trailing" secondItem="tRC-kw-P0p" secondAttribute="trailing" id="0jH-VN-GO1"/>
                         <constraint firstItem="h1t-N5-qQb" firstAttribute="top" secondItem="1" secondAttribute="top" id="1TE-Nl-F02"/>
                         <constraint firstItem="h1t-N5-qQb" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="4Pq-Ui-NeJ"/>
-                        <constraint firstAttribute="bottom" secondItem="26X-at-nHe" secondAttribute="bottom" constant="14" id="4yw-Xt-bS9"/>
+                        <constraint firstAttribute="bottom" secondItem="26X-at-nHe" secondAttribute="bottom" constant="13" id="4yw-Xt-bS9"/>
                         <constraint firstItem="26X-at-nHe" firstAttribute="top" secondItem="vPZ-vi-6Q6" secondAttribute="bottom" constant="6" id="8nb-wN-zaR"/>
                         <constraint firstItem="Jch-do-Uyv" firstAttribute="top" secondItem="m1B-ry-tx1" secondAttribute="bottom" constant="12" id="8p4-zw-vc7"/>
                         <constraint firstAttribute="trailing" secondItem="Jch-do-Uyv" secondAttribute="trailing" id="AhM-qz-fJh"/>
