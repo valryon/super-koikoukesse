@@ -275,8 +275,9 @@ namespace SuperKoikoukesse.iOS
 	
 		internal GKTurnBasedMatch CurrentGKMatch { get; set; }
 
-		// Delegate for turn-based Game Center
-
+		/// <summary>
+		/// Delegate for turn-based Game Center matchs
+		/// </summary>
 		private class MatchMakerDelegate : GKTurnBasedMatchmakerViewControllerDelegate
 		{
 			public event Action<VersusMatch> MatchFoundCallback;
