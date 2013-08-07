@@ -40,10 +40,8 @@ namespace SuperKoikoukesse.iOS
 			// Create first view
 			mWindow = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			//viewController = new GameViewController ();
 			mSplashScreenViewController = new SplashscreenViewController ();
-			mWindow.RootViewController = mSplashScreenViewController;
-			mWindow.MakeKeyAndVisible ();
+			SwitchToView (mSplashScreenViewController);
 
 			// Load all the things!
 			LoadDatabase ();
@@ -51,7 +49,7 @@ namespace SuperKoikoukesse.iOS
 
 			return true;
 		}
-		
+
 		/// <summary>
 		/// Load the database in a thread
 		/// </summary>
@@ -98,7 +96,6 @@ namespace SuperKoikoukesse.iOS
 			});
 		}
 
-		
 		/// <summary>
 		/// Load Game Center and player profile
 		/// It's not the same mechanism, due to Game Center which should be displayed on the menu.
@@ -167,23 +164,6 @@ namespace SuperKoikoukesse.iOS
 				}
 			}
 		}
-
-		#endregion
-
-		#region Dispose
-		
-		protected override void Dispose (bool disposing)
-		{
-			if (mGameViewController != null) {
-				mGameViewController.Dispose ();
-			}
-			if (mMenuViewController != null) {
-				mMenuViewController.Dispose ();
-			}
-
-			base.Dispose (disposing);
-		}
-
 		#endregion
 
 		#region Methods
@@ -282,15 +262,17 @@ namespace SuperKoikoukesse.iOS
 
 		#region Views switch
 
+		/// <summary>
+		/// Go back to main menu
+		/// </summary>
 		public void SwitchToMenuView ()
 		{
-			if (mMenuViewController == null) {
-				mMenuViewController = new MenuViewController ();
+			if (mMenuViewController != null) {
+				mMenuViewController = null;
 			}
 
-			mWindow.RootViewController.RemoveFromParentViewController ();
-			mWindow.RootViewController = mMenuViewController;
-			mWindow.MakeKeyAndVisible ();
+			mMenuViewController = new MenuViewController ();
+			SwitchToView (mMenuViewController);
 
 			// Careful: we may not have fully loaded the game
 			SetLoading (!IsInitialized);
@@ -303,9 +285,11 @@ namespace SuperKoikoukesse.iOS
 		/// <param name="difficulty">Difficulty.</param>
 		public void SwitchToGameView (GameMode mode, GameDifficulties difficulty, Filter filter = null)
 		{
-			if (mGameViewController == null) {
-				mGameViewController = new GameViewController ();
+			if (mGameViewController != null) {
+				mGameViewController = null;
 			}
+
+			mGameViewController = new GameViewController ();
 
 			// Create a new filter
 			Filter f = null;
@@ -335,9 +319,7 @@ namespace SuperKoikoukesse.iOS
 
 					SetLoading (false);
 
-					mWindow.RootViewController.RemoveFromParentViewController ();
-					mWindow.RootViewController = mGameViewController;
-					mWindow.MakeKeyAndVisible ();
+					SwitchToView (mGameViewController);
 
 					mGameViewController.DisplayQuizz ();
 				});
@@ -353,14 +335,11 @@ namespace SuperKoikoukesse.iOS
 		public void SwitchToScoreView (Quizz quizz)
 		{
 			if (mScoreViewController != null) {
-				mScoreViewController.Dispose ();
 				mScoreViewController = null;
 			}
 			mScoreViewController = new ScoreViewController (quizz);
 			
-			mWindow.RootViewController.RemoveFromParentViewController ();
-			mWindow.RootViewController = mScoreViewController;
-			mWindow.MakeKeyAndVisible ();
+			SwitchToView (mScoreViewController);
 		}
 
 		/// <summary>
@@ -372,10 +351,18 @@ namespace SuperKoikoukesse.iOS
 				mCreditsViewController = new CreditsViewController ();
 			}
 			
-			mWindow.RootViewController.RemoveFromParentViewController ();
-			mWindow.RootViewController = mCreditsViewController;
+			SwitchToView (mCreditsViewController);
+		}
+
+		private void SwitchToView (UIViewController viewController)
+		{
+			if (mWindow.RootViewController != null) {
+				mWindow.RootViewController.Dispose ();
+				mWindow.RootViewController.RemoveFromParentViewController ();
+			}
+
+			mWindow.RootViewController = viewController;
 			mWindow.MakeKeyAndVisible ();
-			
 		}
 
 		/// <summary>
@@ -434,6 +421,15 @@ namespace SuperKoikoukesse.iOS
 
 		#endregion
 
+		#region Events
+
+		/// <summary>
+		/// Game is ready to be played
+		/// </summary>
+		public event Action InitializationComplete;
+
+		#endregion
+
 		#region Static Properties
 
 		/// <summary>
@@ -459,15 +455,9 @@ namespace SuperKoikoukesse.iOS
 			// If iPhone, only portrait
 			return UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.PortraitUpsideDown;
 		}
-
 		#endregion
 
 		#region Properties
-
-		/// <summary>
-		/// Game is ready to be played
-		/// </summary>
-		public event Action InitializationComplete;
 
 		/// <summary>
 		/// Global configuration
