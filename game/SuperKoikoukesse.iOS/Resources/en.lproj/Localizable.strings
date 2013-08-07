@@ -5,22 +5,22 @@
 // Score Attack
 "mode.score.title"        = "Score Attack";
 "mode.score.desc.main"    = "Try to beat the score during a 20 questions challenge !";
-"mode.score.desc.sub"     =  "° When you find the correct answer three times in a row, you gain a joker that you can use to skip a question.\n\n° Each correct answer increments the combo gauge.";
+"mode.score.desc.sub"     =  "° Each correct answer increments the combo gauge.\n\n° Get a joker after three correct answers in a row.";
 
 // Time Attack
 "mode.time.title"         = "Time Attack";
-"mode.time.desc.main"     = "Be careful, you have only 60 seconds to make the best score possible! Each wrong answer will decrease the time that you have.";
-"mode.time.desc.sub"      = "";
+"mode.time.desc.main"     = "You have 60 seconds to make the best score possible !";
+"mode.time.desc.sub"      = "° Each wrong answer will decrease the time that you have.\n\n° Get a joker after three correct answers in a row.";
 
 // Survival
 "mode.survival.title"     = "Survival";
-"mode.survival.desc.main" = "Only 3 mistakes allowed... How long will you survive against the game ?";
-"mode.survival.desc.sub"  = "";
+"mode.survival.desc.main" = "How long will you survive against the game ?";
+"mode.survival.desc.sub"  = "° Be careful, only 3 mistakes are allowed.\n\n° Get a joker after three correct answers in a row.";
 
 // Versus
 "mode.versus.title"       = "Duel";
-"mode.versus.desc.main"   = "Duel your friends! Select a theme, an opponent and show the world that you know video games like no one else!";
-"mode.versus.desc.sub"    = "";
+"mode.versus.desc.main"   = "Duel your friends !";
+"mode.versus.desc.sub"    = "° Select a theme, an opponent and show the world that you know video games like no one else !";
 
 //
 // Difficulties 
