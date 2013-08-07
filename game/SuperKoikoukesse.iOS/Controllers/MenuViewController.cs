@@ -128,11 +128,9 @@ namespace SuperKoikoukesse.iOS
       highScorePanel = new CardScoreViewController();
       panels.Add(highScorePanel);
 
-      // Build for each modes
-      // -- Versus
-      CardModeViewController versusMode = new CardModeViewController(GameMode.VERSUS);
-      versusMode.GameModeSelected += HandleGameModeSelected;
-      panels.Add(versusMode);
+      //
+      // Build modes
+      //
 
       // -- Score attack
       CardModeViewController scoreAttackMode = new CardModeViewController(GameMode.SCORE);
@@ -148,6 +146,11 @@ namespace SuperKoikoukesse.iOS
       CardModeViewController survivalMode = new CardModeViewController(GameMode.SURVIVAL);
       survivalMode.GameModeSelected += HandleGameModeSelected;
       panels.Add(survivalMode);
+
+      // -- Versus
+      CardModeViewController versusMode = new CardModeViewController(GameMode.VERSUS);
+      versusMode.GameModeSelected += HandleGameModeSelected;
+      panels.Add(versusMode);
 
       int count = panels.Count;
       RectangleF scrollFrame = scrollView.Frame;
