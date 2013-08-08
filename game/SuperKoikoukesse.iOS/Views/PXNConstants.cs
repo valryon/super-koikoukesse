@@ -18,6 +18,8 @@ namespace SuperKoikoukesse.iOS
     public static readonly UIColor BRAND_BACKGROUND = UIColor.FromRGB(243.0f/255.0f, 243.0f/255.0f, 243.0f/255.0f);
     public static readonly UIColor BRAND_BORDER = UIColor.FromRGB(178.0f/255.0f, 178.0f/255.0f, 178.0f/255.0f);
 
+    public static readonly UIColor COLOR_NAVIGATION = UIColor.FromWhiteAlpha(white:0.882f, alpha: 1f);
+
     //
     // Modes
     //

@@ -168,6 +168,7 @@
     <Compile Include="Controllers\SplashscreenViewController.designer.cs">
       <DependentUpon>SplashscreenViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PXNAppearance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

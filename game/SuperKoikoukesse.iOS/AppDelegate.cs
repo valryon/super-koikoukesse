@@ -32,6 +32,8 @@ namespace SuperKoikoukesse.iOS
 		{
 			Logger.I ("Launching app...");
 
+      new PXNAppearance();
+
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
 			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
