@@ -129,9 +129,6 @@
       <DependentUpon>CreditsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SplashscreenViewController.cs" />
-    <Compile Include="Controllers\SplashscreenView.designer.cs">
-      <DependentUpon>SplashscreenViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ScoreViewController.cs" />
     <Compile Include="Controllers\ScoreViewController.designer.cs">
       <DependentUpon>ScoreViewController.cs</DependentUpon>
@@ -168,6 +165,9 @@
     </Compile>
     <Compile Include="Controllers\CardInfoViewController.cs" />
     <Compile Include="Controllers\CardScoreViewController.cs" />
+    <Compile Include="Controllers\SplashscreenViewController.designer.cs">
+      <DependentUpon>SplashscreenViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

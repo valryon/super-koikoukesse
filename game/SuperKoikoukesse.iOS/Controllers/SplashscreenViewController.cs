@@ -11,15 +11,15 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class SplashscreenViewController : UIViewController
 	{
-		public SplashscreenViewController () 
-			: base ("SplashscreenView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+		public SplashscreenViewController (IntPtr handle) 
+			: base (handle)
 		{
 			
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
-      return AppDelegate.HasSupportedInterfaceOrientations();
+      		return AppDelegate.HasSupportedInterfaceOrientations();
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -54,7 +54,7 @@ namespace SuperKoikoukesse.iOS
 					}, () => {
 						
 						BeginInvokeOnMainThread(() => {
-							gotoMenu();
+							GoToMenu();
 						});
 					}
 				);
@@ -62,11 +62,11 @@ namespace SuperKoikoukesse.iOS
 			);
 		}
 
-		private void gotoMenu ()
+		private void GoToMenu ()
 		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToMenuView ();
-
+//			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+//			appDelegate.SwitchToMenuView ();
+			PerformSegue ("SplashToMenu", this);
 		}
 	}
 }

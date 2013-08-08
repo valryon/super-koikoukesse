@@ -21,8 +21,8 @@ namespace SuperKoikoukesse.iOS
 
 		#region Constructor & Initialization
 
-		public MenuViewController ()
-			: base ("MenuView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+		public MenuViewController (IntPtr handle)
+			: base (handle)
 		{
 			cards = new List<UIViewController> ();
 		}

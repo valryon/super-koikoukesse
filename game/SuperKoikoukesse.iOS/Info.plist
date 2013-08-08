@@ -34,5 +34,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>Main_iPhone</string>
 </dict>
 </plist>

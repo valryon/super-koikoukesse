@@ -8,8 +8,8 @@ using MonoTouch.Foundation;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("SplashscreenView")]
-	partial class SplashscreenView
+	[Register ("SplashscreenViewController")]
+	partial class SplashscreenViewController
 	{
 		void ReleaseDesignerOutlets ()
 		{

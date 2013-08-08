@@ -15,7 +15,6 @@ namespace SuperKoikoukesse.iOS
 	{
 		#region Fields
 
-		private UIWindow mWindow;
 		private SplashscreenViewController mSplashScreenViewController;
 		private GameViewController mGameViewController;
 		private MenuViewController mMenuViewController;
@@ -37,11 +36,8 @@ namespace SuperKoikoukesse.iOS
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
 			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
-			// Create first view
-			mWindow = new UIWindow (UIScreen.MainScreen.Bounds);
-
-			mSplashScreenViewController = new SplashscreenViewController ();
-			SwitchToView (mSplashScreenViewController);
+//			mSplashScreenViewController = new SplashscreenViewController ();
+//			SwitchToView (mSplashScreenViewController);
 
 			// Load all the things!
 			LoadDatabase ();
@@ -106,7 +102,7 @@ namespace SuperKoikoukesse.iOS
 			GameCenter = new GameCenterPlayer ();
 			GameCenter.ShowGameCenter += (UIViewController gcController) => {
 				InvokeOnMainThread (() => {
-					mWindow.RootViewController.PresentViewController (gcController, true, null);
+					Window.RootViewController.PresentViewController (gcController, true, null);
 				});
 			};
 
@@ -244,9 +240,9 @@ namespace SuperKoikoukesse.iOS
 //			);
 
 			// Fill
-			mLoadingViewController.View.Frame = (mWindow.RootViewController.View.Bounds);
+			mLoadingViewController.View.Frame = (Window.RootViewController.View.Bounds);
 
-			mWindow.RootViewController.View.AddSubview (mLoadingViewController.View);
+			Window.RootViewController.View.AddSubview (mLoadingViewController.View);
 		}
 
 		/// <summary>
@@ -267,15 +263,11 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void SwitchToMenuView ()
 		{
-			if (mMenuViewController != null) {
-				mMenuViewController = null;
-			}
-
-			mMenuViewController = new MenuViewController ();
-			SwitchToView (mMenuViewController);
-
-			// Careful: we may not have fully loaded the game
-			SetLoading (!IsInitialized);
+//			mMenuViewController = new MenuViewController ();
+//			SwitchToView (mMenuViewController);
+//
+//			// Careful: we may not have fully loaded the game
+//			SetLoading (!IsInitialized);
 		}
 
 		/// <summary>
@@ -356,13 +348,15 @@ namespace SuperKoikoukesse.iOS
 
 		private void SwitchToView (UIViewController viewController)
 		{
-			if (mWindow.RootViewController != null) {
-				mWindow.RootViewController.Dispose ();
-				mWindow.RootViewController.RemoveFromParentViewController ();
+			return;
+
+			if (Window.RootViewController != null) {
+				Window.RootViewController.Dispose ();
+				Window.RootViewController.RemoveFromParentViewController ();
 			}
 
-			mWindow.RootViewController = viewController;
-			mWindow.MakeKeyAndVisible ();
+			Window.RootViewController = viewController;
+			Window.MakeKeyAndVisible ();
 		}
 
 		/// <summary>
@@ -413,7 +407,7 @@ namespace SuperKoikoukesse.iOS
 						}
 					};
 
-					mWindow.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
+					Window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
 				}
 			} 
 		}
@@ -458,6 +452,15 @@ namespace SuperKoikoukesse.iOS
 		#endregion
 
 		#region Properties
+
+		/// <summary>
+		/// For storyboard handle
+		/// </summary>
+		/// <value>The window.</value>
+		public override UIWindow Window {
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Global configuration
