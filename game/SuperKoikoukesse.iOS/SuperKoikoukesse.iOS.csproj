@@ -116,10 +116,6 @@
     <Compile Include="Controllers\GameViewController.designer.cs">
       <DependentUpon>GameViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\LoadingViewController.cs" />
-    <Compile Include="Controllers\LoadingViewController.designer.cs">
-      <DependentUpon>LoadingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\MenuDifficultyViewController.cs" />
     <Compile Include="Controllers\MenuDifficultyViewController.designer.cs">
       <DependentUpon>MenuDifficultyViewController.cs</DependentUpon>
@@ -180,7 +176,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\LoadingView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />

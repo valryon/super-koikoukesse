@@ -30,10 +30,6 @@
 		<string>Icon-72</string>
 		<string>Icon-72@2x</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 </dict>

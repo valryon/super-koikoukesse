@@ -15,11 +15,9 @@ namespace SuperKoikoukesse.iOS
 	{
 		#region Fields
 
-		private SplashscreenViewController mSplashScreenViewController;
 		private GameViewController mGameViewController;
 		private MenuViewController mMenuViewController;
 		private ScoreViewController mScoreViewController;
-		private LoadingViewController mLoadingViewController;
 		private CreditsViewController mCreditsViewController;
 		private bool mDatabaseLoaded;
 		private bool mConfigurationLoaded;
@@ -32,7 +30,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			Logger.I ("Launching app...");
 
-      new PXNAppearance();
+      		new PXNAppearance();
 
 			// Global parameters
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
@@ -157,9 +155,6 @@ namespace SuperKoikoukesse.iOS
 
 			if (IsInitialized) {
 				SetLoading (false);
-				if (InitializationComplete != null) {
-					InitializationComplete ();
-				}
 			}
 		}
 		#endregion
@@ -213,47 +208,15 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void SetLoading (bool isLoading)
 		{
-			if (mLoadingViewController == null) {
-				mLoadingViewController = new LoadingViewController ();
-			}
-
-			BeginInvokeOnMainThread (() => {
-
-				if (isLoading) {
-					DisplayLoading ();
-				} else {
-					HideLoading ();
+			if (isLoading) {
+				if (OnLoading != null) {
+					OnLoading ();
 				}
-			});
-		}
-
-		/// <summary>
-		/// Display the loading screen
-		/// </summary>
-		private void DisplayLoading ()
-		{
-			// Center
-//			loadingViewController.View.Frame = new System.Drawing.RectangleF (
-//
-//				(window.RootViewController.View.Bounds.Width/2) - (loadingViewController.View.Frame.Width/2),
-//				(window.RootViewController.View.Bounds.Height/2)- (loadingViewController.View.Frame.Height/2),
-//				loadingViewController.View.Frame.Width,
-//				loadingViewController.View.Frame.Height
-//			);
-
-			// Fill
-			mLoadingViewController.View.Frame = (Window.RootViewController.View.Bounds);
-
-			Window.RootViewController.View.AddSubview (mLoadingViewController.View);
-		}
-
-		/// <summary>
-		/// Hide the loading screen
-		/// </summary>
-		private void HideLoading ()
-		{
-			mLoadingViewController.View.RemoveFromSuperview ();
-			//loadingViewController.
+			} else {
+				if (OnLoadingComplete != null) {
+					OnLoadingComplete ();
+				}
+			}
 		}
 
 		#endregion
@@ -420,9 +383,14 @@ namespace SuperKoikoukesse.iOS
 		#region Events
 
 		/// <summary>
+		/// Loading
+		/// </summary>
+		public event Action OnLoading;
+
+		/// <summary>
 		/// Game is ready to be played
 		/// </summary>
-		public event Action InitializationComplete;
+		public event Action OnLoadingComplete;
 
 		#endregion
 

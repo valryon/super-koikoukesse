@@ -12,15 +12,28 @@ namespace SuperKoikoukesse.iOS
 	public partial class MenuViewController : UIViewController
 	{
 		#region Fields
-		private List<UIViewController> cards;
-		private MenuDifficultyViewController difficultyViewController;
-		private CardScoreViewController highScorePanel;
+
+		private List<UIViewController> mCards;
+		private MenuDifficultyViewController mDifficultyViewController;
+		private CardScoreViewController mHighScorePanel;
+
 		#endregion
+
 		#region Constructor & Initialization
+
 		public MenuViewController (IntPtr handle)
 			: base (handle)
 		{
-			cards = new List<UIViewController> ();
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.OnLoading += () => {
+				ViewLoading.Hidden = false;
+			};
+
+			appDelegate.OnLoadingComplete += () => {
+				ViewLoading.Hidden = true;
+			};
+
+			mCards = new List<UIViewController> ();
 		}
 
 		public override void ViewDidLoad ()
@@ -39,7 +52,7 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.ViewDidAppear (animated);
 
-			if (cards.Count == 0) {
+			if (mCards.Count == 0) {
 				// We need auto layout to be set up, so we can create panels only here
 				CreateCards ();
 			}
@@ -48,8 +61,11 @@ namespace SuperKoikoukesse.iOS
 
 			UpdateViewWithPlayerInfos ();
 		}
+
 		#endregion
+
 		#region Methods
+
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
 			return AppDelegate.HasSupportedInterfaceOrientations ();
@@ -85,12 +101,14 @@ namespace SuperKoikoukesse.iOS
 			}
 
 			// Update leaderboards ?
-			if (highScorePanel != null) {
-				highScorePanel.ForceUpdate ();
+			if (mHighScorePanel != null) {
+				mHighScorePanel.ForceUpdate ();
 			}
 
 		}
+
 		#region Scroll view and pagination
+
 		/// <summary>
 		/// Create the cards for the menu
 		/// </summary>
@@ -105,16 +123,16 @@ namespace SuperKoikoukesse.iOS
 				PageControl.CurrentPage = (int)page;
 			};
 
-			highScorePanel = null;
-			cards.Clear ();
+			mHighScorePanel = null;
+			mCards.Clear ();
 
 			// Credits
 			CardInfoViewController infos = new CardInfoViewController ();
-			cards.Add (infos);
+			mCards.Add (infos);
 
 			// Highscores
-			highScorePanel = new CardScoreViewController ();
-			cards.Add (highScorePanel);
+			mHighScorePanel = new CardScoreViewController ();
+			mCards.Add (mHighScorePanel);
 
 			//
 			// Build modes
@@ -123,24 +141,24 @@ namespace SuperKoikoukesse.iOS
 			// -- Score attack
 			CardModeViewController scoreAttackMode = new CardModeViewController (GameMode.SCORE);
 			scoreAttackMode.GameModeSelected += HandleGameModeSelected;
-			cards.Add (scoreAttackMode);
+			mCards.Add (scoreAttackMode);
 
 			// -- Time attack
 			CardModeViewController timeAttackMode = new CardModeViewController (GameMode.TIME);
 			timeAttackMode.GameModeSelected += HandleGameModeSelected;
-			cards.Add (timeAttackMode);
+			mCards.Add (timeAttackMode);
 
 			// -- Survival
 			CardModeViewController survivalMode = new CardModeViewController (GameMode.SURVIVAL);
 			survivalMode.GameModeSelected += HandleGameModeSelected;
-			cards.Add (survivalMode);
+			mCards.Add (survivalMode);
 
 			// -- Versus
 			CardModeViewController versusMode = new CardModeViewController (GameMode.VERSUS);
 			versusMode.GameModeSelected += HandleGameModeSelected;
-			cards.Add (versusMode);
+			mCards.Add (versusMode);
 
-			int count = cards.Count;
+			int count = mCards.Count;
 			RectangleF scrollFrame = ScrollView.Frame;
 
 			scrollFrame.Width = scrollFrame.Width * count;
@@ -155,10 +173,10 @@ namespace SuperKoikoukesse.iOS
 				location.X = frame.Width * i;
 				frame.Location = location;
 
-				cards [i].View.Frame = frame;
+				mCards [i].View.Frame = frame;
 
 				// Add to scroll and paging
-				ScrollView.AddSubview (cards [i].View);
+				ScrollView.AddSubview (mCards [i].View);
 			}
 
 			PageControl.Pages = count;
@@ -174,7 +192,9 @@ namespace SuperKoikoukesse.iOS
 		{
 			ScrollView.SetContentOffset (new PointF (page * ScrollView.Frame.Width, 0), true);
 		}
+
 		#endregion
+
 		/// <summary>
 		/// Pop-up the Game Center matchmaker
 		/// </summary>
@@ -234,9 +254,9 @@ namespace SuperKoikoukesse.iOS
 		private void DisplayDifficultyChooser (GameMode selectedMode)
 		{
 			// Display difficulty view
-			if (difficultyViewController == null) {
-				difficultyViewController = new MenuDifficultyViewController ();
-				difficultyViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
+			if (mDifficultyViewController == null) {
+				mDifficultyViewController = new MenuDifficultyViewController ();
+				mDifficultyViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
 					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 					
 					Filter filter = null;
@@ -253,10 +273,10 @@ namespace SuperKoikoukesse.iOS
 				}; 	
 			}
 			
-			difficultyViewController.SetMode (selectedMode);
-			difficultyViewController.View.Frame = View.Frame;
+			mDifficultyViewController.SetMode (selectedMode);
+			mDifficultyViewController.View.Frame = View.Frame;
 			
-			View.AddSubview (difficultyViewController.View);
+			View.AddSubview (mDifficultyViewController.View);
 		}
 
 		void HandleGameModeSelected (GameMode m)

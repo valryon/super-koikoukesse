@@ -27,6 +27,9 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewLoading { get; set; }
+
 		[Action ("OnCoinsTouched:")]
 		partial void OnCoinsTouched (MonoTouch.Foundation.NSObject sender);
 
@@ -47,14 +50,19 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (LabelCredits != null) {
-				LabelCredits.Dispose ();
-				LabelCredits = null;
+			if (ButtonDebug != null) {
+				ButtonDebug.Dispose ();
+				ButtonDebug = null;
 			}
 
 			if (LabelCoins != null) {
 				LabelCoins.Dispose ();
 				LabelCoins = null;
+			}
+
+			if (LabelCredits != null) {
+				LabelCredits.Dispose ();
+				LabelCredits = null;
 			}
 
 			if (PageControl != null) {
@@ -67,9 +75,9 @@ namespace SuperKoikoukesse.iOS
 				ScrollView = null;
 			}
 
-			if (ButtonDebug != null) {
-				ButtonDebug.Dispose ();
-				ButtonDebug = null;
+			if (ViewLoading != null) {
+				ViewLoading.Dispose ();
+				ViewLoading = null;
 			}
 		}
 	}
