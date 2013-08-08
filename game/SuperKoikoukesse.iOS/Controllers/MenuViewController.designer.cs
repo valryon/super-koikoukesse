@@ -12,9 +12,65 @@ namespace SuperKoikoukesse.iOS
 	[Register ("MenuViewController")]
 	partial class MenuViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIButton ButtonDebug { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelCoins { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelCredits { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIPageControl PageControl { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+
+		[Action ("OnCoinsTouched:")]
+		partial void OnCoinsTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnConfigTouched:")]
+		partial void OnConfigTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnCreditsTouched:")]
+		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnDebugTouched:")]
+		partial void OnDebugTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnSettingsTouched:")]
+		partial void OnSettingsTouched (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("OnShopTouched:")]
+		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (LabelCredits != null) {
+				LabelCredits.Dispose ();
+				LabelCredits = null;
+			}
+
+			if (LabelCoins != null) {
+				LabelCoins.Dispose ();
+				LabelCoins = null;
+			}
+
+			if (PageControl != null) {
+				PageControl.Dispose ();
+				PageControl = null;
+			}
+
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+
+			if (ButtonDebug != null) {
+				ButtonDebug.Dispose ();
+				ButtonDebug = null;
+			}
 		}
 	}
 }

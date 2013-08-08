@@ -12,15 +12,11 @@ namespace SuperKoikoukesse.iOS
 	public partial class MenuViewController : UIViewController
 	{
 		#region Fields
-
 		private List<UIViewController> cards;
 		private MenuDifficultyViewController difficultyViewController;
 		private CardScoreViewController highScorePanel;
-
 		#endregion
-
 		#region Constructor & Initialization
-
 		public MenuViewController (IntPtr handle)
 			: base (handle)
 		{
@@ -32,14 +28,9 @@ namespace SuperKoikoukesse.iOS
 			base.ViewDidLoad ();
 
 			// Hide credits and coins until player profile is loaded
-			coinsLabel.Hidden = true;
-			creditsLabel.Hidden = true;
-
-			// Localized elements
-			if (authorsLabel != null) {
-				authorsLabel.Text = Localization.Get ("credits.small");
-			}
-
+			LabelCoins.Hidden = true;
+			LabelCredits.Hidden = true;
+		
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.LoadPlayerProfile ();
 		}
@@ -53,15 +44,12 @@ namespace SuperKoikoukesse.iOS
 				CreateCards ();
 			}
 
-			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
+			ButtonDebug.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
 
 			UpdateViewWithPlayerInfos ();
 		}
-
 		#endregion
-
 		#region Methods
-
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
 			return AppDelegate.HasSupportedInterfaceOrientations ();
@@ -73,17 +61,17 @@ namespace SuperKoikoukesse.iOS
 		public void UpdateViewWithPlayerInfos ()
 		{
 			// Show infos is they were hidden
-			if (coinsLabel.Hidden) {
-				coinsLabel.Hidden = false;
-				creditsLabel.Hidden = false;
+			if (LabelCoins.Hidden) {
+				LabelCoins.Hidden = false;
+				LabelCredits.Hidden = false;
 
 				// Fade in
-				coinsLabel.Alpha = 0f;
-				creditsLabel.Alpha = 0f;
+				LabelCoins.Alpha = 0f;
+				LabelCredits.Alpha = 0f;
 
 				UIView.Animate (2f, () => {
-					coinsLabel.Alpha = 1f;
-					creditsLabel.Alpha = 1f;
+					LabelCoins.Alpha = 1f;
+					LabelCredits.Alpha = 1f;
 				});
 			}
 
@@ -92,8 +80,8 @@ namespace SuperKoikoukesse.iOS
 
 			// Display credits and coins
 			if (profile != null) {
-				creditsLabel.Text = profile.Credits.ToString ();
-				coinsLabel.Text = profile.Coins.ToString ();
+				LabelCredits.Text = profile.Credits.ToString ();
+				LabelCoins.Text = profile.Coins.ToString ();
 			}
 
 			// Update leaderboards ?
@@ -102,21 +90,19 @@ namespace SuperKoikoukesse.iOS
 			}
 
 		}
-
 		#region Scroll view and pagination
-
 		/// <summary>
 		/// Create the cards for the menu
 		/// </summary>
 		private void CreateCards ()
 		{
-			pageControl.ValueChanged += (object sender, EventArgs e) => {
-				SetScrollViewToPage (pageControl.CurrentPage);
+			PageControl.ValueChanged += (object sender, EventArgs e) => {
+				SetScrollViewToPage (PageControl.CurrentPage);
 			};
-			scrollView.DecelerationEnded += (object sender, EventArgs e) => {
-				double page = Math.Floor ((scrollView.ContentOffset.X - scrollView.Frame.Width / 2) / scrollView.Frame.Width) + 1;
+			ScrollView.DecelerationEnded += (object sender, EventArgs e) => {
+				double page = Math.Floor ((ScrollView.ContentOffset.X - ScrollView.Frame.Width / 2) / ScrollView.Frame.Width) + 1;
 				
-				pageControl.CurrentPage = (int)page;
+				PageControl.CurrentPage = (int)page;
 			};
 
 			highScorePanel = null;
@@ -155,15 +141,15 @@ namespace SuperKoikoukesse.iOS
 			cards.Add (versusMode);
 
 			int count = cards.Count;
-			RectangleF scrollFrame = scrollView.Frame;
+			RectangleF scrollFrame = ScrollView.Frame;
 
 			scrollFrame.Width = scrollFrame.Width * count;
-			scrollView.ContentSize = scrollFrame.Size;
+			ScrollView.ContentSize = scrollFrame.Size;
 
 			for (int i = 0; i < count; i++) {
 
 				// Compute location and size
-				RectangleF frame = scrollView.Frame;
+				RectangleF frame = ScrollView.Frame;
 
 				PointF location = new PointF ();
 				location.X = frame.Width * i;
@@ -172,25 +158,23 @@ namespace SuperKoikoukesse.iOS
 				cards [i].View.Frame = frame;
 
 				// Add to scroll and paging
-				scrollView.AddSubview (cards [i].View);
+				ScrollView.AddSubview (cards [i].View);
 			}
 
-			pageControl.Pages = count;
+			PageControl.Pages = count;
 
 			// Set 3rd page as the first displayed
 			int firstDisplayedPageNumber = 2;
-			pageControl.CurrentPage = firstDisplayedPageNumber;
+			PageControl.CurrentPage = firstDisplayedPageNumber;
 
 			SetScrollViewToPage (firstDisplayedPageNumber);
 		}
 
 		private void SetScrollViewToPage (int page)
 		{
-			scrollView.SetContentOffset (new PointF (page * scrollView.Frame.Width, 0), true);
+			ScrollView.SetContentOffset (new PointF (page * ScrollView.Frame.Width, 0), true);
 		}
-
 		#endregion
-
 		/// <summary>
 		/// Pop-up the Game Center matchmaker
 		/// </summary>
@@ -305,43 +289,43 @@ namespace SuperKoikoukesse.iOS
 
 		#endregion
 
-		#region Events
+		#region Handlers
 
-		/// <summary>
-		/// Force config reload (DEBUG)
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.UpdateConfiguration (null);
-		}
-
-		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender)
-		{
-			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
-			debugButton.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
-			Logger.I ("Debug mode? " + Constants.DEBUG_MODE);
-		}
-
-		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		partial void OnSettingsTouched (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.ShowOptions ();
 		}
 
-		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender)
+		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 			appDelegate.SwitchToShopView ();
 		}
 
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		/// <summary>
+		/// Force config reload (DEBUG)
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		partial void OnConfigTouched (MonoTouch.Foundation.NSObject sender)
+		{
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
+			appDelegate.UpdateConfiguration (null);
+		}
+
+		partial void OnDebugTouched (MonoTouch.Foundation.NSObject sender)
+		{
+			Constants.DEBUG_MODE = !Constants.DEBUG_MODE;
+			ButtonDebug.SetTitle (Constants.DEBUG_MODE + "", UIControlState.Normal);
+			Logger.I ("Debug mode? " + Constants.DEBUG_MODE);
+		}
+
+		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender)
 		{
 			PlayerCache.Instance.AddCreditsDebug (Constants.BASE_CREDITS);
 		}
 
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender)
+		partial void OnCoinsTouched (MonoTouch.Foundation.NSObject sender)
 		{
 			PlayerCache.Instance.AddCoins (Constants.BASE_COINS);
 		}
