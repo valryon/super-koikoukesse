@@ -178,7 +178,6 @@
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
     <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
