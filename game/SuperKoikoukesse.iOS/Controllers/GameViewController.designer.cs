@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -12,82 +13,37 @@ namespace SuperKoikoukesse.iOS
 	partial class GameViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView bgImage { get; set; }
+		MonoTouch.UIKit.UIButton ButtonGame1 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton ButtonGame2 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton ButtonGame3 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton ButtonGame4 { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton ButtonJoker { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton ButtonPause { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint ConstraintCombo { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint ConstraintLeadingTimerLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton game1Button { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton game2Button { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton game3Button { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton game4Button { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIImageView gameImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIScrollView gameImageScroll { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint jokerBottomConstraints { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton jokerButton { get; set; }
+		MonoTouch.UIKit.UIImageView ImageGame { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelCombo { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel LabelCurrentTime { get; set; }
+		MonoTouch.UIKit.UILabel LabelScore { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView livesImage { get; set; }
+		MonoTouch.UIKit.UILabel LabelTime { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel modeLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel questionCountLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel scoreLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel scoreTitleLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint timeFullHeightConstraint { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewAnswers { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewCombo { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewEmitter { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewImageShadow { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewInformations { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewTimer { get; set; }
+		MonoTouch.UIKit.UIScrollView ScrollViewImageGame { get; set; }
 
 		[Action ("OnButton1Touched:")]
 		partial void OnButton1Touched (MonoTouch.Foundation.NSObject sender);
@@ -109,9 +65,34 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (bgImage != null) {
-				bgImage.Dispose ();
-				bgImage = null;
+			if (ScrollViewImageGame != null) {
+				ScrollViewImageGame.Dispose ();
+				ScrollViewImageGame = null;
+			}
+
+			if (ButtonGame1 != null) {
+				ButtonGame1.Dispose ();
+				ButtonGame1 = null;
+			}
+
+			if (ButtonGame2 != null) {
+				ButtonGame2.Dispose ();
+				ButtonGame2 = null;
+			}
+
+			if (ButtonGame3 != null) {
+				ButtonGame3.Dispose ();
+				ButtonGame3 = null;
+			}
+
+			if (ButtonGame4 != null) {
+				ButtonGame4.Dispose ();
+				ButtonGame4 = null;
+			}
+
+			if (ButtonJoker != null) {
+				ButtonJoker.Dispose ();
+				ButtonJoker = null;
 			}
 
 			if (ButtonPause != null) {
@@ -119,114 +100,9 @@ namespace SuperKoikoukesse.iOS
 				ButtonPause = null;
 			}
 
-			if (ConstraintLeadingTimerLabel != null) {
-				ConstraintLeadingTimerLabel.Dispose ();
-				ConstraintLeadingTimerLabel = null;
-			}
-
-			if (game1Button != null) {
-				game1Button.Dispose ();
-				game1Button = null;
-			}
-
-			if (game2Button != null) {
-				game2Button.Dispose ();
-				game2Button = null;
-			}
-
-			if (game3Button != null) {
-				game3Button.Dispose ();
-				game3Button = null;
-			}
-
-			if (game4Button != null) {
-				game4Button.Dispose ();
-				game4Button = null;
-			}
-
-			if (gameImage != null) {
-				gameImage.Dispose ();
-				gameImage = null;
-			}
-
-			if (gameImageScroll != null) {
-				gameImageScroll.Dispose ();
-				gameImageScroll = null;
-			}
-
-			if (jokerBottomConstraints != null) {
-				jokerBottomConstraints.Dispose ();
-				jokerBottomConstraints = null;
-			}
-
-			if (jokerButton != null) {
-				jokerButton.Dispose ();
-				jokerButton = null;
-			}
-
-			if (LabelCurrentTime != null) {
-				LabelCurrentTime.Dispose ();
-				LabelCurrentTime = null;
-			}
-
-			if (livesImage != null) {
-				livesImage.Dispose ();
-				livesImage = null;
-			}
-
-			if (modeLabel != null) {
-				modeLabel.Dispose ();
-				modeLabel = null;
-			}
-
-			if (questionCountLabel != null) {
-				questionCountLabel.Dispose ();
-				questionCountLabel = null;
-			}
-
-			if (scoreLabel != null) {
-				scoreLabel.Dispose ();
-				scoreLabel = null;
-			}
-
-			if (scoreTitleLabel != null) {
-				scoreTitleLabel.Dispose ();
-				scoreTitleLabel = null;
-			}
-
-			if (timeFullHeightConstraint != null) {
-				timeFullHeightConstraint.Dispose ();
-				timeFullHeightConstraint = null;
-			}
-
-			if (ViewAnswers != null) {
-				ViewAnswers.Dispose ();
-				ViewAnswers = null;
-			}
-
-			if (ViewEmitter != null) {
-				ViewEmitter.Dispose ();
-				ViewEmitter = null;
-			}
-
-			if (ViewImageShadow != null) {
-				ViewImageShadow.Dispose ();
-				ViewImageShadow = null;
-			}
-
-			if (ViewInformations != null) {
-				ViewInformations.Dispose ();
-				ViewInformations = null;
-			}
-
-			if (ViewCombo != null) {
-				ViewCombo.Dispose ();
-				ViewCombo = null;
-			}
-
-			if (ViewTimer != null) {
-				ViewTimer.Dispose ();
-				ViewTimer = null;
+			if (ImageGame != null) {
+				ImageGame.Dispose ();
+				ImageGame = null;
 			}
 
 			if (LabelCombo != null) {
@@ -234,9 +110,14 @@ namespace SuperKoikoukesse.iOS
 				LabelCombo = null;
 			}
 
-			if (ConstraintCombo != null) {
-				ConstraintCombo.Dispose ();
-				ConstraintCombo = null;
+			if (LabelScore != null) {
+				LabelScore.Dispose ();
+				LabelScore = null;
+			}
+
+			if (LabelTime != null) {
+				LabelTime.Dispose ();
+				LabelTime = null;
 			}
 		}
 	}

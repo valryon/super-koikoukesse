@@ -308,6 +308,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.1647058874" green="0.57647061349999995" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnPauseTouched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="G4W-HU-dVI"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-sp-ydT" userLabel="View - Timer">
                                         <rect key="frame" x="89" y="15" width="216" height="14"/>
@@ -417,6 +420,10 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnButtonJokerTouched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="y4e-MJ-Fx6"/>
+                                            <action selector="OnJokerTouched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="dVo-vh-gKo"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiG-up-GXO" userLabel="View - Lives (survival)">
                                         <rect key="frame" x="105" y="5" width="61" height="27"/>
@@ -516,6 +523,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.75559085609999999" green="0.75556832549999997" blue="0.75558108089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnButton1Touched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="ONj-Qd-mpL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qGF-7I-1NC">
                                         <rect key="frame" x="165" y="10" width="145" height="50"/>
@@ -534,6 +544,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.75559085609999999" green="0.75556832549999997" blue="0.75558108089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnButton2Touched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="Gkj-jT-kM7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-2h-dYA">
                                         <rect key="frame" x="10" y="70" width="145" height="50"/>
@@ -552,6 +565,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.75559085609999999" green="0.75556832549999997" blue="0.75558108089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnButton3Touched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="Sn6-iS-cVy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jKc-HO-JTL">
                                         <rect key="frame" x="165" y="70" width="145" height="50"/>
@@ -570,6 +586,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.75559085609999999" green="0.75556832549999997" blue="0.75558108089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="OnButton4Touched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="s2Z-Un-XhN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.88235294819999999" green="0.88235294819999999" blue="0.88235294819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -604,6 +623,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="woB-7V-qe4"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="ButtonGame1" destination="VaL-w9-saq" id="bja-CW-i4f"/>
+                        <outlet property="ButtonGame2" destination="qGF-7I-1NC" id="Wyf-k8-eij"/>
+                        <outlet property="ButtonGame3" destination="QWd-2h-dYA" id="4C4-ti-swn"/>
+                        <outlet property="ButtonGame4" destination="jKc-HO-JTL" id="2xp-gL-wE9"/>
+                        <outlet property="ButtonPause" destination="SXE-qj-j0h" id="fYF-aU-yQG"/>
+                        <outlet property="ImageGame" destination="rNN-17-jC7" id="eVt-Rs-qTu"/>
+                        <outlet property="LabelCombo" destination="Zfv-55-MsS" id="eie-Pk-0Ml"/>
+                        <outlet property="LabelScore" destination="6hp-DH-MYg" id="JUD-5d-gE6"/>
+                        <outlet property="LabelTime" destination="gX3-qv-4nb" id="lyi-ys-RF7"/>
+                        <outlet property="ScrollViewImageGame" destination="ked-zD-Hxr" id="f1S-Cp-cT7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpN-hx-eDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
