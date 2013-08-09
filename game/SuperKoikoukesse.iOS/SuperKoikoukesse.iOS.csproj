@@ -165,6 +165,11 @@
       <DependentUpon>SplashscreenViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PXNAppearance.cs" />
+    <Compile Include="Controllers\VersusMatchsViewController.cs" />
+    <Compile Include="Controllers\VersusMatchsViewController.designer.cs">
+      <DependentUpon>VersusMatchsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\VersusMatchsCollectionViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
