@@ -474,8 +474,8 @@
                                     <constraint firstItem="SXE-qj-j0h" firstAttribute="leading" secondItem="P2p-MS-UQ7" secondAttribute="leading" constant="10" id="t0h-Xb-25v"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-3B-ehQ" userLabel="ViewBody">
-                                <rect key="frame" x="0.0" y="44" width="320" height="374"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-3B-ehQ" userLabel="ViewBody">
+                                <rect key="frame" x="0.0" y="44" width="320" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJd-lv-TwR" userLabel="Image - Shadow">
@@ -549,8 +549,8 @@
                                         <rect key="frame" x="105" y="5" width="61" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMb-RR-0d9" userLabel="ViewCombo">
-                                        <rect key="frame" x="160" y="309" width="140" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMb-RR-0d9" userLabel="ViewCombo">
+                                        <rect key="frame" x="160" y="265" width="140" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combo_indicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="irU-HZ-epy" userLabel="Image - Indicator">
@@ -622,8 +622,8 @@
                                     <constraint firstItem="6hp-DH-MYg" firstAttribute="leading" secondItem="NNf-3B-ehQ" secondAttribute="leading" constant="20" id="zeQ-ux-GGI"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FfO-i9-jcn" userLabel="ViewAnswers">
-                                <rect key="frame" x="0.0" y="418" width="320" height="130"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfO-i9-jcn" userLabel="ViewAnswers">
+                                <rect key="frame" x="0.0" y="374" width="320" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VaL-w9-saq">
@@ -753,7 +753,6 @@
                         <outlet property="ConstraintCombo" destination="6nj-mL-E7o" id="y00-OQ-We8"/>
                         <outlet property="ConstraintJoker" destination="rMi-GZ-6sq" id="V0L-py-vGh"/>
                         <outlet property="ConstraintTimer" destination="sUV-Vn-sPO" id="BqK-RB-ZZF"/>
-                        <outlet property="ConstrantLeadingTimerLabel" destination="sUV-Vn-sPO" id="6j7-JR-WKH"/>
                         <outlet property="ImageGame" destination="rNN-17-jC7" id="eVt-Rs-qTu"/>
                         <outlet property="LabelCombo" destination="Zfv-55-MsS" id="eie-Pk-0Ml"/>
                         <outlet property="LabelCount" destination="2uv-Ad-xCI" id="PjU-yw-FKI"/>

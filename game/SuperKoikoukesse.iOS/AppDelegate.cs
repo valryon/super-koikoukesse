@@ -236,56 +236,6 @@ namespace SuperKoikoukesse.iOS
 		}
 
 		/// <summary>
-		/// Change to ingame view
-		/// </summary>
-		/// <param name="mode">Mode.</param>
-		/// <param name="difficulty">Difficulty.</param>
-		public void SwitchToGameView (GameMode mode, GameDifficulties difficulty, Filter filter = null)
-		{
-			if (mGameViewController != null) {
-				mGameViewController = null;
-			}
-
-			mGameViewController = new GameViewController ();
-
-			// Create a new filter
-			Filter f = null;
-
-			if (filter != null) {
-				f = filter;
-			} else {
-				f = new Filter ("0", "Siphon filter", "defaultIcon");
-			}
-
-			// Caching filter results
-			SetLoading (true);
-
-			f.Load ((gamesCount) => {
-
-				if (gamesCount < 30) {
-					BeginInvokeOnMainThread (() => {
-						Dialogs.ShowDebugFilterTooRestrictive ();
-					});
-				}
-
-				// Prepare quizz
-				mGameViewController.InitializeQuizz (mode, difficulty, f);
-
-				// Display it
-				BeginInvokeOnMainThread (() => {
-
-					SetLoading (false);
-
-					SwitchToView (mGameViewController);
-
-					mGameViewController.DisplayQuizz ();
-				});
-
-			});
-			
-		}
-
-		/// <summary>
 		/// Change to score view after a game
 		/// </summary>
 		/// <param name="quizz">Quizz.</param>

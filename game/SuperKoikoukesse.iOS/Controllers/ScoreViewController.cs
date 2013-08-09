@@ -21,8 +21,8 @@ namespace SuperKoikoukesse.iOS
 
     public ScoreViewController(Quizz q) : base ("ScoreView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
-      _quizz = q;
-      _playerImageCache = new Dictionary<string, UIImage>();
+		_quizz = q;
+		_playerImageCache = new Dictionary<string, UIImage>();
     }
 
     public override void ViewDidLoad()
@@ -76,7 +76,8 @@ namespace SuperKoikoukesse.iOS
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
         var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-        appDelegate.SwitchToGameView(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
+//        appDelegate.SwitchToGameView(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
+				// TODO
       }
       else
       {

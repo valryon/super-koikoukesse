@@ -17,6 +17,10 @@ namespace SuperKoikoukesse.iOS
 		private MenuDifficultyViewController mDifficultyViewController;
 		private CardScoreViewController mHighScorePanel;
 
+		private GameMode mSelectedMode;
+		private GameDifficulties mSelectedDifficulty;
+		private Filter mSelectedFilter;
+
 		#endregion
 
 		#region Constructor & Initialization
@@ -217,7 +221,7 @@ namespace SuperKoikoukesse.iOS
 					} else {
 						if (match.IsPlayerTurn (PlayerCache.Instance.AuthenticatedPlayer.PlayerId)) {
 							// Player turn
-							appDelegate.SwitchToGameView (mode, match.Difficulty, match.Filter);
+							LaunchGame (mode, match.Difficulty, match.Filter);
 						} else {
 							// TODO Other player turn: display last score?
 							Dialogs.ShowNotYourTurn ();
@@ -268,8 +272,8 @@ namespace SuperKoikoukesse.iOS
 						currentMatch.Difficulty = difficulty;
 						filter = currentMatch.Filter; // This is weird
 					}
-					
-					appDelegate.SwitchToGameView (mode, difficulty, filter);
+
+					LaunchGame (mode, difficulty, filter);
 				}; 	
 			}
 			
@@ -305,6 +309,46 @@ namespace SuperKoikoukesse.iOS
 			} else {
 				Dialogs.ShowNoMoreCreditsDialogs ();
 			}
+		}
+
+		
+		public void LaunchGame(GameMode mode, GameDifficulties difficulty, Filter filter) 
+		{
+			mSelectedMode = mode;
+			mSelectedDifficulty = difficulty;
+			mSelectedFilter = filter;
+
+			if (mSelectedFilter == null) {
+				mSelectedFilter = new Filter ("0", "Siphon filter", "defaultIcon");
+			}
+
+			ViewLoading.Hidden = false;
+
+			InvokeInBackground(() => {
+				int gamesCount = mSelectedFilter.Load ();
+
+				BeginInvokeOnMainThread (() => {
+					if (gamesCount < 30) {
+							Dialogs.ShowDebugFilterTooRestrictive ();
+					}
+					else {
+						PerformSegue ("MenuToGame", this);
+					}
+				});
+			});
+		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue (segue, sender);
+
+			GameViewController gameVc = (GameViewController)segue.DestinationViewController;
+
+			// Prepare quizz
+			gameVc.InitializeQuizz (mSelectedMode, mSelectedDifficulty, mSelectedFilter);
+
+			// Hide loading
+			ViewLoading.Hidden = true;
 		}
 
 		#endregion

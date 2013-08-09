@@ -39,24 +39,15 @@ namespace Superkoikoukesse.Common
 		/// <summary>
 		/// Caching database
 		/// </summary>
-		/// <param name="loadingComplete">Loading complete for n games.</param>
-		public void Load (Action<int> loadingComplete)
+		public int Load ()
 		{
-			BackgroundWorker worker = new BackgroundWorker ();
+			if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
+				mCurrentRequiredGameIdsIndex = 0;
+			}
 
-			worker.DoWork += (object sender, DoWorkEventArgs e) => {
+			mMatchingGames = GameDatabase.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
 
-				if (RequiredGameIds != null && RequiredGameIds.Count > 0) {
-					mCurrentRequiredGameIdsIndex = 0;
-				}
-
-				mMatchingGames = GameDatabase.Instance.ReadGames (MinYear, MaxYear, Publishers, Genres, Platforms);
-
-				loadingComplete (mMatchingGames.Count);
-
-			};
-
-			worker.RunWorkerAsync ();
+			return mMatchingGames.Count;
 		}
 
 		/// <summary>

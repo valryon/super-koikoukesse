@@ -44,9 +44,9 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public GameViewController() : base("GameView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public GameViewController(IntPtr handle) : base(handle)
     {
-      mRandom = new Random(DateTime.Now.Millisecond);
+		mRandom = new Random(DateTime.Now.Millisecond);
     }
 
     public override void ViewDidLoad()
@@ -69,6 +69,8 @@ namespace SuperKoikoukesse.iOS
     public override void ViewDidAppear(bool animated)
     {
       base.ViewDidAppear(animated);
+
+	  DisplayQuizz ();
 
       SetShadow(ViewImageShadow);
     }

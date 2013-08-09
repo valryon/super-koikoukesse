@@ -95,31 +95,6 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ViewImageShadow != null) {
-				ViewImageShadow.Dispose ();
-				ViewImageShadow = null;
-			}
-
-			if (ViewInformations != null) {
-				ViewInformations.Dispose ();
-				ViewInformations = null;
-			}
-
-			if (ViewEmitter != null) {
-				ViewEmitter.Dispose ();
-				ViewEmitter = null;
-			}
-
-			if (LabelMode != null) {
-				LabelMode.Dispose ();
-				LabelMode = null;
-			}
-
-			if (LabelCount != null) {
-				LabelCount.Dispose ();
-				LabelCount = null;
-			}
-
 			if (ButtonGame1 != null) {
 				ButtonGame1.Dispose ();
 				ButtonGame1 = null;
@@ -150,6 +125,21 @@ namespace SuperKoikoukesse.iOS
 				ButtonPause = null;
 			}
 
+			if (ConstraintCombo != null) {
+				ConstraintCombo.Dispose ();
+				ConstraintCombo = null;
+			}
+
+			if (ConstraintJoker != null) {
+				ConstraintJoker.Dispose ();
+				ConstraintJoker = null;
+			}
+
+			if (ConstraintTimer != null) {
+				ConstraintTimer.Dispose ();
+				ConstraintTimer = null;
+			}
+
 			if (ImageGame != null) {
 				ImageGame.Dispose ();
 				ImageGame = null;
@@ -160,14 +150,19 @@ namespace SuperKoikoukesse.iOS
 				LabelCombo = null;
 			}
 
+			if (LabelCount != null) {
+				LabelCount.Dispose ();
+				LabelCount = null;
+			}
+
+			if (LabelMode != null) {
+				LabelMode.Dispose ();
+				LabelMode = null;
+			}
+
 			if (LabelScore != null) {
 				LabelScore.Dispose ();
 				LabelScore = null;
-			}
-
-			if (ViewCombo != null) {
-				ViewCombo.Dispose ();
-				ViewCombo = null;
 			}
 
 			if (LabelTime != null) {
@@ -175,29 +170,34 @@ namespace SuperKoikoukesse.iOS
 				LabelTime = null;
 			}
 
-			if (ViewAnswers != null) {
-				ViewAnswers.Dispose ();
-				ViewAnswers = null;
-			}
-
 			if (ScrollViewImageGame != null) {
 				ScrollViewImageGame.Dispose ();
 				ScrollViewImageGame = null;
 			}
 
-			if (ConstraintTimer != null) {
-				ConstraintTimer.Dispose ();
-				ConstraintTimer = null;
+			if (ViewAnswers != null) {
+				ViewAnswers.Dispose ();
+				ViewAnswers = null;
 			}
 
-			if (ConstraintJoker != null) {
-				ConstraintJoker.Dispose ();
-				ConstraintJoker = null;
+			if (ViewCombo != null) {
+				ViewCombo.Dispose ();
+				ViewCombo = null;
 			}
 
-			if (ConstraintCombo != null) {
-				ConstraintCombo.Dispose ();
-				ConstraintCombo = null;
+			if (ViewEmitter != null) {
+				ViewEmitter.Dispose ();
+				ViewEmitter = null;
+			}
+
+			if (ViewImageShadow != null) {
+				ViewImageShadow.Dispose ();
+				ViewImageShadow = null;
+			}
+
+			if (ViewInformations != null) {
+				ViewInformations.Dispose ();
+				ViewInformations = null;
 			}
 		}
 	}
