@@ -55,7 +55,7 @@ namespace SuperKoikoukesse.iOS
 
       StyleView();
 
-      mTimerBarSize = ConstraintLeadingTimerLabel.Constant;
+      mTimerBarSize = ConstraintTimer.Constant;
 
       // Load the pause/inactive screen image
       mPauseViewController = new GamePauseViewController();
@@ -209,17 +209,17 @@ namespace SuperKoikoukesse.iOS
       thread.Start();
 
       // Display selected mode and difficulty
-      modeLabel.Text = mQuizz.Mode.ToString() + " - " + mQuizz.Difficulty;
+      LabelMode.Text = mQuizz.Mode.ToString() + " - " + mQuizz.Difficulty;
 
       // Display lives
-      if (q.Mode == GameMode.SURVIVAL)
-      {
-        livesImage.Hidden = false;
-      }
-      else
-      {
-        livesImage.Hidden = true;
-      }
+//      if (q.Mode == GameMode.SURVIVAL)
+//      {
+//        livesImage.Hidden = false;
+//      }
+//      else
+//      {
+//        livesImage.Hidden = true;
+//      }
 
       // Make sure we're not pausing
       if (mPauseViewController != null)
@@ -308,12 +308,12 @@ namespace SuperKoikoukesse.iOS
 
                 // Find the current bar height
                 float pos = mQuizz.TimeLeft * mTimerBarSize / mQuizz.BaseTimeleft;
-                if (ConstraintLeadingTimerLabel.Constant > 125f)
+                if (ConstraintTimer.Constant > 125f)
                 {
-                  ConstraintLeadingTimerLabel.Constant = pos - 100f;
+                  ConstraintTimer.Constant = pos - 100f;
                 }
 
-                ConstraintLeadingTimerLabel.Constant = pos;
+                ConstraintTimer.Constant = pos;
                 LabelTime.Text = mQuizz.TimeLeft.ToString("00");
               });
             }
@@ -402,16 +402,16 @@ namespace SuperKoikoukesse.iOS
         switch (mQuizz.JokerPartCount)
         {
           case 0:
-            jokerBottomConstraints.Constant = -60;
+            ConstraintJoker.Constant = -60;
             break;
           case 1:
-            jokerBottomConstraints.Constant = -40;
+            ConstraintJoker.Constant = -40;
             break;
           case 2:
-            jokerBottomConstraints.Constant = -20;
+            ConstraintJoker.Constant = -20;
             break;
           default:
-            jokerBottomConstraints.Constant = 0;
+            ConstraintJoker.Constant = 0;
             break;
         }
 
@@ -433,7 +433,7 @@ namespace SuperKoikoukesse.iOS
        */
 
       // Question count
-      questionCountLabel.Text = mQuizz.QuestionNumber.ToString();
+      LabelCount.Text = mQuizz.QuestionNumber.ToString();
 
       /*
        * Lives
@@ -442,21 +442,21 @@ namespace SuperKoikoukesse.iOS
       // Display the correct number of lives
       if (mQuizz.Mode == GameMode.SURVIVAL)
       {
-        switch (mQuizz.Lives)
-        {
-          case 1:
-            livesImage.Image = new UIImage("lives_1.png");
-            break;
-          case 2:
-            livesImage.Image = new UIImage("lives_2.png");
-            break;
-          case 3:
-            livesImage.Image = new UIImage("lives_3.png");
-            break;
-          default:
-          // TODO 0 state if needed
-            break;
-        }
+//        switch (mQuizz.Lives)
+//        {
+//          case 1:
+//            livesImage.Image = new UIImage("lives_1.png");
+//            break;
+//          case 2:
+//            livesImage.Image = new UIImage("lives_2.png");
+//            break;
+//          case 3:
+//            livesImage.Image = new UIImage("lives_3.png");
+//            break;
+//          default:
+//          // TODO 0 state if needed
+//            break;
+//        }
       }
     }
 

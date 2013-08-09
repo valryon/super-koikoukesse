@@ -31,10 +31,25 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UIButton ButtonPause { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint ConstraintCombo { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint ConstraintJoker { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.NSLayoutConstraint ConstraintTimer { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView ImageGame { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelCombo { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelCount { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelMode { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelScore { get; set; }
@@ -44,6 +59,21 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView ScrollViewImageGame { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewAnswers { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewCombo { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewEmitter { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewImageShadow { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewInformations { get; set; }
 
 		[Action ("OnButton1Touched:")]
 		partial void OnButton1Touched (MonoTouch.Foundation.NSObject sender);
@@ -65,9 +95,29 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ScrollViewImageGame != null) {
-				ScrollViewImageGame.Dispose ();
-				ScrollViewImageGame = null;
+			if (ViewImageShadow != null) {
+				ViewImageShadow.Dispose ();
+				ViewImageShadow = null;
+			}
+
+			if (ViewInformations != null) {
+				ViewInformations.Dispose ();
+				ViewInformations = null;
+			}
+
+			if (ViewEmitter != null) {
+				ViewEmitter.Dispose ();
+				ViewEmitter = null;
+			}
+
+			if (LabelMode != null) {
+				LabelMode.Dispose ();
+				LabelMode = null;
+			}
+
+			if (LabelCount != null) {
+				LabelCount.Dispose ();
+				LabelCount = null;
 			}
 
 			if (ButtonGame1 != null) {
@@ -115,9 +165,39 @@ namespace SuperKoikoukesse.iOS
 				LabelScore = null;
 			}
 
+			if (ViewCombo != null) {
+				ViewCombo.Dispose ();
+				ViewCombo = null;
+			}
+
 			if (LabelTime != null) {
 				LabelTime.Dispose ();
 				LabelTime = null;
+			}
+
+			if (ViewAnswers != null) {
+				ViewAnswers.Dispose ();
+				ViewAnswers = null;
+			}
+
+			if (ScrollViewImageGame != null) {
+				ScrollViewImageGame.Dispose ();
+				ScrollViewImageGame = null;
+			}
+
+			if (ConstraintTimer != null) {
+				ConstraintTimer.Dispose ();
+				ConstraintTimer = null;
+			}
+
+			if (ConstraintJoker != null) {
+				ConstraintJoker.Dispose ();
+				ConstraintJoker = null;
+			}
+
+			if (ConstraintCombo != null) {
+				ConstraintCombo.Dispose ();
+				ConstraintCombo = null;
 			}
 		}
 	}
