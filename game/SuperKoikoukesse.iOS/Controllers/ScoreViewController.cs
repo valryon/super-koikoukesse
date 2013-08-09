@@ -19,11 +19,14 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public ScoreViewController(Quizz q) : base ("ScoreView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public ScoreViewController(IntPtr handle) : base (handle)
     {
-		_quizz = q;
 		_playerImageCache = new Dictionary<string, UIImage>();
     }
+
+	public void SetQuizz(Quizz q) {
+		this._quizz = q;
+	}
 
     public override void ViewDidLoad()
     {
@@ -67,6 +70,16 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
+	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+	{
+		base.PrepareForSegue (segue, sender);
+
+		if (segue.Identifier == "ScoreToGame") {
+			GameViewController gameVc = segue.DestinationViewController as GameViewController;
+			gameVc.InitializeQuizz(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
+		}
+	}
+
     #endregion
 
     #region Handlers
@@ -75,9 +88,7 @@ namespace SuperKoikoukesse.iOS
     {
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
-        var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-//        appDelegate.SwitchToGameView(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
-				// TODO
+		PerformSegue("ScoreToGame", this);
       }
       else
       {
@@ -87,8 +98,7 @@ namespace SuperKoikoukesse.iOS
 
     partial void OnMenuTouched(NSObject sender)
     {
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.SwitchToMenuView();
+		PerformSegue("ScoreToMenu", this);
     }
 
     #endregion

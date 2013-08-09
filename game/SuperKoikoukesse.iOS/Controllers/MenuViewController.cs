@@ -342,13 +342,15 @@ namespace SuperKoikoukesse.iOS
 		{
 			base.PrepareForSegue (segue, sender);
 
-			GameViewController gameVc = (GameViewController)segue.DestinationViewController;
+			if (segue.Identifier == "MenuToGame") {
+				GameViewController gameVc = (GameViewController)segue.DestinationViewController;
 
-			// Prepare quizz
-			gameVc.InitializeQuizz (mSelectedMode, mSelectedDifficulty, mSelectedFilter);
+				// Prepare quizz
+				gameVc.InitializeQuizz (mSelectedMode, mSelectedDifficulty, mSelectedFilter);
 
-			// Hide loading
-			ViewLoading.Hidden = true;
+				// Hide loading
+				ViewLoading.Hidden = true;
+			}
 		}
 
 		#endregion
@@ -357,14 +359,12 @@ namespace SuperKoikoukesse.iOS
 
 		partial void OnSettingsTouched (MonoTouch.Foundation.NSObject sender)
 		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.ShowOptions ();
+
 		}
 
 		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender)
 		{
-			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.SwitchToShopView ();
+
 		}
 
 		/// <summary>

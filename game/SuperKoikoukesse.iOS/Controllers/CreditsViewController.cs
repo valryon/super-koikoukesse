@@ -50,11 +50,6 @@ namespace SuperKoikoukesse.iOS
 
     #region Handlers
 
-    partial void backButtonPressed(MonoTouch.Foundation.NSObject sender)
-    {
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.SwitchToMenuView();
-    }
 
     #endregion
 

@@ -32,14 +32,12 @@ namespace SuperKoikoukesse.iOS
 
     partial void OnShopTouched(MonoTouch.Foundation.NSObject sender)
     {
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.SwitchToShopView();
+     
     }
 
     partial void OnCreditsTouched(MonoTouch.Foundation.NSObject sender)
     {
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.SwitchToCreditsView();
+      
     }
 
     #endregion

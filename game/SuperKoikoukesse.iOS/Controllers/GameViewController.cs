@@ -243,7 +243,7 @@ namespace SuperKoikoukesse.iOS
         mPauseViewController.View.RemoveFromSuperview();
       }
 
-      appDelegate.SwitchToMenuView();
+	  // TODO Navigation Back
     }
 
     private void Pause()
@@ -529,10 +529,23 @@ namespace SuperKoikoukesse.iOS
         mQuizz.EndQuizz();
 
         // Show score
-        var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-        appDelegate.SwitchToScoreView(mQuizz);
+		GoToScoreView ();
       }
     }
+
+	public void GoToScoreView() {
+		PerformSegue ("GameToScore", this);
+	}
+
+	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+	{
+		base.PrepareForSegue (segue, sender);
+
+		if (segue.Identifier == "GameToScore") {
+			ScoreViewController scoreVc = (ScoreViewController)segue.DestinationViewController;
+			scoreVc.SetQuizz (mQuizz);
+		}
+	}
 
     #endregion
 
