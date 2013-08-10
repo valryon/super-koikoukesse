@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Superkoikoukesse.Common
 {
@@ -35,6 +36,13 @@ namespace Superkoikoukesse.Common
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="gcRankCallback">Best rank and score.</param>
 		public abstract void GetBestScoreAndRank (GameMode mode, GameDifficulties difficulty, Action<int,int> gcRankCallback);
+
+		/// <summary>
+		/// Lists the versus matchs.
+		/// </summary>
+		/// <param name="matchsCallback">Matchs callback.</param>
+		/// <param name="errorCallback">Error callback.</param>
+		public abstract void ListMatchs (Action<List<VersusMatch>> matchsCallback, Action errorCallback);
 
 		/// <summary>
 		/// Create a new turn based match

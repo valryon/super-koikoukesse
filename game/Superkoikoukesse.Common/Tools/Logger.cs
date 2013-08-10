@@ -52,6 +52,20 @@ namespace Superkoikoukesse.Common
 		{
 			Console.WriteLine ("ERROR: " + message + "\n" + e.ToString ());
 		}
+
+#if IOS
+		/// <summary>
+		/// Error with exception
+		/// </summary>
+		/// <param name="message">Message.</param>
+		/// <param name="e">E.</param>
+		public static void E (string message, MonoTouch.Foundation.NSError e)
+		{
+			Console.WriteLine ("ERROR: " + message + "\n" + e.ToString ());
+		}
+#endif
 	}
+
+
 }
 

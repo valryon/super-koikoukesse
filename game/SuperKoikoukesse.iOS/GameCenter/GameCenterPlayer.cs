@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using MonoTouch.Foundation;
 using Superkoikoukesse.Common.Utils;
+using System.Collections.Generic;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -27,7 +28,7 @@ namespace SuperKoikoukesse.iOS
 		public override void Authenticate (Action authenticationFinished)
 		{
 			isAuthenticated = false;
-			Logger.I("Game Center Authentication requested...");
+			Logger.I ("Game Center Authentication requested...");
 
 			// On main thread
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
@@ -50,14 +51,14 @@ namespace SuperKoikoukesse.iOS
 						}
 
 						if (error != null) {
-							Logger.E( "Game Center Authentication failed! " + error);
+							Logger.E ("Game Center Authentication failed! " + error);
 						} else {
 							isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
 
 							if (isAuthenticated) {
-								Logger.I("Game Center - " + PlayerId + "(" + DisplayName + ")");
+								Logger.I ("Game Center - " + PlayerId + "(" + DisplayName + ")");
 							} else {
-								Logger.W( "Game Center - disabled !");
+								Logger.W ("Game Center - disabled !");
 							}
 						}
 
@@ -93,14 +94,14 @@ namespace SuperKoikoukesse.iOS
 			if (mode != GameMode.VERSUS) {
 				string leaderboardId = GetLeaderboardId (mode, difficulty);
 
-				Logger.I("Game Center  - Adding score to " + leaderboardId + "...");
+				Logger.I ("Game Center  - Adding score to " + leaderboardId + "...");
 
 				GKScore gkScore = new GKScore (leaderboardId);
 				gkScore.Value = score;
 
 				gkScore.ReportScore ((error) => {
 					if (error != null) {
-						Logger.E( "Game Center - Score not submited! " + error);
+						Logger.E ("Game Center - Score not submited! " + error);
 					}
 				});
 			}
@@ -128,6 +129,36 @@ namespace SuperKoikoukesse.iOS
 
 				}
 			}
+		}
+
+		public override void ListMatchs (Action<List<VersusMatch>> matchsCallback, Action errorCallback)
+		{
+			GKTurnBasedMatch.LoadMatches ((matches, error) => {
+
+				if (error != null) {
+					Logger.E ("Game Center: match list failed... ", error);
+					if(errorCallback != null) {
+						errorCallback();
+					}
+				} else {
+
+					List<VersusMatch> versusMatches = new List<VersusMatch>();
+
+					foreach (var m in matches) {
+
+						try {
+							VersusMatch vm = GameCenterHelper.ParseMatch (m);
+							versusMatches.Add(vm);
+						} catch (Exception e) {
+							Logger.E ("Versus match", e);
+						}
+					}
+
+					if(matchsCallback != null) {
+						matchsCallback(versusMatches);
+					}
+				}
+			});
 		}
 
 		public override void NewMatch (Action<VersusMatch> matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback)
@@ -181,14 +212,14 @@ namespace SuperKoikoukesse.iOS
 
 				if (isMatchOver == false) {
 					CurrentGKMatch.EndTurn (
-						new GKTurnBasedParticipant[] {opponent},
+						new GKTurnBasedParticipant[] { opponent },
 						GKTurnBasedMatch.DefaultTimeout,
 						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
 						(e) => {
-						Logger.I("Game Center Turn ended");
+						Logger.I ("Game Center Turn ended");
 
 						if (e != null) {
-							Logger.E( e.DebugDescription);
+							Logger.E (e.DebugDescription);
 						}
 					}
 					);
@@ -223,10 +254,10 @@ namespace SuperKoikoukesse.iOS
 					CurrentGKMatch.EndMatchInTurn (
 						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
 						(e) => {
-						Logger.I("Game Center Match ended");
+						Logger.I ("Game Center Match ended");
 							
 						if (e != null) {
-							Logger.E( e.DebugDescription);
+							Logger.E (e.DebugDescription);
 						}
 					}
 					);
@@ -234,7 +265,7 @@ namespace SuperKoikoukesse.iOS
 
 
 			} else {
-				Logger.E( "Cannot end the turn because we're not in a match!");
+				Logger.E ("Cannot end the turn because we're not in a match!");
 			}
 		}
 
@@ -243,7 +274,7 @@ namespace SuperKoikoukesse.iOS
 			if (CurrentMatch != null) {
 				
 			} else {
-				Logger.E( "Cannot quit because we're not in a match!");
+				Logger.E ("Cannot quit because we're not in a match!");
 			}
 		}
 
@@ -272,7 +303,7 @@ namespace SuperKoikoukesse.iOS
 				return isAuthenticated;
 			}
 		}
-	
+
 		internal GKTurnBasedMatch CurrentGKMatch { get; set; }
 
 		/// <summary>
@@ -298,7 +329,7 @@ namespace SuperKoikoukesse.iOS
 
 			public override void WasCancelled (GKTurnBasedMatchmakerViewController viewController)
 			{
-				Logger.I("MatchMakerDelegate.WasCancelled");
+				Logger.I ("MatchMakerDelegate.WasCancelled");
 
 				viewController.DismissViewController (true, null);
 
@@ -308,7 +339,7 @@ namespace SuperKoikoukesse.iOS
 
 			public override void FailedWithError (GKTurnBasedMatchmakerViewController viewController, MonoTouch.Foundation.NSError error)
 			{
-				Logger.W( "MatchMakerDelegate.FailedWithError");
+				Logger.W ("MatchMakerDelegate.FailedWithError");
 
 				viewController.DismissViewController (true, null);
 
@@ -318,7 +349,7 @@ namespace SuperKoikoukesse.iOS
 
 			public override void FoundMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
 			{
-				Logger.I("MatchMakerDelegate.FoundMatch");
+				Logger.I ("MatchMakerDelegate.FoundMatch");
 
 				viewController.DismissViewController (true, null);
 
@@ -326,44 +357,12 @@ namespace SuperKoikoukesse.iOS
 
 				bool matchError = false;
 
-				// Match has data: it's not the first turn
-				if (match.MatchData.Length > 0) {
-					VersusMatch existingMatch = new VersusMatch ();
+				VersusMatch versusMatch = GameCenterHelper.ParseMatch (match);
 
-					try {
-
-						string jsonBase64 = NSString.FromData (match.MatchData, NSStringEncoding.UTF8);
-						string json = System.Text.Encoding.UTF8.GetString (Convert.FromBase64String (jsonBase64));
-
-						existingMatch.FromJson (json.ToString ());
-						this.parent.CurrentMatch = existingMatch;
-					} catch (Exception e) {
-						matchError = true;
-						Logger.E( "GameCenterPlayer.FoundMatch", e);
-					}
-				}
-				// No data: new match, 
-				else {
-					this.parent.CurrentMatch = new VersusMatch ();
-
-					this.parent.CurrentMatch.MatchId = match.MatchID;
-					this.parent.CurrentMatch.Player1Id = match.Participants [0].PlayerID;
-					this.parent.CurrentMatch.Player2Id = match.Participants [1].PlayerID;
-
-					// Set up outcomes
-					match.Participants [0].MatchOutcome = GKTurnBasedMatchOutcome.First;
-					match.Participants [1].MatchOutcome = GKTurnBasedMatchOutcome.Second;
-
-					// TODO Select filter
-					this.parent.CurrentMatch.Filter = new Filter ("0", "MP Filter", "defaultIcon",
-					                                              // Test data
-					                                              1990,
-					                                              2050,
-					                                              null,
-					                                              new System.Collections.Generic.List<string> () {"combat"},
-					                                              null
-					);
-
+				if (versusMatch == null) {
+					matchError = true;
+				} else {
+					this.parent.CurrentMatch = versusMatch;
 				}
 
 				if (matchError == false) {
@@ -379,14 +378,13 @@ namespace SuperKoikoukesse.iOS
 
 			public override void PlayerQuitForMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
 			{
-				Logger.I("MatchMakerDelegate.PlayerQuitForMatch");
+				Logger.I ("MatchMakerDelegate.PlayerQuitForMatch");
 
 				// Mark current player as quiter
-				foreach(GKTurnBasedParticipant participant in match.Participants) {
-					if(participant.PlayerID == this.parent.PlayerId) {
+				foreach (GKTurnBasedParticipant participant in match.Participants) {
+					if (participant.PlayerID == this.parent.PlayerId) {
 						participant.MatchOutcome = GKTurnBasedMatchOutcome.Quit;
-					}
-					else {
+					} else {
 						// Win?
 						participant.MatchOutcome = GKTurnBasedMatchOutcome.Won;
 					}
@@ -396,13 +394,12 @@ namespace SuperKoikoukesse.iOS
 
 				// Delete the match
 				match.Remove (new GKNotificationHandler ((error) => {
-					Logger.E( error.DebugDescription);
+					Logger.E (error.DebugDescription);
 				}));
 
 				if (PlayerQuitCallback != null)
 					PlayerQuitCallback ();
 			}
-
 		}
 	}
 }
