@@ -9,21 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("VersusMatchsViewController")]
-	partial class VersusMatchsViewController
+	[Register ("VersusMatchsCollectionViewCell")]
+	partial class VersusMatchsCollectionViewCell
 	{
-		[Outlet]
-		MonoTouch.UIKit.UIButton ButtonNewMatch { get; set; }
-
-		[Action ("OnNewMatchTouched:")]
-		partial void OnNewMatchTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ButtonNewMatch != null) {
-				ButtonNewMatch.Dispose ();
-				ButtonNewMatch = null;
-			}
 		}
 	}
 }

@@ -10,6 +10,9 @@ namespace SuperKoikoukesse.iOS
 		public VersusMatchsViewController (IntPtr handle) : base (handle)
 		{
 		}
+
+		partial void OnNewMatchTouched (MonoTouch.Foundation.NSObject sender) {
+		}
 	}
 }
 

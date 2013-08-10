@@ -8,51 +8,51 @@ namespace SuperKoikoukesse.iOS
 	[Register ("VersusMatchsCollectionViewController")]
 	public class VersusMatchsCollectionViewController : UICollectionViewController
 	{
+		private static NSString CellId = new NSString("VersusMatchCell"); // Make sure it matches the reusable ID in storyboard
+
 		public VersusMatchsCollectionViewController (IntPtr handle) : base (handle)
 		{
-		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			// Register any custom UICollectionViewCell classes
-//			CollectionView.RegisterClassForCell (typeof(VersusMatchsCollectionViewControllerCell), VersusMatchsCollectionViewControllerCell.Key);
-			
-			// Note: If you use one of the Collection View Cell templates to create a new cell type,
-			// you can register it using the RegisterNibForCell() method like this:
-			//
-			// CollectionView.RegisterNibForCell (MyCollectionViewCell.Nib, MyCollectionViewCell.Key);
+
+//			CollectionView.RegisterClassForCell (typeof(VersusMatchsCollectionViewCell), VersusMatchsCollectionViewCell.Key);
 		}
 
 		public override int NumberOfSections (UICollectionView collectionView)
 		{
-			// TODO: return the actual number of sections
 			return 1;
 		}
 
 		public override int GetItemsCount (UICollectionView collectionView, int section)
 		{
-			// TODO: return the actual number of items in the section
-			return 1;
+			return 2;
 		}
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-//			var cell = collectionView.DequeueReusableCell (VersusMatchsCollectionViewControllerCell.Key, indexPath) as VersusMatchsCollectionViewControllerCell;
-			
-			// TODO: populate the cell with the appropriate data based on the indexPath
-			
-//			return cell;
-			return null;
+			UICollectionViewCell cell = collectionView.DequeueReusableCell (CellId, indexPath) as UICollectionViewCell;
+
+			// Fill cell properties using TAG.
+			// 1 : Player 1 profile picture
+			// 2 : Player 1 ID
+			// 3 : Player 1 score
+			// 11: Player 2 profile picture
+			// 12: Player 2 ID
+			// 13: Player 2 score
+			UIImageView ImagePlayer1 = cell.ViewWithTag (1) as UIImageView;
+			ImagePlayer1.Image = UIImage.FromFile ("icon.png");
+			UILabel LabelPlayer1Id = cell.ViewWithTag (2) as UILabel;
+			UILabel LabelPlayer1Score = cell.ViewWithTag (3) as UILabel;
+
+			UIImageView ImagePlayer2 = cell.ViewWithTag (11) as UIImageView;
+			ImagePlayer2.Image = UIImage.FromFile ("icon.png");
+			UILabel LabelPlayer2Id = cell.ViewWithTag (12) as UILabel;
+			UILabel LabelPlayer2Score = cell.ViewWithTag (13) as UILabel;
+
+			return cell;
 		}
 	}
 }

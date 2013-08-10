@@ -170,6 +170,10 @@
       <DependentUpon>VersusMatchsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\VersusMatchsCollectionViewController.cs" />
+    <Compile Include="Views\VersusMatchsCollectionViewCell.cs" />
+    <Compile Include="Views\VersusMatchsCollectionViewCell.designer.cs">
+      <DependentUpon>VersusMatchsCollectionViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
