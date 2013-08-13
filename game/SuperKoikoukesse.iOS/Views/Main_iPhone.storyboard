@@ -191,8 +191,16 @@
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Koikou" id="3KN-xM-XXG">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="wqq-qA-SrN"/>
-                        <barButtonItem key="rightBarButtonItem" title="Shop" id="FnK-A4-pDO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="wqq-qA-SrN">
+                            <connections>
+                                <action selector="OnSettingsTouched:" destination="ksv-YE-Qzr" id="6Aq-ZL-Kix"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Shop" id="FnK-A4-pDO">
+                            <connections>
+                                <action selector="OnShopTouched:" destination="ksv-YE-Qzr" id="iNJ-rO-UQQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
