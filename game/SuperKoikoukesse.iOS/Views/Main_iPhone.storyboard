@@ -33,15 +33,15 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Pixelnest Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7E-3e-8wV">
-                                <rect key="frame" x="69" y="229" width="183" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pixelnest Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7E-3e-8wV">
+                                <rect key="frame" x="98" y="222" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Laurent Brossard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blW-Bn-T4i">
-                                <rect key="frame" x="73" y="255" width="175" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Laurent Brossard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blW-Bn-T4i">
+                                <rect key="frame" x="94" y="262" width="132" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="deviceRGB"/>
@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="623" y="74"/>
         </scene>
-        <!--Menu View Controller - Koikou-->
+        <!--Menu View Controller - Play-->
         <scene sceneID="UtG-HP-ECG">
             <objects>
                 <viewController id="ksv-YE-Qzr" customClass="MenuViewController" sceneMemberID="viewController">
@@ -190,7 +190,7 @@
                         </constraints>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Koikou" id="3KN-xM-XXG">
+                    <navigationItem key="navigationItem" title="Play" id="3KN-xM-XXG">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="wqq-qA-SrN">
                             <connections>
                                 <action selector="OnSettingsTouched:" destination="ksv-YE-Qzr" id="6Aq-ZL-Kix"/>
@@ -554,18 +554,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ked-zD-Hxr" userLabel="Image - Scrollview">
+                                    <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ked-zD-Hxr" userLabel="Image - Scrollview">
                                         <rect key="frame" x="35" y="35" width="250" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="image_empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="rNN-17-jC7" userLabel="Image - Content">
-                                                <rect key="frame" x="0.0" y="0.0" width="505" height="505"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="image_empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="rNN-17-jC7" userLabel="Image - Content">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="OFx-a9-jhH"/>
+                                                    <constraint firstAttribute="width" constant="250" id="y2d-4w-vWR"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="rNN-17-jC7" secondAttribute="trailing" id="67J-6B-7pO"/>
-                                            <constraint firstAttribute="bottom" secondItem="rNN-17-jC7" secondAttribute="bottom" id="6aZ-55-Akr"/>
                                             <constraint firstItem="rNN-17-jC7" firstAttribute="top" secondItem="ked-zD-Hxr" secondAttribute="top" id="74y-Kj-RRp"/>
                                             <constraint firstItem="rNN-17-jC7" firstAttribute="leading" secondItem="ked-zD-Hxr" secondAttribute="leading" id="RhH-zT-7x7"/>
                                             <constraint firstAttribute="width" constant="250" id="UaQ-3x-BPH"/>
@@ -812,7 +814,14 @@
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="woB-7V-qe4"/>
+                    <navigationItem key="navigationItem" id="woB-7V-qe4">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="QQU-UK-8Xd">
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="ButtonGame1" destination="VaL-w9-saq" id="k3O-x5-6lk"/>
@@ -854,7 +863,7 @@
                     <view key="view" contentMode="scaleToFill" id="4WZ-4X-XHz">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95294123888015747" green="0.95294123888015747" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shop" id="VTa-DG-GvF"/>
                 </viewController>
@@ -873,7 +882,7 @@
                     <view key="view" contentMode="scaleToFill" id="tFt-KD-Uzo">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95294123888015747" green="0.95294123888015747" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Joh-2H-e1j"/>
                 </viewController>
@@ -881,7 +890,7 @@
             </objects>
             <point key="canvasLocation" x="1199" y="-768"/>
         </scene>
-        <!--Score View Controller-->
+        <!--Score View Controller - Game over-->
         <scene sceneID="Fec-Wr-udY">
             <objects>
                 <viewController id="omR-iH-L5l" customClass="ScoreViewController" sceneMemberID="viewController">
@@ -893,22 +902,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="your current score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVk-c2-bUz">
-                                <rect key="frame" x="20" y="64" width="300" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your current score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVk-c2-bUz">
+                                <rect key="frame" x="20" y="20" width="300" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.52941179279999995" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="your previous scores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-vc-SNv">
-                                <rect key="frame" x="20" y="184" width="300" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your previous scores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPF-vc-SNv">
+                                <rect key="frame" x="20" y="141" width="300" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.52941179279999995" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="50.000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOp-AZ-fSa">
-                                <rect key="frame" x="129" y="104" width="62" height="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50.000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOp-AZ-fSa">
+                                <rect key="frame" x="130" y="61" width="61" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
@@ -928,33 +937,12 @@
                                     <action selector="OnRetryTouched:" destination="omR-iH-L5l" eventType="touchUpInside" id="OKF-j1-kwY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sM-dn-X8F">
-                                <rect key="frame" x="111" y="19" width="119" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lq3-gs-hZM">
-                                <rect key="frame" x="259" y="20" width="41" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Menu">
-                                    <color key="titleColor" red="0.1647058874" green="0.57647061349999995" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="OnMenuTouched:" destination="omR-iH-L5l" eventType="touchUpInside" id="DfW-90-yde"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="top" secondItem="YVk-c2-bUz" secondAttribute="bottom" constant="100" id="6LI-QT-gyg"/>
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="trailing" secondItem="OOQ-Ob-NTO" secondAttribute="trailing" id="7ce-TX-GFD"/>
+                            <constraint firstItem="YVk-c2-bUz" firstAttribute="top" secondItem="vAJ-5m-03a" secondAttribute="bottom" constant="20" id="Axs-jP-nLi"/>
                             <constraint firstItem="YVk-c2-bUz" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="20" id="KGs-oP-MrA"/>
                             <constraint firstItem="BOp-AZ-fSa" firstAttribute="top" secondItem="YVk-c2-bUz" secondAttribute="bottom" constant="20" id="QEK-A9-1zg"/>
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="20" id="Wfu-Vv-CUj"/>
@@ -964,7 +952,13 @@
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nKB-6E-6Dz"/>
+                    <navigationItem key="navigationItem" title="Game over" id="nKB-6E-6Dz">
+                        <barButtonItem key="rightBarButtonItem" title="Menu" id="DwW-Uf-un1">
+                            <connections>
+                                <action selector="OnMenuTouched:" destination="omR-iH-L5l" id="aOX-0w-agx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="cVr-5m-q0d" kind="push" identifier="ScoreToGame" id="dbu-Tv-dyJ"/>
                         <segue destination="ksv-YE-Qzr" kind="push" identifier="ScoreToMenu" id="kRF-TE-k8D"/>
