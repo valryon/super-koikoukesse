@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="623" y="74"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Menu View Controller - Koikou-->
         <scene sceneID="UtG-HP-ECG">
             <objects>
                 <viewController id="ksv-YE-Qzr" customClass="MenuViewController" sceneMemberID="viewController">
@@ -261,7 +261,10 @@
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3KN-xM-XXG"/>
+                    <navigationItem key="navigationItem" title="Koikou" id="3KN-xM-XXG">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="wqq-qA-SrN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Shop" id="FnK-A4-pDO"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="ButtonDebug" destination="20H-dB-hVf" id="ocj-1K-wTb"/>
@@ -1053,6 +1056,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="JRS-kU-O6b"/>
-        <segue reference="Woq-MR-BjK"/>
+        <segue reference="By1-MQ-h8U"/>
     </inferredMetricsTieBreakers>
 </document>
