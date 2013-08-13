@@ -30,52 +30,43 @@ namespace SuperKoikoukesse.iOS
       isAuthenticated = false;
       Logger.I("Game Center Authentication requested...");
 
-      // On main thread
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.InvokeOnMainThread(() => {
+      GKLocalPlayer.LocalPlayer.AuthenticateHandler = (ui, error) => {
+					
+        // If ui is null, that means the user is already authenticated,
+        // for example, if the user used Game Center directly to log in
+        if (ui != null)
+        {
+          ShowGameCenter(ui);
+        }
+        else
+        {
+          // Check if you are authenticated:
+          isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+        }
 
-        //
-        // iOS 6.0 and newer
-        //
-        GKLocalPlayer.LocalPlayer.AuthenticateHandler = (ui, error) => {
-					
-          // If ui is null, that means the user is already authenticated,
-          // for example, if the user used Game Center directly to log in
-					
-          if (ui != null)
+        if (error != null)
+        {
+          Logger.E("Game Center Authentication failed! " + error);
+        }
+        else
+        {
+          isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+
+          if (isAuthenticated)
           {
-            ShowGameCenter(ui);
+            Logger.I("Game Center - " + PlayerId + "(" + DisplayName + ")");
           }
           else
           {
-            // Check if you are authenticated:
-            isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+            Logger.W("Game Center - disabled !");
           }
+        }
 
-          if (error != null)
-          {
-            Logger.E("Game Center Authentication failed! " + error);
-          }
-          else
-          {
-            isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
-
-            if (isAuthenticated)
-            {
-              Logger.I("Game Center - " + PlayerId + "(" + DisplayName + ")");
-            }
-            else
-            {
-              Logger.W("Game Center - disabled !");
-            }
-          }
-
-          if (authenticationFinished != null)
-          {
-            authenticationFinished();
-          }
-        };
-      });
+        if (authenticationFinished != null)
+        {
+          authenticationFinished();
+        }
+      };
     }
 
     public override void AddScore(GameMode mode, GameDifficulties difficulty, int score)
