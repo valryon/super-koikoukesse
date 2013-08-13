@@ -113,7 +113,6 @@ namespace SuperKoikoukesse.iOS
       GKPlayer player1 = null;
       if (matchsPlayer.TryGetValue(match.Player1Id, out player1))
       {
-
         UIImageView ImagePlayer1 = cell.ViewWithTag(1) as UIImageView;
         ImagePlayer1.Image = UIImage.FromFile("icon.png");
 
@@ -190,8 +189,13 @@ namespace SuperKoikoukesse.iOS
     {
       VersusMatch match = matchs[indexPath.Item];
 
-      mGameLauncher = new GameLauncher(this);
-      mGameLauncher.Launch("VersusToGame", GameMode.VERSUS, match.Difficulty, match.Filter);
+      if (match.IsEnded == false && match.IsPlayerTurn(PlayerCache.Instance.AuthenticatedPlayer.PlayerId))
+      {
+        PlayerCache.Instance.AuthenticatedPlayer.SetMatch(match);
+
+        mGameLauncher = new GameLauncher(this);
+        mGameLauncher.Launch("VersusToGame", GameMode.VERSUS, match.Difficulty, match.Filter);
+      }
     }
 
     public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)

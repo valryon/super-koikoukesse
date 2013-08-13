@@ -50,6 +50,12 @@ namespace Superkoikoukesse.Common
 		/// <param name="callback">Callback.</param>
 		public abstract void NewMatch(Action<VersusMatch> matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback);
 
+    /// <summary>
+    /// Register match data
+    /// </summary>
+    /// <param name="match">Match.</param>
+    public abstract void SetMatch(VersusMatch match);
+
 		/// <summary>
 		/// Ends the current match's turn.
 		/// </summary>
@@ -109,7 +115,8 @@ namespace Superkoikoukesse.Common
 		/// <value>The current match.</value>
 		public VersusMatch CurrentMatch 
 		{
-			get; protected set;
+			get; 
+      protected set;
 		}
 	}
 }
