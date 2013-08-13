@@ -297,12 +297,12 @@ namespace SuperKoikoukesse.iOS
     #region Handlers
     partial void OnSettingsTouched(MonoTouch.Foundation.NSObject sender)
     {
-
+      PerformSegue("MenuToSettings", this);
     }
 
     partial void OnShopTouched(MonoTouch.Foundation.NSObject sender)
     {
-
+      PerformSegue("MenuToShop", this);
     }
 
     /// <summary>

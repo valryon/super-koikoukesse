@@ -1052,9 +1052,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="kRF-TE-k8D"/>
         <segue reference="dAh-NJ-kXa"/>
+=======
         <segue reference="JRS-kU-O6b"/>
         <segue reference="By1-MQ-h8U"/>
+>>>>>>> a28af934efbe79eefdf5018f49c9bbaa002bf3de
     </inferredMetricsTieBreakers>
 </document>
