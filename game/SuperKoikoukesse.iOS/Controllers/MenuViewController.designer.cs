@@ -27,9 +27,6 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
 
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewLoading { get; set; }
-
 		[Action ("OnCoinsTouched:")]
 		partial void OnCoinsTouched (MonoTouch.Foundation.NSObject sender);
 
@@ -73,11 +70,6 @@ namespace SuperKoikoukesse.iOS
 			if (ScrollView != null) {
 				ScrollView.Dispose ();
 				ScrollView = null;
-			}
-
-			if (ViewLoading != null) {
-				ViewLoading.Dispose ();
-				ViewLoading = null;
 			}
 		}
 	}

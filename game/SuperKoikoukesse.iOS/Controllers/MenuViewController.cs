@@ -27,8 +27,8 @@ namespace SuperKoikoukesse.iOS
 			: base (handle)
     {
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.OnLoading += () => ViewLoading.Hidden = false;
-      appDelegate.OnLoadingComplete += () => ViewLoading.Hidden = true;
+//      appDelegate.OnLoading += () => ViewLoading.Hidden = false;
+//      appDelegate.OnLoadingComplete += () => ViewLoading.Hidden = true;
 
       mCards = new List<UIViewController>();
     }
@@ -294,9 +294,6 @@ namespace SuperKoikoukesse.iOS
 
         // Prepare quizz
         mGameLauncher.Prepare(gameVc);
-
-        // Hide loading
-        ViewLoading.Hidden = true;
       }
     }
 
