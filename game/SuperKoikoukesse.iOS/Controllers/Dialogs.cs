@@ -28,15 +28,22 @@ namespace SuperKoikoukesse.iOS
 			alert.Show();
 		}
 
-		public static void ShowAuthenticationRequired ()
+		public static void ShowAuthenticationRequired (Action authenticationRequested)
 		{
 			UIAlertView alert = new UIAlertView(
 				"Game Center requis",
 				"Vous devez vous connectez à Game Center pour jouer en multijoueur.",
 				null,
-				"Ok");
+				"Cancel", "Connect");
 			
 			alert.Show();
+      alert.Dismissed += (object sender, UIButtonEventArgs e) => {
+        if(e.ButtonIndex == 1) {
+          if(authenticationRequested != null) {
+            authenticationRequested();
+          }
+        }
+      };
 		}
 
 		public static void ShowNotYourTurn ()

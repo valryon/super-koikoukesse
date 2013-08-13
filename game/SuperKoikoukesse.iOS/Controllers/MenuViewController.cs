@@ -256,17 +256,16 @@ namespace SuperKoikoukesse.iOS
         {
           if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
           {
-            PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
+            // Dialog
+            Dialogs.ShowAuthenticationRequired(
+              () => {
+              PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
 
-              if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
-              {
-                DisplayMatchMaker(m);
-              }
-              else
-              {
-                // Dialog
-                Dialogs.ShowAuthenticationRequired();
-              }
+                if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
+                {
+                  DisplayMatchMaker(m);
+                }
+              });
             });
           }
           else
