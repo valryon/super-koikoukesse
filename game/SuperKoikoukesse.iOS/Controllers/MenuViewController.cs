@@ -65,8 +65,11 @@ namespace SuperKoikoukesse.iOS
 
       UpdateViewWithPlayerInfos();
     }
+
     #endregion
+
     #region Methods
+
     public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
     {
       return AppDelegate.HasSupportedInterfaceOrientations();
@@ -110,7 +113,9 @@ namespace SuperKoikoukesse.iOS
       }
 
     }
+
     #region Scroll view and pagination
+
     /// <summary>
     /// Create the cards for the menu
     /// </summary>
@@ -195,7 +200,9 @@ namespace SuperKoikoukesse.iOS
     {
       ScrollView.SetContentOffset(new PointF(page * ScrollView.Frame.Width, 0), true);
     }
+
     #endregion
+
     /// <summary>
     /// Pop-up the Game Center matchmaker
     /// </summary>
@@ -293,8 +300,11 @@ namespace SuperKoikoukesse.iOS
         ViewLoading.Hidden = true;
       }
     }
+
     #endregion
+
     #region Handlers
+
     partial void OnSettingsTouched(MonoTouch.Foundation.NSObject sender)
     {
       PerformSegue("MenuToSettings", this);
@@ -331,6 +341,7 @@ namespace SuperKoikoukesse.iOS
     {
       PlayerCache.Instance.AddCoins(Constants.BASE_COINS);
     }
+
     #endregion
   }
 }
