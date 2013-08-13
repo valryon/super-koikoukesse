@@ -14,19 +14,7 @@ namespace SuperKoikoukesse.iOS
 
 		partial void OnNewMatchTouched (MonoTouch.Foundation.NSObject sender) 
 		{
-			PlayerCache.Instance.AuthenticatedPlayer.NewMatch(
-				(match) => {
-					
-				},
-				() => {
-					//Cancel
-				},
-				() => {
-					//Error
-				},
-				() => {
-					//Quit
-				});
+			PerformSegue("VersusToNewVersus", this);
 		}
 	}
 }

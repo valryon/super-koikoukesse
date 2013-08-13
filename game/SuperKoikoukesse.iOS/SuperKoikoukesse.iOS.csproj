@@ -174,11 +174,15 @@
       <DependentUpon>VersusMatchsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\VersusMatchsCollectionViewController.cs" />
-    <Compile Include="Views\VersusMatchsCollectionViewCell.cs" />
-    <Compile Include="Views\VersusMatchsCollectionViewCell.designer.cs">
+    <Compile Include="GameCenter\GameCenterHelper.cs" />
+    <Compile Include="VersusMatchsCollectionViewCell.cs" />
+    <Compile Include="VersusMatchsCollectionViewCell.designer.cs">
       <DependentUpon>VersusMatchsCollectionViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameCenter\GameCenterHelper.cs" />
+    <Compile Include="Controllers\VersusNewMatchViewController.cs" />
+    <Compile Include="Controllers\VersusNewMatchViewController.designer.cs">
+      <DependentUpon>VersusNewMatchViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

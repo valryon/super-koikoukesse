@@ -32,9 +32,6 @@ namespace SuperKoikoukesse.iOS
 			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
 			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
-//			mSplashScreenViewController = new SplashscreenViewController ();
-//			SwitchToView (mSplashScreenViewController);
-
 			// Load all the things!
 			LoadDatabase ();
 			LoadConfiguration ();

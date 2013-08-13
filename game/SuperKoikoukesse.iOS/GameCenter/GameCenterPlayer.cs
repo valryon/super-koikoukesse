@@ -180,6 +180,7 @@ namespace SuperKoikoukesse.iOS
 			mmDelegate.PlayerQuitCallback += playerQuitCallback;
 			matchMakerVc.Delegate = mmDelegate;
 
+
 			ShowGameCenter (matchMakerVc);
 		}
 
