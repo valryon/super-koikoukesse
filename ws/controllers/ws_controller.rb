@@ -83,7 +83,8 @@ end
 post '/ws/players.json' do
 
   # JSON example
-  #{"player": "G1725278793", "credits": 2, "coins": 150, "platform": "ios"}
+  #{"playerId": "G1725278793", "credits": 2, "coins": 150, "platform": "ios"}
+
   response = WsResponse.new
 
   # Parse the json and check for all mandatory fields

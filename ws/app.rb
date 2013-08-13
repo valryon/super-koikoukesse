@@ -35,9 +35,10 @@ Dir[File.dirname(__FILE__) + "/models/*.rb"].each do |file|
 end
 
 # Data Mapper
-puts "=> Initializing database..."
+dbPath = ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db/dev.db"
+puts "=> Initializing database..." + dbPath
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db/dev.db")
+DataMapper.setup(:default, dbPath)
 
 configure :development do
   DataMapper::Logger.new($stdout, :debug)
