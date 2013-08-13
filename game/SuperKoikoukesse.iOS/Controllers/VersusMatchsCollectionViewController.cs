@@ -109,6 +109,19 @@ namespace SuperKoikoukesse.iOS
       // 12: Player 2 ID
       // 13: Player 2 score
 
+      if (match.IsEnded)
+      {
+        cell.BackgroundColor = PXNConstants.BRAND_GREY;
+      }
+      else if (match.IsPlayerTurn(PlayerCache.Instance.AuthenticatedPlayer.PlayerId))
+      {
+        cell.BackgroundColor = PXNConstants.BRAND_COLOR;
+      }
+      else
+      {
+        cell.BackgroundColor = UIColor.White;
+      }
+
       // -- Player 1
       GKPlayer player1 = null;
       if (matchsPlayer.TryGetValue(match.Player1Id, out player1))
