@@ -18,6 +18,8 @@ namespace SuperKoikoukesse.iOS
 		private Dictionary<string, GKPlayer> matchsPlayer;
 		private List<VersusMatch> matchs;
 
+    private GameLauncher mGameLauncher;
+
 		public VersusMatchsCollectionViewController (IntPtr handle) : base (handle)
 		{
 			matchs = new List<VersusMatch> ();
@@ -56,7 +58,9 @@ namespace SuperKoikoukesse.iOS
 					matchsPlayer = new Dictionary<string, GKPlayer> ();
 
 					foreach (var p in players) {
-						matchsPlayer.Add (p.PlayerID, p);
+            if(matchsPlayer.ContainsKey(p.PlayerID) == false) {
+						  matchsPlayer.Add (p.PlayerID, p);
+            }
 					}
 
 					InvokeOnMainThread (() => {
@@ -163,6 +167,26 @@ namespace SuperKoikoukesse.iOS
 
 			return cell;
 		}
+
+    public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+    {
+      VersusMatch match = matchs [indexPath.Item];
+
+      mGameLauncher = new GameLauncher(this);
+      mGameLauncher.Launch("VersusToGame", GameMode.VERSUS, match.Difficulty, match.Filter);
+    }
+
+    public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+    {
+      base.PrepareForSegue(segue, sender);
+
+      if (mGameLauncher != null && segue.Identifier == mGameLauncher.SegueId)
+      {
+        GameViewController gameVc = segue.DestinationViewController as GameViewController;
+
+        mGameLauncher.Prepare(gameVc);
+      }
+    }
 	}
 }
 

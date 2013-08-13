@@ -6,28 +6,27 @@ using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
-	public partial class VersusNewMatchViewController : UIViewController
-	{
-		private GameMode mSelectedMode;
-		private GameDifficulties mSelectedDifficulty;
-		private Filter mSelectedFilter;
+  public partial class VersusNewMatchViewController : UIViewController
+  {
+    private static string VersusToGameSegueId = "VersusNewToGame";
+    private GameLauncher mGameLauncher;
 
-		public VersusNewMatchViewController (IntPtr handle) : base (handle)
-		{
-		}
+    public VersusNewMatchViewController(IntPtr handle) : base (handle)
+    {
+    }
 
-		partial void OnGoTouched (MonoTouch.Foundation.NSObject sender)
-		{
-			PerformSegue ("VersusToNewVersus", this);
-
-			PlayerCache.Instance.AuthenticatedPlayer.NewMatch (
+    partial void OnGoTouched(MonoTouch.Foundation.NSObject sender)
+    {
+      PlayerCache.Instance.AuthenticatedPlayer.NewMatch(
 				// Match found
-				(match) => {
+        (match) => {
 
-				// Ensure it's a new match
-				if (match.IsFirstTurn) {
-					LaunchGame (GameMode.SCORE, GameDifficulties.NORMAL, new Filter ());
-				} 
+        // Ensure it's a new match
+        if (match.IsFirstTurn)
+        {
+          mGameLauncher = new GameLauncher(this);
+          mGameLauncher.Launch(VersusToGameSegueId, GameMode.SCORE, GameDifficulties.NORMAL, new Filter());
+        } 
 //					else {
 //						var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
 //
@@ -44,51 +43,41 @@ namespace SuperKoikoukesse.iOS
 //							}
 //						}
 //					}
-			},
+      },
 			// Cancel
-				() => {
-				// Nothing, controller is already dismissed
-			},
+        () => {
+        // Nothing, controller is already dismissed
+      },
 			// Error
-				() => {
-				// Display an error dialog?
-				UIAlertView alert = new UIAlertView (
-					"Une erreur est survenue",
-					"Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
-					null,
-					"Ok");
+        () => {
+        // Display an error dialog?
+        UIAlertView alert = new UIAlertView(
+          "Une erreur est survenue",
+          "Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
+          null,
+          "Ok");
 
-				alert.Show ();
-			},
+        alert.Show();
+      },
 			// Player quit
-				() => {
-				// Kill the game? Inform the player?
-			}
-			);
+        () => {
+        // Kill the game? Inform the player?
+      }
+      );
 
-		}
+    }
 
-		public void LaunchGame (GameMode mode, GameDifficulties difficulty, Filter filter)
-		{
-			mSelectedMode = mode;
-			mSelectedDifficulty = difficulty;
-			mSelectedFilter = filter;
+    public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+    {
+      base.PrepareForSegue(segue, sender);
 
-			if (mSelectedFilter == null) {
-				mSelectedFilter = new Filter ("0", "Siphon filter", "defaultIcon");
-			}
+      if (mGameLauncher != null && segue.Identifier == mGameLauncher.SegueId)
+      {
+        GameViewController gameVc = (GameViewController) segue.DestinationViewController;
 
-			InvokeInBackground (() => {
-				int gamesCount = mSelectedFilter.Load ();
-
-				BeginInvokeOnMainThread (() => {
-					if (gamesCount < 30) {
-						Dialogs.ShowDebugFilterTooRestrictive ();
-					} else {
-						PerformSegue ("MenuToGame", this);
-					}
-				});
-			});
-		}
-	}
+        // Prepare quizz
+        mGameLauncher.Prepare(gameVc);
+      }
+    }
+  }
 }

@@ -17,9 +17,7 @@ namespace SuperKoikoukesse.iOS
     private List<UIViewController> mCards;
     private MenuDifficultyViewController mDifficultyViewController;
     private CardScoreViewController mHighScorePanel;
-    private GameMode mSelectedMode;
-    private GameDifficulties mSelectedDifficulty;
-    private Filter mSelectedFilter;
+    private GameLauncher mGameLauncher;
 
     #endregion
 
@@ -67,11 +65,8 @@ namespace SuperKoikoukesse.iOS
 
       UpdateViewWithPlayerInfos();
     }
-
     #endregion
-
     #region Methods
-
     public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
     {
       return AppDelegate.HasSupportedInterfaceOrientations();
@@ -115,9 +110,7 @@ namespace SuperKoikoukesse.iOS
       }
 
     }
-
     #region Scroll view and pagination
-
     /// <summary>
     /// Create the cards for the menu
     /// </summary>
@@ -202,9 +195,7 @@ namespace SuperKoikoukesse.iOS
     {
       ScrollView.SetContentOffset(new PointF(page * ScrollView.Frame.Width, 0), true);
     }
-
     #endregion
-
     /// <summary>
     /// Pop-up the Game Center matchmaker
     /// </summary>
@@ -238,7 +229,8 @@ namespace SuperKoikoukesse.iOS
             filter = currentMatch.Filter; // This is weird
           }
 
-          LaunchGame(mode, difficulty, filter);
+          mGameLauncher = new GameLauncher(this);
+          mGameLauncher.Launch("MenuToGame", mode, difficulty, filter);
         }; 	
       }
 			
@@ -253,10 +245,8 @@ namespace SuperKoikoukesse.iOS
       // Enough credits?
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
-
         if (m == GameMode.VERSUS)
         {
-
           if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
           {
             PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
@@ -288,55 +278,23 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
-    public void LaunchGame(GameMode mode, GameDifficulties difficulty, Filter filter)
-    {
-      mSelectedMode = mode;
-      mSelectedDifficulty = difficulty;
-      mSelectedFilter = filter;
-
-      if (mSelectedFilter == null)
-      {
-        mSelectedFilter = new Filter("0", "Siphon filter", "defaultIcon");
-      }
-
-      ViewLoading.Hidden = false;
-
-      InvokeInBackground(() => {
-        int gamesCount = mSelectedFilter.Load();
-
-        BeginInvokeOnMainThread(() => {
-          if (gamesCount < 30)
-          {
-            Dialogs.ShowDebugFilterTooRestrictive();
-          }
-          else
-          {
-            PerformSegue("MenuToGame", this);
-          }
-        });
-      });
-    }
-
     public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
     {
       base.PrepareForSegue(segue, sender);
 
-      if (segue.Identifier == "MenuToGame")
+      if (mGameLauncher!= null && segue.Identifier == mGameLauncher.SegueId)
       {
         GameViewController gameVc = (GameViewController) segue.DestinationViewController;
 
         // Prepare quizz
-        gameVc.InitializeQuizz(mSelectedMode, mSelectedDifficulty, mSelectedFilter);
+        mGameLauncher.Prepare(gameVc);
 
         // Hide loading
         ViewLoading.Hidden = true;
       }
     }
-
     #endregion
-
     #region Handlers
-
     partial void OnSettingsTouched(MonoTouch.Foundation.NSObject sender)
     {
 
@@ -373,7 +331,6 @@ namespace SuperKoikoukesse.iOS
     {
       PlayerCache.Instance.AddCoins(Constants.BASE_COINS);
     }
-
     #endregion
   }
 }

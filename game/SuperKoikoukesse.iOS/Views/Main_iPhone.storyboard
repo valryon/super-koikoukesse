@@ -318,6 +318,7 @@
                     <connections>
                         <outlet property="ButtonNewMatch" destination="8Vn-Aa-FRd" id="P6O-Zb-6W0"/>
                         <segue destination="B6Q-1b-R4l" kind="push" identifier="VersusToNewVersus" id="neH-y1-vTG"/>
+                        <segue destination="cVr-5m-q0d" kind="push" identifier="VersusToGame" id="Woq-MR-BjK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAw-P6-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -436,6 +437,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ugh-mf-ns9"/>
+                    <connections>
+                        <segue destination="cVr-5m-q0d" kind="push" identifier="VersusNewToGame" id="dAh-NJ-kXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdf-X5-dkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -896,7 +900,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpN-hx-eDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765" y="74"/>
+            <point key="canvasLocation" x="2529" y="74"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="Fec-Wr-udY">
@@ -1008,7 +1012,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="By1-MQ-h8U"/>
         <segue reference="kRF-TE-k8D"/>
+        <segue reference="dAh-NJ-kXa"/>
     </inferredMetricsTieBreakers>
 </document>

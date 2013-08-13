@@ -183,6 +183,7 @@
     <Compile Include="Controllers\VersusNewMatchViewController.designer.cs">
       <DependentUpon>VersusNewMatchViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\GameLauncher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
