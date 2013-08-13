@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -11,7 +12,21 @@ namespace SuperKoikoukesse.iOS
 		{
 		}
 
-		partial void OnNewMatchTouched (MonoTouch.Foundation.NSObject sender) {
+		partial void OnNewMatchTouched (MonoTouch.Foundation.NSObject sender) 
+		{
+			PlayerCache.Instance.AuthenticatedPlayer.NewMatch(
+				(match) => {
+					
+				},
+				() => {
+					//Cancel
+				},
+				() => {
+					//Error
+				},
+				() => {
+					//Quit
+				});
 		}
 	}
 }

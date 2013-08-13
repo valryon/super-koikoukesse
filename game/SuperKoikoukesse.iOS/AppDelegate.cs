@@ -15,10 +15,6 @@ namespace SuperKoikoukesse.iOS
 	{
 		#region Fields
 
-		private GameViewController mGameViewController;
-		private MenuViewController mMenuViewController;
-		private ScoreViewController mScoreViewController;
-		private CreditsViewController mCreditsViewController;
 		private bool mDatabaseLoaded;
 		private bool mConfigurationLoaded;
 
@@ -111,9 +107,9 @@ namespace SuperKoikoukesse.iOS
 
 				InvokeOnMainThread (() => {
 
-					if (mMenuViewController != null) {
-						mMenuViewController.UpdateViewWithPlayerInfos ();
-					}
+//					if (mMenuViewController != null) {
+//						mMenuViewController.UpdateViewWithPlayerInfos ();
+//					}
 				});
 			};
 

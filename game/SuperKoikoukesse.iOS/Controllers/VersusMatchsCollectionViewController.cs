@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using System.Collections.Generic;
+using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -14,35 +15,61 @@ namespace SuperKoikoukesse.iOS
 		private static NSString CellId = new NSString ("VersusMatchCell");
 		// Make sure it matches the reusable ID in storyboard
 		private bool isLoaded;
+		private Dictionary<string, GKPlayer> matchsPlayer;
 		private List<VersusMatch> matchs;
 
 		public VersusMatchsCollectionViewController (IntPtr handle) : base (handle)
 		{
 			matchs = new List<VersusMatch> ();
-			isLoaded = false;
-
-			PlayerCache.Instance.AuthenticatedPlayer.ListMatchs (
-				(matches) => {
-					isLoaded = true;
-
-					matchs = matches;
-
-					InvokeOnMainThread( () => {
-						CollectionView.ReloadData();
-					});
-				},
-				() => {
-					// Error
-					isLoaded = true;
-				}
-			);
+			matchsPlayer = new Dictionary<string, GKPlayer> ();
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-//			CollectionView.RegisterClassForCell (typeof(VersusMatchsCollectionViewCell), VersusMatchsCollectionViewCell.Key);
+			isLoaded = false;
+
+			PlayerCache.Instance.AuthenticatedPlayer.ListMatchs (
+				(matches) => {
+
+				matchs = new List<VersusMatch> ();
+
+				List<string> playerIds = new List<string> ();
+
+				foreach (var m in matches) {
+
+					if(string.IsNullOrEmpty(m.Player1Id) == false && string.IsNullOrEmpty(m.Player2Id) == false) {
+						matchs.Add (m);
+
+						if (matchsPlayer.ContainsKey (m.Player1Id) == false) {
+							playerIds.Add (m.Player1Id);
+						}
+						if (matchsPlayer.ContainsKey (m.Player2Id) == false) {
+							playerIds.Add (m.Player2Id);
+						}
+					}
+				}
+
+				// Load player profiles in background
+				GameCenterHelper.GetPlayers (playerIds.ToArray(), (players) => {
+					matchsPlayer = new Dictionary<string, GKPlayer> ();
+
+					foreach (var p in players) {
+						matchsPlayer.Add (p.PlayerID, p);
+					}
+
+					InvokeOnMainThread (() => {
+						isLoaded = true;
+						CollectionView.ReloadData ();
+					});
+				});
+			},
+			() => {
+				// Error
+				isLoaded = true;
+			}
+			);
 		}
 
 		public override int NumberOfSections (UICollectionView collectionView)
@@ -52,6 +79,9 @@ namespace SuperKoikoukesse.iOS
 
 		public override int GetItemsCount (UICollectionView collectionView, int section)
 		{
+			if (isLoaded == false) {
+				return 0;
+			}
 			return matchs.Count;
 		}
 
@@ -70,67 +100,66 @@ namespace SuperKoikoukesse.iOS
 			// 13: Player 2 score
 
 			// -- Player 1
-			UIImageView ImagePlayer1 = cell.ViewWithTag (1) as UIImageView;
-			ImagePlayer1.Image = UIImage.FromFile ("icon.png");
-			UILabel LabelPlayer1Id = cell.ViewWithTag (2) as UILabel;
-			LabelPlayer1Id.Text = "Loading";
-			UILabel LabelPlayer1Score = cell.ViewWithTag (3) as UILabel;
-			LabelPlayer1Score.Text = "";
+			GKPlayer player1 = null;
+			if (matchsPlayer.TryGetValue (match.Player1Id, out player1)) {
 
-			// Look for player1 turn
-			var player1Turn = match.Turns.Where (m => m.PlayerId == match.Player1Id).FirstOrDefault ();
-			if (player1Turn == null) {
-				LabelPlayer1Score.Text = "Not played yet";
-			}
-			else {
-				LabelPlayer1Score.Text = player1Turn.Score.ToString();
-			}
+				UIImageView ImagePlayer1 = cell.ViewWithTag (1) as UIImageView;
+				ImagePlayer1.Image = UIImage.FromFile ("icon.png");
 
-			// Retrieve player info and picture
-			GameCenterHelper.GetPlayer(match.Player1Id, (player) => {
+				UILabel LabelPlayer1Id = cell.ViewWithTag (2) as UILabel;
+				LabelPlayer1Id.Text = player1.DisplayName;
 
-				InvokeOnMainThread(() => {
-					LabelPlayer1Id.Text = player.DisplayName;
-				});
+				UILabel LabelPlayer1Score = cell.ViewWithTag (3) as UILabel;
+				LabelPlayer1Score.Text = "";
 
-				GameCenterHelper.GetProfileImage(player, (image) => {
-					InvokeOnMainThread(() => {
-						ImagePlayer1.Image = image;
+				// Look for player1 turn
+				var player1Turn = match.Turns.Where (m => m.PlayerId == match.Player1Id).FirstOrDefault ();
+				if (player1Turn == null) {
+					LabelPlayer1Score.Text = "Not played yet";
+				} else {
+					LabelPlayer1Score.Text = player1Turn.Score.ToString ();
+				}
+
+				//Picture
+				GameCenterHelper.GetProfileImage (player1, (photo) => {
+					InvokeOnMainThread (() => {
+						ImagePlayer1.Image = photo;
 					});
 				});
-			});
+			} else {
+				Logger.E ("Unknow player1: " + match.Player1Id);
+			}
 
 			// -- Player 2
+			GKPlayer player2 = null;
+			if (matchsPlayer.TryGetValue (match.Player2Id, out player2)) {
 
-			UIImageView ImagePlayer2 = cell.ViewWithTag (11) as UIImageView;
-			ImagePlayer2.Image = UIImage.FromFile ("icon.png");
-			UILabel LabelPlayer2Id = cell.ViewWithTag (12) as UILabel;
-			LabelPlayer2Id.Text = "Loading";
-			UILabel LabelPlayer2Score = cell.ViewWithTag (13) as UILabel;
-			LabelPlayer2Score.Text = "";
+				UIImageView ImagePlayer2 = cell.ViewWithTag (11) as UIImageView;
+				ImagePlayer2.Image = UIImage.FromFile ("icon.png");
 
-			// Look for a turn too
-			var player2Turn = match.Turns.Where (m => m.PlayerId == match.Player2Id).FirstOrDefault ();
-			if (player2Turn == null) {
-				LabelPlayer2Score.Text = "Not played yet";
-			}
-			else {
-				LabelPlayer2Score.Text = player2Turn.Score.ToString();
-			}
+				UILabel LabelPlayer2Id = cell.ViewWithTag (12) as UILabel;
+				LabelPlayer2Id.Text = player2.DisplayName;
 
-			// Picture
-			GameCenterHelper.GetPlayer(match.Player2Id, (player) => {
+				UILabel LabelPlayer2Score = cell.ViewWithTag (13) as UILabel;
+				LabelPlayer2Score.Text = "";
 
-				InvokeOnMainThread(() => {
-					LabelPlayer2Id.Text = player.DisplayName;
-				});
+				// Look for a turn too
+				var player2Turn = match.Turns.Where (m => m.PlayerId == match.Player2Id).FirstOrDefault ();
+				if (player2Turn == null) {
+					LabelPlayer2Score.Text = "Not played yet";
+				} else {
+					LabelPlayer2Score.Text = player2Turn.Score.ToString ();
+				}
 
-				GameCenterHelper.GetProfileImage(player, (image) => {
-					InvokeOnMainThread(() => {
-						ImagePlayer2.Image = image;
+				// Picture
+				GameCenterHelper.GetProfileImage (player2, (photo) => {
+					InvokeOnMainThread (() => {
+						ImagePlayer2.Image = photo;
 					});
 				});
-			});
+			} else {
+				Logger.E ("Unknow player2: " + match.Player2Id);
+			}
 
 			return cell;
 		}
