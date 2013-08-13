@@ -24,6 +24,7 @@ namespace SuperKoikoukesse.iOS
         // Ensure it's a new match
         if (match.IsFirstTurn)
         {
+          PlayerCache.Instance.AuthenticatedPlayer.SetMatch(match);
           mGameLauncher = new GameLauncher(this);
           mGameLauncher.Launch(VersusToGameSegueId, GameMode.SCORE, GameDifficulties.NORMAL, new Filter());
         } 

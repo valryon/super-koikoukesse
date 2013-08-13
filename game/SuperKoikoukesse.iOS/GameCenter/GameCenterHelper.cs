@@ -55,6 +55,7 @@ namespace SuperKoikoukesse.iOS
 		public static VersusMatch ParseMatch (GKTurnBasedMatch match)
 		{
 			VersusMatch existingMatch = new VersusMatch ();
+      existingMatch.GKMatch = match;
 
 			if (match.MatchData == null) {
 				return null;

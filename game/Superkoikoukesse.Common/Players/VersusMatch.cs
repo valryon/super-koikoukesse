@@ -124,6 +124,10 @@ namespace Superkoikoukesse.Common
 		public List<VersusMatchTurn>  Turns  { get; set; }
 
 		public GameDifficulties Difficulty { get; set; }
+
+#if IOS
+    public MonoTouch.GameKit.GKTurnBasedMatch GKMatch { get; set; }
+#endif
 	}
 }
 

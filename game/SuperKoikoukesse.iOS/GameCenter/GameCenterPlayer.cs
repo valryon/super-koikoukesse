@@ -164,6 +164,13 @@ namespace SuperKoikoukesse.iOS
 			});
 		}
 
+    public override void SetMatch(VersusMatch match)
+    {
+      Logger.I("Setting current match to player: "+match.MatchId);
+      this.CurrentMatch = match;
+      this.CurrentGKMatch = match.GKMatch;
+    }
+
 		public override void NewMatch (Action<VersusMatch> matchFoundCallback, Action cancelCallback, Action errorCallback, Action playerQuitCallback)
 		{
 			GKMatchRequest matchRequest = new GKMatchRequest ();
@@ -366,8 +373,6 @@ namespace SuperKoikoukesse.iOS
 				if (versusMatch == null) {
 					matchError = true;
 				} else {
-					this.parent.CurrentMatch = versusMatch;
-
 					if (MatchFoundCallback != null) {
 						MatchFoundCallback (versusMatch);
 					}
