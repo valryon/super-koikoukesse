@@ -7,9 +7,9 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public enum TextTransformations : int
 	{
-		None = 0,
-		FirstLetterOnly = 1,
-		UnderscoresOnly = 2
+		NONE = 0,
+		FIRST_LETTER_ONLY = 1,
+		UNDERSCORES_ONLY = 2
 	}
 }
 

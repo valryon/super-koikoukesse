@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
@@ -11,62 +10,31 @@ using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	// User Interface of the application, as well as listening (and optionally responding) to 
-	// application events from iOS.
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		/// <summary>
-		/// iPhone or iPad ?
-		/// </summary>
-		/// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
-		public static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
+		#region Fields
 
-		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
-		{
-			return  UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
-		}
+		private bool mDatabaseLoaded;
+		private bool mConfigurationLoaded;
 
-		// class-level declarations
-		UIWindow window;
-		private SplashscreenViewController splashScreenViewController;
-		private GameViewController gameViewController;
-		private MenuViewController menuViewController;
-		private ScoreViewController scoreViewController;
-		private LoadingViewController loadingViewController;
-		private CreditsViewController creditsViewController;
-		private bool databaseLoaded;
-		private bool configurationLoaded;
+		#endregion
 
-		//
-		// This method is invoked when the application has loaded and is ready to run. In this 
-		// method you should instantiate the window, load the UI into it and then make the window
-		// visible.
-		//
-		// You have 17 seconds to return from this method, or iOS will terminate your application.
-		//
+		#region Constructor & Initialization
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			Logger.Log (LogLevel.Info, "Launching app...");
+			Logger.I ("Launching app...");
+
+      		new PXNAppearance();
 
 			// Global parameters
-			EncryptionHelper.SetKey (Constants.EncryptionKey);
-			ImageService.Instance.Initialize (Constants.ImagesRootLocation);
-
-			// Create first view
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-
-			//viewController = new GameViewController ();
-			splashScreenViewController = new SplashscreenViewController ();
-			window.RootViewController = splashScreenViewController;
-			window.MakeKeyAndVisible ();
+			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
+			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
 
 			// Load all the things!
-			loadDatabase ();
-			loadConfiguration ();
+			LoadDatabase ();
+			LoadConfiguration ();
 
 			return true;
 		}
@@ -74,69 +42,45 @@ namespace SuperKoikoukesse.iOS
 		/// <summary>
 		/// Load the database in a thread
 		/// </summary>
-		private void loadDatabase ()
+		private void LoadDatabase ()
 		{
-			databaseLoaded = false;
+			mDatabaseLoaded = false;
 
 			// Create or load database
-			DatabaseService.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DatabaseLocation));
+			GameDatabase.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
 
 			// Create database structure as fast as possible so other threads can manipulate it.
-			if (DatabaseService.Instance.Exists == false) {
+			if (GameDatabase.Instance.Exists == false) {
 
-				DatabaseService.Instance.CreateTables();
+				GameDatabase.Instance.CreateTables ();
 			}
 
 			InvokeInBackground (() => {
- 		
+
 				// Create database structure as fast as possible so other threads can manipulate it.
-				if (DatabaseService.Instance.Exists == false) {
+				if (GameDatabase.Instance.Exists == false) {
 
 					// Load gamedb.xml
 					String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
-					
-					DatabaseService.Instance.InitializeFromXml (xmlDatabase);
+
+					GameDatabase.Instance.InitializeFromXml (xmlDatabase);
 				}
 
 				// Check excluded games
-				WebserviceExcludedGames exGames = new WebserviceExcludedGames ();
+				ServiceExcludedGames exGames = new ServiceExcludedGames ();
 				exGames.Request ((list) => {
-					
+
 					foreach (int id in list.GamesId) {
-						DatabaseService.Instance.RemoveGame (id);
+						GameDatabase.Instance.RemoveGame (id);
 					}
-					
+
 				}, null);
 
-				databaseLoaded = true;
+				mDatabaseLoaded = true;
 
 				// Maybe it was the last thing to load
 				InvokeOnMainThread (() => {
-					loadingProgress ();
-				});
-			});
-
-
-		}
-
-		/// <summary>
-		/// Load configuration in a thread
-		/// </summary>
-		private void loadConfiguration ()
-		{
-			configurationLoaded = false;
-			
-			InvokeInBackground (() => {
-
-				// Load the configuration from webservice or from local
-				UpdateConfiguration (() => {
-
-					configurationLoaded = true;
-
-					// Maybe it was the last thing to load
-					InvokeOnMainThread (() => {
-						loadingProgress ();
-					});
+					LoadingProgress ();
 				});
 			});
 		}
@@ -151,38 +95,68 @@ namespace SuperKoikoukesse.iOS
 			GameCenter = new GameCenterPlayer ();
 			GameCenter.ShowGameCenter += (UIViewController gcController) => {
 				InvokeOnMainThread (() => {
-					window.RootViewController.PresentViewController (gcController, true, null);
+					Window.RootViewController.PresentViewController (gcController, true, null);
 				});
 			};
 
 			// Player events
-			ProfileService.Instance.PlayerUpdated += (Player p) => {
-				
+			PlayerCache.Instance.PlayerUpdated += (Player p) => {
+
 				InvokeOnMainThread (() => {
 
-					if (menuViewController != null) {
-						menuViewController.UpdateViewWithPlayerInfos ();
-					}
+//					if (mMenuViewController != null) {
+//						mMenuViewController.UpdateViewWithPlayerInfos ();
+//					}
 				});
 			};
-			
+
 			// Store a local profile from the game center info
 			// Or create a temporary local player
-			ProfileService.Instance.Initialize (GameCenter);
+			PlayerCache.Instance.Initialize (GameCenter);
 		}
 
-		private void loadingProgress ()
+		/// <summary>
+		/// Load configuration in a thread
+		/// </summary>
+		private void LoadConfiguration ()
 		{
-			Logger.Log (LogLevel.Info, "Loading... Database: " + databaseLoaded + " Configuration: " + configurationLoaded);
+			mConfigurationLoaded = false;
 
-			IsInitialized =  (databaseLoaded && configurationLoaded);
+			InvokeInBackground (() => {
 
-			if(IsInitialized) {
-				SetLoading(false);
-				if(InitializationComplete != null) {
-					InitializationComplete();
-				}
+				// Load the configuration from webservice or from local
+				UpdateConfiguration (() => {
+
+					mConfigurationLoaded = true;
+
+					// Maybe it was the last thing to load
+					InvokeOnMainThread (() => {
+						LoadingProgress ();
+					});
+				});
+			});
+		}
+
+		/// <summary>
+		/// Update the loading view, dismiss if everything has been loaded
+		/// </summary>
+		private void LoadingProgress ()
+		{
+			Logger.I ("Loading... Database: " + mDatabaseLoaded + " Configuration: " + mConfigurationLoaded);
+
+			IsInitialized = (mDatabaseLoaded && mConfigurationLoaded);
+
+			if (IsInitialized) {
+				SetLoading (false);
 			}
+		}
+		#endregion
+
+		#region Methods
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
+		{
+			return AppDelegate.HasSupportedInterfaceOrientations ();
 		}
 
 		/// <summary>
@@ -191,17 +165,17 @@ namespace SuperKoikoukesse.iOS
 		public void UpdateConfiguration (Action complete)
 		{
 			// Get the distant configuration
-			WebserviceConfiguration configWs = new WebserviceConfiguration ();
+			ServiceConfiguration configWs = new ServiceConfiguration ();
 			configWs.Request ((config) => {
 				this.Configuration = config;
 
-				Logger.Log (LogLevel.Info, "Configuration loaded and updated.");
+				Logger.I ("Configuration loaded and updated.");
 
 				if (complete != null)
 					complete ();
 			},
-			(code, e) => {
-				Logger.Log (LogLevel.Warning, "Configuration was not loaded!. ");
+			                  (code, e) => {
+				Logger.W ("Configuration was not loaded!. ");
 
 				// Try to use local
 				this.Configuration = configWs.LastValidConfig;
@@ -209,7 +183,7 @@ namespace SuperKoikoukesse.iOS
 				// No local? This is bad. Use default values.
 				if (this.Configuration == null) {
 
-					Logger.Log (LogLevel.Warning, "Using default (local and bad) values!. ");
+					Logger.W ("Using default (local and bad) values!. ");
 
 					this.Configuration = new GameConfiguration ();
 				}
@@ -227,174 +201,32 @@ namespace SuperKoikoukesse.iOS
 		/// </summary>
 		public void SetLoading (bool isLoading)
 		{
-			if (loadingViewController == null) {
-				loadingViewController = new LoadingViewController ();
-			}
-
-			BeginInvokeOnMainThread (() => {
-
-				if (isLoading) {
-					DisplayLoading ();
-				} else {
-					HideLoading ();
+			if (isLoading) {
+				if (OnLoading != null) {
+					OnLoading ();
 				}
-			});
-		}
-
-		/// <summary>
-		/// Display the loading screen
-		/// </summary>
-		private void DisplayLoading ()
-		{
-
-			// Center
-//			loadingViewController.View.Frame = new System.Drawing.RectangleF (
-//
-//				(window.RootViewController.View.Bounds.Width/2) - (loadingViewController.View.Frame.Width/2),
-//				(window.RootViewController.View.Bounds.Height/2)- (loadingViewController.View.Frame.Height/2),
-//				loadingViewController.View.Frame.Width,
-//				loadingViewController.View.Frame.Height
-//			);
-
-			// Fill
-			loadingViewController.View.Frame = (window.RootViewController.View.Bounds);
-
-			window.RootViewController.View.AddSubview (loadingViewController.View);
-		}
-
-		/// <summary>
-		/// Hide the loading screen
-		/// </summary>
-		private void HideLoading ()
-		{
-			loadingViewController.View.RemoveFromSuperview ();
-			//loadingViewController.
+			} else {
+				if (OnLoadingComplete != null) {
+					OnLoadingComplete ();
+				}
+			}
 		}
 
 		#endregion
 
-		#region Views
-
-		public void SwitchToMenuView ()
-		{
-			if (menuViewController == null) {
-				menuViewController = new MenuViewController ();
-			}
-
-			window.RootViewController.RemoveFromParentViewController ();
-			window.RootViewController = menuViewController;
-			window.MakeKeyAndVisible ();
-
-			// Careful: we may not have fully loaded the game
-			SetLoading(!IsInitialized);
-		}
-
-		/// <summary>
-		/// Change to ingame view
-		/// </summary>
-		/// <param name="mode">Mode.</param>
-		/// <param name="difficulty">Difficulty.</param>
-		public void SwitchToGameView (GameModes mode, GameDifficulties difficulty, Filter filter = null)
-		{
-			if (gameViewController == null) {
-				gameViewController = new GameViewController ();
-			}
-
-			// Create a new filter
-			Filter f = null;
-
-			if(filter != null) 
-			{
-				f = filter;
-			}
-			else {
-				f = new Filter ("0", "Siphon filter", "defaultIcon");
-			}
-
-			// Caching filter results
-			SetLoading (true);
-
-			f.Load ((gamesCount) => {
-
-				if (gamesCount < 30) {
-					BeginInvokeOnMainThread (() => {
-						Dialogs.ShowDebugFilterTooRestrictive ();
-					});
-				}
-
-				// Prepare quizz
-				gameViewController.InitializeQuizz (mode, difficulty, f);
-
-				// Display it
-				BeginInvokeOnMainThread (() => {
-
-					SetLoading (false);
-
-					window.RootViewController.RemoveFromParentViewController ();
-					window.RootViewController = gameViewController;
-					window.MakeKeyAndVisible ();
-
-					gameViewController.DisplayQuizz ();
-				});
-
-			});
-			
-		}
-
-		public void SwitchToScoreView (Quizz quizz)
-		{
-			if (scoreViewController != null) {
-				scoreViewController.Dispose ();
-				scoreViewController = null;
-			}
-			scoreViewController = new ScoreViewController (quizz);
-			
-			window.RootViewController.RemoveFromParentViewController ();
-			window.RootViewController = scoreViewController;
-			window.MakeKeyAndVisible ();
-		}
-
-		/// <summary>
-		/// Change to credits view
-		/// </summary>
-		public void SwitchToCreditsView ()
-		{
-			if (creditsViewController == null) {
-				creditsViewController = new CreditsViewController ();
-			}
-			
-			window.RootViewController.RemoveFromParentViewController ();
-			window.RootViewController = creditsViewController;
-			window.MakeKeyAndVisible ();
-			
-		}
-	
-		/// <summary>
-		/// Diplsy shop
-		/// </summary>
-		public void SwitchToShopView ()
-		{
-
-		}
-
-		/// <summary>
-		/// Display options as pop up
-		/// </summary>
-		public void ShowOptions ()
-		{
-
-		}
-
-		#endregion
-
-		#region Game center
+		#region Game center views
 
 		private GKLeaderboardViewController m_gkLeaderboardview;
-//		private GKAchievementViewController m_gkAchievementview;
+		//		private GKAchievementViewController m_gkAchievementview;
 
+		/// <summary>
+		/// Display Game center leaderboards
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		/// <param name="callback">Callback.</param>
 		public void ShowLeaderboards (string id, Action callback)
 		{
-			if (ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated) {
+			if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
 				if (m_gkLeaderboardview == null) {
 					m_gkLeaderboardview = new GKLeaderboardViewController ();
 				}
@@ -412,17 +244,65 @@ namespace SuperKoikoukesse.iOS
 						}
 					};
 
-					window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
+					Window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
 				}
 			} 
 		}
+		#endregion
 
 		#endregion
+
+		#region Events
+
+		/// <summary>
+		/// Loading
+		/// </summary>
+		public event Action OnLoading;
 
 		/// <summary>
 		/// Game is ready to be played
 		/// </summary>
-		public event Action InitializationComplete;
+		public event Action OnLoadingComplete;
+
+		#endregion
+
+		#region Static Properties
+
+		/// <summary>
+		/// iPhone or iPad ?
+		/// </summary>
+		/// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
+		public static bool UserInterfaceIdiomIsPhone {
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+		}
+
+		/// <summary>
+		/// Get the supported orientations for the device:
+		/// - portrait for iPhone
+		/// - landscape for iPad
+		/// </summary>
+		/// <returns>Landscape if iPad, portrait otherwise</returns>
+		public static UIInterfaceOrientationMask HasSupportedInterfaceOrientations ()
+		{
+			// If iPad, only landscape
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+				return UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
+
+			// If iPhone, only portrait
+			return UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.PortraitUpsideDown;
+		}
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// For storyboard handle
+		/// </summary>
+		/// <value>The window.</value>
+		public override UIWindow Window {
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// Global configuration
@@ -441,17 +321,7 @@ namespace SuperKoikoukesse.iOS
 		/// <value>The game center.</value>
 		public GameCenterPlayer GameCenter  { get; private set; }
 
-		protected override void Dispose (bool disposing)
-		{
-			if (gameViewController != null) {
-				gameViewController.Dispose ();
-			}
-			if (menuViewController != null) {
-				menuViewController.Dispose ();
-			}
-
-			base.Dispose (disposing);
-		}
+		#endregion
 	}
 }
 

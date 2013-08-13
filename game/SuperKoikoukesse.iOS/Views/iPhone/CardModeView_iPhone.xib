@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardModeViewController">
+            <connections>
+                <outlet property="ButtonPlay" destination="LBW-RJ-8nH" id="LHs-r5-sMS"/>
+                <outlet property="ImageIcon" destination="1DV-N1-rCQ" id="FQD-bz-YOd"/>
+                <outlet property="LabelDescriptionMain" destination="m1B-ry-tx1" id="pn6-wd-hJO"/>
+                <outlet property="LabelDescriptionSub" destination="7" id="tSK-hA-vd7"/>
+                <outlet property="LabelTitle" destination="NqA-Z0-3ST" id="7rk-ob-115"/>
+                <outlet property="ViewCard" destination="1" id="VIh-U3-4Wz"/>
+                <outlet property="ViewHeader" destination="h1t-N5-qQb" id="pMH-LP-hdK"/>
+                <outlet property="ViewShadow" destination="xwg-nu-pWj" id="xMF-jW-sTa"/>
+                <outlet property="view" destination="if9-7Z-apQ" id="oiy-rT-r7x"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="if9-7Z-apQ" userLabel="Container">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwg-nu-pWj" userLabel="Shadow">
+                    <rect key="frame" x="47" y="120" width="300" height="332"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1" userLabel="Card">
+                    <rect key="frame" x="47" y="119" width="300" height="333"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1t-N5-qQb" userLabel="View - Header">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="71"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track#926z-014208az2B3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-zA-4yJ" userLabel="Label - Tracking">
+                                    <rect key="frame" x="6" y="6" width="106" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="8"/>
+                                    <color key="textColor" red="0.75559085607528687" green="0.75556832551956177" blue="0.7555810809135437" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSl-Sc-pYJ" userLabel="View - Line">
+                                    <rect key="frame" x="0.0" y="18" width="112" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.5" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="P4i-eb-tEQ"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score attack" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqA-Z0-3ST">
+                                    <rect key="frame" x="20" y="26" width="142" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <color key="textColor" red="0.40392160420000001" green="0.80392163989999998" blue="0.86274516580000005" alpha="1" colorSpace="deviceRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_mode_score.png" translatesAutoresizingMaskIntoConstraints="NO" id="1DV-N1-rCQ" userLabel="Image - Icon">
+                                    <rect key="frame" x="250" y="21" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="0oF-TZ-C4s"/>
+                                        <constraint firstAttribute="height" constant="30" id="Ggp-O1-see"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="1DV-N1-rCQ" secondAttribute="trailing" constant="20" id="8jG-CR-0Gd"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="top" secondItem="uL7-zA-4yJ" secondAttribute="bottom" constant="2" id="919-tZ-Ofr"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="trailing" secondItem="uL7-zA-4yJ" secondAttribute="trailing" id="D75-36-KbN"/>
+                                <constraint firstItem="NqA-Z0-3ST" firstAttribute="bottom" secondItem="1DV-N1-rCQ" secondAttribute="bottom" constant="5" id="Fkw-JI-Drn"/>
+                                <constraint firstItem="uL7-zA-4yJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="6" id="NNd-vu-HAN"/>
+                                <constraint firstItem="uL7-zA-4yJ" firstAttribute="top" secondItem="h1t-N5-qQb" secondAttribute="top" constant="6" id="XCz-Ym-Ugs"/>
+                                <constraint firstItem="YSl-Sc-pYJ" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" id="Ys3-O7-sPV"/>
+                                <constraint firstItem="NqA-Z0-3ST" firstAttribute="leading" secondItem="h1t-N5-qQb" secondAttribute="leading" constant="20" id="ced-Wv-PKr"/>
+                                <constraint firstAttribute="height" constant="71" id="j9g-bE-3SS"/>
+                                <constraint firstAttribute="centerY" secondItem="1DV-N1-rCQ" secondAttribute="centerY" id="s7t-3w-S9M"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a game costs one ticket" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPZ-vi-6Q6" userLabel="Label - Tip">
+                            <rect key="frame" x="14" y="285" width="86" height="10"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRC-kw-P0p" userLabel="View - Line">
+                            <rect key="frame" x="0.0" y="298" width="161" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="kYe-hu-GDA"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SuperKoikoukesse is a game created by Pixelnest Studio and Laurent Brossard." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="147" translatesAutoresizingMaskIntoConstraints="NO" id="26X-at-nHe" userLabel="Label - Creators">
+                            <rect key="frame" x="14" y="301" width="147" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try to beat the score during a 20 questions challenge !" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-ry-tx1" userLabel="Label - Desc Main">
+                            <rect key="frame" x="35" y="91" width="230" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="230" id="yOs-zW-lQr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jch-do-Uyv" userLabel="View - Line">
+                            <rect key="frame" x="35" y="137" width="265" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="Lzc-B6-IrB"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="7" userLabel="Label - Desc Sub">
+                            <rect key="frame" x="35" y="155" width="230" height="98"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <string key="text">° When you find the correct answer three times in a row, you gain a joker that you can use to skip a question.
+
+° Each correct answer increments the combo gauge.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBW-RJ-8nH" userLabel="Button - Play">
+                            <rect key="frame" x="196" y="281" width="104" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.22" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="1bN-lK-pea"/>
+                                <constraint firstAttribute="width" constant="104" id="gxU-jW-yQg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                            <inset key="imageEdgeInsets" minX="70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="play" image="arrow_to_right.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="OnPlayTouched:" destination="-1" eventType="touchUpInside" id="2dy-3N-lIF"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.40392160415649414" green="0.80392163991928101" blue="0.86274516582489014" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="26X-at-nHe" firstAttribute="trailing" secondItem="tRC-kw-P0p" secondAttribute="trailing" id="0jH-VN-GO1"/>
+                        <constraint firstItem="h1t-N5-qQb" firstAttribute="top" secondItem="1" secondAttribute="top" id="1TE-Nl-F02"/>
+                        <constraint firstItem="h1t-N5-qQb" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="4Pq-Ui-NeJ"/>
+                        <constraint firstAttribute="bottom" secondItem="26X-at-nHe" secondAttribute="bottom" constant="13" id="4yw-Xt-bS9"/>
+                        <constraint firstItem="26X-at-nHe" firstAttribute="top" secondItem="vPZ-vi-6Q6" secondAttribute="bottom" constant="6" id="8nb-wN-zaR"/>
+                        <constraint firstItem="Jch-do-Uyv" firstAttribute="top" secondItem="m1B-ry-tx1" secondAttribute="bottom" constant="12" id="8p4-zw-vc7"/>
+                        <constraint firstAttribute="trailing" secondItem="Jch-do-Uyv" secondAttribute="trailing" id="AhM-qz-fJh"/>
+                        <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="CMI-ye-PXb"/>
+                        <constraint firstItem="vPZ-vi-6Q6" firstAttribute="leading" secondItem="26X-at-nHe" secondAttribute="leading" id="D26-jr-CQu"/>
+                        <constraint firstItem="tRC-kw-P0p" firstAttribute="top" secondItem="vPZ-vi-6Q6" secondAttribute="bottom" constant="3" id="FSt-oH-CA1"/>
+                        <constraint firstAttribute="centerX" secondItem="m1B-ry-tx1" secondAttribute="centerX" id="MGl-9Z-rRh"/>
+                        <constraint firstItem="7" firstAttribute="top" secondItem="m1B-ry-tx1" secondAttribute="bottom" constant="30" id="NvX-ZQ-W5u"/>
+                        <constraint firstAttribute="trailing" secondItem="h1t-N5-qQb" secondAttribute="trailing" id="Qvq-LX-m8Q"/>
+                        <constraint firstItem="Jch-do-Uyv" firstAttribute="leading" secondItem="m1B-ry-tx1" secondAttribute="leading" id="WZ8-8Y-Uhd"/>
+                        <constraint firstItem="tRC-kw-P0p" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Wtd-eq-AMo"/>
+                        <constraint firstItem="7" firstAttribute="width" secondItem="m1B-ry-tx1" secondAttribute="width" id="bdh-Jn-LaB"/>
+                        <constraint firstItem="m1B-ry-tx1" firstAttribute="top" secondItem="h1t-N5-qQb" secondAttribute="bottom" constant="20" id="fq6-8b-8eO"/>
+                        <constraint firstAttribute="width" constant="300" id="ihk-zY-cTr"/>
+                        <constraint firstAttribute="bottom" secondItem="LBW-RJ-8nH" secondAttribute="bottom" constant="12" id="jJQ-si-8Eg"/>
+                        <constraint firstAttribute="height" constant="333" id="lw2-xs-kJL"/>
+                        <constraint firstItem="LBW-RJ-8nH" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="mZT-KQ-Brr"/>
+                        <constraint firstItem="26X-at-nHe" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="14" id="zQz-UB-ZSX"/>
+                    </constraints>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="88P-00-Wqq"/>
+                <constraint firstItem="1" firstAttribute="height" secondItem="xwg-nu-pWj" secondAttribute="height" id="9Ea-Rv-VWh"/>
+                <constraint firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="EDb-aP-9VS"/>
+                <constraint firstAttribute="centerX" secondItem="xwg-nu-pWj" secondAttribute="centerX" id="IAa-b7-XO7"/>
+                <constraint firstAttribute="centerY" secondItem="xwg-nu-pWj" secondAttribute="centerY" id="MN8-ng-jrQ"/>
+                <constraint firstItem="1" firstAttribute="width" secondItem="xwg-nu-pWj" secondAttribute="width" id="PrK-7B-nHC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow_to_right.png" width="11" height="20"/>
+        <image name="icon_mode_score.png" width="30" height="30"/>
+    </resources>
+</document>

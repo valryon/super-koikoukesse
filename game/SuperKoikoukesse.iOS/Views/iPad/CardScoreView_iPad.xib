@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardScoreViewController">
+            <connections>
+                <outlet property="diffSelector" destination="21" id="25"/>
+                <outlet property="highscoreView" destination="17" id="18"/>
+                <outlet property="modeSelector" destination="6" id="24"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" userLabel="Page highscores">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="528"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                    <rect key="frame" x="182" y="45" width="660" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="660" id="42"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Score Attack"/>
+                        <segment title="Time Attack"/>
+                        <segment title="Survival"/>
+                        <segment title="Versus"/>
+                    </segments>
+                    <connections>
+                        <action selector="modeChanged:" destination="-1" eventType="valueChanged" id="19"/>
+                    </connections>
+                </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="21">
+                    <rect key="frame" x="182" y="81" width="660" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Normal"/>
+                        <segment title="Hard"/>
+                        <segment title="Expert"/>
+                        <segment title="Nolife"/>
+                    </segments>
+                    <connections>
+                        <action selector="difficultyChanged:" destination="-1" eventType="valueChanged" id="23"/>
+                    </connections>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17" userLabel="HighscoreController">
+                    <rect key="frame" x="0.0" y="139" width="1024" height="389"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="21" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="8" symbolic="YES" id="29"/>
+                <constraint firstItem="21" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="30"/>
+                <constraint firstItem="6" firstAttribute="top" secondItem="1" secondAttribute="top" constant="45" id="38"/>
+                <constraint firstItem="6" firstAttribute="trailing" secondItem="21" secondAttribute="trailing" id="46"/>
+                <constraint firstItem="17" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="50"/>
+                <constraint firstAttribute="centerX" secondItem="21" secondAttribute="centerX" id="56"/>
+                <constraint firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="57"/>
+                <constraint firstItem="17" firstAttribute="top" secondItem="21" secondAttribute="bottom" constant="30" id="62"/>
+                <constraint firstItem="17" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="64"/>
+                <constraint firstAttribute="bottom" secondItem="17" secondAttribute="bottom" id="66"/>
+            </constraints>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

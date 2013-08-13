@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -12,127 +13,71 @@ namespace SuperKoikoukesse.iOS
 	partial class MenuViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel authorsLabel { get; set; }
+		MonoTouch.UIKit.UIButton ButtonDebug { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton creditsButton { get; set; }
+		MonoTouch.UIKit.UILabel LabelCoins { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView coinsImage { get; set; }
+		MonoTouch.UIKit.UILabel LabelCredits { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView creditsImage { get; set; }
+		MonoTouch.UIKit.UIPageControl PageControl { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel coinsLabel { get; set; }
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel creditsLabel { get; set; }
+		MonoTouch.UIKit.UIView ViewLoading { get; set; }
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton configButton { get; set; }
+		[Action ("OnCoinsTouched:")]
+		partial void OnCoinsTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton paramsButton { get; set; }
+		[Action ("OnConfigTouched:")]
+		partial void OnConfigTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton shopButton { get; set; }
+		[Action ("OnCreditsTouched:")]
+		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIPageControl pageControl { get; set; }
+		[Action ("OnDebugTouched:")]
+		partial void OnDebugTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIScrollView scrollView { get; set; }
+		[Action ("OnSettingsTouched:")]
+		partial void OnSettingsTouched (MonoTouch.Foundation.NSObject sender);
 
-		[Outlet]
-		MonoTouch.UIKit.UIImageView bgImage { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIButton debugButton { get; set; }
-
-		[Action ("configButtonPressed:")]
-		partial void configButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("debugButtonPressed:")]
-		partial void debugButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("paramsButtonPressed:")]
-		partial void paramsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("shopButtonPressed:")]
-		partial void shopButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("creditsButtonPressed:")]
-		partial void creditsButtonPressed (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("coinsButtonPressed:")]
-		partial void coinsButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnShopTouched:")]
+		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (authorsLabel != null) {
-				authorsLabel.Dispose ();
-				authorsLabel = null;
+			if (ButtonDebug != null) {
+				ButtonDebug.Dispose ();
+				ButtonDebug = null;
 			}
 
-			if (creditsButton != null) {
-				creditsButton.Dispose ();
-				creditsButton = null;
+			if (LabelCoins != null) {
+				LabelCoins.Dispose ();
+				LabelCoins = null;
 			}
 
-			if (coinsImage != null) {
-				coinsImage.Dispose ();
-				coinsImage = null;
+			if (LabelCredits != null) {
+				LabelCredits.Dispose ();
+				LabelCredits = null;
 			}
 
-			if (creditsImage != null) {
-				creditsImage.Dispose ();
-				creditsImage = null;
+			if (PageControl != null) {
+				PageControl.Dispose ();
+				PageControl = null;
 			}
 
-			if (coinsLabel != null) {
-				coinsLabel.Dispose ();
-				coinsLabel = null;
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
 			}
 
-			if (creditsLabel != null) {
-				creditsLabel.Dispose ();
-				creditsLabel = null;
-			}
-
-			if (configButton != null) {
-				configButton.Dispose ();
-				configButton = null;
-			}
-
-			if (paramsButton != null) {
-				paramsButton.Dispose ();
-				paramsButton = null;
-			}
-
-			if (shopButton != null) {
-				shopButton.Dispose ();
-				shopButton = null;
-			}
-
-			if (pageControl != null) {
-				pageControl.Dispose ();
-				pageControl = null;
-			}
-
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
-			}
-
-			if (bgImage != null) {
-				bgImage.Dispose ();
-				bgImage = null;
-			}
-
-			if (debugButton != null) {
-				debugButton.Dispose ();
-				debugButton = null;
+			if (ViewLoading != null) {
+				ViewLoading.Dispose ();
+				ViewLoading = null;
 			}
 		}
 	}

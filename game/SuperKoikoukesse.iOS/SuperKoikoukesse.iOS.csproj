@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -36,13 +36,14 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
+    <DefineConstants>IOS;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -60,6 +61,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>IOS;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -71,6 +73,7 @@
     <ConsolePause>False</ConsolePause>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <DefineConstants>IOS;</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -81,6 +84,7 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <DefineConstants>IOS;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -104,6 +108,7 @@
     <Folder Include="Views\iPad\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Tools\" />
+    <Folder Include="Views\Particles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -115,10 +120,6 @@
     <Compile Include="Controllers\GameViewController.designer.cs">
       <DependentUpon>GameViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\LoadingViewController.cs" />
-    <Compile Include="Controllers\LoadingViewController.designer.cs">
-      <DependentUpon>LoadingViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\MenuDifficultyViewController.cs" />
     <Compile Include="Controllers\MenuDifficultyViewController.designer.cs">
       <DependentUpon>MenuDifficultyViewController.cs</DependentUpon>
@@ -128,32 +129,16 @@
       <DependentUpon>CreditsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SplashscreenViewController.cs" />
-    <Compile Include="Controllers\SplashscreenView.designer.cs">
-      <DependentUpon>SplashscreenViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ScoreViewController.cs" />
     <Compile Include="Controllers\ScoreViewController.designer.cs">
       <DependentUpon>ScoreViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\MenuViewController.cs" />
-    <Compile Include="Controllers\PagerMenuModeViewController.cs" />
     <Compile Include="Controllers\MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\PagerMenuModeViewController.designer.cs">
-      <DependentUpon>PagerMenuModeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\PagerMenuInfosViewController.cs" />
-    <Compile Include="Controllers\PagerMenuInfosViewController.designer.cs">
-      <DependentUpon>PagerMenuInfosViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ColorConstants.cs" />
     <Compile Include="GameCenter\GameCenterPlayer.cs" />
     <Compile Include="Controllers\Dialogs.cs" />
-    <Compile Include="Controllers\PagerMenuHighscoresViewController.cs" />
-    <Compile Include="Controllers\PagerMenuHighscoresViewController.designer.cs">
-      <DependentUpon>PagerMenuHighscoresViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\HighScoresControlViewController.cs" />
     <Compile Include="Controllers\HighScoresControlViewController.designer.cs">
       <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
@@ -164,6 +149,37 @@
     </Compile>
     <Compile Include="Tools\Localization.cs" />
     <Compile Include="Views\ViewTools.cs" />
+    <Compile Include="Views\PXNConstants.cs" />
+    <Compile Include="Views\Controls\PXNNavigationButton.cs" />
+    <Compile Include="Views\Particles\PXNComboGauge.cs" />
+    <Compile Include="Views\Controls\PXNNavigationBackButton.cs" />
+    <Compile Include="Controllers\CardModeViewController.cs" />
+    <Compile Include="Controllers\CardModeViewController.designer.cs">
+      <DependentUpon>CardModeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardInfoViewController.designer.cs">
+      <DependentUpon>CardInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardScoreViewController.designer.cs">
+      <DependentUpon>CardScoreViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CardInfoViewController.cs" />
+    <Compile Include="Controllers\CardScoreViewController.cs" />
+    <Compile Include="Controllers\SplashscreenViewController.designer.cs">
+      <DependentUpon>SplashscreenViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PXNAppearance.cs" />
+    <Compile Include="Controllers\VersusMatchsViewController.cs" />
+    <Compile Include="Controllers\VersusMatchsViewController.designer.cs">
+      <DependentUpon>VersusMatchsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\VersusMatchsCollectionViewController.cs" />
+    <Compile Include="GameCenter\GameCenterHelper.cs" />
+    <Compile Include="Controllers\VersusNewMatchViewController.cs" />
+    <Compile Include="Controllers\VersusNewMatchViewController.designer.cs">
+      <DependentUpon>VersusNewMatchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\GameLauncher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -175,13 +191,8 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\LoadingView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\PagerMenuInfosView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\PagerMenuModeView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\SplashscreenView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\PagerMenuHighscoresView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
     <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
@@ -190,23 +201,24 @@
     <InterfaceDefinition Include="Views\iPad\LoadingView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\MenuDifficultyView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\MenuView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\PagerMenuHighscoresView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\PagerMenuInfosView_iPad.xib" />
-    <InterfaceDefinition Include="Views\iPad\PagerMenuModeView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\ScoreView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\SplashscreenView_iPad.xib" />
+    <InterfaceDefinition Include="Views\Main_iPhone.storyboard" />
+    <InterfaceDefinition Include="Views\Main_iPad.storyboard" />
+    <InterfaceDefinition Include="Views\iPhone\ScoreView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardInfoView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardModeView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardScoreView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardInfoView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardModeView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPad\CardScoreView_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\empty_screen.png" />
     <BundleResource Include="..\..\database\gamedb.xml">
       <Link>Resources\database\gamedb.xml</Link>
     </BundleResource>
     <BundleResource Include="Resources\en.lproj\Localizable.strings" />
     <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\scoreattack.png" />
-    <BundleResource Include="Resources\survival.png" />
-    <BundleResource Include="Resources\timeattack.png" />
-    <BundleResource Include="Resources\versus.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -1776,7 +1788,6 @@
     <BundleResource Include="..\..\database\images\00521.jpg">
       <Link>Resources\database\images\00521.jpg</Link>
     </BundleResource>
-    <BundleResource Include="Resources\stunfest_mode.png" />
     <BundleResource Include="..\..\database\images\00522.jpg">
       <Link>Resources\database\images\00522.jpg</Link>
     </BundleResource>
@@ -2213,78 +2224,24 @@
     <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Icon-72.png" />
     <BundleResource Include="Resources\Icon-72%402x.png" />
-    <BundleResource Include="Resources\button.png" />
-    <BundleResource Include="Resources\button%402x.png" />
-    <BundleResource Include="Resources\combo_arrow.png" />
-    <BundleResource Include="Resources\combo_arrow%402x.png" />
-    <BundleResource Include="Resources\combo_background.png" />
-    <BundleResource Include="Resources\combo_background%402x.png" />
-    <BundleResource Include="Resources\combo_l1d.png" />
-    <BundleResource Include="Resources\combo_l1d%402x.png" />
-    <BundleResource Include="Resources\combo_l1e.png" />
-    <BundleResource Include="Resources\combo_l1e%402x.png" />
-    <BundleResource Include="Resources\combo_l2d.png" />
-    <BundleResource Include="Resources\combo_l2d%402x.png" />
-    <BundleResource Include="Resources\combo_l2e.png" />
-    <BundleResource Include="Resources\combo_l2e%402x.png" />
-    <BundleResource Include="Resources\combo_l3d.png" />
-    <BundleResource Include="Resources\combo_l3d%402x.png" />
-    <BundleResource Include="Resources\combo_l3e.png" />
-    <BundleResource Include="Resources\combo_l3e%402x.png" />
-    <BundleResource Include="Resources\combo_l4d.png" />
-    <BundleResource Include="Resources\combo_l4d%402x.png" />
-    <BundleResource Include="Resources\combo_l4e.png" />
-    <BundleResource Include="Resources\combo_l4e%402x.png" />
-    <BundleResource Include="Resources\lives_1.png" />
-    <BundleResource Include="Resources\lives_3%402x.png" />
-    <BundleResource Include="Resources\lives_3.png" />
-    <BundleResource Include="Resources\lives_2%402x.png" />
-    <BundleResource Include="Resources\lives_2.png" />
-    <BundleResource Include="Resources\lives_1%402x.png" />
-    <BundleResource Include="Resources\timer_full.png" />
-    <BundleResource Include="Resources\timer_full%402x.png" />
-    <BundleResource Include="Resources\button_pause.png" />
-    <BundleResource Include="Resources\button_pause%402x.png" />
-    <BundleResource Include="Resources\timer_current.png" />
-    <BundleResource Include="Resources\timer_current%402x.png" />
-    <BundleResource Include="Resources\joker.png" />
-    <BundleResource Include="Resources\joker%402x.png" />
-    <BundleResource Include="Resources\shadow.png" />
-    <BundleResource Include="Resources\shadow%402x.png" />
-    <BundleResource Include="Resources\combo_x1.png" />
-    <BundleResource Include="Resources\combo_x1%402x.png" />
-    <BundleResource Include="Resources\combo_x2.png" />
-    <BundleResource Include="Resources\combo_x2%402x.png" />
-    <BundleResource Include="Resources\combo_x3.png" />
-    <BundleResource Include="Resources\combo_x3%402x.png" />
-    <BundleResource Include="Resources\combo_x4.png" />
-    <BundleResource Include="Resources\combo_x4%402x.png" />
-    <BundleResource Include="Resources\image_background.png" />
-    <BundleResource Include="Resources\image_background%402x.png" />
-    <BundleResource Include="Resources\button_small.png" />
-    <BundleResource Include="Resources\button_small%402x.png" />
-    <BundleResource Include="Resources\coin.png" />
-    <BundleResource Include="Resources\coin%402x.png" />
-    <BundleResource Include="Resources\heart.png" />
-    <BundleResource Include="Resources\heart%402x.png" />
-    <BundleResource Include="Resources\button_gear.png" />
-    <BundleResource Include="Resources\button_gear%402x.png" />
-    <BundleResource Include="Resources\button_small_important.png" />
-    <BundleResource Include="Resources\button_small_important%402x.png" />
-    <BundleResource Include="Resources\heart_mini.png" />
-    <BundleResource Include="Resources\heart_mini%402x.png" />
-    <BundleResource Include="Resources\menu_shadow.png" />
-    <BundleResource Include="Resources\menu_shadow%402x.png" />
-    <BundleResource Include="Resources\logo%402x.png" />
-    <BundleResource Include="Resources\logo.png" />
-    <BundleResource Include="Resources\logo_lb.png" />
-    <BundleResource Include="Resources\logo_lb%402x.png" />
-    <BundleResource Include="Resources\button_back.png" />
-    <BundleResource Include="Resources\button_back%402x.png" />
-    <BundleResource Include="Resources\top_shadow.png" />
-    <BundleResource Include="Resources\top_shadow%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <BundleResource Include="Resources\button_iPhone.png" />
+    <BundleResource Include="Resources\button_iPhone%402x.png" />
+    <BundleResource Include="Resources\timer_background.png" />
+    <BundleResource Include="Resources\timer_background%402x.png" />
+    <BundleResource Include="Resources\timer_label.png" />
+    <BundleResource Include="Resources\timer_label%402x.png" />
+    <BundleResource Include="Resources\button_arrow.png" />
+    <BundleResource Include="Resources\button_arrow%402x.png" />
+    <BundleResource Include="Resources\image_empty.png" />
+    <BundleResource Include="Resources\image_empty%402x.png" />
+    <BundleResource Include="Resources\combo_indicator.png" />
+    <BundleResource Include="Resources\combo_indicator%402x.png" />
+    <BundleResource Include="Resources\particle.png" />
+    <BundleResource Include="Resources\icon_mode_score.png" />
+    <BundleResource Include="Resources\icon_mode_score%402x.png" />
+    <BundleResource Include="Resources\arrow_to_left.png" />
+    <BundleResource Include="Resources\arrow_to_left%402x.png" />
+    <BundleResource Include="Resources\arrow_to_right.png" />
+    <BundleResource Include="Resources\arrow_to_right%402x.png" />
   </ItemGroup>
 </Project>

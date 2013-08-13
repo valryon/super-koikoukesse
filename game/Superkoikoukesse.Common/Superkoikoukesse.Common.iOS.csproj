@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -29,6 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <DefineConstants>IOS;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,46 +42,50 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Networking\" />
-    <Folder Include="Util\" />
     <Folder Include="Game\" />
     <Folder Include="Networking\Services\" />
     <Folder Include="Game\Enums\" />
-    <Folder Include="Services\" />
+    <Folder Include="Tools\" />
+    <Folder Include="Game\Quiz\" />
+    <Folder Include="Database\" />
+    <Folder Include="Networking\Generic\" />
+    <Folder Include="Networking\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Util\NetworkAvailability.cs" />
-    <Compile Include="Util\EncryptionHelper.cs" />
-    <Compile Include="Util\Logger.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Game\Quizz.cs" />
-    <Compile Include="Networking\IServiceOutput.cs" />
-    <Compile Include="Game\GameInfo.cs" />
-    <Compile Include="Game\Question.cs" />
-    <Compile Include="Game\GameConfiguration.cs" />
-    <Compile Include="Game\Enums\GameModes.cs" />
-    <Compile Include="Game\Enums\GameTargets.cs" />
-    <Compile Include="Networking\BaseWebserviceCaller.cs" />
-    <Compile Include="Networking\Services\WebserviceConfiguration.cs" />
-    <Compile Include="Networking\GenericModelWeberviceCaller.cs" />
-    <Compile Include="Networking\Services\WebserviceStats.cs" />
     <Compile Include="Game\Enums\ImageTransformations.cs" />
     <Compile Include="Game\Enums\TextTransformations.cs" />
     <Compile Include="Game\Enums\GameDifficulties.cs" />
-    <Compile Include="Game\Enums\GameZones.cs" />
-    <Compile Include="Game\Player.cs" />
-    <Compile Include="Networking\Services\WebservicePlayer.cs" />
-    <Compile Include="Services\DatabaseService.cs" />
-    <Compile Include="Services\SQLite.cs" />
-    <Compile Include="Services\ImageService.cs" />
-    <Compile Include="Services\ProfileService.cs" />
-    <Compile Include="Game\LocalScore.cs" />
-    <Compile Include="Game\AuthenticatedPlayer.cs" />
-    <Compile Include="Networking\Services\WebserviceExcludedGames.cs" />
-    <Compile Include="Game\Filter.cs" />
-    <Compile Include="Game\VersusMatch.cs" />
-    <Compile Include="Util\StringEx.cs" />
+    <Compile Include="Tools\NetworkAvailability.cs" />
+    <Compile Include="Tools\EncryptionHelper.cs" />
+    <Compile Include="Tools\Logger.cs" />
+    <Compile Include="Tools\StringEx.cs" />
+    <Compile Include="Game\Enums\Platforms.cs" />
+    <Compile Include="Game\Quiz\Question.cs" />
+    <Compile Include="Game\Quiz\Filter.cs" />
+    <Compile Include="Game\Quiz\LocalScore.cs" />
+    <Compile Include="Game\Quiz\Quizz.cs" />
+    <Compile Include="Database\SQLite.cs" />
+    <Compile Include="Database\GameDatabase.cs" />
+    <Compile Include="Players\AuthenticatedPlayer.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\VersusMatch.cs" />
+    <Compile Include="Players\PlayerCache.cs" />
+    <Compile Include="Database\ImageDatabase.cs" />
+    <Compile Include="Networking\Generic\IServiceOutput.cs" />
+    <Compile Include="Networking\Models\ServiceResponse.cs" />
+    <Compile Include="Networking\Services\ServiceStats.cs" />
+    <Compile Include="Networking\Generic\BaseServiceCaller.cs" />
+    <Compile Include="Networking\Generic\BaseModelServiceCaller.cs" />
+    <Compile Include="Networking\Services\ServiceConfiguration.cs" />
+    <Compile Include="Networking\Services\ServiceExcludedGames.cs" />
+    <Compile Include="Networking\Models\GameConfiguration.cs" />
+    <Compile Include="Networking\Models\ExcludedGamesList.cs" />
+    <Compile Include="Networking\Services\ServicePlayer.cs" />
+    <Compile Include="Game\GameEntry.cs" />
+    <Compile Include="Game\Enums\GameMode.cs" />
+    <Compile Include="Game\Enums\GameZone.cs" />
   </ItemGroup>
 </Project>

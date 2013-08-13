@@ -7,11 +7,11 @@ namespace Superkoikoukesse.Common
 	/// </summary>
 	public enum ImageTransformations : int
 	{
-		None = 0,
-		Unzoom = 1,
-		Pixelization = 2,
-		ProgressiveDrawing = 3,
-		Test = 4
+		NONE = 0,
+		UNZOOM = 1,
+		PIXELIZATION = 2,
+		PROGRESSIVE_DRAWING = 3,
+		TEST = 4
 	}
 }
 

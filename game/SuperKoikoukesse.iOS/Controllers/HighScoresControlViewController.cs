@@ -12,7 +12,7 @@ namespace SuperKoikoukesse.iOS
 	public partial class HighScoresControlViewController : UIViewController
 	{
 		private static int scoreLinesCount = 5;
-		private GameModes mode;
+		private GameMode mode;
 		private GameDifficulties difficulty;
 		private int? newScoreRank, newScoreValue;
 
@@ -20,7 +20,7 @@ namespace SuperKoikoukesse.iOS
 		{
 		}
 
-		public void SetScoreParameters (GameModes m, GameDifficulties d, int? newScoreRank = null, int? newScoreValue = null)
+		public void SetScoreParameters (GameMode m, GameDifficulties d, int? newScoreRank = null, int? newScoreValue = null)
 		{
 			this.mode = m;
 			this.difficulty = d;
@@ -77,7 +77,7 @@ namespace SuperKoikoukesse.iOS
 			}
 			
 			// Get local highscores
-			LocalScore[] localScores = DatabaseService.Instance.GetLocalScores (mode, difficulty, scoreLinesCount);
+			LocalScore[] localScores = GameDatabase.Instance.GetLocalScores (mode, difficulty, scoreLinesCount);
 			
 			// Fill labels...
 			if (localScores.Length > 0) {
@@ -132,14 +132,14 @@ namespace SuperKoikoukesse.iOS
 		public void UpdateGameCenterLeaderboard ()
 		{
 
-			gameCenterPanel.Hidden = !ProfileService.Instance.AuthenticatedPlayer.IsAuthenticated;
+			gameCenterPanel.Hidden = !PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated;
 
 			this.onlineRankValueLabel.Hidden = true;
 			this.onlineRankValueLabel.Hidden = true;
 			
 			if (gameCenterPanel.Hidden == false) {
 				
-				ProfileService.Instance.AuthenticatedPlayer.GetBestScoreAndRank (mode, difficulty, (rank, score) => {
+				PlayerCache.Instance.AuthenticatedPlayer.GetBestScoreAndRank (mode, difficulty, (rank, score) => {
 					
 					BeginInvokeOnMainThread (() => {
 						this.onlineRankLabel.Hidden = false;
@@ -154,7 +154,7 @@ namespace SuperKoikoukesse.iOS
 		partial void leaderboardsButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-			appDelegate.ShowLeaderboards (ProfileService.Instance.AuthenticatedPlayer.GetLeaderboardId (mode, difficulty), null);
+			appDelegate.ShowLeaderboards (PlayerCache.Instance.AuthenticatedPlayer.GetLeaderboardId (mode, difficulty), null);
 		}
 	}
 }
