@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="623" y="74"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Menu View Controller - Koikou-->
         <scene sceneID="UtG-HP-ECG">
             <objects>
                 <viewController id="ksv-YE-Qzr" customClass="MenuViewController" sceneMemberID="viewController">
@@ -88,14 +88,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNR-4L-0OS">
-                                <rect key="frame" x="10" y="9" width="52" height="21"/>
+                                <rect key="frame" x="10" y="10" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coins" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-yV-VDO">
-                                <rect key="frame" x="269" y="9" width="41" height="21"/>
+                                <rect key="frame" x="269" y="10" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -179,18 +179,21 @@
                         <constraints>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="AMN-hl-57Z" secondAttribute="bottom" id="6Pq-Jy-iLA"/>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
-                            <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="9" id="Rtq-VW-8xY"/>
+                            <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="36" id="XvJ-Lv-hxC"/>
                             <constraint firstAttribute="trailing" secondItem="RFJ-yV-VDO" secondAttribute="trailing" constant="10" id="ax1-EY-U5N"/>
                             <constraint firstAttribute="centerX" secondItem="AMN-hl-57Z" secondAttribute="centerX" id="czq-dP-84q"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" constant="10" id="net-Kx-5Us"/>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="36" id="oEG-Rc-KX6"/>
                             <constraint firstAttribute="trailing" secondItem="9bo-TA-4qu" secondAttribute="trailing" id="qUQ-Z9-UQF"/>
-                            <constraint firstItem="RFJ-yV-VDO" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="9" id="tXs-ue-0of"/>
+                            <constraint firstItem="RFJ-yV-VDO" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="tXs-ue-0of"/>
                         </constraints>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3KN-xM-XXG"/>
+                    <navigationItem key="navigationItem" title="Koikou" id="3KN-xM-XXG">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="wqq-qA-SrN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Shop" id="FnK-A4-pDO"/>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="ButtonDebug" destination="20H-dB-hVf" id="ocj-1K-wTb"/>
@@ -248,6 +251,7 @@
                     <connections>
                         <outlet property="ButtonNewMatch" destination="8Vn-Aa-FRd" id="P6O-Zb-6W0"/>
                         <segue destination="B6Q-1b-R4l" kind="push" identifier="VersusToNewVersus" id="neH-y1-vTG"/>
+                        <segue destination="cVr-5m-q0d" kind="push" identifier="VersusToGame" id="Woq-MR-BjK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAw-P6-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -374,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="2257" y="897"/>
         </scene>
-        <!--Versus Matchs Collection View Controller-->
+        <!--Collection View Controller-->
         <scene sceneID="yil-Lq-23r">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="8bn-4r-BfQ" customClass="VersusMatchsCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="8bn-4r-BfQ" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="YYz-CW-WZ0">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="408"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,7 +393,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VersusMatchCell" id="sJe-Zr-2bK">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="sJe-Zr-2bK">
                                 <rect key="frame" x="15" y="10" width="250" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -452,9 +456,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="cVr-5m-q0d" kind="push" identifier="VersusToGame" id="lSI-qy-e2x"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rec-TK-wnu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -832,7 +833,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpN-hx-eDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2877" y="146"/>
+            <point key="canvasLocation" x="2529" y="74"/>
         </scene>
         <!--View Controller - Shop-->
         <scene sceneID="pdw-xI-EDq">
@@ -983,6 +984,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="JRS-kU-O6b"/>
-        <segue reference="dAh-NJ-kXa"/>
+        <segue reference="By1-MQ-h8U"/>
     </inferredMetricsTieBreakers>
 </document>
