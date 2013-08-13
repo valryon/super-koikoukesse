@@ -20,7 +20,7 @@ namespace Superkoikoukesse.Common
 			BuildFromJsonObject (json);
 		}
 
-		public Filter (string id, string name, string icon, int minYear = 0, int maxYear = 9999, List<string> publishers = null, List<string> genres = null, List<string> platforms = null)
+		public Filter (string id = "", string name = "default", string icon = "", int minYear = 0, int maxYear = 9999, List<string> publishers = null, List<string> genres = null, List<string> platforms = null)
 		{
 			Id = id;
 			Name = name;

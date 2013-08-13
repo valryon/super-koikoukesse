@@ -137,25 +137,28 @@ namespace SuperKoikoukesse.iOS
 
 				if (error != null) {
 					Logger.E ("Game Center: match list failed... ", error);
-					if(errorCallback != null) {
-						errorCallback();
+					if (errorCallback != null) {
+						errorCallback ();
 					}
 				} else {
 
-					List<VersusMatch> versusMatches = new List<VersusMatch>();
+					List<VersusMatch> versusMatches = new List<VersusMatch> ();
 
 					foreach (var m in matches) {
 
-						try {
-							VersusMatch vm = GameCenterHelper.ParseMatch (m);
-							versusMatches.Add(vm);
-						} catch (Exception e) {
-							Logger.E ("Versus match", e);
+						VersusMatch vm = GameCenterHelper.ParseMatch (m);
+
+						if(vm != null) 
+						{
+							versusMatches.Add (vm);
+						}
+						else {
+							GameCenterHelper.KillMatch (m);
 						}
 					}
 
-					if(matchsCallback != null) {
-						matchsCallback(versusMatches);
+					if (matchsCallback != null) {
+						matchsCallback (versusMatches);
 					}
 				}
 			});
@@ -176,6 +179,7 @@ namespace SuperKoikoukesse.iOS
 			mmDelegate.ErrorCallback += errorCallback;
 			mmDelegate.PlayerQuitCallback += playerQuitCallback;
 			matchMakerVc.Delegate = mmDelegate;
+
 
 			ShowGameCenter (matchMakerVc);
 		}
@@ -254,12 +258,12 @@ namespace SuperKoikoukesse.iOS
 					CurrentGKMatch.EndMatchInTurn (
 						NSData.FromString (CurrentMatch.ToJson ().ToBase64 ()), 
 						(e) => {
-						Logger.I ("Game Center Match ended");
-							
-						if (e != null) {
-							Logger.E (e.DebugDescription);
+							Logger.I ("Game Center Match ended");
+								
+							if (e != null) {
+								Logger.E (e.DebugDescription);
+							}
 						}
-					}
 					);
 				}
 
@@ -349,7 +353,7 @@ namespace SuperKoikoukesse.iOS
 
 			public override void FoundMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match)
 			{
-				Logger.I ("MatchMakerDelegate.FoundMatch");
+				Logger.I ("Versus match found...");
 
 				viewController.DismissViewController (true, null);
 
@@ -363,16 +367,14 @@ namespace SuperKoikoukesse.iOS
 					matchError = true;
 				} else {
 					this.parent.CurrentMatch = versusMatch;
+
+					if (MatchFoundCallback != null) {
+						MatchFoundCallback (versusMatch);
+					}
 				}
 
-				if (matchError == false) {
-					match.Remove (new GKNotificationHandler ((e) => {}));
-
-					if (MatchFoundCallback != null)
-						MatchFoundCallback (this.parent.CurrentMatch);
-				} else {
-					if (ErrorCallback != null)
-						ErrorCallback ();
+				if (matchError) {
+					GameCenterHelper.KillMatch (match);
 				}
 			}
 
