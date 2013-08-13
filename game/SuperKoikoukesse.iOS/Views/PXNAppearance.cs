@@ -15,52 +15,68 @@ namespace SuperKoikoukesse.iOS
     public PXNAppearance()
     {
       SetNavigationBarAppearance();
-      SetBarButtonItemAppearance();
-      SetBarBackButtonItemAppearance();
+      SetNavigationItemAppearance();
     }
 
     #endregion
 
     #region Methods
 
+    /// <summary>
+    /// Set the appearance of the navigation bar.
+    /// </summary>
     private void SetNavigationBarAppearance()
     {
+      // appearance
+      var bar = UINavigationBar.Appearance;
+
+      // text attributes
       var attributes = new UITextAttributes();
       attributes.TextColor = UIColor.FromWhiteAlpha(white: 0.306f, alpha: 1f);
       attributes.TextShadowOffset = new UIOffset(0, 0);
       attributes.TextShadowColor = UIColor.Clear;
       attributes.Font = UIFont.SystemFontOfSize(16);
 
-      UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
-      UINavigationBar.Appearance.BackgroundColor = PXNConstants.COLOR_NAVIGATION;
-      UINavigationBar.Appearance.SetTitleTextAttributes(attributes);
-      UINavigationBar.Appearance.SetTitleVerticalPositionAdjustment(3f, UIBarMetrics.Default);
+      // navbar
+      bar.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+      bar.BackgroundColor = PXNConstants.COLOR_NAVIGATION;
+      bar.SetTitleTextAttributes(attributes);
+      bar.SetTitleVerticalPositionAdjustment(3f, UIBarMetrics.Default);
     }
 
-    private void SetBarButtonItemAppearance()
+    /// <summary>
+    /// Customize the appearance of the navigation item (UiBarButtonItem).
+    /// </summary>
+    private void SetNavigationItemAppearance()
     {
-      var normalAttributes = new UITextAttributes();
-      normalAttributes.TextColor = PXNConstants.BRAND_COLOR;
-      normalAttributes.TextShadowOffset = new UIOffset(0, 0);
-      normalAttributes.TextShadowColor = UIColor.Clear;
-      normalAttributes.Font = UIFont.SystemFontOfSize(16);
+      // appearance
+      var item = UIBarButtonItem.Appearance;
 
-      var highlightAttributes = new UITextAttributes();
-      highlightAttributes.TextColor = UIColor.White;
-      highlightAttributes.TextShadowOffset = new UIOffset(0, 0);
-      highlightAttributes.TextShadowColor = UIColor.Clear;
-      highlightAttributes.Font = UIFont.SystemFontOfSize(16);
+      // normal text attributes
+      var normal = new UITextAttributes();
+      normal.TextColor = PXNConstants.BRAND_COLOR;
+      normal.TextShadowOffset = new UIOffset(0, 0);
+      normal.TextShadowColor = UIColor.Clear;
+      normal.Font = UIFont.SystemFontOfSize(16);
 
-      UIBarButtonItem.Appearance.SetTitleTextAttributes(normalAttributes, UIControlState.Normal);
-      UIBarButtonItem.Appearance.SetTitleTextAttributes(highlightAttributes, UIControlState.Highlighted);
-      UIBarButtonItem.Appearance.SetBackgroundImage(new UIImage(), UIControlState.Normal, UIBarMetrics.Default);
-    }
+      // highlight text attributes
+      var highlight = new UITextAttributes();
+      highlight.TextColor = UIColor.White;
+      highlight.TextShadowOffset = new UIOffset(0, 0);
+      highlight.TextShadowColor = UIColor.Clear;
+      highlight.Font = UIFont.SystemFontOfSize(16);
 
-    private void SetBarBackButtonItemAppearance()
-    {
+      // button
+      item.SetTitleTextAttributes(normal, UIControlState.Normal);
+      item.SetTitleTextAttributes(highlight, UIControlState.Highlighted);
+      item.SetBackgroundImage(new UIImage(), UIControlState.Normal, UIBarMetrics.Default);
+      item.SetBackgroundVerticalPositionAdjustment(2f, UIBarMetrics.Default);
+
+      // back button
       var image = new UIImage("button_arrow.png").CreateResizableImage(new UIEdgeInsets(0, 11, 0, 0));
-      UIBarButtonItem.Appearance.SetBackButtonBackgroundImage(image, UIControlState.Normal, UIBarMetrics.Default);
-      UIBarButtonItem.Appearance.SetBackButtonTitlePositionAdjustment(new UIOffset(4, 0), UIBarMetrics.Default);
+      item.SetBackButtonBackgroundImage(image, UIControlState.Normal, UIBarMetrics.Default);
+      item.SetBackButtonTitlePositionAdjustment(new UIOffset(4f, 0), UIBarMetrics.Default);
+      item.SetBackButtonBackgroundVerticalPositionAdjustment(1f, UIBarMetrics.Default);
     }
 
     #endregion
