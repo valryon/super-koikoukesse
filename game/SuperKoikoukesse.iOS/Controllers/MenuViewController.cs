@@ -212,52 +212,6 @@ namespace SuperKoikoukesse.iOS
     private void DisplayMatchMaker(GameMode mode)
     {
       PerformSegue("MenuToVersus", this);
-      return;
-
-//			PlayerCache.Instance.AuthenticatedPlayer.NewMatch (
-//			// Match found
-//				(match) => {
-//
-//				// First turn: choose game parameters
-//				if (match.IsFirstTurn) {
-//					DisplayDifficultyChooser (mode);
-//				} else {
-//					var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 
-//
-//					if (match.IsEnded) {
-//						// See the final score
-//						Dialogs.ShowMatchEnded ();
-//					} else {
-//						if (match.IsPlayerTurn (PlayerCache.Instance.AuthenticatedPlayer.PlayerId)) {
-//							// Player turn
-//							LaunchGame (mode, match.Difficulty, match.Filter);
-//						} else {
-//							// TODO Other player turn: display last score?
-//							Dialogs.ShowNotYourTurn ();
-//						}
-//					}
-//				}
-//			},
-//			// Cancel
-//				() => {
-//				// Nothing, controller is already dismissed
-//			},
-//			// Error
-//				() => {
-//				// Display an error dialog?
-//				UIAlertView alert = new UIAlertView (
-//					"Une erreur est survenue",
-//					"Nous n'avons pas pu démarrer une nouvelle partie car une erreur est survenue..",
-//					null,
-//					"Ok");
-//				
-//				alert.Show ();
-//			},
-//			// Player quit
-//				() => {
-//				// Kill the game? Inform the player?
-//			}
-//			);
     }
 
     /// <summary>
