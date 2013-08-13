@@ -45,10 +45,10 @@ namespace Superkoikoukesse.Common
 		{
 			JsonObject json = new JsonObject ();
 			json.Add ("playerId", new JsonPrimitive (mPlayer.Id));
-			json.Add ("platform", new JsonPrimitive ("ios")); // TODO Android
 			json.Add ("credits", new JsonPrimitive (mPlayer.Credits));
 			json.Add ("coins", new JsonPrimitive (mPlayer.Coins));
-			
+      json.Add ("platform", new JsonPrimitive ("ios")); // TODO Android
+
 			this.RequestPostJsonAsync (json.ToString (), 
 			                           (success) => {
 				if(callback != null) {
@@ -63,7 +63,7 @@ namespace Superkoikoukesse.Common
 		
 		public override Uri GetServiceUrl ()
 		{
-			return new Uri (Constants.WEBSERVICE_URL + "players.json/");
+			return new Uri (Constants.WEBSERVICE_URL + "players.json");
 		}
 		
 	}
