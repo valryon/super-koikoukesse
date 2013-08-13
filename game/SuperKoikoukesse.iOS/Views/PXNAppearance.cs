@@ -34,7 +34,7 @@ namespace SuperKoikoukesse.iOS
       UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
       UINavigationBar.Appearance.BackgroundColor = PXNConstants.COLOR_NAVIGATION;
       UINavigationBar.Appearance.SetTitleTextAttributes(attributes);
-      UINavigationBar.Appearance.SetTitleVerticalPositionAdjustment(2f, UIBarMetrics.Default);
+      UINavigationBar.Appearance.SetTitleVerticalPositionAdjustment(3f, UIBarMetrics.Default);
     }
 
     private void SetBarButtonItemAppearance()
@@ -58,7 +58,9 @@ namespace SuperKoikoukesse.iOS
 
     private void SetBarBackButtonItemAppearance()
     {
-//      UIBarButtonItem.Appearance.SetBackButtonBackgroundImage(new UIImage(), UIControlState.Normal, UIBarMetrics.Default);
+      var image = new UIImage("button_arrow.png").CreateResizableImage(new UIEdgeInsets(0, 11, 0, 0));
+      UIBarButtonItem.Appearance.SetBackButtonBackgroundImage(image, UIControlState.Normal, UIBarMetrics.Default);
+      UIBarButtonItem.Appearance.SetBackButtonTitlePositionAdjustment(new UIOffset(4, 0), UIBarMetrics.Default);
     }
 
     #endregion
