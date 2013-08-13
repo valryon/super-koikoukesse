@@ -175,10 +175,6 @@
     </Compile>
     <Compile Include="Controllers\VersusMatchsCollectionViewController.cs" />
     <Compile Include="GameCenter\GameCenterHelper.cs" />
-    <Compile Include="VersusMatchsCollectionViewCell.cs" />
-    <Compile Include="VersusMatchsCollectionViewCell.designer.cs">
-      <DependentUpon>VersusMatchsCollectionViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\VersusNewMatchViewController.cs" />
     <Compile Include="Controllers\VersusNewMatchViewController.designer.cs">
       <DependentUpon>VersusNewMatchViewController.cs</DependentUpon>
