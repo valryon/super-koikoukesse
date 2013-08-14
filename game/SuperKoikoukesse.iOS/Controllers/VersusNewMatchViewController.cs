@@ -37,8 +37,8 @@ namespace SuperKoikoukesse.iOS
 
       mSelectedMinYear = mCacheMinYear;
       mSelectedMaxYear = mCacheMaxYear;
-      mSelectedPlatforms = new List<string>();
-      mSelectedGenres = new List<string>();
+      mSelectedPlatforms = new List<string>(mCachePlatforms);
+      mSelectedGenres = new List<string>(mCacheGenres);
     }
 
     public override void ViewDidLoad()
@@ -217,7 +217,7 @@ namespace SuperKoikoukesse.iOS
 
       foreach(string g in mCacheGenres)
       {
-        section.Add(new CheckboxElement(g));
+        section.Add(new CheckboxElement(g, true));
       }
       var viewController = new DialogViewController (
         new RootElement ("Select genres", new  RadioGroup (0)){ 
@@ -225,7 +225,21 @@ namespace SuperKoikoukesse.iOS
       }, true);
 
       viewController.OnSelection += (NSIndexPath obj) => {
+        string value = mCacheGenres[obj.Item];
 
+        if(mSelectedGenres.Contains(value)) {
+          mSelectedGenres.Remove(value);
+        }
+        else {
+          mSelectedGenres.Add(value);
+        }
+
+        if(mSelectedGenres.Count == 0 || mSelectedGenres.Count == mCacheGenres.Count) {
+          ButtonGenre.SetTitle("All", UIControlState.Normal);
+        }
+        else {
+          ButtonGenre.SetTitle(mSelectedGenres.Count+" selected", UIControlState.Normal);
+        }
       };
       NavigationController.PushViewController (viewController, true);
     }
@@ -243,7 +257,21 @@ namespace SuperKoikoukesse.iOS
       }, true);
 
       viewController.OnSelection += (NSIndexPath obj) => {
+        string value = mSelectedPlatforms[obj.Item];
 
+        if(mSelectedPlatforms.Contains(value)) {
+          mSelectedPlatforms.Remove(value);
+        }
+        else {
+          mSelectedPlatforms.Add(value);
+        }
+
+        if(mSelectedPlatforms.Count == 0 || mSelectedPlatforms.Count == mCachePlatforms.Count) {
+          ButtonPlatform.SetTitle("All", UIControlState.Normal);
+        }
+        else {
+          ButtonPlatform.SetTitle(mSelectedPlatforms.Count+" selected", UIControlState.Normal);
+        }
       };
       NavigationController.PushViewController (viewController, true);
     }
