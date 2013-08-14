@@ -6,6 +6,14 @@ using SQLite;
 
 namespace Superkoikoukesse.Common
 {
+  /// <summary>
+  /// Hack to have a parameterless string class
+  /// </summary>
+  internal class SQLiteString
+  {
+    public string Value { get; set; }
+  }
+
 	/// <summary>
 	/// Database service.
 	/// </summary>
@@ -223,6 +231,63 @@ namespace Superkoikoukesse.Common
 				}
 			}
 		}
+
+    /// <summary>
+    /// Get the oldest game date (year)
+    /// </summary>
+    /// <returns>The minimum year.</returns>
+    public int GetMinYear() {
+      var gameTable = mDb.Table<GameEntry> ();
+
+      GameEntry pouet = gameTable.OrderBy(g => g.Year).First();
+      return pouet.Year;
+    }
+
+    /// <summary>
+    /// Get the newest game date (year)
+    /// </summary>
+    /// <returns>The minimum year.</returns>
+    public int GetMaxYear() {
+      var gameTable = mDb.Table<GameEntry> ();
+
+      GameEntry pouet = gameTable.OrderByDescending(g => g.Year).First();
+      return pouet.Year;
+    }
+
+    /// <summary>
+    /// Get all game genres
+    /// </summary>
+    /// <returns>The genres.</returns>
+    public List<string> GetGenres() {
+
+      List<string> result = new List<string>();
+
+      List<SQLiteString> data = mDb.Query<SQLiteString>("SELECT Genre as 'Value' FROM GameEntry");
+      foreach(var entry in data.GroupBy(g => g.Value).Select(grp => grp.First()))
+      {
+        result.Add(entry.Value);
+      }
+
+      return result;
+    }
+
+    /// <summary>
+    /// Get all game platforms
+    /// </summary>
+    /// <returns>The genres.</returns>
+    public List<string> GetPlatforms() {
+      
+      List<string> result = new List<string>();
+
+      List<SQLiteString> data = mDb.Query<SQLiteString>("SELECT Platform as 'Value' FROM GameEntry");
+      foreach(var entry in data.GroupBy(g => g.Value).Select(grp => grp.First()))
+      {
+        result.Add(entry.Value);
+      }
+
+      return result;
+    }
+
 		#endregion
 		#region Player
 		/// <summary>
