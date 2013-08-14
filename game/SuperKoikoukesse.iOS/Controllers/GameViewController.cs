@@ -66,11 +66,19 @@ namespace SuperKoikoukesse.iOS
       ImageGame.Image = mPauseImage;
     }
 
+    public override void ViewWillAppear(bool animated)
+    {
+      base.ViewWillAppear(animated);
+
+      // Hide the navbar
+      NavigationController.SetNavigationBarHidden(true, animated);
+    }
+
     public override void ViewDidAppear(bool animated)
     {
       base.ViewDidAppear(animated);
 
-	  DisplayQuizz ();
+	    DisplayQuizz();
 
       SetShadow(ViewImageShadow);
     }
@@ -529,23 +537,23 @@ namespace SuperKoikoukesse.iOS
         mQuizz.EndQuizz();
 
         // Show score
-		GoToScoreView ();
+	    	GoToScoreView();
       }
     }
 
-	public void GoToScoreView() {
-		PerformSegue ("GameToScore", this);
-	}
+  	public void GoToScoreView() {
+  		PerformSegue("GameToScore", this);
+  	}
 
-	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-	{
-		base.PrepareForSegue (segue, sender);
+  	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+  	{
+  		base.PrepareForSegue(segue, sender);
 
-		if (segue.Identifier == "GameToScore") {
-			ScoreViewController scoreVc = (ScoreViewController)segue.DestinationViewController;
-			scoreVc.SetQuizz (mQuizz);
-		}
-	}
+  		if (segue.Identifier == "GameToScore") {
+  			ScoreViewController scoreVc = (ScoreViewController)segue.DestinationViewController;
+  			scoreVc.SetQuizz(mQuizz);
+  		}
+  	}
 
     #endregion
 

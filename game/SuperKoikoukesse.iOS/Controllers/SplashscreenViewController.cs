@@ -23,15 +23,20 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewDidLoad();
 
-      // Hide the navigation
-      NavigationController.SetNavigationBarHidden(true, false);
-
       // Set invisible
       View.UserInteractionEnabled = true;
       View.Alpha = 0f;
 
       // Fade in & out animation
       UIView.Animate(Constants.SPLASHSCREEN_OPEN_FADE_DURATION, 0, UIViewAnimationOptions.CurveEaseIn, OnStart, OnEnd);
+    }
+
+    public override void ViewWillAppear(bool animated)
+    {
+      base.ViewWillAppear(animated);
+
+      // Hide the navbar
+      NavigationController.SetNavigationBarHidden(true, animated);
     }
 
     #endregion
