@@ -27,6 +27,7 @@
     <MtouchI18n />
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchProfiling>true</MtouchProfiling>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -Reveal -force_load ${ProjectDir}/Reveal.a"</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
