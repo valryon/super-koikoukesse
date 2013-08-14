@@ -9,10 +9,57 @@ namespace SuperKoikoukesse.iOS
   public partial class VersusNewMatchViewController : UIViewController
   {
     private static string VersusToGameSegueId = "VersusNewToGame";
+
+    #region Fields
+
     private GameLauncher mGameLauncher;
+    private GameDifficulties mLastSelectedDifficulty;
+
+    #endregion
+
+    #region Constructor
 
     public VersusNewMatchViewController(IntPtr handle) : base (handle)
     {
+    }
+
+    public override void ViewDidLoad()
+    {
+      SliderDifficulty.Value = 0f;
+      base.ViewDidLoad();
+    }
+
+    #endregion
+
+    #region Events
+
+    partial void OnDifficultyValueChanged (MonoTouch.Foundation.NSObject sender) {
+      SliderDifficulty.SetValue ((float)Math.Round (SliderDifficulty.Value), false);
+
+      foreach(GameDifficulties d in Enum.GetValues(typeof(GameDifficulties))) {
+        if(((int)d) == (int)SliderDifficulty.Value) {
+          mLastSelectedDifficulty = d;
+          break;
+        }
+      }
+
+      LabelDifficulty.Text = Localization.Get(mLastSelectedDifficulty.ToString().ToLower()+".title");
+    }
+
+    partial void OnGenreTouched (MonoTouch.Foundation.NSObject sender) {
+
+    }
+
+    partial void OnPlatformTouched (MonoTouch.Foundation.NSObject sender) {
+
+    }
+
+    partial void OnYearMaxTouched (MonoTouch.Foundation.NSObject sender) {
+
+    }
+
+    partial void OnYearMinTouched (MonoTouch.Foundation.NSObject sender) {
+
     }
 
     partial void OnGoTouched(MonoTouch.Foundation.NSObject sender)
@@ -26,6 +73,9 @@ namespace SuperKoikoukesse.iOS
         {
           PlayerCache.Instance.AuthenticatedPlayer.SetMatch(match);
           mGameLauncher = new GameLauncher(this);
+
+//          float diffi
+
           mGameLauncher.Launch(VersusToGameSegueId, GameMode.SCORE, GameDifficulties.NORMAL, new Filter());
         } 
 //					else {
@@ -68,6 +118,10 @@ namespace SuperKoikoukesse.iOS
 
     }
 
+    #endregion
+
+    #region Methods
+
     public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
     {
       base.PrepareForSegue(segue, sender);
@@ -80,5 +134,7 @@ namespace SuperKoikoukesse.iOS
         mGameLauncher.Prepare(gameVc);
       }
     }
+
+    #endregion
   }
 }

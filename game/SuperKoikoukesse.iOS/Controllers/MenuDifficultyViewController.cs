@@ -48,7 +48,7 @@ namespace SuperKoikoukesse.iOS
 
 		partial void nolifeButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
-			selectDifficulty (GameDifficulties.NOLIFE);
+			selectDifficulty (GameDifficulties.INSANE);
 		}
 
 		private void selectDifficulty (GameDifficulties diff)

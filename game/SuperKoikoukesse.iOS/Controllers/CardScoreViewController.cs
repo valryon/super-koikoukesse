@@ -89,7 +89,7 @@ namespace SuperKoikoukesse.iOS
         if (diff.ToLower().Contains("expert"))
           return GameDifficulties.EXPERT;
         if (diff.ToLower().Contains("nolife"))
-          return GameDifficulties.NOLIFE;
+          return GameDifficulties.INSANE;
       }
 
       return GameDifficulties.NORMAL;

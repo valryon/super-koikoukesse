@@ -125,7 +125,7 @@ namespace Superkoikoukesse.Common
 				ImageTransformation = GetImageTransformation ();
 				TextTransformation = TextTransformations.FIRST_LETTER_ONLY;
 
-			} else if (Difficulty == GameDifficulties.NOLIFE) {
+			} else if (Difficulty == GameDifficulties.INSANE) {
 
 				ImageTransformation = GetImageTransformation ();
 				TextTransformation = TextTransformations.UNDERSCORES_ONLY;

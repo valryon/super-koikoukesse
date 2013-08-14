@@ -10,7 +10,7 @@ namespace Superkoikoukesse.Common
 		NORMAL = 0,
 		HARD = 1,
 		EXPERT = 2,
-		NOLIFE = 3
+		INSANE = 3
 	}
 }
 
