@@ -203,6 +203,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="ButtonDebug" destination="20H-dB-hVf" id="ocj-1K-wTb"/>
                         <outlet property="LabelCoins" destination="RFJ-yV-VDO" id="qIr-qx-0mX"/>
@@ -228,11 +229,11 @@
                         <viewControllerLayoutGuide type="bottom" id="IkX-PU-UsF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sac-RB-Y1u">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWT-jC-zik">
-                                <rect key="frame" x="20" y="76" width="280" height="408"/>
+                                <rect key="frame" x="20" y="76" width="280" height="452"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -274,7 +275,7 @@
                         <viewControllerLayoutGuide type="bottom" id="A5t-DQ-y3R"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pZc-pB-1fk">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="jPk-V8-qDh">
@@ -423,7 +424,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="8bn-4r-BfQ" customClass="VersusMatchsCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="YYz-CW-WZ0">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="408"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FSG-HV-PNl">
@@ -434,7 +435,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VersusMatchCell" id="sJe-Zr-2bK">
-                                <rect key="frame" x="15" y="10" width="250" height="150"/>
+                                <rect key="frame" x="35" y="10" width="250" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
@@ -516,72 +517,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2p-MS-UQ7" userLabel="ViewInformations">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="SXE-qj-j0h" userLabel="Button - Pause" customClass="PXNNavigationButton">
-                                        <rect key="frame" x="10" y="12" width="70" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="9NF-7b-BuK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Pause" image="button_arrow.png">
-                                            <color key="titleColor" red="0.1647058874" green="0.57647061349999995" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="0.1647058874" green="0.57647061349999995" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="OnPauseTouched:" destination="cVr-5m-q0d" eventType="touchUpInside" id="G4W-HU-dVI"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-sp-ydT" userLabel="View - Timer">
-                                        <rect key="frame" x="89" y="15" width="216" height="14"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="216" id="AYC-0l-NSk"/>
-                                            <constraint firstAttribute="height" constant="14" id="QCR-zL-hp8"/>
-                                        </constraints>
-                                    </imageView>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X05-cT-Iln" userLabel="View - Current time">
-                                        <rect key="frame" x="295" y="12" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timer_label.png" translatesAutoresizingMaskIntoConstraints="NO" id="0mO-pw-nyu" userLabel="Image - Background">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="42" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX3-qv-4nb" userLabel="Label - Current time">
-                                                <rect key="frame" x="5" y="0.0" width="20" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="6Ls-gq-BMy"/>
-                                            <constraint firstAttribute="width" constant="20" id="fuT-ux-R6b"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.88235294819999999" green="0.88235294819999999" blue="0.88235294819999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="f5S-sp-ydT" secondAttribute="centerY" id="B57-zT-HEL"/>
-                                    <constraint firstAttribute="height" constant="44" id="CT2-LT-tuq"/>
-                                    <constraint firstAttribute="centerY" secondItem="SXE-qj-j0h" secondAttribute="centerY" id="QPD-uj-8vq"/>
-                                    <constraint firstAttribute="trailing" secondItem="f5S-sp-ydT" secondAttribute="trailing" constant="15" id="RXO-SL-rnq"/>
-                                    <constraint firstAttribute="centerY" secondItem="X05-cT-Iln" secondAttribute="centerY" id="VD4-A7-e6o"/>
-                                    <constraint firstItem="X05-cT-Iln" firstAttribute="leading" secondItem="f5S-sp-ydT" secondAttribute="leading" constant="206" id="sUV-Vn-sPO"/>
-                                    <constraint firstItem="SXE-qj-j0h" firstAttribute="leading" secondItem="P2p-MS-UQ7" secondAttribute="leading" constant="10" id="t0h-Xb-25v"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-3B-ehQ" userLabel="ViewBody">
-                                <rect key="frame" x="0.0" y="44" width="320" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="374"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJd-lv-TwR" userLabel="Image - Shadow">
@@ -658,7 +595,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMb-RR-0d9" userLabel="ViewCombo">
-                                        <rect key="frame" x="160" y="265" width="140" height="50"/>
+                                        <rect key="frame" x="160" y="309" width="140" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combo_indicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="irU-HZ-epy" userLabel="Image - Indicator">
@@ -836,12 +773,9 @@
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="NNf-3B-ehQ" firstAttribute="leading" secondItem="A2h-dC-fJk" secondAttribute="leading" id="3e5-4e-Fmr"/>
-                            <constraint firstItem="P2p-MS-UQ7" firstAttribute="leading" secondItem="A2h-dC-fJk" secondAttribute="leading" id="EQr-pa-5gg"/>
                             <constraint firstAttribute="trailing" secondItem="NNf-3B-ehQ" secondAttribute="trailing" id="IX8-x1-zs4"/>
                             <constraint firstAttribute="trailing" secondItem="FfO-i9-jcn" secondAttribute="trailing" id="Jx5-bK-Vks"/>
-                            <constraint firstItem="P2p-MS-UQ7" firstAttribute="top" secondItem="A2h-dC-fJk" secondAttribute="top" id="Vgg-PV-Yp1"/>
-                            <constraint firstAttribute="trailing" secondItem="P2p-MS-UQ7" secondAttribute="trailing" id="W8A-cg-Zy2"/>
-                            <constraint firstItem="NNf-3B-ehQ" firstAttribute="top" secondItem="P2p-MS-UQ7" secondAttribute="bottom" id="du1-zh-pZ1"/>
+                            <constraint firstItem="NNf-3B-ehQ" firstAttribute="top" secondItem="Rdk-DZ-58L" secondAttribute="bottom" id="Zxh-Qd-3oX"/>
                             <constraint firstItem="FfO-i9-jcn" firstAttribute="top" secondItem="NNf-3B-ehQ" secondAttribute="bottom" id="i13-Qc-2YF"/>
                             <constraint firstItem="FfO-i9-jcn" firstAttribute="leading" secondItem="A2h-dC-fJk" secondAttribute="leading" id="ujg-OS-cr2"/>
                             <constraint firstAttribute="bottom" secondItem="FfO-i9-jcn" secondAttribute="bottom" id="ukN-1g-WYs"/>
@@ -851,35 +785,27 @@
                     </view>
                     <navigationItem key="navigationItem" id="woB-7V-qe4">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="QQU-UK-8Xd">
-                            <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
+                        <barButtonItem key="rightBarButtonItem" title="Test" id="lLb-3Q-qXC"/>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="ButtonGame1" destination="VaL-w9-saq" id="k3O-x5-6lk"/>
                         <outlet property="ButtonGame2" destination="qGF-7I-1NC" id="3fP-cz-JGZ"/>
                         <outlet property="ButtonGame3" destination="QWd-2h-dYA" id="KKM-ac-zfs"/>
                         <outlet property="ButtonGame4" destination="jKc-HO-JTL" id="eDb-CA-e2F"/>
                         <outlet property="ButtonJoker" destination="sON-OW-zIn" id="8ML-fp-V8Y"/>
-                        <outlet property="ButtonPause" destination="SXE-qj-j0h" id="fYF-aU-yQG"/>
                         <outlet property="ConstraintCombo" destination="6nj-mL-E7o" id="y00-OQ-We8"/>
                         <outlet property="ConstraintJoker" destination="rMi-GZ-6sq" id="V0L-py-vGh"/>
-                        <outlet property="ConstraintTimer" destination="sUV-Vn-sPO" id="BqK-RB-ZZF"/>
                         <outlet property="ImageGame" destination="rNN-17-jC7" id="eVt-Rs-qTu"/>
                         <outlet property="LabelCombo" destination="Zfv-55-MsS" id="eie-Pk-0Ml"/>
                         <outlet property="LabelCount" destination="2uv-Ad-xCI" id="PjU-yw-FKI"/>
                         <outlet property="LabelMode" destination="1Hs-ms-HoN" id="NmT-Wz-pkD"/>
                         <outlet property="LabelScore" destination="6hp-DH-MYg" id="JUD-5d-gE6"/>
-                        <outlet property="LabelTime" destination="gX3-qv-4nb" id="lyi-ys-RF7"/>
                         <outlet property="ScrollViewImageGame" destination="ked-zD-Hxr" id="f1S-Cp-cT7"/>
                         <outlet property="ViewAnswers" destination="FfO-i9-jcn" id="tL8-ke-Js3"/>
                         <outlet property="ViewCombo" destination="GEy-f9-rnv" id="vwt-J8-xsn"/>
                         <outlet property="ViewEmitter" destination="ZXD-kk-lxm" id="pyn-Ip-LcP"/>
                         <outlet property="ViewImageShadow" destination="nJd-lv-TwR" id="Vvy-N9-lRp"/>
-                        <outlet property="ViewInformations" destination="P2p-MS-UQ7" id="TGh-EV-Tfc"/>
                         <segue destination="omR-iH-L5l" kind="push" identifier="GameToScore" id="HtZ-on-Frz"/>
                     </connections>
                 </viewController>
@@ -901,6 +827,7 @@
                         <color key="backgroundColor" red="0.95294123888015747" green="0.95294123888015747" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shop" id="VTa-DG-GvF"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QbA-zW-xGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -920,6 +847,7 @@
                         <color key="backgroundColor" red="0.95294123888015747" green="0.95294123888015747" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Joh-2H-e1j"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0M-jc-xEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -994,6 +922,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <segue destination="cVr-5m-q0d" kind="push" identifier="ScoreToGame" id="dbu-Tv-dyJ"/>
                         <segue destination="ksv-YE-Qzr" kind="push" identifier="ScoreToMenu" id="kRF-TE-k8D"/>
@@ -1006,13 +935,10 @@
     </scenes>
     <resources>
         <image name="bt_blue_0.png" width="225" height="95"/>
-        <image name="button_arrow.png" width="11" height="20"/>
         <image name="button_iPhone.png" width="145" height="50"/>
-        <image name="button_play.png" width="225" height="95"/>
+        <image name="button_play.png" width="216" height="14"/>
         <image name="combo_indicator.png" width="134" height="7"/>
         <image name="image_empty.png" width="400" height="400"/>
-        <image name="timer_background.png" width="216" height="14"/>
-        <image name="timer_label.png" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
@@ -1020,7 +946,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JRS-kU-O6b"/>
-        <segue reference="dAh-NJ-kXa"/>
+        <segue reference="dbu-Tv-dyJ"/>
+        <segue reference="kRF-TE-k8D"/>
     </inferredMetricsTieBreakers>
 </document>

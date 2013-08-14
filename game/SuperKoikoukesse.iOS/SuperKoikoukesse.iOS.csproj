@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="Reveal.a" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -181,6 +182,10 @@
       <DependentUpon>VersusNewMatchViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\GameLauncher.cs" />
+    <Compile Include="Controllers\TimerViewController.cs" />
+    <Compile Include="Controllers\TimerViewController.designer.cs">
+      <DependentUpon>TimerViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -213,6 +218,7 @@
     <InterfaceDefinition Include="Views\iPad\CardInfoView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\CardModeView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\CardScoreView_iPad.xib" />
+    <InterfaceDefinition Include="Views\Controls\TimerView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">

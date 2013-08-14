@@ -27,7 +27,6 @@ namespace SuperKoikoukesse.iOS
     private UIImage mCurrentImage;
     private UIImage mPauseImage;
     private Random mRandom;
-    private float mTimerBarSize;
     private float mImageTransformationElapsedTime;
 
     // Image transformations
@@ -39,6 +38,7 @@ namespace SuperKoikoukesse.iOS
     private float mProgressiveDrawTargetY;
 
     private GamePauseViewController mPauseViewController;
+    private TimerViewController mTimerViewController;
 
     #endregion
 
@@ -46,7 +46,7 @@ namespace SuperKoikoukesse.iOS
 
     public GameViewController(IntPtr handle) : base(handle)
     {
-		mRandom = new Random(DateTime.Now.Millisecond);
+		  mRandom = new Random(DateTime.Now.Millisecond);
     }
 
     public override void ViewDidLoad()
@@ -55,7 +55,11 @@ namespace SuperKoikoukesse.iOS
 
       StyleView();
 
-      mTimerBarSize = ConstraintTimer.Constant;
+      // Timer view controller
+      mTimerViewController = new TimerViewController(mQuizz.TimeLeft);
+
+      // Set the NavBar right button with the timer
+      NavigationItem.RightBarButtonItem = new UIBarButtonItem(mTimerViewController.View);
 
       // Load the pause/inactive screen image
       mPauseViewController = new GamePauseViewController();
@@ -64,14 +68,6 @@ namespace SuperKoikoukesse.iOS
 
       mPauseImage = UIImage.FromFile("empty_screen.png");
       ImageGame.Image = mPauseImage;
-    }
-
-    public override void ViewWillAppear(bool animated)
-    {
-      base.ViewWillAppear(animated);
-
-      // Hide the navbar
-      NavigationController.SetNavigationBarHidden(true, animated);
     }
 
     public override void ViewDidAppear(bool animated)
@@ -88,7 +84,7 @@ namespace SuperKoikoukesse.iOS
     #region Methods
 
     #region Styling
-
+   
     /// <summary>
     /// Style the main view.
     /// </summary>
@@ -100,9 +96,6 @@ namespace SuperKoikoukesse.iOS
       ScrollViewImageGame.Layer.CornerRadius = 13;
 
       CreateParticlesEngine(ViewEmitter);
-
-      // Informations
-      StyleInformations(ViewInformations);
 
       // Answers
       StyleAnswers(ViewAnswers);
@@ -314,18 +307,7 @@ namespace SuperKoikoukesse.iOS
             else
             {
               // Update timer label and bar (UI Thread!)
-              this.InvokeOnMainThread(() => {
-
-                // Find the current bar height
-                float pos = mQuizz.TimeLeft * mTimerBarSize / mQuizz.BaseTimeleft;
-                if (ConstraintTimer.Constant > 125f)
-                {
-                  ConstraintTimer.Constant = pos - 100f;
-                }
-
-                ConstraintTimer.Constant = pos;
-                LabelTime.Text = mQuizz.TimeLeft.ToString("00");
-              });
+              mTimerViewController.ChangeTime(mQuizz.TimeLeft, mQuizz.BaseTimeleft);
             }
           }
           });
@@ -354,9 +336,6 @@ namespace SuperKoikoukesse.iOS
     private void UpdateViewWithQuestion(Question q)
     {
       Logger.I ( "Setting up view for current question " + q);
-
-      // Timer
-      LabelTime.Text = mQuizz.TimeLeft.ToString("00");
 
       // Image
       string imgPath = ImageDatabase.Instance.Getimage(q.CorrectAnswer);

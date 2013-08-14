@@ -37,9 +37,6 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.NSLayoutConstraint ConstraintJoker { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint ConstraintTimer { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIImageView ImageGame { get; set; }
 
 		[Outlet]
@@ -55,9 +52,6 @@ namespace SuperKoikoukesse.iOS
 		MonoTouch.UIKit.UILabel LabelScore { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel LabelTime { get; set; }
-
-		[Outlet]
 		MonoTouch.UIKit.UIScrollView ScrollViewImageGame { get; set; }
 
 		[Outlet]
@@ -71,9 +65,6 @@ namespace SuperKoikoukesse.iOS
 
 		[Outlet]
 		MonoTouch.UIKit.UIView ViewImageShadow { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIView ViewInformations { get; set; }
 
 		[Action ("OnButton1Touched:")]
 		partial void OnButton1Touched (MonoTouch.Foundation.NSObject sender);
@@ -135,11 +126,6 @@ namespace SuperKoikoukesse.iOS
 				ConstraintJoker = null;
 			}
 
-			if (ConstraintTimer != null) {
-				ConstraintTimer.Dispose ();
-				ConstraintTimer = null;
-			}
-
 			if (ImageGame != null) {
 				ImageGame.Dispose ();
 				ImageGame = null;
@@ -165,11 +151,6 @@ namespace SuperKoikoukesse.iOS
 				LabelScore = null;
 			}
 
-			if (LabelTime != null) {
-				LabelTime.Dispose ();
-				LabelTime = null;
-			}
-
 			if (ScrollViewImageGame != null) {
 				ScrollViewImageGame.Dispose ();
 				ScrollViewImageGame = null;
@@ -193,11 +174,6 @@ namespace SuperKoikoukesse.iOS
 			if (ViewImageShadow != null) {
 				ViewImageShadow.Dispose ();
 				ViewImageShadow = null;
-			}
-
-			if (ViewInformations != null) {
-				ViewInformations.Dispose ();
-				ViewInformations = null;
 			}
 		}
 	}
