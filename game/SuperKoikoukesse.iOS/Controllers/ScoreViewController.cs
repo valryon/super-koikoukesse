@@ -21,17 +21,21 @@ namespace SuperKoikoukesse.iOS
 
     public ScoreViewController(IntPtr handle) : base (handle)
     {
-		_playerImageCache = new Dictionary<string, UIImage>();
+      _playerImageCache = new Dictionary<string, UIImage>();
     }
 
-	public void SetQuizz(Quizz q) {
-		this._quizz = q;
-	}
+    public void SetQuizz(Quizz q)
+    {
+      this._quizz = q;
+    }
 
     public override void ViewDidLoad()
     {
       base.ViewDidLoad();
       //SetViewWithQuizz();
+
+      // Hide the back button
+      NavigationItem.HidesBackButton = true;
     }
 
     #endregion
@@ -70,15 +74,16 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
-	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-	{
-		base.PrepareForSegue (segue, sender);
+    public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+    {
+      base.PrepareForSegue(segue, sender);
 
-		if (segue.Identifier == "ScoreToGame") {
-			GameViewController gameVc = segue.DestinationViewController as GameViewController;
-			gameVc.InitializeQuizz(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
-		}
-	}
+      if (segue.Identifier == "ScoreToGame")
+      {
+        GameViewController gameVc = segue.DestinationViewController as GameViewController;
+        gameVc.InitializeQuizz(_quizz.Mode, _quizz.Difficulty, _quizz.Filter);
+      }
+    }
 
     #endregion
 
@@ -88,7 +93,7 @@ namespace SuperKoikoukesse.iOS
     {
       if (PlayerCache.Instance.CachedPlayer.Credits > 0)
       {
-		PerformSegue("ScoreToGame", this);
+        PerformSegue("ScoreToGame", this);
       }
       else
       {
@@ -98,7 +103,7 @@ namespace SuperKoikoukesse.iOS
 
     partial void OnMenuTouched(NSObject sender)
     {
-		PerformSegue("ScoreToMenu", this);
+      PerformSegue("ScoreToMenu", this);
     }
 
     #endregion

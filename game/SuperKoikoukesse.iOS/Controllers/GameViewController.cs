@@ -68,6 +68,9 @@ namespace SuperKoikoukesse.iOS
 
       mPauseImage = UIImage.FromFile("empty_screen.png");
       ImageGame.Image = mPauseImage;
+
+      // Hide back button
+      NavigationItem.HidesBackButton = true;
     }
 
     public override void ViewDidAppear(bool animated)
