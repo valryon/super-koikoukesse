@@ -30,11 +30,6 @@ namespace SuperKoikoukesse.iOS
 
     #region Handlers
 
-    partial void OnShopTouched(MonoTouch.Foundation.NSObject sender)
-    {
-     
-    }
-
     partial void OnCreditsTouched(MonoTouch.Foundation.NSObject sender)
     {
       

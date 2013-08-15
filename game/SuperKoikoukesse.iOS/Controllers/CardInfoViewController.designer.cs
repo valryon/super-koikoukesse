@@ -9,14 +9,11 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-  [Register ("CardInfoViewController")]
+	[Register ("CardInfoViewController")]
 	partial class CardInfoViewController
 	{
 		[Action ("OnCreditsTouched:")]
 		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender);
-
-		[Action ("OnShopTouched:")]
-		partial void OnShopTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
