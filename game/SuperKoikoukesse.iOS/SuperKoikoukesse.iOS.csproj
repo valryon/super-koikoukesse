@@ -2255,5 +2255,9 @@
     <BundleResource Include="Resources\pixelnest%402x.png" />
     <BundleResource Include="Resources\info_header.png" />
     <BundleResource Include="Resources\info_header%402x.png" />
+    <BundleResource Include="Resources\coin.png" />
+    <BundleResource Include="Resources\coin%402x.png" />
+    <BundleResource Include="Resources\ticket.png" />
+    <BundleResource Include="Resources\ticket%402x.png" />
   </ItemGroup>
 </Project>

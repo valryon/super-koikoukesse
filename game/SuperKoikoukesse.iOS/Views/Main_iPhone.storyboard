@@ -87,29 +87,46 @@
                                 <rect key="frame" x="141" y="468" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNR-4L-0OS">
-                                <rect key="frame" x="10" y="10" width="52" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket.png" translatesAutoresizingMaskIntoConstraints="NO" id="R4K-2Q-91n">
+                                <rect key="frame" x="6" y="8" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="FuQ-Or-3oh"/>
+                                    <constraint firstAttribute="height" constant="20" id="m3F-nb-dUI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNR-4L-0OS">
+                                <rect key="frame" x="28" y="10" width="47" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coins" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-yV-VDO">
-                                <rect key="frame" x="269" y="10" width="41" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coin.png" translatesAutoresizingMaskIntoConstraints="NO" id="JMm-CH-NOM">
+                                <rect key="frame" x="294" y="8" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="hJk-Jw-AYr"/>
+                                    <constraint firstAttribute="width" constant="20" id="sSB-cU-Dcf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coins" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-yV-VDO">
+                                <rect key="frame" x="255" y="10" width="37" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rmu-QF-HBK" userLabel="Debug area">
-                                <rect key="frame" x="99" y="0.0" width="122" height="49"/>
+                                <rect key="frame" x="92" y="0.0" width="136" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pv8-gA-tq2">
-                                        <rect key="frame" x="62" y="4" width="60" height="20"/>
+                                        <rect key="frame" x="71" y="9" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
-                                        <state key="normal" title="CREDITS" backgroundImage="button_play.png">
-                                            <color key="titleColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="credits">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="disabled" backgroundImage="bt_blue_0.png"/>
@@ -121,11 +138,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-JQ-aRs">
-                                        <rect key="frame" x="62" y="24" width="60" height="20"/>
+                                        <rect key="frame" x="71" y="35" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
-                                        <state key="normal" title="COINS" backgroundImage="button_play.png">
-                                            <color key="titleColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="coins">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="disabled" backgroundImage="bt_blue_0.png"/>
@@ -137,11 +155,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCJ-Zn-FgG">
-                                        <rect key="frame" x="0.0" y="4" width="60" height="20"/>
+                                        <rect key="frame" x="5" y="9" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
-                                        <state key="normal" title="CONFIG" backgroundImage="button_play.png">
-                                            <color key="titleColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="config">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="disabled" backgroundImage="bt_blue_0.png"/>
@@ -153,11 +172,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20H-dB-hVf">
-                                        <rect key="frame" x="0.0" y="24" width="60" height="20"/>
+                                        <rect key="frame" x="5" y="35" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
-                                        <state key="normal" title="DEBUG" backgroundImage="button_play.png">
-                                            <color key="titleColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="debug">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="disabled" backgroundImage="bt_blue_0.png"/>
@@ -179,14 +199,18 @@
                         <constraints>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="AMN-hl-57Z" secondAttribute="bottom" id="KXo-ED-hze"/>
+                            <constraint firstAttribute="trailing" secondItem="JMm-CH-NOM" secondAttribute="trailing" constant="6" id="LYz-JW-bMr"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
+                            <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="R4K-2Q-91n" secondAttribute="trailing" constant="2" id="XBc-Im-DTj"/>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="36" id="XvJ-Lv-hxC"/>
-                            <constraint firstAttribute="trailing" secondItem="RFJ-yV-VDO" secondAttribute="trailing" constant="10" id="ax1-EY-U5N"/>
+                            <constraint firstItem="JMm-CH-NOM" firstAttribute="bottom" secondItem="RFJ-yV-VDO" secondAttribute="bottom" id="cMb-Od-sHq"/>
                             <constraint firstAttribute="centerX" secondItem="AMN-hl-57Z" secondAttribute="centerX" id="czq-dP-84q"/>
-                            <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" constant="10" id="net-Kx-5Us"/>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="36" id="oEG-Rc-KX6"/>
+                            <constraint firstItem="R4K-2Q-91n" firstAttribute="bottom" secondItem="sNR-4L-0OS" secondAttribute="bottom" id="p2J-F0-G3D"/>
                             <constraint firstAttribute="trailing" secondItem="9bo-TA-4qu" secondAttribute="trailing" id="qUQ-Z9-UQF"/>
                             <constraint firstItem="RFJ-yV-VDO" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="tXs-ue-0of"/>
+                            <constraint firstItem="R4K-2Q-91n" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" constant="6" id="vvp-gw-AhS"/>
+                            <constraint firstItem="JMm-CH-NOM" firstAttribute="leading" secondItem="RFJ-yV-VDO" secondAttribute="trailing" constant="2" id="woQ-WF-7bh"/>
                         </constraints>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
@@ -1003,8 +1027,10 @@
         <image name="bt_blue_0.png" width="225" height="95"/>
         <image name="button_iPhone.png" width="145" height="50"/>
         <image name="button_play.png" width="11" height="20"/>
+        <image name="coin.png" width="20" height="20"/>
         <image name="combo_indicator.png" width="134" height="7"/>
         <image name="image_empty.png" width="400" height="400"/>
+        <image name="ticket.png" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
