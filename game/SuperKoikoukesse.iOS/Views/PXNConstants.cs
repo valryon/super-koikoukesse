@@ -55,7 +55,7 @@ namespace SuperKoikoukesse.iOS
           return MODE_VERSUS;
       }
 
-      return MODE_SCORE;
+      return BRAND_COLOR;
     }
 
     #endregion

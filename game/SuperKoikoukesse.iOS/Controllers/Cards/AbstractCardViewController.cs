@@ -61,6 +61,11 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
+    public virtual UIColor GetColor()
+    {
+      return PXNConstants.BRAND_COLOR;
+    }
+
     #endregion
 
     #region Properties

@@ -79,6 +79,11 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
+    public override UIColor GetColor()
+    {
+      return PXNConstants.GetModeColor(_mode);
+    }
+
     #endregion
 
     #region Handlers

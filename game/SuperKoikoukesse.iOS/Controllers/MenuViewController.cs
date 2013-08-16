@@ -14,7 +14,7 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
-    private List<UIViewController> mCards;
+    private List<AbstractCardViewController> mCards;
     private MenuDifficultyViewController mDifficultyViewController;
     private CardScoreViewController mHighScorePanel;
     private GameLauncher mGameLauncher;
@@ -30,7 +30,7 @@ namespace SuperKoikoukesse.iOS
 //      appDelegate.OnLoading += () => ViewLoading.Hidden = false;
 //      appDelegate.OnLoadingComplete += () => ViewLoading.Hidden = true;
 
-      mCards = new List<UIViewController>();
+      mCards = new List<AbstractCardViewController>();
     }
 
     public override void ViewDidLoad()
@@ -116,6 +116,12 @@ namespace SuperKoikoukesse.iOS
 
     #region Scroll view and pagination
 
+    private void ChangePageControlColor(int page)
+    {
+      var color = mCards[page].GetColor();;
+      PageControl.CurrentPageIndicatorTintColor = color;
+    }
+
     /// <summary>
     /// Create the cards for the menu
     /// </summary>
@@ -123,18 +129,23 @@ namespace SuperKoikoukesse.iOS
     {
       PageControl.ValueChanged += (object sender, EventArgs e) => {
         SetScrollViewToPage(PageControl.CurrentPage);
+
+
       };
+
       ScrollView.DecelerationEnded += (object sender, EventArgs e) => {
         double page = Math.Floor((ScrollView.ContentOffset.X - ScrollView.Frame.Width / 2) / ScrollView.Frame.Width) + 1;
 				
         PageControl.CurrentPage = (int) page;
+
+        ChangePageControlColor(PageControl.CurrentPage);
       };
 
       mHighScorePanel = null;
       mCards.Clear();
 
       // Credits
-      CardInfoViewController infos = new CardInfoViewController();
+      var infos = new CardInfoViewController();
       infos.CreditsDisplayed += DisplayCredits;
       mCards.Add(infos);
 
@@ -147,22 +158,22 @@ namespace SuperKoikoukesse.iOS
       //
 
       // -- Score attack
-      CardModeViewController scoreAttackMode = new CardModeViewController(GameMode.SCORE);
+      var scoreAttackMode = new CardModeViewController(GameMode.SCORE);
       scoreAttackMode.GameModeSelected += HandleGameModeSelected;
       mCards.Add(scoreAttackMode);
 
       // -- Time attack
-      CardModeViewController timeAttackMode = new CardModeViewController(GameMode.TIME);
+      var timeAttackMode = new CardModeViewController(GameMode.TIME);
       timeAttackMode.GameModeSelected += HandleGameModeSelected;
       mCards.Add(timeAttackMode);
 
       // -- Survival
-      CardModeViewController survivalMode = new CardModeViewController(GameMode.SURVIVAL);
+      var survivalMode = new CardModeViewController(GameMode.SURVIVAL);
       survivalMode.GameModeSelected += HandleGameModeSelected;
       mCards.Add(survivalMode);
 
       // -- Versus
-      CardModeViewController versusMode = new CardModeViewController(GameMode.VERSUS);
+      var versusMode = new CardModeViewController(GameMode.VERSUS);
       versusMode.GameModeSelected += HandleGameModeSelected;
       mCards.Add(versusMode);
 
@@ -199,7 +210,11 @@ namespace SuperKoikoukesse.iOS
 
     private void SetScrollViewToPage(int page)
     {
+      // Set the scrollview position
       ScrollView.SetContentOffset(new PointF(page * ScrollView.Frame.Width, 0), true);
+
+      // Change the indicator color
+      ChangePageControlColor(PageControl.CurrentPage);
     }
 
     #endregion
