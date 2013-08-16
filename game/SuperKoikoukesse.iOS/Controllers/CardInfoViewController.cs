@@ -16,6 +16,16 @@ namespace SuperKoikoukesse.iOS
     {
     }
 
+    public override void ViewDidLoad()
+    {
+      base.ViewDidLoad();
+
+      ViewLogo.Layer.ShadowColor = UIColor.Black.CGColor;
+      ViewLogo.Layer.ShadowRadius = 3f;
+      ViewLogo.Layer.ShadowOffset = new SizeF(0, 0);
+      ViewLogo.Layer.ShadowOpacity = 0.5f;
+    }
+
     #endregion
 
     #region Methods

@@ -12,11 +12,18 @@ namespace SuperKoikoukesse.iOS
 	[Register ("CardInfoViewController")]
 	partial class CardInfoViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIImageView ViewLogo { get; set; }
+
 		[Action ("OnCreditsTouched:")]
 		partial void OnCreditsTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ViewLogo != null) {
+				ViewLogo.Dispose ();
+				ViewLogo = null;
+			}
 		}
 	}
 }

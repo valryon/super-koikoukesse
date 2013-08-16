@@ -2253,5 +2253,7 @@
     <BundleResource Include="Resources\arrow_to_right%402x.png" />
     <BundleResource Include="Resources\pixelnest.png" />
     <BundleResource Include="Resources\pixelnest%402x.png" />
+    <BundleResource Include="Resources\info_header.png" />
+    <BundleResource Include="Resources\info_header%402x.png" />
   </ItemGroup>
 </Project>
