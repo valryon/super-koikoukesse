@@ -35,8 +35,9 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewWillAppear(animated);
 
-      // Hide the navbar
+      // Hide the navbar, change the color of the navigationcontroller view
       NavigationController.SetNavigationBarHidden(true, animated);
+      NavigationController.View.BackgroundColor = PXNConstants.BRAND_BACKGROUND;
     }
 
     #endregion
