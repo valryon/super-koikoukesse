@@ -8,7 +8,7 @@ using MonoTouch.CoreAnimation;
 
 namespace SuperKoikoukesse.iOS
 {
-  public partial class CardModeViewController : UIViewController
+  public partial class CardModeViewController : AbstractCardViewController
   {
     #region Members
 
@@ -18,8 +18,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public CardModeViewController(GameMode mode) 
-      : base ("CardModeView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public CardModeViewController(GameMode mode) : base("CardModeView")
     {
       _mode = mode;
     }
@@ -51,17 +50,6 @@ namespace SuperKoikoukesse.iOS
       LabelTitle.SizeToFit();
       LabelDescriptionMain.SizeToFit();
       LabelDescriptionSub.SizeToFit();
-
-      // Add the shadow to the background view
-      ViewShadow.Layer.CornerRadius = 3f;
-      ViewShadow.Layer.ShadowColor = UIColor.Black.CGColor;
-      ViewShadow.Layer.ShadowRadius = 1.5f;
-      ViewShadow.Layer.ShadowOffset = new SizeF(0, 0);
-      ViewShadow.Layer.ShadowOpacity = 0.2f;
-
-      // Set the radius & mask on the card
-      ViewCard.Layer.CornerRadius = 3f;
-      ViewCard.Layer.MasksToBounds = true;
     }
 
     public override void ViewDidAppear(bool animated)

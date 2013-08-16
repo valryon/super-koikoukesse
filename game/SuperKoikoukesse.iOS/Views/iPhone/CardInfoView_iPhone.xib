@@ -14,97 +14,202 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rvj-ZV-tIA" userLabel="Card">
+                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qst-G1-NR2" userLabel="Shadow">
+                    <rect key="frame" x="10" y="118" width="300" height="332"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rvj-ZV-tIA" userLabel="Card">
                     <rect key="frame" x="10" y="118" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osv-Dd-7NX">
-                            <rect key="frame" x="53" y="254" width="195" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPX-La-tZ3" userLabel="View - Header">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="120"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="Credits" backgroundImage="button_iPhone.png">
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pixelnest.png" translatesAutoresizingMaskIntoConstraints="NO" id="mll-wm-eTz" userLabel="Image - Logo">
+                                    <rect key="frame" x="109" y="19" width="82" height="82"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="82" id="1c3-lR-HDZ"/>
+                                        <constraint firstAttribute="height" constant="82" id="QLk-Uz-i3l"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.15686275064945221" green="0.60000002384185791" blue="0.83137261867523193" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="mll-wm-eTz" secondAttribute="centerY" id="FiM-qG-aB4"/>
+                                <constraint firstAttribute="centerX" secondItem="mll-wm-eTz" secondAttribute="centerX" id="Pdf-wY-IXw"/>
+                                <constraint firstAttribute="height" constant="120" id="R7C-3f-4vL"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTS-0b-gWo">
+                            <rect key="frame" x="190" y="280" width="110" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.1098039299249649" green="0.66274511814117432" blue="0.87843143939971924" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="AwI-OB-mFU"/>
+                                <constraint firstAttribute="height" constant="40" id="Se8-xl-Jwf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="credits" image="arrow_to_right.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="OnCreditsTouched:" destination="-1" eventType="touchUpInside" id="qD1-rh-R9V"/>
+                                <action selector="OnCreditsTouched:" destination="-1" eventType="touchUpInside" id="btq-V6-TVs"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pixelnest.png" translatesAutoresizingMaskIntoConstraints="NO" id="mll-wm-eTz">
-                            <rect key="frame" x="109" y="10" width="82" height="82"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="82" id="1c3-lR-HDZ"/>
-                                <constraint firstAttribute="height" constant="82" id="QLk-Uz-i3l"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="276" translatesAutoresizingMaskIntoConstraints="NO" id="gJY-JK-8VV">
-                            <rect key="frame" x="12" y="100" width="276" height="111"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="bjW-Xo-u0K">
+                            <rect key="frame" x="30" y="140" width="240" height="66"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText">
-                                <fragment content="SuperKoikoukesse  is a game by ">
+                                <fragment content="The">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
-                                <fragment content="Pixelnest Studio">
+                                <fragment content=" ">
                                     <attributes>
-                                        <color key="NSColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
-                                        <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
-                                <fragment content=" and ">
+                                <fragment content="SuperKoikoukesse">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        <color key="NSColor" red="0.15686275064945221" green="0.60000002384185791" blue="0.83137261867523193" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
-                                <fragment content="Laurent Brossard">
+                                <fragment content=" is an interactive quizz about videogames. Test your knowledge, beat your friends and have fun. :)">
                                     <attributes>
-                                        <color key="NSColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
-                                        <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content=".">
-                                    <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact us by mail at hi@pixelnest.io" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdB-2F-JYQ">
-                            <rect key="frame" x="47" y="231" width="206" height="15"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="cMW-We-pGu">
+                            <rect key="frame" x="30" y="223" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Created by ">
+                                    <attributes>
+                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="Pixelnest Studio">
+                                    <attributes>
+                                        <color key="NSColor" red="0.15686275064945221" green="0.60000002384185791" blue="0.83137261867523193" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content=" and ">
+                                    <attributes>
+                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="Laurent Brossard">
+                                    <attributes>
+                                        <color key="NSColor" red="0.15686275064945221" green="0.60000002384185791" blue="0.83137261867523193" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content=".">
+                                    <attributes>
+                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="find us on twitter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsd-LD-1i5">
+                            <rect key="frame" x="10" y="287" width="83" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@pixelnest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSy-Tq-HqJ">
+                            <rect key="frame" x="10" y="304" width="53" height="13"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                            <color key="textColor" red="0.16470588743686676" green="0.52941179275512695" blue="0.78431379795074463" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwg-B0-8nZ" userLabel="View - Line desc">
+                            <rect key="frame" x="30" y="215" width="270" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="zEY-NO-hcd"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdi-3t-NZj" userLabel="View - Line details">
+                            <rect key="frame" x="0.0" y="301" width="93" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="zD5-V6-7Sh"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="KTS-0b-gWo" secondAttribute="bottom" constant="13" id="0Yb-GQ-8Gg"/>
+                        <constraint firstAttribute="trailing" secondItem="wPX-La-tZ3" secondAttribute="trailing" id="0cN-Lx-Jqx"/>
                         <constraint firstAttribute="height" constant="333" id="0eS-bb-k03"/>
-                        <constraint firstItem="mll-wm-eTz" firstAttribute="top" secondItem="Rvj-ZV-tIA" secondAttribute="top" constant="10" id="SF3-b2-2SM"/>
-                        <constraint firstAttribute="centerX" secondItem="mll-wm-eTz" secondAttribute="centerX" id="a8P-sj-Iai"/>
+                        <constraint firstAttribute="bottom" secondItem="nSy-Tq-HqJ" secondAttribute="bottom" constant="16" id="KpE-0z-Hdr"/>
+                        <constraint firstItem="wPX-La-tZ3" firstAttribute="top" secondItem="Rvj-ZV-tIA" secondAttribute="top" id="QC8-DX-bD6"/>
+                        <constraint firstAttribute="trailing" secondItem="KTS-0b-gWo" secondAttribute="trailing" id="QWc-Pb-kLT"/>
+                        <constraint firstAttribute="trailing" secondItem="cMW-We-pGu" secondAttribute="trailing" constant="30" id="Qhb-c3-zfY"/>
+                        <constraint firstItem="pdi-3t-NZj" firstAttribute="top" secondItem="dsd-LD-1i5" secondAttribute="bottom" constant="1" id="UD2-4S-hE2"/>
+                        <constraint firstItem="bjW-Xo-u0K" firstAttribute="top" secondItem="wPX-La-tZ3" secondAttribute="bottom" constant="20" id="UM7-bk-YbZ"/>
+                        <constraint firstAttribute="trailing" secondItem="bjW-Xo-u0K" secondAttribute="trailing" constant="30" id="VaT-eN-HYL"/>
+                        <constraint firstItem="wPX-La-tZ3" firstAttribute="leading" secondItem="Rvj-ZV-tIA" secondAttribute="leading" id="Y85-CB-pRw"/>
+                        <constraint firstItem="cMW-We-pGu" firstAttribute="top" secondItem="mwg-B0-8nZ" secondAttribute="bottom" constant="7" id="dAN-Pm-IEm"/>
+                        <constraint firstItem="bjW-Xo-u0K" firstAttribute="leading" secondItem="cMW-We-pGu" secondAttribute="leading" id="dpo-xi-ODz"/>
+                        <constraint firstItem="cMW-We-pGu" firstAttribute="top" secondItem="bjW-Xo-u0K" secondAttribute="bottom" constant="17" id="eC8-fc-PaF"/>
+                        <constraint firstAttribute="trailing" secondItem="mwg-B0-8nZ" secondAttribute="trailing" id="gro-3z-euO"/>
+                        <constraint firstItem="dsd-LD-1i5" firstAttribute="leading" secondItem="Rvj-ZV-tIA" secondAttribute="leading" constant="10" id="iPg-a8-fNL"/>
+                        <constraint firstItem="dsd-LD-1i5" firstAttribute="leading" secondItem="nSy-Tq-HqJ" secondAttribute="leading" id="jbL-eh-rq5"/>
+                        <constraint firstItem="pdi-3t-NZj" firstAttribute="leading" secondItem="Rvj-ZV-tIA" secondAttribute="leading" id="jjq-y2-WyA"/>
+                        <constraint firstItem="bjW-Xo-u0K" firstAttribute="leading" secondItem="Rvj-ZV-tIA" secondAttribute="leading" constant="30" id="lnn-7P-GuU"/>
                         <constraint firstAttribute="width" constant="300" id="pLs-di-VI3"/>
+                        <constraint firstItem="nSy-Tq-HqJ" firstAttribute="top" secondItem="dsd-LD-1i5" secondAttribute="bottom" constant="4" id="sMP-iz-Cus"/>
+                        <constraint firstItem="dsd-LD-1i5" firstAttribute="trailing" secondItem="pdi-3t-NZj" secondAttribute="trailing" id="t7a-mm-LAg"/>
+                        <constraint firstItem="bjW-Xo-u0K" firstAttribute="leading" secondItem="mwg-B0-8nZ" secondAttribute="leading" id="yq9-w1-z56"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Rvj-ZV-tIA" secondAttribute="centerX" id="CO6-s9-yTY"/>
+                <constraint firstItem="Qst-G1-NR2" firstAttribute="height" secondItem="Rvj-ZV-tIA" secondAttribute="height" id="hfR-Yt-m42"/>
+                <constraint firstAttribute="centerY" secondItem="Qst-G1-NR2" secondAttribute="centerY" id="lCd-KS-hWM"/>
+                <constraint firstItem="Qst-G1-NR2" firstAttribute="width" secondItem="Rvj-ZV-tIA" secondAttribute="width" id="ncB-Nb-TIN"/>
+                <constraint firstAttribute="centerX" secondItem="Qst-G1-NR2" secondAttribute="centerX" id="yVz-wT-xiT"/>
                 <constraint firstAttribute="centerY" secondItem="Rvj-ZV-tIA" secondAttribute="centerY" id="zjp-ra-Wna"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="button_iPhone.png" width="145" height="50"/>
+        <image name="arrow_to_right.png" width="11" height="20"/>
         <image name="pixelnest.png" width="82" height="82"/>
     </resources>
 </document>

@@ -110,6 +110,7 @@
     <Folder Include="Views\Controls\" />
     <Folder Include="Tools\" />
     <Folder Include="Views\Particles\" />
+    <Folder Include="Controllers\Cards\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -186,6 +187,7 @@
     <Compile Include="Controllers\TimerViewController.designer.cs">
       <DependentUpon>TimerViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Cards\AbstractCardViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

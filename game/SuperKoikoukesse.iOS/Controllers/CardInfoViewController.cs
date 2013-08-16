@@ -5,32 +5,25 @@ using MonoTouch.UIKit;
 
 namespace SuperKoikoukesse.iOS
 {
-  public partial class CardInfoViewController : UIViewController
+  public partial class CardInfoViewController : AbstractCardViewController
   {
     #region Members
     #endregion
 
     #region Constructors
 
-    public CardInfoViewController() 
-      : base ("CardInfoView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public CardInfoViewController() : base("CardInfoView")
     {
     }
 
     #endregion
 
     #region Methods
-
-    public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
-    {
-      return AppDelegate.HasSupportedInterfaceOrientations();
-    }
-
     #endregion
 
     #region Handlers
 
-    partial void OnCreditsTouched(MonoTouch.Foundation.NSObject sender)
+    partial void OnCreditsTouched(NSObject sender)
     {
       
     }

@@ -6,7 +6,7 @@ using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
-  public partial class CardScoreViewController : UIViewController
+  public partial class CardScoreViewController : AbstractCardViewController
   {
     #region Members
 
@@ -16,8 +16,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public CardScoreViewController()
-      : base ("CardScoreView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public CardScoreViewController() : base("CardScoreView")
     {
     }
 
@@ -37,11 +36,6 @@ namespace SuperKoikoukesse.iOS
     #endregion
 
     #region Methods
-
-    public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations()
-    {
-      return AppDelegate.HasSupportedInterfaceOrientations();
-    }
 
     public void ForceUpdate()
     {

@@ -177,8 +177,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="AMN-hl-57Z" secondAttribute="bottom" id="6Pq-Jy-iLA"/>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
+                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="AMN-hl-57Z" secondAttribute="bottom" id="KXo-ED-hze"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="36" id="XvJ-Lv-hxC"/>
                             <constraint firstAttribute="trailing" secondItem="RFJ-yV-VDO" secondAttribute="trailing" constant="10" id="ax1-EY-U5N"/>
@@ -936,7 +936,7 @@
     <resources>
         <image name="bt_blue_0.png" width="225" height="95"/>
         <image name="button_iPhone.png" width="145" height="50"/>
-        <image name="button_play.png" width="216" height="14"/>
+        <image name="button_play.png" width="218" height="90"/>
         <image name="combo_indicator.png" width="134" height="7"/>
         <image name="image_empty.png" width="400" height="400"/>
     </resources>
@@ -946,7 +946,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dbu-Tv-dyJ"/>
+        <segue reference="By1-MQ-h8U"/>
         <segue reference="kRF-TE-k8D"/>
     </inferredMetricsTieBreakers>
 </document>
