@@ -16,6 +16,7 @@ namespace SuperKoikoukesse.iOS
     {
       SetNavigationBarAppearance();
       SetNavigationItemAppearance();
+      SetPageControlAppearance();
     }
 
     #endregion
@@ -77,6 +78,15 @@ namespace SuperKoikoukesse.iOS
       item.SetBackButtonBackgroundImage(image, UIControlState.Normal, UIBarMetrics.Default);
       item.SetBackButtonTitlePositionAdjustment(new UIOffset(4f, 0), UIBarMetrics.Default);
       item.SetBackButtonBackgroundVerticalPositionAdjustment(1f, UIBarMetrics.Default);
+    }
+
+    public void SetPageControlAppearance()
+    {
+      // appearance
+      var item = UIPageControl.Appearance;
+
+      item.CurrentPageIndicatorTintColor = PXNConstants.BRAND_COLOR;
+      item.PageIndicatorTintColor = UIColor.FromWhiteAlpha(white: 0.827f, alpha: 1.000f);
     }
 
     #endregion

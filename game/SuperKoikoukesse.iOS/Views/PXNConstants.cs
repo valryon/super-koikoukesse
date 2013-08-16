@@ -13,10 +13,10 @@ namespace SuperKoikoukesse.iOS
     public static readonly UIColor QUARTER_ALPHA_BLACK = UIColor.FromHSBA(0, 0, 0, 0.25f);
     public static readonly UIColor HALF_ALPHA_BLACK = UIColor.FromHSBA(0, 0, 0, 0.5f);
 
-    public static readonly UIColor BRAND_COLOR = UIColor.FromRGB(42.0f/255.0f, 147.0f/255.0f, 241.0f/255.0f);
-    public static readonly UIColor BRAND_GREY = UIColor.FromRGB(226.0f/255.0f, 226.0f/255.0f, 226.0f/255.0f);
+    public static readonly UIColor BRAND_COLOR      = UIColor.FromRGB(red: 0.110f, green: 0.663f, blue: 0.878f);
+    public static readonly UIColor BRAND_GREY       = UIColor.FromRGB(226.0f/255.0f, 226.0f/255.0f, 226.0f/255.0f);
     public static readonly UIColor BRAND_BACKGROUND = UIColor.FromRGB(243.0f/255.0f, 243.0f/255.0f, 243.0f/255.0f);
-    public static readonly UIColor BRAND_BORDER = UIColor.FromRGB(178.0f/255.0f, 178.0f/255.0f, 178.0f/255.0f);
+    public static readonly UIColor BRAND_BORDER     = UIColor.FromRGB(178.0f/255.0f, 178.0f/255.0f, 178.0f/255.0f);
 
     public static readonly UIColor COLOR_NAVIGATION = UIColor.FromWhiteAlpha(white:0.882f, alpha: 1f);
 
@@ -24,10 +24,10 @@ namespace SuperKoikoukesse.iOS
     // Modes
     //
 
-    public static readonly UIColor MODE_SCORE = UIColor.FromRGB(red: 0.404f, green: 0.804f, blue:0.863f);
-    public static readonly UIColor MODE_TIME = UIColor.FromRGB(red: 0.639f, green: 0.835f, blue: 0.263f);
-    public static readonly UIColor MODE_SURVIVAL = UIColor.FromRGB(red: 0.812f, green: 0.333f, blue: 0.953f);
-    public static readonly UIColor MODE_VERSUS = UIColor.FromRGB(red: 0.933f, green: 0.188f, blue: 0.259f);
+    public static readonly UIColor MODE_SCORE     = UIColor.FromRGB(red: 0.404f, green: 0.804f, blue: 0.863f);
+    public static readonly UIColor MODE_TIME      = UIColor.FromRGB(red: 0.714f, green: 0.773f, blue: 0.424f);
+    public static readonly UIColor MODE_SURVIVAL  = UIColor.FromRGB(red: 0.835f, green: 0.475f, blue: 0.859f);
+    public static readonly UIColor MODE_VERSUS    = UIColor.FromRGB(red: 0.945f, green: 0.325f, blue: 0.427f);
 
     #endregion
 

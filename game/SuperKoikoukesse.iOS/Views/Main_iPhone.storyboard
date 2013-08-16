@@ -80,11 +80,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bo-TA-4qu">
-                                <rect key="frame" x="0.0" y="36" width="320" height="432"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="344"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AMN-hl-57Z">
-                                <rect key="frame" x="141" y="468" width="38" height="36"/>
+                                <rect key="frame" x="141" y="418" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket.png" translatesAutoresizingMaskIntoConstraints="NO" id="R4K-2Q-91n">
@@ -198,14 +198,14 @@
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
-                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="AMN-hl-57Z" secondAttribute="bottom" id="KXo-ED-hze"/>
                             <constraint firstAttribute="trailing" secondItem="JMm-CH-NOM" secondAttribute="trailing" constant="6" id="LYz-JW-bMr"/>
+                            <constraint firstItem="AMN-hl-57Z" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="-6" id="Oiw-7C-X0L"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="R4K-2Q-91n" secondAttribute="trailing" constant="2" id="XBc-Im-DTj"/>
-                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="36" id="XvJ-Lv-hxC"/>
+                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="80" id="XvJ-Lv-hxC"/>
                             <constraint firstItem="JMm-CH-NOM" firstAttribute="bottom" secondItem="RFJ-yV-VDO" secondAttribute="bottom" id="cMb-Od-sHq"/>
                             <constraint firstAttribute="centerX" secondItem="AMN-hl-57Z" secondAttribute="centerX" id="czq-dP-84q"/>
-                            <constraint firstItem="9bo-TA-4qu" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="36" id="oEG-Rc-KX6"/>
+                            <constraint firstItem="9bo-TA-4qu" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="80" id="oEG-Rc-KX6"/>
                             <constraint firstItem="R4K-2Q-91n" firstAttribute="bottom" secondItem="sNR-4L-0OS" secondAttribute="bottom" id="p2J-F0-G3D"/>
                             <constraint firstAttribute="trailing" secondItem="9bo-TA-4qu" secondAttribute="trailing" id="qUQ-Z9-UQF"/>
                             <constraint firstItem="RFJ-yV-VDO" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="tXs-ue-0of"/>
