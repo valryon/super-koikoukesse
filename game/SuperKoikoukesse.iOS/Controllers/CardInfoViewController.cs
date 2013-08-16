@@ -20,6 +20,7 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewDidLoad();
 
+      // Drop shadow on the logo
       ViewLogo.Layer.ShadowColor = UIColor.Black.CGColor;
       ViewLogo.Layer.ShadowRadius = 3f;
       ViewLogo.Layer.ShadowOffset = new SizeF(0, 0);

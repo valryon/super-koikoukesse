@@ -164,7 +164,7 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwg-B0-8nZ" userLabel="View - Line desc">
                             <rect key="frame" x="30" y="215" width="270" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="backgroundColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="0.5" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="zEY-NO-hcd"/>
                             </constraints>
@@ -172,7 +172,7 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdi-3t-NZj" userLabel="View - Line details">
                             <rect key="frame" x="0.0" y="301" width="93" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.52941179275512695" green="0.52941179275512695" blue="0.52941179275512695" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="backgroundColor" red="0.29019607843137257" green="0.29019607843137257" blue="0.29019607843137257" alpha="0.5" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="zD5-V6-7Sh"/>
                             </constraints>
