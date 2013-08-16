@@ -135,6 +135,7 @@ namespace SuperKoikoukesse.iOS
 
       // Credits
       CardInfoViewController infos = new CardInfoViewController();
+      infos.CreditsDisplayed += DisplayCredits;
       mCards.Add(infos);
 
       // Highscores
@@ -210,6 +211,11 @@ namespace SuperKoikoukesse.iOS
     private void DisplayMatchMaker(GameMode mode)
     {
       PerformSegue("MenuToVersus", this);
+    }
+
+    private void DisplayCredits()
+    {
+      PerformSegue("MenuToCredits", this);
     }
 
     /// <summary>

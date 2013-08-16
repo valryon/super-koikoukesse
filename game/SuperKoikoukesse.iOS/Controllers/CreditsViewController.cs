@@ -15,8 +15,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public CreditsViewController()
-      : base ("CreditsView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
+    public CreditsViewController(IntPtr handle) : base(handle)
     {
     }
 
@@ -25,16 +24,15 @@ namespace SuperKoikoukesse.iOS
       base.ViewDidLoad();
       
       // Load all publishers name and display them
-      StringBuilder credits = new StringBuilder();
-
+      var credits = new StringBuilder();
       var publishers = GameDatabase.Instance.GetPublishers();
 
-      foreach (var publisher in publishers)
+      foreach (var p in publishers)
       {
-        credits.Append(publisher + " ");
+        credits.Append(p + " ");
       }
 
-      creditsLabel.Text = credits.ToString();
+      LabelCredits.Text = credits.ToString();
     }
 
     #endregion
@@ -50,6 +48,10 @@ namespace SuperKoikoukesse.iOS
 
     #region Handlers
 
+    partial void OnDismissTouched(NSObject sender)
+    {
+      DismissViewController(true, null);
+    }
 
     #endregion
 

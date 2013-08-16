@@ -214,11 +214,77 @@
                         <segue destination="MvG-xt-1QR" kind="push" identifier="MenuToVersus" id="VFf-Qj-Yvq"/>
                         <segue destination="rDr-1j-CHo" kind="push" identifier="MenuToSettings" id="h6d-tt-hjG"/>
                         <segue destination="yhH-ob-iXX" kind="push" identifier="MenuToShop" id="ck4-UF-jNb"/>
+                        <segue destination="Svk-SN-f5B" kind="modal" identifier="MenuToCredits" id="HEe-fG-7ge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBE-Xg-5FZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1193" y="74"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="iei-2Z-A76">
+            <objects>
+                <viewController id="Svk-SN-f5B" customClass="CreditsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RYP-yi-Y7B"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tmp-UV-ojV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SSt-e7-WDD">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7D-VE-iVa">
+                                <rect key="frame" x="20" y="129" width="280" height="399"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="80" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="434" translatesAutoresizingMaskIntoConstraints="NO" id="uhx-gg-j3O">
+                                        <rect key="frame" x="0.0" y="-7" width="434" height="210"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">alive mediasoft alligata software psygnosis magic bytes ice team 17 ace dephine software krisalis atari psyclapse ubi soft ocean virgin interactive infogrames electronic arts konami mediagogo image works impressions mindscape renegade microprose software core design novagen cyberdreams activision loriciel gremlin graphics virgin games accolade tomahawk kingsoft strategic simulations anco storm titus software us gold atreid concept hewson consultants smash 16 millenium coktel vision acide software silverrock productions discovery software silmaris cinemaware domark hitsoft elite system 3 rainbow arts lucasfilm games lankhor pxl computers demonware grandslam readysoft interplay productions digital marketing play bytes empire software flaire software thalion firebird armsoft electric dreams software imagin software crl elite systems epyx palace software ere informatique dinamic kuma computers software projects martech taito the sales curve beyond games go! logotron entertainment hal laboratory capcom asmik nintendo take 2 interactive tdk mediactive squaresoft sega thq atlus acclaim</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Toutes les marques appartiennent à leur propriétairs respectif, blabla" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrh-dr-Dq7">
+                                <rect key="frame" x="60" y="97" width="200" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Pixelnest Studio &amp; Laurent Brossard - 2013" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tg8-xm-xvt">
+                                <rect key="frame" x="44" y="67" width="232" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.1647058874" green="0.57647061349999995" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTD-1K-QGl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Credits" id="v41-SY-ew9">
+                                        <barButtonItem key="rightBarButtonItem" title="Got it" id="uFX-W5-OCv">
+                                            <connections>
+                                                <action selector="OnDismissTouched:" destination="Svk-SN-f5B" id="vOc-cS-db6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
+                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    </view>
+                    <connections>
+                        <outlet property="LabelCredits" destination="uhx-gg-j3O" id="rwO-hY-eS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mv-Vq-XcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141" y="897"/>
         </scene>
         <!--Versus Matchs View Controller-->
         <scene sceneID="FEc-Pq-6d1">
@@ -936,7 +1002,7 @@
     <resources>
         <image name="bt_blue_0.png" width="225" height="95"/>
         <image name="button_iPhone.png" width="145" height="50"/>
-        <image name="button_play.png" width="218" height="90"/>
+        <image name="button_play.png" width="11" height="20"/>
         <image name="combo_indicator.png" width="134" height="7"/>
         <image name="image_empty.png" width="400" height="400"/>
     </resources>

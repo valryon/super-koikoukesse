@@ -1,10 +1,11 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -12,24 +13,16 @@ namespace SuperKoikoukesse.iOS
 	partial class CreditsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel creditsLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelCredits { get; set; }
 
-		[Outlet]
-		MonoTouch.UIKit.UIButton backButton { get; set; }
-
-		[Action ("backButtonPressed:")]
-		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnDismissTouched:")]
+		partial void OnDismissTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (creditsLabel != null) {
-				creditsLabel.Dispose ();
-				creditsLabel = null;
-			}
-
-			if (backButton != null) {
-				backButton.Dispose ();
-				backButton = null;
+			if (LabelCredits != null) {
+				LabelCredits.Dispose ();
+				LabelCredits = null;
 			}
 		}
 	}

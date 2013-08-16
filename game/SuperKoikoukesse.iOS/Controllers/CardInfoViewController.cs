@@ -25,12 +25,15 @@ namespace SuperKoikoukesse.iOS
 
     partial void OnCreditsTouched(NSObject sender)
     {
-      
+      if (CreditsDisplayed != null) CreditsDisplayed();
     }
 
     #endregion
 
     #region Properties
+
+    public event Action CreditsDisplayed;
+
     #endregion
   }
 }

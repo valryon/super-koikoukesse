@@ -197,7 +197,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Views\iPhone\CreditsView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
