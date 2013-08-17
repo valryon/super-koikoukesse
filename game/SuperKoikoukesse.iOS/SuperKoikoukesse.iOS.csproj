@@ -188,6 +188,10 @@
     <Compile Include="Controllers\Cards\CardScoreViewController.designer.cs">
       <DependentUpon>CardScoreViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Cards\CardChallengeViewController.cs" />
+    <Compile Include="Controllers\Cards\CardChallengeViewController.designer.cs">
+      <DependentUpon>CardChallengeViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -220,6 +224,7 @@
     <InterfaceDefinition Include="Views\iPad\CardModeView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\CardScoreView_iPad.xib" />
     <InterfaceDefinition Include="Views\Controls\TimerView.xib" />
+    <InterfaceDefinition Include="Views\iPhone\CardChallengeView_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">
@@ -2259,5 +2264,9 @@
     <BundleResource Include="Resources\coin%402x.png" />
     <BundleResource Include="Resources\ticket.png" />
     <BundleResource Include="Resources\ticket%402x.png" />
+    <BundleResource Include="Resources\checkbox_highlight.png" />
+    <BundleResource Include="Resources\checkbox_highlight%402x.png" />
+    <BundleResource Include="Resources\checkbox_normal.png" />
+    <BundleResource Include="Resources\checkbox_normal%402x.png" />
   </ItemGroup>
 </Project>
