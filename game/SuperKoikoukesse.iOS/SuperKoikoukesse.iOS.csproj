@@ -156,18 +156,6 @@
     <Compile Include="Views\Controls\PXNNavigationButton.cs" />
     <Compile Include="Views\Particles\PXNComboGauge.cs" />
     <Compile Include="Views\Controls\PXNNavigationBackButton.cs" />
-    <Compile Include="Controllers\CardModeViewController.cs" />
-    <Compile Include="Controllers\CardModeViewController.designer.cs">
-      <DependentUpon>CardModeViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\CardInfoViewController.designer.cs">
-      <DependentUpon>CardInfoViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\CardScoreViewController.designer.cs">
-      <DependentUpon>CardScoreViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\CardInfoViewController.cs" />
-    <Compile Include="Controllers\CardScoreViewController.cs" />
     <Compile Include="Controllers\SplashscreenViewController.designer.cs">
       <DependentUpon>SplashscreenViewController.cs</DependentUpon>
     </Compile>
@@ -188,6 +176,18 @@
       <DependentUpon>TimerViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Cards\AbstractCardViewController.cs" />
+    <Compile Include="Controllers\Cards\CardModeViewController.cs" />
+    <Compile Include="Controllers\Cards\CardModeViewController.designer.cs">
+      <DependentUpon>CardModeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Cards\CardInfoViewController.cs" />
+    <Compile Include="Controllers\Cards\CardInfoViewController.designer.cs">
+      <DependentUpon>CardInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Cards\CardScoreViewController.cs" />
+    <Compile Include="Controllers\Cards\CardScoreViewController.designer.cs">
+      <DependentUpon>CardScoreViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
