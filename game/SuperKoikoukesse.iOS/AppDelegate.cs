@@ -10,318 +10,305 @@ using MonoTouch.GameKit;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
-		#region Fields
+  [Register ("AppDelegate")]
+  public partial class AppDelegate : UIApplicationDelegate
+  {
+    #region Fields
+    private bool mDatabaseLoaded;
+    private bool mConfigurationLoaded;
+    #endregion
+    #region Constructor & Initialization
+    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+    {
+      Logger.I("Launching app...");
 
-		private bool mDatabaseLoaded;
-		private bool mConfigurationLoaded;
+      new PXNAppearance();
 
-		#endregion
+      // Global parameters
+      EncryptionHelper.SetKey(Constants.ENCRYPTION_KEY);
+      ImageDatabase.Instance.Initialize(Constants.IMAGE_ROOT_LOCATION);
 
-		#region Constructor & Initialization
+      // Load all the things!
+      LoadDatabase();
+      LoadConfiguration();
 
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			Logger.I ("Launching app...");
+      LoadPlayerProfile();
 
-      		new PXNAppearance();
+      return true;
+    }
 
-			// Global parameters
-			EncryptionHelper.SetKey (Constants.ENCRYPTION_KEY);
-			ImageDatabase.Instance.Initialize (Constants.IMAGE_ROOT_LOCATION);
+    /// <summary>
+    /// Load the database in a thread
+    /// </summary>
+    private void LoadDatabase()
+    {
+      mDatabaseLoaded = false;
 
-			// Load all the things!
-			LoadDatabase ();
-			LoadConfiguration ();
+      // Create or load database
+      GameDatabase.Instance.Load(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
 
-			return true;
-		}
+      // Create database structure as fast as possible so other threads can manipulate it.
+      if (GameDatabase.Instance.Exists == false)
+      {
 
-		/// <summary>
-		/// Load the database in a thread
-		/// </summary>
-		private void LoadDatabase ()
-		{
-			mDatabaseLoaded = false;
+        GameDatabase.Instance.CreateTables();
+      }
 
-			// Create or load database
-			GameDatabase.Instance.Load (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Constants.DATABASE_LOCATION));
+      InvokeInBackground(() => {
 
-			// Create database structure as fast as possible so other threads can manipulate it.
-			if (GameDatabase.Instance.Exists == false) {
+        // Create database structure as fast as possible so other threads can manipulate it.
+        if (GameDatabase.Instance.Exists == false)
+        {
 
-				GameDatabase.Instance.CreateTables ();
-			}
+          // Load gamedb.xml
+          String xmlDatabase = File.ReadAllText(@"database/gamedb.xml");
 
-			InvokeInBackground (() => {
+          GameDatabase.Instance.InitializeFromXml(xmlDatabase);
+        }
 
-				// Create database structure as fast as possible so other threads can manipulate it.
-				if (GameDatabase.Instance.Exists == false) {
+        // Check excluded games
+        ServiceExcludedGames exGames = new ServiceExcludedGames();
+        exGames.Request((list) => {
 
-					// Load gamedb.xml
-					String xmlDatabase = File.ReadAllText (@"database/gamedb.xml");
+          foreach (int id in list.GamesId)
+          {
+            GameDatabase.Instance.RemoveGame(id);
+          }
 
-					GameDatabase.Instance.InitializeFromXml (xmlDatabase);
-				}
+        }, null);
 
-				// Check excluded games
-				ServiceExcludedGames exGames = new ServiceExcludedGames ();
-				exGames.Request ((list) => {
+        mDatabaseLoaded = true;
 
-					foreach (int id in list.GamesId) {
-						GameDatabase.Instance.RemoveGame (id);
-					}
+        // Maybe it was the last thing to load
+        InvokeOnMainThread(() => {
+          LoadingProgress();
+        });
+      });
+    }
 
-				}, null);
+    /// <summary>
+    /// Load Game Center and player profile
+    /// It's not the same mechanism, due to Game Center which should be displayed on the menu.
+    /// </summary>
+    public void LoadPlayerProfile()
+    {
+      // On main thread we load Game Center
+      GameCenterPlayer = new GameCenterPlayer();
+      GameCenterPlayer.ShowGameCenter += (UIViewController gcController) => {
+        InvokeOnMainThread(() => {
+          Window.RootViewController.PresentViewController(gcController, true, null);
+        });
+      };
+      
+      // Store a local profile from the game center info
+      // Or create a temporary local player
+      PlayerCache.Instance.Initialize(GameCenterPlayer);
+    }
 
-				mDatabaseLoaded = true;
+    /// <summary>
+    /// Load configuration in a thread
+    /// </summary>
+    private void LoadConfiguration()
+    {
+      mConfigurationLoaded = false;
 
-				// Maybe it was the last thing to load
-				InvokeOnMainThread (() => {
-					LoadingProgress ();
-				});
-			});
-		}
+      InvokeInBackground(() => {
 
-		/// <summary>
-		/// Load Game Center and player profile
-		/// It's not the same mechanism, due to Game Center which should be displayed on the menu.
-		/// </summary>
-		public void LoadPlayerProfile ()
-		{
-			// On main thread we load Game Center
-			GameCenter = new GameCenterPlayer ();
-			GameCenter.ShowGameCenter += (UIViewController gcController) => {
-				InvokeOnMainThread (() => {
-					Window.RootViewController.PresentViewController (gcController, true, null);
-				});
-			};
+        // Load the configuration from webservice or from local
+        UpdateConfiguration(() => {
 
-			// Player events
-			PlayerCache.Instance.PlayerUpdated += (Player p) => {
+          mConfigurationLoaded = true;
 
-				InvokeOnMainThread (() => {
+          // Maybe it was the last thing to load
+          InvokeOnMainThread(() => {
+            LoadingProgress();
+          });
+        });
+      });
+    }
 
-//					if (mMenuViewController != null) {
-//						mMenuViewController.UpdateViewWithPlayerInfos ();
-//					}
-				});
-			};
+    /// <summary>
+    /// Update the loading view, dismiss if everything has been loaded
+    /// </summary>
+    private void LoadingProgress()
+    {
+      Logger.I("Loading... Database: " + mDatabaseLoaded + " Configuration: " + mConfigurationLoaded);
 
-			// Store a local profile from the game center info
-			// Or create a temporary local player
-			PlayerCache.Instance.Initialize (GameCenter);
-		}
+      IsInitialized = (mDatabaseLoaded && mConfigurationLoaded);
 
-		/// <summary>
-		/// Load configuration in a thread
-		/// </summary>
-		private void LoadConfiguration ()
-		{
-			mConfigurationLoaded = false;
+      if (IsInitialized)
+      {
+        SetLoading(false);
+      }
+    }
+    #endregion
+    #region Methods
+    public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
+    {
+      return AppDelegate.HasSupportedInterfaceOrientations();
+    }
 
-			InvokeInBackground (() => {
+    /// <summary>
+    /// Download webservice configuration
+    /// </summary>
+    public void UpdateConfiguration(Action complete)
+    {
+      // Get the distant configuration
+      ServiceConfiguration configWs = new ServiceConfiguration();
+      configWs.Request((config) => {
+        this.Configuration = config;
 
-				// Load the configuration from webservice or from local
-				UpdateConfiguration (() => {
+        Logger.I("Configuration loaded and updated.");
 
-					mConfigurationLoaded = true;
+        if (complete != null)
+          complete();
+      },
+                     (code, e) => {
+        Logger.W("Configuration was not loaded!. ");
 
-					// Maybe it was the last thing to load
-					InvokeOnMainThread (() => {
-						LoadingProgress ();
-					});
-				});
-			});
-		}
+        // Try to use local
+        this.Configuration = configWs.LastValidConfig;
 
-		/// <summary>
-		/// Update the loading view, dismiss if everything has been loaded
-		/// </summary>
-		private void LoadingProgress ()
-		{
-			Logger.I ("Loading... Database: " + mDatabaseLoaded + " Configuration: " + mConfigurationLoaded);
+        // No local? This is bad. Use default values.
+        if (this.Configuration == null)
+        {
 
-			IsInitialized = (mDatabaseLoaded && mConfigurationLoaded);
+          Logger.W("Using default (local and bad) values!. ");
 
-			if (IsInitialized) {
-				SetLoading (false);
-			}
-		}
-		#endregion
+          this.Configuration = new GameConfiguration();
+        }
 
-		#region Methods
-
-		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
-		{
-			return AppDelegate.HasSupportedInterfaceOrientations ();
-		}
-
-		/// <summary>
-		/// Download webservice configuration
-		/// </summary>
-		public void UpdateConfiguration (Action complete)
-		{
-			// Get the distant configuration
-			ServiceConfiguration configWs = new ServiceConfiguration ();
-			configWs.Request ((config) => {
-				this.Configuration = config;
-
-				Logger.I ("Configuration loaded and updated.");
-
-				if (complete != null)
-					complete ();
-			},
-			                  (code, e) => {
-				Logger.W ("Configuration was not loaded!. ");
-
-				// Try to use local
-				this.Configuration = configWs.LastValidConfig;
-
-				// No local? This is bad. Use default values.
-				if (this.Configuration == null) {
-
-					Logger.W ("Using default (local and bad) values!. ");
-
-					this.Configuration = new GameConfiguration ();
-				}
-
-				if (complete != null)
-					complete ();
-			});
+        if (complete != null)
+          complete();
+      });
 		
-		}
+    }
+    #region Loading
+    /// <summary>
+    /// Add or hide a loading view
+    /// </summary>
+    public void SetLoading(bool isLoading)
+    {
+      if (isLoading)
+      {
+        if (OnLoading != null)
+        {
+          OnLoading();
+        }
+      }
+      else
+      {
+        if (OnLoadingComplete != null)
+        {
+          OnLoadingComplete();
+        }
+      }
+    }
+    #endregion
+    #region Game center views
+    private GKLeaderboardViewController m_gkLeaderboardview;
+    //		private GKAchievementViewController m_gkAchievementview;
+    /// <summary>
+    /// Display Game center leaderboards
+    /// </summary>
+    /// <param name="id">Identifier.</param>
+    /// <param name="callback">Callback.</param>
+    public void ShowLeaderboards(string id, Action callback)
+    {
+      if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
+      {
+        if (m_gkLeaderboardview == null)
+        {
+          m_gkLeaderboardview = new GKLeaderboardViewController();
+        }
 
-		#region Loading
+        m_gkLeaderboardview.Category = id; 
 
-		/// <summary>
-		/// Add or hide a loading view
-		/// </summary>
-		public void SetLoading (bool isLoading)
-		{
-			if (isLoading) {
-				if (OnLoading != null) {
-					OnLoading ();
-				}
-			} else {
-				if (OnLoadingComplete != null) {
-					OnLoadingComplete ();
-				}
-			}
-		}
+        if (m_gkLeaderboardview != null)
+        {
+          m_gkLeaderboardview.DidFinish += delegate(object sender, EventArgs e)
+            {
+            m_gkLeaderboardview.DismissViewController(true, null);
 
-		#endregion
+            m_gkLeaderboardview = null;
 
-		#region Game center views
+            if (callback != null)
+            {
+              callback();
+            }
+            };
 
-		private GKLeaderboardViewController m_gkLeaderboardview;
-		//		private GKAchievementViewController m_gkAchievementview;
+          Window.RootViewController.PresentViewController(m_gkLeaderboardview, true, null);
+        }
+      } 
+    }
+    #endregion
+    #endregion
+    #region Events
+    /// <summary>
+    /// Loading
+    /// </summary>
+    public event Action OnLoading;
+    /// <summary>
+    /// Game is ready to be played
+    /// </summary>
+    public event Action OnLoadingComplete;
+    #endregion
+    #region Static Properties
+    /// <summary>
+    /// iPhone or iPad ?
+    /// </summary>
+    /// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
+    public static bool UserInterfaceIdiomIsPhone
+    {
+      get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+    }
 
-		/// <summary>
-		/// Display Game center leaderboards
-		/// </summary>
-		/// <param name="id">Identifier.</param>
-		/// <param name="callback">Callback.</param>
-		public void ShowLeaderboards (string id, Action callback)
-		{
-			if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated) {
-				if (m_gkLeaderboardview == null) {
-					m_gkLeaderboardview = new GKLeaderboardViewController ();
-				}
+    /// <summary>
+    /// Get the supported orientations for the device:
+    /// - portrait for iPhone
+    /// - landscape for iPad
+    /// </summary>
+    /// <returns>Landscape if iPad, portrait otherwise</returns>
+    public static UIInterfaceOrientationMask HasSupportedInterfaceOrientations()
+    {
+      // If iPad, only landscape
+      if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+        return UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
 
-				m_gkLeaderboardview.Category = id; 
+      // If iPhone, only portrait
+      return UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.PortraitUpsideDown;
+    }
+    #endregion
+    #region Properties
+    /// <summary>
+    /// For storyboard handle
+    /// </summary>
+    /// <value>The window.</value>
+    public override UIWindow Window
+    {
+      get;
+      set;
+    }
 
-				if (m_gkLeaderboardview != null) {
-					m_gkLeaderboardview.DidFinish += delegate(object sender, EventArgs e) {
-						m_gkLeaderboardview.DismissViewController (true, null);
+    /// <summary>
+    /// Global configuration
+    /// </summary>
+    /// <value>The configuration.</value>
+    public GameConfiguration Configuration { get; set; }
 
-						m_gkLeaderboardview = null;
+    /// <summary>
+    /// Is loading something in background
+    /// </summary>
+    public bool IsInitialized { get; private set; }
 
-						if (callback != null) {
-							callback ();
-						}
-					};
+    /// <summary>
+    /// Game center data
+    /// </summary>
+    /// <value>The game center.</value>
+    public GameCenterPlayer GameCenterPlayer  { get; private set; }
 
-					Window.RootViewController.PresentViewController (m_gkLeaderboardview, true, null);
-				}
-			} 
-		}
-		#endregion
-
-		#endregion
-
-		#region Events
-
-		/// <summary>
-		/// Loading
-		/// </summary>
-		public event Action OnLoading;
-
-		/// <summary>
-		/// Game is ready to be played
-		/// </summary>
-		public event Action OnLoadingComplete;
-
-		#endregion
-
-		#region Static Properties
-
-		/// <summary>
-		/// iPhone or iPad ?
-		/// </summary>
-		/// <value><c>true</c> if user interface idiom is phone; otherwise, <c>false</c>.</value>
-		public static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
-
-		/// <summary>
-		/// Get the supported orientations for the device:
-		/// - portrait for iPhone
-		/// - landscape for iPad
-		/// </summary>
-		/// <returns>Landscape if iPad, portrait otherwise</returns>
-		public static UIInterfaceOrientationMask HasSupportedInterfaceOrientations ()
-		{
-			// If iPad, only landscape
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
-				return UIInterfaceOrientationMask.LandscapeLeft | UIInterfaceOrientationMask.LandscapeRight;
-
-			// If iPhone, only portrait
-			return UIInterfaceOrientationMask.Portrait | UIInterfaceOrientationMask.PortraitUpsideDown;
-		}
-		#endregion
-
-		#region Properties
-
-		/// <summary>
-		/// For storyboard handle
-		/// </summary>
-		/// <value>The window.</value>
-		public override UIWindow Window {
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Global configuration
-		/// </summary>
-		/// <value>The configuration.</value>
-		public GameConfiguration Configuration { get; set; }
-
-		/// <summary>
-		/// Is loading something in background
-		/// </summary>
-		public bool IsInitialized { get; private set; }
-
-		/// <summary>
-		/// Game center data
-		/// </summary>
-		/// <value>The game center.</value>
-		public GameCenterPlayer GameCenter  { get; private set; }
-
-		#endregion
-	}
+    #endregion
+  }
 }
 

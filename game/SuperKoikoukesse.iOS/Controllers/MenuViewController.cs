@@ -43,12 +43,11 @@ namespace SuperKoikoukesse.iOS
 
       NavigationController.SetNavigationBarHidden(false, false);
 
-      // Hide credits and coins until player profile is loaded
-      LabelCoins.Hidden = true;
-      LabelCredits.Hidden = true;
-		
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      appDelegate.LoadPlayerProfile();
+      if (appDelegate.GameCenterPlayer == null)
+      {
+        appDelegate.LoadPlayerProfile();
+      }
     }
 
     public override void ViewDidAppear(bool animated)
