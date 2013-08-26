@@ -14,8 +14,10 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
+    private AbstractCardViewController mCurrentCard;
+
     private List<AbstractCardViewController> mCards;
-    private MenuDifficultyViewController mDifficultyViewController;
+    private CardChallengeViewController mChallengeViewController;
     private CardScoreViewController mHighScorePanel;
     private GameLauncher mGameLauncher;
 
@@ -133,11 +135,12 @@ namespace SuperKoikoukesse.iOS
       };
 
       ScrollView.DecelerationEnded += (object sender, EventArgs e) => {
+        // Set the new page
         double page = Math.Floor((ScrollView.ContentOffset.X - ScrollView.Frame.Width / 2) / ScrollView.Frame.Width) + 1;
-				
         PageControl.CurrentPage = (int) page;
 
-        ChangePageControlColor(PageControl.CurrentPage);
+        // Notify
+        NotifyPageChanged(PageControl.CurrentPage);
       };
 
       mHighScorePanel = null;
@@ -212,8 +215,13 @@ namespace SuperKoikoukesse.iOS
       // Set the scrollview position
       ScrollView.SetContentOffset(new PointF(page * ScrollView.Frame.Width, 0), true);
 
-      // Change the indicator color
-      ChangePageControlColor(PageControl.CurrentPage);
+      // Change page
+      NotifyPageChanged(PageControl.CurrentPage);
+    }
+
+    private void NotifyPageChanged(int page)
+    {
+      ChangePageControlColor(page);
     }
 
     #endregion
@@ -239,10 +247,10 @@ namespace SuperKoikoukesse.iOS
     private void DisplayDifficultyChooser(GameMode selectedMode)
     {
       // Display difficulty view
-      if (mDifficultyViewController == null)
+      if (mChallengeViewController == null)
       {
-        mDifficultyViewController = new MenuDifficultyViewController();
-        mDifficultyViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
+        mChallengeViewController = new CardChallengeViewController();
+        mChallengeViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
           var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
           Filter filter = null;
@@ -261,10 +269,18 @@ namespace SuperKoikoukesse.iOS
         }; 	
       }
 			
-      mDifficultyViewController.SetMode(selectedMode);
-      mDifficultyViewController.View.Frame = View.Frame;
-			
-      View.AddSubview(mDifficultyViewController.View);
+      mChallengeViewController.SetMode(selectedMode);
+
+      mCards[2].View.AddSubview(mChallengeViewController.View);
+      mChallengeViewController.View.Frame = mCards[2].View.Frame;
+
+      UIView.Transition(
+        mCards[2].View,
+        mChallengeViewController.View,
+                        1.0, 
+                        UIViewAnimationOptions.TransitionFlipFromRight, 
+                        null);
+
     }
 
     void HandleGameModeSelected(GameMode m)

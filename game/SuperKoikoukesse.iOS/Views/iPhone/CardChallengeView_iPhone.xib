@@ -15,7 +15,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-Q7-Eay">
+                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2l-vx-guv" userLabel="Shadow">
+                    <rect key="frame" x="10" y="118" width="300" height="333"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-Q7-Eay" userLabel="Card">
                     <rect key="frame" x="10" y="118" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -41,7 +46,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqs-3P-XUu" userLabel="View - Easy">
-                            <rect key="frame" x="20" y="60" width="260" height="60"/>
+                            <rect key="frame" x="20" y="57" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldZ-XM-j2R">
@@ -83,7 +88,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLc-0j-wFY" userLabel="View - Normal">
-                            <rect key="frame" x="20" y="126" width="260" height="60"/>
+                            <rect key="frame" x="20" y="123" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="215" translatesAutoresizingMaskIntoConstraints="NO" id="rJt-5S-8m8">
@@ -127,7 +132,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-Om-QgJ" userLabel="View - Hard">
-                            <rect key="frame" x="20" y="192" width="260" height="60"/>
+                            <rect key="frame" x="20" y="189" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ut at malesuada felis, in fringilla elit. Morbi quis quam euismod, eleifend nisi id, imperdiet ante." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="215" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-Hh-MG5">
@@ -169,7 +174,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgB-Ap-MJB" userLabel="View - Insane">
-                            <rect key="frame" x="20" y="258" width="260" height="60"/>
+                            <rect key="frame" x="20" y="255" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="215" translatesAutoresizingMaskIntoConstraints="NO" id="Yrz-pC-wU8">
@@ -221,7 +226,7 @@
                         <constraint firstItem="Cch-Om-QgJ" firstAttribute="top" secondItem="mLc-0j-wFY" secondAttribute="bottom" constant="6" id="NrS-Z1-1gj"/>
                         <constraint firstItem="Smh-Gx-f94" firstAttribute="bottom" secondItem="Laa-Bh-7rh" secondAttribute="bottom" constant="-2" id="NvU-M8-xm0"/>
                         <constraint firstItem="ipl-n9-ZhT" firstAttribute="leading" secondItem="Laa-Bh-7rh" secondAttribute="leading" id="ONd-us-myC"/>
-                        <constraint firstAttribute="bottom" secondItem="dgB-Ap-MJB" secondAttribute="bottom" constant="15" id="P3n-a9-hPi"/>
+                        <constraint firstAttribute="bottom" secondItem="dgB-Ap-MJB" secondAttribute="bottom" constant="18" id="P3n-a9-hPi"/>
                         <constraint firstAttribute="height" constant="333" id="aHD-ad-XAq"/>
                         <constraint firstItem="mLc-0j-wFY" firstAttribute="leading" secondItem="fcc-Q7-Eay" secondAttribute="leading" constant="20" id="anJ-o9-kyZ"/>
                         <constraint firstItem="aqs-3P-XUu" firstAttribute="leading" secondItem="fcc-Q7-Eay" secondAttribute="leading" constant="20" id="d3e-Dz-ugs"/>
@@ -237,9 +242,12 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="t2l-vx-guv" secondAttribute="centerX" id="04A-pe-X5n"/>
+                <constraint firstAttribute="centerY" secondItem="t2l-vx-guv" secondAttribute="centerY" id="MPJ-E8-TDz"/>
                 <constraint firstAttribute="centerX" secondItem="fcc-Q7-Eay" secondAttribute="centerX" id="PFr-r2-Go0"/>
+                <constraint firstItem="t2l-vx-guv" firstAttribute="width" secondItem="fcc-Q7-Eay" secondAttribute="width" id="YeT-Si-Uzd"/>
+                <constraint firstItem="t2l-vx-guv" firstAttribute="height" secondItem="fcc-Q7-Eay" secondAttribute="height" id="f5K-2n-Dzg"/>
                 <constraint firstAttribute="centerY" secondItem="fcc-Q7-Eay" secondAttribute="centerY" id="kNR-ES-J5j"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -11,11 +11,6 @@ namespace SuperKoikoukesse.iOS
 {
 	public partial class MenuDifficultyViewController : UIViewController
 	{
-		public event Action<GameMode, GameDifficulties> DifficultySelected;
-		public event Action BackSelected;
-
-		private GameMode mode;
-
 		public MenuDifficultyViewController ()
 			: base ("MenuDifficultyView"+ (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
 		{
@@ -26,10 +21,7 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
-		public void SetMode (GameMode m)
-		{
-			mode = m;
-		}
+
 
 		partial void easyButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
@@ -55,18 +47,18 @@ namespace SuperKoikoukesse.iOS
 		{
 			hideMyself ();
 
-			if (DifficultySelected != null) {
-				DifficultySelected (mode, diff);
-			}
+//			if (DifficultySelected != null) {
+//				DifficultySelected (mode, diff);
+//			}
 		}
 
 		partial void backButtonPressed (MonoTouch.Foundation.NSObject sender)
 		{
 			hideMyself ();
 
-			if (BackSelected != null) {
-				BackSelected ();
-			}
+//			if (BackSelected != null) {
+//				BackSelected ();
+//			}
 		}
 
 		private void hideMyself ()
