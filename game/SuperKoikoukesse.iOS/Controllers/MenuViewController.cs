@@ -80,6 +80,16 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
+    public override void TouchesBegan(NSSet touches, UIEvent evt)
+    {
+      base.TouchesBegan(touches, evt);
+
+      if (_challengeViewController != null && _challengeViewController.IsPresented)
+      {
+        HideChallengeCard();
+      }
+    }
+
     public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
     {
       base.PrepareForSegue(segue, sender);
@@ -148,19 +158,19 @@ namespace SuperKoikoukesse.iOS
       // Highscores
       _scoresCard = new CardScoreViewController();
 
-      // -- Score attack
+      // Mode Score Card
       var scoreCard = new CardModeViewController(GameMode.SCORE);
       scoreCard.GameModeSelected += OnGameModeSelected;
 
-      // -- Time attack
+      // Mode Time Card
       var timeCard = new CardModeViewController(GameMode.TIME);
       timeCard.GameModeSelected += OnGameModeSelected;
 
-      // -- Survival
+      // Mode Survival Card
       var survivalCard = new CardModeViewController(GameMode.SURVIVAL);
       survivalCard.GameModeSelected += OnGameModeSelected;
 
-      // -- Versus
+      // Mode Versus Card
       var versusCard = new CardModeViewController(GameMode.VERSUS);
       versusCard.GameModeSelected += OnGameModeSelected;
 
@@ -224,17 +234,41 @@ namespace SuperKoikoukesse.iOS
       // Set mode
       _challengeViewController.SetMode(selectedMode);
 
-      // Add to the card view, and resize the frame
-      _currentCard.View.AddSubview(_challengeViewController.View);
-      _challengeViewController.View.Frame = _currentCard.View.Frame;
+      ShowChallengeCard();
+    }
 
-      // Transition
-      UIView.Transition(
-        fromView:   _currentCard.View,
-        toView:     _challengeViewController.View,
-        duration:   1.0, 
-        options:    UIViewAnimationOptions.TransitionFlipFromRight, 
-        completion: null
+    /// <summary>
+    /// Shows the challenge card.
+    /// </summary>
+    public void ShowChallengeCard()
+    {
+      // Add to the view
+      _challengeViewController.AddToView(_currentCard.View);
+
+      ScrollView.ScrollEnabled = false;
+
+      UIView.Animate(
+        0.7f, 
+        () => PageControl.Alpha = 0f,
+        () => PageControl.Hidden = true
+      );
+    }
+
+    /// <summary>
+    /// Hides the challenge card.
+    /// </summary>
+    public void HideChallengeCard()
+    {
+      _challengeViewController.RemoveFromView();
+
+      ScrollView.ScrollEnabled = true;
+
+      UIView.Animate(
+        0.7f, 
+        () => {
+          PageControl.Hidden = false;
+          PageControl.Alpha = 1f;
+        }
       );
     }
 
