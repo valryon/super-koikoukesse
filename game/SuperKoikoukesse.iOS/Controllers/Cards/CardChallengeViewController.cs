@@ -3,6 +3,8 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -20,7 +22,6 @@ namespace SuperKoikoukesse.iOS
 
     public CardChallengeViewController() : base("CardChallengeView")
     {
-
     }
 
     #endregion
@@ -78,10 +79,27 @@ namespace SuperKoikoukesse.iOS
 
     #endregion
 
+    #region Handlers
+
+    partial void OnHideTouched(NSObject sender)
+    {
+      // Wait a little to let the button recover from the highlighted state.
+      UIView.Animate(
+        0.1f,
+        () => ButtonHide.Highlighted = false,
+        () => {
+          if (Hidden != null)
+            Hidden();
+        }
+      );
+    }
+
+    #endregion
+
     #region Properties
 
     public event Action<GameMode, GameDifficulties> DifficultySelected;
-    public event Action BackSelected;
+    public event Action Hidden;
 
     public bool IsPresented
     {

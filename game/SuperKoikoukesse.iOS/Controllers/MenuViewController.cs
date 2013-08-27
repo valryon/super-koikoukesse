@@ -212,6 +212,7 @@ namespace SuperKoikoukesse.iOS
       if (_challengeViewController == null)
       {
         _challengeViewController = new CardChallengeViewController();
+        _challengeViewController.Hidden += HideChallengeCard;
         _challengeViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
           var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
@@ -245,8 +246,10 @@ namespace SuperKoikoukesse.iOS
       // Add to the view
       _challengeViewController.AddToView(_currentCard.View);
 
+      // Stop the scroll until the challenge view is visible
       ScrollView.ScrollEnabled = false;
 
+      // Slowly fades out the PageControl
       UIView.Animate(
         0.7f, 
         () => PageControl.Alpha = 0f,
@@ -259,10 +262,13 @@ namespace SuperKoikoukesse.iOS
     /// </summary>
     public void HideChallengeCard()
     {
+      // Remove
       _challengeViewController.RemoveFromView();
 
+      // Restore the scroll
       ScrollView.ScrollEnabled = true;
 
+      // Slowly fades in the PageControl
       UIView.Animate(
         0.7f, 
         () => {
