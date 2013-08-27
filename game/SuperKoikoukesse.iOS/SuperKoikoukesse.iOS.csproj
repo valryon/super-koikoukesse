@@ -123,10 +123,6 @@
     <Compile Include="Controllers\GameViewController.designer.cs">
       <DependentUpon>GameViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\MenuDifficultyViewController.cs" />
-    <Compile Include="Controllers\MenuDifficultyViewController.designer.cs">
-      <DependentUpon>MenuDifficultyViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\CreditsViewController.cs" />
     <Compile Include="Controllers\CreditsViewController.designer.cs">
       <DependentUpon>CreditsViewController.cs</DependentUpon>
@@ -192,7 +188,7 @@
     <Compile Include="Controllers\Cards\CardChallengeViewController.designer.cs">
       <DependentUpon>CardChallengeViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\PageController.cs" />
+    <Compile Include="Views\Controls\CardsController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -203,7 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\iPhone\MenuDifficultyView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
     <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
     <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
