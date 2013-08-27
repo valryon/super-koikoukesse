@@ -14,12 +14,12 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
-    private AbstractCardViewController mCurrentCard;
+    private AbstractCardViewController _currentCard;
 
-    private List<AbstractCardViewController> mCards;
-    private CardChallengeViewController mChallengeViewController;
-    private CardScoreViewController mHighScorePanel;
-    private GameLauncher mGameLauncher;
+    private CardsController _cardsController;
+    private CardChallengeViewController _challengeViewController;
+    private CardScoreViewController _scoresCard;
+    private GameLauncher _gameLauncher;
 
     #endregion
 
@@ -31,32 +31,36 @@ namespace SuperKoikoukesse.iOS
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 //      appDelegate.OnLoading += () => ViewLoading.Hidden = false;
 //      appDelegate.OnLoadingComplete += () => ViewLoading.Hidden = true;
-
-      mCards = new List<AbstractCardViewController>();
     }
 
     public override void ViewDidLoad()
     {
       base.ViewDidLoad();
 
-      // Remove all occurrences of SplashscreenViewController
+      // Remove all occurrences of SplashscreenViewController in the navigation stack
       NavigationController.ViewControllers = NavigationController.ViewControllers
         .Where(val => !(val is SplashscreenViewController)).ToArray();
 
+      // Show the navbar
       NavigationController.SetNavigationBarHidden(false, false);
 
-      var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
-      if (appDelegate.GameCenterPlayer == null)
+      // Load the player profile
+      var app = (AppDelegate) UIApplication.SharedApplication.Delegate; 
+      if (app.GameCenterPlayer == null)
       {
-        appDelegate.LoadPlayerProfile();
+        app.LoadPlayerProfile();
       }
+
+      // Create the cards controller (the scrollview & pagecontroll need to be initialized)
+      _cardsController = new CardsController(ScrollView, PageControl);
+      _cardsController.CardChanged += OnCardChanged;
     }
 
     public override void ViewDidAppear(bool animated)
     {
       base.ViewDidAppear(animated);
 
-      if (mCards.Count == 0)
+      if (_cardsController.Count == 0)
       {
         // We need auto layout to be set up, so we can create panels only here
         CreateCards();
@@ -76,10 +80,23 @@ namespace SuperKoikoukesse.iOS
       return AppDelegate.HasSupportedInterfaceOrientations();
     }
 
+    public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+    {
+      base.PrepareForSegue(segue, sender);
+
+      if (_gameLauncher!= null && segue.Identifier == _gameLauncher.SegueId)
+      {
+        GameViewController gameViewController = (GameViewController) segue.DestinationViewController;
+
+        // Prepare quizz
+        _gameLauncher.Prepare(gameViewController);
+      }
+    }
+
     /// <summary>
     /// Update tickets and coins counters
     /// </summary>
-    public void UpdateViewWithPlayerInfos()
+    private void UpdateViewWithPlayerInfos()
     {
       // Show infos is they were hidden
       if (LabelCoins.Hidden)
@@ -108,120 +125,55 @@ namespace SuperKoikoukesse.iOS
       }
 
       // Update leaderboards ?
-      if (mHighScorePanel != null)
+      if (_scoresCard != null)
       {
-        mHighScorePanel.ForceUpdate();
+        _scoresCard.ForceUpdate();
       }
-
     }
 
     #region Scroll view and pagination
-
-    private void ChangePageControlColor(int page)
-    {
-      var color = mCards[page].GetColor();;
-      PageControl.CurrentPageIndicatorTintColor = color;
-    }
 
     /// <summary>
     /// Create the cards for the menu
     /// </summary>
     private void CreateCards()
     {
-      PageControl.ValueChanged += (object sender, EventArgs e) => {
-        SetScrollViewToPage(PageControl.CurrentPage);
-
-
-      };
-
-      ScrollView.DecelerationEnded += (object sender, EventArgs e) => {
-        // Set the new page
-        double page = Math.Floor((ScrollView.ContentOffset.X - ScrollView.Frame.Width / 2) / ScrollView.Frame.Width) + 1;
-        PageControl.CurrentPage = (int) page;
-
-        // Notify
-        NotifyPageChanged(PageControl.CurrentPage);
-      };
-
-      mHighScorePanel = null;
-      mCards.Clear();
+      _scoresCard = null;
+      _cardsController.Clear();
 
       // Credits
-      var infos = new CardInfoViewController();
-      infos.CreditsDisplayed += DisplayCredits;
-      mCards.Add(infos);
+      var infoCard = new CardInfoViewController();
+      infoCard.CreditsDisplayed += DisplayCredits;
 
       // Highscores
-      mHighScorePanel = new CardScoreViewController();
-      mCards.Add(mHighScorePanel);
-
-      //
-      // Build modes
-      //
+      _scoresCard = new CardScoreViewController();
 
       // -- Score attack
-      var scoreAttackMode = new CardModeViewController(GameMode.SCORE);
-      scoreAttackMode.GameModeSelected += HandleGameModeSelected;
-      mCards.Add(scoreAttackMode);
+      var scoreCard = new CardModeViewController(GameMode.SCORE);
+      scoreCard.GameModeSelected += OnGameModeSelected;
 
       // -- Time attack
-      var timeAttackMode = new CardModeViewController(GameMode.TIME);
-      timeAttackMode.GameModeSelected += HandleGameModeSelected;
-      mCards.Add(timeAttackMode);
+      var timeCard = new CardModeViewController(GameMode.TIME);
+      timeCard.GameModeSelected += OnGameModeSelected;
 
       // -- Survival
-      var survivalMode = new CardModeViewController(GameMode.SURVIVAL);
-      survivalMode.GameModeSelected += HandleGameModeSelected;
-      mCards.Add(survivalMode);
+      var survivalCard = new CardModeViewController(GameMode.SURVIVAL);
+      survivalCard.GameModeSelected += OnGameModeSelected;
 
       // -- Versus
-      var versusMode = new CardModeViewController(GameMode.VERSUS);
-      versusMode.GameModeSelected += HandleGameModeSelected;
-      mCards.Add(versusMode);
+      var versusCard = new CardModeViewController(GameMode.VERSUS);
+      versusCard.GameModeSelected += OnGameModeSelected;
 
-      int count = mCards.Count;
-      RectangleF scrollFrame = ScrollView.Frame;
+      // Add cards
+      _cardsController.AddCard(infoCard);
+      _cardsController.AddCard(_scoresCard);
+      _cardsController.AddCard(scoreCard);
+      _cardsController.AddCard(timeCard);
+      _cardsController.AddCard(survivalCard);
+      _cardsController.AddCard(versusCard);
 
-      scrollFrame.Width = scrollFrame.Width * count;
-      ScrollView.ContentSize = scrollFrame.Size;
-
-      for (int i = 0; i < count; i++)
-      {
-
-        // Compute location and size
-        RectangleF frame = ScrollView.Frame;
-
-        PointF location = new PointF();
-        location.X = frame.Width * i;
-        frame.Location = location;
-
-        mCards[i].View.Frame = frame;
-
-        // Add to scroll and paging
-        ScrollView.AddSubview(mCards[i].View);
-      }
-
-      PageControl.Pages = count;
-
-      // Set 3rd page as the first displayed
-      int firstDisplayedPageNumber = 2;
-      PageControl.CurrentPage = firstDisplayedPageNumber;
-
-      SetScrollViewToPage(firstDisplayedPageNumber);
-    }
-
-    private void SetScrollViewToPage(int page)
-    {
-      // Set the scrollview position
-      ScrollView.SetContentOffset(new PointF(page * ScrollView.Frame.Width, 0), true);
-
-      // Change page
-      NotifyPageChanged(PageControl.CurrentPage);
-    }
-
-    private void NotifyPageChanged(int page)
-    {
-      ChangePageControlColor(page);
+      // Init
+      _cardsController.Init();
     }
 
     #endregion
@@ -247,10 +199,10 @@ namespace SuperKoikoukesse.iOS
     private void DisplayDifficultyChooser(GameMode selectedMode)
     {
       // Display difficulty view
-      if (mChallengeViewController == null)
+      if (_challengeViewController == null)
       {
-        mChallengeViewController = new CardChallengeViewController();
-        mChallengeViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
+        _challengeViewController = new CardChallengeViewController();
+        _challengeViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
           var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
           Filter filter = null;
@@ -264,78 +216,72 @@ namespace SuperKoikoukesse.iOS
             filter = currentMatch.Filter; // This is weird
           }
 
-          mGameLauncher = new GameLauncher(this);
-          mGameLauncher.Launch("MenuToGame", mode, difficulty, filter);
+          _gameLauncher = new GameLauncher(this);
+          _gameLauncher.Launch("MenuToGame", mode, difficulty, filter);
         }; 	
       }
 			
-      mChallengeViewController.SetMode(selectedMode);
+      // Set mode
+      _challengeViewController.SetMode(selectedMode);
 
-      mCards[2].View.AddSubview(mChallengeViewController.View);
-      mChallengeViewController.View.Frame = mCards[2].View.Frame;
+      // Add to the card view, and resize the frame
+      _currentCard.View.AddSubview(_challengeViewController.View);
+      _challengeViewController.View.Frame = _currentCard.View.Frame;
 
+      // Transition
       UIView.Transition(
-        mCards[2].View,
-        mChallengeViewController.View,
-                        1.0, 
-                        UIViewAnimationOptions.TransitionFlipFromRight, 
-                        null);
-
-    }
-
-    void HandleGameModeSelected(GameMode m)
-    {
-      // Enough credits?
-      if (PlayerCache.Instance.CachedPlayer.Credits > 0)
-      {
-        if (m == GameMode.VERSUS)
-        {
-          if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
-          {
-            // Dialog
-            Dialogs.ShowAuthenticationRequired(
-              () => {
-              PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
-
-                if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
-                {
-                  DisplayMatchMaker(m);
-                }
-              });
-            });
-          }
-          else
-          {
-            DisplayMatchMaker(m);
-          }
-        }
-        else
-        {
-          DisplayDifficultyChooser(m);
-        }
-      }
-      else
-      {
-        Dialogs.ShowNoMoreCreditsDialogs();
-      }
-    }
-
-    public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-    {
-      base.PrepareForSegue(segue, sender);
-
-      if (mGameLauncher!= null && segue.Identifier == mGameLauncher.SegueId)
-      {
-        GameViewController gameVc = (GameViewController) segue.DestinationViewController;
-
-        // Prepare quizz
-        mGameLauncher.Prepare(gameVc);
-      }
+        fromView:   _currentCard.View,
+        toView:     _challengeViewController.View,
+        duration:   1.0, 
+        options:    UIViewAnimationOptions.TransitionFlipFromRight, 
+        completion: null
+      );
     }
 
     #endregion
 
     #region Handlers
+
+    private void OnCardChanged(AbstractCardViewController card)
+    {
+      _currentCard = card;
+    }
+
+    private void OnGameModeSelected(GameMode m)
+    {
+      // Stop if not enough credits
+      if (PlayerCache.Instance.CachedPlayer.Credits <= 0)
+      {
+        Dialogs.ShowNoMoreCreditsDialogs();
+        return;
+      }
+
+      if (m == GameMode.VERSUS)
+      {
+        if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated == false)
+        {
+          // Dialog
+          Dialogs.ShowAuthenticationRequired(
+            () => {
+            PlayerCache.Instance.AuthenticatedPlayer.Authenticate(() => {
+
+              if (PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated)
+              {
+                DisplayMatchMaker(m);
+              }
+            });
+          });
+        }
+        else
+        {
+          DisplayMatchMaker(m);
+        }
+      }
+      else
+      {
+        DisplayDifficultyChooser(m);
+      }
+    }
 
     partial void OnSettingsTouched(MonoTouch.Foundation.NSObject sender)
     {
