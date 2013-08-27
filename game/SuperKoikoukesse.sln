@@ -42,5 +42,9 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SuperKoikoukesse.iOS\SuperKoikoukesse.iOS.csproj
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.Text = @${CopyrightHolder}\nThis file is subject to the terms and conditions defined in\nfile 'LICENSE.md', which is part of this source code package.
+		$1.IncludeInNewFiles = True
 	EndGlobalSection
 EndGlobal
