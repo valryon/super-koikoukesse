@@ -189,6 +189,7 @@
       <DependentUpon>CardChallengeViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CardsController.cs" />
+    <Compile Include="Views\Controls\DifficultyView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

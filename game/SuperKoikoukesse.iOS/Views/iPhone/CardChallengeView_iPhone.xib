@@ -55,7 +55,7 @@
                                 <constraint firstAttribute="height" constant="0.5" id="Cof-Tm-4cZ"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqs-3P-XUu" userLabel="View - Easy">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqs-3P-XUu" userLabel="View - Easy" customClass="DifficultyView">
                             <rect key="frame" x="20" y="57" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -99,7 +99,7 @@
                                 <constraint firstAttribute="trailing" secondItem="mOM-ZH-7hd" secondAttribute="trailing" id="vYX-Jy-ech"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLc-0j-wFY" userLabel="View - Normal">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLc-0j-wFY" userLabel="View - Normal" customClass="DifficultyView">
                             <rect key="frame" x="20" y="123" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -145,7 +145,7 @@
                                 <constraint firstItem="bBc-g5-iBf" firstAttribute="leading" secondItem="rJt-5S-8m8" secondAttribute="leading" id="sd7-Cw-kJn"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-Om-QgJ" userLabel="View - Hard">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-Om-QgJ" userLabel="View - Hard" customClass="DifficultyView">
                             <rect key="frame" x="20" y="189" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -189,7 +189,7 @@
                                 <constraint firstAttribute="height" constant="60" id="rrJ-if-ZYG"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgB-Ap-MJB" userLabel="View - Insane">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgB-Ap-MJB" userLabel="View - Insane" customClass="DifficultyView">
                             <rect key="frame" x="20" y="255" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
