@@ -4,6 +4,7 @@
 using System;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -11,15 +12,33 @@ namespace SuperKoikoukesse.iOS
   public class DifficultyView : UIView
   {
     #region Members
+
+    private NSLayoutConstraint _leading;
+    private float _leadingBaseConstant;
+
+    private NSLayoutConstraint _trailing;
+    private float _trailingBaseConstant;
+
     #endregion
 
     #region Constructors
 
     public DifficultyView(IntPtr handle) : base(handle)
     {
+      // HACK Not really nice, but...
+      foreach (var c in this.Superview.Constraints)
+      {
+        if (c.FirstAttribute == NSLayoutAttribute.Leading && c.FirstItem == this)
+          _leading = c;
 
+        if (c.FirstAttribute == NSLayoutAttribute.Trailing && c.SecondItem == this)
+          _trailing = c;
+      }
+
+      _leadingBaseConstant = _leading.Constant;
+      _trailingBaseConstant = _trailing.Constant;
     }
-
+   
     #endregion
 
     #region Methods
@@ -28,14 +47,28 @@ namespace SuperKoikoukesse.iOS
     {
       base.TouchesBegan(touches, evt);
 
-      BackgroundColor = PXNConstants.BRAND_COLOR;
+      _leading.Constant = 60f;
+      _trailing.Constant = 60f;
+      this.SetNeedsUpdateConstraints();
+
+      UIView.Animate(
+        0.3f,
+        () => this.LayoutIfNeeded()
+      );
     }
 
     public override void TouchesEnded(MonoTouch.Foundation.NSSet touches, UIEvent evt)
     {
       base.TouchesEnded(touches, evt);
 
-      BackgroundColor = UIColor.Clear;
+      _leading.Constant = _leadingBaseConstant;
+      _trailing.Constant = _trailingBaseConstant;
+      this.SetNeedsUpdateConstraints();
+
+      UIView.Animate(
+        0.3f,
+        () => this.LayoutIfNeeded()
+      );
     }
 
     #endregion
