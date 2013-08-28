@@ -34,6 +34,9 @@ namespace SuperKoikoukesse.iOS
       var mode = _mode.ToString().ToLower();
       var color = PXNConstants.GetModeColor(_mode);
 
+      // Icon
+      ImageIcon.Image = new UIImage("icon_mode_" + mode + ".png");
+
       // Colors
       LabelTitle.TextColor = color;
       ViewCard.BackgroundColor = color;
