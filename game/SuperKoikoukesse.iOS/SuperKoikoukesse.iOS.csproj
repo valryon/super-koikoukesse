@@ -2265,5 +2265,11 @@
     <BundleResource Include="Resources\checkbox_highlight%402x.png" />
     <BundleResource Include="Resources\checkbox_normal.png" />
     <BundleResource Include="Resources\checkbox_normal%402x.png" />
+    <BundleResource Include="Resources\icon_mode_survival.png" />
+    <BundleResource Include="Resources\icon_mode_survival%402x.png" />
+    <BundleResource Include="Resources\icon_mode_time.png" />
+    <BundleResource Include="Resources\icon_mode_time%402x.png" />
+    <BundleResource Include="Resources\icon_mode_versus.png" />
+    <BundleResource Include="Resources\icon_mode_versus%402x.png" />
   </ItemGroup>
 </Project>
