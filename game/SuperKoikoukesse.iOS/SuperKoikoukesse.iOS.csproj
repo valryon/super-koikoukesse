@@ -2271,5 +2271,7 @@
     <BundleResource Include="Resources\icon_mode_time%402x.png" />
     <BundleResource Include="Resources\icon_mode_versus.png" />
     <BundleResource Include="Resources\icon_mode_versus%402x.png" />
+    <BundleResource Include="Resources\checkbox_transient.png" />
+    <BundleResource Include="Resources\checkbox_transient%402x.png" />
   </ItemGroup>
 </Project>
