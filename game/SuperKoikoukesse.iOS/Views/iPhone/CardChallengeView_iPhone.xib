@@ -8,6 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardChallengeViewController">
             <connections>
                 <outlet property="ButtonHide" destination="KgK-id-FZF" id="D7X-QS-QoQ"/>
+                <outlet property="ViewEasy" destination="aqs-3P-XUu" id="daw-Wn-PBv"/>
+                <outlet property="ViewHard" destination="Cch-Om-QgJ" id="KNW-qc-xsW"/>
+                <outlet property="ViewInsane" destination="dgB-Ap-MJB" id="oM5-E4-SQw"/>
+                <outlet property="ViewNormal" destination="mLc-0j-wFY" id="uk9-S5-CY6"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>

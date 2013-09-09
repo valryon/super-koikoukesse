@@ -27,6 +27,17 @@ namespace SuperKoikoukesse.iOS
     {
     }
 
+    public override void ViewDidLoad()
+    {
+      base.ViewDidLoad();
+
+      // Add handlers
+      ViewEasy.DifficultySelected += OnDifficultySelected;
+      ViewNormal.DifficultySelected += OnDifficultySelected;
+      ViewHard.DifficultySelected += OnDifficultySelected;
+      ViewInsane.DifficultySelected += OnDifficultySelected;
+    }
+
     #endregion
 
     #region Methods
@@ -83,6 +94,12 @@ namespace SuperKoikoukesse.iOS
     #endregion
 
     #region Handlers
+
+    private void OnDifficultySelected(GameDifficulty difficulty)
+    {
+      if (DifficultySelected != null)
+        DifficultySelected(_mode, difficulty);
+    }
 
     partial void OnHideTouched(NSObject sender)
     {

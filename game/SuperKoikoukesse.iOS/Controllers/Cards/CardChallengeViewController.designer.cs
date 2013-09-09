@@ -15,6 +15,18 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UIButton ButtonHide { get; set; }
 
+		[Outlet]
+		SuperKoikoukesse.iOS.DifficultyView ViewEasy { get; set; }
+
+		[Outlet]
+		SuperKoikoukesse.iOS.DifficultyView ViewHard { get; set; }
+
+		[Outlet]
+		SuperKoikoukesse.iOS.DifficultyView ViewInsane { get; set; }
+
+		[Outlet]
+		SuperKoikoukesse.iOS.DifficultyView ViewNormal { get; set; }
+
 		[Action ("OnHideTouched:")]
 		partial void OnHideTouched (MonoTouch.Foundation.NSObject sender);
 		
@@ -23,6 +35,26 @@ namespace SuperKoikoukesse.iOS
 			if (ButtonHide != null) {
 				ButtonHide.Dispose ();
 				ButtonHide = null;
+			}
+
+			if (ViewEasy != null) {
+				ViewEasy.Dispose ();
+				ViewEasy = null;
+			}
+
+			if (ViewNormal != null) {
+				ViewNormal.Dispose ();
+				ViewNormal = null;
+			}
+
+			if (ViewHard != null) {
+				ViewHard.Dispose ();
+				ViewHard = null;
+			}
+
+			if (ViewInsane != null) {
+				ViewInsane.Dispose ();
+				ViewInsane = null;
 			}
 		}
 	}

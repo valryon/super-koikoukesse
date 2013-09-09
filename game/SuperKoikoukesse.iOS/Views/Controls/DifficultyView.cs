@@ -6,6 +6,7 @@ using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Superkoikoukesse.Common;
+using System.Drawing;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -62,6 +63,13 @@ namespace SuperKoikoukesse.iOS
     {
       base.TouchesEnded(touches, evt);
 
+      var touch = touches.AnyObject as UITouch;
+      var inside = IsInside(touch.LocationInView(this));
+
+      if (inside && DifficultySelected != null) {
+        DifficultySelected(GetDifficulty());
+      }
+
       _leading.Constant = _leadingBaseConstant;
       _trailing.Constant = _trailingBaseConstant;
       this.SetNeedsUpdateConstraints();
@@ -70,6 +78,20 @@ namespace SuperKoikoukesse.iOS
         0.3f,
         () => this.LayoutIfNeeded()
       );
+    }
+
+    public bool IsInside(PointF point)
+    {
+      if (point.X < 0 || point.Y < 0)
+        return false;
+
+      if (point.X > this.Frame.Width)
+        return false;
+
+      if (point.Y > this.Frame.Height)
+        return false;
+
+      return true;
     }
 
     public GameDifficulty GetDifficulty()
@@ -96,7 +118,7 @@ namespace SuperKoikoukesse.iOS
     /// <summary>
     /// Occurs when a difficulty is selected.
     /// </summary>
-    public event Action DifficultySelected;
+    public event Action<GameDifficulty> DifficultySelected;
 
     #endregion
   }
