@@ -70,7 +70,7 @@ namespace Superkoikoukesse.Common
 			Player1Id = json ["Player1Id"];
 			Player2Id = json ["Player2Id"];
 			IsEnded = Convert.ToBoolean(json ["IsEnded"].ToString());
-			Difficulty =  (GameDifficulties)Enum.Parse (typeof(GameDifficulties), json["Difficulty"]);
+			Difficulty =  (GameDifficulty)Enum.Parse (typeof(GameDifficulty), json["Difficulty"]);
 
 			Filter = new Filter (json ["Filter"]);
 
@@ -126,7 +126,7 @@ namespace Superkoikoukesse.Common
 
 		public List<VersusMatchTurn>  Turns  { get; set; }
 
-		public GameDifficulties Difficulty { get; set; }
+		public GameDifficulty Difficulty { get; set; }
 
 #if IOS
     public MonoTouch.GameKit.GKTurnBasedMatch GKMatch { get; set; }

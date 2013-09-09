@@ -2,6 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.md', which is part of this source code package.
 using System;
+using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Superkoikoukesse.Common;
@@ -38,7 +39,7 @@ namespace SuperKoikoukesse.iOS
       _leadingBaseConstant = _leading.Constant;
       _trailingBaseConstant = _trailing.Constant;
     }
-   
+
     #endregion
 
     #region Methods
@@ -71,9 +72,32 @@ namespace SuperKoikoukesse.iOS
       );
     }
 
+    public GameDifficulty GetDifficulty()
+    {
+      return GameDifficultyHelper.Convert(Difficulty);
+    }
+
     #endregion
 
     #region Properties
+
+    [Connect]
+    private NSString Difficulty
+    {
+      get {
+        return (NSString) GetNativeField("Difficulty");
+      }
+
+      set {
+        SetNativeField("Difficulty", value);
+      }
+    }
+
+    /// <summary>
+    /// Occurs when a difficulty is selected.
+    /// </summary>
+    public event Action DifficultySelected;
+
     #endregion
   }
 }

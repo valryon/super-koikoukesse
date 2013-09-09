@@ -14,7 +14,7 @@ namespace SuperKoikoukesse.iOS
   {
     public GameMode SelectedMode { get; set; }
 
-    public GameDifficulties SelectedDifficulty{ get; set; }
+    public GameDifficulty SelectedDifficulty{ get; set; }
 
     public Filter SelectedFilter{ get; set; }
 
@@ -27,7 +27,7 @@ namespace SuperKoikoukesse.iOS
       mController = c;
     }
 
-    public void Launch(string segueId, GameMode mode, GameDifficulties difficulty, Filter filter)
+    public void Launch(string segueId, GameMode mode, GameDifficulty difficulty, Filter filter)
     {
       SegueId = segueId;
       SelectedMode = mode;

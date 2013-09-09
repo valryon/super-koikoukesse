@@ -101,7 +101,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Properties
 
-    public event Action<GameMode, GameDifficulties> DifficultySelected;
+    public event Action<GameMode, GameDifficulty> DifficultySelected;
     public event Action Hidden;
 
     public bool IsPresented

@@ -22,7 +22,7 @@ namespace SuperKoikoukesse.iOS
     private int mCacheMinYear, mCacheMaxYear;
     private List<string> mCacheGenres, mCachePlatforms;
 
-    private GameDifficulties mLastSelectedDifficulty;
+    private GameDifficulty mLastSelectedDifficulty;
     private int mSelectedMinYear;
     private int mSelectedMaxYear;
     private List<string> mSelectedGenres, mSelectedPlatforms;
@@ -46,8 +46,8 @@ namespace SuperKoikoukesse.iOS
 
     public override void ViewDidLoad()
     {
-      mLastSelectedDifficulty = GameDifficulties.NORMAL;
-      SliderDifficulty.Value = (float)GameDifficulties.NORMAL;
+      mLastSelectedDifficulty = GameDifficulty.EASY;
+      SliderDifficulty.Value = (float)GameDifficulty.EASY;
 
       ButtonYearMin.SetTitle(mCacheMinYear.ToString(), UIControlState.Normal);
       ButtonYearMax.SetTitle(mCacheMaxYear.ToString(), UIControlState.Normal);
@@ -65,7 +65,7 @@ namespace SuperKoikoukesse.iOS
     partial void OnDifficultyValueChanged (MonoTouch.Foundation.NSObject sender) {
       SliderDifficulty.SetValue ((float)Math.Round (SliderDifficulty.Value), false);
 
-      foreach(GameDifficulties d in Enum.GetValues(typeof(GameDifficulties))) {
+      foreach(GameDifficulty d in Enum.GetValues(typeof(GameDifficulty))) {
         if(((int)d) == (int)SliderDifficulty.Value) {
           mLastSelectedDifficulty = d;
           break;
@@ -105,7 +105,7 @@ namespace SuperKoikoukesse.iOS
 
 //          float diffi
 
-          mGameLauncher.Launch(VersusToGameSegueId, GameMode.SCORE, GameDifficulties.NORMAL, new Filter());
+          mGameLauncher.Launch(VersusToGameSegueId, GameMode.SCORE, GameDifficulty.EASY, new Filter());
         } 
 //					else {
 //						var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate; 

@@ -14,14 +14,14 @@ namespace SuperKoikoukesse.iOS
 	{
 		private static int scoreLinesCount = 5;
 		private GameMode mode;
-		private GameDifficulties difficulty;
+		private GameDifficulty difficulty;
 		private int? newScoreRank, newScoreValue;
 
 		public HighScoresControlViewController () : base ("HighScoresControlView", null)
 		{
 		}
 
-		public void SetScoreParameters (GameMode m, GameDifficulties d, int? newScoreRank = null, int? newScoreValue = null)
+		public void SetScoreParameters (GameMode m, GameDifficulty d, int? newScoreRank = null, int? newScoreValue = null)
 		{
 			this.mode = m;
 			this.difficulty = d;

@@ -72,7 +72,7 @@ namespace SuperKoikoukesse.iOS
       };
     }
 
-    public override void AddScore(GameMode mode, GameDifficulties difficulty, int score)
+    public override void AddScore(GameMode mode, GameDifficulty difficulty, int score)
     {
       if (mode != GameMode.VERSUS)
       {
@@ -92,7 +92,7 @@ namespace SuperKoikoukesse.iOS
       }
     }
 
-    public override void GetBestScoreAndRank(GameMode mode, GameDifficulties difficulty, Action<int,int> gcRankCallback)
+    public override void GetBestScoreAndRank(GameMode mode, GameDifficulty difficulty, Action<int,int> gcRankCallback)
     {
       if (IsAuthenticated)
       {

@@ -106,6 +106,9 @@
                                 <constraint firstItem="JcZ-o2-bh7" firstAttribute="top" secondItem="ldZ-XM-j2R" secondAttribute="bottom" constant="2" id="rjP-yR-B4m"/>
                                 <constraint firstAttribute="trailing" secondItem="mOM-ZH-7hd" secondAttribute="trailing" id="vYX-Jy-ech"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="Difficulty" value="easy"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLc-0j-wFY" userLabel="View - Normal" customClass="DifficultyView">
                             <rect key="frame" x="20" y="123" width="260" height="60"/>
@@ -160,6 +163,9 @@
                                 <constraint firstItem="bBc-g5-iBf" firstAttribute="leading" secondItem="mLc-0j-wFY" secondAttribute="leading" id="hoh-60-U8T"/>
                                 <constraint firstItem="bBc-g5-iBf" firstAttribute="leading" secondItem="rJt-5S-8m8" secondAttribute="leading" id="sd7-Cw-kJn"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="Difficulty" value="normal"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-Om-QgJ" userLabel="View - Hard" customClass="DifficultyView">
                             <rect key="frame" x="20" y="189" width="260" height="60"/>
@@ -212,6 +218,9 @@
                                 <constraint firstItem="eG0-Hh-MG5" firstAttribute="leading" secondItem="c17-qS-Wrx" secondAttribute="leading" id="bUI-d0-04t"/>
                                 <constraint firstAttribute="height" constant="60" id="rrJ-if-ZYG"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="Difficulty" value="hard"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgB-Ap-MJB" userLabel="View - Insane" customClass="DifficultyView">
                             <rect key="frame" x="20" y="255" width="260" height="60"/>
@@ -264,6 +273,9 @@
                                 <constraint firstAttribute="height" constant="60" id="xM0-Tl-s2Y"/>
                                 <constraint firstAttribute="trailing" secondItem="qIS-Bj-T60" secondAttribute="trailing" id="xoe-Ao-ceU"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="Difficulty" value="insane"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

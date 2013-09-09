@@ -216,7 +216,7 @@ namespace SuperKoikoukesse.iOS
       {
         _challengeViewController = new CardChallengeViewController();
         _challengeViewController.Hidden += HideChallengeCard;
-        _challengeViewController.DifficultySelected += (GameMode mode, GameDifficulties difficulty) => {
+        _challengeViewController.DifficultySelected += (GameMode mode, GameDifficulty difficulty) => {
           var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 					
           Filter filter = null;

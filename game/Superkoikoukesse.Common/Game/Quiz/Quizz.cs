@@ -35,7 +35,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="difficulty">Difficulty.</param>
 		/// <param name="config">Config.</param>
 		/// <param name="databaseFilter">Database filter.</param>
-		public void Initialize (GameMode mode, GameDifficulties difficulty, GameConfiguration config, Filter databaseFilter)
+		public void Initialize (GameMode mode, GameDifficulty difficulty, GameConfiguration config, Filter databaseFilter)
 		{
 			Mode = mode;
 			Difficulty = difficulty;
@@ -119,16 +119,16 @@ namespace Superkoikoukesse.Common
 			ImageTransformation = ImageTransformations.NONE;
 			TextTransformation = TextTransformations.NONE;
 
-			if (Difficulty == GameDifficulties.HARD) {
+			if (Difficulty == GameDifficulty.NORMAL) {
 
 				ImageTransformation = GetImageTransformation ();
 
-			} else if (Difficulty == GameDifficulties.EXPERT) {
+			} else if (Difficulty == GameDifficulty.HARD) {
 
 				ImageTransformation = GetImageTransformation ();
 				TextTransformation = TextTransformations.FIRST_LETTER_ONLY;
 
-			} else if (Difficulty == GameDifficulties.INSANE) {
+			} else if (Difficulty == GameDifficulty.INSANE) {
 
 				ImageTransformation = GetImageTransformation ();
 				TextTransformation = TextTransformations.UNDERSCORES_ONLY;
@@ -369,7 +369,7 @@ namespace Superkoikoukesse.Common
 			}
 
 			// Change image transformation
-			if (Difficulty != GameDifficulties.NORMAL) {
+			if (Difficulty != GameDifficulty.EASY) {
 				ImageTransformation = GetImageTransformation ();
 			}
 		}
@@ -468,7 +468,7 @@ namespace Superkoikoukesse.Common
 		/// Game Difficulty
 		/// </summary>
 		/// <value>The difficulty.</value>
-		public GameDifficulties Difficulty { get; set; }
+		public GameDifficulty Difficulty { get; set; }
 
 		/// <summary>
 		/// Current question. 

@@ -356,7 +356,7 @@ namespace Superkoikoukesse.Common
 		/// <param name="mode">Mode.</param>
 		/// <param name="difficulties">Difficulties.</param>
 		/// <param name="count">Count.</param>
-		public LocalScore[] GetLocalScores (GameMode mode, GameDifficulties difficulty, int count)
+		public LocalScore[] GetLocalScores (GameMode mode, GameDifficulty difficulty, int count)
 		{
 			lock (mLocker) {
 				return mDb.Table<LocalScore> ()

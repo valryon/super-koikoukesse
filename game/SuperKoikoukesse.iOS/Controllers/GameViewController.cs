@@ -187,7 +187,7 @@ namespace SuperKoikoukesse.iOS
     /// <summary>
     /// Initialize a new quizz game
     /// </summary>
-    public void InitializeQuizz(GameMode mode, GameDifficulties diff, Filter f)
+    public void InitializeQuizz(GameMode mode, GameDifficulty diff, Filter f)
     {
       var appDelegate = (AppDelegate) UIApplication.SharedApplication.Delegate; 
 

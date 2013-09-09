@@ -30,7 +30,7 @@ namespace SuperKoikoukesse.iOS
       if (_innerController == null)
       {
         _innerController = new HighScoresControlViewController();
-        _innerController.SetScoreParameters(GameMode.SCORE, GameDifficulties.NORMAL);
+        _innerController.SetScoreParameters(GameMode.SCORE, GameDifficulty.EASY);
 
         this.ViewScore.AddSubview(_innerController.View);
       }
@@ -73,23 +73,23 @@ namespace SuperKoikoukesse.iOS
     /// Get diff from the selector
     /// </summary>
     /// <returns>The difficulty.</returns>
-    private GameDifficulties GetDifficulty()
+    private GameDifficulty GetDifficulty()
     {
       if (SelectorDifficulty.SelectedSegment >= 0)
       {
         string diff = SelectorDifficulty.TitleAt(SelectorDifficulty.SelectedSegment);
 
         if (diff.ToLower().Contains("normal"))
-          return GameDifficulties.NORMAL;
+          return GameDifficulty.EASY;
         if (diff.ToLower().Contains("hard"))
-          return GameDifficulties.HARD;
+          return GameDifficulty.NORMAL;
         if (diff.ToLower().Contains("expert"))
-          return GameDifficulties.EXPERT;
+          return GameDifficulty.HARD;
         if (diff.ToLower().Contains("nolife"))
-          return GameDifficulties.INSANE;
+          return GameDifficulty.INSANE;
       }
 
-      return GameDifficulties.NORMAL;
+      return GameDifficulty.EASY;
     }
 
     #endregion
