@@ -3,12 +3,12 @@
 //
 
 // Score Attack
-"mode.score.title" 	      = "Score Attack";
+"mode.score.title" 	      = "Score";
 "mode.score.desc.main"    = "Essayez de faire le meilleur score possible pendant 20 questions !";
 "mode.score.desc.sub"     =  "";
 
 // Time Attack
-"mode.time.title"         = "Time Attack";
+"mode.time.title"         = "Time";
 "mode.time.desc.main"     = "Attention, vous n'avez que 60 secondes pour faire le meilleur score ! Chaque mauvaise réponse diminue le temps qui vous est alloué.";
 "mode.time.desc.sub"      = "";
 
@@ -26,21 +26,21 @@
 // Difficulties 
 //
  
+// Easy
+"challenge.easy.title"      = "Facile";
+"challenge.easy.desc"       = "Pour démarrer";
+ 
 // Normal
-"normal.title"    = "Normal";
-"normal.desc"     = "Pour démarrer";
+"challenge.normal.title"    = "Normal";
+"challenge.normal.desc"     = "Il faut réfléchir!";
 
 // Hard
-"hard.title"      = "Difficile";
-"hard.desc"       = "Les choses sérieuses commencent";
-
-// Expert
-"expert.title"    = "Expert";
-"expert.desc"     = "Vraiment dur";
+"challenge.hard.title"      = "Difficile";
+"challenge.hard.desc"       = "Les choses sérieuses commencent";
 
 // Insane
-"insane.title"    = "Dément";
-"insane.desc"     = "IMPOSSIBLE !";
+"challenge.insane.title"    = "Dément";
+"challenge.insane.desc"     = "IMPOSSIBLE !";
 
 //
 // Misc

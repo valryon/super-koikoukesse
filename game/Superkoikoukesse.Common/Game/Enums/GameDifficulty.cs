@@ -37,13 +37,13 @@ namespace Superkoikoukesse.Common
         case "normal":
           return GameDifficulty.NORMAL;
 
-          case "hard":
+        case "hard":
           return GameDifficulty.HARD;
 
-          case "insane":
+        case "insane":
           return GameDifficulty.INSANE;
 
-          default: 
+        default: 
           return GameDifficulty.EASY;
       }
     }

@@ -3,6 +3,7 @@
 // file 'LICENSE.md', which is part of this source code package.
 using System;
 using MonoTouch.Foundation;
+using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -12,6 +13,16 @@ namespace SuperKoikoukesse.iOS
 		{
 			return NSBundle.MainBundle.LocalizedString(key, "");
 		}
+
+    public static string GetDifficulty(GameDifficulty value)
+    {
+      return Get("challenge." + value.ToString().ToLower() + ".title");
+    }
+
+    public static string GetMode(GameMode value)
+    {
+      return Get("mode." + value.ToString().ToLower() + ".title");
+    }
 	}
 }
 

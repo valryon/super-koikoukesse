@@ -3,12 +3,12 @@
 //
 
 // Score Attack
-"mode.score.title"        = "Score Attack";
+"mode.score.title"        = "Score";
 "mode.score.desc.main"    = "Try to beat the score during a 20 questions challenge !";
 "mode.score.desc.sub"     =  "° Each correct answer increments the combo gauge.\n\n° Get a joker after three correct answers in a row.";
 
 // Time Attack
-"mode.time.title"         = "Time Attack";
+"mode.time.title"         = "Time";
 "mode.time.desc.main"     = "You have 60 seconds to make the best score possible !";
 "mode.time.desc.sub"      = "° Each wrong answer will decrease the time that you have.\n\n° Get a joker after three correct answers in a row.";
 
@@ -26,21 +26,21 @@
 // Difficulties 
 //
  
+ // Easy
+"challenge.easy.title"      = "Easy";
+"challenge.easy.desc"       = "To start";
+ 
 // Normal
-"normal.title"    = "Normal";
-"normal.desc"     = "To start";
+"challenge.normal.title"    = "Normal";
+"challenge.normal.desc"     = "You'll have to think.";
 
 // Hard
-"hard.title"      = "Hard";
-"hard.desc"       = "It's getting harder";
-
-// Expert
-"expert.title"    = "Expert";
-"expert.desc"     = "Really hard";
+"challenge.hard.title"      = "Hard";
+"challenge.hard.desc"       = "Really hard";
 
 // Insane
-"insane.title"    = "Insane";
-"insane.desc"     = "IMPOSSIBLE !";
+"challenge.insane.title"    = "Insane";
+"challenge.insane.desc"     = "IMPOSSIBLE !";
 
 //
 // Misc
