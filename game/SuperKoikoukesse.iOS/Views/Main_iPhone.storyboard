@@ -1023,6 +1023,14 @@
                                     <action selector="OnRetryTouched:" destination="omR-iH-L5l" eventType="touchUpInside" id="OKF-j1-kwY"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXJ-fY-R0b">
+                                <rect key="frame" x="30" y="204" width="290" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="kK8-Vx-Xf1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -1034,9 +1042,12 @@
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="top" secondItem="BOp-AZ-fSa" secondAttribute="bottom" constant="20" id="LEU-7a-YAM"/>
                             <constraint firstAttribute="trailing" secondItem="tHK-JH-2nI" secondAttribute="trailing" id="Mbh-Ft-8Ad"/>
                             <constraint firstItem="BOp-AZ-fSa" firstAttribute="top" secondItem="YVk-c2-bUz" secondAttribute="bottom" constant="20" id="QEK-A9-1zg"/>
+                            <constraint firstItem="yXJ-fY-R0b" firstAttribute="top" secondItem="XPF-vc-SNv" secondAttribute="bottom" constant="20" id="XDf-9k-Jsb"/>
+                            <constraint firstAttribute="trailing" secondItem="yXJ-fY-R0b" secondAttribute="trailing" id="Yjo-Je-RME"/>
                             <constraint firstItem="BOp-AZ-fSa" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="30" id="axJ-zp-SYn"/>
                             <constraint firstItem="y9J-2V-LYX" firstAttribute="top" secondItem="XPF-vc-SNv" secondAttribute="bottom" constant="5" id="g2e-BL-tt0"/>
                             <constraint firstItem="tHK-JH-2nI" firstAttribute="leading" secondItem="YVk-c2-bUz" secondAttribute="leading" id="piu-sy-QoS"/>
+                            <constraint firstItem="yXJ-fY-R0b" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="30" id="pn9-vA-t2o"/>
                             <constraint firstAttribute="trailing" secondItem="YVk-c2-bUz" secondAttribute="trailing" id="uow-Ve-H6G"/>
                             <constraint firstAttribute="trailing" secondItem="BOp-AZ-fSa" secondAttribute="trailing" id="uzd-Fs-eUd"/>
                             <constraint firstItem="tHK-JH-2nI" firstAttribute="top" secondItem="YVk-c2-bUz" secondAttribute="bottom" constant="5" id="veg-5z-hCu"/>
