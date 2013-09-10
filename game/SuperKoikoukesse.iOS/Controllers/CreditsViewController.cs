@@ -26,16 +26,23 @@ namespace SuperKoikoukesse.iOS
     {
       base.ViewDidLoad();
       
-      // Load all publishers name and display them
+      // Load all publishers name and display them.
       var credits = new StringBuilder();
-      var publishers = GameDatabase.Instance.GetPublishers();
 
+      // Get the publishers without duplicates, sorted by name.
+      var publishers = GameDatabase
+        .Instance
+        .GetPublishersUnique()
+        .OrderBy(p => p);
+
+      // Create the string builder.
       foreach (var p in publishers)
       {
-        credits.Append(p + " ");
+        credits.Append(p + "\n");
       }
 
-      LabelCredits.Text = credits.ToString();
+      // Set the textfield
+      TextPublishers.Text = credits.ToString();
     }
 
     #endregion

@@ -13,16 +13,16 @@ namespace SuperKoikoukesse.iOS
 	partial class CreditsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel LabelCredits { get; set; }
+		MonoTouch.UIKit.UITextView TextPublishers { get; set; }
 
 		[Action ("OnDismissTouched:")]
 		partial void OnDismissTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (LabelCredits != null) {
-				LabelCredits.Dispose ();
-				LabelCredits = null;
+			if (TextPublishers != null) {
+				TextPublishers.Dispose ();
+				TextPublishers = null;
 			}
 		}
 	}

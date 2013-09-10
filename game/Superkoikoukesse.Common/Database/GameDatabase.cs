@@ -218,6 +218,24 @@ namespace Superkoikoukesse.Common
 			return publishers;
 		}
 
+    /// <summary>
+    /// Get all publishers, without dupes.
+    /// </summary>
+    /// <returns>Set</returns>
+    public HashSet<string> GetPublishersUnique()
+    {
+      var set = new HashSet<string>();
+      lock (mLocker)
+      {
+        foreach (GameEntry game in mDb.Table<GameEntry>())
+        {
+          set.Add(game.Publisher);
+        }
+      }
+
+      return set;
+    }
+
 		/// <summary>
 		/// Returns the current number of games in database
 		/// </summary>
