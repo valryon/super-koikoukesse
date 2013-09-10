@@ -72,7 +72,7 @@ namespace SuperKoikoukesse.iOS
         }
       }
 
-      LabelDifficulty.Text = Localization.Get(mLastSelectedDifficulty.ToString().ToLower()+".title");
+      LabelDifficulty.Text = Localization.GetDifficulty(mLastSelectedDifficulty);
     }
 
     partial void OnGenreTouched (MonoTouch.Foundation.NSObject sender) {

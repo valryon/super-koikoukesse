@@ -12,6 +12,15 @@ namespace SuperKoikoukesse.iOS
 	[Register ("ScoreViewController")]
 	partial class ScoreViewController
 	{
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelDifficulty { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel LabelMode { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIView ViewHistory { get; set; }
+
 		[Action ("OnMenuTouched:")]
 		partial void OnMenuTouched (MonoTouch.Foundation.NSObject sender);
 
@@ -20,6 +29,20 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (LabelMode != null) {
+				LabelMode.Dispose ();
+				LabelMode = null;
+			}
+
+			if (LabelDifficulty != null) {
+				LabelDifficulty.Dispose ();
+				LabelDifficulty = null;
+			}
+
+			if (ViewHistory != null) {
+				ViewHistory.Dispose ();
+				ViewHistory = null;
+			}
 		}
 	}
 }

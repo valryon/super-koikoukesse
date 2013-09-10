@@ -1011,7 +1011,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXJ-fY-R0b">
                                 <rect key="frame" x="30" y="204" width="290" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="kK8-Vx-Xf1"/>
                                 </constraints>
@@ -1034,24 +1033,53 @@
                                     <action selector="OnRetryTouched:" destination="omR-iH-L5l" eventType="touchUpInside" id="rSE-sx-gVi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKH-pJ-fTt">
+                                <rect key="frame" x="260" y="448" width="32" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7e-0q-N35">
+                                <rect key="frame" x="260" y="467" width="47" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85y-3T-fG4">
+                                <rect key="frame" x="260" y="464" width="60" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.75508256392045459" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="LJe-ed-rzG"/>
+                                    <constraint firstAttribute="height" constant="1" id="ZCq-zr-4MA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294123890000004" green="0.95294123890000004" blue="0.95294123890000004" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="y9J-2V-LYX" firstAttribute="leading" secondItem="YVk-c2-bUz" secondAttribute="leading" id="0U6-8Y-do3"/>
                             <constraint firstItem="qt6-aI-5dU" firstAttribute="top" secondItem="oyk-qb-gc9" secondAttribute="bottom" constant="20" id="2Yo-ow-NvK"/>
                             <constraint firstAttribute="trailing" secondItem="y9J-2V-LYX" secondAttribute="trailing" id="33c-5C-EKJ"/>
+                            <constraint firstItem="85y-3T-fG4" firstAttribute="leading" secondItem="hKH-pJ-fTt" secondAttribute="leading" id="4wR-8a-0S3"/>
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="trailing" secondItem="OOQ-Ob-NTO" secondAttribute="trailing" id="7ce-TX-GFD"/>
                             <constraint firstItem="YVk-c2-bUz" firstAttribute="top" secondItem="vAJ-5m-03a" secondAttribute="bottom" constant="20" id="Axs-jP-nLi"/>
+                            <constraint firstAttribute="trailing" secondItem="85y-3T-fG4" secondAttribute="trailing" id="FcT-PT-4qr"/>
                             <constraint firstItem="YVk-c2-bUz" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="30" id="KGs-oP-MrA"/>
                             <constraint firstItem="XPF-vc-SNv" firstAttribute="top" secondItem="BOp-AZ-fSa" secondAttribute="bottom" constant="20" id="LEU-7a-YAM"/>
                             <constraint firstAttribute="trailing" secondItem="tHK-JH-2nI" secondAttribute="trailing" id="Mbh-Ft-8Ad"/>
+                            <constraint firstItem="qt6-aI-5dU" firstAttribute="top" secondItem="U7e-0q-N35" secondAttribute="bottom" constant="22" id="OX2-or-dKj"/>
                             <constraint firstItem="BOp-AZ-fSa" firstAttribute="top" secondItem="YVk-c2-bUz" secondAttribute="bottom" constant="20" id="QEK-A9-1zg"/>
                             <constraint firstItem="yXJ-fY-R0b" firstAttribute="top" secondItem="XPF-vc-SNv" secondAttribute="bottom" constant="20" id="XDf-9k-Jsb"/>
                             <constraint firstAttribute="trailing" secondItem="yXJ-fY-R0b" secondAttribute="trailing" id="Yjo-Je-RME"/>
                             <constraint firstItem="BOp-AZ-fSa" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="30" id="axJ-zp-SYn"/>
                             <constraint firstItem="y9J-2V-LYX" firstAttribute="top" secondItem="XPF-vc-SNv" secondAttribute="bottom" constant="5" id="g2e-BL-tt0"/>
+                            <constraint firstItem="U7e-0q-N35" firstAttribute="leading" secondItem="85y-3T-fG4" secondAttribute="leading" id="hMS-Xc-3UY"/>
                             <constraint firstItem="oyk-qb-gc9" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" id="hlJ-jc-13i"/>
+                            <constraint firstItem="85y-3T-fG4" firstAttribute="top" secondItem="hKH-pJ-fTt" secondAttribute="bottom" constant="1" id="iNS-tj-Dmo"/>
                             <constraint firstItem="tHK-JH-2nI" firstAttribute="leading" secondItem="YVk-c2-bUz" secondAttribute="leading" id="piu-sy-QoS"/>
+                            <constraint firstItem="U7e-0q-N35" firstAttribute="top" secondItem="85y-3T-fG4" secondAttribute="bottom" constant="2" id="pn3-CT-wCl"/>
                             <constraint firstItem="yXJ-fY-R0b" firstAttribute="leading" secondItem="OOQ-Ob-NTO" secondAttribute="leading" constant="30" id="pn9-vA-t2o"/>
                             <constraint firstAttribute="trailing" secondItem="YVk-c2-bUz" secondAttribute="trailing" id="uow-Ve-H6G"/>
                             <constraint firstAttribute="trailing" secondItem="BOp-AZ-fSa" secondAttribute="trailing" id="uzd-Fs-eUd"/>
@@ -1070,6 +1098,9 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="LabelDifficulty" destination="U7e-0q-N35" id="R5z-oE-Tgn"/>
+                        <outlet property="LabelMode" destination="hKH-pJ-fTt" id="DOK-SA-wBc"/>
+                        <outlet property="ViewHistory" destination="yXJ-fY-R0b" id="8g9-1k-dhg"/>
                         <segue destination="cVr-5m-q0d" kind="push" identifier="ScoreToGame" id="dbu-Tv-dyJ"/>
                         <segue destination="ksv-YE-Qzr" kind="push" identifier="ScoreToMenu" id="kRF-TE-k8D"/>
                     </connections>

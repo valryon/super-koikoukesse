@@ -39,6 +39,10 @@ namespace SuperKoikoukesse.iOS
 
       // Hide the back button
       NavigationItem.HidesBackButton = true;
+
+      // Set the mode and difficulty
+      LabelMode.Text = Localization.GetMode(_quizz.Mode).ToLower();
+      LabelDifficulty.Text = Localization.GetDifficulty(_quizz.Difficulty).ToLower();
     }
 
     #endregion
