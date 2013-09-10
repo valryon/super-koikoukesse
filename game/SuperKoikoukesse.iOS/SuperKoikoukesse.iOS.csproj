@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Views\Controls\CardsController.cs" />
     <Compile Include="Views\Controls\DifficultyView.cs" />
+    <Compile Include="Views\Controls\PXNButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
