@@ -56,7 +56,6 @@ namespace SuperKoikoukesse.iOS
 
     private void LoadPlayers(GKPlayer[] players, NSError error)
     {
-
       foreach (GKPlayer player in players)
       {
         player.LoadPhoto(GKPhotoSize.Normal, (image, loadImageError) => {

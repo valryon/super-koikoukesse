@@ -1,36 +1,37 @@
 // WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the Xcode designer. If it is removed, they will be lost.
+// actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
 using MonoTouch.Foundation;
+using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-  [Register ("HighScoresControlViewController")]
+	[Register ("HighScoresControlViewController")]
 	partial class HighScoresControlViewController
 	{
-		[Outlet]
-		MonoTouch.UIKit.UIButton leaderboardButton { get; set; }
-
 		[Outlet]
 		MonoTouch.UIKit.UIView gameCenterPanel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel onlineRankValueLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel onlineRankLabel { get; set; }
+		MonoTouch.UIKit.UIButton leaderboardButton { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel localHighscoresLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank1ScoreLabel { get; set; }
+		MonoTouch.UIKit.UILabel onlineRankLabel { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel onlineRankValueLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel rank1Label { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UILabel rank1ScoreLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel rank2Label { get; set; }
@@ -62,8 +63,8 @@ namespace SuperKoikoukesse.iOS
 		[Outlet]
 		MonoTouch.UIKit.UILabel rankLastScoreLabel { get; set; }
 
-		[Action ("leaderboardsButtonPressed:")]
-		partial void leaderboardsButtonPressed (MonoTouch.Foundation.NSObject sender);
+		[Action ("OnLeaderboardsTouched:")]
+		partial void OnLeaderboardsTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
