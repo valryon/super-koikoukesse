@@ -84,7 +84,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AMN-hl-57Z">
-                                <rect key="frame" x="141" y="418" width="38" height="36"/>
+                                <rect key="frame" x="141" y="424" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket.png" translatesAutoresizingMaskIntoConstraints="NO" id="R4K-2Q-91n">
@@ -123,7 +123,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pv8-gA-tq2">
                                         <rect key="frame" x="71" y="9" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="credits">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,7 +140,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-JQ-aRs">
                                         <rect key="frame" x="71" y="35" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="coins">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,7 +157,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCJ-Zn-FgG">
                                         <rect key="frame" x="5" y="9" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="config">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +174,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20H-dB-hVf">
                                         <rect key="frame" x="5" y="35" width="60" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.16470588743686676" green="0.57647061347961426" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="debug">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,7 +199,7 @@
                         <constraints>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
                             <constraint firstAttribute="trailing" secondItem="JMm-CH-NOM" secondAttribute="trailing" constant="6" id="LYz-JW-bMr"/>
-                            <constraint firstItem="AMN-hl-57Z" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="-6" id="Oiw-7C-X0L"/>
+                            <constraint firstItem="AMN-hl-57Z" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" id="Oiw-7C-X0L"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="R4K-2Q-91n" secondAttribute="trailing" constant="2" id="XBc-Im-DTj"/>
                             <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="80" id="XvJ-Lv-hxC"/>
