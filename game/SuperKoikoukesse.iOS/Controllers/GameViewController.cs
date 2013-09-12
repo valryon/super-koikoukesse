@@ -133,30 +133,6 @@ namespace SuperKoikoukesse.iOS
     }
 
     /// <summary>
-    /// Style the informations view.
-    /// </summary>
-    /// <param name="view">View.</param>
-    public void StyleInformations(UIView view)
-    {
-      // Bottom border
-      var border = new CALayer();
-      border.Frame = new RectangleF(0, view.Frame.Height, view.Frame.Width, 1);
-      border.BackgroundColor = PXNConstants.BRAND_BORDER.CGColor;
-
-      // Bottom gradient
-      var gradient = new CAGradientLayer();
-      gradient.Colors = new CGColor[] {
-        UIColor.FromHSBA(0, 0, 0.13f, 0.14f).CGColor,
-        UIColor.FromHSBA(0, 0, 1f, 0).CGColor
-      };
-      gradient.Frame = new RectangleF(0, view.Frame.Height + 1, view.Frame.Width, 27);
-
-      // Add layers
-      view.Layer.AddSublayer(border);
-      view.Layer.AddSublayer(gradient);
-    }
-
-    /// <summary>
     /// Style the answers view.
     /// </summary>
     /// <param name="view">View.</param>
@@ -164,20 +140,11 @@ namespace SuperKoikoukesse.iOS
     {
       // Border top
       var border = new CALayer();
-      border.Frame = new RectangleF(0, -1, view.Frame.Width, 1);
+      border.Frame = new RectangleF(0, -0.5f, view.Frame.Width, 0.5f);
       border.BackgroundColor = PXNConstants.BRAND_BORDER.CGColor;
-
-      // Gradient top
-      var gradient = new CAGradientLayer();
-      gradient.Colors = new CGColor[] {
-        UIColor.FromHSBA(0, 0, 1f, 0).CGColor,
-        UIColor.FromHSBA(0, 0, 0.13f, 0.14f).CGColor
-      };
-      gradient.Frame = new RectangleF(0, -28, view.Frame.Width, 27);
 
       // Add layers
       view.Layer.AddSublayer(border);
-      view.Layer.AddSublayer(gradient);
     }
 
     #endregion
