@@ -5,6 +5,7 @@ using System;
 using MonoTouch.UIKit;
 using Superkoikoukesse.Common;
 using System.Drawing;
+using MonoTouch.CoreAnimation;
 
 namespace SuperKoikoukesse.iOS
 {
@@ -44,8 +45,29 @@ namespace SuperKoikoukesse.iOS
       // navbar
       bar.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
       bar.BackgroundColor = PXNConstants.COLOR_NAVIGATION;
+      bar.ShadowImage = CreateNavigationBarShadowImage();
       bar.SetTitleTextAttributes(attributes);
       bar.SetTitleVerticalPositionAdjustment(3f, UIBarMetrics.Default);
+    }
+
+    private UIImage CreateNavigationBarShadowImage()
+    {
+      // Create the border
+      var border = new CALayer();
+      border.Frame = new RectangleF(0, 0, 1, 1);
+      border.BackgroundColor = PXNConstants.BRAND_BORDER.CGColor;
+
+      // Init context
+      UIGraphics.BeginImageContextWithOptions(new SizeF(1f, 0.5f), true, 0f);
+
+      // Render
+      border.RenderInContext(UIGraphics.GetCurrentContext());
+      var image = UIGraphics.GetImageFromCurrentImageContext();
+
+      // End context
+      UIGraphics.EndImageContext();
+
+      return image;
     }
 
     /// <summary>
