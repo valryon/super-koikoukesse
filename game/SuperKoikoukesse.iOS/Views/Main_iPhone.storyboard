@@ -82,9 +82,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bo-TA-4qu">
                                 <rect key="frame" x="0.0" y="80" width="320" height="344"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="344" id="ppp-ax-AHp"/>
+                                </constraints>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="AMN-hl-57Z">
-                                <rect key="frame" x="141" y="424" width="38" height="36"/>
+                                <rect key="frame" x="141" y="423" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket.png" translatesAutoresizingMaskIntoConstraints="NO" id="R4K-2Q-91n">
@@ -117,11 +120,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rmu-QF-HBK" userLabel="Debug area">
-                                <rect key="frame" x="92" y="0.0" width="136" height="64"/>
+                                <rect key="frame" x="76" y="0.0" width="178" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pv8-gA-tq2">
-                                        <rect key="frame" x="71" y="9" width="60" height="20"/>
+                                        <rect key="frame" x="47" y="9" width="40" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -138,7 +141,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-JQ-aRs">
-                                        <rect key="frame" x="71" y="35" width="60" height="20"/>
+                                        <rect key="frame" x="90" y="9" width="40" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -155,7 +158,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCJ-Zn-FgG">
-                                        <rect key="frame" x="5" y="9" width="60" height="20"/>
+                                        <rect key="frame" x="4" y="9" width="40" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -172,7 +175,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20H-dB-hVf">
-                                        <rect key="frame" x="5" y="35" width="60" height="20"/>
+                                        <rect key="frame" x="133" y="9" width="40" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1098039299" green="0.66274511810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -199,13 +202,13 @@
                         <constraints>
                             <constraint firstItem="9bo-TA-4qu" firstAttribute="leading" secondItem="bcP-e2-eZP" secondAttribute="leading" id="EQm-gP-xIz"/>
                             <constraint firstAttribute="trailing" secondItem="JMm-CH-NOM" secondAttribute="trailing" constant="6" id="LYz-JW-bMr"/>
-                            <constraint firstItem="AMN-hl-57Z" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" id="Oiw-7C-X0L"/>
+                            <constraint firstItem="AMN-hl-57Z" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="-1" id="Oiw-7C-X0L"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="Rtq-VW-8xY"/>
                             <constraint firstItem="sNR-4L-0OS" firstAttribute="leading" secondItem="R4K-2Q-91n" secondAttribute="trailing" constant="2" id="XBc-Im-DTj"/>
-                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" constant="80" id="XvJ-Lv-hxC"/>
+                            <constraint firstItem="Btc-Wf-Pkd" firstAttribute="top" secondItem="9bo-TA-4qu" secondAttribute="bottom" priority="400" constant="80" id="XvJ-Lv-hxC"/>
                             <constraint firstItem="JMm-CH-NOM" firstAttribute="bottom" secondItem="RFJ-yV-VDO" secondAttribute="bottom" id="cMb-Od-sHq"/>
                             <constraint firstAttribute="centerX" secondItem="AMN-hl-57Z" secondAttribute="centerX" id="czq-dP-84q"/>
-                            <constraint firstItem="9bo-TA-4qu" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="80" id="oEG-Rc-KX6"/>
+                            <constraint firstItem="9bo-TA-4qu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="h7Q-gm-kNp" secondAttribute="bottom" priority="500" constant="32" id="oEG-Rc-KX6"/>
                             <constraint firstItem="R4K-2Q-91n" firstAttribute="bottom" secondItem="sNR-4L-0OS" secondAttribute="bottom" id="p2J-F0-G3D"/>
                             <constraint firstAttribute="trailing" secondItem="9bo-TA-4qu" secondAttribute="trailing" id="qUQ-Z9-UQF"/>
                             <constraint firstItem="RFJ-yV-VDO" firstAttribute="top" secondItem="h7Q-gm-kNp" secondAttribute="bottom" constant="10" id="tXs-ue-0of"/>
@@ -1126,7 +1129,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="By1-MQ-h8U"/>
         <segue reference="kRF-TE-k8D"/>
-        <segue reference="dbu-Tv-dyJ"/>
     </inferredMetricsTieBreakers>
 </document>
