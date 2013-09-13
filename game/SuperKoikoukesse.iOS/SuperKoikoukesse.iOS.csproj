@@ -111,6 +111,7 @@
     <Folder Include="Tools\" />
     <Folder Include="Views\Particles\" />
     <Folder Include="Controllers\Cards\" />
+    <Folder Include="Controllers\Components\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
