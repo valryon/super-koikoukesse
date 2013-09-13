@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view tag="2" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXX-xj-ddc" userLabel="Shadow">
-                    <rect key="frame" x="10" y="118" width="300" height="332"/>
+                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXX-xj-ddc" userLabel="Shadow">
+                    <rect key="frame" x="10" y="118" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -27,42 +27,72 @@
                     <rect key="frame" x="10" y="118" width="300" height="333"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                            <rect key="frame" x="5" y="6" width="290" height="30"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOS-R2-tcZ" userLabel="View - Header">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="71"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Score"/>
-                                <segment title="Time"/>
-                                <segment title="Survival"/>
-                                <segment title="Versus"/>
-                            </segments>
-                            <connections>
-                                <action selector="OnModeChanged:" destination="-1" eventType="valueChanged" id="Cuh-fz-dMj"/>
-                            </connections>
-                        </segmentedControl>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="21">
-                            <rect key="frame" x="5" y="38" width="290" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Easy"/>
-                                <segment title="Normal"/>
-                                <segment title="Hard"/>
-                                <segment title="Insane"/>
-                            </segments>
-                            <connections>
-                                <action selector="OnDifficultyChanged:" destination="-1" eventType="valueChanged" id="zBc-yS-rPd"/>
-                            </connections>
-                        </segmentedControl>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17" userLabel="HighscoreController">
-                            <rect key="frame" x="10" y="92" width="278" height="241"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="Bar - Mode">
+                                    <rect key="frame" x="5" y="20" width="290" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Score"/>
+                                        <segment title="Time"/>
+                                        <segment title="Survival"/>
+                                        <segment title="Versus"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="OnModeChanged:" destination="-1" eventType="valueChanged" id="Cuh-fz-dMj"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94117647409439087" green="0.94117647409439087" blue="0.94117647409439087" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="71" id="2MR-Ub-F33"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17" userLabel="Controller">
+                            <rect key="frame" x="0.0" y="71" width="300" height="227"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jS2-tg-ltF" userLabel="View - Footer">
+                            <rect key="frame" x="0.0" y="298" width="300" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="21" userLabel="Bar - Challenge">
+                                    <rect key="frame" x="5" y="3" width="290" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Easy"/>
+                                        <segment title="Normal"/>
+                                        <segment title="Hard"/>
+                                        <segment title="Insane"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="OnDifficultyChanged:" destination="-1" eventType="valueChanged" id="zBc-yS-rPd"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94117647409439087" green="0.94117647409439087" blue="0.94117647409439087" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="0G2-Ru-XoY"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="333" id="5N3-r4-N2E"/>
+                        <constraint firstItem="EOS-R2-tcZ" firstAttribute="top" secondItem="gn5-K0-vWJ" secondAttribute="top" id="EDE-pv-75l"/>
                         <constraint firstAttribute="width" constant="300" id="Is2-su-0ZZ"/>
+                        <constraint firstItem="EOS-R2-tcZ" firstAttribute="leading" secondItem="gn5-K0-vWJ" secondAttribute="leading" id="Lj6-dn-gWd"/>
+                        <constraint firstAttribute="trailing" secondItem="EOS-R2-tcZ" secondAttribute="trailing" id="MoJ-wP-UUg"/>
+                        <constraint firstItem="jS2-tg-ltF" firstAttribute="top" secondItem="17" secondAttribute="bottom" id="NCv-b0-RDl"/>
+                        <constraint firstAttribute="bottom" secondItem="jS2-tg-ltF" secondAttribute="bottom" id="PAn-la-mKo"/>
+                        <constraint firstAttribute="trailing" secondItem="jS2-tg-ltF" secondAttribute="trailing" id="QGf-4g-6NN"/>
+                        <constraint firstItem="17" firstAttribute="leading" secondItem="gn5-K0-vWJ" secondAttribute="leading" id="Vta-Vv-irB"/>
+                        <constraint firstItem="17" firstAttribute="top" secondItem="EOS-R2-tcZ" secondAttribute="bottom" id="Yrs-Wq-xmN"/>
+                        <constraint firstAttribute="trailing" secondItem="17" secondAttribute="trailing" id="mih-fe-f6K"/>
+                        <constraint firstItem="jS2-tg-ltF" firstAttribute="leading" secondItem="gn5-K0-vWJ" secondAttribute="leading" id="xiL-5n-WZp"/>
                     </constraints>
                 </view>
             </subviews>
