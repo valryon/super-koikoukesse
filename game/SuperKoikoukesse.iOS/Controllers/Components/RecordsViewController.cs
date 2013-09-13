@@ -23,7 +23,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public RecordsViewController() : base ("HighScoresControlView", null)
+    public RecordsViewController() : base("RecordsView" + (AppDelegate.UserInterfaceIdiomIsPhone ? "_iPhone" : "_iPad"), null)
     {
     }
 

@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-	[Register ("RecordsViewController")]
-	partial class RecordsViewController
+	[Register ("HighScoresControlViewController")]
+	partial class HighScoresControlViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelOnlineRank { get; set; }
@@ -62,11 +62,6 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ViewGameCenter != null) {
-				ViewGameCenter.Dispose ();
-				ViewGameCenter = null;
-			}
-
 			if (LabelOnlineRank != null) {
 				LabelOnlineRank.Dispose ();
 				LabelOnlineRank = null;
@@ -82,29 +77,14 @@ namespace SuperKoikoukesse.iOS
 				LabelRank1 = null;
 			}
 
-			if (LabelRank2 != null) {
-				LabelRank2.Dispose ();
-				LabelRank2 = null;
-			}
-
-			if (LabelRank3 != null) {
-				LabelRank3.Dispose ();
-				LabelRank3 = null;
-			}
-
-			if (LabelRank4 != null) {
-				LabelRank4.Dispose ();
-				LabelRank4 = null;
-			}
-
-			if (LabelRank5 != null) {
-				LabelRank5.Dispose ();
-				LabelRank5 = null;
-			}
-
 			if (LabelRank1Score != null) {
 				LabelRank1Score.Dispose ();
 				LabelRank1Score = null;
+			}
+
+			if (LabelRank2 != null) {
+				LabelRank2.Dispose ();
+				LabelRank2 = null;
 			}
 
 			if (LabelRank2Score != null) {
@@ -112,14 +92,29 @@ namespace SuperKoikoukesse.iOS
 				LabelRank2Score = null;
 			}
 
+			if (LabelRank3 != null) {
+				LabelRank3.Dispose ();
+				LabelRank3 = null;
+			}
+
 			if (LabelRank3Score != null) {
 				LabelRank3Score.Dispose ();
 				LabelRank3Score = null;
 			}
 
+			if (LabelRank4 != null) {
+				LabelRank4.Dispose ();
+				LabelRank4 = null;
+			}
+
 			if (LabelRank4Score != null) {
 				LabelRank4Score.Dispose ();
 				LabelRank4Score = null;
+			}
+
+			if (LabelRank5 != null) {
+				LabelRank5.Dispose ();
+				LabelRank5 = null;
 			}
 
 			if (LabelRank5Score != null) {
@@ -135,6 +130,11 @@ namespace SuperKoikoukesse.iOS
 			if (LabelRankCurrentScore != null) {
 				LabelRankCurrentScore.Dispose ();
 				LabelRankCurrentScore = null;
+			}
+
+			if (ViewGameCenter != null) {
+				ViewGameCenter.Dispose ();
+				ViewGameCenter = null;
 			}
 		}
 	}

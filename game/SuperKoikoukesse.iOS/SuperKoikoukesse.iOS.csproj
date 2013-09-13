@@ -188,8 +188,12 @@
     <Compile Include="Views\Controls\CardsController.cs" />
     <Compile Include="Views\Controls\DifficultyView.cs" />
     <Compile Include="Views\Controls\PXNButton.cs" />
-    <Compile Include="Controllers\Components\HighScoresControlViewController.cs" />
-    <Compile Include="Controllers\Components\HighScoresControlViewController.designer.cs">
+    <Compile Include="Controllers\Components\RecordsViewController.cs" />
+    <Compile Include="Controllers\Components\RecordsViewController.designer.cs">
+      <DependentUpon>RecordsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HighScoresControlViewController.cs" />
+    <Compile Include="HighScoresControlViewController.designer.cs">
       <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -203,7 +207,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Views\iPhone\GameView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPhone\MenuView_iPhone.xib" />
-    <InterfaceDefinition Include="Views\Controls\HighScoresControlView.xib" />
     <InterfaceDefinition Include="Views\iPhone\GamePauseView_iPhone.xib" />
     <InterfaceDefinition Include="Views\iPad\CreditsView_iPad.xib" />
     <InterfaceDefinition Include="Views\iPad\GamePauseView_iPad.xib" />
@@ -224,6 +227,8 @@
     <InterfaceDefinition Include="Views\iPad\CardScoreView_iPad.xib" />
     <InterfaceDefinition Include="Views\Controls\TimerView.xib" />
     <InterfaceDefinition Include="Views\iPhone\CardChallengeView_iPhone.xib" />
+    <InterfaceDefinition Include="Views\iPad\RecordsView_iPad.xib" />
+    <InterfaceDefinition Include="Views\iPhone\RecordsView_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\database\gamedb.xml">
