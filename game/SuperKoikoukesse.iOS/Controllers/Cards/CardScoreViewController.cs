@@ -30,7 +30,7 @@ namespace SuperKoikoukesse.iOS
       if (_innerController == null)
       {
         _innerController = new RecordsViewController();
-        _innerController.SetScoreParameters(GameMode.SCORE, GameDifficulty.EASY);
+        _innerController.SetRecords(GameMode.SCORE, GameDifficulty.EASY);
 
         this.ViewScore.AddSubview(_innerController.View);
       }
@@ -79,12 +79,12 @@ namespace SuperKoikoukesse.iOS
 
     partial void OnModeChanged(MonoTouch.Foundation.NSObject sender)
     {
-      _innerController.SetScoreParameters(GetMode(), GetDifficulty());
+      _innerController.SetRecords(GetMode(), GetDifficulty());
     }
 
     partial void OnDifficultyChanged(MonoTouch.Foundation.NSObject sender)
     {
-      _innerController.SetScoreParameters(GetMode(), GetDifficulty());
+      _innerController.SetRecords(GetMode(), GetDifficulty());
     }
 
     #endregion
