@@ -15,5 +15,38 @@ namespace Superkoikoukesse.Common
 		SURVIVAL = 2,
 		VERSUS = 3
 	}
+
+  public static class GameModeHelper
+  {
+    /// <summary>
+    /// Get a mode for a string.
+    /// </summary>
+    /// <returns>
+    /// A mode for a corresponding string.
+    /// If nothing matches, return GameMode.Score.
+    /// </returns>
+    /// <param name="value">
+    /// A value. The case doesn't matter.
+    /// </param>
+    public static GameMode Convert(string value)
+    {
+      value = value.ToLower();
+
+      switch (value)
+      {
+        case "time":
+          return GameMode.TIME;
+
+        case "survival":
+          return GameMode.SURVIVAL;
+
+        case "versus":
+          return GameMode.VERSUS;
+
+        default: 
+          return GameMode.SCORE;
+      }
+    }
+  }
 }
 

@@ -25,7 +25,7 @@ namespace Superkoikoukesse.Common
     /// A difficulty for a corresponding string.
     /// If nothing matches, return GameDifficulty.Easy.
     /// </returns>
-    /// <param name="difficulty">
+    /// <param name="value">
     /// A value. The case doesn't matter.
     /// </param>
     public static GameDifficulty Convert(string value)
