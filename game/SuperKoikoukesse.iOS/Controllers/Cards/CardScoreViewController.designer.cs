@@ -9,11 +9,11 @@ using System.CodeDom.Compiler;
 
 namespace SuperKoikoukesse.iOS
 {
-  [Register ("CardScoreViewController")]
+	[Register ("CardScoreViewController")]
 	partial class CardScoreViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl SelectorDifficulty { get; set; }
+		MonoTouch.UIKit.UISegmentedControl SelectorChallenge { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UISegmentedControl SelectorMode { get; set; }
@@ -29,19 +29,19 @@ namespace SuperKoikoukesse.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ViewScore != null) {
-				ViewScore.Dispose ();
-				ViewScore = null;
-			}
-
 			if (SelectorMode != null) {
 				SelectorMode.Dispose ();
 				SelectorMode = null;
 			}
 
-			if (SelectorDifficulty != null) {
-				SelectorDifficulty.Dispose ();
-				SelectorDifficulty = null;
+			if (SelectorChallenge != null) {
+				SelectorChallenge.Dispose ();
+				SelectorChallenge = null;
+			}
+
+			if (ViewScore != null) {
+				ViewScore.Dispose ();
+				ViewScore = null;
 			}
 		}
 	}

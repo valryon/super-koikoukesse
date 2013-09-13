@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardScoreViewController">
             <connections>
-                <outlet property="SelectorDifficulty" destination="21" id="PuV-o5-Aec"/>
+                <outlet property="SelectorChallenge" destination="21" id="F3O-YH-b42"/>
                 <outlet property="SelectorMode" destination="6" id="00s-Xq-Cqh"/>
                 <outlet property="ViewScore" destination="17" id="JII-oj-gLd"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -32,13 +32,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="Bar - Mode">
-                                    <rect key="frame" x="5" y="20" width="290" height="30"/>
+                                    <rect key="frame" x="135" y="20" width="160" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
-                                        <segment title="Score"/>
-                                        <segment title="Time"/>
-                                        <segment title="Survival"/>
-                                        <segment title="Versus"/>
+                                        <segment title="" image="icon_mode_score.png"/>
+                                        <segment title="" image="icon_mode_time.png"/>
+                                        <segment title="" image="icon_mode_survival.png"/>
+                                        <segment title="" image="icon_mode_versus.png"/>
                                     </segments>
                                     <connections>
                                         <action selector="OnModeChanged:" destination="-1" eventType="valueChanged" id="Cuh-fz-dMj"/>
@@ -63,10 +63,10 @@
                                     <rect key="frame" x="5" y="3" width="290" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
-                                        <segment title="Easy"/>
-                                        <segment title="Normal"/>
-                                        <segment title="Hard"/>
-                                        <segment title="Insane"/>
+                                        <segment title="easy"/>
+                                        <segment title="normal"/>
+                                        <segment title="hard"/>
+                                        <segment title="insane"/>
                                     </segments>
                                     <connections>
                                         <action selector="OnDifficultyChanged:" destination="-1" eventType="valueChanged" id="zBc-yS-rPd"/>
@@ -107,4 +107,10 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_mode_score.png" width="30" height="30"/>
+        <image name="icon_mode_survival.png" width="30" height="30"/>
+        <image name="icon_mode_time.png" width="30" height="30"/>
+        <image name="icon_mode_versus.png" width="30" height="30"/>
+    </resources>
 </document>
