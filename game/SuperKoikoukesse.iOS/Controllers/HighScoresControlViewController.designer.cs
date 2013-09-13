@@ -13,144 +13,128 @@ namespace SuperKoikoukesse.iOS
 	partial class HighScoresControlViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIView gameCenterPanel { get; set; }
+		MonoTouch.UIKit.UILabel LabelOnlineRank { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton leaderboardButton { get; set; }
+		MonoTouch.UIKit.UILabel LabelOnlineScore { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel localHighscoresLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank1 { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel onlineRankLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank1Score { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel onlineRankValueLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank2 { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank1Label { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank2Score { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank1ScoreLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank3 { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank2Label { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank3Score { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank2ScoreLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank4 { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank3Label { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank4Score { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank3ScoreLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank5 { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank4Label { get; set; }
+		MonoTouch.UIKit.UILabel LabelRank5Score { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank4ScoreLabel { get; set; }
+		MonoTouch.UIKit.UILabel LabelRankCurrent { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank5Label { get; set; }
+		MonoTouch.UIKit.UILabel LabelRankCurrentScore { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel rank5ScoreLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel rankLastLabel { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel rankLastScoreLabel { get; set; }
+		MonoTouch.UIKit.UIView ViewGameCenter { get; set; }
 
 		[Action ("OnLeaderboardsTouched:")]
 		partial void OnLeaderboardsTouched (MonoTouch.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (leaderboardButton != null) {
-				leaderboardButton.Dispose ();
-				leaderboardButton = null;
+			if (ViewGameCenter != null) {
+				ViewGameCenter.Dispose ();
+				ViewGameCenter = null;
 			}
 
-			if (gameCenterPanel != null) {
-				gameCenterPanel.Dispose ();
-				gameCenterPanel = null;
+			if (LabelOnlineRank != null) {
+				LabelOnlineRank.Dispose ();
+				LabelOnlineRank = null;
 			}
 
-			if (onlineRankValueLabel != null) {
-				onlineRankValueLabel.Dispose ();
-				onlineRankValueLabel = null;
+			if (LabelOnlineScore != null) {
+				LabelOnlineScore.Dispose ();
+				LabelOnlineScore = null;
 			}
 
-			if (onlineRankLabel != null) {
-				onlineRankLabel.Dispose ();
-				onlineRankLabel = null;
+			if (LabelRank1 != null) {
+				LabelRank1.Dispose ();
+				LabelRank1 = null;
 			}
 
-			if (localHighscoresLabel != null) {
-				localHighscoresLabel.Dispose ();
-				localHighscoresLabel = null;
+			if (LabelRank2 != null) {
+				LabelRank2.Dispose ();
+				LabelRank2 = null;
 			}
 
-			if (rank1ScoreLabel != null) {
-				rank1ScoreLabel.Dispose ();
-				rank1ScoreLabel = null;
+			if (LabelRank3 != null) {
+				LabelRank3.Dispose ();
+				LabelRank3 = null;
 			}
 
-			if (rank1Label != null) {
-				rank1Label.Dispose ();
-				rank1Label = null;
+			if (LabelRank4 != null) {
+				LabelRank4.Dispose ();
+				LabelRank4 = null;
 			}
 
-			if (rank2Label != null) {
-				rank2Label.Dispose ();
-				rank2Label = null;
+			if (LabelRank5 != null) {
+				LabelRank5.Dispose ();
+				LabelRank5 = null;
 			}
 
-			if (rank2ScoreLabel != null) {
-				rank2ScoreLabel.Dispose ();
-				rank2ScoreLabel = null;
+			if (LabelRank1Score != null) {
+				LabelRank1Score.Dispose ();
+				LabelRank1Score = null;
 			}
 
-			if (rank3Label != null) {
-				rank3Label.Dispose ();
-				rank3Label = null;
+			if (LabelRank2Score != null) {
+				LabelRank2Score.Dispose ();
+				LabelRank2Score = null;
 			}
 
-			if (rank3ScoreLabel != null) {
-				rank3ScoreLabel.Dispose ();
-				rank3ScoreLabel = null;
+			if (LabelRank3Score != null) {
+				LabelRank3Score.Dispose ();
+				LabelRank3Score = null;
 			}
 
-			if (rank4Label != null) {
-				rank4Label.Dispose ();
-				rank4Label = null;
+			if (LabelRank4Score != null) {
+				LabelRank4Score.Dispose ();
+				LabelRank4Score = null;
 			}
 
-			if (rank4ScoreLabel != null) {
-				rank4ScoreLabel.Dispose ();
-				rank4ScoreLabel = null;
+			if (LabelRank5Score != null) {
+				LabelRank5Score.Dispose ();
+				LabelRank5Score = null;
 			}
 
-			if (rank5Label != null) {
-				rank5Label.Dispose ();
-				rank5Label = null;
+			if (LabelRankCurrent != null) {
+				LabelRankCurrent.Dispose ();
+				LabelRankCurrent = null;
 			}
 
-			if (rank5ScoreLabel != null) {
-				rank5ScoreLabel.Dispose ();
-				rank5ScoreLabel = null;
-			}
-
-			if (rankLastLabel != null) {
-				rankLastLabel.Dispose ();
-				rankLastLabel = null;
-			}
-
-			if (rankLastScoreLabel != null) {
-				rankLastScoreLabel.Dispose ();
-				rankLastScoreLabel = null;
+			if (LabelRankCurrentScore != null) {
+				LabelRankCurrentScore.Dispose ();
+				LabelRankCurrentScore = null;
 			}
 		}
 	}

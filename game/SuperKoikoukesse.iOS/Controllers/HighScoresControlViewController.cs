@@ -58,8 +58,8 @@ namespace SuperKoikoukesse.iOS
     private void setViewValues()
     {
       // No new score
-      rankLastLabel.Hidden = true;
-      rankLastScoreLabel.Hidden = true;
+      LabelRankCurrent.Hidden = true;
+      LabelRankCurrentScore.Hidden = true;
 
       // New score
       if (newScoreRank.HasValue && newScoreValue.HasValue)
@@ -71,17 +71,17 @@ namespace SuperKoikoukesse.iOS
 
         // Not in top : display additionnal line
         //if (newScoreRank.Value >= scoreLinesCount) {
-        rankLastLabel.Hidden = false;
-        rankLastScoreLabel.Hidden = false;
+        LabelRankCurrent.Hidden = false;
+        LabelRankCurrentScore.Hidden = false;
 
         // TODO remove this line:
-        rankLastLabel.Text = "mon score";
+        LabelRankCurrent.Text = "mon score";
 
         // TODO uncomment this line:
         //          rankLastLabel.Text = newScoreRank.Value.ToString()+".";
 
 
-        rankLastScoreLabel.Text = newScoreValue.Value.ToString("000000");
+        LabelRankCurrentScore.Text = newScoreValue.Value.ToString("000000");
         //        } else {
         //          // In tops : TODO emphasize the corresponding one of the top 5 labels
         //          rankLastLabel.Hidden = true;
@@ -95,58 +95,58 @@ namespace SuperKoikoukesse.iOS
       // Fill labels...
       if (localScores.Length > 0)
       {
-        rank1ScoreLabel.Text = localScores[0].Score.ToString("000000");
-        rank1Label.Hidden = false;
-        rank1ScoreLabel.Hidden = false;
+        LabelRank1Score.Text = localScores[0].Score.ToString("000000");
+        LabelRank1.Hidden = false;
+        LabelRank1Score.Hidden = false;
       }
       else
       {
-        rank1Label.Hidden = true;
-        rank1ScoreLabel.Hidden = true;
+        LabelRank1.Hidden = true;
+        LabelRank1Score.Hidden = true;
       }
       if (localScores.Length > 1)
       {
-        rank2ScoreLabel.Text = localScores[1].Score.ToString("000000");
-        rank2Label.Hidden = false;
-        rank2ScoreLabel.Hidden = false;
+        LabelRank2Score.Text = localScores[1].Score.ToString("000000");
+        LabelRank2.Hidden = false;
+        LabelRank2Score.Hidden = false;
       }
       else
       {
-        rank2Label.Hidden = true;
-        rank2ScoreLabel.Hidden = true;
+        LabelRank2.Hidden = true;
+        LabelRank2Score.Hidden = true;
       }
       if (localScores.Length > 2)
       {
-        rank3ScoreLabel.Text = localScores[2].Score.ToString("000000");
-        rank3Label.Hidden = false;
-        rank3ScoreLabel.Hidden = false;
+        LabelRank3Score.Text = localScores[2].Score.ToString("000000");
+        LabelRank3.Hidden = false;
+        LabelRank3Score.Hidden = false;
       }
       else
       {
-        rank3Label.Hidden = true;
-        rank3ScoreLabel.Hidden = true;
+        LabelRank3.Hidden = true;
+        LabelRank3Score.Hidden = true;
       }
       if (localScores.Length > 3)
       {
-        rank4ScoreLabel.Text = localScores[3].Score.ToString("000000");
-        rank4Label.Hidden = false;
-        rank4ScoreLabel.Hidden = false;
+        LabelRank4Score.Text = localScores[3].Score.ToString("000000");
+        LabelRank4.Hidden = false;
+        LabelRank4Score.Hidden = false;
       }
       else
       {
-        rank4Label.Hidden = true;
-        rank4ScoreLabel.Hidden = true;
+        LabelRank4.Hidden = true;
+        LabelRank4Score.Hidden = true;
       }
       if (localScores.Length > 4)
       {
-        rank5ScoreLabel.Text = localScores[4].Score.ToString("000000");
-        rank5Label.Hidden = false;
-        rank5ScoreLabel.Hidden = false;
+        LabelRank5Score.Text = localScores[4].Score.ToString("000000");
+        LabelRank5.Hidden = false;
+        LabelRank5Score.Hidden = false;
       }
       else
       {
-        rank5Label.Hidden = true;
-        rank5ScoreLabel.Hidden = true;
+        LabelRank5.Hidden = true;
+        LabelRank5Score.Hidden = true;
       }
 
       // Get game center scores
@@ -160,21 +160,21 @@ namespace SuperKoikoukesse.iOS
     public void UpdateGameCenterLeaderboard()
     {
 
-      gameCenterPanel.Hidden = !PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated;
+      ViewGameCenter.Hidden = !PlayerCache.Instance.AuthenticatedPlayer.IsAuthenticated;
 
-      this.onlineRankValueLabel.Hidden = true;
-      this.onlineRankValueLabel.Hidden = true;
+      this.LabelOnlineRank.Hidden = true;
+      this.LabelOnlineScore.Hidden = true;
 
-      if (gameCenterPanel.Hidden == false)
+      if (ViewGameCenter.Hidden == false)
       {
 
         PlayerCache.Instance.AuthenticatedPlayer.GetBestScoreAndRank(mode, difficulty, (rank, score) => {
 
           BeginInvokeOnMainThread(() => {
-            this.onlineRankLabel.Hidden = false;
-            this.onlineRankLabel.Text = rank.ToString();
-            this.onlineRankValueLabel.Hidden = false;
-            this.onlineRankValueLabel.Text = score.ToString("000000");
+            this.LabelOnlineRank.Hidden = false;
+            this.LabelOnlineRank.Text = rank.ToString();
+            this.LabelOnlineScore.Hidden = false;
+            this.LabelOnlineScore.Text = score.ToString("000000");
           });
         });
       }
