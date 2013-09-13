@@ -69,6 +69,9 @@ namespace Superkoikoukesse.Common
           return GameMode.SURVIVAL;
         case 3: 
           return GameMode.VERSUS;
+
+        default:
+          return GameMode.SCORE;
       }
     }
   }

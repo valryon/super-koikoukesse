@@ -53,8 +53,7 @@ namespace SuperKoikoukesse.iOS
     {
       if (SelectorMode.SelectedSegment >= 0)
       {
-        var selectedMode = SelectorMode.TitleAt(SelectorMode.SelectedSegment);
-        return GameModeHelper.Convert(selectedMode);
+        return GameModeHelper.Convert(SelectorMode.SelectedSegment);
       }
 
       return GameMode.SCORE;
@@ -68,8 +67,7 @@ namespace SuperKoikoukesse.iOS
     {
       if (SelectorChallenge.SelectedSegment >= 0)
       {
-        var selectedDifficulty = SelectorChallenge.TitleAt(SelectorChallenge.SelectedSegment);
-        return GameDifficultyHelper.Convert(selectedDifficulty);
+        return GameDifficultyHelper.Convert(SelectorChallenge.SelectedSegment);
       }
 
       return GameDifficulty.EASY;

@@ -69,6 +69,9 @@ namespace Superkoikoukesse.Common
           return GameDifficulty.HARD;
         case 3: 
           return GameDifficulty.INSANE;
+
+        default:
+          return GameDifficulty.NORMAL;
       }
     }
   }
