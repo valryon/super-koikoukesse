@@ -51,19 +51,10 @@ namespace SuperKoikoukesse.iOS
     /// <returns>The mode.</returns>
     private GameMode GetMode()
     {
-
       if (SelectorMode.SelectedSegment >= 0)
       {
-        string mode = SelectorMode.TitleAt(SelectorMode.SelectedSegment);
-
-        if (mode.ToLower().Contains("score"))
-          return GameMode.SCORE;
-        if (mode.ToLower().Contains("time"))
-          return GameMode.TIME;
-        if (mode.ToLower().Contains("survival"))
-          return GameMode.SURVIVAL;
-        if (mode.ToLower().Contains("versus"))
-          return GameMode.VERSUS;
+        var selectedMode = SelectorMode.TitleAt(SelectorMode.SelectedSegment);
+        return GameModeHelper.Convert(selectedMode);
       }
 
       return GameMode.SCORE;
@@ -75,18 +66,10 @@ namespace SuperKoikoukesse.iOS
     /// <returns>The difficulty.</returns>
     private GameDifficulty GetDifficulty()
     {
-      if (SelectorDifficulty.SelectedSegment >= 0)
+      if (SelectorChallenge.SelectedSegment >= 0)
       {
-        string diff = SelectorDifficulty.TitleAt(SelectorDifficulty.SelectedSegment);
-
-        if (diff.ToLower().Contains("normal"))
-          return GameDifficulty.EASY;
-        if (diff.ToLower().Contains("hard"))
-          return GameDifficulty.NORMAL;
-        if (diff.ToLower().Contains("expert"))
-          return GameDifficulty.HARD;
-        if (diff.ToLower().Contains("nolife"))
-          return GameDifficulty.INSANE;
+        var selectedDifficulty = SelectorChallenge.TitleAt(SelectorChallenge.SelectedSegment);
+        return GameDifficultyHelper.Convert(selectedDifficulty);
       }
 
       return GameDifficulty.EASY;
