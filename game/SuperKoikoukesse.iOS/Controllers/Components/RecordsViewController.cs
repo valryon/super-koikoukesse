@@ -10,7 +10,7 @@ using Superkoikoukesse.Common;
 
 namespace SuperKoikoukesse.iOS
 {
-  public partial class HighScoresControlViewController : UIViewController
+  public partial class RecordsViewController : UIViewController
   {
     #region Members
 
@@ -23,7 +23,7 @@ namespace SuperKoikoukesse.iOS
 
     #region Constructors
 
-    public HighScoresControlViewController() : base ("HighScoresControlView", null)
+    public RecordsViewController() : base ("HighScoresControlView", null)
     {
     }
 

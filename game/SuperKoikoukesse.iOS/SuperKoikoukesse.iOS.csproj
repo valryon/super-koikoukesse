@@ -139,10 +139,6 @@
     </Compile>
     <Compile Include="GameCenter\GameCenterPlayer.cs" />
     <Compile Include="Controllers\Dialogs.cs" />
-    <Compile Include="Controllers\HighScoresControlViewController.cs" />
-    <Compile Include="Controllers\HighScoresControlViewController.designer.cs">
-      <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\GamePauseViewController.cs" />
     <Compile Include="Controllers\GamePauseViewController.designer.cs">
       <DependentUpon>GamePauseViewController.cs</DependentUpon>
@@ -192,6 +188,10 @@
     <Compile Include="Views\Controls\CardsController.cs" />
     <Compile Include="Views\Controls\DifficultyView.cs" />
     <Compile Include="Views\Controls\PXNButton.cs" />
+    <Compile Include="Controllers\Components\HighScoresControlViewController.cs" />
+    <Compile Include="Controllers\Components\HighScoresControlViewController.designer.cs">
+      <DependentUpon>HighScoresControlViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace SuperKoikoukesse.iOS
   {
     #region Members
 
-    private HighScoresControlViewController _innerController;
+    private RecordsViewController _innerController;
 
     #endregion
 
@@ -29,7 +29,7 @@ namespace SuperKoikoukesse.iOS
 
       if (_innerController == null)
       {
-        _innerController = new HighScoresControlViewController();
+        _innerController = new RecordsViewController();
         _innerController.SetScoreParameters(GameMode.SCORE, GameDifficulty.EASY);
 
         this.ViewScore.AddSubview(_innerController.View);

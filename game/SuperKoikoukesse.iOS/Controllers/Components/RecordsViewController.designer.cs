@@ -10,7 +10,7 @@ using System.CodeDom.Compiler;
 namespace SuperKoikoukesse.iOS
 {
 	[Register ("HighScoresControlViewController")]
-	partial class HighScoresControlViewController
+	partial class RecordsViewController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UILabel LabelOnlineRank { get; set; }
