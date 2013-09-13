@@ -26,7 +26,7 @@ namespace Superkoikoukesse.Common
     /// If nothing matches, return GameMode.Score.
     /// </returns>
     /// <param name="value">
-    /// A value. The case doesn't matter.
+    /// A string. The case doesn't matter.
     /// </param>
     public static GameMode Convert(string value)
     {
@@ -45,6 +45,30 @@ namespace Superkoikoukesse.Common
 
         default: 
           return GameMode.SCORE;
+      }
+    }
+
+    /// <summary>
+    /// Get a mode for an int.
+    /// </summary>
+    /// <returns>
+    /// A mode for a corresponding integer.
+    /// </returns>
+    /// <param name="value">
+    /// An integer.
+    /// </param>
+    public static GameMode Convert(int value)
+    {
+      switch (value)
+      {
+        case 0:
+          return GameMode.SCORE;
+        case 1:
+          return GameMode.TIME;
+        case 2:
+          return GameMode.SURVIVAL;
+        case 3: 
+          return GameMode.VERSUS;
       }
     }
   }

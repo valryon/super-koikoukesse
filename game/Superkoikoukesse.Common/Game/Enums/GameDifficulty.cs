@@ -26,7 +26,7 @@ namespace Superkoikoukesse.Common
     /// If nothing matches, return GameDifficulty.Easy.
     /// </returns>
     /// <param name="value">
-    /// A value. The case doesn't matter.
+    /// A string. The case doesn't matter.
     /// </param>
     public static GameDifficulty Convert(string value)
     {
@@ -45,6 +45,30 @@ namespace Superkoikoukesse.Common
 
         default: 
           return GameDifficulty.EASY;
+      }
+    }
+
+    /// <summary>
+    /// Get a difficulty for an int.
+    /// </summary>
+    /// <returns>
+    /// A difficulty for a corresponding integer.
+    /// </returns>
+    /// <param name="value">
+    /// An integer.
+    /// </param>
+    public static GameDifficulty Convert(int value)
+    {
+      switch (value)
+      {
+        case 0:
+          return GameDifficulty.EASY;
+        case 1:
+          return GameDifficulty.NORMAL;
+        case 2:
+          return GameDifficulty.HARD;
+        case 3: 
+          return GameDifficulty.INSANE;
       }
     }
   }
